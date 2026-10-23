@@ -1,0 +1,55 @@
+---
+// 廣告惡性循環 The Doom Loop（徐莉媛〈別買曝光了〉p.73 圖1，資料來源 WARC《The Multiplier Effect》2025）
+// 順時針三步：把預算轉移到「成效型」格式 → 廣告效果進入高原期／停滯 → 依據有缺陷的指標進行優化
+const nodes = [
+  { x: 130, y: 120, zh: '把預算轉移到「成效型」格式', en: 'Shift budgets to “performance” formats' },
+  { x: 370, y: 120, zh: '廣告效果進入高原期／停滯', en: 'Advertising playback plateaus' },
+  { x: 250, y: 330, zh: '依據有缺陷的指標進行優化', en: 'Optimize against faulty metrics' },
+];
+---
+<div class="stage doom">
+  <svg viewBox="0 0 500 440" role="img" aria-label="廣告惡性循環：把預算轉移到成效型格式，廣告效果進入停滯，再依有缺陷的指標優化，如此循環，品牌逐漸萎縮">
+    <defs>
+      <marker id="arrow" viewBox="0 0 10 10" refX="6" refY="5" markerUnits="userSpaceOnUse" markerWidth="22" markerHeight="22" orient="auto-start-reverse">
+        <path d="M0,0 L10,5 L0,10 z" fill="currentColor" />
+      </marker>
+    </defs>
+    <g class="arcs" fill="none" stroke="currentColor" stroke-width="10" stroke-linecap="round" marker-end="url(#arrow)">
+      <path class="arc a1" d="M175 95 Q250 55 325 95" pathLength="1" />
+      <path class="arc a2" d="M390 170 Q395 260 300 315" pathLength="1" />
+      <path class="arc a3" d="M200 315 Q105 260 110 170" pathLength="1" />
+    </g>
+    {nodes.map((n, i) => (
+      <g class={`node n${i + 1}`}>
+        <circle cx={n.x} cy={n.y} r="34" />
+        <text x={n.x} y={n.y + 7} text-anchor="middle" class="num">{i + 1}</text>
+      </g>
+    ))}
+    <g class="brand">
+      <text x="250" y="215" text-anchor="middle" class="brand-label">品牌</text>
+      <circle cx="250" cy="200" r="46" class="brand-ring" />
+    </g>
+  </svg>
+  <ol class="labels">
+    {nodes.map((n, i) => <li class={`l${i + 1}`}><b>{n.zh}</b><span>{n.en}</span></li>)}
+  </ol>
+  <p class="source">圖：廣告末日循環 The Doom Loop｜資料來源 WARC《The Multiplier Effect》(2025)，引自 徐莉媛〈別買曝光了〉紙本 p.73</p>
+</div>
+<style>
+  .doom { width: 100%; display: grid; gap: 8px; color: var(--accent-ink); }
+  svg { width: 100%; max-height: 44svh; }
+  .arc { stroke-dasharray: 1; stroke-dashoffset: 1; transition: stroke-dashoffset 0.9s ease; color: var(--accent); }
+  .node circle { fill: var(--paper); stroke: var(--line); stroke-width: 3; transition: fill .4s, stroke .4s; }
+  .node .num { font: 800 22px var(--font-sans); fill: var(--ink-3); }
+  .brand-ring { fill: var(--accent); opacity: .55; transform-origin: 250px 200px; transition: transform 1s ease, opacity 1s; }
+  .brand-label { font: 700 18px var(--font-sans); fill: var(--ink); position: relative; }
+  .labels { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; font-size: 14px; color: var(--ink); }
+  .labels li { display: flex; flex-direction: column; opacity: .25; transition: opacity .4s; }
+  .labels li span { font-size: 12px; color: var(--ink-3); }
+  .labels li::before { content: counter(list-item) "．"; position: absolute; }
+  .labels li { padding-left: 1.6em; position: relative; }
+  :global(.graphic.is-1) .n1 circle, :global(.graphic.is-2) .n2 circle, :global(.graphic.is-3) .n3 circle { fill: var(--accent); stroke: var(--accent-ink); }
+  :global(.graphic.is-1) .l1, :global(.graphic.is-2) .l2, :global(.graphic.is-3) .l3 { opacity: 1; }
+  :global(.graphic.is-1) .a1, :global(.graphic.is-2) .a2, :global(.graphic.is-3) .a3 { stroke-dashoffset: 0; }
+  :global(.graphic.is-4) .brand-ring { transform: scale(0.45); opacity: .3; }
+</style>

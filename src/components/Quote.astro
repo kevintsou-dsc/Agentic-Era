@@ -1,0 +1,13 @@
+---
+import { ARTICLES, type Quote } from '../data/poc';
+interface Props { q: Quote & { article: keyof typeof ARTICLES } }
+const { q } = Astro.props;
+const a = ARTICLES[q.article];
+---
+<figure class="quote-block">
+  <blockquote class="quote">{q.text}</blockquote>
+  <figcaption class="quote-cite">原文｜{a.authors}〈{a.short}〉紙本 p.{q.page}</figcaption>
+</figure>
+<style>
+  .quote-block { margin: 0; max-width: 40rem; }
+</style>

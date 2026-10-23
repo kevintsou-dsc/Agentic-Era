@@ -1,0 +1,62 @@
+---
+// AI 影響消費者決策下的媒體布局矩陣（徐莉媛〈別買曝光了〉p.76 圖3，筆者整理製圖）
+// 縱軸：主張驗證門檻（上＝難證明）；橫軸：消費者問題一致性（左＝分歧、右＝一致）
+const quads = [
+  { k: 1, pos: 'tl', case: '需求分歧－主張難證明', name: 'TOM 先行', items: ['先建立品牌主敘事', '再分眾補證據', '避免品牌理解破碎'] },
+  { k: 2, pos: 'tr', case: '需求一致－主張難證明', name: '雙管齊下', items: ['廣告創造注意', '內容完成驗證', 'USP 與體驗證據同步推進'] },
+  { k: 3, pos: 'bl', case: '需求分歧－主張易證明', name: '各個擊破', items: ['拆解需求情境', '優先攻高商機場景', '測出最有效的轉換切角'] },
+  { k: 4, pos: 'br', case: '需求一致－主張易證明', name: 'CEPs 先行', items: ['先讓內容成為答案', '再用媒體放大收割', 'FAQ／比較／實測先鋪'] },
+];
+---
+<div class="stage matrix">
+  <p class="title">先判斷決策情境，再決定主攻：品牌記憶、內容證據，或分眾收割</p>
+  <div class="frame">
+    <span class="y-axis"><b>主張驗證門檻</b><span>高（難證明）↑　低（易證明）↓</span></span>
+    <div class="grid">
+      {quads.map((q) => (
+        <button type="button" class={`q q${q.k} ${q.pos}`} aria-expanded="false" data-quad={q.k}>
+          <span class="case">{q.case}</span>
+          <span class="name">{q.name}</span>
+          <ul>{q.items.map((it) => <li>{it}</li>)}</ul>
+        </button>
+      ))}
+    </div>
+    <span class="x-axis"><b>消費者問題一致性</b>　← 分歧　一致 →</span>
+  </div>
+  <p class="hint">點任一格看做法</p>
+  <p class="source">圖：AI 影響消費者決策下的媒體布局矩陣｜筆者整理製圖，徐莉媛〈別買曝光了〉紙本 p.76</p>
+</div>
+<script>
+  document.querySelectorAll<HTMLButtonElement>('.matrix .q').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const open = btn.getAttribute('aria-expanded') === 'true';
+      btn.closest('.grid')?.querySelectorAll('.q').forEach((b) => b.setAttribute('aria-expanded', 'false'));
+      btn.setAttribute('aria-expanded', String(!open));
+    });
+  });
+</script>
+<style>
+  .matrix { width: 100%; display: grid; gap: 10px; }
+  .title { margin: 0; font-weight: 700; font-size: clamp(16px, 1.2vw + 10px, 20px); }
+  .frame { display: grid; grid-template-columns: auto 1fr; grid-template-rows: 1fr auto; gap: 8px; }
+  .y-axis { writing-mode: vertical-rl; transform: rotate(180deg); font-size: 12px; color: var(--ink-2); display: flex; gap: 8px; justify-content: center; }
+  .x-axis { grid-column: 2; font-size: 12px; color: var(--ink-2); text-align: center; }
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .q { all: unset; box-sizing: border-box; cursor: pointer; display: grid; align-content: start; gap: 4px; min-height: 92px; padding: 12px 14px; border-radius: 12px; border: 2px solid var(--line); background: var(--paper); opacity: .45; transition: opacity .4s, background .4s, border-color .4s; }
+  .q:focus-visible { outline: 3px solid var(--accent-ink); outline-offset: 2px; }
+  .case { font-size: 12px; color: var(--ink-2); }
+  .name { font-weight: 800; font-size: clamp(17px, 1.4vw + 10px, 22px); }
+  .q ul { margin: 4px 0 0; padding-left: 1.1em; font-size: 13px; line-height: 1.5; display: none; }
+  .q[aria-expanded="true"] { opacity: 1; background: var(--accent); border-color: var(--accent-ink); }
+  .q[aria-expanded="true"] ul { display: block; }
+  .hint { margin: 0; font-size: 12px; color: var(--ink-3); }
+  :global(.graphic[data-step="1"]) .q1, :global(.graphic[data-step="2"]) .q2, :global(.graphic[data-step="3"]) .q3, :global(.graphic[data-step="4"]) .q4 { opacity: 1; background: var(--accent); border-color: var(--accent-ink); }
+  :global(.graphic[data-step="1"]) .q1 ul, :global(.graphic[data-step="2"]) .q2 ul, :global(.graphic[data-step="3"]) .q3 ul, :global(.graphic[data-step="4"]) .q4 ul { display: block; }
+  :global(.graphic.is-5) .q { opacity: 1; }
+  @media (max-width: 560px) {
+    .frame { grid-template-columns: 1fr; }
+    .y-axis { writing-mode: horizontal-tb; transform: none; justify-content: flex-start; flex-wrap: wrap; }
+    .x-axis { grid-column: 1; }
+    .q { min-height: 76px; padding: 10px 12px; }
+  }
+</style>

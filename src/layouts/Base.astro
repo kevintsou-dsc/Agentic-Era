@@ -1,0 +1,35 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description: string;
+  chapter?: 'people' | 'model' | 'ai';
+  crumb?: string;
+}
+const { title, description, chapter = 'people', crumb } = Astro.props;
+---
+<!doctype html>
+<html lang="zh-Hant-TW">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="robots" content="noindex" />
+  </head>
+  <body class={`ch-${chapter}`}>
+    <div class="progress" aria-hidden="true"><span data-progress></span></div>
+    <header class="topbar">
+      <a href="/" class="mono">決策智慧 2026 · POC</a>
+      {crumb && <span>{crumb}</span>}
+    </header>
+    <main>
+      <slot />
+    </main>
+    <script>
+      import { initScrolly } from '../scripts/scrolly';
+      initScrolly();
+    </script>
+  </body>
+</html>

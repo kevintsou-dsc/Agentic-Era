@@ -1,0 +1,31 @@
+---
+import Base from '../layouts/Base.astro';
+---
+<Base title="POC｜決策智慧 2026 閱讀網站" description="兩種故事結構的小規模試作：A 一條主線長故事、C 全書故事＋單篇短故事。">
+  <section class="hero">
+    <p class="eyebrow">Proof of Concept · 2026-10-24</p>
+    <h1 class="display">兩種讀法，<br />各捲一段看看</h1>
+    <p class="lede">同樣的素材（注意力 → 記憶這條線，4 篇文章），用兩種故事結構呈現。請用手機和電腦各捲一次，比較哪一種讓你更想讀完。</p>
+    <div class="options">
+      <a class="opt" href="/poc-a">
+        <span class="tag">A</span>
+        <b>一條主線長故事</b>
+        <span>4 篇文章串成一個故事，約 3 分鐘捲完。</span>
+      </a>
+      <a class="opt" href="/poc-c">
+        <span class="tag">C</span>
+        <b>全書故事＋單篇 90 秒</b>
+        <span>先用 1 分鐘看懂全書，再點進一篇 90 秒的短故事。</span>
+      </a>
+    </div>
+    <p class="source">POC 範圍：只做樣本內容，尚未做原文分頁、字型子集化與正式視覺。所有引文已通過逐字比對。</p>
+  </section>
+</Base>
+<style>
+  .options { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; margin: 32px 0 20px; max-width: 46rem; }
+  .opt { display: grid; gap: 6px; padding: 20px; border: 2px solid var(--ink); border-radius: 16px; text-decoration: none; background: var(--paper); transition: background .2s, transform .2s; }
+  .opt:hover { background: var(--people); transform: translateY(-2px); }
+  .opt b { font-size: 20px; }
+  .opt span:last-child { color: var(--ink-2); font-size: 15px; }
+  .tag { font-family: var(--font-mono); font-size: 13px; width: 28px; height: 28px; display: grid; place-items: center; border-radius: 50%; background: var(--ink); color: var(--paper); }
+</style>

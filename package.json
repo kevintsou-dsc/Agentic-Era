@@ -1,0 +1,15 @@
+{
+  "name": "agentic-era",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "node scripts/verify/verify-quotes.mjs && astro build",
+    "verify": "node scripts/verify/verify-quotes.mjs",
+    "preview": "astro preview",
+    "check:repo": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/check-repo.ps1"
+  },
+  "dependencies": {
+    "astro": "5.18.2"
+  }
+}

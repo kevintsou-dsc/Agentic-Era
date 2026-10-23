@@ -1,0 +1,137 @@
+---
+import Base from '../layouts/Base.astro';
+import Quote from '../components/Quote.astro';
+import ScreenTime from '../components/graphics/ScreenTime.astro';
+import DoomLoop from '../components/graphics/DoomLoop.astro';
+import AttentionBars from '../components/graphics/AttentionBars.astro';
+import GoldenBars from '../components/graphics/GoldenBars.astro';
+import SovLayers from '../components/graphics/SovLayers.astro';
+import { ARTICLES, QUOTES } from '../data/poc';
+const line = ['a08', 'a10', 'a11', 'a13'] as const;
+const totalMin = line.reduce((s, k) => s + ARTICLES[k].minutes, 0);
+---
+<Base title="A｜從曝光到記憶｜決策智慧 2026" description="POC A：一條主線長故事。4 篇文章串成一個約 3 分鐘的捲動故事。" crumb="A．一條主線">
+  <section class="hero">
+    <p class="eyebrow">主線：從注意力到記憶｜4 篇文章｜約 3 分鐘</p>
+    <h1 class="display">曝光越買越多，<br />為什麼沒人記得你？</h1>
+    <div class="reveal is-in">
+      <Quote q={QUOTES.scrolledHundreds} />
+    </div>
+    <p class="scroll-hint">往下捲動</p>
+  </section>
+
+  <!-- 1. 注意力變短了 -->
+  <section class="scrolly">
+    <div class="graphic"><ScreenTime /></div>
+    <div class="steps">
+      <div class="step"><div class="card"><p class="curated">整理：策展者</p><p>2004 年，人們平均在一個螢幕上停留約 <b>150 秒</b>。</p></div></div>
+      <div class="step"><div class="card"><p>到了今天，只剩下約 <b>47 秒</b>，不到原本的三分之一。</p></div></div>
+      <div class="step"><div class="card">
+        <p>但何華軒提醒，問題不在專注力消失：</p>
+        <Quote q={QUOTES.notLostFocus} />
+      </div></div>
+    </div>
+  </section>
+
+  <!-- 2. Doom Loop -->
+  <section class="scrolly graphic-right">
+    <div class="graphic"><DoomLoop /></div>
+    <div class="steps">
+      <div class="step"><div class="card"><p class="curated">整理：策展者</p><p>為了交出能即時量化的成效，預算一步步流向轉換型格式。</p></div></div>
+      <div class="step"><div class="card"><p>報表很漂亮，廣告效果卻停在高原期。</p></div></div>
+      <div class="step"><div class="card"><p>於是再依照同一套有缺陷的指標繼續優化，循環就此成形。徐莉媛引用 WARC 的說法，稱之為 <b>The Doom Loop</b>。</p></div></div>
+      <div class="step"><div class="card">
+        <p>預算沒少、聲量沒小，品牌卻一點一點變淡。</p>
+        <Quote q={QUOTES.inventory} />
+      </div></div>
+    </div>
+  </section>
+
+  <!-- 3. 自願 vs 被迫 -->
+  <section class="scrolly">
+    <div class="graphic"><AttentionBars /></div>
+    <div class="steps">
+      <div class="step"><div class="card"><p class="curated">整理：策展者</p><p>dentsu 日本的眼動研究比較了同一則廣告：消費者<b>自己選擇看</b>，和<b>被迫看</b>。注視 5–10 秒時，自願觀看的品牌回想多了 <b>18%</b>。</p></div></div>
+      <div class="step"><div class="card"><p>注視超過 10 秒，差距拉大到 <b>79%</b>。不可略過的廣告把人留在螢幕前，他等的卻是 skip 鍵。</p></div></div>
+      <div class="step"><div class="card">
+        <Quote q={QUOTES.cantBuy} />
+        <details class="more">
+          <summary>案例：CeraVe 把體驗瓶掛上捷運吊環</summary>
+          <p>CeraVe 適樂膚在淡水信義線把上萬份 30ml 潔膚露體驗瓶掛上車廂吊環，單日引爆 2.4 萬篇社群討論（紙本 p.78）。</p>
+          <Quote q={QUOTES.cerave} />
+        </details>
+      </div></div>
+    </div>
+  </section>
+
+  <section class="section center">
+    <p class="eyebrow reveal">轉折</p>
+    <h2 class="display reveal" style="font-size: clamp(28px, 4.5vw, 52px)">那記憶從哪裡來？</h2>
+    <p class="lede reveal">吳宗霖與陳炯文從今年的金曲獎找到一個答案：<b>共同記憶</b>。</p>
+  </section>
+
+  <!-- 4. 金曲獎 -->
+  <section class="scrolly graphic-right">
+    <div class="graphic"><GoldenBars /></div>
+    <div class="steps">
+      <div class="step"><div class="card"><p class="curated">整理：策展者</p><p>金曲獎電視平均收視：2024 年 2.78，2025 年掉到 2.31。</p></div></div>
+      <div class="step"><div class="card"><p>2026 年回升到 <b>3.37</b>，成為當日全國收視冠軍。</p></div></div>
+      <div class="step"><div class="card">
+        <p>相對成長約 46%。而且成長最明顯的是 55–64 歲，其次是 25–34 歲：不只是懷舊，年輕人也一起回來了。作者稱之為「受眾橋接」。</p>
+        <Quote q={QUOTES.familiarNew} />
+      </div></div>
+    </div>
+  </section>
+
+  <!-- 5. Share of Choice Context -->
+  <section class="scrolly ch-model">
+    <div class="graphic"><SovLayers /></div>
+    <div class="steps">
+      <div class="step"><div class="card"><p class="curated">整理：策展者｜轉入 Model 章</p><p>吳宗霖在另一篇文章裡，把「被記住」拆成三層。第一層：品牌在平台、通路與生活系統裡，<b>看不看得到</b>。</p></div></div>
+      <div class="step"><div class="card"><p>第二層：討論某個需求時，消費者和社群<b>會不會自然提起你</b>。</p></div></div>
+      <div class="step"><div class="card"><p>第三層：在某個生活情境下，消費者<b>會不會想起你</b>。</p></div></div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="reveal"><Quote q={QUOTES.salesMarketing} /></div>
+  </section>
+
+  <!-- 結尾：帶走的問題 -->
+  <section class="section ending">
+    <p class="eyebrow reveal">讀完這條線，帶走三個問題</p>
+    <ol class="asks">
+      <li class="reveal">{QUOTES.ask1.text}</li>
+      <li class="reveal">{QUOTES.ask2.text}</li>
+      <li class="reveal">{QUOTES.ask3.text}</li>
+    </ol>
+    <p class="source reveal">原文｜徐莉媛〈別買曝光了〉紙本 p.78</p>
+    <div class="reveal" style="margin-top: 14svh"><Quote q={QUOTES.remembered} /></div>
+  </section>
+
+  <section class="section">
+    <p class="eyebrow">這條線的 4 篇文章｜原文合計約 {totalMin} 分鐘</p>
+    <ul class="cards">
+      {line.map((k) => {
+        const a = ARTICLES[k];
+        return (
+          <li class={`acard ch-${a.chapter}`}>
+            <span class="chip">{a.chapter === 'model' ? 'Model' : 'People'}｜{a.pages}</span>
+            <b>{a.title}</b>
+            <span class="who">{a.authors}｜{a.role}</span>
+            <span class="min">原文約 {a.minutes} 分鐘（POC 尚未開放）</span>
+          </li>
+        );
+      })}
+    </ul>
+    <p style="margin-top: 32px"><a class="btn ghost" href="/">← 回到 POC 首頁，比較 C</a></p>
+  </section>
+</Base>
+<style>
+  .asks { margin: 24px 0 8px; padding-left: 1.4em; display: grid; gap: 18px; font-size: clamp(22px, 2.2vw + 12px, 34px); font-weight: 800; line-height: 1.4; }
+  .cards { list-style: none; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px; }
+  .acard { display: grid; gap: 6px; align-content: start; padding: 18px; border-radius: 14px; border: 1px solid var(--line); background: var(--paper); }
+  .acard b { font-size: 17px; line-height: 1.45; }
+  .who { font-size: 13px; color: var(--ink-2); line-height: 1.5; }
+  .min { font-size: 13px; color: var(--ink-3); }
+</style>

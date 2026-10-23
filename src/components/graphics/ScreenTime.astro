@@ -1,0 +1,35 @@
+---
+// 單一螢幕平均停留時間 2004 約 150 秒 → 約 47 秒（何華軒〈當注意力成為稀缺資源〉p.59，引 Gloria Mark）
+---
+<div class="stage screen-time" role="img" aria-label="平均停留在單一螢幕的時間，從 2004 年約 150 秒降到約 47 秒">
+  <div class="row">
+    <span class="year">2004</span>
+    <div class="track"><div class="bar b150"></div></div>
+    <span class="val">約 150 秒</span>
+  </div>
+  <div class="row later">
+    <span class="year">現在</span>
+    <div class="track"><div class="bar b47"></div></div>
+    <span class="val">約 47 秒</span>
+  </div>
+  <p class="big"><span class="n">150</span><span class="arrow">→</span><span class="n accent">47</span><small>秒</small></p>
+  <p class="source">平均停留在單一螢幕的時間｜Gloria Mark 研究，引自 何華軒〈當注意力成為稀缺資源〉紙本 p.59</p>
+</div>
+<style>
+  .screen-time { display: grid; gap: 18px; width: 100%; }
+  .row { display: grid; grid-template-columns: 4.5em 1fr 5.5em; align-items: center; gap: 12px; font-size: 15px; }
+  .year { font-family: var(--font-mono); color: var(--ink-2); }
+  .track { height: 22px; background: var(--paper-2); border-radius: 6px; overflow: hidden; }
+  .bar { height: 100%; background: var(--ink-3); transform-origin: left; transform: scaleX(0); transition: transform 1.1s cubic-bezier(.2,.7,.2,1); border-radius: 6px; }
+  .b47 { background: var(--accent-ink); }
+  .val { font-variant-numeric: tabular-nums; }
+  .later { opacity: 0.15; transition: opacity 0.6s; }
+  .big { margin: 12px 0 0; font-size: clamp(56px, 10vw, 120px); font-weight: 800; line-height: 1; display: flex; align-items: baseline; gap: 0.2em; opacity: 0; transition: opacity .6s; }
+  .big small { font-size: 0.3em; }
+  .big .arrow { font-size: 0.5em; color: var(--ink-3); }
+  .big .accent { color: var(--accent-ink); }
+  :global(.graphic.is-1) .b150 { transform: scaleX(1); }
+  :global(.graphic.is-2) .later { opacity: 1; }
+  :global(.graphic.is-2) .b47 { transform: scaleX(0.313); }
+  :global(.graphic.is-3) .big { opacity: 1; }
+</style>

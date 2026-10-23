@@ -1,0 +1,65 @@
+---
+import Base from '../../layouts/Base.astro';
+import Quote from '../../components/Quote.astro';
+import BookDots from '../../components/graphics/BookDots.astro';
+import { QUOTES } from '../../data/poc';
+import { ALL, CHAPTERS, type Chapter } from '../../data/articles';
+const order: Chapter[] = ['intro', 'people', 'model', 'ai'];
+const totalMin = ALL.reduce((s, a) => s + a.minutes, 0);
+---
+<Base title="C｜全書故事｜決策智慧 2026" description="POC C：先用 1 分鐘看懂全書，再點進單篇 90 秒故事。" crumb="C．全書故事">
+  <section class="hero">
+    <p class="eyebrow">2026 決策智慧｜Agentic 時代：重塑品牌與人的真實距離</p>
+    <h1 class="display">品牌離 AI 越近，<br />會離人越遠嗎？</h1>
+    <p class="lede">22 篇觀點、30 多位作者。原文讀完約 <b>{Math.floor(totalMin / 60)} 小時 {totalMin % 60} 分</b>，這裡先用 1 分鐘帶你看懂整本。</p>
+    <p class="scroll-hint">往下捲動</p>
+  </section>
+
+  <section class="section">
+    <p class="curated reveal">本期的核心命題｜總編輯邵懿文</p>
+    <div class="reveal"><Quote q={QUOTES.coreQuestion} /></div>
+  </section>
+
+  <section class="scrolly">
+    <div class="graphic"><BookDots /></div>
+    <div class="steps">
+      <div class="step"><div class="card"><p class="curated">整理：策展者</p><p>全書分四章：序章定調，<b>People</b> 談人，<b>Model</b> 談模型，<b>A.I</b> 談行動。每個點是一篇文章。</p></div></div>
+      <div class="step"><div class="card"><p>讀完 22 篇，會發現有四條線反覆出現。第一條：AI 越普及，「看起來像真的」越廉價，<b>真實與信任</b>反而最貴。</p></div></div>
+      <div class="step"><div class="card"><p>第二條：AI 改變的是分工，<b>判斷</b>不能外包。</p></div></div>
+      <div class="step"><div class="card"><p>第三條：當 AI Agent 替消費者篩選，品牌要同時說服人和 AI，<b>被選擇的規則</b>改寫了。</p></div></div>
+      <div class="step"><div class="card"><p>第四條：曝光不再稀缺，稀缺的是<b>被記住</b>。</p><p><a class="btn" href="/poc-c/a10">讀這條線的一篇：90 秒 →</a></p></div></div>
+    </div>
+  </section>
+
+  <section class="section">
+    <p class="eyebrow">依章節找文章</p>
+    {order.map((ch) => (
+      <div class={`chgroup ch-${ch}`}>
+        <h2><span class="chip">{CHAPTERS[ch].name}</span> {CHAPTERS[ch].zh}</h2>
+        <ul>
+          {ALL.filter((a) => a.chapter === ch).map((a) => (
+            <li>
+              {a.id === 10
+                ? <a href="/poc-c/a10"><b>{a.title}</b><span>{a.authors}｜紙本 p.{a.page}</span><em>90 秒故事</em></a>
+                : <div class="off"><b>{a.title}</b><span>{a.authors}｜紙本 p.{a.page}｜原文約 {a.minutes} 分</span></div>}
+            </li>
+          ))}
+        </ul>
+      </div>
+    ))}
+    <p class="source">POC：只有〈別買曝光了〉做了 90 秒故事。標題以文章內頁為準。</p>
+    <p style="margin-top: 24px"><a class="btn ghost" href="/">← 回到 POC 首頁，比較 A</a></p>
+  </section>
+</Base>
+<style>
+  .chgroup { margin: 28px 0; }
+  .chgroup h2 { font-size: 18px; display: flex; gap: 10px; align-items: center; margin: 0 0 10px; }
+  .chgroup ul { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 10px; }
+  .chgroup li > * { display: grid; gap: 4px; padding: 14px 16px; border-radius: 12px; border: 1px solid var(--line); background: var(--paper); text-decoration: none; height: 100%; }
+  .chgroup a { border: 2px solid var(--accent-ink); }
+  .chgroup a:hover { background: var(--accent); }
+  .chgroup b { font-size: 15px; line-height: 1.45; }
+  .chgroup span { font-size: 12px; color: var(--ink-2); }
+  .chgroup em { font-style: normal; font-size: 12px; font-weight: 700; color: var(--accent-ink); }
+  .off { opacity: .75; }
+</style>
