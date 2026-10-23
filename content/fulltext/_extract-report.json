@@ -1,0 +1,1032 @@
+[
+ {
+  "id": 1,
+  "chapter": "intro",
+  "sourceFile": "0-1 AI for Growth 看懂世界，加速成長_唐心慧.pdf",
+  "printPageStart": 6,
+  "printPageEnd": 11,
+  "chars": 3225,
+  "images": [
+   {
+    "printedPage": 7,
+    "w": 1191,
+    "h": 794
+   },
+   {
+    "printedPage": 9,
+    "w": 1191,
+    "h": 794
+   },
+   {
+    "printedPage": 11,
+    "w": 1191,
+    "h": 794
+   },
+   {
+    "printedPage": 11,
+    "w": 223,
+    "h": 89
+   }
+  ]
+ },
+ {
+  "id": 2,
+  "chapter": "intro",
+  "sourceFile": "0-2 Agentic 時代，品牌與人的真實距離_邵懿文.pdf",
+  "printPageStart": 12,
+  "printPageEnd": 17,
+  "chars": 3374,
+  "images": [
+   {
+    "printedPage": 13,
+    "w": 1191,
+    "h": 794
+   },
+   {
+    "printedPage": 15,
+    "w": 1191,
+    "h": 794
+   },
+   {
+    "printedPage": 17,
+    "w": 1191,
+    "h": 794
+   }
+  ]
+ },
+ {
+  "id": 3,
+  "chapter": "people",
+  "sourceFile": "1-3 真實的力量，重新定義中_周麗君.pdf",
+  "printPageStart": 20,
+  "printPageEnd": 27,
+  "chars": 4383,
+  "images": [
+   {
+    "printedPage": 21,
+    "w": 1191,
+    "h": 794
+   },
+   {
+    "printedPage": 21,
+    "w": 360,
+    "h": 265
+   },
+   {
+    "printedPage": 21,
+    "w": 195,
+    "h": 213
+   },
+   {
+    "printedPage": 21,
+    "w": 38,
+    "h": 33
+   },
+   {
+    "printedPage": 21,
+    "w": 40,
+    "h": 36
+   },
+   {
+    "printedPage": 23,
+    "w": 1191,
+    "h": 794
+   },
+   {
+    "printedPage": 22,
+    "w": 311,
+    "h": 223
+   },
+   {
+    "printedPage": 22,
+    "w": 40,
+    "h": 37
+   },
+   {
+    "printedPage": 22,
+    "w": 37,
+    "h": 40
+   },
+   {
+    "printedPage": 22,
+    "w": 303,
+    "h": 210
+   },
+   {
+    "printedPage": 22,
+    "w": 172,
+    "h": 105
+   },
+   {
+    "printedPage": 22,
+    "w": 172,
+    "h": 97
+   },
+   {
+    "printedPage": 23,
+    "w": 482,
+    "h": 259
+   },
+   {
+    "printedPage": 23,
+    "w": 40,
+    "h": 37
+   },
+   {
+    "printedPage": 25,
+    "w": 1191,
+    "h": 794
+   },
+   {
+    "printedPage": 24,
+    "w": 292,
+    "h": 203
+   },
+   {
+    "printedPage": 24,
+    "w": 292,
+    "h": 203
+   },
+   {
+    "printedPage": 24,
+    "w": 40,
+    "h": 40
+   },
+   {
+    "printedPage": 25,
+    "w": 414,
+    "h": 193
+   },
+   {
+    "printedPage": 25,
+    "w": 40,
+    "h": 40
+   },
+   {
+    "printedPage": 27,
+    "w": 1191,
+    "h": 794
+   },
+   {
+    "printedPage": 26,
+    "w": 306,
+    "h": 173
+   },
+   {
+    "printedPage": 26,
+    "w": 298,
+    "h": 173
+   },
+   {
+    "printedPage": 26,
+    "w": 40,
+    "h": 40
+   }
+  ]
+ },
+ {
+  "id": 4,
+  "chapter": "people",
+  "sourceFile": "1-4 Agents of Growth AI代理時代的增長推手_紀緻謙.pdf",
+  "printPageStart": 28,
+  "printPageEnd": 35,
+  "chars": 6809,
+  "images": [
+   {
+    "printedPage": 29,
+    "w": 1191,
+    "h": 794
+   },
+   {
+    "printedPage": 31,
+    "w": 1191,
+    "h": 794
+   },
+   {
+    "printedPage": 33,
+    "w": 1191,
+    "h": 794
+   },
+   {
+    "printedPage": 35,
+    "w": 1191,
+    "h": 794
+   },
+   {
+    "printedPage": 34,
+    "w": 24,
+    "h": 24
+   },
+   {
+    "printedPage": 34,
+    "w": 17,
+    "h": 18
+   },
+   {
+    "printedPage": 34,
+    "w": 17,
+    "h": 18
+   },
+   {
+    "printedPage": 34,
+    "w": 36,
+    "h": 22
+   },
+   {
+    "printedPage": 34,
+    "w": 25,
+    "h": 7
+   },
+   {
+    "printedPage": 34,
+    "w": 25,
+    "h": 26
+   },
+   {
+    "printedPage": 34,
+    "w": 27,
+    "h": 7
+   }
+  ]
+ },
+ {
+  "id": 5,
+  "chapter": "people",
+  "sourceFile": "1-5 AI代理時代的增長架構師_朱芳儀.pdf",
+  "printPageStart": 36,
+  "printPageEnd": 43,
+  "chars": 5448,
+  "images": [
+   {
+    "printedPage": 37,
+    "w": 1191,
+    "h": 794
+   },
+   {
+    "printedPage": 39,
+    "w": 1191,
+    "h": 794
+   },
+   {
+    "printedPage": 39,
+    "w": 223,
+    "h": 132
+   },
+   {
+    "printedPage": 39,
+    "w": 223,
+    "h": 132
+   },
+   {
+    "printedPage": 41,
+    "w": 1191,
+    "h": 794
+   },
+   {
+    "printedPage": 43,
+    "w": 1191,
+    "h": 794
+   },
+   {
+    "printedPage": 42,
+    "w": 37,
+    "h": 37
+   }
+  ]
+ },
+ {
+  "id": 6,
+  "chapter": "people",
+  "sourceFile": "1-6 信任為何成為AI時代最難複製的競爭力-楊欣怡.pdf",
+  "printPageStart": 44,
+  "printPageEnd": 49,
+  "chars": 4090,
+  "images": [
+   {
+    "printedPage": 45,
+    "w": 1191,
+    "h": 794
+   },
+   {
+    "printedPage": 47,
+    "w": 1191,
+    "h": 794
+   },
+   {
+    "printedPage": 49,
+    "w": 1191,
+    "h": 794
+   }
+  ]
+ },
+ {
+  "id": 7,
+  "chapter": "people",
+  "sourceFile": "1-7 AI可以幫人買東西，但品牌要讓人想買東西_陳蒔.pdf",
+  "printPageStart": 50,
+  "printPageEnd": 57,
+  "chars": 6541,
+  "images": [
+   {
+    "printedPage": 51,
+    "w": 1191,
+    "h": 794
+   },
+   {
+    "printedPage": 53,
+    "w": 1191,
+    "h": 794
+   },
+   {
+    "printedPage": 53,
+    "w": 406,
+    "h": 228
+   },
+   {
+    "printedPage": 55,
+    "w": 1191,
+    "h": 794
+   },
+   {
+    "printedPage": 57,
+    "w": 1191,
+    "h": 794
+   },
+   {
+    "printedPage": 56,
+    "w": 133,
+    "h": 268
+   },
+   {
+    "printedPage": 56,
+    "w": 135,
+    "h": 268
+   },
+   {
+    "printedPage": 57,
+    "w": 482,
+    "h": 268
+   }
+  ]
+ },
+ {
+  "id": 8,
+  "chapter": "people",
+  "sourceFile": "1-8 當注意力成為稀缺資源：娛樂與運動如何累積品牌心智資產_何華軒.pdf",
+  "printPageStart": 58,
+  "printPageEnd": 65,
+  "chars": 5784,
+  "images": [
+   {
+    "printedPage": 59,
+    "w": 1191,
+    "h": 794
+   },
+   {
+    "printedPage": 61,
+    "w": 1191,
+    "h": 794
+   },
+   {
+    "printedPage": 61,
+    "w": 482,
+    "h": 113
+   },
+   {
+    "printedPage": 61,
+    "w": 223,
+    "h": 194
+   },
+   {
+    "printedPage": 63,
+    "w": 1191,
+    "h": 794
+   },
+   {
+    "printedPage": 62,
+    "w": 482,
+    "h": 215
+   },
+   {
+    "printedPage": 63,
+    "w": 205,
+    "h": 286
+   },
+   {
+    "printedPage": 63,
+    "w": 205,
+    "h": 286
+   },
+   {
+    "printedPage": 65,
+    "w": 1191,
+    "h": 794
+   },
+   {
+    "printedPage": 64,
+    "w": 482,
+    "h": 79
+   },
+   {
+    "printedPage": 64,
+    "w": 223,
+    "h": 176
+   }
+  ]
+ },
+ {
+  "id": 9,
+  "chapter": "people",
+  "sourceFile": "1-9 討好演算法，還是打動人 別讓效率邏輯把社群砍掉 _孫韞筑.pdf",
+  "printPageStart": 66,
+  "printPageEnd": 71,
+  "chars": 3481,
+  "images": [
+   {
+    "printedPage": 67,
+    "w": 1191,
+    "h": 794
+   },
+   {
+    "printedPage": 69,
+    "w": 1191,
+    "h": 794
+   },
+   {
+    "printedPage": 71,
+    "w": 1191,
+    "h": 794
+   }
+  ]
+ },
+ {
+  "id": 10,
+  "chapter": "people",
+  "sourceFile": "1-10 別買曝光了，開始買注意力吧 - 把媒體做成體驗，幫品牌累積「滑不走」的記憶資產_徐莉媛.pdf",
+  "printPageStart": 72,
+  "printPageEnd": 79,
+  "chars": 5608,
+  "images": [
+   {
+    "printedPage": 73,
+    "w": 1191,
+    "h": 794
+   },
+   {
+    "printedPage": 75,
+    "w": 1191,
+    "h": 794
+   },
+   {
+    "printedPage": 77,
+    "w": 1191,
+    "h": 794
+   },
+   {
+    "printedPage": 79,
+    "w": 1191,
+    "h": 794
+   },
+   {
+    "printedPage": 78,
+    "w": 134,
+    "h": 181
+   }
+  ]
+ },
+ {
+  "id": 11,
+  "chapter": "people",
+  "sourceFile": "1-11 從金曲獎到甄嬛傳 共同記憶帶來的品牌價值_吳宗霖 陳炯文.pdf",
+  "printPageStart": 80,
+  "printPageEnd": 93,
+  "chars": 15100,
+  "images": [
+   {
+    "printedPage": 81,
+    "w": 1191,
+    "h": 794
+   },
+   {
+    "printedPage": 83,
+    "w": 1191,
+    "h": 794
+   },
+   {
+    "printedPage": 83,
+    "w": 421,
+    "h": 37
+   },
+   {
+    "printedPage": 83,
+    "w": 199,
+    "h": 69
+   },
+   {
+    "printedPage": 85,
+    "w": 1191,
+    "h": 794
+   },
+   {
+    "printedPage": 87,
+    "w": 1191,
+    "h": 794
+   },
+   {
+    "printedPage": 86,
+    "w": 129,
+    "h": 281
+   },
+   {
+    "printedPage": 87,
+    "w": 223,
+    "h": 278
+   },
+   {
+    "printedPage": 89,
+    "w": 1191,
+    "h": 794
+   },
+   {
+    "printedPage": 88,
+    "w": 482,
+    "h": 271
+   },
+   {
+    "printedPage": 89,
+    "w": 137,
+    "h": 137
+   },
+   {
+    "printedPage": 89,
+    "w": 223,
+    "h": 113
+   },
+   {
+    "printedPage": 89,
+    "w": 130,
+    "h": 137
+   },
+   {
+    "printedPage": 91,
+    "w": 1191,
+    "h": 794
+   },
+   {
+    "printedPage": 90,
+    "w": 203,
+    "h": 278
+   },
+   {
+    "printedPage": 93,
+    "w": 1191,
+    "h": 794
+   }
+  ]
+ },
+ {
+  "id": 12,
+  "chapter": "model",
+  "sourceFile": "2-12 People Model 介紹和應用_陳介立 孫郁喬 高靖萍.pdf",
+  "printPageStart": 96,
+  "printPageEnd": 115,
+  "chars": 16591,
+  "images": [
+   {
+    "printedPage": 97,
+    "w": 1191,
+    "h": 794
+   },
+   {
+    "printedPage": 99,
+    "w": 1191,
+    "h": 794
+   },
+   {
+    "printedPage": 98,
+    "w": 108,
+    "h": 66
+   },
+   {
+    "printedPage": 101,
+    "w": 1191,
+    "h": 794
+   },
+   {
+    "printedPage": 101,
+    "w": 253,
+    "h": 217
+   },
+   {
+    "printedPage": 103,
+    "w": 1191,
+    "h": 794
+   },
+   {
+    "printedPage": 105,
+    "w": 1191,
+    "h": 794
+   },
+   {
+    "printedPage": 105,
+    "w": 136,
+    "h": 182
+   },
+   {
+    "printedPage": 105,
+    "w": 136,
+    "h": 182
+   },
+   {
+    "printedPage": 107,
+    "w": 1191,
+    "h": 794
+   },
+   {
+    "printedPage": 106,
+    "w": 158,
+    "h": 231
+   },
+   {
+    "printedPage": 106,
+    "w": 158,
+    "h": 230
+   },
+   {
+    "printedPage": 109,
+    "w": 1191,
+    "h": 794
+   },
+   {
+    "printedPage": 111,
+    "w": 1191,
+    "h": 794
+   },
+   {
+    "printedPage": 113,
+    "w": 1191,
+    "h": 794
+   },
+   {
+    "printedPage": 115,
+    "w": 1191,
+    "h": 794
+   }
+  ]
+ },
+ {
+  "id": 13,
+  "chapter": "model",
+  "sourceFile": "2-13 重建 SOV：在注意力被 AI 稀釋的時代，如何守住品牌被選擇的關鍵場域_吳宗霖.pdf",
+  "printPageStart": 116,
+  "printPageEnd": 127,
+  "chars": 9336,
+  "images": [
+   {
+    "printedPage": 117,
+    "w": 1191,
+    "h": 794
+   },
+   {
+    "printedPage": 119,
+    "w": 1191,
+    "h": 794
+   },
+   {
+    "printedPage": 121,
+    "w": 1191,
+    "h": 794
+   },
+   {
+    "printedPage": 123,
+    "w": 1191,
+    "h": 794
+   },
+   {
+    "printedPage": 125,
+    "w": 1191,
+    "h": 794
+   },
+   {
+    "printedPage": 127,
+    "w": 1191,
+    "h": 794
+   }
+  ]
+ },
+ {
+  "id": 14,
+  "chapter": "model",
+  "sourceFile": "2-15 AI普及下的演算法世代，「衡斷力 (Judgment)」將成為最稀缺的競爭力_強義明.pdf",
+  "printPageStart": 128,
+  "printPageEnd": 135,
+  "chars": 5590,
+  "images": [
+   {
+    "printedPage": 129,
+    "w": 1191,
+    "h": 794
+   },
+   {
+    "printedPage": 131,
+    "w": 1191,
+    "h": 794
+   },
+   {
+    "printedPage": 133,
+    "w": 1191,
+    "h": 794
+   },
+   {
+    "printedPage": 135,
+    "w": 1191,
+    "h": 794
+   }
+  ]
+ },
+ {
+  "id": 15,
+  "chapter": "model",
+  "sourceFile": "2-14 生成式體驗來臨，誰能掌握顧客的下一步_鄭怡櫛 張家誠.pdf",
+  "printPageStart": 136,
+  "printPageEnd": 143,
+  "chars": 6614,
+  "images": [
+   {
+    "printedPage": 137,
+    "w": 1191,
+    "h": 794
+   },
+   {
+    "printedPage": 137,
+    "w": 145,
+    "h": 91
+   },
+   {
+    "printedPage": 139,
+    "w": 1191,
+    "h": 794
+   },
+   {
+    "printedPage": 141,
+    "w": 1191,
+    "h": 794
+   },
+   {
+    "printedPage": 141,
+    "w": 482,
+    "h": 232
+   },
+   {
+    "printedPage": 143,
+    "w": 1191,
+    "h": 794
+   }
+  ]
+ },
+ {
+  "id": 16,
+  "chapter": "model",
+  "sourceFile": "2-16 贏在AI時代的隱形戰場 看見文化暗流_王馥蓓 周允玉.pdf",
+  "printPageStart": 144,
+  "printPageEnd": 149,
+  "chars": 5157,
+  "images": [
+   {
+    "printedPage": 145,
+    "w": 1191,
+    "h": 794
+   },
+   {
+    "printedPage": 147,
+    "w": 1191,
+    "h": 794
+   },
+   {
+    "printedPage": 149,
+    "w": 1191,
+    "h": 794
+   }
+  ]
+ },
+ {
+  "id": 17,
+  "chapter": "ai",
+  "sourceFile": "3-17 顧客為何停下來，從洞察到治理的體驗優化_陳詳翰 康晉嵐.pdf",
+  "printPageStart": 152,
+  "printPageEnd": 159,
+  "chars": 6352,
+  "images": [
+   {
+    "printedPage": 153,
+    "w": 1191,
+    "h": 794
+   },
+   {
+    "printedPage": 155,
+    "w": 1191,
+    "h": 794
+   },
+   {
+    "printedPage": 157,
+    "w": 1191,
+    "h": 794
+   },
+   {
+    "printedPage": 159,
+    "w": 1191,
+    "h": 794
+   }
+  ]
+ },
+ {
+  "id": 18,
+  "chapter": "ai",
+  "sourceFile": "3-18 體驗這件事，我們一直只問了一半_王姿喨 詹佳穎 黃靖婷.pdf",
+  "printPageStart": 160,
+  "printPageEnd": 167,
+  "chars": 6434,
+  "images": [
+   {
+    "printedPage": 161,
+    "w": 1191,
+    "h": 794
+   },
+   {
+    "printedPage": 163,
+    "w": 1191,
+    "h": 794
+   },
+   {
+    "printedPage": 165,
+    "w": 1191,
+    "h": 794
+   },
+   {
+    "printedPage": 167,
+    "w": 1191,
+    "h": 794
+   }
+  ]
+ },
+ {
+  "id": 19,
+  "chapter": "ai",
+  "sourceFile": "3-19 GEO 時代，被 AI 看見是技術，被消費者記住才是本事_莊閔雯 呂季霖.pdf",
+  "printPageStart": 168,
+  "printPageEnd": 175,
+  "chars": 4810,
+  "images": [
+   {
+    "printedPage": 169,
+    "w": 1191,
+    "h": 794
+   },
+   {
+    "printedPage": 171,
+    "w": 1191,
+    "h": 794
+   },
+   {
+    "printedPage": 173,
+    "w": 1191,
+    "h": 794
+   },
+   {
+    "printedPage": 175,
+    "w": 1191,
+    "h": 794
+   }
+  ]
+ },
+ {
+  "id": 20,
+  "chapter": "ai",
+  "sourceFile": "3-20 定義素材產出標準 AI Production時代的SLIP方法論_潘其偉.pdf",
+  "printPageStart": 176,
+  "printPageEnd": 181,
+  "chars": 5336,
+  "images": [
+   {
+    "printedPage": 177,
+    "w": 1191,
+    "h": 794
+   },
+   {
+    "printedPage": 179,
+    "w": 1191,
+    "h": 794
+   },
+   {
+    "printedPage": 181,
+    "w": 1191,
+    "h": 794
+   }
+  ]
+ },
+ {
+  "id": 21,
+  "chapter": "ai",
+  "sourceFile": "3-21 超越效率 解碼 AI 製作驅動的創意代理商_Trent Agnew.pdf",
+  "printPageStart": 182,
+  "printPageEnd": 187,
+  "chars": 4796,
+  "images": [
+   {
+    "printedPage": 183,
+    "w": 1191,
+    "h": 794
+   },
+   {
+    "printedPage": 185,
+    "w": 1191,
+    "h": 794
+   },
+   {
+    "printedPage": 185,
+    "w": 233,
+    "h": 221
+   },
+   {
+    "printedPage": 185,
+    "w": 233,
+    "h": 222
+   },
+   {
+    "printedPage": 187,
+    "w": 1191,
+    "h": 794
+   },
+   {
+    "printedPage": 186,
+    "w": 223,
+    "h": 146
+   },
+   {
+    "printedPage": 186,
+    "w": 223,
+    "h": 161
+   }
+  ]
+ },
+ {
+  "id": 22,
+  "chapter": "ai",
+  "sourceFile": "3-22 AI Agent 走進消費旅程 保健、美妝與零售如何把 AI 變成行動能力_蔡孟軒 張詠琦 楊至靜.pdf",
+  "printPageStart": 188,
+  "printPageEnd": 195,
+  "chars": 6671,
+  "images": [
+   {
+    "printedPage": 189,
+    "w": 1191,
+    "h": 794
+   },
+   {
+    "printedPage": 191,
+    "w": 1191,
+    "h": 794
+   },
+   {
+    "printedPage": 190,
+    "w": 251,
+    "h": 140
+   },
+   {
+    "printedPage": 190,
+    "w": 251,
+    "h": 140
+   },
+   {
+    "printedPage": 190,
+    "w": 251,
+    "h": 140
+   },
+   {
+    "printedPage": 190,
+    "w": 251,
+    "h": 140
+   },
+   {
+    "printedPage": 193,
+    "w": 1191,
+    "h": 794
+   },
+   {
+    "printedPage": 192,
+    "w": 223,
+    "h": 196
+   },
+   {
+    "printedPage": 193,
+    "w": 482,
+    "h": 249
+   },
+   {
+    "printedPage": 195,
+    "w": 1191,
+    "h": 794
+   }
+  ]
+ }
+]
