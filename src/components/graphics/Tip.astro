@@ -1,0 +1,8 @@
+---
+// 圖表元素的「ⓘ」按鈕：觸控裝置點它開書頁視窗；桌面版另有 hover 提示（父元素的 data-tip）
+import type { Detail } from '../../lib/story';
+import SourceRef from '../SourceRef.astro';
+interface Props { d?: Detail }
+const { d } = Astro.props;
+---
+{d && <SourceRef src={d.src ?? []} detail={d.text} label="ⓘ 細節" class="tip" />}

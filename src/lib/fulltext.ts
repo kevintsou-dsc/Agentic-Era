@@ -11,7 +11,8 @@ export function hasFulltext(id: string) {
 }
 
 export function loadFulltext(id: string): Block[] {
-  const md = readFileSync(join(dir, `${id}.md`), 'utf8');
+  // Windows 工作目錄可能是 CRLF，先統一成 LF 再依空行分段
+  const md = readFileSync(join(dir, `${id}.md`), 'utf8').replace(/\r\n?/g, '\n');
   const blocks: Block[] = [];
   for (const raw of md.split(/\n{2,}/)) {
     const t = raw.trim();

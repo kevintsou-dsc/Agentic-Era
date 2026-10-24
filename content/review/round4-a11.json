@@ -1,0 +1,391 @@
+{
+ "label": "round4-a11",
+ "thresholds": {
+  "faithful": 0.3,
+  "overclaim": 0.8,
+  "complete": 0.3,
+  "coverage": 2.5,
+  "coherence": 2.2
+ },
+ "stories": [
+  {
+   "id": "a11",
+   "units": 20,
+   "flagged": 2,
+   "story": {
+    "coverage": {
+     "score": 2.91,
+     "conf": 0.92
+    },
+    "coherence": {
+     "score": 2.46,
+     "conf": 0.45
+    }
+   },
+   "story_flags": [],
+   "passed": false,
+   "rows": [
+    {
+     "kind": "detail",
+     "text": "2024 年第 35 屆的平均收視為 2.78；2026 年的 3.37 不只回升，也超越了前兩屆的平均水準。",
+     "jev": {
+      "faithful": 0.92,
+      "overclaim": 0.13,
+      "complete": 0.71,
+      "fluency": {
+       "score": 2.09,
+       "conf": 0.5
+      }
+     },
+     "reasons": [],
+     "pages": [
+      84,
+      84
+     ]
+    },
+    {
+     "kind": "detail",
+     "text": "2025 年第 36 屆典禮後，市場出現「不熟悉入圍者與作品」的討論，分眾更加明顯。",
+     "jev": {
+      "faithful": 0.66,
+      "overclaim": 0.35,
+      "complete": 0.61,
+      "fluency": {
+       "score": 1.78,
+       "conf": 0.45
+      }
+     },
+     "reasons": [],
+     "pages": [
+      84
+     ]
+    },
+    {
+     "kind": "detail",
+     "text": "官方 YouTube 全程直播累積觀看突破 231 萬人次，相關內容總點擊超過 1,190 萬次。",
+     "jev": {
+      "faithful": 0.91,
+      "overclaim": 0.13,
+      "complete": 0.7,
+      "fluency": {
+       "score": 2.26,
+       "conf": 0.47
+      }
+     },
+     "reasons": [],
+     "pages": [
+      84
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "演算法把每個人帶往越來越個人化的媒體世界，「大家一起看過、一起談過」的文化時刻反而變少。金曲獎的電視收視，就在 2025 年從前一年的 2.78 掉到 2.31。",
+     "jev": {
+      "faithful": 0.24,
+      "overclaim": 0.44,
+      "complete": 0.44,
+      "fluency": {
+       "score": 1.89,
+       "conf": 0.42
+      }
+     },
+     "reasons": [
+      "出處不足或不忠實（faithful 0.24）"
+     ],
+     "pages": [
+      81,
+      81,
+      84,
+      84
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "2026 年第 37 屆金曲獎，電視平均收視回升到 3.37，相對成長約 46%，成為當日全國收視冠軍。",
+     "jev": {
+      "faithful": 0.89,
+      "overclaim": 0.18,
+      "complete": 0.79,
+      "fluency": {
+       "score": 2.3,
+       "conf": 0.31
+      }
+     },
+     "reasons": [],
+     "pages": [
+      84
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "成長最明顯的是 55–64 歲，其次是 25–34 歲。作者認為這不只是懷舊，而是透過共同記憶，把分散在不同演算法與圈層裡的人重新拉進同一個文化事件。",
+     "jev": {
+      "faithful": 0.85,
+      "overclaim": 0.36,
+      "complete": 0.66,
+      "fluency": {
+       "score": 2.14,
+       "conf": 0.5
+      }
+     },
+     "reasons": [],
+     "pages": [
+      85,
+      85
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "如果金曲獎代表的是受眾橋接，《甄嬛傳》的 YouTube 春節馬拉松示範的則是另一種力量：儀式。劇情早就不是秘密，觀眾甚至知道皇上什麼時候會「駕崩」，但大家每年仍然回來。",
+     "jev": {
+      "faithful": 0.81,
+      "overclaim": 0.43,
+      "complete": 0.79,
+      "fluency": {
+       "score": 2.32,
+       "conf": 0.33
+      }
+     },
+     "reasons": [],
+     "pages": [
+      86,
+      86
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "把視野拉到國際，近年的案例有一個一致的方向：品牌不再只把歷史當成檔案，而是把舊有的記憶符碼，重新放進今天的媒體、產品與參與方式裡。",
+     "jev": {
+      "faithful": 0.84,
+      "overclaim": 0.6,
+      "complete": 0.76,
+      "fluency": {
+       "score": 2.1,
+       "conf": 0.5
+      }
+     },
+     "reasons": [],
+     "pages": [
+      87
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "新版 MV 放進 72 個非常具體的「平成梗」，刻意保留當年有點不精緻的真實感；觀眾自發尋找、整理這些梗，留言區成了一個世代的「同學會」。",
+     "jev": {
+      "faithful": 0.81,
+      "overclaim": 0.26,
+      "complete": 0.76,
+      "fluency": {
+       "score": 2.35,
+       "conf": 0.34
+      }
+     },
+     "reasons": [],
+     "pages": [
+      88,
+      88,
+      89,
+      89,
+      89
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "日清找回約 50 年前的配方資料，重現 1976 年上市時的產品設定，讓懷舊從行銷溝通走進了產品體驗。",
+     "jev": {
+      "faithful": 0.91,
+      "overclaim": 0.22,
+      "complete": 0.87,
+      "fluency": {
+       "score": 2.43,
+       "conf": 0.43
+      }
+     },
+     "reasons": [],
+     "pages": [
+      89,
+      89
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "日本芬達把 2000 年代的「ファンタ学園」帶回來，加入網路電影、遊戲與新的參與機制，把最舊的記憶與最新的科技放在一起。",
+     "jev": {
+      "faithful": 0.75,
+      "overclaim": 0.28,
+      "complete": 0.72,
+      "fluency": {
+       "score": 2.1,
+       "conf": 0.51
+      }
+     },
+     "reasons": [],
+     "pages": [
+      89,
+      90
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "香港麥當勞 50 周年重建第一間店舖的情境，又讓劉德華與姜濤兩個世代共同演繹新版歌曲：好的懷舊，是讓下一代也在今天第一次走進來。",
+     "jev": {
+      "faithful": 0.66,
+      "overclaim": 0.37,
+      "complete": 0.74,
+      "fluency": {
+       "score": 2.02,
+       "conf": 0.47
+      }
+     },
+     "reasons": [],
+     "pages": [
+      90,
+      90
+     ]
+    },
+    {
+     "kind": "detail",
+     "text": "第一步要盤點記憶符碼、獨特品牌資產、經典內容與生活場景。",
+     "jev": {
+      "faithful": 0.7,
+      "overclaim": 0.3,
+      "complete": 0.58,
+      "fluency": {
+       "score": 1.91,
+       "conf": 0.5
+      }
+     },
+     "reasons": [],
+     "pages": [
+      91
+     ]
+    },
+    {
+     "kind": "detail",
+     "text": "讓記憶重新同時發生的方式，包括直播、節慶、復刻、同步共看、限定體驗與儀式。",
+     "jev": {
+      "faithful": 0.92,
+      "overclaim": 0.22,
+      "complete": 0.69,
+      "fluency": {
+       "score": 1.98,
+       "conf": 0.47
+      }
+     },
+     "reasons": [],
+     "pages": [
+      91
+     ]
+    },
+    {
+     "kind": "detail",
+     "text": "讓人重新使用記憶的做法，包括 UGC、創作者、迷因、找彩蛋、再創作與社群共創。",
+     "jev": {
+      "faithful": 0.71,
+      "overclaim": 0.32,
+      "complete": 0.45,
+      "fluency": {
+       "score": 1.52,
+       "conf": 0.4
+      }
+     },
+     "reasons": [],
+     "pages": [
+      91
+     ]
+    },
+    {
+     "kind": "detail",
+     "text": "品牌要建立可持續的角色、聲音、視覺、產品符號與文化事件，留給十年後。",
+     "jev": {
+      "faithful": 0.83,
+      "overclaim": 0.52,
+      "complete": 0.59,
+      "fluency": {
+       "score": 1.68,
+       "conf": 0.42
+      }
+     },
+     "reasons": [],
+     "pages": [
+      91
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "作者附上一張從記憶符碼到新記憶的行動表。第一步是盤點大家已經共同記得什麼，第二步是設計讓這段記憶重新同時發生的共同時刻。",
+     "jev": {
+      "faithful": 0.51,
+      "overclaim": 0.41,
+      "complete": 0.43,
+      "fluency": {
+       "score": 1.78,
+       "conf": 0.48
+      }
+     },
+     "reasons": [],
+     "pages": [
+      91,
+      91
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "第三步是讓人重新使用這段記憶，例如找彩蛋、二創與社群共創；第四步是讓熟悉的東西，成為通往新內容的入口。",
+     "jev": {
+      "faithful": 0.28,
+      "overclaim": 0.38,
+      "complete": 0.3,
+      "fluency": {
+       "score": 1.53,
+       "conf": 0.39
+      }
+     },
+     "reasons": [
+      "出處不足或不忠實（faithful 0.28）"
+     ],
+     "pages": [
+      91,
+      91
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "最後一步要回答今天要留下什麼給十年後：第一年它也許只是一個 Campaign，十年之後才有機會成為集體記憶。",
+     "jev": {
+      "faithful": 0.71,
+      "overclaim": 0.44,
+      "complete": 0.51,
+      "fluency": {
+       "score": 1.69,
+       "conf": 0.44
+      }
+     },
+     "reasons": [],
+     "pages": [
+      91
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "Share of Memory 不是要取代 Share of Voice 的單一指標，而是多問一句：消費者想到某個年代、某種情緒或生活場景時，品牌會不會自然出現在那段記憶裡。",
+     "jev": {
+      "faithful": 0.92,
+      "overclaim": 0.13,
+      "complete": 0.87,
+      "fluency": {
+       "score": 2.37,
+       "conf": 0.37
+      }
+     },
+     "reasons": [],
+     "pages": [
+      91,
+      91
+     ]
+    }
+   ]
+  }
+ ]
+}

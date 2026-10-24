@@ -1,6 +1,7 @@
 ---
 // 分層框架：第 k 步點亮第 k 層並展開說明
 import type { Graphic } from '../../lib/story';
+import Tip from './Tip.astro';
 type G = Extract<Graphic, { type: 'layers' }>;
 interface Props { g: G }
 const { g } = Astro.props;
@@ -10,9 +11,9 @@ const { g } = Astro.props;
   <ol class="stack">
     {g.layers.map((l, i) => (
       <li class="layer" data-at={i + 1} data-focus={i + 1}>
-        <span class="t">{l.title}</span>
+        <span class="t">{l.title}<Tip d={l.detail} /></span>
         <span class="d">{l.desc}</span>
-        {l.detail && <span class="x">{l.detail}</span>}
+        {l.detail && <span class="x">{l.detail.text}</span>}
       </li>
     ))}
   </ol>

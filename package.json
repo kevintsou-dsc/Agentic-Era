@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "astro dev",
     "build": "npm run verify && astro build && node scripts/verify/check-links.mjs",
-    "verify": "node scripts/verify/verify-quotes.mjs && node scripts/verify/verify-meta.mjs",
+    "verify": "node scripts/verify/verify-quotes.mjs && node scripts/verify/verify-meta.mjs && node scripts/verify/lint-stories.mjs",
     "verify:release": "node scripts/verify/verify-release.mjs",
     "preview": "astro preview",
     "check:repo": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/check-repo.ps1"

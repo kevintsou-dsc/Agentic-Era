@@ -39,9 +39,17 @@ const repo = 'https://github.com/kevintsou-dsc/Agentic-Era';
         <p><a href="/#chapters">依章節找文章</a>　<a href="/about/">關於本作品</a>　<a href={repo}>原始碼</a></p>
       </div>
     </footer>
+    <dialog id="book" class="book" aria-label="原文出處">
+      <div class="book-sheet">
+        <button type="button" class="book-close" data-book-close aria-label="關閉">×</button>
+        <div data-book-body></div>
+      </div>
+    </dialog>
     <script>
       import { initScrolly } from '../scripts/scrolly';
+      import { initBook } from '../scripts/book';
       initScrolly();
+      initBook();
     </script>
   </body>
 </html>

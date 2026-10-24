@@ -12,7 +12,7 @@ const problems = [];
 for (const a of articles) {
   const f = join(root, 'src', 'data', 'stories', `${a.id}.ts`);
   if (!existsSync(f)) problems.push(`${a.id} ${a.title}：還沒有 90 秒故事`);
-  else if (!/reviewed:\s*true/.test(readFileSync(f, 'utf8'))) problems.push(`${a.id} ${a.title}：故事尚未人工審定`);
+  else if (!/status:\s*'reviewed'/.test(readFileSync(f, 'utf8'))) problems.push(`${a.id} ${a.title}：故事尚未人工校閱`);
   if (!reviewedFull.includes(`'${a.id}'`)) problems.push(`${a.id} ${a.title}：全文尚未人工校正`);
 }
 if (problems.length) {

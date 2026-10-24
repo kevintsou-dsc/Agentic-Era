@@ -94,8 +94,39 @@ function initProgress() {
   update();
 }
 
+// 橫向捲動：依區塊的垂直捲動進度，把軌道向左平移（矮視窗與減少動態時由 CSS 退回原生滑動）
+function initHScroll() {
+  const fallback = window.matchMedia('(max-height: 560px), (prefers-reduced-motion: reduce)');
+  const blocks = Array.from(document.querySelectorAll<HTMLElement>('[data-hscroll]')).map((el) => ({
+    el,
+    track: el.querySelector<HTMLElement>('[data-hs-track]'),
+    bar: el.querySelector<HTMLElement>('[data-hs-progress]'),
+  }));
+  if (!blocks.length) return;
+  const update = () => {
+    for (const b of blocks) {
+      if (!b.track) continue;
+      if (fallback.matches) { b.track.style.transform = ''; continue; }
+      const rect = b.el.getBoundingClientRect();
+      const span = rect.height - window.innerHeight;
+      const p = span > 0 ? Math.min(1, Math.max(0, -rect.top / span)) : 0;
+      const overflow = b.track.scrollWidth - b.track.parentElement!.clientWidth;
+      b.track.style.transform = `translate3d(${-p * Math.max(0, overflow)}px,0,0)`;
+      if (b.bar) b.bar.style.transform = `scaleX(${p})`;
+    }
+  };
+  let ticking = false;
+  const onScroll = () => {
+    if (!ticking) { ticking = true; requestAnimationFrame(() => { update(); ticking = false; }); }
+  };
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', onScroll);
+  update();
+}
+
 export function initScrolly() {
   initSteps();
+  initHScroll();
   initOnce('[data-count]', animateCount, 0.6);
   initOnce('.reveal', (el) => el.classList.add('is-in'), 0.2);
   initProgress();

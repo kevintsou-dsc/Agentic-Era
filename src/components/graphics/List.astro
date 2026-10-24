@@ -1,6 +1,7 @@
 ---
 // 清單型框架：第 k 步出現第 k 項（或用 at 讓多項同一步出現），當下那幾項加重
 import type { Graphic } from '../../lib/story';
+import Tip from './Tip.astro';
 type G = Extract<Graphic, { type: 'list' }>;
 interface Props { g: G }
 const { g } = Astro.props;
@@ -9,8 +10,8 @@ const { g } = Astro.props;
   {g.title && <p class="title">{g.title}</p>}
   <ol class="items" style={`--n:${g.items.length}`}>
     {g.items.map((it, i) => (
-      <li data-at={it.at ?? i + 1} data-focus={it.at ?? i + 1}>
-        <span class="no">{String(i + 1).padStart(2, '0')}</span>
+      <li data-at={it.at ?? i + 1} data-focus={it.at ?? i + 1} data-tip={it.detail?.text}>
+        <span class="no">{String(i + 1).padStart(2, '0')}<Tip d={it.detail} /></span>
         <span class="t">{it.title}</span>
         {it.desc && <span class="d">{it.desc}</span>}
       </li>

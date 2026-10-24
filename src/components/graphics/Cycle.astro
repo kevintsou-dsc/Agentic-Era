@@ -1,6 +1,7 @@
 ---
 // 循環圖：節點依序在第 1…n 步點亮，箭頭跟著畫出；shrinkAt 那一步中心縮小（例如品牌被循環消耗）
 import type { Graphic } from '../../lib/story';
+import Tip from './Tip.astro';
 type G = Extract<Graphic, { type: 'cycle' }>;
 interface Props { g: G }
 const { g } = Astro.props;
@@ -38,7 +39,7 @@ const arcs = pts.map((p, i) => {
     ))}
   </svg>
   <ol class="labels">
-    {g.nodes.map((x, i) => <li data-at={i + 1}><b>{x.zh}</b>{x.en && <span>{x.en}</span>}</li>)}
+    {g.nodes.map((x, i) => <li data-at={i + 1} data-tip={x.detail?.text}><b>{x.zh}</b><Tip d={x.detail} />{x.en && <span>{x.en}</span>}</li>)}
   </ol>
   <p class="source">{g.source}</p>
 </div>

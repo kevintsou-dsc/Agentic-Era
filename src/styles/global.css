@@ -114,6 +114,50 @@ a { color: inherit; }
   .scrolly .card, .scrolly.graphic-right .card { margin: 0 auto; max-width: 34rem; }
 }
 
+/* 出處按鈕：接在主文句尾的小標籤 */
+.src-ref {
+  all: unset; box-sizing: border-box; cursor: pointer; display: inline-flex; align-items: center; gap: 3px;
+  margin-left: 4px; padding: 0 7px; border-radius: 999px; border: 1px solid var(--line);
+  font-family: var(--font-mono); font-size: 11px; line-height: 1.7; color: var(--ink-2); background: var(--paper);
+  vertical-align: 2px; white-space: nowrap; transition: background .2s, border-color .2s;
+}
+.src-ref::before { content: "↗"; font-size: 10px; }
+.src-ref:hover { background: var(--accent); border-color: var(--accent-ink); color: var(--ink); }
+.src-ref:focus-visible { outline: 3px solid var(--accent-ink); outline-offset: 2px; }
+.src-ref.tip::before { content: none; }
+
+/* 書頁視窗：像從書裡撕下的一頁 */
+.book { border: 0; padding: 0; background: transparent; max-width: min(92vw, 34rem); width: 100%; color: var(--ink); }
+.book::backdrop { background: rgba(31, 29, 26, .45); backdrop-filter: blur(2px); }
+.book[open] { animation: book-in .28s cubic-bezier(.2,.7,.2,1); }
+@keyframes book-in { from { opacity: 0; transform: translateY(14px) rotate(-.6deg); } to { opacity: 1; transform: none; } }
+.book-sheet {
+  position: relative; max-height: 80svh; overflow: auto; padding: 28px 28px 22px;
+  background: #fbf8f1; border-radius: 4px 14px 14px 4px;
+  box-shadow: inset 14px 0 18px -14px rgba(0,0,0,.25), 0 24px 60px -20px rgba(0,0,0,.5);
+  border-left: 6px solid var(--accent);
+}
+.book-close { all: unset; cursor: pointer; position: absolute; top: 8px; right: 12px; font-size: 24px; line-height: 1; padding: 4px 8px; color: var(--ink-2); border-radius: 6px; }
+.book-close:focus-visible { outline: 3px solid var(--accent-ink); }
+.book-head { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; font-size: 13px; color: var(--ink-2); padding-right: 28px; margin-bottom: 14px; }
+.book-detail { margin: 0 0 14px; font-size: 15px; line-height: 1.7; }
+.book-page + .book-page { border-top: 1px dashed var(--line); margin-top: 14px; padding-top: 14px; }
+.book-text { margin: 0; font-size: 16px; line-height: 1.95; color: var(--ink-2); }
+.book-text mark { background: linear-gradient(transparent 55%, var(--accent) 55%); color: var(--ink); font-weight: 700; padding: 0 1px; }
+.book-foot { display: flex; justify-content: space-between; align-items: baseline; margin: 12px 0 0; font-size: 13px; }
+.book-pg { font-family: var(--font-mono); color: var(--ink-3); letter-spacing: .08em; }
+
+/* 圖表元素 hover 時顯示的補充說明（觸控裝置改點 ⓘ 開書頁視窗） */
+[data-tip] { position: relative; }
+@media (hover: hover) {
+  [data-tip]:hover::after, [data-tip]:focus-within::after {
+    content: attr(data-tip); position: absolute; z-index: 5; left: 50%; bottom: calc(100% + 8px); transform: translateX(-50%);
+    width: max-content; max-width: 16rem; padding: 8px 12px; border-radius: 8px; background: var(--ink); color: var(--paper);
+    font-size: 13px; font-weight: 400; line-height: 1.5; text-align: left; white-space: normal; pointer-events: none;
+    box-shadow: 0 8px 20px -10px rgba(0,0,0,.5);
+  }
+}
+
 /* 很矮的視窗（手機橫放、小筆電分割畫面）：圖文重疊會擋住圖，改成圖在上、文字在下的一般排版，圖形直接顯示最終狀態 */
 @media (max-height: 560px) {
   .scrolly .graphic { position: relative; height: auto; padding: 72px var(--gutter) 16px; }

@@ -1,7 +1,9 @@
 ---
-import type { Scene } from '../lib/story';
+import type { Scene, Beat } from '../lib/story';
 import { rich } from '../lib/rich';
 import Quote from './Quote.astro';
+import SourceRef from './SourceRef.astro';
+import HScroll from './HScroll.astro';
 import Graphic from './graphics/Graphic.astro';
 interface Props { scenes: Scene[] }
 const { scenes } = Astro.props;
@@ -12,17 +14,15 @@ const { scenes } = Astro.props;
       <section class:list={['scrolly', { 'graphic-right': (s.side ?? (si % 2 ? 'right' : 'left')) === 'right' }]}>
         <div class="graphic"><Graphic g={s.graphic} /></div>
         <div class="steps">
-          {s.steps.map((c, ci) => (
+          {s.beats.map((b: Beat) => (
             <div class="step">
               <div class="card">
-                {ci === 0 && <p class="curated">整理：策展者</p>}
-                {c.text && <p set:html={rich(c.text)} />}
-                {c.quote && <Quote q={c.quote} />}
-                {c.more && (
+                <p class="beat"><span set:html={rich(b.text)} /><SourceRef src={b.src} /></p>
+                {b.quote && <Quote q={b.quote} />}
+                {b.more && (
                   <details class="more">
-                    <summary>{c.more.summary}</summary>
-                    {c.more.text && <p set:html={rich(c.more.text)} />}
-                    {c.more.quote && <Quote q={c.more.quote} />}
+                    <summary>{b.more.summary}</summary>
+                    <p><span set:html={rich(b.more.text)} />{b.more.src && <SourceRef src={b.more.src} />}</p>
                   </details>
                 )}
               </div>
@@ -32,10 +32,11 @@ const { scenes } = Astro.props;
       </section>
     );
   }
+  if (s.kind === 'hscroll') return <HScroll s={s} />;
   if (s.kind === 'quote') {
     return (
       <section class="section">
-        {s.lead && <p class="lede reveal" set:html={rich(s.lead)} />}
+        {s.lead && <p class="lede reveal"><span set:html={rich(s.lead.text)} /><SourceRef src={s.lead.src} /></p>}
         <div class="reveal"><Quote q={s.quote} size="lg" /></div>
       </section>
     );
@@ -46,7 +47,7 @@ const { scenes } = Astro.props;
         <p class="bignum reveal" data-count={s.value} data-decimals={s.decimals ?? 0} data-prefix={s.prefix ?? ''}>
           {(s.prefix ?? '') + s.value.toFixed(s.decimals ?? 0)}<small>{s.unit}</small>
         </p>
-        <p class="lede reveal" set:html={rich(s.caption)} />
+        <p class="lede reveal"><span set:html={rich(s.caption.text)} /><SourceRef src={s.caption.src} /></p>
         <p class="source reveal">{s.source}</p>
       </section>
     );
@@ -55,11 +56,12 @@ const { scenes } = Astro.props;
     <section class="section center">
       {s.eyebrow && <p class="eyebrow reveal">{s.eyebrow}</p>}
       <h2 class="display reveal statement" set:html={rich(s.text)} />
-      {s.lede && <p class="lede reveal" set:html={rich(s.lede)} />}
+      {s.lede && <p class="lede reveal"><span set:html={rich(s.lede.text)} /><SourceRef src={s.lede.src} /></p>}
     </section>
   );
 })}
 <style>
   .statement { font-size: clamp(28px, 4.5vw, 52px); }
   .bignum-scene .bignum { color: var(--accent-ink); }
+  .beat { margin: 0 0 .6em; }
 </style>

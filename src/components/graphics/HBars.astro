@@ -1,5 +1,6 @@
 ---
 import type { Graphic } from '../../lib/story';
+import Tip from './Tip.astro';
 type G = Extract<Graphic, { type: 'hbars' }>;
 interface Props { g: G }
 const { g } = Astro.props;
@@ -8,10 +9,10 @@ const max = Math.max(...g.rows.map((r) => r.value));
 <div class="stage hbars" role="img" aria-label={`${g.label}：` + g.rows.map((r) => `${r.label} ${r.display}`).join('，')}>
   <p class="label">{g.label}</p>
   {g.rows.map((r) => (
-    <div class:list={['row', { hl: r.highlight }]} data-at={r.at}>
+    <div class:list={['row', { hl: r.highlight }]} data-at={r.at} data-tip={r.detail?.text}>
       <span class="k">{r.label}</span>
       <div class="track"><div class="bar" style={`--w:${r.value / max}`}></div></div>
-      <span class="val">{r.display}</span>
+      <span class="val">{r.display}<Tip d={r.detail} /></span>
     </div>
   ))}
   {g.big && (
@@ -22,7 +23,7 @@ const max = Math.max(...g.rows.map((r) => r.value));
 <style>
   .hbars { width: 100%; display: grid; gap: 16px; }
   .label { margin: 0; font-weight: 700; font-size: clamp(17px, 1.4vw + 10px, 22px); }
-  .row { display: grid; grid-template-columns: 4.5em 1fr 5.5em; align-items: center; gap: 12px; font-size: 15px; opacity: calc(.15 + .85 * var(--on)); transition: opacity .6s; }
+  .row { display: grid; grid-template-columns: 4.5em 1fr minmax(5.5em, auto); align-items: center; gap: 12px; font-size: 15px; opacity: calc(.15 + .85 * var(--on)); transition: opacity .6s; }
   .k { font-family: var(--font-mono); color: var(--ink-2); }
   .track { height: 22px; background: var(--paper-2); border-radius: 6px; overflow: hidden; }
   .bar { height: 100%; width: calc(var(--w) * 100%); background: var(--ink-3); border-radius: 6px; transform-origin: left; transform: scaleX(var(--on)); transition: transform 1.1s cubic-bezier(.2,.7,.2,1); }

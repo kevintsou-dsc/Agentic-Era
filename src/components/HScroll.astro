@@ -1,0 +1,65 @@
+---
+// 橫向捲動區塊：區塊高度依格數拉長，內層固定在畫面上；讀者往下捲時，軌道依進度向左移動。
+// 位移由 scripts/scrolly.ts 的 initHScroll 計算。矮視窗與「減少動態」時退回一般的左右滑動。
+import type { Scene } from '../lib/story';
+import { rich } from '../lib/rich';
+import SourceRef from './SourceRef.astro';
+type S = Extract<Scene, { kind: 'hscroll' }>;
+interface Props { s: S }
+const { s } = Astro.props;
+---
+<section class="hscroll" data-hscroll style={`--panels:${s.panels.length}`} aria-label={s.title}>
+  <div class="hs-pin">
+    <div class="hs-head wrap">
+      <p class="eyebrow">{s.title}</p>
+      <p class="hs-intro"><span set:html={rich(s.intro.text)} /><SourceRef src={s.intro.src} /></p>
+    </div>
+    <div class="hs-viewport">
+      <ol class="hs-track" data-hs-track>
+        {s.panels.map((p, i) => (
+          <li class="hs-panel">
+            <span class="hs-no">{String(i + 1).padStart(2, '0')} / {String(s.panels.length).padStart(2, '0')}</span>
+            {p.kicker && <span class="hs-kicker">{p.kicker}</span>}
+            <h3>{p.title}</h3>
+            {p.figure && <p class="hs-fig"><b>{p.figure.value}</b><span>{p.figure.label}</span></p>}
+            <p class="hs-text"><span set:html={rich(p.text)} /><SourceRef src={p.src} /></p>
+          </li>
+        ))}
+      </ol>
+    </div>
+    <div class="hs-foot wrap">
+      <span class="hs-bar" aria-hidden="true"><span data-hs-progress></span></span>
+      <span class="source">{s.source}</span>
+    </div>
+  </div>
+</section>
+<style>
+  .hscroll { position: relative; height: calc(var(--panels) * 55svh + 60svh); }
+  .hs-pin { position: sticky; top: 0; height: 100svh; display: grid; grid-template-rows: auto 1fr auto; padding: 72px 0 20px; overflow: hidden; }
+  .hs-head { width: 100%; }
+  .hs-intro { margin: 6px 0 0; max-width: 40rem; font-size: clamp(17px, 1vw + 12px, 20px); }
+  .hs-viewport { overflow: hidden; display: flex; align-items: center; }
+  .hs-track { list-style: none; margin: 0; padding: 0 var(--gutter); display: flex; gap: clamp(14px, 2vw, 24px); will-change: transform; }
+  /* 寬螢幕也只露出約 2.3 格，讓橫向移動明顯 */
+  .hs-panel { flex: none; width: clamp(16rem, 42vw, 34rem); min-height: min(36svh, 16rem); display: grid; align-content: start; gap: 8px; padding: 22px 22px 18px; border-radius: 16px; background: var(--paper); border: 2px solid var(--ink); box-shadow: 6px 6px 0 var(--accent); }
+  .hs-no { font-family: var(--font-mono); font-size: 12px; color: var(--ink-3); }
+  .hs-kicker { font-size: 12px; font-weight: 700; color: var(--accent-ink); }
+  .hs-panel h3 { margin: 0; font-size: clamp(20px, 1.4vw + 14px, 26px); line-height: 1.35; }
+  .hs-fig { margin: 4px 0; display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap; }
+  .hs-fig b { font-size: clamp(30px, 3vw + 16px, 44px); color: var(--accent-ink); line-height: 1.1; font-variant-numeric: tabular-nums; }
+  .hs-fig span { font-size: 13px; color: var(--ink-2); }
+  .hs-text { margin: 0; font-size: 15px; line-height: 1.75; }
+  .hs-foot { display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center; width: 100%; }
+  .hs-bar { flex: 0 0 8rem; height: 4px; border-radius: 2px; background: var(--paper-2); overflow: hidden; }
+  .hs-bar span { display: block; height: 100%; background: var(--accent-ink); transform-origin: left; transform: scaleX(0); }
+
+  /* 退回原生左右滑動：很矮的視窗、偏好減少動態 */
+  @media (max-height: 560px), (prefers-reduced-motion: reduce) {
+    .hscroll { height: auto; }
+    .hs-pin { position: relative; height: auto; padding: 48px 0 24px; }
+    .hs-viewport { overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 12px; }
+    .hs-panel { scroll-snap-align: start; }
+    .hs-track { transform: none !important; }
+    .hs-bar { display: none; }
+  }
+</style>

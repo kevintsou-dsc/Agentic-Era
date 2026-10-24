@@ -1,0 +1,1262 @@
+{
+ "label": "round3",
+ "thresholds": {
+  "faithful": 0.3,
+  "overclaim": 0.8,
+  "complete": 0.3,
+  "coverage": 2.5,
+  "coherence": 2.2
+ },
+ "stories": [
+  {
+   "id": "a08",
+   "units": 14,
+   "flagged": 0,
+   "story": {
+    "coverage": {
+     "score": 2.84,
+     "conf": 0.84
+    },
+    "coherence": {
+     "score": 2.55,
+     "conf": 0.55
+    }
+   },
+   "story_flags": [],
+   "passed": true,
+   "rows": [
+    {
+     "kind": "detail",
+     "text": "Gloria Mark 是 UC Irvine 資訊學系榮譽教授，長期研究人類與數位科技的互動；2004 年的平均停留時間約 150 秒。",
+     "jev": {
+      "faithful": 0.86,
+      "overclaim": 0.16,
+      "complete": 0.31,
+      "fluency": {
+       "score": 1.62,
+       "conf": 0.35
+      }
+     },
+     "reasons": [],
+     "pages": [
+      59,
+      59
+     ]
+    },
+    {
+     "kind": "detail",
+     "text": "人們在數位環境中的注意力切換越來越快，平均停留時間降到約 47 秒。",
+     "jev": {
+      "faithful": 0.9,
+      "overclaim": 0.42,
+      "complete": 0.74,
+      "fluency": {
+       "score": 2.3,
+       "conf": 0.49
+      }
+     },
+     "reasons": [],
+     "pages": [
+      59
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "UC Irvine 的 Gloria Mark 長期研究人與數位科技的互動，她發現 2004 年人們平均在單一螢幕上停留約 150 秒。",
+     "jev": {
+      "faithful": 0.88,
+      "overclaim": 0.19,
+      "complete": 0.64,
+      "fluency": {
+       "score": 2.13,
+       "conf": 0.54
+      }
+     },
+     "reasons": [],
+     "pages": [
+      59
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "到了現在，這個時間只剩約 47 秒，不到原本的三分之一；每天都有大量內容在爭奪我們有限的注意力。",
+     "jev": {
+      "faithful": 0.55,
+      "overclaim": 0.35,
+      "complete": 0.4,
+      "fluency": {
+       "score": 1.8,
+       "conf": 0.54
+      }
+     },
+     "reasons": [],
+     "pages": [
+      59
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "但何華軒提醒，消費者並沒有失去專注能力，只是更挑剔：願意為有共鳴的內容停留，也會毫不猶豫滑過無感的訊息。",
+     "jev": {
+      "faithful": 0.44,
+      "overclaim": 0.23,
+      "complete": 0.7,
+      "fluency": {
+       "score": 2.16,
+       "conf": 0.51
+      }
+     },
+     "reasons": [],
+     "pages": [
+      59
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "當情緒價值成為消費決策的核心，Gen Z 選擇品牌，是在表達自己的價值觀、興趣圈層與身份認同。品牌競爭的重心因此跟著移動。",
+     "jev": {
+      "faithful": 0.87,
+      "overclaim": 0.43,
+      "complete": 0.63,
+      "fluency": {
+       "score": 2.06,
+       "conf": 0.57
+      }
+     },
+     "reasons": [],
+     "pages": [
+      60
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "文化討論在哪裡發生？作者列出六個現場，它們是文化占比被重新分配的第一線，也是品牌累積共同記憶的入口。",
+     "jev": {
+      "faithful": 0.91,
+      "overclaim": 0.45,
+      "complete": 0.37,
+      "fluency": {
+       "score": 2.08,
+       "conf": 0.46
+      }
+     },
+     "reasons": [],
+     "pages": [
+      60
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "2026 年台北國際動漫節吸引超過 50.5 萬人次、創造約 2.5 億元商機；被納入二創與應援的品牌，才真正進入這個生態。",
+     "jev": {
+      "faithful": 0.88,
+      "overclaim": 0.28,
+      "complete": 0.42,
+      "fluency": {
+       "score": 1.9,
+       "conf": 0.49
+      }
+     },
+     "reasons": [],
+     "pages": [
+      60,
+      60
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "周邊商品已成為泛娛樂粉絲最共通的消費語言：過去是買商品送周邊，如今是為了周邊而購買商品。",
+     "jev": {
+      "faithful": 0.81,
+      "overclaim": 0.45,
+      "complete": 0.79,
+      "fluency": {
+       "score": 2.45,
+       "conf": 0.44
+      }
+     },
+     "reasons": [],
+     "pages": [
+      60,
+      60
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "《魔女宅急便》音樂劇首度來台、《神隱少女》舞台劇也將登台；當角色從平面走向真人，粉絲買單的，是一段能夠親身參與的世界觀體驗。",
+     "jev": {
+      "faithful": 0.84,
+      "overclaim": 0.26,
+      "complete": 0.68,
+      "fluency": {
+       "score": 2.33,
+       "conf": 0.35
+      }
+     },
+     "reasons": [],
+     "pages": [
+      61,
+      61,
+      61
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "《憤怒鳥》宣布回歸、《亂馬½》推出重製版，眾多經典 IP 以不同形式重返大眾視野，帶來懷舊情懷與新鮮感兼具的雙重體驗。",
+     "jev": {
+      "faithful": 0.86,
+      "overclaim": 0.23,
+      "complete": 0.78,
+      "fluency": {
+       "score": 2.44,
+       "conf": 0.44
+      }
+     },
+     "reasons": [],
+     "pages": [
+      61,
+      61,
+      62
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "短影音完成用戶教育之後，市場轉向更完整的故事與長期的 IP 價值，短劇正快速成為下一個內容競爭的新戰場。",
+     "jev": {
+      "faithful": 0.83,
+      "overclaim": 0.28,
+      "complete": 0.8,
+      "fluency": {
+       "score": 2.25,
+       "conf": 0.48
+      }
+     },
+     "reasons": [],
+     "pages": [
+      62,
+      62
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "台灣棒球已從國際賽熱潮發展為全年性的運動娛樂，啦啦隊也逐漸成為獨立的娛樂 IP 與品牌合作的媒介。",
+     "jev": {
+      "faithful": 0.88,
+      "overclaim": 0.37,
+      "complete": 0.82,
+      "fluency": {
+       "score": 2.47,
+       "conf": 0.47
+      }
+     },
+     "reasons": [],
+     "pages": [
+      63,
+      63
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "電通娛樂與韓國 The SMC Group 打造原創娛樂 IP《The Inspector Global》，把線上的粉絲熱情轉成線下體驗與可衡量的商業成長。娛樂與運動的價值，正在於把 Attention 轉化為 Memory。",
+     "jev": {
+      "faithful": 0.53,
+      "overclaim": 0.59,
+      "complete": 0.73,
+      "fluency": {
+       "score": 2.22,
+       "conf": 0.49
+      }
+     },
+     "reasons": [],
+     "pages": [
+      64,
+      65
+     ]
+    }
+   ]
+  },
+  {
+   "id": "a10",
+   "units": 22,
+   "flagged": 0,
+   "story": {
+    "coverage": {
+     "score": 2.91,
+     "conf": 0.91
+    },
+    "coherence": {
+     "score": 2.71,
+     "conf": 0.72
+    }
+   },
+   "story_flags": [],
+   "passed": true,
+   "rows": [
+    {
+     "kind": "main",
+     "text": "報表上的曝光越買越多、單次成本越壓越低，可是一打開品牌市調，卻是知名度遇到瓶頸、指名度下滑。這正是現在媒體最尷尬的地方。",
+     "jev": {
+      "faithful": 0.88,
+      "overclaim": 0.27,
+      "complete": 0.69,
+      "fluency": {
+       "score": 2.35,
+       "conf": 0.33
+      }
+     },
+     "reasons": [],
+     "pages": [
+      73,
+      73,
+      73
+     ]
+    },
+    {
+     "kind": "detail",
+     "text": "為了交出能即時量化的成效，預算不斷流向短期、點擊與轉換。",
+     "jev": {
+      "faithful": 0.96,
+      "overclaim": 0.26,
+      "complete": 0.69,
+      "fluency": {
+       "score": 2.29,
+       "conf": 0.42
+      }
+     },
+     "reasons": [],
+     "pages": [
+      73
+     ]
+    },
+    {
+     "kind": "detail",
+     "text": "報表上的效率年年進步，品牌市調的知名度與指名度卻遇到瓶頸。",
+     "jev": {
+      "faithful": 0.85,
+      "overclaim": 0.31,
+      "complete": 0.77,
+      "fluency": {
+       "score": 2.39,
+       "conf": 0.4
+      }
+     },
+     "reasons": [],
+     "pages": [
+      73
+     ]
+    },
+    {
+     "kind": "detail",
+     "text": "可視率與品牌回想幾乎沒有關係，更能預測回想的是平均觀看秒數。",
+     "jev": {
+      "faithful": 0.91,
+      "overclaim": 0.32,
+      "complete": 0.79,
+      "fluency": {
+       "score": 2.28,
+       "conf": 0.45
+      }
+     },
+     "reasons": [],
+     "pages": [
+      74
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "為了交出能即時量化的成效，品牌把預算一步步移向短期、點擊與轉換型的格式。",
+     "jev": {
+      "faithful": 0.83,
+      "overclaim": 0.37,
+      "complete": 0.71,
+      "fluency": {
+       "score": 2.02,
+       "conf": 0.48
+      }
+     },
+     "reasons": [],
+     "pages": [
+      73
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "可是無盡的優化，有時反而稀釋了廣告本身的力量，也悄悄磨損了品牌，讓廣告效果進入高原期。",
+     "jev": {
+      "faithful": 0.78,
+      "overclaim": 0.26,
+      "complete": 0.6,
+      "fluency": {
+       "score": 2.25,
+       "conf": 0.26
+      }
+     },
+     "reasons": [],
+     "pages": [
+      73,
+      73
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "於是品牌再依同一套有缺陷的指標繼續優化，陷入「成效越優化、品牌越萎縮」的 Doom Loop。",
+     "jev": {
+      "faithful": 0.42,
+      "overclaim": 0.46,
+      "complete": 0.6,
+      "fluency": {
+       "score": 1.89,
+       "conf": 0.5
+      }
+     },
+     "reasons": [],
+     "pages": [
+      73
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "預算沒少、聲量沒小，品牌卻在競品的雜訊裡一點一點變淡。作者因此主張，曝光必須被重新定義。",
+     "jev": {
+      "faithful": 0.58,
+      "overclaim": 0.39,
+      "complete": 0.66,
+      "fluency": {
+       "score": 2.38,
+       "conf": 0.4
+      }
+     },
+     "reasons": [],
+     "pages": [
+      73
+     ]
+    },
+    {
+     "kind": "detail",
+     "text": "消費者注視 5–10 秒時，自願觀看相較被迫觀看，品牌回想多出 18%。",
+     "jev": {
+      "faithful": 0.69,
+      "overclaim": 0.59,
+      "complete": 0.75,
+      "fluency": {
+       "score": 2.07,
+       "conf": 0.46
+      }
+     },
+     "reasons": [],
+     "pages": [
+      77,
+      77,
+      77
+     ]
+    },
+    {
+     "kind": "detail",
+     "text": "注視超過 10 秒時，自願觀看相較被迫觀看，品牌回想多出 79%；強迫式格式雖把人留在螢幕前，卻常養出「負面注意力」。",
+     "jev": {
+      "faithful": 0.67,
+      "overclaim": 0.4,
+      "complete": 0.71,
+      "fluency": {
+       "score": 2.06,
+       "conf": 0.49
+      }
+     },
+     "reasons": [],
+     "pages": [
+      77,
+      77,
+      77,
+      77
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "日本電通的研究比較了同一則廣告：當注意力是消費者自己選擇給的，品牌回想明顯高於被迫觀看；注視 5–10 秒時，回想多出 18%。",
+     "jev": {
+      "faithful": 0.6,
+      "overclaim": 0.28,
+      "complete": 0.5,
+      "fluency": {
+       "score": 2.03,
+       "conf": 0.49
+      }
+     },
+     "reasons": [],
+     "pages": [
+      77,
+      77,
+      77
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "注視超過 10 秒，回想的差距拉大到 79%。不可略過的影音廣告雖然把人留在螢幕前，他等的卻是 skip 鍵，不是品牌。",
+     "jev": {
+      "faithful": 0.56,
+      "overclaim": 0.58,
+      "complete": 0.46,
+      "fluency": {
+       "score": 1.93,
+       "conf": 0.45
+      }
+     },
+     "reasons": [],
+     "pages": [
+      77,
+      77,
+      77,
+      77
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "有限的注意力預算該押哪裡？作者用兩個問題判斷：消費者是不是都在問同一個問題，以及產品主張好不好被快速證明。需求分歧又難證明時，要先建立清楚的品牌主敘事。",
+     "jev": {
+      "faithful": 0.81,
+      "overclaim": 0.31,
+      "complete": 0.51,
+      "fluency": {
+       "score": 2.22,
+       "conf": 0.51
+      }
+     },
+     "reasons": [],
+     "pages": [
+      76,
+      77
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "需求一致但主張難證明時，就讓廣告負責創造注意、內容負責完成驗證，兩者雙管齊下。",
+     "jev": {
+      "faithful": 0.72,
+      "overclaim": 0.31,
+      "complete": 0.63,
+      "fluency": {
+       "score": 2.02,
+       "conf": 0.52
+      }
+     },
+     "reasons": [],
+     "pages": [
+      76
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "需求分歧但主張容易證明時，就拆解需求情境，優先攻下高商機的場景，各個擊破。",
+     "jev": {
+      "faithful": 0.52,
+      "overclaim": 0.32,
+      "complete": 0.56,
+      "fluency": {
+       "score": 2.0,
+       "conf": 0.5
+      }
+     },
+     "reasons": [],
+     "pages": [
+      76
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "需求一致、主張又容易證明時，品牌反而應該先讓內容成為 AI、搜尋與社群可以引用的答案。",
+     "jev": {
+      "faithful": 0.96,
+      "overclaim": 0.13,
+      "complete": 0.78,
+      "fluency": {
+       "score": 2.21,
+       "conf": 0.43
+      }
+     },
+     "reasons": [],
+     "pages": [
+      77
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "最有價值的注意力不只是花錢買到版位，而是透過情境、內容與互動設計出來的；高注意力場域的價值，在專注之上還能疊加信任與參與。",
+     "jev": {
+      "faithful": 0.89,
+      "overclaim": 0.32,
+      "complete": 0.83,
+      "fluency": {
+       "score": 2.6,
+       "conf": 0.61
+      }
+     },
+     "reasons": [],
+     "pages": [
+      77,
+      78
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "dentsu 與 JCDecaux、Ocean Outdoor 的研究發現，54% 的路人至少注視過一次戶外廣告；全動態的數位戶外，比靜態多觸及 20% 的人。",
+     "jev": {
+      "faithful": 0.94,
+      "overclaim": 0.23,
+      "complete": 0.74,
+      "fluency": {
+       "score": 2.17,
+       "conf": 0.52
+      }
+     },
+     "reasons": [],
+     "pages": [
+      77,
+      77
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "CeraVe 在淡水信義線把上萬份 30ml 潔膚露體驗瓶掛上車廂吊環，乘客抬頭看到、伸手帶走，再自己拍照上傳。",
+     "jev": {
+      "faithful": 0.79,
+      "overclaim": 0.21,
+      "complete": 0.71,
+      "fluency": {
+       "score": 2.15,
+       "conf": 0.54
+      }
+     },
+     "reasons": [],
+     "pages": [
+      78,
+      78
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "外送平台把捷運通道的牆面變成互動優惠牆，讓通勤族停下來掃碼領折扣，把單向曝光翻成雙向參與。",
+     "jev": {
+      "faithful": 0.94,
+      "overclaim": 0.16,
+      "complete": 0.9,
+      "fluency": {
+       "score": 2.4,
+       "conf": 0.42
+      }
+     },
+     "reasons": [],
+     "pages": [
+      78
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "美妝品牌走進 Podcast，借主持人與聽眾長年累積的信任，在沒有視覺干擾的伴聽時光裡，好好把話講完。",
+     "jev": {
+      "faithful": 0.9,
+      "overclaim": 0.13,
+      "complete": 0.77,
+      "fluency": {
+       "score": 2.48,
+       "conf": 0.49
+      }
+     },
+     "reasons": [],
+     "pages": [
+      78
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "說到底，品牌與其在零碎的注意力裡多撿幾片碎片，不如找到消費者真正專注的那個當下，在對的場景遞上對的邀請。",
+     "jev": {
+      "faithful": 0.95,
+      "overclaim": 0.21,
+      "complete": 0.69,
+      "fluency": {
+       "score": 2.64,
+       "conf": 0.65
+      }
+     },
+     "reasons": [],
+     "pages": [
+      79
+     ]
+    }
+   ]
+  },
+  {
+   "id": "a11",
+   "units": 20,
+   "flagged": 1,
+   "story": {
+    "coverage": {
+     "score": 2.93,
+     "conf": 0.93
+    },
+    "coherence": {
+     "score": 2.45,
+     "conf": 0.46
+    }
+   },
+   "story_flags": [],
+   "passed": false,
+   "rows": [
+    {
+     "kind": "detail",
+     "text": "2024 年第 35 屆的平均收視為 2.78；2026 年的 3.37 不只回升，也超越了前兩屆的平均水準。",
+     "jev": {
+      "faithful": 0.91,
+      "overclaim": 0.12,
+      "complete": 0.68,
+      "fluency": {
+       "score": 2.05,
+       "conf": 0.48
+      }
+     },
+     "reasons": [],
+     "pages": [
+      84,
+      84
+     ]
+    },
+    {
+     "kind": "detail",
+     "text": "2025 年第 36 屆典禮後，市場出現「不熟悉入圍者與作品」的討論，分眾更加明顯。",
+     "jev": {
+      "faithful": 0.62,
+      "overclaim": 0.38,
+      "complete": 0.61,
+      "fluency": {
+       "score": 1.76,
+       "conf": 0.46
+      }
+     },
+     "reasons": [],
+     "pages": [
+      84
+     ]
+    },
+    {
+     "kind": "detail",
+     "text": "官方 YouTube 全程直播累積觀看突破 231 萬人次，相關內容總點擊超過 1,190 萬次。",
+     "jev": {
+      "faithful": 0.93,
+      "overclaim": 0.12,
+      "complete": 0.72,
+      "fluency": {
+       "score": 2.35,
+       "conf": 0.35
+      }
+     },
+     "reasons": [],
+     "pages": [
+      84
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "演算法把每個人帶往越來越個人化的媒體世界，「大家一起看過、一起談過」的文化時刻反而變少。金曲獎的電視收視，就在 2025 年從前一年的 2.78 掉到 2.31。",
+     "jev": {
+      "faithful": 0.23,
+      "overclaim": 0.49,
+      "complete": 0.45,
+      "fluency": {
+       "score": 1.7,
+       "conf": 0.41
+      }
+     },
+     "reasons": [
+      "出處不足或不忠實（faithful 0.23）"
+     ],
+     "pages": [
+      81,
+      81,
+      84
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "2026 年第 37 屆金曲獎，電視平均收視回升到 3.37，相對成長約 46%，成為當日全國收視冠軍。",
+     "jev": {
+      "faithful": 0.89,
+      "overclaim": 0.18,
+      "complete": 0.81,
+      "fluency": {
+       "score": 2.32,
+       "conf": 0.44
+      }
+     },
+     "reasons": [],
+     "pages": [
+      84
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "成長最明顯的是 55–64 歲，其次是 25–34 歲。作者認為這不只是懷舊，而是透過共同記憶，把分散在不同演算法與圈層裡的人重新拉進同一個文化事件。",
+     "jev": {
+      "faithful": 0.86,
+      "overclaim": 0.33,
+      "complete": 0.67,
+      "fluency": {
+       "score": 2.16,
+       "conf": 0.51
+      }
+     },
+     "reasons": [],
+     "pages": [
+      85,
+      85
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "如果金曲獎代表的是受眾橋接，《甄嬛傳》的 YouTube 春節馬拉松示範的則是另一種力量：儀式。劇情早就不是秘密，觀眾甚至知道皇上什麼時候會「駕崩」，但大家每年仍然回來。",
+     "jev": {
+      "faithful": 0.85,
+      "overclaim": 0.4,
+      "complete": 0.77,
+      "fluency": {
+       "score": 2.34,
+       "conf": 0.36
+      }
+     },
+     "reasons": [],
+     "pages": [
+      86,
+      86
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "把視野拉到國際，近年的案例有一個一致的方向：品牌不再只把歷史當成檔案，而是把舊有的記憶符碼，重新放進今天的媒體、產品與參與方式裡。",
+     "jev": {
+      "faithful": 0.85,
+      "overclaim": 0.54,
+      "complete": 0.76,
+      "fluency": {
+       "score": 2.1,
+       "conf": 0.49
+      }
+     },
+     "reasons": [],
+     "pages": [
+      87
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "新版 MV 放進 72 個非常具體的「平成梗」，刻意保留當年有點不精緻的真實感；觀眾自發尋找、整理這些梗，留言區成了一個世代的「同學會」。",
+     "jev": {
+      "faithful": 0.83,
+      "overclaim": 0.28,
+      "complete": 0.76,
+      "fluency": {
+       "score": 2.33,
+       "conf": 0.32
+      }
+     },
+     "reasons": [],
+     "pages": [
+      88,
+      88,
+      89,
+      89,
+      89
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "日清找回約 50 年前的配方資料，重現 1976 年上市時的產品設定，讓懷舊從行銷溝通走進了產品體驗。",
+     "jev": {
+      "faithful": 0.92,
+      "overclaim": 0.21,
+      "complete": 0.84,
+      "fluency": {
+       "score": 2.4,
+       "conf": 0.41
+      }
+     },
+     "reasons": [],
+     "pages": [
+      89,
+      89
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "日本芬達把 2000 年代的「ファンタ学園」帶回來，加入網路電影、遊戲與新的參與機制，把最舊的記憶與最新的科技放在一起。",
+     "jev": {
+      "faithful": 0.74,
+      "overclaim": 0.25,
+      "complete": 0.74,
+      "fluency": {
+       "score": 2.12,
+       "conf": 0.52
+      }
+     },
+     "reasons": [],
+     "pages": [
+      89,
+      90
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "香港麥當勞 50 周年重建第一間店舖的情境，又讓劉德華與姜濤兩個世代共同演繹新版歌曲：好的懷舊，是讓下一代也在今天第一次走進來。",
+     "jev": {
+      "faithful": 0.66,
+      "overclaim": 0.38,
+      "complete": 0.73,
+      "fluency": {
+       "score": 1.99,
+       "conf": 0.47
+      }
+     },
+     "reasons": [],
+     "pages": [
+      90,
+      90
+     ]
+    },
+    {
+     "kind": "detail",
+     "text": "第一步要盤點記憶符碼、獨特品牌資產、經典內容與生活場景。",
+     "jev": {
+      "faithful": 0.7,
+      "overclaim": 0.28,
+      "complete": 0.6,
+      "fluency": {
+       "score": 1.94,
+       "conf": 0.48
+      }
+     },
+     "reasons": [],
+     "pages": [
+      91
+     ]
+    },
+    {
+     "kind": "detail",
+     "text": "讓記憶重新同時發生的方式，包括直播、節慶、復刻、同步共看、限定體驗與儀式。",
+     "jev": {
+      "faithful": 0.9,
+      "overclaim": 0.22,
+      "complete": 0.71,
+      "fluency": {
+       "score": 1.97,
+       "conf": 0.5
+      }
+     },
+     "reasons": [],
+     "pages": [
+      91
+     ]
+    },
+    {
+     "kind": "detail",
+     "text": "讓人重新使用記憶的做法，包括 UGC、創作者、迷因、找彩蛋、再創作與社群共創。",
+     "jev": {
+      "faithful": 0.67,
+      "overclaim": 0.32,
+      "complete": 0.43,
+      "fluency": {
+       "score": 1.5,
+       "conf": 0.41
+      }
+     },
+     "reasons": [],
+     "pages": [
+      91
+     ]
+    },
+    {
+     "kind": "detail",
+     "text": "品牌要建立可持續的角色、聲音、視覺、產品符號與文化事件，留給十年後。",
+     "jev": {
+      "faithful": 0.83,
+      "overclaim": 0.58,
+      "complete": 0.58,
+      "fluency": {
+       "score": 1.63,
+       "conf": 0.34
+      }
+     },
+     "reasons": [],
+     "pages": [
+      91
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "作者附上一張從記憶符碼到新記憶的行動表。第一步是盤點大家已經共同記得什麼，第二步是設計讓這段記憶重新同時發生的共同時刻。",
+     "jev": {
+      "faithful": 0.44,
+      "overclaim": 0.42,
+      "complete": 0.44,
+      "fluency": {
+       "score": 1.79,
+       "conf": 0.49
+      }
+     },
+     "reasons": [],
+     "pages": [
+      91,
+      91
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "第三步是讓人重新使用這段記憶，例如找彩蛋、二創與社群共創；第四步是讓熟悉的東西，成為通往新內容的入口。",
+     "jev": {
+      "faithful": 0.3,
+      "overclaim": 0.4,
+      "complete": 0.31,
+      "fluency": {
+       "score": 1.51,
+       "conf": 0.42
+      }
+     },
+     "reasons": [],
+     "pages": [
+      91,
+      91
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "最後一步要回答今天要留下什麼給十年後：第一年它也許只是一個 Campaign，十年之後才有機會成為集體記憶。",
+     "jev": {
+      "faithful": 0.73,
+      "overclaim": 0.43,
+      "complete": 0.49,
+      "fluency": {
+       "score": 1.62,
+       "conf": 0.32
+      }
+     },
+     "reasons": [],
+     "pages": [
+      91
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "Share of Memory 不是要取代 Share of Voice 的單一指標，而是多問一句：消費者想到某個年代、某種情緒或生活場景時，品牌會不會自然出現在那段記憶裡。",
+     "jev": {
+      "faithful": 0.92,
+      "overclaim": 0.16,
+      "complete": 0.87,
+      "fluency": {
+       "score": 2.36,
+       "conf": 0.38
+      }
+     },
+     "reasons": [],
+     "pages": [
+      91,
+      91
+     ]
+    }
+   ]
+  },
+  {
+   "id": "a13",
+   "units": 10,
+   "flagged": 0,
+   "story": {
+    "coverage": {
+     "score": 2.83,
+     "conf": 0.83
+    },
+    "coherence": {
+     "score": 2.72,
+     "conf": 0.73
+    }
+   },
+   "story_flags": [],
+   "passed": true,
+   "rows": [
+    {
+     "kind": "main",
+     "text": "吳宗霖點了一則手機磁吸支架的廣告，買了才發現只能吸附在玻璃上，於是又買了另一個。產品其實不錯用，但盒子丟掉之後，他不太記得那個品牌叫什麼；從成效報表來看，這可能是成功的。",
+     "jev": {
+      "faithful": 0.3,
+      "overclaim": 0.25,
+      "complete": 0.61,
+      "fluency": {
+       "score": 1.92,
+       "conf": 0.58
+      }
+     },
+     "reasons": [],
+     "pages": [
+      119,
+      119,
+      119,
+      119,
+      119
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "問題出在 AI 投放的效率悖論：當每個品牌都能更精準地找到高意圖消費者，這群人也就成為所有競品共同爭奪的對象。越往 lower funnel 走，代價越清楚。",
+     "jev": {
+      "faithful": 0.31,
+      "overclaim": 0.58,
+      "complete": 0.5,
+      "fluency": {
+       "score": 1.56,
+       "conf": 0.4
+      }
+     },
+     "reasons": [],
+     "pages": [
+      118
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "買 CPM 買到的是較大的接觸面；買 CPC 買到的是有反應的人。若再以轉換事件優化，換算成曝光成本甚至可能放大到數十倍、百倍以上。",
+     "jev": {
+      "faithful": 0.85,
+      "overclaim": 0.35,
+      "complete": 0.68,
+      "fluency": {
+       "score": 2.0,
+       "conf": 0.53
+      }
+     },
+     "reasons": [],
+     "pages": [
+      119,
+      119
+     ]
+    },
+    {
+     "kind": "detail",
+     "text": "消費者不一定會搜尋，但他會經過；不一定會點擊，但他會看到。",
+     "jev": {
+      "faithful": 0.95,
+      "overclaim": 0.16,
+      "complete": 0.42,
+      "fluency": {
+       "score": 2.57,
+       "conf": 0.58
+      }
+     },
+     "reasons": [],
+     "pages": [
+      123
+     ]
+    },
+    {
+     "kind": "detail",
+     "text": "讓第一批使用者願意分享、會員推薦會員，讓社群裡有人願意替品牌說話。",
+     "jev": {
+      "faithful": 0.94,
+      "overclaim": 0.28,
+      "complete": 0.37,
+      "fluency": {
+       "score": 1.98,
+       "conf": 0.53
+      }
+     },
+     "reasons": [],
+     "pages": [
+      123
+     ]
+    },
+    {
+     "kind": "detail",
+     "text": "記憶線索可能是顏色、聲音、代言人、包裝、口號或使用情境。",
+     "jev": {
+      "faithful": 0.84,
+      "overclaim": 0.22,
+      "complete": 0.68,
+      "fluency": {
+       "score": 2.2,
+       "conf": 0.49
+      }
+     },
+     "reasons": [],
+     "pages": [
+      124
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "吳宗霖的解方，是把 SOV 從聲量占比升級為 Share of Choice Context，並拆成三層。第一層，是品牌在平台、通路與生活系統裡看不看得到。",
+     "jev": {
+      "faithful": 0.53,
+      "overclaim": 0.28,
+      "complete": 0.37,
+      "fluency": {
+       "score": 1.87,
+       "conf": 0.45
+      }
+     },
+     "reasons": [],
+     "pages": [
+      122,
+      126,
+      123
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "第二層是消費者與社群：重點不是誰發文最多，而是討論某個需求時，誰會自然成為被提起的選項。",
+     "jev": {
+      "faithful": 0.76,
+      "overclaim": 0.35,
+      "complete": 0.5,
+      "fluency": {
+       "score": 2.13,
+       "conf": 0.49
+      }
+     },
+     "reasons": [],
+     "pages": [
+      123
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "第三層是注意力與記憶：消費者在某個生活情境下，會不會想起這個品牌。",
+     "jev": {
+      "faithful": 0.37,
+      "overclaim": 0.38,
+      "complete": 0.5,
+      "fluency": {
+       "score": 1.97,
+       "conf": 0.5
+      }
+     },
+     "reasons": [],
+     "pages": [
+      124
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "所以品牌不必在 full funnel 的每一層都做滿，而是先選出最值得進攻的主場域，再讓其他場域分工：有的放大聲量，有的提供信任，有的承接需求與轉換。",
+     "jev": {
+      "faithful": 0.61,
+      "overclaim": 0.31,
+      "complete": 0.77,
+      "fluency": {
+       "score": 2.1,
+       "conf": 0.47
+      }
+     },
+     "reasons": [],
+     "pages": [
+      126,
+      126
+     ]
+    }
+   ]
+  }
+ ]
+}
