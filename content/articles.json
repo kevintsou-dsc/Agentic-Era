@@ -1,0 +1,569 @@
+{
+  "_note": "22 篇的單一事實來源。標題、作者、職稱以文章內頁為準（K4），由 scripts/verify/verify-meta.mjs 對照 content/fulltext 首頁檢查。頁碼為紙本頁。minutes = 原文字數 / 450。",
+  "articles": [
+    {
+      "id": "a01",
+      "slug": "p6",
+      "chapter": "intro",
+      "title": "AI for Growth",
+      "subtitle": "看懂世界，加速成長",
+      "pages": [
+        6,
+        11
+      ],
+      "minutes": 7,
+      "threads": [
+        "judge"
+      ],
+      "authors": [
+        {
+          "name": "唐心慧",
+          "en": "Jennifer Tang",
+          "title": "電通集團大北亞區暨台灣執行長"
+        }
+      ]
+    },
+    {
+      "id": "a02",
+      "slug": "p12",
+      "chapter": "intro",
+      "title": "Agentic 時代",
+      "subtitle": "品牌與人的真實距離",
+      "pages": [
+        12,
+        17
+      ],
+      "minutes": 7,
+      "threads": [],
+      "authors": [
+        {
+          "name": "邵懿文",
+          "en": "Freda Shao",
+          "title": "電通集團策略創新長"
+        }
+      ]
+    },
+    {
+      "id": "a03",
+      "slug": "p20",
+      "chapter": "people",
+      "title": "真實的力量",
+      "subtitle": "重新定義中",
+      "pages": [
+        20,
+        27
+      ],
+      "minutes": 10,
+      "threads": [
+        "trust"
+      ],
+      "authors": [
+        {
+          "name": "周麗君",
+          "en": "Alice Chou",
+          "title": "電通創意事業群 & 台灣電通首席創意長"
+        }
+      ]
+    },
+    {
+      "id": "a04",
+      "slug": "p28",
+      "chapter": "people",
+      "title": "Agents of Growth",
+      "subtitle": "AI 代理時代的增長推手",
+      "pages": [
+        28,
+        35
+      ],
+      "minutes": 15,
+      "threads": [
+        "agent"
+      ],
+      "authors": [
+        {
+          "name": "紀緻謙",
+          "en": "Gary Chi",
+          "title": "電通創意專業服務執行長"
+        }
+      ]
+    },
+    {
+      "id": "a05",
+      "slug": "p36",
+      "chapter": "people",
+      "title": "AI 代理時代的增長架構師",
+      "subtitle": "",
+      "pages": [
+        36,
+        43
+      ],
+      "minutes": 12,
+      "threads": [
+        "judge"
+      ],
+      "authors": [
+        {
+          "name": "朱芳儀",
+          "en": "Julia Chu",
+          "title": "安索帕策略長"
+        }
+      ]
+    },
+    {
+      "id": "a06",
+      "slug": "p44",
+      "chapter": "people",
+      "title": "信任",
+      "subtitle": "為何成為 AI 時代最難複製的競爭力",
+      "pages": [
+        44,
+        49
+      ],
+      "minutes": 9,
+      "threads": [
+        "trust"
+      ],
+      "authors": [
+        {
+          "name": "楊欣怡",
+          "en": "Cynthia Yang",
+          "title": "安索帕副總經理"
+        }
+      ]
+    },
+    {
+      "id": "a07",
+      "slug": "p50",
+      "chapter": "people",
+      "title": "AI 可以幫人買東西",
+      "subtitle": "但品牌要讓人想買東西",
+      "pages": [
+        50,
+        57
+      ],
+      "minutes": 15,
+      "threads": [
+        "agent"
+      ],
+      "authors": [
+        {
+          "name": "陳蒔",
+          "en": "Rene Chen",
+          "title": "安索帕社群營運群總監"
+        }
+      ]
+    },
+    {
+      "id": "a08",
+      "slug": "p58",
+      "chapter": "people",
+      "title": "當注意力成為稀缺資源",
+      "subtitle": "娛樂與運動如何累積品牌心智資產？",
+      "pages": [
+        58,
+        65
+      ],
+      "minutes": 13,
+      "threads": [
+        "memory"
+      ],
+      "authors": [
+        {
+          "name": "何華軒",
+          "en": "Louis Ho",
+          "title": "dentsu sports & entertainment Entertainment Marketing Senior Director"
+        }
+      ]
+    },
+    {
+      "id": "a09",
+      "slug": "p66",
+      "chapter": "people",
+      "title": "討好演算法，還是打動人？",
+      "subtitle": "別讓效率邏輯把社群砍掉",
+      "pages": [
+        66,
+        71
+      ],
+      "minutes": 8,
+      "threads": [
+        "trust"
+      ],
+      "authors": [
+        {
+          "name": "孫韞筑",
+          "en": "Sunny Sun",
+          "title": "凱絡媒體客戶長"
+        }
+      ]
+    },
+    {
+      "id": "a10",
+      "slug": "p72",
+      "chapter": "people",
+      "title": "別買曝光了，開始買注意力吧",
+      "subtitle": "把媒體做成體驗，幫品牌累積「滑不走」的記憶資產",
+      "pages": [
+        72,
+        79
+      ],
+      "minutes": 12,
+      "threads": [
+        "memory"
+      ],
+      "authors": [
+        {
+          "name": "徐莉媛",
+          "en": "Amy Hsu",
+          "title": "安布思沛副總監"
+        }
+      ]
+    },
+    {
+      "id": "a11",
+      "slug": "p80",
+      "chapter": "people",
+      "title": "從金曲獎到甄嬛傳",
+      "subtitle": "共同記憶帶來的品牌價值",
+      "pages": [
+        80,
+        93
+      ],
+      "minutes": 34,
+      "threads": [
+        "memory"
+      ],
+      "authors": [
+        {
+          "name": "吳宗霖",
+          "en": "Jeremy Wu",
+          "title": "電通集團媒體事業群洞察與媒體效能領導人、貝立德營運長 & 媒體實驗室所長"
+        },
+        {
+          "name": "陳炯文",
+          "en": "Elmo Chen",
+          "title": "貝立德營業一部媒體企劃經理"
+        }
+      ]
+    },
+    {
+      "id": "a12",
+      "slug": "p96",
+      "chapter": "model",
+      "title": "People Model",
+      "subtitle": "讓消費者研究變成一場隨時能開口的對話",
+      "kicker": "特別企劃",
+      "pages": [
+        96,
+        115
+      ],
+      "minutes": 37,
+      "threads": [
+        "judge"
+      ],
+      "authors": [
+        {
+          "name": "陳介立",
+          "en": "Bass Chen",
+          "title": "電通智能中心智庫負責人"
+        },
+        {
+          "name": "孫郁喬",
+          "en": "Chiao Sun",
+          "title": "資料科學家"
+        },
+        {
+          "name": "高靖萍",
+          "en": "Chingping Kao",
+          "title": "Insight & Analysis 經理"
+        }
+      ]
+    },
+    {
+      "id": "a13",
+      "slug": "p116",
+      "chapter": "model",
+      "title": "重建 SOV",
+      "subtitle": "在注意力被 AI 稀釋的時代，如何守住品牌被選擇的關鍵場域",
+      "pages": [
+        116,
+        127
+      ],
+      "minutes": 21,
+      "threads": [
+        "agent",
+        "memory"
+      ],
+      "authors": [
+        {
+          "name": "吳宗霖",
+          "en": "Jeremy Wu",
+          "title": "電通集團媒體事業群洞察與媒體效能領導人、貝立德營運長 & 媒體實驗室所長"
+        }
+      ]
+    },
+    {
+      "id": "a14",
+      "slug": "p128",
+      "chapter": "model",
+      "title": "AI 普及下的演算法世代",
+      "subtitle": "「衡斷力 (Judgment)」將成為最稀缺的競爭力",
+      "pages": [
+        128,
+        135
+      ],
+      "minutes": 12,
+      "threads": [
+        "judge"
+      ],
+      "authors": [
+        {
+          "name": "強義明",
+          "en": "Nick Chiang",
+          "title": "凱絡媒體數位運營總統籌"
+        }
+      ]
+    },
+    {
+      "id": "a15",
+      "slug": "p136",
+      "chapter": "model",
+      "title": "生成式體驗來臨",
+      "subtitle": "誰能掌握顧客的下一步？",
+      "pages": [
+        136,
+        143
+      ],
+      "minutes": 15,
+      "threads": [
+        "trust",
+        "agent"
+      ],
+      "authors": [
+        {
+          "name": "鄭怡櫛",
+          "en": "Vera Cheng",
+          "title": "安索帕顧客體驗策略諮詢副總經理"
+        },
+        {
+          "name": "張家誠",
+          "en": "Jason Chang",
+          "title": "安索帕顧客體驗策略總監"
+        }
+      ]
+    },
+    {
+      "id": "a16",
+      "slug": "p144",
+      "chapter": "model",
+      "title": "贏在 AI 時代的隱形戰場",
+      "subtitle": "看見「文化暗流」，啟動企業真實的轉型動能",
+      "pages": [
+        144,
+        149
+      ],
+      "minutes": 11,
+      "threads": [
+        "judge"
+      ],
+      "authors": [
+        {
+          "name": "王馥蓓",
+          "en": "Fupei Wang",
+          "title": "永續顧問長"
+        },
+        {
+          "name": "周允玉",
+          "en": "Edith Chou",
+          "title": "商業顧問合夥人"
+        }
+      ],
+      "org": "電通商業顧問"
+    },
+    {
+      "id": "a17",
+      "slug": "p152",
+      "chapter": "ai",
+      "title": "顧客為何停下來？",
+      "subtitle": "從洞察到治理的體驗優化",
+      "pages": [
+        152,
+        159
+      ],
+      "minutes": 14,
+      "threads": [],
+      "authors": [
+        {
+          "name": "陳詳翰",
+          "en": "Harvey Chen",
+          "title": "Executive Vice President, CX Science"
+        },
+        {
+          "name": "康晉嵐",
+          "en": "Jason Kang",
+          "title": "Associate Vice President, CX Analytics & Technology"
+        }
+      ],
+      "org": "美庫爾台灣"
+    },
+    {
+      "id": "a18",
+      "slug": "p160",
+      "chapter": "ai",
+      "title": "體驗這件事",
+      "subtitle": "我們一直只問了一半",
+      "pages": [
+        160,
+        167
+      ],
+      "minutes": 14,
+      "threads": [
+        "agent"
+      ],
+      "authors": [
+        {
+          "name": "王姿喨",
+          "en": "Maureen Wang",
+          "title": "Head of Brand Experience"
+        },
+        {
+          "name": "詹佳穎",
+          "en": "Jennifer Chan",
+          "title": "Senior Manager, Brand Experience"
+        },
+        {
+          "name": "黃靖婷",
+          "en": "Daisy Huang",
+          "title": "Associate Manager, Brand Experience"
+        }
+      ],
+      "org": "美庫爾台灣"
+    },
+    {
+      "id": "a19",
+      "slug": "p168",
+      "chapter": "ai",
+      "title": "GEO 時代",
+      "subtitle": "被 AI 看見是技術，被消費者記住才是本事",
+      "pages": [
+        168,
+        175
+      ],
+      "minutes": 11,
+      "threads": [
+        "trust"
+      ],
+      "authors": [
+        {
+          "name": "莊閔雯",
+          "en": "Wen Chuang",
+          "title": "副總監"
+        },
+        {
+          "name": "呂季霖",
+          "en": "Alice Lu",
+          "title": "副理"
+        }
+      ],
+      "org": "安布思沛 SEO Optimization"
+    },
+    {
+      "id": "a20",
+      "slug": "p176",
+      "chapter": "ai",
+      "title": "拒絕同質化 AI Slop",
+      "subtitle": "將 AI 的「生成力」升級為品牌的「交付力」",
+      "pages": [
+        176,
+        181
+      ],
+      "minutes": 12,
+      "threads": [
+        "trust",
+        "judge"
+      ],
+      "authors": [
+        {
+          "name": "潘其偉",
+          "en": "Chiwei Pan",
+          "title": "台灣電通營運長"
+        }
+      ]
+    },
+    {
+      "id": "a21",
+      "slug": "p182",
+      "chapter": "ai",
+      "title": "超越效率",
+      "subtitle": "解碼 AI 製作驅動的創意代理商",
+      "pages": [
+        182,
+        187
+      ],
+      "minutes": 11,
+      "threads": [],
+      "authors": [
+        {
+          "name": "Trent Agnew",
+          "en": "",
+          "title": "Tag 泰意執行長 (JAPAC)"
+        }
+      ]
+    },
+    {
+      "id": "a22",
+      "slug": "p188",
+      "chapter": "ai",
+      "title": "AI Agent 走進消費旅程",
+      "subtitle": "保健、美妝與零售如何把 AI 變成行動能力",
+      "pages": [
+        188,
+        195
+      ],
+      "minutes": 15,
+      "threads": [
+        "agent"
+      ],
+      "authors": [
+        {
+          "name": "張詠琦",
+          "en": "Sibyl Chang",
+          "title": "洞察分析經理"
+        },
+        {
+          "name": "蔡孟軒",
+          "en": "Stan Tsai",
+          "title": "洞察分析經理"
+        },
+        {
+          "name": "楊至靜",
+          "en": "Joce Yang",
+          "title": "資深洞察分析經理"
+        }
+      ],
+      "org": "電通智能中心 智庫"
+    }
+  ],
+  "threads": [
+    {
+      "key": "trust",
+      "name": "真實與信任，是最貴的稀缺資產",
+      "short": "真實與信任"
+    },
+    {
+      "key": "judge",
+      "name": "判斷力不能外包",
+      "short": "判斷力"
+    },
+    {
+      "key": "agent",
+      "name": "Agent 經濟重寫「被選擇」的規則",
+      "short": "Agent 經濟"
+    },
+    {
+      "key": "memory",
+      "name": "從注意力到記憶",
+      "short": "注意力到記憶"
+    }
+  ]
+}

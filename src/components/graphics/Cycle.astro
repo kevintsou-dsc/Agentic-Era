@@ -1,0 +1,56 @@
+---
+// 循環圖：節點依序在第 1…n 步點亮，箭頭跟著畫出；shrinkAt 那一步中心縮小（例如品牌被循環消耗）
+import type { Graphic } from '../../lib/story';
+type G = Extract<Graphic, { type: 'cycle' }>;
+interface Props { g: G }
+const { g } = Astro.props;
+const n = g.nodes.length;
+const cx = 250, cy = 210, r = 150;
+const pts = g.nodes.map((_, i) => {
+  const ang = -Math.PI / 2 - Math.PI / n + (i * 2 * Math.PI) / n;
+  return { x: cx + r * Math.cos(ang), y: cy + r * Math.sin(ang), ang };
+});
+// 節點間的弧線（從節點 i 到 i+1），避開節點半徑
+const arcs = pts.map((p, i) => {
+  const q = pts[(i + 1) % n];
+  const gap = 0.32;
+  const a0 = p.ang + gap, a1 = (i + 1 === n ? q.ang + 2 * Math.PI : q.ang) - gap;
+  const s = { x: cx + r * Math.cos(a0), y: cy + r * Math.sin(a0) };
+  const e = { x: cx + r * Math.cos(a1), y: cy + r * Math.sin(a1) };
+  return `M${s.x.toFixed(1)} ${s.y.toFixed(1)} A${r} ${r} 0 0 1 ${e.x.toFixed(1)} ${e.y.toFixed(1)}`;
+});
+---
+<div class="stage cycle">
+  <svg viewBox="0 0 500 420" role="img" aria-label={`${g.label}：` + g.nodes.map((x) => x.zh).join('，接著') + '，如此循環'}>
+    <defs>
+      <marker id="cyc-arrow" viewBox="0 0 10 10" refX="6" refY="5" markerUnits="userSpaceOnUse" markerWidth="20" markerHeight="20" orient="auto">
+        <path d="M0,0 L10,5 L0,10 z" fill="var(--accent-ink)" />
+      </marker>
+    </defs>
+    <circle class="center" data-at={g.shrinkAt ?? 99} cx={cx} cy={cy} r="58" />
+    <text class="center-label" x={cx} y={cy + 7} text-anchor="middle">{g.center}</text>
+    {arcs.map((d, i) => <path class="arc" data-at={i + 1} d={d} pathLength="1" marker-end="url(#cyc-arrow)" />)}
+    {pts.map((p, i) => (
+      <g class="node" data-at={i + 1}>
+        <circle cx={p.x} cy={p.y} r="30" />
+        <text x={p.x} y={p.y + 8} text-anchor="middle">{i + 1}</text>
+      </g>
+    ))}
+  </svg>
+  <ol class="labels">
+    {g.nodes.map((x, i) => <li data-at={i + 1}><b>{x.zh}</b>{x.en && <span>{x.en}</span>}</li>)}
+  </ol>
+  <p class="source">{g.source}</p>
+</div>
+<style>
+  .cycle { width: 100%; display: grid; gap: 8px; }
+  svg { width: 100%; max-height: 42svh; }
+  .center { fill: var(--accent); opacity: .5; transform-box: fill-box; transform-origin: center; transform: scale(calc(1 - .55 * var(--on))); transition: transform 1s ease; }
+  .center-label { font: 700 18px var(--font-sans); fill: var(--ink); }
+  .arc { fill: none; stroke: var(--accent); stroke-width: 9; stroke-linecap: round; stroke-dasharray: 1; stroke-dashoffset: calc(1 - var(--on)); transition: stroke-dashoffset .9s ease; }
+  .node circle { fill: color-mix(in srgb, var(--accent) calc(var(--on) * 100%), var(--paper)); stroke: var(--accent-ink); stroke-width: 3; transition: fill .4s; }
+  .node text { font: 800 22px var(--font-sans); fill: var(--ink); }
+  .labels { margin: 0; padding-left: 1.4em; display: grid; gap: 4px; font-size: 14px; }
+  .labels li { opacity: calc(.25 + .75 * var(--on)); transition: opacity .4s; }
+  .labels span { display: block; font-size: 12px; color: var(--ink-3); }
+</style>

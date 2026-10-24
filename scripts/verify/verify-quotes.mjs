@@ -1,20 +1,12 @@
-// 逐字比對：src/data/*.ts 中每一則 { article, page, text } 必須是 content/fulltext/<article>.md 的子字串，
-// 且出現在宣告的紙本頁碼區段內。比對前做正規化（見 normalize）。失敗時列出最接近的片段並以非零碼結束。
-import { readFileSync, readdirSync } from 'node:fs';
-import { join } from 'node:path';
+// 逐字比對：src/ 下所有 .ts 檔中每一則 { article: 'aNN', page: N, text: '…' } 必須是
+// content/fulltext/aNN.md 的子字串，且出現在宣告的紙本頁（允許跨到下一頁）。失敗時列出實際頁碼並以非零碼結束。
+import { readFileSync, readdirSync, statSync } from 'node:fs';
+import { join, relative } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { normalize } from './normalize.mjs';
 
 const root = fileURLToPath(new URL('../../', import.meta.url));
 const fulltextDir = join(root, 'content', 'fulltext');
-const dataDir = join(root, 'src', 'data');
-
-export function normalize(s) {
-  return s
-    .normalize('NFKC') // 全形英數 → 半形
-    .replace(/[「『“"]/g, '「').replace(/[」』”"]/g, '」')
-    .replace(/[—–－―‐-]+/g, '-')
-    .replace(/\s+/g, '');
-}
 
 // 依 <!-- p.N --> 切出每頁文字
 function pages(md) {
@@ -28,6 +20,13 @@ function pages(md) {
   return out;
 }
 
+function walk(dir) {
+  return readdirSync(dir).flatMap((f) => {
+    const p = join(dir, f);
+    return statSync(p).isDirectory() ? walk(p) : p.endsWith('.ts') ? [p] : [];
+  });
+}
+
 const corpus = {};
 for (const f of readdirSync(fulltextDir).filter((f) => /^a\d+\.md$/.test(f))) {
   const p = pages(readFileSync(join(fulltextDir, f), 'utf8'));
@@ -37,22 +36,25 @@ for (const f of readdirSync(fulltextDir).filter((f) => /^a\d+\.md$/.test(f))) {
 const entry = /\{\s*article:\s*'(a\d\d)',\s*page:\s*(\d+),\s*text:\s*'((?:[^'\\]|\\.)*)'\s*\}/g;
 let total = 0;
 const failures = [];
-for (const f of readdirSync(dataDir).filter((f) => f.endsWith('.ts'))) {
-  const src = readFileSync(join(dataDir, f), 'utf8');
+for (const file of walk(join(root, 'src'))) {
+  const src = readFileSync(file, 'utf8');
+  const name = relative(root, file);
   for (const m of src.matchAll(entry)) {
     total++;
     const [, article, pageStr, raw] = m;
     const page = Number(pageStr);
     const text = normalize(raw.replace(/\\'/g, "'"));
     const doc = corpus[article];
-    if (!doc) { failures.push(`${f}: 找不到文章 ${article}`); continue; }
-    // 允許跨到下一頁（引文可能跨頁）
-    const here = (doc.get(page) ?? '') + (doc.get(page + 1) ?? '');
-    if (here.includes(text)) continue;
+    if (!doc) { failures.push(`${name}: 找不到文章 ${article}`); continue; }
+    // 只接受：整句在宣告頁；或句子確實跨越宣告頁與下一頁的頁界
+    const thisPage = doc.get(page) ?? '';
+    const nextPage = doc.get(page + 1) ?? '';
+    if (thisPage.includes(text)) continue;
+    if ((thisPage + nextPage).includes(text) && !nextPage.includes(text)) continue;
     const foundOn = [...doc].find(([, t]) => t.includes(text));
     failures.push(foundOn
-      ? `${f}: ${article} 「${raw.slice(0, 24)}…」頁碼錯誤：宣告 p.${page}，實際在 p.${foundOn[0]}`
-      : `${f}: ${article} p.${page} 找不到「${raw.slice(0, 40)}…」`);
+      ? `${name}: ${article}「${raw.slice(0, 24)}…」頁碼錯誤：宣告 p.${page}，實際在 p.${foundOn[0]}`
+      : `${name}: ${article} p.${page} 找不到「${raw.slice(0, 40)}…」`);
   }
 }
 

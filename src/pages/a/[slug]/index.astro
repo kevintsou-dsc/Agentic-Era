@@ -1,0 +1,63 @@
+---
+import Base from '../../../layouts/Base.astro';
+import ArticleHead from '../../../components/ArticleHead.astro';
+import Scenes from '../../../components/Scenes.astro';
+import { ARTICLES, THREADS, cite, fullTitle, type Article } from '../../../lib/articles';
+import { STORIES } from '../../../data/stories';
+import { FULLTEXT_REVIEWED } from '../../../lib/fulltext';
+import type { Story } from '../../../lib/story';
+
+export function getStaticPaths() {
+  return ARTICLES.filter((a) => STORIES[a.id]).map((a) => ({ params: { slug: a.slug }, props: { a, story: STORIES[a.id] } }));
+}
+interface Props { a: Article; story: Story }
+const { a, story } = Astro.props;
+
+const fullReviewed = FULLTEXT_REVIEWED.has(a.id);
+// 同一條主線上、已有故事的下一篇（依紙本順序循環）
+const thread = THREADS.find((t) => a.threads.includes(t.key));
+const sameThread = thread ? ARTICLES.filter((x) => x.threads.includes(thread.key) && STORIES[x.id]) : [];
+const next = sameThread.length > 1 ? sameThread[(sameThread.indexOf(a) + 1) % sameThread.length] : undefined;
+---
+<Base title={`${fullTitle(a)}｜決策智慧 2026`} description={story.oneLiner} chapter={a.chapter} crumb={`${a.title}．90 秒`}>
+  <section class="hero">
+    {!story.reviewed && <p class="draft">草稿：待人工審定</p>}
+    <ArticleHead a={a} mode="story" />
+    <p class="lede one"><span class="curated">一句話｜策展者整理</span><br />{story.oneLiner}</p>
+    <p class="scroll-hint">往下捲動</p>
+  </section>
+
+  <Scenes scenes={story.scenes} />
+
+  <section class="section ending">
+    <p class="eyebrow reveal">{story.asksTitle ?? '帶走這幾個問題'}</p>
+    <ol class="asks">
+      {story.asks.map((q) => <li class="reveal">{q.text}<span class="pg">紙本 p.{q.page}</span></li>)}
+    </ol>
+    <p class="source reveal">原文｜{cite(a)}</p>
+  </section>
+
+  <nav class="section next" aria-label="接下來">
+    <a class="btn" href={`/a/${a.slug}/full/`}>讀原文（約 {a.minutes} 分鐘{fullReviewed ? '' : '，校正中'}）→</a>
+    {next && thread && (
+      <a class="nextcard" href={`/a/${next.slug}/`}>
+        <span class="eyebrow">同一條主線｜{thread.name}</span>
+        <b>{next.title}</b>
+        <span>{next.authors.map((x) => x.name).join('、')}｜90 秒</span>
+      </a>
+    )}
+    <a class="btn ghost" href="/#chapters">← 回到全書，依章節找文章</a>
+  </nav>
+</Base>
+<style>
+  .one { margin-top: 28px; }
+  .draft { justify-self: start; margin: 0 0 12px; padding: 2px 10px; border-radius: 6px; background: var(--model); font-size: 12px; font-weight: 700; }
+  .asks { margin: 24px 0 8px; padding-left: 1.4em; display: grid; gap: 18px; font-size: clamp(21px, 2vw + 12px, 32px); font-weight: 800; line-height: 1.45; max-width: 46rem; }
+  .pg { display: block; font-size: 13px; font-weight: 400; color: var(--ink-3); margin-top: 4px; }
+  .next { display: flex; flex-wrap: wrap; gap: 14px; align-items: center; padding-top: 6svh; }
+  .nextcard { display: grid; gap: 4px; padding: 16px 20px; border-radius: 14px; border: 2px solid var(--accent-ink); text-decoration: none; background: var(--paper); flex: 1 1 18rem; max-width: 28rem; }
+  .nextcard:hover { background: var(--accent); }
+  .nextcard b { font-size: 18px; }
+  .nextcard span:last-child { font-size: 13px; color: var(--ink-2); }
+  [aria-disabled="true"] { opacity: .55; cursor: not-allowed; }
+</style>

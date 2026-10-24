@@ -4,10 +4,11 @@ import '../styles/global.css';
 interface Props {
   title: string;
   description: string;
-  chapter?: 'people' | 'model' | 'ai';
+  chapter?: 'intro' | 'people' | 'model' | 'ai';
   crumb?: string;
 }
 const { title, description, chapter = 'people', crumb } = Astro.props;
+const repo = 'https://github.com/kevintsou-dsc/Agentic-Era';
 ---
 <!doctype html>
 <html lang="zh-Hant-TW">
@@ -16,20 +17,39 @@ const { title, description, chapter = 'people', crumb } = Astro.props;
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
     <meta name="description" content={description} />
-    <meta name="robots" content="noindex" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="article" />
+    <meta name="theme-color" content="#f3eee4" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
   </head>
   <body class={`ch-${chapter}`}>
+    <a class="skip" href="#main">跳到主要內容</a>
     <div class="progress" aria-hidden="true"><span data-progress></span></div>
     <header class="topbar">
-      <a href="/" class="mono">決策智慧 2026 · POC</a>
-      {crumb && <span>{crumb}</span>}
+      <a href="/" class="mono">決策智慧 2026</a>
+      {crumb && <span class="crumb">{crumb}</span>}
     </header>
-    <main>
+    <main id="main">
       <slot />
     </main>
+    <footer class="footer">
+      <div class="wrap">
+        <p>內容出自 電通行銷傳播集團《決策智慧 2026：Agentic 時代，重塑品牌與人的真實距離》。所載編輯內容之著作權為原刊所有。</p>
+        <p><a href="/#chapters">依章節找文章</a>　<a href="/about/">關於本作品</a>　<a href={repo}>原始碼</a></p>
+      </div>
+    </footer>
     <script>
       import { initScrolly } from '../scripts/scrolly';
       initScrolly();
     </script>
   </body>
 </html>
+<style>
+  .skip { position: absolute; left: -999px; top: 8px; z-index: 60; background: var(--ink); color: var(--paper); padding: 8px 14px; border-radius: 8px; }
+  .skip:focus { left: 8px; }
+  .crumb { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 60vw; }
+  .footer { border-top: 1px solid var(--line); padding: 32px 0 48px; font-size: 13px; color: var(--ink-2); }
+  .footer p { margin: 0 0 8px; max-width: 46rem; }
+  .footer a { margin-right: 4px; }
+</style>

@@ -1,17 +1,17 @@
 ---
-// 全書 22 篇依章節排列；捲動時依序點亮四條主線涵蓋的文章
-import { ALL, CHAPTERS, THREADS, type Chapter } from '../../data/articles';
-const order: Chapter[] = ['intro', 'people', 'model', 'ai'];
+// 全書地圖：22 篇依章節排列；第 1 步上色，第 2–5 步依序只留下某一條主線的文章
+import { ARTICLES, CHAPTERS, CHAPTER_ORDER, THREADS, fullTitle, authorNames } from '../../lib/articles';
+const cols: Record<string, string> = { intro: '2fr', people: '9fr', model: '5fr', ai: '6fr' };
 ---
 <div class="stage dots">
-  <div class="chapters">
-    {order.map((ch) => (
+  <div class="chapters" style={`grid-template-columns:${CHAPTER_ORDER.map((c) => cols[c]).join(' ')}`}>
+    {CHAPTER_ORDER.map((ch) => (
       <div class={`chapter c-${ch}`}>
         <span class="ch-name">{CHAPTERS[ch].name}<small>{CHAPTERS[ch].zh}</small></span>
         <ul>
-          {ALL.filter((a) => a.chapter === ch).map((a) => (
-            <li class={['dot', ...THREADS.filter((t) => (t.ids as readonly number[]).includes(a.id)).map((t) => `t-${t.key}`)].join(' ')} title={`${a.title}｜${a.authors}`}>
-              <span class="sr">{a.title}，{a.authors}</span>
+          {ARTICLES.filter((a) => a.chapter === ch).map((a) => (
+            <li class={['dot', ...a.threads.map((t) => `t-${t}`)].join(' ')} title={`${fullTitle(a)}｜${authorNames(a)}`}>
+              <span class="sr">{fullTitle(a)}，{authorNames(a)}</span>
             </li>
           ))}
         </ul>
@@ -19,12 +19,16 @@ const order: Chapter[] = ['intro', 'people', 'model', 'ai'];
     ))}
   </div>
   <ol class="threads">
-    {THREADS.map((t, i) => <li class={`th th-${t.key}`}><span class="n">{i + 1}</span>{t.name}<small>{t.ids.length} 篇</small></li>)}
+    {THREADS.map((t, i) => (
+      <li class={`th th-${t.key}`}>
+        <span class="n">{i + 1}</span>{t.name}<small>{ARTICLES.filter((a) => a.threads.includes(t.key)).length} 篇</small>
+      </li>
+    ))}
   </ol>
 </div>
 <style>
   .dots { width: 100%; display: grid; gap: 18px; }
-  .chapters { display: grid; grid-template-columns: 2fr 9fr 5fr 6fr; gap: 10px; }
+  .chapters { display: grid; gap: 10px; }
   .chapter { display: grid; gap: 8px; align-content: start; }
   .ch-name { font-family: var(--font-mono); font-size: 12px; letter-spacing: .08em; display: flex; flex-direction: column; color: var(--ink-2); }
   .ch-name small { font-family: var(--font-sans); font-size: 11px; color: var(--ink-3); }
@@ -40,7 +44,6 @@ const order: Chapter[] = ['intro', 'people', 'model', 'ai'];
   .th small { color: var(--ink-3); font-size: 12px; }
   .n { font-family: var(--font-mono); font-size: 12px; width: 1.6em; height: 1.6em; display: inline-grid; place-items: center; border-radius: 50%; border: 1px solid var(--ink-3); flex: none; }
   .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
-  /* 主線步驟：非該主線的點淡出 */
   :global(.graphic[data-step="2"]) .dot:not(.t-trust),
   :global(.graphic[data-step="3"]) .dot:not(.t-judge),
   :global(.graphic[data-step="4"]) .dot:not(.t-agent),
@@ -48,5 +51,5 @@ const order: Chapter[] = ['intro', 'people', 'model', 'ai'];
   :global(.graphic[data-step="2"]) .th-trust, :global(.graphic[data-step="3"]) .th-judge,
   :global(.graphic[data-step="4"]) .th-agent, :global(.graphic[data-step="5"]) .th-memory { opacity: 1; font-weight: 700; }
   :global(.graphic.is-6) .th { opacity: 1; }
-  @media (max-width: 560px) { .chapters { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 560px) { .chapters { grid-template-columns: 1fr 1fr !important; } }
 </style>

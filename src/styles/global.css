@@ -41,6 +41,7 @@ img, svg { max-width: 100%; display: block; }
 a { color: inherit; }
 :focus-visible { outline: 3px solid var(--accent-ink); outline-offset: 3px; border-radius: 4px; }
 
+.ch-intro { --accent: #e3cfa9; --accent-ink: #6e4f24; }
 .ch-people { --accent: var(--people); --accent-ink: var(--people-ink); }
 .ch-model { --accent: var(--model); --accent-ink: var(--model-ink); }
 .ch-ai { --accent: var(--ai); --accent-ink: var(--ai-ink); }
@@ -148,7 +149,19 @@ details.more[open] summary::before { content: "－ "; }
 }
 .btn.ghost { background: transparent; color: var(--ink); }
 
+/* 圖形狀態：[data-at="N"] 在第 N 步之後 --on 變成 1；[data-focus="N"] 只在第 N 步時 --focus 為 1。
+   各圖形元件用這兩個變數驅動 transform／opacity，捲動引擎只負責寫入 data-step 與 is-N。 */
+[data-at] { --on: 0; }
+[data-focus] { --focus: 0; }
+.graphic.is-1 [data-at="1"], .graphic.is-2 [data-at="2"], .graphic.is-3 [data-at="3"], .graphic.is-4 [data-at="4"],
+.graphic.is-5 [data-at="5"], .graphic.is-6 [data-at="6"], .graphic.is-7 [data-at="7"], .graphic.is-8 [data-at="8"],
+.graphic.is-9 [data-at="9"], .graphic.is-10 [data-at="10"] { --on: 1; }
+.graphic[data-step="1"] [data-focus="1"], .graphic[data-step="2"] [data-focus="2"], .graphic[data-step="3"] [data-focus="3"],
+.graphic[data-step="4"] [data-focus="4"], .graphic[data-step="5"] [data-focus="5"], .graphic[data-step="6"] [data-focus="6"],
+.graphic[data-step="7"] [data-focus="7"], .graphic[data-step="8"] [data-focus="8"] { --focus: 1; }
+
 @media (prefers-reduced-motion: reduce) {
+  [data-at] { --on: 1; }
   *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
   .reveal, .scrolly .card { opacity: 1; transform: none; }
 }

@@ -1,0 +1,65 @@
+---
+import type { Scene } from '../lib/story';
+import { rich } from '../lib/rich';
+import Quote from './Quote.astro';
+import Graphic from './graphics/Graphic.astro';
+interface Props { scenes: Scene[] }
+const { scenes } = Astro.props;
+---
+{scenes.map((s, si) => {
+  if (s.kind === 'graphic') {
+    return (
+      <section class:list={['scrolly', { 'graphic-right': (s.side ?? (si % 2 ? 'right' : 'left')) === 'right' }]}>
+        <div class="graphic"><Graphic g={s.graphic} /></div>
+        <div class="steps">
+          {s.steps.map((c, ci) => (
+            <div class="step">
+              <div class="card">
+                {ci === 0 && <p class="curated">整理：策展者</p>}
+                {c.text && <p set:html={rich(c.text)} />}
+                {c.quote && <Quote q={c.quote} />}
+                {c.more && (
+                  <details class="more">
+                    <summary>{c.more.summary}</summary>
+                    {c.more.text && <p set:html={rich(c.more.text)} />}
+                    {c.more.quote && <Quote q={c.more.quote} />}
+                  </details>
+                )}
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+    );
+  }
+  if (s.kind === 'quote') {
+    return (
+      <section class="section">
+        {s.lead && <p class="lede reveal" set:html={rich(s.lead)} />}
+        <div class="reveal"><Quote q={s.quote} size="lg" /></div>
+      </section>
+    );
+  }
+  if (s.kind === 'bignum') {
+    return (
+      <section class="section center bignum-scene">
+        <p class="bignum reveal" data-count={s.value} data-decimals={s.decimals ?? 0} data-prefix={s.prefix ?? ''}>
+          {(s.prefix ?? '') + s.value.toFixed(s.decimals ?? 0)}<small>{s.unit}</small>
+        </p>
+        <p class="lede reveal" set:html={rich(s.caption)} />
+        <p class="source reveal">{s.source}</p>
+      </section>
+    );
+  }
+  return (
+    <section class="section center">
+      {s.eyebrow && <p class="eyebrow reveal">{s.eyebrow}</p>}
+      <h2 class="display reveal statement" set:html={rich(s.text)} />
+      {s.lede && <p class="lede reveal" set:html={rich(s.lede)} />}
+    </section>
+  );
+})}
+<style>
+  .statement { font-size: clamp(28px, 4.5vw, 52px); }
+  .bignum-scene .bignum { color: var(--accent-ink); }
+</style>

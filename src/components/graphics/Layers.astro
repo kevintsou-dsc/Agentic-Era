@@ -1,0 +1,31 @@
+---
+// 分層框架：第 k 步點亮第 k 層並展開說明
+import type { Graphic } from '../../lib/story';
+type G = Extract<Graphic, { type: 'layers' }>;
+interface Props { g: G }
+const { g } = Astro.props;
+---
+<div class="stage layers">
+  <p class="title">{g.from && <><span class="from">{g.from}</span><span class="arrow">→</span></>}<b>{g.to}</b></p>
+  <ol class="stack">
+    {g.layers.map((l, i) => (
+      <li class="layer" data-at={i + 1} data-focus={i + 1}>
+        <span class="t">{l.title}</span>
+        <span class="d">{l.desc}</span>
+        {l.detail && <span class="x">{l.detail}</span>}
+      </li>
+    ))}
+  </ol>
+  <p class="source">{g.source}</p>
+</div>
+<style>
+  .layers { width: 100%; display: grid; gap: 14px; }
+  .title { margin: 0; font-size: clamp(18px, 1.6vw + 10px, 24px); display: flex; flex-wrap: wrap; gap: 8px; align-items: baseline; }
+  .from { color: var(--ink-3); text-decoration: line-through; text-decoration-thickness: 2px; }
+  .arrow { color: var(--ink-3); }
+  .stack { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+  .layer { display: grid; gap: 2px; padding: 14px 18px; border-radius: 12px; border: 2px solid color-mix(in srgb, var(--accent-ink) calc(var(--on) * 100%), var(--line)); background: color-mix(in srgb, var(--accent) calc(var(--on) * 100%), var(--paper)); opacity: calc(.3 + .7 * var(--on)); transform: translateX(calc((1 - var(--on)) * -12px)); transition: opacity .5s, transform .5s, background .5s, border-color .5s; }
+  .t { font-weight: 800; font-size: 17px; }
+  .d { font-size: 15px; }
+  .x { font-size: 13px; color: var(--ink-2); max-height: calc(var(--focus) * 5em); overflow: hidden; transition: max-height .5s; }
+</style>

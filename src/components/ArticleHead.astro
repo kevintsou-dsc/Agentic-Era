@@ -1,0 +1,35 @@
+---
+import { CHAPTERS, THREADS, type Article } from '../lib/articles';
+interface Props { a: Article; mode: 'story' | 'full'; storyMinutes?: string }
+const { a, mode, storyMinutes = '90 秒' } = Astro.props;
+const threads = THREADS.filter((t) => a.threads.includes(t.key));
+---
+<header class="ahead">
+  <p class="meta">
+    <span class="chip">{CHAPTERS[a.chapter].name}</span>
+    <span>紙本 p.{a.pages[0]}–{a.pages[1]}</span>
+    {mode === 'story' ? <span>精華約 {storyMinutes}｜原文約 {a.minutes} 分鐘</span> : <span>原文約 {a.minutes} 分鐘</span>}
+  </p>
+  {a.kicker && <p class="kicker">〈{a.kicker}〉</p>}
+  <h1 class="display">{a.title}</h1>
+  {a.subtitle && <p class="sub">{a.subtitle}</p>}
+  <ul class="authors">
+    {a.authors.map((au) => (
+      <li><b>{au.name}</b>{au.en && <span class="en"> {au.en}</span>}<span class="role">{a.org ? `${a.org} ` : ''}{au.title}</span></li>
+    ))}
+  </ul>
+  {threads.length > 0 && (
+    <p class="threads">本篇屬於 {CHAPTERS[a.chapter].name} 章｜主線：{threads.map((t) => t.short).join('、')}</p>
+  )}
+</header>
+<style>
+  .ahead { display: grid; gap: 6px; }
+  .meta { margin: 0; display: flex; flex-wrap: wrap; gap: 8px 14px; align-items: center; font-size: 13px; color: var(--ink-2); }
+  .kicker { margin: 8px 0 0; font-size: 15px; color: var(--accent-ink); font-weight: 700; }
+  h1 { margin-bottom: 0; }
+  .sub { margin: 0; font-size: clamp(18px, 1.6vw + 12px, 26px); font-weight: 700; color: var(--ink-2); max-width: 40rem; }
+  .authors { list-style: none; margin: 14px 0 0; padding: 0; display: grid; gap: 4px; font-size: 15px; }
+  .en { color: var(--ink-2); font-weight: 600; }
+  .role { display: block; font-size: 13px; color: var(--ink-3); }
+  .threads { margin: 10px 0 0; font-size: 13px; color: var(--ink-3); }
+</style>

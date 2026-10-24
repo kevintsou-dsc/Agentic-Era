@@ -4,8 +4,9 @@
   "type": "module",
   "scripts": {
     "dev": "astro dev",
-    "build": "node scripts/verify/verify-quotes.mjs && astro build",
-    "verify": "node scripts/verify/verify-quotes.mjs",
+    "build": "npm run verify && astro build && node scripts/verify/check-links.mjs",
+    "verify": "node scripts/verify/verify-quotes.mjs && node scripts/verify/verify-meta.mjs",
+    "verify:release": "node scripts/verify/verify-release.mjs",
     "preview": "astro preview",
     "check:repo": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/check-repo.ps1"
   },

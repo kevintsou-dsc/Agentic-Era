@@ -1,0 +1,41 @@
+---
+import Base from '../../../layouts/Base.astro';
+import ArticleHead from '../../../components/ArticleHead.astro';
+import { ARTICLES, fullTitle, type Article } from '../../../lib/articles';
+import { STORIES } from '../../../data/stories';
+import { FULLTEXT_REVIEWED, hasFulltext, loadFulltext } from '../../../lib/fulltext';
+
+export function getStaticPaths() {
+  return ARTICLES
+    .filter((a) => hasFulltext(a.id))
+    .map((a) => ({ params: { slug: a.slug }, props: { a } }));
+}
+interface Props { a: Article }
+const { a } = Astro.props;
+const blocks = loadFulltext(a.id);
+const reviewed = FULLTEXT_REVIEWED.has(a.id);
+---
+<Base title={`原文｜${fullTitle(a)}｜決策智慧 2026`} description={`${fullTitle(a)} 原文全文，標示紙本頁碼。`} chapter={a.chapter} crumb={`${a.title}．原文`}>
+  <article class="full wrap">
+    <div class="head">
+      <ArticleHead a={a} mode="full" />
+      {STORIES[a.id] && <p><a class="btn ghost" href={`/a/${a.slug}/`}>← 回到 90 秒精華</a></p>}
+      {!reviewed && <p class="warn">未校正：此全文由 PDF 自動抽取，尚未人工校正，可能有段落順序或斷行錯誤，引用請以紙本為準。</p>}
+    </div>
+    <div class="body">
+      {blocks.map((b) =>
+        b.kind === 'page' ? <p class="pg" id={`p${b.page}`}>紙本 p.{b.page}</p>
+        : b.kind === 'h' ? <h2>{b.text}</h2>
+        : <p>{b.text}</p>)}
+    </div>
+  </article>
+</Base>
+<style>
+  .full { padding-top: 96px; padding-bottom: 12svh; }
+  .head { display: grid; gap: 16px; margin-bottom: 48px; }
+  .warn { margin: 0; padding: 12px 16px; border-radius: 10px; background: var(--model); font-size: 14px; max-width: 46rem; }
+  .body { max-width: var(--measure); font-size: clamp(17px, .6vw + 14px, 19px); line-height: 1.9; }
+  .body p { margin: 0 0 1.1em; }
+  .body h2 { font-size: 1.25em; line-height: 1.5; margin: 1.8em 0 .6em; }
+  .pg { font-family: var(--font-mono); font-size: 12px !important; color: var(--ink-3); border-top: 1px dashed var(--line); padding-top: 6px; margin-top: 2em !important; letter-spacing: .06em; }
+</style>

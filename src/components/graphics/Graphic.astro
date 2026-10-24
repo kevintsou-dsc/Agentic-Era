@@ -1,0 +1,17 @@
+---
+import type { Graphic } from '../../lib/story';
+import Bars from './Bars.astro';
+import HBars from './HBars.astro';
+import Cycle from './Cycle.astro';
+import Layers from './Layers.astro';
+import Matrix from './Matrix.astro';
+import List from './List.astro';
+interface Props { g: Graphic }
+const { g } = Astro.props;
+---
+{g.type === 'bars' && <Bars g={g} />}
+{g.type === 'hbars' && <HBars g={g} />}
+{g.type === 'cycle' && <Cycle g={g} />}
+{g.type === 'layers' && <Layers g={g} />}
+{g.type === 'matrix' && <Matrix g={g} />}
+{g.type === 'list' && <List g={g} />}

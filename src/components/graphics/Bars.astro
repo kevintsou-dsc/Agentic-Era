@@ -1,0 +1,36 @@
+---
+import type { Graphic } from '../../lib/story';
+type G = Extract<Graphic, { type: 'bars' }>;
+interface Props { g: G }
+const { g } = Astro.props;
+const max = Math.max(...g.bars.map((b) => b.value)) * 1.12;
+const aria = `${g.title}：` + g.bars.map((b) => `${b.label}${b.sub ? b.sub : ''} ${b.display}`).join('，');
+---
+<div class="stage bars">
+  <p class="title">{g.title}{g.badge && <span class="badge" data-at={g.badge.at}>{g.badge.text}</span>}</p>
+  <div class="chart" role="img" aria-label={aria} style={`--n:${g.bars.length}`}>
+    {g.bars.map((b) => (
+      <div class:list={['col', { hl: b.highlight }]} data-at={b.at}>
+        <span class="v">{b.display}</span>
+        <div class="bar" style={`--h:${b.value / max}`}></div>
+        <span class="l">{b.label}{b.sub && <small>{b.sub}</small>}</span>
+      </div>
+    ))}
+  </div>
+  {g.axis && <p class="axis">{g.axis}</p>}
+  <p class="source">{g.source}</p>
+</div>
+<style>
+  .bars { width: 100%; display: grid; gap: 10px; }
+  .title { margin: 0; font-weight: 700; font-size: clamp(17px, 1.4vw + 10px, 22px); display: flex; flex-wrap: wrap; gap: 4px 12px; align-items: baseline; }
+  .badge { font-size: clamp(15px, 1.4vw + 8px, 20px); font-weight: 800; color: var(--accent-ink); background: var(--accent); padding: 0 10px; border-radius: 999px; opacity: var(--on); transform: translateY(calc((1 - var(--on)) * 8px)); transition: opacity .5s, transform .5s; }
+  .chart { display: grid; grid-template-columns: repeat(var(--n), 1fr); gap: clamp(12px, 3vw, 28px); align-items: end; height: min(40svh, 320px); border-bottom: 2px solid var(--ink); padding: 0 6%; margin-bottom: 46px; }
+  .col { display: flex; flex-direction: column; justify-content: flex-end; height: 100%; text-align: center; position: relative; }
+  .bar { flex: none; height: calc(var(--h) * (100% - 3rem)); background: var(--paper-2); border: 2px solid var(--ink-3); border-bottom: 0; border-radius: 8px 8px 0 0; transform-origin: bottom; transform: scaleY(var(--on)); transition: transform 1s cubic-bezier(.2,.7,.2,1); }
+  .hl .bar { background: var(--accent); border-color: var(--accent-ink); }
+  .v { font-size: clamp(20px, 2.8vw, 36px); font-weight: 800; line-height: 1.2; margin-bottom: 6px; font-variant-numeric: tabular-nums; opacity: var(--on); transition: opacity .5s .4s; }
+  .hl .v { color: var(--accent-ink); }
+  .l { position: absolute; bottom: -46px; left: -8px; right: -8px; font-size: 13px; color: var(--ink-2); line-height: 1.35; display: flex; flex-direction: column; }
+  .l small { font-size: 11px; color: var(--ink-3); }
+  .axis { margin: 0; font-size: 13px; color: var(--ink-2); }
+</style>

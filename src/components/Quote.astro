@@ -1,13 +1,15 @@
 ---
-import { ARTICLES, type Quote } from '../data/poc';
-interface Props { q: Quote & { article: keyof typeof ARTICLES } }
-const { q } = Astro.props;
-const a = ARTICLES[q.article];
+import type { Src } from '../lib/story';
+import { article, cite } from '../lib/articles';
+interface Props { q: Src; size?: 'md' | 'lg' }
+const { q, size = 'md' } = Astro.props;
+const a = article(q.article);
 ---
-<figure class="quote-block">
+<figure class={`quote-block ${size}`}>
   <blockquote class="quote">{q.text}</blockquote>
-  <figcaption class="quote-cite">原文｜{a.authors}〈{a.short}〉紙本 p.{q.page}</figcaption>
+  <figcaption class="quote-cite">原文｜{cite(a)}　紙本 p.{q.page}</figcaption>
 </figure>
 <style>
   .quote-block { margin: 0; max-width: 40rem; }
+  .lg :global(.quote) { font-size: clamp(24px, 2.6vw + 12px, 40px); }
 </style>

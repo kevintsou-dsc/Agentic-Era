@@ -1,0 +1,36 @@
+---
+import Base from '../layouts/Base.astro';
+const repo = 'https://github.com/kevintsou-dsc/Agentic-Era';
+---
+<Base title="關於本作品｜決策智慧 2026" description="這個閱讀版怎麼做的：策展方法、AI 與人的分工、出處與著作權、隱私說明。" chapter="intro" crumb="關於本作品">
+  <article class="wrap about">
+    <p class="eyebrow">關於本作品</p>
+    <h1 class="display">只要往下捲，<br />就讀得完</h1>
+    <p class="lede">《決策智慧 2026》全書約 14 萬字，讀完要 5 個多小時。這個閱讀版把它變成三層：1 分鐘的全書故事、每篇 90 秒的精華故事，以及標示紙本頁碼的原文。</p>
+
+    <h2>策展方法</h2>
+    <ul>
+      <li><b>原文與整理分開。</b>加引號、標「紙本 p.xx」的是作者原文；標「整理：策展者」的是我們的摘要與轉場，用第三人稱書寫。</li>
+      <li><b>每一則引文都經過逐字比對。</b>建置網站時，程式會把所有引文和數字拿去跟全文比對，並檢查頁碼；任何一則對不上，網站就無法發布。作者姓名與職稱也以同樣方式對照文章內頁。</li>
+      <li><b>圖表只畫原刊有的數據。</b>數字取自原刊圖表；原刊標示為示意圖的，這裡也標示為示意圖。不同來源的數字不放在同一個軸上比較。</li>
+    </ul>
+
+    <h2>AI 與人的分工</h2>
+    <p>本作品以 Vibe Coding 製作：程式、PDF 全文抽取、摘要初稿由 AI（Claude Code）完成；閱讀形式的選擇、每篇故事的取捨與最後審定由人決定。製作過程中 AI 犯過的錯（例如憑印象寫錯頁碼、把觀點相近的兩篇文章寫成對立）都由比對程式或人工審查抓出，完整紀錄在<a href={`${repo}/blob/main/docs/process-log.md`}>製作歷程</a>。</p>
+
+    <h2>出處與著作權</h2>
+    <p>內容出自電通行銷傳播集團《決策智慧 2026：Agentic 時代，重塑品牌與人的真實距離》。發行人 唐心慧；總編輯 邵懿文；副總編輯 陳介立。所載編輯內容之著作權為原刊所有。</p>
+
+    <h2>隱私</h2>
+    <p>本站是靜態網站，沒有後端、沒有帳號、沒有表單，不蒐集任何個人資料。</p>
+
+    <h2>原始碼</h2>
+    <p><a href={repo}>{repo}</a></p>
+  </article>
+</Base>
+<style>
+  .about { padding-top: 110px; padding-bottom: 14svh; max-width: 46rem; }
+  h2 { font-size: 22px; margin: 2.2em 0 .5em; }
+  ul { padding-left: 1.2em; display: grid; gap: 10px; }
+  p, li { color: var(--ink); }
+</style>
