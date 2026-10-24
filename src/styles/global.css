@@ -114,6 +114,15 @@ a { color: inherit; }
   .scrolly .card, .scrolly.graphic-right .card { margin: 0 auto; max-width: 34rem; }
 }
 
+/* 很矮的視窗（手機橫放、小筆電分割畫面）：圖文重疊會擋住圖，改成圖在上、文字在下的一般排版，圖形直接顯示最終狀態 */
+@media (max-height: 560px) {
+  .scrolly .graphic { position: relative; height: auto; padding: 72px var(--gutter) 16px; }
+  .scrolly .graphic > .stage { max-height: none; }
+  .scrolly .steps { margin-top: 0; padding-bottom: 8svh; }
+  .scrolly .step { min-height: 0; padding-bottom: 12px; align-items: flex-start; }
+  .scrolly .card, .scrolly.graphic-right .card { opacity: 1; transform: none; margin: 0 auto; max-width: 40rem; }
+}
+
 /* 大數字 */
 .bignum { font-size: clamp(64px, 14vw, 168px); font-weight: 800; line-height: 1; letter-spacing: -0.03em; font-variant-numeric: tabular-nums; }
 .bignum small { font-size: 0.32em; font-weight: 700; letter-spacing: 0; margin-left: 0.1em; }

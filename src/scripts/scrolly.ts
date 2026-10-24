@@ -19,9 +19,15 @@ function initSteps() {
     const steps = Array.from(block.querySelectorAll<HTMLElement>('.step'));
     return graphic && steps.length ? [{ block, graphic, steps, current: -1 }] : [];
   });
+  const short = window.matchMedia('(max-height: 560px)');
   const update = () => {
     const mid = window.innerHeight / 2;
     for (const b of blocks) {
+      // 矮視窗沒有固定圖，直接顯示最後一步（與 global.css 的 max-height: 560px 對應）
+      if (short.matches) {
+        if (b.current !== b.steps.length) { b.current = b.steps.length; setStep(b.graphic, b.current); }
+        continue;
+      }
       const rect = b.block.getBoundingClientRect();
       if (rect.bottom < -window.innerHeight || rect.top > window.innerHeight * 2) continue;
       let idx = 0;

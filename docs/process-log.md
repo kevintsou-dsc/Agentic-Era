@@ -47,4 +47,8 @@
 - **引文閘門收緊**：原本允許引文落在「宣告頁或下一頁」，會讓整句其實在下一頁的引文用錯的頁碼過關 → 改成只接受在宣告頁、或確實跨頁的引文。
 - **CSP**：Astro 預設把小腳本與 CSS 內嵌進 HTML，會違反 `script-src 'self'` → 設定 `inlineStylesheets: 'never'`、`assetsInlineLimit: 0`。結果全站 0 個內嵌 script／style，JS 合計 1.1 KB（gzip）。唯一的例外是 `style-src-attr 'unsafe-inline'`，用來讓圖表以 style 屬性傳入長條高度，風險低，會寫進資安自評。
 - **審稿流程**：故事檔有 `reviewed` 欄位，全文有校正清單。開發期間草稿也上線，但頁面標示「草稿：待人工審定」「未校正」。繳交前由 `npm run verify:release` 要求 22 篇全部審定。
+- **首次上線（2026-10-24）**：使用者以 Cloudflare Workers（靜態資產）部署於 `agentic-era.kevin-tsou.workers.dev`，推送 main 即自動建置。
+  - 線上檢查：7 個路徑狀態碼正確，404 回傳自訂頁，`/dev/gallery/` 正式站不存在。`_headers` 的 8 個安全標頭全部生效；`/_astro/*` 為一年 immutable 快取；瀏覽器主控台沒有任何 CSP 違規。
+  - 線上發現的問題：在很矮的視窗（約 766×328，相當於手機橫放），文字卡片蓋住圖表 → 高度 ≤ 560px 時改成圖在上、文字在下，圖形直接顯示最終狀態。
+  - 已知限制：`workers.dev` 網域無法設定 HTTP 自動轉 HTTPS。已有 HSTS 標頭，瀏覽器第一次用 HTTPS 造訪後會強制 HTTPS；這點寫進資安自評。
 - **驗證方式的轉折**：瀏覽器面板被隱藏時，頁面不會重繪，截圖與捲動都會逾時 → 加了一個只在開發模式存在的 `/dev/gallery/`，用 headless Edge 截圖，一次檢查所有圖形的最終狀態。重點是 Cloudflare Pages 能設定 HTTP 安全標頭，讓資安自評可以附上第三方檢測結果；GitHub Pages 做不到。
