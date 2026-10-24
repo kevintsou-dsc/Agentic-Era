@@ -1,0 +1,76 @@
+{
+ "id": "a07",
+ "figures": [
+  {
+   "page": 53,
+   "image": "/fig/a07/p53-1.webp",
+   "w": 1016,
+   "h": 572,
+   "caption": "圖1：Gogoro New Toy Is Coming! 讓電影經典角色躍然社群媒體，成為品牌社群小編，破格操作，讓 FB & IG 觸",
+   "source": "",
+   "qr": [],
+   "bbox": [
+    690,
+    447,
+    1096,
+    675
+   ]
+  },
+  {
+   "page": 56,
+   "image": "/fig/a07/p56-1.webp",
+   "w": 336,
+   "h": 669,
+   "caption": "圖2：Zespri 以 AI 早餐營養辨識技術，加上虛擬 AI 替身早餐",
+   "source": "",
+   "qr": [],
+   "bbox": [
+    315,
+    107,
+    449,
+    375
+   ]
+  },
+  {
+   "page": 56,
+   "image": "/fig/a07/p56-2.webp",
+   "w": 340,
+   "h": 669,
+   "caption": "圖2：Zespri 以 AI 早餐營養辨識技術，加上虛擬 AI 替身早餐",
+   "source": "",
+   "qr": [],
+   "bbox": [
+    448,
+    107,
+    584,
+    375
+   ]
+  },
+  {
+   "page": 57,
+   "image": "/fig/a07/p57-1.webp",
+   "w": 1205,
+   "h": 669,
+   "caption": "",
+   "source": "",
+   "qr": [],
+   "bbox": [
+    608,
+    107,
+    1090,
+    375
+   ]
+  }
+ ],
+ "qr": [],
+ "notes": [
+  {
+   "n": 1,
+   "url": "https://www.dhl.com/global-en/microsites/ec/ecommerce-insights/insights/reports/2025-social-commerce-trends.html"
+  },
+  {
+   "n": 2,
+   "url": "https://news.adobe.com/news/downloads/pdfs/2026/06/06162026-mediaalertcreatorscreativeai-1.pdf"
+  }
+ ]
+}

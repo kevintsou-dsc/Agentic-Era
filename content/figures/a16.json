@@ -1,0 +1,28 @@
+{
+ "id": "a16",
+ "figures": [
+  {
+   "page": 146,
+   "image": null,
+   "kind": "vector",
+   "caption": "圖1：AI 轉型暗流雷達圖示意圖 （0-100 指數｜數值越高，潛在風險越大）",
+   "source": "",
+   "qr": []
+  }
+ ],
+ "qr": [],
+ "notes": [
+  {
+   "n": 3,
+   "url": "https://aif.tw/event/ai-research/"
+  },
+  {
+   "n": 4,
+   "url": "https://www.mckinsey.com/capabilities/people-and-organizational-performance/our-insights/the-organization-blog/are-your-people-ready-for-ai-at-scale"
+  },
+  {
+   "n": 5,
+   "url": "https://www.modernatx.com/media-center/all-media/blogs/moderna-powered-AI"
+  }
+ ]
+}

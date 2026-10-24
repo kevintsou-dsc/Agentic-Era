@@ -1,0 +1,30 @@
+---
+// 案例圖片：第 k 段主文顯示第 k 張（疊放、淡入），圖說與原始連結（QR code 解出來的網址）跟著切換
+import type { Graphic } from '../../lib/story';
+type G = Extract<Graphic, { type: 'images' }>;
+interface Props { g: G }
+const { g } = Astro.props;
+---
+<div class="stage images">
+  <div class="frame">
+    {g.images.map((im, i) => (
+      <figure class="pic" data-at={im.at} data-focus={im.at} style={`--z:${i}`}>
+        <img src={im.src} alt={im.alt} width={im.w} height={im.h} loading="lazy" decoding="async" />
+        <figcaption>
+          {im.caption}{im.credit && <span class="credit">　{im.credit}</span>}
+          {im.links?.map((l) => <a class="lnk" href={l.url} target="_blank" rel="noopener noreferrer">{l.kind === 'video' ? '看影片' : '看原始連結'}：{l.label} ↗</a>)}
+        </figcaption>
+      </figure>
+    ))}
+  </div>
+  <p class="source">{g.source}</p>
+</div>
+<style>
+  .images { width: 100%; display: grid; gap: 8px; }
+  .frame { display: grid; }
+  .pic { grid-area: 1 / 1; margin: 0; display: grid; gap: 8px; align-content: start; opacity: var(--on); transform: translateY(calc((1 - var(--on)) * 16px)) rotate(calc((var(--z) - 1) * .6deg)); transition: opacity .6s, transform .6s; z-index: var(--z); }
+  .pic img { width: 100%; height: auto; max-height: 52svh; object-fit: contain; border-radius: 12px; border: 2px solid var(--ink); background: var(--paper-2); box-shadow: 6px 6px 0 var(--accent); }
+  figcaption { font-size: 13px; color: var(--ink-2); line-height: 1.6; background: var(--paper); }
+  .credit { color: var(--ink-3); }
+  .lnk { display: inline-block; margin-top: 4px; font-weight: 700; color: var(--accent-ink); }
+</style>

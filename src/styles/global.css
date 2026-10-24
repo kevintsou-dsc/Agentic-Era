@@ -114,49 +114,80 @@ a { color: inherit; }
   .scrolly .card, .scrolly.graphic-right .card { margin: 0 auto; max-width: 34rem; }
 }
 
-/* 出處按鈕：接在主文句尾的小標籤 */
+/* ===== 全站統一的兩種互動 =====
+   出處（.src-ref）：「原文 p.xx」，以段落或整張圖表為單位，點擊開啟原文視窗並定位。外觀：細框、等寬字、↗。
+   細節（.more-ref）：「＋ 看更多」，原文詳細說明、案例圖片、影片與連結，點擊開啟細節卡。外觀：章節色底、粗體。 */
 .src-ref {
-  all: unset; box-sizing: border-box; cursor: pointer; display: inline-flex; align-items: center; gap: 3px;
-  margin-left: 4px; padding: 0 7px; border-radius: 999px; border: 1px solid var(--line);
-  font-family: var(--font-mono); font-size: 11px; line-height: 1.7; color: var(--ink-2); background: var(--paper);
-  vertical-align: 2px; white-space: nowrap; transition: background .2s, border-color .2s;
+  display: inline-flex; align-items: center; gap: 3px; margin-left: 6px; padding: 0 8px; border-radius: 999px;
+  border: 1px solid var(--line); background: var(--paper); color: var(--ink-2); text-decoration: none;
+  font-family: var(--font-mono); font-size: 11px; line-height: 1.75; vertical-align: 2px; white-space: nowrap;
+  transition: background .2s, border-color .2s, color .2s;
 }
-.src-ref::before { content: "↗"; font-size: 10px; }
-.src-ref:hover { background: var(--accent); border-color: var(--accent-ink); color: var(--ink); }
-.src-ref:focus-visible { outline: 3px solid var(--accent-ink); outline-offset: 2px; }
-.src-ref.tip::before { content: none; }
+.src-ref::after { content: "↗"; font-size: 10px; }
+.src-ref:hover { border-color: var(--ink); color: var(--ink); }
+.src-ref:focus-visible, .more-ref:focus-visible { outline: 3px solid var(--accent-ink); outline-offset: 2px; }
 
-/* 書頁視窗：像從書裡撕下的一頁 */
-.book { border: 0; padding: 0; background: transparent; max-width: min(92vw, 34rem); width: 100%; color: var(--ink); }
-.book::backdrop { background: rgba(31, 29, 26, .45); backdrop-filter: blur(2px); }
-.book[open] { animation: book-in .28s cubic-bezier(.2,.7,.2,1); }
-@keyframes book-in { from { opacity: 0; transform: translateY(14px) rotate(-.6deg); } to { opacity: 1; transform: none; } }
-.book-sheet {
-  position: relative; max-height: 80svh; overflow: auto; padding: 28px 28px 22px;
-  background: #fbf8f1; border-radius: 4px 14px 14px 4px;
-  box-shadow: inset 14px 0 18px -14px rgba(0,0,0,.25), 0 24px 60px -20px rgba(0,0,0,.5);
-  border-left: 6px solid var(--accent);
+.more-ref {
+  all: unset; box-sizing: border-box; cursor: pointer; display: inline-flex; align-items: center; gap: 4px;
+  margin: 8px 6px 0 0; padding: 4px 12px; border-radius: 8px; background: var(--accent); color: var(--ink);
+  font-size: 13px; font-weight: 700; line-height: 1.5; transition: transform .15s, box-shadow .15s;
 }
-.book-close { all: unset; cursor: pointer; position: absolute; top: 8px; right: 12px; font-size: 24px; line-height: 1; padding: 4px 8px; color: var(--ink-2); border-radius: 6px; }
-.book-close:focus-visible { outline: 3px solid var(--accent-ink); }
-.book-head { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; font-size: 13px; color: var(--ink-2); padding-right: 28px; margin-bottom: 14px; }
-.book-detail { margin: 0 0 14px; font-size: 15px; line-height: 1.7; }
-.book-page + .book-page { border-top: 1px dashed var(--line); margin-top: 14px; padding-top: 14px; }
-.book-text { margin: 0; font-size: 16px; line-height: 1.95; color: var(--ink-2); }
-.book-text mark { background: linear-gradient(transparent 55%, var(--accent) 55%); color: var(--ink); font-weight: 700; padding: 0 1px; }
-.book-foot { display: flex; justify-content: space-between; align-items: baseline; margin: 12px 0 0; font-size: 13px; }
-.book-pg { font-family: var(--font-mono); color: var(--ink-3); letter-spacing: .08em; }
+.more-ref:hover { transform: translateY(-1px); box-shadow: 0 4px 0 var(--accent-ink); }
+.more-ref.compact { margin: 4px 0 0; padding: 1px 8px; font-size: 11px; border-radius: 6px; }
 
-/* 圖表元素 hover 時顯示的補充說明（觸控裝置改點 ⓘ 開書頁視窗） */
-[data-tip] { position: relative; }
+/* hover 預覽（只在有滑鼠的裝置）；觸控裝置直接點開 */
 @media (hover: hover) {
-  [data-tip]:hover::after, [data-tip]:focus-within::after {
-    content: attr(data-tip); position: absolute; z-index: 5; left: 50%; bottom: calc(100% + 8px); transform: translateX(-50%);
-    width: max-content; max-width: 16rem; padding: 8px 12px; border-radius: 8px; background: var(--ink); color: var(--paper);
-    font-size: 13px; font-weight: 400; line-height: 1.5; text-align: left; white-space: normal; pointer-events: none;
+  [data-tip]:hover::after, [data-tip]:focus-visible::after {
+    content: attr(data-tip); position: absolute; z-index: 6; left: 50%; bottom: calc(100% + 8px); transform: translateX(-50%);
+    width: max-content; max-width: 18rem; padding: 8px 12px; border-radius: 8px; background: var(--ink); color: var(--paper);
+    font-size: 13px; font-weight: 400; line-height: 1.55; text-align: left; white-space: normal; pointer-events: none;
     box-shadow: 0 8px 20px -10px rgba(0,0,0,.5);
   }
 }
+[data-tip] { position: relative; }
+
+/* 兩種 dialog 共用 */
+dialog { color: var(--ink); }
+dialog::backdrop { background: rgba(31, 29, 26, .5); backdrop-filter: blur(2px); }
+dialog[open] { animation: dlg-in .26s cubic-bezier(.2,.7,.2,1); }
+@keyframes dlg-in { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+.dlg-close { all: unset; cursor: pointer; font-size: 26px; line-height: 1; padding: 4px 10px; border-radius: 8px; color: var(--ink-2); }
+.dlg-close:hover { background: var(--paper-2); }
+.dlg-close:focus-visible { outline: 3px solid var(--accent-ink); }
+
+/* 原文視窗：整篇文章，像攤開的書頁 */
+.reader { border: 0; padding: 0; background: transparent; width: min(96vw, 46rem); max-width: none; height: min(90svh, 60rem); max-height: none; }
+.reader-sheet {
+  height: 100%; display: grid; grid-template-rows: auto 1fr; overflow: hidden;
+  background: #fbf8f1; border-radius: 6px 16px 16px 6px; border-left: 8px solid var(--accent);
+  box-shadow: inset 16px 0 22px -16px rgba(0,0,0,.25), 0 24px 70px -20px rgba(0,0,0,.55);
+}
+.reader-head { display: flex; justify-content: space-between; gap: 12px; padding: 16px 20px 12px 26px; border-bottom: 1px solid var(--line); }
+.reader-head .eyebrow { margin: 0; }
+.reader-title { margin: 2px 0 0; font-weight: 800; font-size: 18px; line-height: 1.4; }
+.reader-meta-slot { font-size: 12px; color: var(--ink-3); }
+.reader-meta-slot p { margin: 2px 0 0; }
+.reader-actions { display: flex; align-items: flex-start; gap: 6px; }
+.reader-full { font-size: 12px; color: var(--ink-2); padding-top: 8px; white-space: nowrap; }
+.reader-body { overflow: auto; padding: 12px 26px 40px; font-size: 16px; line-height: 1.95; scroll-behavior: smooth; }
+.reader-body p { margin: 0 0 1em; }
+.reader-body h2 { font-size: 1.15em; line-height: 1.5; margin: 1.6em 0 .5em; }
+.reader-body .pg { font-family: var(--font-mono); font-size: 12px; color: var(--ink-3); border-top: 1px dashed var(--line); padding-top: 6px; margin-top: 1.6em; }
+.reader-body mark, .fulltext mark { background: linear-gradient(transparent 50%, var(--accent) 50%); color: var(--ink); font-weight: 700; padding: 0 1px; scroll-margin: 40svh; }
+
+/* 細節卡：案例圖、原文詳細段落、外部連結 */
+.more { border: 0; padding: 0; background: transparent; width: min(94vw, 36rem); max-width: none; }
+.more-sheet { position: relative; max-height: 86svh; overflow: auto; padding: 22px 24px 24px; background: var(--paper); border-radius: 16px; border: 2px solid var(--ink); box-shadow: 8px 8px 0 var(--accent); }
+.more-sheet > .dlg-close { position: absolute; top: 8px; right: 8px; }
+.more-title { margin: 0 32px 12px 0; font-size: 19px; line-height: 1.4; }
+.more-fig { margin: 0 0 12px; }
+.more-fig img { width: 100%; height: auto; border-radius: 10px; border: 1px solid var(--line); background: var(--paper-2); }
+.more-fig figcaption { margin-top: 6px; font-size: 13px; color: var(--ink-2); line-height: 1.6; }
+.more-fig .credit { color: var(--ink-3); }
+.more-text { margin: 0 0 12px; font-size: 15px; line-height: 1.75; }
+.more-sheet .quote { font-size: 17px; }
+.more-links { display: flex; flex-wrap: wrap; gap: 8px; margin: 14px 0 0; }
+.btn.small { padding: 7px 14px; font-size: 13px; }
 
 /* 很矮的視窗（手機橫放、小筆電分割畫面）：圖文重疊會擋住圖，改成圖在上、文字在下的一般排版，圖形直接顯示最終狀態 */
 @media (max-height: 560px) {

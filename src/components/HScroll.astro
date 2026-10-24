@@ -4,6 +4,7 @@
 import type { Scene } from '../lib/story';
 import { rich } from '../lib/rich';
 import SourceRef from './SourceRef.astro';
+import MoreRef from './MoreRef.astro';
 type S = Extract<Scene, { kind: 'hscroll' }>;
 interface Props { s: S }
 const { s } = Astro.props;
@@ -19,10 +20,12 @@ const { s } = Astro.props;
         {s.panels.map((p, i) => (
           <li class="hs-panel">
             <span class="hs-no">{String(i + 1).padStart(2, '0')} / {String(s.panels.length).padStart(2, '0')}</span>
+            {p.image && <img class="hs-img" src={p.image.src} alt={p.image.alt} width={p.image.w} height={p.image.h} loading="lazy" decoding="async" />}
             {p.kicker && <span class="hs-kicker">{p.kicker}</span>}
             <h3>{p.title}</h3>
             {p.figure && <p class="hs-fig"><b>{p.figure.value}</b><span>{p.figure.label}</span></p>}
             <p class="hs-text"><span set:html={rich(p.text)} /><SourceRef src={p.src} /></p>
+            <MoreRef m={p.more} />
           </li>
         ))}
       </ol>
@@ -43,6 +46,7 @@ const { s } = Astro.props;
   /* 寬螢幕也只露出約 2.3 格，讓橫向移動明顯 */
   .hs-panel { flex: none; width: clamp(16rem, 42vw, 34rem); min-height: min(36svh, 16rem); display: grid; align-content: start; gap: 8px; padding: 22px 22px 18px; border-radius: 16px; background: var(--paper); border: 2px solid var(--ink); box-shadow: 6px 6px 0 var(--accent); }
   .hs-no { font-family: var(--font-mono); font-size: 12px; color: var(--ink-3); }
+  .hs-img { width: 100%; height: min(24svh, 12rem); object-fit: cover; border-radius: 10px; border: 1px solid var(--line); background: var(--paper-2); }
   .hs-kicker { font-size: 12px; font-weight: 700; color: var(--accent-ink); }
   .hs-panel h3 { margin: 0; font-size: clamp(20px, 1.4vw + 14px, 26px); line-height: 1.35; }
   .hs-fig { margin: 4px 0; display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap; }

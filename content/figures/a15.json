@@ -1,0 +1,94 @@
+{
+ "id": "a15",
+ "figures": [
+  {
+   "page": 137,
+   "image": "/fig/a15/p137-1.webp",
+   "w": 456,
+   "h": 310,
+   "caption": "",
+   "source": "",
+   "qr": [],
+   "bbox": [
+    931,
+    42,
+    1113,
+    166
+   ]
+  },
+  {
+   "page": 140,
+   "image": null,
+   "kind": "vector",
+   "caption": "表1：欲啟動生成式體驗轉型，企業應從以上三個核心問題開始評估",
+   "source": "",
+   "qr": []
+  },
+  {
+   "page": 141,
+   "image": "/fig/a15/p141-1.webp",
+   "w": 1206,
+   "h": 588,
+   "caption": "",
+   "source": "",
+   "qr": [],
+   "bbox": [
+    652,
+    342,
+    1134,
+    577
+   ]
+  },
+  {
+   "page": 141,
+   "image": null,
+   "kind": "vector",
+   "caption": "圖2：顧客體驗三階段演進歷程",
+   "source": "",
+   "qr": []
+  },
+  {
+   "page": 142,
+   "image": null,
+   "kind": "vector",
+   "caption": "圖3：信任與安全感設計的五大防禦支柱",
+   "source": "",
+   "qr": []
+  }
+ ],
+ "qr": [],
+ "notes": [
+  {
+   "n": 1,
+   "url": "https://news.aa.com/news/news-details/2025/Artiﬁcial-intelligence-at-American-CORP-OTH-01/default.aspx"
+  },
+  {
+   "n": 3,
+   "url": "https://baymard.com/research/checkout-usability"
+  },
+  {
+   "n": 4,
+   "url": "https://www.aboutamazon.com/news/retail/alexa-for-shopping-ai-assistant"
+  },
+  {
+   "n": 5,
+   "url": "https://www.watchinese.com/article/2026/28424"
+  },
+  {
+   "n": 6,
+   "url": "https://www.jpmorgan.com/payments/newsroom/agentic-commerce-ai-future-shopping"
+  },
+  {
+   "n": 7,
+   "url": "https://www.mastercard.com/global/en/news-and-trends/stories/2025/2026-payment-trends.html"
+  },
+  {
+   "n": 8,
+   "url": "https://www.nngroup.com/articles/ai-paradigm/"
+  },
+  {
+   "n": 9,
+   "url": "https://www.gartner.com/en/newsroom/press-releases/2025-09-03-gartner-survey-ﬁnds-53-percent-of-consumers-distrust-ai-powered-search-results0"
+  }
+ ]
+}

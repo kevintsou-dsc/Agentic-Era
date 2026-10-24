@@ -1,34 +1,21 @@
 ---
-// 主文後的出處按鈕「紙本 p.xx」；點擊開啟書頁視窗（Base.astro 裡的 <dialog id="book">），
-// 內容放在 <template> 裡由 scripts/book.ts 複製進去。label 可覆寫按鈕文字（圖表細節用）。
+// 出處按鈕「原文 p.xx」：點擊後在原文視窗中開啟整篇文章，捲到引用的段落並高亮。
+// 以一段主文或一整張圖表為單位使用，不放在圖表的單一數據上。
 import type { Src } from '../lib/story';
-import { contextOf } from '../lib/context';
-import { article, CHAPTERS, authorNames } from '../lib/articles';
+import { locate } from '../lib/locate';
+import { article, cite } from '../lib/articles';
 
-interface Props { src: Src[]; label?: string; detail?: string; class?: string }
-const { src, label, detail, class: cls } = Astro.props;
-const pages = [...new Set(src.map((s) => s.page))];
-const text = label ?? `紙本 p.${pages.join('、')}`;
+interface Props { src: Src[]; label?: string }
+const { src, label } = Astro.props;
+const locs = src.map(locate);
+const slug = locs[0]?.slug;
+// 同一篇的引文一起高亮；跨篇引用時只開第一篇（目前故事都只引自己那篇）
+const segs = locs.filter((l) => l.slug === slug).flatMap((l) => l.segs);
+const pages = [...new Set(src.map((s) => s.page))].sort((a, b) => a - b);
+const text = label ?? `原文 p.${pages.join('、')}`;
 const a = src.length ? article(src[0].article) : undefined;
 ---
-<button type="button" class:list={['src-ref', cls]} data-book aria-haspopup="dialog">
-  <span class="src-label">{text}</span>
-  <template>
-    <div class="book-head">
-      {a && <><span class="chip">{CHAPTERS[a.chapter].name}</span><span>{authorNames(a)}〈{a.title}〉</span></>}
-    </div>
-    {detail && <p class="book-detail">{detail}<span class="curated">　整理：策展者</span></p>}
-    {src.map((s) => {
-      const c = contextOf(s);
-      return (
-        <section class="book-page">
-          <p class="book-text">{c.before}<mark>{c.match}</mark>{c.after}</p>
-          <p class="book-foot">
-            <span class="book-pg">p.{c.page}</span>
-            <a href={`/a/${article(s.article).slug}/full/#p${c.page}`}>讀這一頁的原文 →</a>
-          </p>
-        </section>
-      );
-    })}
-  </template>
-</button>
+{a && (
+  <a class="src-ref" href={`/a/${slug}/full/#p${pages[0]}`} data-reader={JSON.stringify({ slug, page: pages[0], segs })}
+     aria-label={`開啟原文：${cite(a)} 紙本 p.${pages.join('、')}`}>{text}</a>
+)}

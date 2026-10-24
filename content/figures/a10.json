@@ -1,0 +1,59 @@
+{
+ "id": "a10",
+ "figures": [
+  {
+   "page": 73,
+   "image": null,
+   "kind": "vector",
+   "caption": "圖1：廣告惡性循環 The Doom Loop 指得是品牌投廣一再要求成效優化，品牌卻陷入萎縮的惡性循環",
+   "source": "",
+   "qr": []
+  },
+  {
+   "page": 75,
+   "image": null,
+   "kind": "vector",
+   "caption": "圖2：從 AIDMA 到 AISAS，再到 AICAS，其特點是以「諮問 ( 諮詢/ 提問)」為出發點",
+   "source": "",
+   "qr": []
+  },
+  {
+   "page": 76,
+   "image": null,
+   "kind": "vector",
+   "caption": "圖3：AI 影響消費者決策下的媒體布局矩陣",
+   "source": "",
+   "qr": []
+  },
+  {
+   "page": 77,
+   "image": null,
+   "kind": "vector",
+   "caption": "圖4：自願觀看 vs. 被迫觀看的品牌回想差異",
+   "source": "",
+   "qr": []
+  },
+  {
+   "page": 78,
+   "image": "/fig/a10/p78-1.webp",
+   "w": 336,
+   "h": 460,
+   "caption": "圖5：CeraVe 適樂膚單日引爆 2.4 萬篇社群討論，以破圈體驗",
+   "source": "",
+   "qr": [],
+   "bbox": [
+    101,
+    91,
+    235,
+    275
+   ]
+  }
+ ],
+ "qr": [],
+ "notes": [
+  {
+   "n": 6,
+   "url": "https://xtrend.nikkei.com/atcl/contents/18/01354/00006/"
+  }
+ ]
+}

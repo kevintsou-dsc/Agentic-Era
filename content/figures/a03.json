@@ -1,0 +1,284 @@
+{
+ "id": "a03",
+ "figures": [
+  {
+   "page": 21,
+   "image": "/fig/a03/p21-1.webp",
+   "w": 901,
+   "h": 669,
+   "caption": "圖1：印尼網友偶然拍到的彩虹雲，一放上 tiktok，反而被質疑是否是 AI 繪製而成。後續傳播至 threads，",
+   "source": "",
+   "qr": [
+    "https://www.threads.com/@bank2207/post/DYCPx8liZAI/",
+    "https://www.tiktok.com/@sipa5402"
+   ],
+   "bbox": [
+    595,
+    92,
+    955,
+    359
+   ]
+  },
+  {
+   "page": 21,
+   "image": "/fig/a03/p21-2.webp",
+   "w": 495,
+   "h": 535,
+   "caption": "圖1：印尼網友偶然拍到的彩虹雲，一放上 tiktok，反而被質疑是否是 AI 繪製而成。後續傳播至 threads，",
+   "source": "",
+   "qr": [],
+   "bbox": [
+    968,
+    144,
+    1165,
+    358
+   ]
+  },
+  {
+   "page": 22,
+   "image": "/fig/a03/p22-1.webp",
+   "w": 781,
+   "h": 559,
+   "caption": "",
+   "source": "",
+   "qr": [
+    "https://www.instagram.com/p/DWoDIAVDyUP/"
+   ],
+   "bbox": [
+    57,
+    500,
+    369,
+    723
+   ]
+  },
+  {
+   "page": 22,
+   "image": "/fig/a03/p22-2.webp",
+   "w": 765,
+   "h": 526,
+   "caption": "圖2：精品品牌 Prada 2026 年春夏形象廣告與藝術家 Jordan Wolfson 合作。大明星們與看似荒謬的人偶合影，實際上是",
+   "source": "",
+   "qr": [
+    "https://www.youtube.com/watch?v=SCgrRfaZbfQ"
+   ],
+   "bbox": [
+    56,
+    91,
+    361,
+    300
+   ]
+  },
+  {
+   "page": 22,
+   "image": "/fig/a03/p22-3.webp",
+   "w": 437,
+   "h": 263,
+   "caption": "",
+   "source": "",
+   "qr": [],
+   "bbox": [
+    365,
+    91,
+    540,
+    196
+   ]
+  },
+  {
+   "page": 22,
+   "image": "/fig/a03/p22-4.webp",
+   "w": 432,
+   "h": 244,
+   "caption": "圖2：精品品牌 Prada 2026 年春夏形象廣告與藝術家 Jordan Wolfson 合作。大明星們與看似荒謬的人偶合影，實際上是",
+   "source": "",
+   "qr": [],
+   "bbox": [
+    366,
+    204,
+    539,
+    300
+   ]
+  },
+  {
+   "page": 22,
+   "image": null,
+   "kind": "vector",
+   "caption": "圖3：大牌足球明星坐在一起玩樂高？現在",
+   "source": "",
+   "qr": []
+  },
+  {
+   "page": 23,
+   "image": "/fig/a03/p23-1.webp",
+   "w": 1211,
+   "h": 654,
+   "caption": "圖 4：加密貨幣平台 Coinbase 的廣告背景讓人以為是 AI 生成的奇異世界，但細看會發現由大量臨時演員打造一個不完美",
+   "source": "",
+   "qr": [
+    "https://www.youtube.com/watch?v=qxMtu6jQa5k"
+   ],
+   "bbox": [
+    651,
+    419,
+    1135,
+    680
+   ]
+  },
+  {
+   "page": 24,
+   "image": "/fig/a03/p24-1.webp",
+   "w": 734,
+   "h": 514,
+   "caption": "圖5：銷售二手商品的信譽來自於產品為真。The RealReal 嘗試用 AI 生成的大量場景，凸顯最後一幕出現，那個最珍貴的",
+   "source": "",
+   "qr": [
+    "https://www.youtube.com/watch?v=m0PudxvAU5c"
+   ],
+   "bbox": [
+    0,
+    291,
+    293,
+    497
+   ]
+  },
+  {
+   "page": 24,
+   "image": "/fig/a03/p24-2.webp",
+   "w": 738,
+   "h": 508,
+   "caption": "圖5：銷售二手商品的信譽來自於產品為真。The RealReal 嘗試用 AI 生成的大量場景，凸顯最後一幕出現，那個最珍貴的",
+   "source": "",
+   "qr": [],
+   "bbox": [
+    302,
+    293,
+    597,
+    495
+   ]
+  },
+  {
+   "page": 25,
+   "image": "/fig/a03/p25-1.webp",
+   "w": 1042,
+   "h": 489,
+   "caption": "圖6：南山人壽面對超熟齡台灣社會，選擇透過廣告捕捉大家都應該要正視的日常",
+   "source": "",
+   "qr": [
+    "https://www.youtube.com/watch?v=W8gXaKIbzdo"
+   ],
+   "bbox": [
+    685,
+    492,
+    1101,
+    687
+   ]
+  },
+  {
+   "page": 26,
+   "image": "/fig/a03/p26-1.webp",
+   "w": 766,
+   "h": 433,
+   "caption": "圖7：語言學習 app Speak 從台灣人學習歷程最痛的洞察出手，迅速直擊觀眾的內心深處",
+   "source": "",
+   "qr": [],
+   "bbox": [
+    290,
+    523,
+    596,
+    696
+   ]
+  },
+  {
+   "page": 26,
+   "image": "/fig/a03/p26-2.webp",
+   "w": 748,
+   "h": 433,
+   "caption": "圖7：語言學習 app Speak 從台灣人學習歷程最痛的洞察出手，迅速直擊觀眾的內心深處",
+   "source": "",
+   "qr": [
+    "https://www.youtube.com/watch?v=xSRdl0LBgBY"
+   ],
+   "bbox": [
+    0,
+    523,
+    299,
+    696
+   ]
+  }
+ ],
+ "qr": [
+  {
+   "page": 21,
+   "url": "https://www.threads.com/@bank2207/post/DYCPx8liZAI/",
+   "x": 715,
+   "y": 388
+  },
+  {
+   "page": 21,
+   "url": "https://www.tiktok.com/@sipa5402",
+   "x": 657,
+   "y": 389
+  },
+  {
+   "page": 22,
+   "url": "https://www.youtube.com/watch?v=SCgrRfaZbfQ",
+   "x": 77,
+   "y": 326
+  },
+  {
+   "page": 22,
+   "url": "https://www.instagram.com/p/DWoDIAVDyUP/",
+   "x": 400,
+   "y": 663
+  },
+  {
+   "page": 23,
+   "url": "https://www.youtube.com/watch?v=qxMtu6jQa5k",
+   "x": 672,
+   "y": 706
+  },
+  {
+   "page": 24,
+   "url": "https://www.youtube.com/watch?v=m0PudxvAU5c",
+   "x": 77,
+   "y": 522
+  },
+  {
+   "page": 25,
+   "url": "https://www.youtube.com/watch?v=W8gXaKIbzdo",
+   "x": 706,
+   "y": 713
+  },
+  {
+   "page": 26,
+   "url": "https://www.youtube.com/watch?v=xSRdl0LBgBY",
+   "x": 77,
+   "y": 721
+  }
+ ],
+ "notes": [
+  {
+   "n": 1,
+   "url": "https://www.tiktok.com/@sipa5402"
+  },
+  {
+   "n": 3,
+   "url": "https://www.youtube.com/watch?v=SCgrRfaZbfQ"
+  },
+  {
+   "n": 4,
+   "url": "https://www.instagram.com/p/DWoDIAVDyUP/"
+  },
+  {
+   "n": 5,
+   "url": "https://www.youtube.com/watch?v=qxMtu6jQa5k"
+  },
+  {
+   "n": 7,
+   "url": "https://www.youtube.com/watch?v=W8gXaKIbzdo"
+  },
+  {
+   "n": 8,
+   "url": "https://www.youtube.com/watch?v=xSRdl0LBgBY"
+  }
+ ]
+}

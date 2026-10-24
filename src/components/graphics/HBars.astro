@@ -1,6 +1,6 @@
 ---
 import type { Graphic } from '../../lib/story';
-import Tip from './Tip.astro';
+import MoreRef from '../MoreRef.astro';
 type G = Extract<Graphic, { type: 'hbars' }>;
 interface Props { g: G }
 const { g } = Astro.props;
@@ -9,10 +9,10 @@ const max = Math.max(...g.rows.map((r) => r.value));
 <div class="stage hbars" role="img" aria-label={`${g.label}：` + g.rows.map((r) => `${r.label} ${r.display}`).join('，')}>
   <p class="label">{g.label}</p>
   {g.rows.map((r) => (
-    <div class:list={['row', { hl: r.highlight }]} data-at={r.at} data-tip={r.detail?.text}>
+    <div class:list={['row', { hl: r.highlight }]} data-at={r.at} >
       <span class="k">{r.label}</span>
       <div class="track"><div class="bar" style={`--w:${r.value / max}`}></div></div>
-      <span class="val">{r.display}<Tip d={r.detail} /></span>
+      <span class="val">{r.display}<MoreRef m={r.more} compact /></span>
     </div>
   ))}
   {g.big && (

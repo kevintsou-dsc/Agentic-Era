@@ -1,0 +1,118 @@
+{
+ "id": "a22",
+ "figures": [
+  {
+   "page": 190,
+   "image": "/fig/a22/p190-1.webp",
+   "w": 629,
+   "h": 352,
+   "caption": "",
+   "source": "",
+   "qr": [],
+   "bbox": [
+    57,
+    390,
+    308,
+    531
+   ]
+  },
+  {
+   "page": 190,
+   "image": "/fig/a22/p190-2.webp",
+   "w": 629,
+   "h": 355,
+   "caption": "",
+   "source": "",
+   "qr": [],
+   "bbox": [
+    287,
+    390,
+    539,
+    532
+   ]
+  },
+  {
+   "page": 190,
+   "image": "/fig/a22/p190-3.webp",
+   "w": 629,
+   "h": 352,
+   "caption": "圖1：被 Walmart 用於服務顧客的 AI agent Sparky 一路從認知需求、評論搜索適當推薦，到延伸導購，顯示 AI Agent 的價值可能不",
+   "source": "",
+   "qr": [],
+   "bbox": [
+    57,
+    549,
+    308,
+    689
+   ]
+  },
+  {
+   "page": 190,
+   "image": "/fig/a22/p190-4.webp",
+   "w": 629,
+   "h": 352,
+   "caption": "圖1：被 Walmart 用於服務顧客的 AI agent Sparky 一路從認知需求、評論搜索適當推薦，到延伸導購，顯示 AI Agent 的價值可能不",
+   "source": "",
+   "qr": [],
+   "bbox": [
+    287,
+    549,
+    539,
+    689
+   ]
+  },
+  {
+   "page": 192,
+   "image": "/fig/a22/p192-1.webp",
+   "w": 564,
+   "h": 491,
+   "caption": "圖2：消費者可透過自助或門市人員協助完成檢測並獲得個人專",
+   "source": "",
+   "qr": [],
+   "bbox": [
+    56,
+    92,
+    281,
+    288
+   ]
+  },
+  {
+   "page": 193,
+   "image": "/fig/a22/p193-1.webp",
+   "w": 1206,
+   "h": 623,
+   "caption": "圖3：美國保健品牌Thorne 的購物頁面旁邊，跟著的是專屬問答助手，能提出適切可被信任的回應，來自於自身長久的臨床研究、專家",
+   "source": "",
+   "qr": [],
+   "bbox": [
+    652,
+    92,
+    1134,
+    341
+   ]
+  }
+ ],
+ "qr": [],
+ "notes": [
+  {
+   "n": 1,
+   "url": "https://corporate.walmart.com/content/dam/corporate/documents/walmart-releases-q1-fy27-earnings/q1-fy27-earnings-call-transcript.pdf"
+  },
+  {
+   "n": 2,
+   "url": "https://tinuiti.com/blog/paid-media-updates/media-update-dec-3-2025/"
+  },
+  {
+   "n": 3,
+   "url": "https://corp.oliveyoung.com/ko/news/56?pg=10&amp;category="
+  },
+  {
+   "n": 5,
+   "url": "https://www.thorne.com/take-5-daily/article/the-wellness-conﬁdence-gap-navigating-trust-truth-and-technology-in-wellness-decisions"
+  },
+  {
+   "n": 6,
+   "url": "https://www.hello-charles.com/en-gb/success/braineffect-black-friday哪些資料？商品、內容、會員、庫存與交易資料需要結構化，也要釐清同意、用途與保存期限。模型本身很快就能採購，資料準備往往才是時程瓶頸。第三，Agent"
+  }
+ ]
+}

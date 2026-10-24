@@ -1,0 +1,49 @@
+{
+ "id": "a05",
+ "figures": [
+  {
+   "page": 39,
+   "image": "/fig/a05/p39-1.webp",
+   "w": 559,
+   "h": 331,
+   "caption": "",
+   "source": "",
+   "qr": [],
+   "bbox": [
+    911,
+    66,
+    1134,
+    198
+   ]
+  },
+  {
+   "page": 39,
+   "image": "/fig/a05/p39-2.webp",
+   "w": 559,
+   "h": 331,
+   "caption": "圖1：Speak app 受到注目與使用，始於品牌讀懂台灣人語言學",
+   "source": "",
+   "qr": [],
+   "bbox": [
+    911,
+    212,
+    1134,
+    344
+   ]
+  }
+ ],
+ "qr": [
+  {
+   "page": 42,
+   "url": "https://www.dentsu.com/tw/zh/our-latest-thinking",
+   "x": 232,
+   "y": 675
+  }
+ ],
+ "notes": [
+  {
+   "n": 1,
+   "url": "https://www.businessweekly.com.tw/careers/blog/3021506"
+  }
+ ]
+}

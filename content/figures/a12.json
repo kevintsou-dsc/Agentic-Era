@@ -1,0 +1,114 @@
+{
+ "id": "a12",
+ "figures": [
+  {
+   "page": 98,
+   "image": null,
+   "kind": "vector",
+   "caption": "圖：電通 CCS 消費者調查八大構面",
+   "source": "",
+   "qr": []
+  },
+  {
+   "page": 99,
+   "image": null,
+   "kind": "vector",
+   "caption": "表: PEOPLE MODEL 訓練方法",
+   "source": "",
+   "qr": []
+  },
+  {
+   "page": 101,
+   "image": "/fig/a12/p101-1.webp",
+   "w": 636,
+   "h": 546,
+   "caption": "圖: People Model 模擬結果 vs. 真人調查",
+   "source": "",
+   "qr": [],
+   "bbox": [
+    775,
+    119,
+    1029,
+    337
+   ]
+  },
+  {
+   "page": 102,
+   "image": null,
+   "kind": "vector",
+   "caption": "表：設定完兩個 AI Persona 後，可以透過 People Model 模擬他們的購買考量因素、心聲，進而協助行銷人獲得消費者洞察",
+   "source": "",
+   "qr": []
+  },
+  {
+   "page": 105,
+   "image": "/fig/a12/p105-1.webp",
+   "w": 342,
+   "h": 455,
+   "caption": "",
+   "source": "",
+   "qr": [],
+   "bbox": [
+    955,
+    259,
+    1091,
+    440
+   ]
+  },
+  {
+   "page": 105,
+   "image": "/fig/a12/p105-2.webp",
+   "w": 342,
+   "h": 455,
+   "caption": "",
+   "source": "",
+   "qr": [],
+   "bbox": [
+    955,
+    449,
+    1091,
+    630
+   ]
+  },
+  {
+   "page": 106,
+   "image": "/fig/a12/p106-1.webp",
+   "w": 396,
+   "h": 578,
+   "caption": "",
+   "source": "",
+   "qr": [],
+   "bbox": [
+    348,
+    92,
+    506,
+    323
+   ]
+  },
+  {
+   "page": 106,
+   "image": "/fig/a12/p106-2.webp",
+   "w": 396,
+   "h": 577,
+   "caption": "",
+   "source": "",
+   "qr": [],
+   "bbox": [
+    348,
+    333,
+    506,
+    563
+   ]
+  },
+  {
+   "page": 111,
+   "image": null,
+   "kind": "vector",
+   "caption": "圖: 一個問題進來，Super Agent 拆解並分派給 People Model、CCS Agent 與 Deep Research Agent，再把三方結果檢核彙整成一",
+   "source": "",
+   "qr": []
+  }
+ ],
+ "qr": [],
+ "notes": []
+}

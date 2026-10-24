@@ -1,0 +1,80 @@
+{
+ "id": "a21",
+ "figures": [
+  {
+   "page": 185,
+   "image": "/fig/a21/p185-1.webp",
+   "w": 585,
+   "h": 559,
+   "caption": "",
+   "source": "",
+   "qr": [],
+   "bbox": [
+    653,
+    92,
+    886,
+    315
+   ]
+  },
+  {
+   "page": 185,
+   "image": "/fig/a21/p185-2.webp",
+   "w": 585,
+   "h": 560,
+   "caption": "",
+   "source": "",
+   "qr": [],
+   "bbox": [
+    900,
+    91,
+    1134,
+    315
+   ]
+  },
+  {
+   "page": 186,
+   "image": "/fig/a21/p186-1.webp",
+   "w": 557,
+   "h": 368,
+   "caption": "",
+   "source": "",
+   "qr": [],
+   "bbox": [
+    316,
+    91,
+    539,
+    238
+   ]
+  },
+  {
+   "page": 186,
+   "image": "/fig/a21/p186-2.webp",
+   "w": 557,
+   "h": 409,
+   "caption": "",
+   "source": "",
+   "qr": [],
+   "bbox": [
+    316,
+    246,
+    539,
+    408
+   ]
+  }
+ ],
+ "qr": [],
+ "notes": [
+  {
+   "n": 1,
+   "url": "https://www.taipeitimes.com/News/front/archives/2026/05/10/2003857058"
+  },
+  {
+   "n": 2,
+   "url": "https://kpmg.com/xx/en/our-insights/ai-and-technology/asia-paciﬁc-ai-adoption-advantage.html"
+  },
+  {
+   "n": 3,
+   "url": "https://www.taipeitimes.com/News/feat/archives/2026/06/26/2003859752AI。它可以，也應該成為內容製作的重要差異化能力。這項轉變不僅改善既有的日常全通路策略，也正在徹底改變本土品牌與顧客溝通的方式。如今，創意的本質已經改變，概念的形塑方式不同了，我們傳遞創意的手法也截然不同。台灣對"
+  }
+ ]
+}

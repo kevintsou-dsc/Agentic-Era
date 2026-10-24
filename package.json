@@ -11,6 +11,9 @@
     "check:repo": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/check-repo.ps1"
   },
   "dependencies": {
-    "astro": "5.18.2"
+    "astro": "5.18.2",
+    "d3-array": "3.2.4",
+    "d3-scale": "4.0.2",
+    "d3-selection": "3.0.0"
   }
 }

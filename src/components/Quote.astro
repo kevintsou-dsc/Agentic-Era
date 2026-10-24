@@ -1,13 +1,15 @@
 ---
+// 原文引言：引號＋出處按鈕（點擊在原文視窗中開啟整篇並定位）
 import type { Src } from '../lib/story';
 import { article, cite } from '../lib/articles';
+import SourceRef from './SourceRef.astro';
 interface Props { q: Src; size?: 'md' | 'lg' }
 const { q, size = 'md' } = Astro.props;
 const a = article(q.article);
 ---
 <figure class={`quote-block ${size}`}>
   <blockquote class="quote">{q.text}</blockquote>
-  <figcaption class="quote-cite">原文｜{cite(a)}　紙本 p.{q.page}</figcaption>
+  <figcaption class="quote-cite">原文｜{cite(a)}<SourceRef src={[q]} label={`p.${q.page}`} /></figcaption>
 </figure>
 <style>
   .quote-block { margin: 0; max-width: 40rem; }

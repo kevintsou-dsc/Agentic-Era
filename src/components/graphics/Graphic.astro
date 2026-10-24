@@ -6,6 +6,8 @@ import Cycle from './Cycle.astro';
 import Layers from './Layers.astro';
 import Matrix from './Matrix.astro';
 import List from './List.astro';
+import Images from './Images.astro';
+import D3Chart from './D3Chart.astro';
 interface Props { g: Graphic }
 const { g } = Astro.props;
 ---
@@ -15,3 +17,5 @@ const { g } = Astro.props;
 {g.type === 'layers' && <Layers g={g} />}
 {g.type === 'matrix' && <Matrix g={g} />}
 {g.type === 'list' && <List g={g} />}
+{g.type === 'images' && <Images g={g} />}
+{g.type === 'd3' && <D3Chart g={g} />}

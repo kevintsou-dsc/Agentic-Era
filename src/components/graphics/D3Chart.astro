@@ -1,0 +1,76 @@
+---
+// d3 圖表的容器：資料以 data-d3 傳給 src/scripts/d3charts.ts 繪製。
+// 內含純文字版資料（.d3-fallback）：沒有 JavaScript 時顯示，也給螢幕閱讀器讀。
+import type { Graphic } from '../../lib/story';
+type G = Extract<Graphic, { type: 'd3' }>;
+interface Props { g: G }
+const { g } = Astro.props;
+const c = g.chart;
+const summary =
+  c.kind === 'flowloop' ? c.nodes.map((n) => n.label + (n.desc ? `：${n.desc}` : '')) :
+  c.kind === 'groups' ? c.groups.map((x) => `${x.name}：${x.items.map((i) => `${i.label} ${i.value}%`).join('、')}`) :
+  c.kind === 'logrange' ? c.rows.map((r) => `${r.label}：${r.min === r.max ? `${r.min}×` : `${r.min}–${r.max}×${r.open ? ' 以上' : ''}`}`) :
+  c.rows.map((r) => `${r.model}（${r.era}）：${r.steps.map((s) => s.zh).join(' → ')}`);
+---
+<div class="stage d3wrap">
+  <p class="title">{c.title}</p>
+  <div class="d3" data-d3={JSON.stringify(c)} role="img" aria-label={`${c.title}：${summary.join('；')}`}>
+    <ul class="d3-fallback">{summary.map((s) => <li>{s}</li>)}</ul>
+  </div>
+  <p class="source">{g.source}</p>
+</div>
+<script>
+  import { initD3 } from '../../scripts/d3charts';
+  initD3();
+</script>
+<style>
+  .d3wrap { width: 100%; display: grid; gap: 10px; }
+  .title { margin: 0; font-weight: 700; font-size: clamp(17px, 1.4vw + 10px, 22px); }
+  .d3 :global(svg) { width: 100%; height: auto; max-height: 56svh; overflow: visible; }
+  .d3-fallback { margin: 0; padding-left: 1.2em; font-size: 15px; }
+
+  /* flowloop */
+  .d3 :global(.fl-arc) { fill: none; stroke: var(--line); stroke-width: 10; stroke-linecap: round; transition: stroke .6s; }
+  .d3 :global(.fl-arc.on) { stroke: var(--accent); }
+  .d3 :global(.fl-node circle) { fill: var(--paper); stroke: var(--line); stroke-width: 3; transition: fill .5s, stroke .5s; }
+  .d3 :global(.fl-node.on circle) { fill: var(--accent); stroke: var(--accent-ink); }
+  .d3 :global(.fl-node text) { fill: var(--ink-3); transition: fill .5s; }
+  .d3 :global(.fl-node.on text) { fill: var(--ink); }
+  .d3 :global(.fl-label) { font: 800 15px var(--font-sans); }
+  .d3 :global(.fl-sub) { font: 600 10px var(--font-mono); letter-spacing: .06em; }
+  .d3 :global(.fl-center circle) { fill: var(--accent-ink); opacity: .12; transform-box: fill-box; transform-origin: center; transition: transform 1.2s ease, opacity 1.2s; }
+  .d3 :global(.fl-center circle.shrink) { transform: scale(.45); opacity: .06; }
+  .d3 :global(.fl-center text) { font: 800 20px var(--font-sans); fill: var(--ink); }
+  .d3 :global(.fl-dots circle) { fill: var(--accent-ink); }
+
+  /* groups */
+  .d3 :global(.gr-group) { opacity: .25; transition: opacity .5s; }
+  .d3 :global(.gr-group.on) { opacity: 1; }
+  .d3 :global(.gr-name) { font: 800 15px var(--font-sans); fill: var(--ink); }
+  .d3 :global(.gr-label) { font: 500 13px var(--font-sans); fill: var(--ink-2); }
+  .d3 :global(.gr-track) { fill: var(--paper-2); }
+  .d3 :global(.gr-bar) { fill: var(--ink-3); transition: width 1s cubic-bezier(.2,.7,.2,1); }
+  .d3 :global(.gr-bar.best) { fill: var(--accent-ink); }
+  .d3 :global(.gr-val) { font: 700 13px var(--font-mono); fill: var(--ink); transition: x 1s cubic-bezier(.2,.7,.2,1); }
+
+  /* logrange */
+  .d3 :global(.lr-tick line) { stroke: var(--line); stroke-dasharray: 3 4; }
+  .d3 :global(.lr-tick text) { font: 600 11px var(--font-mono); fill: var(--ink-3); }
+  .d3 :global(.lr-row) { opacity: .3; transition: opacity .5s; }
+  .d3 :global(.lr-row.on) { opacity: 1; }
+  .d3 :global(.lr-label) { font: 800 16px var(--font-sans); fill: var(--ink); }
+  .d3 :global(.lr-sub) { font: 500 11px var(--font-sans); fill: var(--ink-3); }
+  .d3 :global(.lr-bar) { transition: width 1s cubic-bezier(.2,.7,.2,1); }
+  .d3 :global(.lr-open) { font: 800 18px var(--font-sans); fill: var(--accent-ink); }
+
+  /* stages */
+  .d3 :global(.st-row) { opacity: .25; transition: opacity .5s; }
+  .d3 :global(.st-row.on) { opacity: 1; }
+  .d3 :global(.st-model) { font: 800 18px var(--font-mono); fill: var(--ink); }
+  .d3 :global(.st-era) { font: 500 12px var(--font-sans); fill: var(--ink-3); }
+  .d3 :global(.cell rect) { fill: var(--paper); stroke: var(--line); stroke-width: 2; }
+  .d3 :global(.cell.first rect) { fill: var(--accent); stroke: var(--accent-ink); }
+  .d3 :global(.st-en) { font: 700 11px var(--font-mono); fill: var(--ink-2); }
+  .d3 :global(.st-zh) { font: 800 14px var(--font-sans); fill: var(--ink); }
+  .d3 :global(.st-dot) { fill: var(--accent-ink); }
+</style>

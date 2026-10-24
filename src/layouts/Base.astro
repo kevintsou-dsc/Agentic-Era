@@ -39,17 +39,35 @@ const repo = 'https://github.com/kevintsou-dsc/Agentic-Era';
         <p><a href="/#chapters">依章節找文章</a>　<a href="/about/">關於本作品</a>　<a href={repo}>原始碼</a></p>
       </div>
     </footer>
-    <dialog id="book" class="book" aria-label="原文出處">
-      <div class="book-sheet">
-        <button type="button" class="book-close" data-book-close aria-label="關閉">×</button>
-        <div data-book-body></div>
+    <dialog id="reader" class="reader" aria-label="原文">
+      <div class="reader-sheet">
+        <header class="reader-head">
+          <div>
+            <p class="eyebrow">原文｜引用的段落已標示</p>
+            <p class="reader-title" data-reader-title></p>
+            <div class="reader-meta-slot" data-reader-meta></div>
+          </div>
+          <div class="reader-actions">
+            <a class="reader-full" data-reader-full href="/">在新頁閱讀</a>
+            <button type="button" class="dlg-close" data-reader-close aria-label="關閉原文">×</button>
+          </div>
+        </header>
+        <div class="reader-body" data-reader-body></div>
+      </div>
+    </dialog>
+    <dialog id="more" class="more" aria-label="細節">
+      <div class="more-sheet">
+        <button type="button" class="dlg-close" data-more-close aria-label="關閉">×</button>
+        <div data-more-body></div>
       </div>
     </dialog>
     <script>
       import { initScrolly } from '../scripts/scrolly';
-      import { initBook } from '../scripts/book';
+      import { initReader } from '../scripts/reader';
+      import { initMore } from '../scripts/more';
       initScrolly();
-      initBook();
+      initReader();
+      initMore();
     </script>
   </body>
 </html>
