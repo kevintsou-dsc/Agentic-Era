@@ -1,16 +1,20 @@
 ---
 // 細節按鈕「＋ 看更多」：hover 預覽一句話，點擊開啟細節卡（原文詳細段落、案例圖片、影片與網站連結）。
+// overlay：圖表元素（長條、節點、層級、清單項）用的版本。按鈕透明覆蓋整個元素，只在角落放一個小圓點，
+// 不佔版面；hover 直接預覽細節內容，點擊開啟細節卡。父元素需要 position: relative。
 // 細節卡內容放在 <template>，由 scripts/more.ts 放進 <dialog id="more">。
 import type { More } from '../lib/story';
 import MoreBody from './MoreBody.astro';
 
-interface Props { m?: More; compact?: boolean; class?: string }
-const { m, compact = false, class: cls } = Astro.props;
-const preview = m ? (m.text ?? m.image?.caption ?? m.title) : '';
+interface Props { m?: More; overlay?: boolean; class?: string }
+const { m, overlay = false, class: cls } = Astro.props;
+const clip = (t: string, n: number) => (t.length > n ? t.slice(0, n) + '…' : t);
+const body = m ? (m.text ?? m.quote?.text ?? m.image?.caption ?? '') : '';
+const preview = !m ? '' : overlay ? `${m.title}${body ? `：${clip(body, 110)}` : ''}（點一下看完整細節）` : (m.text ?? m.image?.caption ?? m.title);
 ---
 {m && (
-  <button type="button" class:list={['more-ref', { compact }, cls]} data-more data-tip={preview} aria-haspopup="dialog">
-    {compact ? '＋細節' : `＋ ${m.title}`}
+  <button type="button" class:list={['more-ref', { overlay }, cls]} data-more data-tip={preview} aria-haspopup="dialog" aria-label={overlay ? `細節：${m.title}` : undefined}>
+    {overlay ? <span class="more-dot" aria-hidden="true">＋</span> : `＋ ${m.title}`}
     <template>
       <h3 class="more-title">{m.title}</h3>
       <MoreBody m={m} />

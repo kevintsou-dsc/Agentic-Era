@@ -39,7 +39,7 @@ const arcs = pts.map((p, i) => {
     ))}
   </svg>
   <ol class="labels">
-    {g.nodes.map((x, i) => <li data-at={i + 1} ><b>{x.zh}</b><MoreRef m={x.more} compact />{x.en && <span>{x.en}</span>}</li>)}
+    {g.nodes.map((x, i) => <li data-at={i + 1} ><b>{x.zh}</b>{x.en && <span>{x.en}</span>}<MoreRef m={x.more} overlay /></li>)}
   </ol>
   <p class="source">{g.source}</p>
 </div>
@@ -52,6 +52,6 @@ const arcs = pts.map((p, i) => {
   .node circle { fill: color-mix(in srgb, var(--accent) calc(var(--on) * 100%), var(--paper)); stroke: var(--accent-ink); stroke-width: 3; transition: fill .4s; }
   .node text { font: 800 22px var(--font-sans); fill: var(--ink); }
   .labels { margin: 0; padding-left: 1.4em; display: grid; gap: 4px; font-size: 14px; }
-  .labels li { opacity: calc(.25 + .75 * var(--on)); transition: opacity .4s; }
+  .labels li { position: relative; opacity: calc(.25 + .75 * var(--on)); transition: opacity .4s; }
   .labels span { display: block; font-size: 12px; color: var(--ink-3); }
 </style>

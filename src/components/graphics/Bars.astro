@@ -1,4 +1,4 @@
-﻿---
+---
 import type { Graphic } from '../../lib/story';
 import MoreRef from '../MoreRef.astro';
 type G = Extract<Graphic, { type: 'bars' }>;
@@ -13,8 +13,8 @@ const aria = `${g.title}：` + g.bars.map((b) => `${b.label}${b.sub ? b.sub : ''
     {g.bars.map((b) => (
       <div class:list={['col', { hl: b.highlight }]} data-at={b.at} >
         <span class="v">{b.display}</span>
-        <div class="bar" style={`--h:${b.value / max}`}></div>
-        <span class="l">{b.label}{b.sub && <small>{b.sub}</small>}<MoreRef m={b.more} compact /></span>
+        <div class="bar" style={`--h:${b.value / max}`}><MoreRef m={b.more} overlay /></div>
+        <span class="l">{b.label}{b.sub && <small>{b.sub}</small>}</span>
       </div>
     ))}
   </div>
@@ -26,9 +26,8 @@ const aria = `${g.title}：` + g.bars.map((b) => `${b.label}${b.sub ? b.sub : ''
   .title { margin: 0; font-weight: 700; font-size: clamp(17px, 1.4vw + 10px, 22px); display: flex; flex-wrap: wrap; gap: 4px 12px; align-items: baseline; }
   .badge { font-size: clamp(15px, 1.4vw + 8px, 20px); font-weight: 800; color: var(--accent-ink); background: var(--accent); padding: 0 10px; border-radius: 999px; opacity: var(--on); transform: translateY(calc((1 - var(--on)) * 8px)); transition: opacity .5s, transform .5s; }
   .chart { display: grid; grid-template-columns: repeat(var(--n), 1fr); gap: clamp(12px, 3vw, 28px); align-items: end; height: min(40svh, 320px); border-bottom: 2px solid var(--ink); padding: 0 6%; margin-bottom: 64px; }
-  .l :global(.more-ref) { align-self: center; margin: 4px 0 0; }
   .col { display: flex; flex-direction: column; justify-content: flex-end; height: 100%; text-align: center; position: relative; }
-  .bar { flex: none; height: calc(var(--h) * (100% - 3rem)); background: var(--paper-2); border: 2px solid var(--ink-3); border-bottom: 0; border-radius: 8px 8px 0 0; transform-origin: bottom; transform: scaleY(var(--on)); transition: transform 1s cubic-bezier(.2,.7,.2,1); }
+  .bar { position: relative; flex: none; height: calc(var(--h) * (100% - 3rem)); background: var(--paper-2); border: 2px solid var(--ink-3); border-bottom: 0; border-radius: 8px 8px 0 0; transform-origin: bottom; transform: scaleY(var(--on)); transition: transform 1s cubic-bezier(.2,.7,.2,1); }
   .hl .bar { background: var(--accent); border-color: var(--accent-ink); }
   .v { font-size: clamp(20px, 2.8vw, 36px); font-weight: 800; line-height: 1.2; margin-bottom: 6px; font-variant-numeric: tabular-nums; opacity: var(--on); transition: opacity .5s .4s; }
   .hl .v { color: var(--accent-ink); }

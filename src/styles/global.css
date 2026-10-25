@@ -133,7 +133,12 @@ a { color: inherit; }
   font-size: 13px; font-weight: 700; line-height: 1.5; transition: transform .15s, box-shadow .15s;
 }
 .more-ref:hover { transform: translateY(-1px); box-shadow: 0 4px 0 var(--accent-ink); }
-.more-ref.compact { margin: 4px 0 0; padding: 1px 8px; font-size: 11px; border-radius: 6px; }
+/* 圖表元素上的細節：透明覆蓋整個元素，角落小圓點提示，不影響圖表排版 */
+.more-ref.overlay { position: absolute; inset: 0; z-index: 2; margin: 0; padding: 0; border-radius: inherit; background: transparent; }
+.more-ref.overlay:hover, .more-ref.overlay:focus-visible { transform: none; box-shadow: inset 0 0 0 2px var(--accent-ink); background: rgba(255, 255, 255, .12); }
+.more-ref.overlay:focus-visible { outline-offset: 0; }
+.more-dot { position: absolute; top: 6px; right: 6px; display: grid; place-items: center; width: 18px; height: 18px; border-radius: 50%;
+  background: var(--accent-ink); color: var(--paper); font-size: 12px; font-weight: 800; line-height: 1; box-shadow: 0 0 0 2px var(--paper); }
 
 /* hover 預覽（只在有滑鼠的裝置）；觸控裝置直接點開 */
 @media (hover: hover) {
