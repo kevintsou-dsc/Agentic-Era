@@ -72,17 +72,25 @@ export type Graphic =
 
 export type D3Chart =
   /** 粒子沿循環流動的生態系／循環圖 */
-  /** 每個元素都可帶 detail：hover／聚焦／點擊時在說明框中顯示的詳細說明（依原文整理），page 為紙本頁碼 */
+  /**
+   * 圖表元素的說明框（hover／聚焦／點擊），規則見 docs/story-guide.md §5：
+   *   detail：依原文整理的說明，搭配 page（紙本頁碼）
+   *   extra ：策展補充。原文資訊不足時由策展者補充的背景知識、定義、例子，說明框中標示「策展補充（非原文）」
+   * 每個元素至少要有 detail 或 extra 其中一項，合計 40 字以上（lint 檢查）。
+   */
   | {
-      kind: 'flowloop'; title: string; center: string; centerDetail?: string; centerPage?: number;
-      nodes: { label: string; sub?: string; desc?: string; detail?: string; page?: number }[]; shrink?: boolean;
+      kind: 'flowloop'; title: string; center: string; centerDetail?: string; centerExtra?: string; centerPage?: number;
+      nodes: (Tipped & { label: string; sub?: string; desc?: string })[]; shrink?: boolean;
     }
   /** 多組橫向長條比較（例如不同世代） */
-  | { kind: 'groups'; title: string; unit: string; groups: { name: string; sub?: string; items: { label: string; value: number; detail?: string }[]; at: number }[] }
+  | { kind: 'groups'; title: string; unit: string; groups: { name: string; sub?: string; items: (Tipped & { label: string; value: number })[]; at: number }[] }
   /** 對數尺度的範圍長條（例如成本倍數 1×、5–10×、10–100×） */
-  | { kind: 'logrange'; title: string; unit: string; rows: { label: string; sub?: string; min: number; max: number; open?: boolean; at: number; detail?: string }[] }
-  /** 消費模型演進：每列一個時代、每格一個階段，起點逐列改變 */
-  | { kind: 'stages'; title: string; rows: { era: string; model: string; steps: { en: string; zh: string; detail?: string }[]; at: number }[] };
+  | { kind: 'logrange'; title: string; unit: string; rows: (Tipped & { label: string; sub?: string; min: number; max: number; open?: boolean; at: number })[] }
+  /** 消費模型演進：每列一個時代、每格一個階段，起點逐列改變；列本身也有說明（模型名稱） */
+  | { kind: 'stages'; title: string; rows: (Tipped & { era: string; model: string; steps: (Tipped & { en: string; zh: string })[]; at: number })[] };
+
+/** 說明框內容 */
+export interface Tipped { detail?: string; extra?: string; page?: number }
 
 /** 橫向捲動的一格 */
 export interface Panel {

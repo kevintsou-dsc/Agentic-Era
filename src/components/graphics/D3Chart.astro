@@ -41,7 +41,7 @@ const summary =
 
   /* 說明框 */
   .d3 :global(.d3-tip) {
-    position: absolute; z-index: 8; width: min(20rem, 92%); padding: 12px 14px; border-radius: 12px;
+    position: absolute; z-index: 8; width: min(24rem, 94%); padding: 12px 14px; border-radius: 12px;
     background: var(--ink); color: var(--paper); box-shadow: 0 14px 30px -14px rgba(0,0,0,.6);
     pointer-events: none; font-size: 14px; line-height: 1.6;
   }
@@ -49,7 +49,12 @@ const summary =
   .d3 :global(.d3-tip p) { margin: 0 0 6px; }
   .d3 :global(.d3-tip .tip-body) { color: #e9e1d2; }
   .d3 :global(.d3-tip .tip-detail) { color: var(--paper); }
-  .d3 :global(.d3-tip .tip-note) { margin: 4px 0 0; font-family: var(--font-mono); font-size: 11px; color: #bdb3a2; }
+  .d3 :global(.d3-tip .tip-tag) { display: block; margin-bottom: 2px; font: 600 11px var(--font-mono); letter-spacing: .04em; color: #bdb3a2; }
+  .d3 :global(.d3-tip .tip-extra) { margin-top: 8px; padding-top: 8px; border-top: 1px dashed rgba(255,255,255,.28); color: #e9e1d2; }
+  .d3 :global(.d3-tip .tip-extra .tip-tag) { color: var(--accent, #f2b84b); }
+  .d3 :global(.st-head) { cursor: pointer; }
+  .d3 :global(.st-head-hit) { fill: transparent; }
+  .d3 :global(.st-head.has-tip:hover .st-head-hit), .d3 :global(.st-head.has-tip:focus-visible .st-head-hit) { fill: rgba(0,0,0,.05); stroke: var(--ink); stroke-width: 1.5; }
   .d3-fallback { margin: 0; padding-left: 1.2em; font-size: 15px; }
 
   /* flowloop */
