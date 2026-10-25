@@ -1,7 +1,7 @@
 // 主文規則檢查（docs/story-guide.md §3）：
 // 每段主文（beat、hscroll 格、圖表 detail）都是完整句子、不以冒號結尾、長度合理、有出處；
 // 每篇主文合計 500–3,000 字（不追求 90 秒讀完；原文已條列的內容可以完整放入）。只檢查 src/data/stories/a*.ts。
-// d3 圖表的說明框（§5）：每個可互動元素都要有 detail 或 extra，合計至少 40 字，不能只有一個標籤。
+// d3 圖表的說明框（§5.1）：每個可互動元素都要有策展補充 extra（至少 40 字）；原文內容寫進主文，不放進說明框。
 import { readFileSync, readdirSync } from 'node:fs';
 import { join } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
@@ -39,15 +39,15 @@ for (const f of readdirSync(dir).filter((x) => /^a\d\d\.ts$/.test(x))) {
   let tips = 0;
   const tip = (name, o) => {
     tips++;
-    const len = (o.detail ?? '').length + (o.extra ?? '').length;
-    if (len < 40) problems.push(`${id}：圖表說明太薄（${len} 字）「${name}」，請補 detail（原文整理）或 extra（策展補充）`);
-    if (o.detail && !o.page) problems.push(`${id}：圖表說明有 detail 但缺 page（紙本頁碼）「${name}」`);
+    const len = (o.extra ?? '').length;
+    if (len < 40) problems.push(`${id}：圖表說明太薄（${len} 字）「${name}」，請補 extra（策展補充）`);
+    if ('detail' in o || 'centerDetail' in o) problems.push(`${id}：圖表說明不放原文（detail）「${name}」，原文請寫進左側主文`);
   };
   for (const sc of story.scenes) {
     const c = sc.kind === 'graphic' && sc.graphic.type === 'd3' ? sc.graphic.chart : null;
     if (!c) continue;
     if (c.kind === 'flowloop') {
-      tip(c.center, { detail: c.centerDetail, extra: c.centerExtra, page: c.centerPage });
+      tip(c.center, { extra: c.centerExtra, ...('centerDetail' in c ? { centerDetail: c.centerDetail } : {}) });
       c.nodes.forEach((n) => tip(n.label, n));
     } else if (c.kind === 'groups') c.groups.forEach((g) => g.items.forEach((i) => tip(`${g.name} ${i.label}`, i)));
     else if (c.kind === 'logrange') c.rows.forEach((r) => tip(r.label, r));

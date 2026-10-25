@@ -48,9 +48,9 @@ const summary =
   .d3 :global(.d3-tip b) { display: block; font-size: 15px; margin-bottom: 4px; }
   .d3 :global(.d3-tip p) { margin: 0 0 6px; }
   .d3 :global(.d3-tip .tip-body) { color: #e9e1d2; }
-  .d3 :global(.d3-tip .tip-detail) { color: var(--paper); }
   .d3 :global(.d3-tip .tip-tag) { display: block; margin-bottom: 2px; font: 600 11px var(--font-mono); letter-spacing: .04em; color: #bdb3a2; }
-  .d3 :global(.d3-tip .tip-extra) { margin-top: 8px; padding-top: 8px; border-top: 1px dashed rgba(255,255,255,.28); color: #e9e1d2; }
+  .d3 :global(.d3-tip .tip-body + .tip-extra) { margin-top: 8px; padding-top: 8px; border-top: 1px dashed rgba(255,255,255,.28); }
+  .d3 :global(.d3-tip .tip-extra) { color: #e9e1d2; }
   .d3 :global(.d3-tip .tip-extra .tip-tag) { color: var(--accent, #f2b84b); }
   .d3 :global(.st-head) { cursor: pointer; }
   .d3 :global(.st-head-hit) { fill: transparent; }

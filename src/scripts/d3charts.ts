@@ -12,8 +12,8 @@ const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 interface Instance { update(step: number): void; tick?(t: number): void }
 
 // ---------- 圖表元素的說明框：滑鼠移上去、鍵盤聚焦或手指點一下都會出現 ----------
-// detail＝依原文整理（附頁碼）；extra＝策展補充（原文沒有的背景知識，明確標示非原文）
-interface Tip { title: string; body?: string; detail?: string; page?: number; extra?: string }
+// 說明框只放策展補充（原文內容寫在左側主文，整張圖的出處只標一次）
+interface Tip { title: string; body?: string; extra?: string }
 
 function tipLayer(el: HTMLElement) {
   const box = document.createElement('div');
@@ -41,7 +41,6 @@ function tipLayer(el: HTMLElement) {
       box.append(p);
     };
     section('tip-body', null, t.body);
-    section('tip-detail', t.page ? `原文整理｜p.${t.page}` : '原文整理', t.detail);
     section('tip-extra', '策展補充（非原文）', t.extra);
     box.hidden = false;
     const host = el.getBoundingClientRect();
@@ -60,7 +59,7 @@ function tipLayer(el: HTMLElement) {
   return function bind(target: Element, t: Tip) {
     target.setAttribute('tabindex', '0');
     target.setAttribute('role', 'button');
-    target.setAttribute('aria-label', [t.title, t.body, t.detail, t.extra && `策展補充：${t.extra}`].filter(Boolean).join('。'));
+    target.setAttribute('aria-label', [t.title, t.body, t.extra && `策展補充：${t.extra}`].filter(Boolean).join('。'));
     target.classList.add('has-tip');
     target.addEventListener('pointerenter', (e) => { if ((e as PointerEvent).pointerType === 'mouse') show(t, target, e as PointerEvent); });
     target.addEventListener('pointermove', (e) => { if ((e as PointerEvent).pointerType === 'mouse' && !pinned) show(t, target, e as PointerEvent); });
@@ -99,9 +98,9 @@ function flowloop(el: HTMLElement, c: Extract<D3Chart, { kind: 'flowloop' }>): I
   nodes.append('text').attr('class', 'fl-label').attr('text-anchor', 'middle').attr('y', (d) => (d.sub ? -2 : 6)).text((d) => d.label);
   nodes.filter((d) => !!d.sub).append('text').attr('class', 'fl-sub').attr('text-anchor', 'middle').attr('y', 16).text((d) => d.sub!);
   const bind = tipLayer(el);
-  if (c.centerDetail || c.centerExtra) bind(center.node()!, { title: c.center, detail: c.centerDetail, page: c.centerPage, extra: c.centerExtra });
+  if (c.centerExtra) bind(center.node()!, { title: c.center, extra: c.centerExtra });
   nodes.each(function (d) {
-    bind(this, { title: d.label + (d.sub ? `　${d.sub}` : ''), body: d.desc, detail: d.detail, page: d.page, extra: d.extra });
+    bind(this, { title: d.label + (d.sub ? `　${d.sub}` : ''), body: d.desc, extra: d.extra });
   });
   // 粒子：每條弧 3 顆
   const dots = svg.append('g').attr('class', 'fl-dots');
@@ -151,7 +150,7 @@ function groups(el: HTMLElement, c: Extract<D3Chart, { kind: 'groups' }>): Insta
   });
   const bind = tipLayer(el);
   for (const { g, rows } of gs) {
-    rows.each(function (d) { bind(this, { title: `${d.label}　${d.value}%`, body: g.name + (g.sub ? `｜${g.sub}` : ''), detail: d.detail, page: d.page, extra: d.extra }); });
+    rows.each(function (d) { bind(this, { title: `${d.label}　${d.value}%`, body: g.name + (g.sub ? `｜${g.sub}` : ''), extra: d.extra }); });
   }
   return {
     update(step) {
@@ -195,7 +194,7 @@ function logrange(el: HTMLElement, c: Extract<D3Chart, { kind: 'logrange' }>): I
   const bind = tipLayer(el);
   rows.each(function (d) {
     const range = d.min === d.max ? `${d.min}×` : `${d.min}–${d.max}×${d.open ? ' 以上' : ''}`;
-    bind(this, { title: `${d.label}　${range}`, body: d.sub, detail: d.detail, page: d.page, extra: d.extra });
+    bind(this, { title: `${d.label}　${range}`, body: d.sub, extra: d.extra });
   });
   return {
     update(step) {
@@ -231,13 +230,11 @@ function stages(el: HTMLElement, c: Extract<D3Chart, { kind: 'stages' }>): Insta
   const bind = tipLayer(el);
   rows.each(function (r) {
     const head = select(this).select<SVGGElement>('g.st-head').node();
-    if (head && (r.detail || r.extra)) bind(head, { title: `${r.model}｜${r.era}`, detail: r.detail, page: r.page, extra: r.extra });
-    select(this).selectAll<SVGGElement, { en: string; zh: string; detail?: string; extra?: string; page?: number; i: number }>('g.cell').each(function (s) {
+    if (head && r.extra) bind(head, { title: `${r.model}｜${r.era}`, extra: r.extra });
+    select(this).selectAll<SVGGElement, { en: string; zh: string; extra?: string; i: number }>('g.cell').each(function (s) {
       bind(this, {
         title: `${s.zh}　${s.en}`,
         body: `${r.model}（${r.era}）第 ${s.i + 1} 步${s.i === 0 ? '：旅程的起點' : ''}`,
-        detail: s.detail,
-        page: s.page,
         extra: s.extra,
       });
     });

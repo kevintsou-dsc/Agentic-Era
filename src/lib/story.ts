@@ -73,13 +73,13 @@ export type Graphic =
 export type D3Chart =
   /** 粒子沿循環流動的生態系／循環圖 */
   /**
-   * 圖表元素的說明框（hover／聚焦／點擊），規則見 docs/story-guide.md §5：
-   *   detail：依原文整理的說明，搭配 page（紙本頁碼）
-   *   extra ：策展補充。原文資訊不足時由策展者補充的背景知識、定義、例子，說明框中標示「策展補充（非原文）」
-   * 每個元素至少要有 detail 或 extra 其中一項，合計 40 字以上（lint 檢查）。
+   * 圖表元素的說明框（hover／聚焦／點擊），規則見 docs/story-guide.md §5.1：
+   *   只放策展補充（extra）：原文沒講、讀者需要才看得懂的背景、定義、例子，說明框標示「策展補充（非原文）」。
+   *   原文內容一律寫進左側主文；整張圖的原文出處只標一次（scene.src 與 source）。
+   * 每個元素都要有 extra，至少 40 字（lint 檢查）。
    */
   | {
-      kind: 'flowloop'; title: string; center: string; centerDetail?: string; centerExtra?: string; centerPage?: number;
+      kind: 'flowloop'; title: string; center: string; centerExtra?: string;
       nodes: (Tipped & { label: string; sub?: string; desc?: string })[]; shrink?: boolean;
     }
   /** 多組橫向長條比較（例如不同世代） */
@@ -89,8 +89,8 @@ export type D3Chart =
   /** 消費模型演進：每列一個時代、每格一個階段，起點逐列改變；列本身也有說明（模型名稱） */
   | { kind: 'stages'; title: string; rows: (Tipped & { era: string; model: string; steps: (Tipped & { en: string; zh: string })[]; at: number })[] };
 
-/** 說明框內容 */
-export interface Tipped { detail?: string; extra?: string; page?: number }
+/** 說明框內容（策展補充） */
+export interface Tipped { extra?: string }
 
 /** 橫向捲動的一格 */
 export interface Panel {
