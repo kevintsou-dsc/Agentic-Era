@@ -1,0 +1,169 @@
+---
+// a13 作者小故事「手機磁吸支架」的分格插畫。每一格對應一段主文（data-focus＝第幾段），
+// 捲到那一段時該格淡入、其他格淡出；格內的小動畫只在該格出現時播放。純 SVG＋CSS，不用外部圖檔。
+const ads = Array.from({ length: 20 }, (_, i) => ({ x: 22 + (i % 4) * 30, y: 70 + Math.floor(i / 4) * 52, i }));
+const words = ['磁吸', '穩固', '方便', '車用', '家用'];
+---
+<svg class="mm" viewBox="0 0 480 400" role="img" aria-label="插畫：作者點了手機磁吸支架廣告，買到只能吸玻璃的產品；再搜尋時出現約二十則相似廣告；買了第二個很好用，但丟掉盒子後忘了品牌；成效報表很漂亮，消費者腦中卻沒有留下品牌。">
+  <!-- ① 看到廣告，點進去 -->
+  <g class="pane" data-focus="1">
+    <text class="tag" x="240" y="26">① 看到廣告，點進去</text>
+    <rect class="phone" x="160" y="44" width="160" height="320" rx="24" />
+    <rect class="screen" x="172" y="66" width="136" height="276" rx="10" />
+    <rect class="card" x="184" y="84" width="112" height="196" rx="10" />
+    <circle class="disk" cx="240" cy="140" r="30" />
+    <rect class="mini" x="226" y="112" width="28" height="48" rx="5" />
+    <text class="ad-h" x="240" y="200">磁吸支架</text>
+    <text class="ad-s" x="240" y="220">任何表面都能吸！</text>
+    <rect class="buy" x="200" y="238" width="80" height="28" rx="14" />
+    <text class="buy-t" x="240" y="257">立即購買</text>
+    <circle class="ripple" cx="250" cy="252" r="10" />
+    <path class="finger" d="M262 300 q-6 -28 -8 -40 q-2 -10 6 -11 q7 -1 9 9 l6 28 q14 -4 20 4 q8 12 -2 30 l-10 16 h-26 z" />
+  </g>
+
+  <!-- ② 只能吸玻璃 -->
+  <g class="pane" data-focus="2">
+    <text class="tag" x="240" y="26">② 買到才發現：只能吸玻璃</text>
+    <rect class="glass" x="40" y="70" width="170" height="250" rx="8" />
+    <path class="shine" d="M70 100 l40 -20 M70 130 l70 -36" />
+    <text class="lbl" x="125" y="346">玻璃</text>
+    <g class="stuck"><circle class="disk" cx="125" cy="190" r="26" /><rect class="mini" x="113" y="166" width="24" height="44" rx="5" /></g>
+    <text class="ok" x="176" y="132">✓</text>
+    <rect class="wood" x="270" y="70" width="170" height="250" rx="8" />
+    <path class="grain" d="M290 110 q60 -10 130 6 M290 170 q70 12 130 -4 M290 240 q50 -14 130 8" />
+    <text class="lbl" x="355" y="346">木頭、牆面、儀表板</text>
+    <g class="fall"><circle class="disk" cx="355" cy="190" r="26" /><rect class="mini" x="343" y="166" width="24" height="44" rx="5" /></g>
+    <text class="no" x="406" y="132">✗</text>
+  </g>
+
+  <!-- ③ 再搜尋：約二十則一模一樣的廣告 -->
+  <g class="pane" data-focus="3">
+    <text class="tag" x="240" y="26">③ 再搜尋：約二十則長得一樣的廣告</text>
+    <rect class="phone" x="150" y="44" width="180" height="336" rx="24" />
+    <rect class="screen" x="162" y="62" width="156" height="300" rx="10" />
+    <g transform="translate(150 0)">
+      {ads.map((a) => (
+        <g class="ad" style={`--d:${a.i * 55}ms`}>
+          <rect class="ad-box" x={a.x} y={a.y} width="26" height="46" rx="4" />
+          <circle class="ad-dot" cx={a.x + 13} cy={a.y + 14} r="7" />
+          <rect class="ad-line" x={a.x + 4} y={a.y + 27} width="18" height="4" rx="2" />
+          <rect class="ad-line" x={a.x + 4} y={a.y + 35} width="12" height="4" rx="2" />
+        </g>
+      ))}
+    </g>
+    {words.map((w, i) => (
+      <g class="bubble" style={`--d:${300 + i * 140}ms`} transform={`translate(${i % 2 ? 392 : 88} ${90 + i * 56})`}>
+        <rect x="-40" y="-17" width="80" height="30" rx="15" />
+        <text y="4">{w}！</text>
+      </g>
+    ))}
+  </g>
+
+  <!-- ④ 第二個很好用，但盒子丟了就忘了是誰 -->
+  <g class="pane" data-focus="4">
+    <text class="tag" x="240" y="26">④ 第二個很好用，盒子一丟就忘了是誰</text>
+    <g class="box">
+      <path class="box-side" d="M120 150 l80 -30 l80 30 v110 l-80 30 l-80 -30 z" />
+      <path class="box-top" d="M120 150 l80 -30 l80 30 l-80 30 z" />
+      <path class="box-edge" d="M200 180 v110" />
+      <text class="brand" x="160" y="230">MAGNETO</text>
+      <text class="brand-q" x="160" y="230">？？？</text>
+    </g>
+    <g class="bin">
+      <path class="bin-body" d="M330 220 h90 l-10 140 h-70 z" />
+      <rect class="bin-lid" x="322" y="204" width="106" height="14" rx="4" />
+      <path class="bin-line" d="M352 240 l4 104 M375 240 v104 M398 240 l-4 104" />
+    </g>
+    <g class="think">
+      <circle cx="96" cy="320" r="5" /><circle cx="80" cy="300" r="8" />
+      <ellipse cx="70" cy="262" rx="46" ry="26" />
+      <text x="70" y="268">叫什麼？</text>
+    </g>
+  </g>
+
+  <!-- ⑤ 報表成功，記憶空白 -->
+  <g class="pane" data-focus="5">
+    <text class="tag" x="240" y="26">⑤ 報表上成功，消費者腦中空白</text>
+    <rect class="dash" x="30" y="70" width="200" height="250" rx="14" />
+    <text class="dash-h" x="130" y="100">成效報表</text>
+    <rect class="kpi k1" x="58" y="230" width="28" height="60" rx="4" />
+    <rect class="kpi k2" x="102" y="190" width="28" height="100" rx="4" />
+    <rect class="kpi k3" x="146" y="140" width="28" height="150" rx="4" />
+    <text class="kpi-t" x="130" y="314">點擊 ✓　購買 ×2 ✓</text>
+    <text class="vs" x="240" y="210">≠</text>
+    <path class="head" d="M300 320 v-40 q-44 -10 -44 -70 q0 -70 74 -76 q78 -2 84 70 l18 34 h-18 v26 q0 20 -24 18 h-14 v38 z" />
+    <ellipse class="mem" cx="336" cy="190" rx="44" ry="34" />
+    <text class="mem-t" x="336" y="186">品牌</text>
+    <text class="mem-q" x="336" y="210">？</text>
+    <text class="lbl" x="130" y="346">Sales：這一次買了</text>
+    <text class="lbl" x="340" y="346">Marketing：下次會想到誰？</text>
+  </g>
+</svg>
+<style>
+  .mm { width: 100%; height: auto; max-height: 62svh; overflow: visible; font-family: var(--font-sans); }
+  .pane { opacity: var(--focus); transition: opacity .5s; }
+  .tag { font-size: 17px; font-weight: 800; text-anchor: middle; fill: var(--ink); }
+  .lbl { font-size: 14px; font-weight: 600; text-anchor: middle; fill: var(--ink-2); }
+  text { text-anchor: middle; }
+
+  .phone { fill: var(--ink); }
+  .screen { fill: var(--paper); }
+  .card { fill: var(--paper-2); stroke: var(--line); }
+  .disk { fill: var(--accent); stroke: var(--ink); stroke-width: 3; }
+  .mini { fill: var(--ink-2); }
+  .ad-h { font-size: 17px; font-weight: 800; fill: var(--ink); }
+  .ad-s { font-size: 12px; fill: var(--accent-ink); font-weight: 700; }
+  .buy { fill: var(--accent-ink); }
+  .buy-t { font-size: 12px; font-weight: 700; fill: var(--paper); }
+  .finger { fill: #f1d3b8; stroke: var(--ink); stroke-width: 2.5; stroke-linejoin: round; transform-box: fill-box;
+    transform: translateY(calc((1 - var(--focus)) * 30px)); transition: transform .6s .2s; }
+  .ripple { fill: none; stroke: var(--accent-ink); stroke-width: 3; transform-box: fill-box; transform-origin: center; animation: ripple 1.6s infinite; }
+  @keyframes ripple { from { transform: scale(.6); opacity: 1; } to { transform: scale(2.6); opacity: 0; } }
+
+  .glass { fill: #dcebf1; stroke: var(--ink-3); stroke-width: 2; }
+  .shine { stroke: #fff; stroke-width: 6; stroke-linecap: round; fill: none; }
+  .wood { fill: #d9b98f; stroke: var(--ink-3); stroke-width: 2; }
+  .grain { stroke: #b8925f; stroke-width: 3; fill: none; }
+  .ok { font-size: 40px; font-weight: 800; fill: #3d7a45; }
+  .no { font-size: 40px; font-weight: 800; fill: #b0412e; }
+  .fall { transform: translateY(calc(var(--focus) * 96px)) rotate(calc(var(--focus) * 18deg)); transform-box: fill-box; transform-origin: center;
+    transition: transform 1s .5s cubic-bezier(.5,0,.8,.4); }
+
+  .ad { opacity: var(--focus); transform: scale(calc(.6 + .4 * var(--focus))); transform-box: fill-box; transform-origin: center;
+    transition: opacity .3s var(--d), transform .3s var(--d); }
+  .ad-box { fill: var(--paper-2); stroke: var(--ink-3); stroke-width: 1.5; }
+  .ad-dot { fill: var(--accent); stroke: var(--ink-2); stroke-width: 1.5; }
+  .ad-line { fill: var(--ink-3); }
+  .bubble { opacity: var(--focus); transition: opacity .3s var(--d); }
+  .bubble rect { fill: var(--paper); stroke: var(--ink); stroke-width: 2; }
+  .bubble text { font-size: 14px; font-weight: 800; fill: var(--accent-ink); }
+
+  .box { transform: translate(calc(var(--focus) * 150px), calc(var(--focus) * 60px)) rotate(calc(var(--focus) * 24deg)) scale(calc(1 - var(--focus) * .45));
+    transform-box: fill-box; transform-origin: center; transition: transform 1.2s .9s cubic-bezier(.5,0,.6,1); }
+  .box-side { fill: #c9a27a; stroke: var(--ink); stroke-width: 2.5; stroke-linejoin: round; }
+  .box-top { fill: #dcbb93; stroke: var(--ink); stroke-width: 2.5; stroke-linejoin: round; }
+  .box-edge { stroke: var(--ink); stroke-width: 2; }
+  .brand { font-size: 18px; font-weight: 800; fill: var(--ink); opacity: calc(1 - var(--focus)); transition: opacity .6s 1.6s; }
+  .brand-q { font-size: 22px; font-weight: 800; fill: var(--ink); opacity: var(--focus); transition: opacity .6s 1.8s; }
+  .bin-body { fill: var(--ink-3); stroke: var(--ink); stroke-width: 2.5; }
+  .bin-lid { fill: var(--ink-2); }
+  .bin-line { stroke: var(--paper-2); stroke-width: 3; }
+  .think circle, .think ellipse { fill: var(--paper); stroke: var(--ink); stroke-width: 2; }
+  .think text { font-size: 15px; font-weight: 800; fill: var(--ink); }
+  .think { opacity: var(--focus); transition: opacity .5s 2.1s; }
+
+  .dash { fill: var(--paper); stroke: var(--ink); stroke-width: 2.5; }
+  .dash-h { font-size: 15px; font-weight: 800; fill: var(--ink); }
+  .kpi { fill: var(--accent); stroke: var(--accent-ink); stroke-width: 2; transform-box: fill-box; transform-origin: bottom; transform: scaleY(var(--focus)); transition: transform .8s; }
+  .k2 { transition-delay: .15s; } .k3 { transition-delay: .3s; }
+  .kpi-t { font-size: 13px; font-weight: 700; fill: var(--accent-ink); }
+  .vs { font-size: 44px; font-weight: 800; fill: var(--ink-3); }
+  .head { fill: var(--paper-2); stroke: var(--ink); stroke-width: 2.5; stroke-linejoin: round; }
+  .mem { fill: var(--paper); stroke: var(--ink-3); stroke-width: 2; stroke-dasharray: 5 5; }
+  .mem-t { font-size: 12px; fill: var(--ink-3); }
+  .mem-q { font-size: 24px; font-weight: 800; fill: var(--ink-3); }
+
+  @media (prefers-reduced-motion: reduce) {
+    .ripple { display: none; }
+  }
+</style>

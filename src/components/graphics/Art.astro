@@ -1,0 +1,18 @@
+---
+// 插畫場景：作者小故事、個人經驗這類「不是統計數據」的內容，用分格插畫陪讀者捲過去。
+// art 對應 src/components/art/ 下的元件；每格以 data-focus 對應第幾段主文。
+import type { Graphic } from '../../lib/story';
+import MagnetMount from '../art/MagnetMount.astro';
+type G = Extract<Graphic, { type: 'art' }>;
+interface Props { g: G }
+const { g } = Astro.props;
+---
+<figure class="stage art">
+  {g.title && <p class="title">{g.title}</p>}
+  {g.art === 'magnet-mount' && <MagnetMount />}
+  <figcaption class="source">{g.source}</figcaption>
+</figure>
+<style>
+  .art { width: 100%; margin: 0; display: grid; gap: 10px; }
+  .title { margin: 0; font-weight: 700; font-size: clamp(17px, 1.4vw + 10px, 22px); }
+</style>

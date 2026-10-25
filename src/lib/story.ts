@@ -68,7 +68,9 @@ export type Graphic =
   /** 案例圖片（可多張，第 k 段主文顯示第 k 張） */
   | { type: 'images'; images: (Img & { at: number; links?: Link[] })[]; source: string }
   /** d3 互動圖表；chart 對應 src/components/d3/ 下的元件 */
-  | { type: 'd3'; chart: D3Chart; source: string };
+  | { type: 'd3'; chart: D3Chart; source: string }
+  /** 分格插畫：作者小故事、個人經驗（不是統計數據，不用 bignum／長條呈現）。第 k 段主文顯示第 k 格 */
+  | { type: 'art'; art: 'magnet-mount'; title?: string; source: string };
 
 export type D3Chart =
   /** 粒子沿循環流動的生態系／循環圖 */
