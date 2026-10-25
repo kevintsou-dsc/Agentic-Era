@@ -66,7 +66,8 @@ export function initReader() {
       body.innerHTML = page.body;
       highlight(body, data.segs);
       const target = body.querySelector('mark') ?? body.querySelector(`#p${data.page}`);
-      target?.scrollIntoView({ block: 'center' });
+      // 開啟時直接跳到引用處（不從文章開頭捲動過去）
+      target?.scrollIntoView({ block: 'center', behavior: 'instant' });
     } catch {
       window.location.href = full.href;
     }

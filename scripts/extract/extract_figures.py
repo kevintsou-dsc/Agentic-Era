@@ -141,7 +141,8 @@ def extract(pdf, num, start, out_img_dir, preview_dir):
                 figures.append({"page": printed_page(start, pno, cx, half), "image": None, "kind": "vector",
                                 "caption": caption, "source": m.group(2).strip() if m else "", "qr": []})
 
-    md = (ROOT / "content" / "fulltext" / f"{aid}.md").read_text(encoding="utf-8")
+    # 註解網址以 PDF 抽取版為準（IDML 版的註解已去掉「註解N」編號）
+    md = (ROOT / "content" / "fulltext-pdf" / f"{aid}.md").read_text(encoding="utf-8")
     notes = [{"n": int(n), "url": u} for n, u in re.findall(r"註解\s*(\d+)\s*[^h註]*?(https?://[^\s註]+)", md)]
     return {"id": aid, "figures": sorted(figures, key=lambda f: f["page"]), "qr": qrs, "notes": notes}
 

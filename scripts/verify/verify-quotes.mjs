@@ -8,16 +8,24 @@ import { normalize } from './normalize.mjs';
 const root = fileURLToPath(new URL('../../', import.meta.url));
 const fulltextDir = join(root, 'content', 'fulltext');
 
-// 依 <!-- p.N --> 切出每頁文字
+// 依 <!-- p.N --> 切出每頁文字；去掉全文格式的行首記號（## 標題、> 圖說、| 側欄、[註] 註解）
 function pages(md) {
   const out = new Map();
   let page = null;
-  for (const line of md.split('\n')) {
-    const m = line.match(/<!-- p\.(\d+) -->/);
+  for (const raw of md.replace(/\r\n?/g, '\n').split('\n')) {
+    const m = raw.match(/<!-- p\.(\d+) -->/);
     if (m) { page = Number(m[1]); continue; }
+    const line = raw.replace(/^(## |> |\| |\[註\] )/, '');
     if (page !== null) out.set(page, (out.get(page) ?? '') + line);
   }
   return out;
+}
+
+// 圖表裡的文字（content/figtext）也算原文：圖中的數字與標籤可以被引用，但不放進閱讀用的全文
+const figDir = join(root, 'content', 'figtext');
+function merge(a, b) {
+  for (const [k, v] of b) a.set(k, (a.get(k) ?? '') + v);
+  return a;
 }
 
 function walk(dir) {
@@ -30,6 +38,8 @@ function walk(dir) {
 const corpus = {};
 for (const f of readdirSync(fulltextDir).filter((f) => /^a\d+\.md$/.test(f))) {
   const p = pages(readFileSync(join(fulltextDir, f), 'utf8'));
+  const fig = join(figDir, f);
+  if (statSync(fig, { throwIfNoEntry: false })) merge(p, pages(readFileSync(fig, 'utf8')));
   corpus[f.slice(0, 3)] = new Map([...p].map(([k, v]) => [k, normalize(v)]));
 }
 

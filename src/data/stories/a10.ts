@@ -173,8 +173,8 @@ export const story: Story = {
       },
       src: [{ article: 'a10', page: 75, text: '從 AIDMA 到 AISAS，再到 AICAS，其特點是以「諮問 ( 諮詢/ 提問)」為出發點' }],
       figures: [
-        { article: 'a10', page: 75, text: '電商以前的時代AIDMA注意興趣AttentionInterest電商時代AISAS' },
-        { article: 'a10', page: 75, text: '確認購買分享Conﬁrm, CheckActionShare' },
+        { article: 'a10', page: 75, text: 'AIDMA' }, { article: 'a10', page: 75, text: 'AICAS' },
+        { article: 'a10', page: 75, text: 'Confirm, Check' },
       ],
       beats: [
         {
@@ -232,11 +232,11 @@ export const story: Story = {
         },
         {
           text: '需求一致但主張難證明時，就讓廣告負責創造注意、內容負責完成驗證，兩者雙管齊下。',
-          src: [{ article: 'a10', page: 76, text: '廣告創造注意◆內容完成驗證' }],
+          src: [{ article: 'a10', page: 76, text: 'AI 影響消費者決策下的媒體布局矩陣' }],
         },
         {
           text: '需求分歧但主張容易證明時，就拆解需求情境，優先攻下高商機的場景，各個擊破。',
-          src: [{ article: 'a10', page: 76, text: '拆解需求情境◆優先攻高商機場景' }],
+          src: [{ article: 'a10', page: 76, text: 'AI 影響消費者決策下的媒體布局矩陣' }],
         },
         {
           text: '需求一致、主張又容易證明時，品牌反而應該先讓內容成為 AI、搜尋與社群可以引用的答案。',

@@ -25,7 +25,7 @@ export const story: Story = {
           },
           {
             label: '2025', sub: '第 36 屆', value: 2.31, display: '2.31', at: 1,
-            detail: { text: '2025 年第 36 屆典禮後，市場出現「不熟悉入圍者與作品」的討論，分眾更加明顯。', src: [{ article: 'a11', page: 84, text: '分眾更加明顯，典禮後出現「不熟悉2025入圍者與作品」的討論' }] },
+            detail: { text: '2025 年第 36 屆典禮後，市場出現「不熟悉入圍者與作品」的討論，分眾更加明顯。', src: [{ article: 'a11', page: 84, text: '分眾更加明顯，典禮後出現「不熟悉入圍者與作品」的討論' }] },
           },
           {
             label: '2026', sub: '第 37 屆', value: 3.37, display: '3.37', highlight: true, at: 2,

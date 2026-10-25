@@ -22,7 +22,7 @@ const blocks = loadFulltext(a.id).map((b) => (b.kind === 'page' ? b : { ...b, i:
       <ArticleHead a={a} mode="full" />
       <div class="reader-meta">
         <p>{CHAPTERS[a.chapter].name}｜{authorNames(a)}｜紙本 p.{a.pages[0]}–{a.pages[1]}</p>
-        {!reviewed && <p>此全文由 PDF 自動抽取，尚未人工校正；圖表與照片以圖說文字呈現，引用請以紙本為準。</p>}
+        {!reviewed && <p>此全文取自刊物的排版原始檔（InDesign），頁碼依 PDF 對照；尚未逐頁人工校正，圖表以圖說呈現，引用請以紙本為準。</p>}
       </div>
       {STORIES[a.id] && <p><a class="btn ghost" href={`/a/${a.slug}/`}>← 回到故事</a></p>}
     </div>
@@ -30,6 +30,9 @@ const blocks = loadFulltext(a.id).map((b) => (b.kind === 'page' ? b : { ...b, i:
       {blocks.map((b) =>
         b.kind === 'page' ? <p class="pg" id={`p${b.page}`}>紙本 p.{b.page}</p>
         : b.kind === 'h' ? <h2 data-i={b.i}>{b.text}</h2>
+        : b.kind === 'cap' ? <p class="cap" data-i={b.i}>{b.text}</p>
+        : b.kind === 'box' ? <p class="box" data-i={b.i}>{b.text}</p>
+        : b.kind === 'note' ? <p class="note" data-i={b.i}>{b.text}</p>
         : <p data-i={b.i}>{b.text}</p>)}
     </div>
   </article>
