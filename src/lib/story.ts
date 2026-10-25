@@ -72,13 +72,17 @@ export type Graphic =
 
 export type D3Chart =
   /** 粒子沿循環流動的生態系／循環圖 */
-  | { kind: 'flowloop'; title: string; center: string; nodes: { label: string; sub?: string; desc?: string }[]; shrink?: boolean }
+  /** 每個元素都可帶 detail：hover／聚焦／點擊時在說明框中顯示的詳細說明（依原文整理），page 為紙本頁碼 */
+  | {
+      kind: 'flowloop'; title: string; center: string; centerDetail?: string; centerPage?: number;
+      nodes: { label: string; sub?: string; desc?: string; detail?: string; page?: number }[]; shrink?: boolean;
+    }
   /** 多組橫向長條比較（例如不同世代） */
-  | { kind: 'groups'; title: string; unit: string; groups: { name: string; sub?: string; items: { label: string; value: number }[]; at: number }[] }
+  | { kind: 'groups'; title: string; unit: string; groups: { name: string; sub?: string; items: { label: string; value: number; detail?: string }[]; at: number }[] }
   /** 對數尺度的範圍長條（例如成本倍數 1×、5–10×、10–100×） */
-  | { kind: 'logrange'; title: string; unit: string; rows: { label: string; sub?: string; min: number; max: number; open?: boolean; at: number }[] }
+  | { kind: 'logrange'; title: string; unit: string; rows: { label: string; sub?: string; min: number; max: number; open?: boolean; at: number; detail?: string }[] }
   /** 消費模型演進：每列一個時代、每格一個階段，起點逐列改變 */
-  | { kind: 'stages'; title: string; rows: { era: string; model: string; steps: { en: string; zh: string }[]; at: number }[] };
+  | { kind: 'stages'; title: string; rows: { era: string; model: string; steps: { en: string; zh: string; detail?: string }[]; at: number }[] };
 
 /** 橫向捲動的一格 */
 export interface Panel {

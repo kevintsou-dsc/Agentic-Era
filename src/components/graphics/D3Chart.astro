@@ -14,9 +14,10 @@ const summary =
 ---
 <div class="stage d3wrap">
   <p class="title">{c.title}</p>
-  <div class="d3" data-d3={JSON.stringify(c)} role="img" aria-label={`${c.title}：${summary.join('；')}`}>
+  <div class="d3" data-d3={JSON.stringify(c)} role="figure" aria-label={c.title}>
     <ul class="d3-fallback">{summary.map((s) => <li>{s}</li>)}</ul>
   </div>
+  <p class="hint">滑過或點一下圖中的{c.kind === 'flowloop' ? '圓圈' : c.kind === 'stages' ? '方格' : '長條'}，看詳細說明</p>
   <p class="source">{g.source}</p>
 </div>
 <script>
@@ -26,7 +27,29 @@ const summary =
 <style>
   .d3wrap { width: 100%; display: grid; gap: 10px; }
   .title { margin: 0; font-weight: 700; font-size: clamp(17px, 1.4vw + 10px, 22px); }
+  .d3 { position: relative; }
   .d3 :global(svg) { width: 100%; height: auto; max-height: 56svh; overflow: visible; }
+  .hint { margin: 0; font-size: 12px; color: var(--ink-3); }
+
+  /* 可互動元素：游標、hover 放大、鍵盤焦點 */
+  .d3 :global(.has-tip) { cursor: pointer; outline: none; }
+  .d3 :global(.fl-node.has-tip circle), .d3 :global(.cell.has-tip rect) { transition: fill .5s, stroke .5s, stroke-width .2s; }
+  .d3 :global(.fl-node.has-tip:hover circle), .d3 :global(.fl-node.has-tip:focus-visible circle) { stroke-width: 6; }
+  .d3 :global(.cell.has-tip:hover rect), .d3 :global(.cell.has-tip:focus-visible rect),
+  .d3 :global(.row.has-tip:hover .gr-track), .d3 :global(.lr-row.has-tip:hover .lr-bar) { stroke: var(--ink); stroke-width: 2; }
+  .d3 :global(.has-tip:focus-visible) { filter: drop-shadow(0 0 0 var(--accent-ink)) drop-shadow(0 0 3px var(--accent-ink)); }
+
+  /* 說明框 */
+  .d3 :global(.d3-tip) {
+    position: absolute; z-index: 8; width: min(20rem, 92%); padding: 12px 14px; border-radius: 12px;
+    background: var(--ink); color: var(--paper); box-shadow: 0 14px 30px -14px rgba(0,0,0,.6);
+    pointer-events: none; font-size: 14px; line-height: 1.6;
+  }
+  .d3 :global(.d3-tip b) { display: block; font-size: 15px; margin-bottom: 4px; }
+  .d3 :global(.d3-tip p) { margin: 0 0 6px; }
+  .d3 :global(.d3-tip .tip-body) { color: #e9e1d2; }
+  .d3 :global(.d3-tip .tip-detail) { color: var(--paper); }
+  .d3 :global(.d3-tip .tip-note) { margin: 4px 0 0; font-family: var(--font-mono); font-size: 11px; color: #bdb3a2; }
   .d3-fallback { margin: 0; padding-left: 1.2em; font-size: 15px; }
 
   /* flowloop */

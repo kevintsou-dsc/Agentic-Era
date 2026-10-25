@@ -42,11 +42,25 @@ export const story: Story = {
           kind: 'flowloop',
           title: '廣告末日循環 The Doom Loop',
           center: '品牌',
+          centerDetail: '循環每轉一圈，品牌就被消耗一點：預算沒少、聲量沒小，品牌卻在競品的雜訊裡一點一點變淡，消費者描述品牌時，用的全是別人家的形容詞。',
+          centerPage: 73,
           shrink: true,
           nodes: [
-            { label: '轉向成效型', sub: 'SHIFT BUDGETS', desc: '把預算轉移到「成效型」格式（Shift budgets to “performance” formats）' },
-            { label: '效果停滯', sub: 'PLATEAUS', desc: '廣告效果進入高原期／停滯（Advertising playback plateaus）' },
-            { label: '錯誤優化', sub: 'FAULTY METRICS', desc: '依據有缺陷的指標進行優化（Optimize against faulty metrics）' },
+            {
+              label: '轉向成效型', sub: 'SHIFT BUDGETS', page: 73,
+              desc: '把預算轉移到「成效型」格式（Shift budgets to “performance” formats）',
+              detail: '為了交出能即時量化的成效，預算不斷流向短期、點擊與轉換。文中一家日系專櫃美妝品牌在 2023 年以前，就把近三成預算壓在轉換目標，純曝光只有兩成左右。',
+            },
+            {
+              label: '效果停滯', sub: 'PLATEAUS', page: 73,
+              desc: '廣告效果進入高原期／停滯（Advertising playback plateaus）',
+              detail: '無盡的優化，有時反而稀釋了廣告本身的力量：曝光越買越多、單次成本越壓越低，打開品牌市調，卻是知名度遇到瓶頸、指名度下滑。',
+            },
+            {
+              label: '錯誤優化', sub: 'FAULTY METRICS', page: 74,
+              desc: '依據有缺陷的指標進行優化（Optimize against faulty metrics）',
+              detail: '問題出在指標本身。dentsu 與 Lumen 的眼動研究發現，可視率與品牌回想幾乎沒有關係，更能預測回想的是平均觀看秒數；技術上完全達標的可視曝光，常常只是買到進入視野的門票。',
+            },
           ],
         },
         source: '圖：廣告末日循環 The Doom Loop｜資料來源 WARC《The Multiplier Effect》(2025)，徐莉媛〈別買曝光了〉紙本 p.73。點節點看完整標籤。',
@@ -143,7 +157,16 @@ export const story: Story = {
           rows: [
             { era: '電商以前', model: 'AIDMA', at: 1, steps: [{ en: 'Attention', zh: '注意' }, { en: 'Interest', zh: '興趣' }, { en: 'Desire', zh: '慾望' }, { en: 'Memory', zh: '記憶' }, { en: 'Action', zh: '購買' }] },
             { era: '電商時代', model: 'AISAS', at: 1, steps: [{ en: 'Attention', zh: '注意' }, { en: 'Interest', zh: '興趣' }, { en: 'Search', zh: '搜尋' }, { en: 'Action', zh: '購買' }, { en: 'Share', zh: '分享' }] },
-            { era: '生成式 AI 時代', model: 'AICAS', at: 2, steps: [{ en: 'Ask', zh: '諮問' }, { en: 'Interest', zh: '興趣' }, { en: 'Confirm', zh: '確認' }, { en: 'Action', zh: '購買' }, { en: 'Share', zh: '分享' }] },
+            {
+              era: '生成式 AI 時代', model: 'AICAS', at: 2,
+              steps: [
+                { en: 'Ask', zh: '諮問', detail: '起點不再是被動接收的廣告，而是消費者主動發問：先問 AI「哪個品牌適合我」，不再自己慢慢翻找資訊（紙本 p.75）。' },
+                { en: 'Interest', zh: '興趣' },
+                { en: 'Confirm', zh: '確認', detail: '原圖標示為 Confirm, Check：消費者會再確認 AI 給的答案。品牌若沒有清楚、可信、可被引用的內容，可能在這之前就被排除在答案之外（紙本 p.75）。' },
+                { en: 'Action', zh: '購買' },
+                { en: 'Share', zh: '分享' },
+              ],
+            },
           ],
         },
         source: '圖：從 AIDMA 到 AISAS，再到 AICAS｜資料來源 日經 xTREND，徐莉媛〈別買曝光了〉紙本 p.75。每一列的第一格是旅程的起點。',

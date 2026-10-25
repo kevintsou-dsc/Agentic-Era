@@ -11,6 +11,61 @@ const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 interface Instance { update(step: number): void; tick?(t: number): void }
 
+// ---------- 圖表元素的說明框：滑鼠移上去、鍵盤聚焦或手指點一下都會出現 ----------
+interface Tip { title: string; body?: string; detail?: string; note?: string }
+
+function tipLayer(el: HTMLElement) {
+  const box = document.createElement('div');
+  box.className = 'd3-tip';
+  box.setAttribute('role', 'tooltip');
+  box.hidden = true;
+  el.appendChild(box);
+  let pinned: Element | null = null;
+  const show = (t: Tip, target: Element, ev?: PointerEvent) => {
+    box.replaceChildren();
+    const h = document.createElement('b');
+    h.textContent = t.title;
+    box.append(h);
+    for (const [cls, txt] of [['tip-body', t.body], ['tip-detail', t.detail], ['tip-note', t.note]] as const) {
+      if (!txt) continue;
+      const p = document.createElement('p');
+      p.className = cls;
+      p.textContent = txt;
+      box.append(p);
+    }
+    box.hidden = false;
+    const host = el.getBoundingClientRect();
+    const r = target.getBoundingClientRect();
+    const x = ev ? ev.clientX - host.left : r.left + r.width / 2 - host.left;
+    const y = (ev ? ev.clientY : r.top) - host.top;
+    const w = box.offsetWidth;
+    box.style.left = `${Math.max(0, Math.min(host.width - w, x - w / 2))}px`;
+    // 放在指標上方；上方空間不夠就放下方
+    const above = y - box.offsetHeight - 14;
+    box.style.top = `${above > 0 ? above : y + (ev ? 18 : r.height + 8)}px`;
+  };
+  const hide = () => { box.hidden = true; pinned = null; };
+  document.addEventListener('pointerdown', (e) => { if (pinned && !(e.target as Element).closest('.d3')) hide(); });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') hide(); });
+  return function bind(target: Element, t: Tip) {
+    target.setAttribute('tabindex', '0');
+    target.setAttribute('role', 'button');
+    target.setAttribute('aria-label', [t.title, t.body, t.detail].filter(Boolean).join('：'));
+    target.classList.add('has-tip');
+    target.addEventListener('pointerenter', (e) => { if ((e as PointerEvent).pointerType === 'mouse') show(t, target, e as PointerEvent); });
+    target.addEventListener('pointermove', (e) => { if ((e as PointerEvent).pointerType === 'mouse' && !pinned) show(t, target, e as PointerEvent); });
+    target.addEventListener('pointerleave', (e) => { if ((e as PointerEvent).pointerType === 'mouse' && !pinned) hide(); });
+    target.addEventListener('focus', () => show(t, target));
+    target.addEventListener('blur', () => { if (!pinned) hide(); });
+    // 觸控：點一下固定顯示，再點一次或點別處關閉
+    target.addEventListener('click', () => {
+      if (pinned === target) { hide(); return; }
+      show(t, target);
+      pinned = target;
+    });
+  };
+}
+
 // ---------- flowloop：節點圍成一圈，粒子沿弧線流動 ----------
 function flowloop(el: HTMLElement, c: Extract<D3Chart, { kind: 'flowloop' }>): Instance {
   const W = 520, H = 440, cx = W / 2, cy = H / 2, R = 160;
@@ -33,7 +88,11 @@ function flowloop(el: HTMLElement, c: Extract<D3Chart, { kind: 'flowloop' }>): I
   nodes.append('circle').attr('r', 46);
   nodes.append('text').attr('class', 'fl-label').attr('text-anchor', 'middle').attr('y', (d) => (d.sub ? -2 : 6)).text((d) => d.label);
   nodes.filter((d) => !!d.sub).append('text').attr('class', 'fl-sub').attr('text-anchor', 'middle').attr('y', 16).text((d) => d.sub!);
-  nodes.append('title').text((d) => d.desc ?? d.label);
+  const bind = tipLayer(el);
+  if (c.centerDetail) bind(center.node()!, { title: c.center, detail: c.centerDetail, note: c.centerPage ? `紙本 p.${c.centerPage}` : undefined });
+  nodes.each(function (d) {
+    bind(this, { title: d.label + (d.sub ? `　${d.sub}` : ''), body: d.desc, detail: d.detail, note: d.page ? `紙本 p.${d.page}` : undefined });
+  });
   // 粒子：每條弧 3 顆
   const dots = svg.append('g').attr('class', 'fl-dots');
   const particles = paths.flatMap((p, i) => [0, 0.33, 0.66].map((o) => ({ el: dots.append('circle').attr('r', 4.5).node()!, path: p.node()!, i, o })));
@@ -78,8 +137,12 @@ function groups(el: HTMLElement, c: Extract<D3Chart, { kind: 'groups' }>): Insta
     const bars = rows.append('rect').attr('class', (d) => `gr-bar${d.value === best ? ' best' : ''}`).attr('x', left).attr('y', 5).attr('height', rowH - 10).attr('rx', 5).attr('width', 0);
     const vals = rows.append('text').attr('class', 'gr-val').attr('y', rowH / 2 + 4).attr('x', left + 6).text((d) => `${d.value}%`);
     y += 28 + g.items.length * rowH + gap;
-    return { g, gg, bars, vals };
+    return { g, gg, bars, vals, rows };
   });
+  const bind = tipLayer(el);
+  for (const { g, rows } of gs) {
+    rows.each(function (d) { bind(this, { title: `${d.label}　${d.value}%`, body: g.name + (g.sub ? `｜${g.sub}` : ''), detail: d.detail }); });
+  }
   return {
     update(step) {
       for (const { g, gg, bars, vals } of gs) {
@@ -119,6 +182,11 @@ function logrange(el: HTMLElement, c: Extract<D3Chart, { kind: 'logrange' }>): I
   const bars = rows.append('rect').attr('class', 'lr-bar').attr('y', 10).attr('height', 22).attr('rx', 11)
     .attr('x', (d) => x(d.min)).attr('width', 0).attr('fill', `url(#${gid})`);
   rows.filter((d) => !!d.open).append('text').attr('class', 'lr-open').attr('y', 26).attr('x', (d) => x(d.max) + 6).text('→');
+  const bind = tipLayer(el);
+  rows.each(function (d) {
+    const range = d.min === d.max ? `${d.min}×` : `${d.min}–${d.max}×${d.open ? ' 以上' : ''}`;
+    bind(this, { title: `${d.label}　${range}`, body: d.sub, detail: d.detail });
+  });
   return {
     update(step) {
       bars.attr('width', (d) => (reduce || step >= d.at ? Math.max(22, x(d.max) - x(d.min)) : 0));
@@ -134,7 +202,7 @@ function logrange(el: HTMLElement, c: Extract<D3Chart, { kind: 'logrange' }>): I
 // ---------- stages：消費模型演進，代表消費者的點在每一列的階段間循環移動 ----------
 function stages(el: HTMLElement, c: Extract<D3Chart, { kind: 'stages' }>): Instance {
   const cols = max(c.rows, (r) => r.steps.length) ?? 5;
-  const W = 560, left = 112, rowH = 84, top = 8, cellW = (W - left - 10) / cols;
+  const W = 560, left = 112, rowH = 84, top = 8;
   const H = top + c.rows.length * rowH;
   const svg = select(el).append('svg').attr('viewBox', `0 0 ${W} ${H}`).attr('class', 'st');
   const rows = svg.selectAll('g.st-row').data(c.rows).join('g').attr('class', 'st-row').attr('transform', (_, i) => `translate(0,${top + i * rowH})`);
@@ -147,6 +215,16 @@ function stages(el: HTMLElement, c: Extract<D3Chart, { kind: 'stages' }>): Insta
   cells.append('text').attr('class', 'st-en').attr('x', band.bandwidth() / 2).attr('y', 22).attr('text-anchor', 'middle').text((d) => d.en);
   cells.append('text').attr('class', 'st-zh').attr('x', band.bandwidth() / 2).attr('y', 41).attr('text-anchor', 'middle').text((d) => d.zh);
   const dots = rows.append('circle').attr('class', 'st-dot').attr('r', 6).attr('cy', 66).attr('cx', left);
+  const bind = tipLayer(el);
+  rows.each(function (r) {
+    select(this).selectAll<SVGGElement, { en: string; zh: string; detail?: string; i: number }>('g.cell').each(function (s) {
+      bind(this, {
+        title: `${s.zh}　${s.en}`,
+        body: `${r.model}（${r.era}）第 ${s.i + 1} 步${s.i === 0 ? '：旅程的起點' : ''}`,
+        detail: s.detail,
+      });
+    });
+  });
   let shown = 0;
   return {
     update(step) {
