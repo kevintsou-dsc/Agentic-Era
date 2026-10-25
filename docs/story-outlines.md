@@ -88,7 +88,7 @@
 （已改寫：開場 → Doom Loop → +18%／+79% → 媒體布局矩陣 → **hscroll** 三個高注意力場域案例 → 收束）
 
 ### a11 ★ 吳宗霖、陳炯文〈從金曲獎到甄嬛傳〉p.80
-（已改寫：金曲獎收視 → 甄嬛傳儀式 → **hscroll** 國際案例 → 五階段 → Share of Memory）
+（2026-10-25 依新規範重寫：開場 → bignum 65% 借用式懷舊 → **d3 groups** 平成 Retro 世代差異 → 三組懷舊研究 list → 金曲獎收視 bars → 收視高點 hbars → 甄嬛傳（照片）→ ORANGE RANGE（照片＋幕後細節卡）→ 三個做法 list → **hscroll** 台視時光機／日清／芬達／香港麥當勞 → 品牌記憶策略 → 五階段 list → Share of Memory（Sonic 研究細節卡））
 
 ## Model
 
@@ -102,7 +102,7 @@
 | ⑥ | Simulation Before Decision；三種情況要搭配真人研究 | quote＋asks |
 
 ### a13 ★ 吳宗霖〈重建 SOV〉p.116
-（已改寫：磁吸支架 → lower funnel 的代價 → Share of Choice Context 三層 → 收束＋四個規劃問題）
+（2026-10-25 依新規範重寫；原刊無圖，全部依原文文字製圖：開場 → 干擾場域 list → AI 投放效率悖論 → bignum 約 20 個類似廣告 → **d3 logrange** CPM／CPC／CPA 成本倍數 → Share of Search 的限制（眼鏡門市）→ ESOV bars → 三層占位 layers → 四種競爭 list → 主場域分工 list → 收束＋四個規劃問題）
 
 ### a14 強義明〈衡斷力〉p.128
 一句話：當工具門檻消失，差距回到使用工具的人；Judge（衡斷力）是演算法世代最稀缺的能力。
