@@ -6,6 +6,7 @@ import { ARTICLES, THREADS, cite, fullTitle, type Article } from '../../../lib/a
 import { STORIES } from '../../../data/stories';
 import { FULLTEXT_REVIEWED } from '../../../lib/fulltext';
 import type { Story } from '../../../lib/story';
+import { storyMinutes } from '../../../lib/stats';
 
 export function getStaticPaths() {
   return ARTICLES.filter((a) => STORIES[a.id]).map((a) => ({ params: { slug: a.slug }, props: { a, story: STORIES[a.id] } }));
@@ -19,10 +20,10 @@ const thread = THREADS.find((t) => a.threads.includes(t.key));
 const sameThread = thread ? ARTICLES.filter((x) => x.threads.includes(thread.key) && STORIES[x.id]) : [];
 const next = sameThread.length > 1 ? sameThread[(sameThread.indexOf(a) + 1) % sameThread.length] : undefined;
 ---
-<Base title={`${fullTitle(a)}｜決策智慧 2026`} description={story.oneLiner} chapter={a.chapter} crumb={`${a.title}．90 秒`}>
+<Base title={`${fullTitle(a)}｜決策智慧 2026`} description={story.oneLiner} chapter={a.chapter} crumb={`${a.title}．精華 ${storyMinutes(story)} 分鐘`}>
   <section class="hero">
     {story.status !== 'reviewed' && <p class="draft">{story.status === 'judged' ? 'AI 初評通過・待人工校閱' : '草稿：待審定'}</p>}
-    <ArticleHead a={a} mode="story" />
+    <ArticleHead a={a} mode="story" storyMinutes={`${storyMinutes(story)} 分鐘`} />
     <p class="lede one"><span class="curated">一句話｜策展者整理</span><br />{story.oneLiner}</p>
     <p class="scroll-hint">往下捲動</p>
   </section>
@@ -43,7 +44,7 @@ const next = sameThread.length > 1 ? sameThread[(sameThread.indexOf(a) + 1) % sa
       <a class="nextcard" href={`/a/${next.slug}/`}>
         <span class="eyebrow">同一條主線｜{thread.name}</span>
         <b>{next.title}</b>
-        <span>{next.authors.map((x) => x.name).join('、')}｜90 秒</span>
+        <span>{next.authors.map((x) => x.name).join('、')}｜精華 {storyMinutes(STORIES[next.id])} 分鐘</span>
       </a>
     )}
     <a class="btn ghost" href="/#chapters">← 回到全書，依章節找文章</a>

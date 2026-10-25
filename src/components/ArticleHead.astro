@@ -1,7 +1,7 @@
 ---
 import { CHAPTERS, THREADS, type Article } from '../lib/articles';
 interface Props { a: Article; mode: 'story' | 'full'; storyMinutes?: string }
-const { a, mode, storyMinutes = '90 秒' } = Astro.props;
+const { a, mode, storyMinutes = '' } = Astro.props;
 const threads = THREADS.filter((t) => a.threads.includes(t.key));
 ---
 <header class="ahead">

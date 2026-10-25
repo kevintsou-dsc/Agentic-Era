@@ -1,6 +1,6 @@
 // 主文規則檢查（docs/story-guide.md §3）：
 // 每段主文（beat、hscroll 格、圖表 detail）都是完整句子、不以冒號結尾、長度合理、有出處；
-// 每篇主文合計 500–1,000 字。只檢查 src/data/stories/a*.ts。
+// 每篇主文合計 500–3,000 字（不追求 90 秒讀完；原文已條列的內容可以完整放入）。只檢查 src/data/stories/a*.ts。
 import { readFileSync, readdirSync } from 'node:fs';
 import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -32,7 +32,7 @@ for (const f of readdirSync(dir).filter((x) => /^a\d\d\.ts$/.test(x))) {
   for (const m of src.matchAll(/\{\s*\n?\s*text:\s*'((?:[^'\\]|\\.)*)',\s*\n?\s*(?!src:)(\w+):/g)) {
     if (m[2] !== 'src' && !/^(at|label|value|display|highlight)$/.test(m[2])) problems.push(`${id}：主文缺少出處「${m[1].slice(0, 20)}…」`);
   }
-  if (total < 500 || total > 1000) problems.push(`${id}：主文合計 ${total} 字，建議 500–1,000 字`);
+  if (total < 500 || total > 3000) problems.push(`${id}：主文合計 ${total} 字，建議 500–3,000 字`);
   summary.push(`${id} 主文 ${beats.length - details.length} 段、細節 ${details.length} 則、合計 ${total} 字`);
 }
 

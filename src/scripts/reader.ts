@@ -25,7 +25,9 @@ function load(slug: string) {
 }
 
 function highlight(root: HTMLElement, segs: Seg[]) {
-  for (const [i, s, e] of segs) {
+  // 同一段落有多處高亮時從後往前包：包住後段不會改變前段所在的文字節點與位置
+  const ordered = [...segs].sort((x, y) => x[0] - y[0] || y[1] - x[1]);
+  for (const [i, s, e] of ordered) {
     const el = root.querySelector<HTMLElement>(`[data-i="${i}"]`);
     const node = el?.firstChild;
     if (!el || !node || node.nodeType !== Node.TEXT_NODE) continue;

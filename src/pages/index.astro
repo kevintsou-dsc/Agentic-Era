@@ -6,15 +6,16 @@ import { ARTICLES, CHAPTERS, CHAPTER_ORDER, THREADS, totalMinutes, totalAuthors 
 import { STORIES } from '../data/stories';
 import { CORE_QUESTION, THREAD_LINES } from '../data/home';
 import { rich } from '../lib/rich';
+import { storyMinutes } from '../lib/stats';
 const hours = Math.floor(totalMinutes / 60);
 const mins = totalMinutes % 60;
 const firstOf = (key: string) => ARTICLES.find((a) => a.threads.includes(key as never) && STORIES[a.id]);
 ---
-<Base title="決策智慧 2026｜一個故事讀完整本" description="電通《決策智慧 2026》22 篇觀點的捲動閱讀版：1 分鐘看懂全書，90 秒讀完一篇，想深讀再看原文。" chapter="intro">
+<Base title="決策智慧 2026｜一個故事讀完整本" description="電通《決策智慧 2026》22 篇觀點的捲動閱讀版：1 分鐘看懂全書，幾分鐘讀完一篇精華，想深讀再看原文。" chapter="intro">
   <section class="hero">
     <p class="eyebrow">電通行銷傳播集團《決策智慧 2026》｜Agentic 時代：重塑品牌與人的真實距離</p>
     <h1 class="display">品牌離 AI 越近，<br />會離人越遠嗎？</h1>
-    <p class="lede">22 篇觀點、{totalAuthors} 位作者，原文讀完約 <b>{hours} 小時 {mins} 分</b>。這裡用 1 分鐘帶你看懂整本，每篇再用 90 秒讀完。</p>
+    <p class="lede">22 篇觀點、{totalAuthors} 位作者，原文讀完約 <b>{hours} 小時 {mins} 分</b>。這裡用 1 分鐘帶你看懂整本，每篇再用幾分鐘讀完精華。</p>
     <p class="actions">
       <span class="scroll-hint">往下捲動，故事會自己出現</span>
       <a class="skiplink" href="#chapters">或直接依章節找文章 ↓</a>
@@ -59,7 +60,7 @@ const firstOf = (key: string) => ARTICLES.find((a) => a.threads.includes(key as 
                   <b>{a.title}</b>
                   {a.subtitle && <span class="sub">{a.subtitle}</span>}
                   <span class="by">{a.authors.map((x) => x.name).join('、')}｜紙本 p.{a.pages[0]}</span>
-                  <em>{has ? '90 秒故事' : `原文約 ${a.minutes} 分鐘`}</em>
+                  <em>{has ? `精華 ${storyMinutes(STORIES[a.id])} 分鐘` : `原文約 ${a.minutes} 分鐘`}</em>
                 </a>
               </li>
             );
@@ -67,7 +68,7 @@ const firstOf = (key: string) => ARTICLES.find((a) => a.threads.includes(key as 
         </ul>
       </div>
     ))}
-    <p class="source">標題、作者與職稱以文章內頁為準。90 秒故事陸續上線中。</p>
+    <p class="source">標題、作者與職稱以文章內頁為準。精華故事陸續上線中。</p>
   </section>
 </Base>
 <style>
