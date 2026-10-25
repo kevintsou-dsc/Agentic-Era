@@ -5,9 +5,18 @@ import type { Scene } from '../lib/story';
 import { rich } from '../lib/rich';
 import SourceRef from './SourceRef.astro';
 import MoreRef from './MoreRef.astro';
-type S = Extract<Scene, { kind: 'hscroll' }>;
+import MoreBody from './MoreBody.astro';
+import type { More } from '../lib/story';type S = Extract<Scene, { kind: 'hscroll' }>;
 interface Props { s: S }
 const { s } = Astro.props;
+// 沒有案例圖片的格：細節直接攤在卡片上（短的直接顯示，長的改成下拉展開），不另開彈窗。
+// 細節裡有圖片、卡片本身沒有時，把圖片升到卡片上，細節仍用彈窗。
+const moreLen = (m: More) => (m.text ?? '').length + (m.quote?.text.length ?? 0);
+const view = s.panels.map((p) => {
+  const image = p.image ?? p.more?.image;
+  const inline = !image && !!p.more;
+  return { p, image, inline, fold: inline && moreLen(p.more!) > 90 };
+});
 ---
 <section class="hscroll" data-hscroll style={`--panels:${s.panels.length}`} aria-label={s.title}>
   <div class="hs-pin">
@@ -17,15 +26,27 @@ const { s } = Astro.props;
     </div>
     <div class="hs-viewport">
       <ol class="hs-track" data-hs-track>
-        {s.panels.map((p, i) => (
+        {view.map(({ p, image, inline, fold }, i) => (
           <li class="hs-panel">
             <span class="hs-no">{String(i + 1).padStart(2, '0')} / {String(s.panels.length).padStart(2, '0')}</span>
-            {p.image && <img class="hs-img" src={p.image.src} alt={p.image.alt} width={p.image.w} height={p.image.h} loading="lazy" decoding="async" />}
+            {image && <img class:list={['hs-img', { wide: !!image.w && !!image.h && image.w / image.h > 2.2 }]} src={image.src} alt={image.alt} width={image.w} height={image.h} loading="lazy" decoding="async" />}
             {p.kicker && <span class="hs-kicker">{p.kicker}</span>}
             <h3>{p.title}</h3>
             {p.figure && <p class="hs-fig"><b>{p.figure.value}</b><span>{p.figure.label}</span></p>}
             <p class="hs-text"><span set:html={rich(p.text)} /><SourceRef src={p.src} /></p>
-            <MoreRef m={p.more} />
+            {!inline && <MoreRef m={p.more} />}
+            {inline && !fold && (
+              <div class="hs-more">
+                <p class="hs-more-title">{p.more!.title}</p>
+                <MoreBody m={p.more!} />
+              </div>
+            )}
+            {fold && (
+              <details class="hs-more">
+                <summary class="hs-more-title">{p.more!.title}</summary>
+                <MoreBody m={p.more!} />
+              </details>
+            )}
           </li>
         ))}
       </ol>
@@ -47,12 +68,27 @@ const { s } = Astro.props;
   .hs-panel { flex: none; width: clamp(16rem, 42vw, 34rem); min-height: min(36svh, 16rem); display: grid; align-content: start; gap: 8px; padding: 22px 22px 18px; border-radius: 16px; background: var(--paper); border: 2px solid var(--ink); box-shadow: 6px 6px 0 var(--accent); }
   .hs-no { font-family: var(--font-mono); font-size: 12px; color: var(--ink-3); }
   .hs-img { width: 100%; height: min(24svh, 12rem); object-fit: cover; border-radius: 10px; border: 1px solid var(--line); background: var(--paper-2); }
+  /* 橫幅型圖片（例如寬 4:1 的海報）若用 cover 會被裁成一小塊再放大而變糊，改為完整顯示 */
+  .hs-img.wide { height: auto; max-height: min(24svh, 12rem); object-fit: contain; }
   .hs-kicker { font-size: 12px; font-weight: 700; color: var(--accent-ink); }
   .hs-panel h3 { margin: 0; font-size: clamp(20px, 1.4vw + 14px, 26px); line-height: 1.35; }
   .hs-fig { margin: 4px 0; display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap; }
   .hs-fig b { font-size: clamp(30px, 3vw + 16px, 44px); color: var(--accent-ink); line-height: 1.1; font-variant-numeric: tabular-nums; }
   .hs-fig span { font-size: 13px; color: var(--ink-2); }
   .hs-text { margin: 0; font-size: 15px; line-height: 1.75; }
+  /* 卡片內的細節：淡底色區塊，與主文區隔；引文縮小成卡片尺寸 */
+  .hs-more { margin-top: 4px; padding: 12px 14px; border-radius: 10px; background: var(--paper-2); max-height: 34svh; overflow: auto; }
+  .hs-more-title { margin: 0 0 6px; font-size: 13px; font-weight: 700; color: var(--accent-ink); }
+  .hs-more-title::before { content: "延伸｜"; color: var(--ink-3); font-weight: 500; }
+  details.hs-more > summary { cursor: pointer; list-style: none; margin: 0; }
+  details.hs-more > summary::-webkit-details-marker { display: none; }
+  details.hs-more > summary::after { content: "　▾ 展開"; font-weight: 500; color: var(--ink-3); }
+  details.hs-more[open] > summary { margin-bottom: 8px; }
+  details.hs-more[open] > summary::after { content: "　▴ 收合"; }
+  .hs-more :global(.quote) { font-size: 15px; line-height: 1.7; border-left-width: 3px; padding-left: 12px; }
+  .hs-more :global(.quote-cite) { margin-top: 6px; font-size: 12px; }
+  .hs-more :global(.more-text) { font-size: 14px; margin-bottom: 8px; }
+  .hs-more :global(.more-links) { margin-top: 10px; }
   .hs-foot { display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center; width: 100%; }
   .hs-bar { flex: 0 0 8rem; height: 4px; border-radius: 2px; background: var(--paper-2); overflow: hidden; }
   .hs-bar span { display: block; height: 100%; background: var(--accent-ink); transform-origin: left; transform: scaleX(0); }

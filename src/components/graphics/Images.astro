@@ -9,7 +9,7 @@ const { g } = Astro.props;
   <div class="frame">
     {g.images.map((im, i) => (
       <figure class="pic" data-at={im.at} data-focus={im.at} style={`--z:${i}`}>
-        <img src={im.src} alt={im.alt} width={im.w} height={im.h} loading="lazy" decoding="async" />
+        <img src={im.src} alt={im.alt} width={im.w} height={im.h} style={im.w ? `max-width:${im.w}px` : undefined} loading="lazy" decoding="async" />
         <figcaption>
           {im.caption}{im.credit && <span class="credit">　{im.credit}</span>}
           {im.links?.map((l) => <a class="lnk" href={l.url} target="_blank" rel="noopener noreferrer">{l.kind === 'video' ? '看影片' : '看原始連結'}：{l.label} ↗</a>)}

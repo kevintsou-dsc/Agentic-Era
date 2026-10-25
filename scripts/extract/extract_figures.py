@@ -2,7 +2,7 @@
 
 輸出：
   content/figures/aNN.json   每篇的圖清單（圖號、紙本頁、圖說、資料來源、圖檔、附近的 QR 連結）與註解網址
-  public/fig/aNN/*.webp      案例照片（最長邊 1280px、品質 78）
+  public/fig/aNN/*.webp      案例照片（依 PDF 內嵌原始解析度輸出，最長邊 1600px、品質 86）
   <preview_dir>/aNN-pNN.png  （選用）每個跨頁的縮圖，供人工比對向量圖表
 
 用法：.venv-tools/Scripts/python scripts/extract/extract_figures.py <單篇完稿PDF資料夾> [preview_dir]
@@ -119,13 +119,17 @@ def extract(pdf, num, start, out_img_dir, preview_dir):
                 source = m.group(2).strip() if m else ""
             # 圖片周圍的 QR（QR 通常印在圖片下方的圖說旁）
             near = [q["url"] for q in qrs if q["page"] == pg and r.x0 - 80 < q["x"] < r.x1 + 80 and r.y0 - 60 < q["y"] < r.y1 + 110]
-            # 以 2.5 倍解析度裁切輸出（可處理遮罩與合成圖）
-            clip = page.get_pixmap(matrix=fitz.Matrix(2.5, 2.5), clip=r)
+            # 依內嵌圖片的原始像素決定放大倍率（舊版固定 2.5 倍≈180dpi，會把高解析圖縮小一半）。
+            # 仍以「裁切渲染」輸出，才能保留 InDesign 的裁切框與遮罩；倍率夾在 2.5–6 倍之間。
+            full = fitz.Rect(info["bbox"])
+            native = info.get("width", 0) / max(full.width, 1)
+            zoom = max(2.5, min(native, 6))
+            clip = page.get_pixmap(matrix=fitz.Matrix(zoom, zoom), clip=r)
             im = Image.open(io.BytesIO(clip.tobytes("png"))).convert("RGB")
-            im.thumbnail((1280, 1280))
+            im.thumbnail((1600, 1600), Image.LANCZOS)
             name = f"p{pg}-{len([f for f in figures if f['page'] == pg]) + 1}.webp"
             out_img_dir.mkdir(parents=True, exist_ok=True)
-            im.save(out_img_dir / name, "WEBP", quality=78, method=6)
+            im.save(out_img_dir / name, "WEBP", quality=86, method=6)
             figures.append({"page": pg, "image": f"/fig/{aid}/{name}", "w": im.width, "h": im.height,
                             "caption": caption, "source": source, "qr": near,
                             "bbox": [round(v) for v in (r.x0, r.y0, r.x1, r.y1)]})

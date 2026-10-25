@@ -335,7 +335,7 @@ export const story: Story = {
         },
         {
           kicker: '捷運吊環', title: 'CeraVe 適樂膚', figure: { value: '2.4 萬篇', label: '單日社群討論' },
-          image: { src: '/fig/a10/p78-1.webp', alt: '捷運車廂吊環上掛著 CeraVe 潔膚露體驗瓶，乘客伸手取下', w: 336, h: 460 },
+          image: { src: '/fig/a10/p78-1.webp', alt: '捷運車廂吊環上掛著 CeraVe 潔膚露體驗瓶，乘客伸手取下', w: 498, h: 684 },
           text: 'CeraVe 在淡水信義線把上萬份 30ml 潔膚露體驗瓶掛上車廂吊環，乘客抬頭看到、伸手帶走，再靠車廂裡的 QR Code 接到線上優惠。',
           src: [
             { article: 'a10', page: 78, text: '把上萬份 30ml 的潔膚露體驗瓶直接掛上車廂吊環' },
@@ -343,7 +343,7 @@ export const story: Story = {
           ],
           more: {
             title: '案例：CeraVe 萬人夏季潔膚體驗行動',
-            image: { src: '/fig/a10/p78-1.webp', alt: '捷運車廂吊環上掛著 CeraVe 潔膚露體驗瓶', w: 336, h: 460, caption: 'CeraVe 適樂膚單日引爆 2.4 萬篇社群討論，以破圈體驗創造有機聲量與品牌好感', credit: '資料來源：電通台灣' },
+            image: { src: '/fig/a10/p78-1.webp', alt: '捷運車廂吊環上掛著 CeraVe 潔膚露體驗瓶', w: 498, h: 684, caption: 'CeraVe 適樂膚單日引爆 2.4 萬篇社群討論，以破圈體驗創造有機聲量與品牌好感', credit: '資料來源：電通台灣' },
             quote: { article: 'a10', page: 78, text: '沒有人被逼著看任何東西，乘客卻自己湊上去、拍照、上傳，在Threads 上聊開了。品牌的記憶點，就這樣隨著一雙雙伸出去的手，被帶出了車廂。' },
           },
         },

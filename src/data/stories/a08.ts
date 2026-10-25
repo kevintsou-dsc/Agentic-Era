@@ -101,7 +101,7 @@ export const story: Story = {
         },
         {
           kicker: '現場 3', title: '2.5 次元',
-          image: { src: '/fig/a08/p61-1.webp', alt: '音樂劇《魔女宅急便》台北國家戲劇院演出海報', w: 1209, h: 284 },
+          image: { src: '/fig/a08/p61-1.webp', alt: '音樂劇《魔女宅急便》台北國家戲劇院演出海報', w: 1266, h: 298 },
           text: '《魔女宅急便》音樂劇首度來台、《神隱少女》舞台劇也將登台；當角色從平面走向真人，粉絲買單的，是一段能夠親身參與的世界觀體驗。',
           src: [
             { article: 'a08', page: 61, text: '日本經典 IP《魔女宅急便》音樂劇首度來台演出' },
@@ -110,13 +110,13 @@ export const story: Story = {
           ],
           more: {
             title: '案例：《魔女宅急便》音樂劇',
-            image: { src: '/fig/a08/p61-1.webp', alt: '音樂劇《魔女宅急便》台北國家戲劇院演出海報', w: 1209, h: 284, caption: '經典動畫《魔女宅急便》改編為音樂劇，延伸至展演消費與體驗經濟', credit: '資料來源：牛耳藝術 MNA 售票網' },
+            image: { src: '/fig/a08/p61-1.webp', alt: '音樂劇《魔女宅急便》台北國家戲劇院演出海報', w: 1266, h: 298, caption: '經典動畫《魔女宅急便》改編為音樂劇，延伸至展演消費與體驗經濟', credit: '資料來源：牛耳藝術 MNA 售票網' },
             links: [{ url: 'https://ticket.mna.com.tw/UTK0201_?PRODUCT_ID=P1AH1R17', label: '牛耳藝術售票頁', kind: 'web' }],
           },
         },
         {
           kicker: '現場 4', title: '經典 IP',
-          image: { src: '/fig/a08/p61-2.webp', alt: '《憤怒鳥》電影第三集宣傳圖', w: 563, h: 487 },
+          image: { src: '/fig/a08/p61-2.webp', alt: '《憤怒鳥》電影第三集宣傳圖', w: 1249, h: 1081 },
           text: '《憤怒鳥》宣布回歸、《亂馬½》推出重製版，眾多經典 IP 以不同形式重返大眾視野，帶來懷舊情懷與新鮮感兼具的雙重體驗。',
           src: [
             { article: 'a08', page: 61, text: '眾多經典 IP 以不同形式重返大眾視野，為消費者帶來懷舊情懷與新鮮感兼具的雙重體驗' },
@@ -125,13 +125,13 @@ export const story: Story = {
           ],
           more: {
             title: '案例：《憤怒鳥》電影版第三集',
-            image: { src: '/fig/a08/p61-2.webp', alt: '《憤怒鳥》電影第三集宣傳圖', w: 563, h: 487, caption: '遊戲 IP《憤怒鳥》電影版出到第三套，對新一代觀眾來說，憤怒鳥已經是電影明星大於遊戲明星', credit: '資料來源：派拉蒙影業' },
+            image: { src: '/fig/a08/p61-2.webp', alt: '《憤怒鳥》電影第三集宣傳圖', w: 1249, h: 1081, caption: '遊戲 IP《憤怒鳥》電影版出到第三套，對新一代觀眾來說，憤怒鳥已經是電影明星大於遊戲明星', credit: '資料來源：派拉蒙影業' },
             links: [{ url: 'https://www.ludens.com.tw/angry-birds-movie-3-release-up-2026-mrbeast-cast/', label: '《憤怒鳥3》報導', kind: 'web' }],
           },
         },
         {
           kicker: '現場 5', title: '短劇', figure: { value: '97%', label: 'Z 世代三個月內看過短影音' },
-          image: { src: '/fig/a08/p62-1.webp', alt: 'Catchplay+ 與 SLL 合作的直式短劇', w: 1206, h: 546 },
+          image: { src: '/fig/a08/p62-1.webp', alt: 'Catchplay+ 與 SLL 合作的直式短劇', w: 1270, h: 575 },
           text: '短影音完成用戶教育之後，市場轉向更完整的故事與長期的 IP 價值，短劇正快速成為下一個內容競爭的新戰場。',
           src: [
             { article: 'a08', page: 62, text: '過去三個月曾觀看短影音的 Z 世代高達97%' },
@@ -139,7 +139,7 @@ export const story: Story = {
           ],
           more: {
             title: '短劇的五大發展方向',
-            image: { src: '/fig/a08/p62-1.webp', alt: 'Catchplay+ 與 SLL 合作的直式短劇', w: 1206, h: 546, caption: '台韓跨國合作不一定走大螢幕或電視劇，Catchplay+ 與韓國知名製作單位 SLL 直攻觀眾近期最愛的直式輕短劇', credit: '資料來源：截自 Catchplay+ 網站' },
+            image: { src: '/fig/a08/p62-1.webp', alt: 'Catchplay+ 與 SLL 合作的直式短劇', w: 1270, h: 575, caption: '台韓跨國合作不一定走大螢幕或電視劇，Catchplay+ 與韓國知名製作單位 SLL 直攻觀眾近期最愛的直式輕短劇', credit: '資料來源：截自 Catchplay+ 網站' },
             quote: { article: 'a08', page: 62, text: '首先，隨著市場競爭加劇，產業已由追求數量與上線速度，轉向內容品質與製作水準的全面提升，精品化成為市場共識。' },
             links: [{ url: 'https://report.twnic.tw/2025/', label: 'TWNIC 2025 台灣網路報告', kind: 'report' }],
           },
@@ -165,7 +165,7 @@ export const story: Story = {
       kind: 'prose',
       eyebrow: '從流量到轉換',
       heading: '原創娛樂 IP《鑑定師 The Inspector Global》',
-      image: { src: '/fig/a08/p64-2.webp', alt: '2025 SHUHUA Talk Concert 主視覺：葉舒華手持放大鏡', w: 563, h: 441, caption: '透過原創娛樂 IP《鑑定師 The Inspector Global》，電通娛樂示範如何把線上粉絲熱情轉化為線下體驗與可衡量的商業成長', credit: '資料來源：截自鑑定師 FB 粉專 & YT 頻道' },
+      image: { src: '/fig/a08/p64-2.webp', alt: '2025 SHUHUA Talk Concert 主視覺：葉舒華手持放大鏡', w: 683, h: 535, caption: '透過原創娛樂 IP《鑑定師 The Inspector Global》，電通娛樂示範如何把線上粉絲熱情轉化為線下體驗與可衡量的商業成長', credit: '資料來源：截自鑑定師 FB 粉專 & YT 頻道' },
       beats: [
         {
           text: '許多品牌即使創造了大量線上觀看與社群互動，仍無法把數位聲量轉成線下參與與實際消費；對 Gen Z 而言，被動式廣告與折扣促銷，已不足以建立有意義的品牌連結。',

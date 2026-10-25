@@ -2,32 +2,18 @@
 // 細節按鈕「＋ 看更多」：hover 預覽一句話，點擊開啟細節卡（原文詳細段落、案例圖片、影片與網站連結）。
 // 細節卡內容放在 <template>，由 scripts/more.ts 放進 <dialog id="more">。
 import type { More } from '../lib/story';
-import Quote from './Quote.astro';
-import { rich } from '../lib/rich';
+import MoreBody from './MoreBody.astro';
 
 interface Props { m?: More; compact?: boolean; class?: string }
 const { m, compact = false, class: cls } = Astro.props;
 const preview = m ? (m.text ?? m.image?.caption ?? m.title) : '';
-const kindLabel: Record<string, string> = { video: '看影片', web: '看網站', social: '看貼文', report: '看報告' };
 ---
 {m && (
   <button type="button" class:list={['more-ref', { compact }, cls]} data-more data-tip={preview} aria-haspopup="dialog">
     {compact ? '＋細節' : `＋ ${m.title}`}
     <template>
       <h3 class="more-title">{m.title}</h3>
-      {m.image && (
-        <figure class="more-fig">
-          <img src={m.image.src} alt={m.image.alt} width={m.image.w} height={m.image.h} loading="lazy" decoding="async" />
-          {(m.image.caption || m.image.credit) && <figcaption>{m.image.caption}{m.image.credit && <span class="credit">　{m.image.credit}</span>}</figcaption>}
-        </figure>
-      )}
-      {m.text && <p class="more-text" set:html={rich(m.text)} />}
-      {m.quote && <Quote q={m.quote} />}
-      {m.links?.length && (
-        <p class="more-links">
-          {m.links.map((l) => <a class="btn small" href={l.url} target="_blank" rel="noopener noreferrer">{kindLabel[l.kind ?? 'web'] ?? '看連結'}：{l.label} ↗</a>)}
-        </p>
-      )}
+      <MoreBody m={m} />
     </template>
   </button>
 )}
