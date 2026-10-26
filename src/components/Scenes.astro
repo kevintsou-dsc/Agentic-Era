@@ -15,7 +15,6 @@ const { scenes } = Astro.props;
       <section class:list={['scrolly', { 'graphic-right': (s.side ?? (si % 2 ? 'right' : 'left')) === 'right' }]}>
         <div class="graphic">
           <Graphic g={s.graphic} />
-          {s.src && <p class="graphic-src">這張圖出自<SourceRef src={s.src} /></p>}
         </div>
         <div class="steps">
           {s.beats.map((b: Beat) => (
@@ -117,7 +116,6 @@ const { scenes } = Astro.props;
   }
   .beat { margin: 0 0 .6em; }
   .graphic { flex-direction: column; }
-  .graphic-src { margin: 8px 0 0; font-size: 12px; color: var(--ink-3); }
 
   .prose { display: grid; gap: clamp(24px, 4vw, 56px); align-items: center; padding-top: 12svh; padding-bottom: 12svh; }
   .prose-text { max-width: 40rem; font-size: clamp(17px, .6vw + 14px, 19px); }

@@ -65,7 +65,7 @@ export type Graphic =
       quads: { case: string; name: string; items: string[] }[];
       source: string;
     }
-  | { type: 'list'; title?: string; items: { title: string; desc?: string; at?: number; more?: More }[]; source: string }
+  | { type: 'list'; title?: string; flip?: boolean; items: { title: string; desc?: string; at?: number; more?: More }[]; source: string }
   /** 案例圖片（可多張，第 k 段主文顯示第 k 張） */
   | { type: 'images'; images: (Img & { at: number; links?: Link[] })[]; source: string }
   /** d3 互動圖表；chart 對應 src/components/d3/ 下的元件 */
@@ -78,7 +78,7 @@ export type D3Chart =
   /**
    * 圖表元素的說明框（hover／聚焦／點擊），規則見 docs/story-guide.md §5.1：
    *   只放策展補充（extra）：原文沒講、讀者需要才看得懂的背景、定義、例子，說明框標示「策展補充（非原文）」。
-   *   原文內容一律寫進左側主文；整張圖的原文出處只標一次（scene.src 與 source）。
+   *   原文內容一律寫進左側主文；整張圖的出處只顯示 source 一次（scene.src 只供比對，不顯示）。
    * 每個元素都要有 extra，至少 40 字（lint 檢查）。
    */
   | {

@@ -48,6 +48,10 @@ for (const f of readdirSync(dir).filter((x) => /^a\d\d\.ts$/.test(x))) {
     if (sc.kind === 'bignum' && sc.people && Math.abs((sc.people.filled / sc.people.total) * 100 - sc.value) > 0.5) {
       problems.push(`${id}：人形圖 ${sc.people.filled}/${sc.people.total} 與大數字 ${sc.value}${sc.unit} 不一致`);
     }
+    // 翻面卡每張都要有背面（desc）
+    if (sc.kind === 'graphic' && sc.graphic.type === 'list' && sc.graphic.flip) {
+      sc.graphic.items.filter((it) => !it.desc).forEach((it) => problems.push(`${id}：翻面卡「${it.title}」沒有背面（desc）`));
+    }
     const c = sc.kind === 'graphic' && sc.graphic.type === 'd3' ? sc.graphic.chart : null;
     if (!c) continue;
     if (c.kind === 'flowloop') {

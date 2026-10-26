@@ -42,6 +42,7 @@ export const story: Story = {
       side: 'right',
       graphic: {
         type: 'list',
+        flip: true,
         title: '看似是這個問題，背後其實是那個問題',
         items: [
           { title: '看似廣告聲量不足', desc: '背後其實是品牌定位不夠清楚', at: 1 },

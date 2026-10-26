@@ -1,5 +1,6 @@
 ---
 // 清單型框架：第 k 步出現第 k 項（或用 at 讓多項同一步出現），當下那幾項加重
+// flip：翻面卡，正面是 title（表象），hover／聚焦／點按翻到背面看 desc（真因）
 import type { Graphic } from '../../lib/story';
 import MoreRef from '../MoreRef.astro';
 type G = Extract<Graphic, { type: 'list' }>;
@@ -10,8 +11,25 @@ const together = new Set(g.items.map((it, i) => it.at ?? i + 1)).size === 1;
 ---
 <div class="stage list">
   {g.title && <p class="title">{g.title}</p>}
-  <ol class:list={['items', { together }]} style={`--n:${g.items.length}`}>
-    {g.items.map((it, i) => (
+  {g.flip && <p class="hint">滑過或點按卡片，翻面看背後原因</p>}
+  <ol class:list={['items', { together, flip: g.flip }]} style={`--n:${g.items.length}`}>
+    {g.items.map((it, i) => g.flip ? (
+      <li data-at={it.at ?? i + 1} data-focus={together ? undefined : (it.at ?? i + 1)} tabindex="0" aria-label={`${it.title}：${it.desc ?? ''}`}>
+        <div class="card">
+          <div class="face front" aria-hidden="true">
+            <span class="no">{String(i + 1).padStart(2, '0')}</span>
+            <span class="tag">看似</span>
+            <span class="t">{it.title.replace(/^看似/, '')}</span>
+            <span class="turn">翻面 ↻</span>
+          </div>
+          <div class="face back" aria-hidden="true">
+            <span class="no">{String(i + 1).padStart(2, '0')}</span>
+            <span class="tag">背後</span>
+            <span class="t">{(it.desc ?? '').replace(/^背後(其實|可能)?是/, '')}</span>
+          </div>
+        </div>
+      </li>
+    ) : (
       <li data-at={it.at ?? i + 1} data-focus={together ? undefined : (it.at ?? i + 1)} >
         <span class="no">{String(i + 1).padStart(2, '0')}</span>
         <span class="t">{it.title}</span>
@@ -25,10 +43,29 @@ const together = new Set(g.items.map((it, i) => it.at ?? i + 1)).size === 1;
 <style>
   .list { width: 100%; display: grid; gap: 14px; }
   .title { margin: 0; font-weight: 700; font-size: clamp(18px, 1.6vw + 10px, 24px); }
+  .hint { margin: -8px 0 0; font-size: 13px; color: var(--ink-3); }
   .items { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 14rem), 1fr)); gap: 10px; }
   li { position: relative; display: grid; gap: 2px; align-content: start; padding: 12px 14px; border-radius: 12px; border: 2px solid color-mix(in srgb, var(--accent-ink) calc(var(--focus) * 100%), var(--line)); background: color-mix(in srgb, var(--accent) calc(var(--focus) * 100%), var(--paper)); opacity: calc(.2 + .8 * var(--on)); transform: translateY(calc((1 - var(--on)) * 10px)); transition: opacity .5s, transform .5s, background .4s, border-color .4s; }
   .together li { --focus: 0; border-color: var(--ink-3); }
   .no { font-family: var(--font-mono); font-size: 12px; color: var(--ink-3); }
   .t { font-weight: 800; font-size: 16px; line-height: 1.4; }
   .d { font-size: 13px; color: var(--ink-2); line-height: 1.5; }
+
+  /* 翻面卡：兩面疊在同一格，卡高取兩面較高者 */
+  .flip li { padding: 0; border: 0; background: none; perspective: 900px; cursor: pointer; outline: none; }
+  .flip .card { display: grid; min-height: 7.5rem; transform-style: preserve-3d; transition: transform .6s cubic-bezier(.2, .7, .2, 1); }
+  .flip .face { grid-area: 1 / 1; display: grid; gap: 4px; align-content: start; padding: 12px 14px; border-radius: 12px; border: 2px solid var(--ink-3); background: var(--paper); backface-visibility: hidden; -webkit-backface-visibility: hidden; }
+  .flip .back { transform: rotateY(180deg); background: var(--accent); border-color: var(--accent-ink); }
+  .flip .tag { justify-self: start; font-size: 12px; font-weight: 700; padding: 1px 8px; border-radius: 999px; border: 1px solid currentColor; color: var(--ink-2); }
+  .flip .back .tag { color: var(--accent-ink); }
+  .flip .turn { align-self: end; justify-self: end; font-size: 12px; color: var(--ink-3); }
+  .flip li:hover .card, .flip li:focus-within .card { transform: rotateY(180deg); }
+  .flip li:focus-visible .face { box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent-ink) 40%, transparent); }
+  @media (prefers-reduced-motion: reduce) {
+    .flip .card { transform: none !important; transition: none; }
+    .flip .face { backface-visibility: visible; transition: opacity .3s; }
+    .flip .back { transform: none; opacity: 0; }
+    .flip li:hover .back, .flip li:focus-within .back { opacity: 1; }
+    .flip li:hover .front, .flip li:focus-within .front { opacity: 0; }
+  }
 </style>
