@@ -78,6 +78,8 @@
 | 作者親身經驗、小故事 | `art` 分格插畫（不要用 bignum） | a13 磁吸支架 |
 | 作者的金句 | `quote` | 每篇收束 |
 
+元件內的 class 名稱要加元件前綴（例如翻面卡用 `fc-`）。`.card`、`.flip`、`.step` 這類通用名稱會吃到 Scenes 與 global.css 的樣式，翻面卡第一版就因此多出外框、尺寸不一，也翻不了面。
+
 需要新的 d3 圖時：先確認上表沒有合適的，再新增 `D3Chart` kind。新圖要同時加四處：`story.ts` 型別、`d3charts.ts` builder、`D3Chart.astro` 的 CSS 與純文字 fallback，以及 `lint-stories.mjs` 的說明框檢查。
 
 ---
