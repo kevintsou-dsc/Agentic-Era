@@ -527,7 +527,7 @@ export const story: Story = {
       kind: 'graphic',
       graphic: {
         type: 'list',
-        layout: 'timeline',
+        layout: 'polaroid',
         title: '從記憶符碼到新記憶：五個階段',
         items: [
           { title: '記憶｜大家已經共同記得什麼？', desc: '盤點記憶符碼、獨特品牌資產、經典內容與生活場景', at: 1 },
@@ -536,7 +536,7 @@ export const story: Story = {
           { title: '橋接｜如何讓熟悉成為新內容入口？', desc: '用熟悉的人物與作品，帶出新的內容', at: 2 },
           { title: '新記憶｜今天要留下什麼給十年後？', desc: '建立可持續的角色、聲音、視覺、產品符號與文化事件', at: 3 },
         ],
-        source: '依據 吳宗霖、陳炯文〈從金曲獎到甄嬛傳〉紙本 p.91 行動表',
+        source: '依據 吳宗霖、陳炯文〈從金曲獎到甄嬛傳〉紙本 p.91 行動表；拍立得造型為策展的視覺比喻',
       },
       src: [{ article: 'a11', page: 91, text: '盤點記憶符碼、獨特品牌資產、經典內容與生活場景' }],
       beats: [

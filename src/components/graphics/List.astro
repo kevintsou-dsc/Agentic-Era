@@ -3,6 +3,9 @@
 // flip：翻面卡，正面是 title（表象），hover／聚焦／點按翻到背面看 desc（真因）
 import type { Graphic } from '../../lib/story';
 import MoreRef from '../MoreRef.astro';
+import Tram from './list/Tram.astro';
+import Polaroid from './list/Polaroid.astro';
+import Hanger from './list/Hanger.astro';
 type G = Extract<Graphic, { type: 'list' }>;
 interface Props { g: G }
 const { g } = Astro.props;
@@ -29,7 +32,7 @@ const name = (t: string) => (t.includes('｜') ? t.split('｜').slice(1).join('�
 <div class="stage list">
   {g.title && <p class="title">{g.title}</p>}
   {g.flip && <p class="hint">滑過或點按卡片，翻面看背後原因</p>}
-  {timeline ? (
+  {layout === 'tram' ? <Tram g={g} /> : layout === 'polaroid' ? <Polaroid g={g} /> : layout === 'hanger' ? <Hanger g={g} /> : timeline ? (
     <ol class:list={['tl', { 'tl-v': vertical, together }]} style={`--n:${n}`}>
       {g.items.map((it, i) => (
         <li data-at={it.at ?? i + 1} data-focus={together ? undefined : (it.at ?? i + 1)} class:list={{ 'tl-last': i === n - 1 }}>

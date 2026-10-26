@@ -219,14 +219,14 @@ export const story: Story = {
       side: 'right',
       graphic: {
         type: 'list',
-        layout: 'timeline',
+        layout: 'hanger',
         title: '顧客體驗三階段演進：從固定流程，走向依情境調整',
         items: [
           { title: 'Stage 1｜靜態顧客體驗 Static CX', desc: '破碎通路，被動回應', at: 1 },
           { title: 'Stage 2｜適應式顧客體驗 Adaptive CX', desc: '模組互動，情境引導', at: 2 },
           { title: 'Stage 3｜生成式顧客體驗 Generative CX', desc: '主動預測，即時數據', at: 3 },
         ],
-        source: '圖：顧客體驗三階段演進歷程｜原圖以生成式 AI 工具輔助生成，概念與內容由作者規劃，鄭怡櫛、張家誠〈生成式體驗來臨〉紙本 p.141',
+        source: '圖：顧客體驗三階段演進歷程｜原圖以生成式 AI 工具輔助生成，概念與內容由作者規劃，鄭怡櫛、張家誠〈生成式體驗來臨〉紙本 p.141；衣架造型為策展的視覺比喻',
       },
       src: [{ article: 'a15', page: 141, text: '顧客體驗三階段演進歷程' }],
       figures: [

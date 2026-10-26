@@ -1,0 +1,84 @@
+---
+// 時間軸的「衣架」造型（a15 顧客體驗三階段）：吊桿上依序掛著現成 T 恤、可調整的襯衫、量身訂做的西裝外套，
+// 比喻 靜態 → 適應式 → 生成式（策展的視覺比喻，文字照錄原文）。第 k 段主文時第 k 件衣服上色、輕輕擺動。
+// 標題「階段｜名稱」拆成階段標籤與名稱。class 一律加 hg- 前綴。
+import type { Graphic } from '../../../lib/story';
+type G = Extract<Graphic, { type: 'list' }>;
+interface Props { g: G }
+const { g } = Astro.props;
+const split = (t: string) => (t.includes('｜') ? t.split('｜') : ['', t]);
+const fit = ['現成尺寸', '可以調整', '量身訂做'];
+const hook = 'M60 14 q0 -8 6 -8 q6 0 6 6 q0 5 -6 7 l-6 3 v4';
+const bar = 'M60 26 L20 42 Q16 44 20 46 L100 46 Q104 44 100 42 Z';
+---
+<div class="hg" style={`--n:${g.items.length}`}>
+  <span class="hg-rail" aria-hidden="true"></span>
+  <ol>
+    {g.items.map((it, i) => {
+      const [phase, name] = split(it.title);
+      return (
+        <li data-at={it.at ?? i + 1} data-focus={it.at ?? i + 1}>
+          <svg class="hg-cloth" viewBox="0 0 120 184" aria-hidden="true">
+            <path class="hg-hanger" d={hook} /><path class="hg-hanger" d={bar} />
+            {i % 3 === 0 && (
+              <g>
+                <path class="hg-fill hg-t" d="M44 40 C50 46 70 46 76 40 C88 42 98 46 108 54 C112 64 114 70 116 80 L98 86 C96 80 94 76 92 72 C93 100 93 130 94 168 C72 174 48 174 26 168 C27 130 27 100 28 72 C26 76 24 80 22 86 L4 80 C6 70 8 64 12 54 C22 46 32 42 44 40 Z" />
+                <path class="hg-line" d="M44 40 C50 50 70 50 76 40" />
+                <path class="hg-fold" d="M40 92 C42 120 40 146 42 164 M80 100 C78 124 80 148 78 166 M28 72 C30 70 31 66 30 62 M92 72 C90 70 89 66 90 62" />
+              </g>
+            )}
+            {i % 3 === 1 && (
+              <g>
+                <path class="hg-fill hg-s" d="M46 38 C36 41 24 45 14 52 C9 70 6 92 4 116 L20 120 C23 100 26 86 30 74 C30 106 29 140 30 172 C50 177 70 177 90 172 C91 140 90 106 90 74 C94 86 97 100 100 120 L116 116 C114 92 111 70 106 52 C96 45 84 41 74 38 Z" />
+                <path class="hg-collar" d="M46 38 L52 56 L60 46 L68 56 L74 38 C68 41 52 41 46 38 Z" />
+                <path class="hg-line" d="M60 46 V172 M5 108 C10 110 16 112 21 112 M115 108 C110 110 104 112 99 112" />
+                <circle class="hg-btn" cx="63" cy="70" r="1.8" /><circle class="hg-btn" cx="63" cy="96" r="1.8" /><circle class="hg-btn" cx="63" cy="122" r="1.8" /><circle class="hg-btn" cx="63" cy="148" r="1.8" />
+                <path class="hg-fold" d="M36 84 h14 v12 h-14 z M34 110 C36 132 34 152 36 168" />
+              </g>
+            )}
+            {i % 3 === 2 && (
+              <g>
+                <path class="hg-fill hg-b" d="M44 38 C34 40 22 44 13 50 C8 74 6 100 5 132 L20 134 C22 110 25 92 29 78 C29 110 28 144 30 176 C50 179 70 179 90 176 C92 144 91 110 91 78 C95 92 98 110 100 134 L115 132 C114 100 112 74 107 50 C98 44 86 40 76 38 Z" />
+                <path class="hg-collar" d="M44 38 C50 46 54 54 56 64 L60 100 L64 64 C66 54 70 46 76 38" />
+                <path class="hg-line" d="M44 38 L40 48 L50 54 L46 62 L60 100 M76 38 L80 48 L70 54 L74 62 L60 100 M70 138 h16 M34 138 h16 M74 66 h11" />
+                <circle class="hg-btn" cx="60" cy="118" r="2.4" /><circle class="hg-btn" cx="60" cy="136" r="2.4" />
+                <path class="hg-fold" d="M60 100 L60 178" />
+              </g>
+            )}
+          </svg>
+          <span class="hg-label">
+            {phase && <em>{phase}</em>}
+            <b>{name}</b>
+            {it.desc && <span>{it.desc}</span>}
+            <i>{fit[i % 3]}</i>
+          </span>
+        </li>
+      );
+    })}
+  </ol>
+</div>
+<style>
+  .hg { position: relative; padding-top: 4px; }
+  .hg-rail { position: absolute; left: 0; right: 0; top: 13px; height: 4px; border-radius: 2px; background: var(--ink-2); }
+  ol { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(var(--n), minmax(0, 1fr)); gap: 10px; }
+  li { display: grid; justify-items: center; gap: 8px; opacity: calc(.4 + .6 * var(--on)); transition: opacity .5s; }
+  .hg-cloth { width: min(100%, 150px); height: auto; overflow: visible; transform-origin: 50% 4%; }
+  li[data-focus] .hg-cloth { animation: hg-swing 1.6s ease-in-out; animation-play-state: paused; }
+  :global(.graphic[data-step="1"]) li[data-focus="1"] .hg-cloth, :global(.graphic[data-step="2"]) li[data-focus="2"] .hg-cloth, :global(.graphic[data-step="3"]) li[data-focus="3"] .hg-cloth { animation-play-state: running; }
+  .hg-hanger { fill: none; stroke: var(--ink-2); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+  .hg-fill { stroke: #2b2925; stroke-width: 2; stroke-linejoin: round; transition: fill .6s; }
+  .hg-t { fill: color-mix(in srgb, #e7e2d8 calc(40% + var(--on) * 60%), var(--paper)); }
+  .hg-s { fill: color-mix(in srgb, #d6e2ee calc(30% + var(--on) * 70%), var(--paper)); }
+  .hg-b { fill: color-mix(in srgb, var(--accent) calc(30% + var(--on) * 70%), var(--paper)); }
+  .hg-collar { fill: #f4f2ec; stroke: #2b2925; stroke-width: 1.8; stroke-linejoin: round; }
+  .hg-line { fill: none; stroke: #2b2925; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+  .hg-fold { fill: none; stroke: #2b2925; stroke-width: 1; opacity: .3; }
+  .hg-btn { fill: #2b2925; }
+  .hg-label { display: grid; justify-items: center; gap: 3px; text-align: center; }
+  .hg-label em { font-style: normal; font-family: var(--font-mono); font-size: 11px; padding: 1px 8px; border-radius: 999px; background: color-mix(in srgb, var(--accent-ink) calc(var(--focus) * 100%), var(--ink-3)); color: var(--paper); transition: background .4s; }
+  .hg-label b { font-size: 14px; line-height: 1.35; }
+  .hg-label span { font-size: 12px; color: var(--ink-2); }
+  .hg-label i { font-style: normal; font-size: 11px; color: var(--ink-3); }
+  @keyframes hg-swing { 0% { transform: rotate(0); } 25% { transform: rotate(4deg); } 55% { transform: rotate(-3deg); } 80% { transform: rotate(1.5deg); } 100% { transform: rotate(0); } }
+  @media (prefers-reduced-motion: reduce) { .hg-cloth { animation: none !important; } li, .hg-fill { transition: none; } }
+</style>

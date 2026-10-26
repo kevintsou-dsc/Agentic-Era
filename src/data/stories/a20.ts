@@ -43,14 +43,14 @@ export const story: Story = {
       side: 'right',
       graphic: {
         type: 'list',
-        layout: 'timeline',
+        layout: 'tram',
         title: '品牌競爭力的三次遷移',
         items: [
           { title: '第一階段｜創意競爭', desc: '比拼消費者洞察、核心概念與創意表現', at: 1 },
           { title: '第二階段｜內容供應鏈競爭', desc: '比拼速度、產量與回應市場的能力', at: 2 },
           { title: '第三階段｜品牌交付系統競爭', desc: '比拼能否穩定且持續地交付品牌辨識度', at: 3 },
         ],
-        source: '表：品牌競爭力的三次遷移｜潘其偉〈拒絕同質化 AI Slop〉紙本 p.177',
+        source: '表：品牌競爭力的三次遷移｜潘其偉〈拒絕同質化 AI Slop〉紙本 p.177；電車造型為策展的視覺比喻',
       },
       src: [{ article: 'a20', page: 177, text: '企業的核心競爭力正在經歷三次重大的戰略轉移' }],
       figures: [

@@ -1,0 +1,53 @@
+---
+// 時間軸的「拍立得」造型（a11 從記憶符碼到新記憶）：一條微微下垂的繩子用木夾夾著一張張拍立得，
+// 第 k 段主文時，at = k 的相片「顯影」（深灰 → 有色）並亮起。最後一張是虛線框，代表還沒拍下的「新記憶」。
+// 標題「名稱｜問句」：名稱寫在相片上，問句與說明寫在白邊下方。窄螢幕改成兩欄、不畫繩子。class 一律加 po- 前綴。
+import type { Graphic } from '../../../lib/story';
+type G = Extract<Graphic, { type: 'list' }>;
+interface Props { g: G }
+const { g } = Astro.props;
+const n = g.items.length;
+const split = (t: string) => (t.includes('｜') ? t.split('｜') : [t, '']);
+const tilt = [-5, 3, -2, 4, -4, 2, -3];
+const sag = (i: number) => Math.sin((Math.PI * (i + 0.5)) / n) * 22;
+---
+<div class="po" style={`--n:${n}`}>
+  <svg class="po-line" viewBox="0 0 100 30" preserveAspectRatio="none" aria-hidden="true"><path d="M0 4 Q50 34 100 4" /></svg>
+  <ol class="po-row">
+    {g.items.map((it, i) => {
+      const [name, ask] = split(it.title);
+      const last = i === n - 1;
+      return (
+        <li class:list={['po-card', { 'po-future': last }]} data-at={it.at ?? i + 1} data-focus={it.at ?? i + 1} style={`--r:${tilt[i % tilt.length]}deg; --y:${sag(i)}px; --d:${i * 120}ms`}>
+          <span class="po-clip" aria-hidden="true"></span>
+          <span class="po-photo"><b>{name}</b></span>
+          <span class="po-cap">
+            {ask && <em>{ask}</em>}
+            {it.desc && <span>{it.desc}</span>}
+          </span>
+        </li>
+      );
+    })}
+  </ol>
+</div>
+<style>
+  .po { position: relative; padding-top: 6px; }
+  .po-line { position: absolute; left: -2%; right: -2%; top: 10px; width: 104%; height: 40px; overflow: visible; }
+  .po-line path { fill: none; stroke: var(--ink-3); stroke-width: 1.2; vector-effect: non-scaling-stroke; }
+  .po-row { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(var(--n), minmax(0, 1fr)); gap: 8px; align-items: start; }
+  .po-card { position: relative; display: grid; gap: 6px; padding: 6px 6px 8px; background: #fffdf8; border: 1px solid var(--line); box-shadow: 0 6px 14px -8px rgba(0, 0, 0, .35);
+    transform: translateY(calc(var(--y) + 6px)) rotate(var(--r)) translateY(calc((1 - var(--focus)) * 0px - var(--focus) * 6px)); transform-origin: 50% 0; transition: transform .5s, opacity .5s; opacity: calc(.55 + .45 * var(--on)); }
+  .po-clip { position: absolute; top: -10px; left: 50%; width: 8px; height: 18px; margin-left: -4px; border-radius: 2px; background: #c79a63; box-shadow: inset 0 0 0 1px rgba(0, 0, 0, .25); }
+  .po-photo { display: grid; place-items: center; aspect-ratio: 1; background: color-mix(in srgb, var(--accent) calc(var(--on) * 100%), #4a4744); transition: background 1.2s var(--d); }
+  .po-photo b { font-size: clamp(13px, 1vw + 6px, 16px); font-weight: 800; color: color-mix(in srgb, var(--accent-ink) calc(var(--on) * 100%), #8a857e); transition: color 1.2s var(--d); text-align: center; padding: 0 4px; }
+  .po-future .po-photo { background: transparent; border: 2px dashed color-mix(in srgb, var(--accent-ink) calc(var(--on) * 100%), var(--ink-3)); }
+  .po-cap { display: grid; gap: 3px; min-height: 4.5em; }
+  .po-cap em { font-style: normal; font-size: 12px; font-weight: 800; line-height: 1.4; color: var(--ink); }
+  .po-cap span { font-size: 11px; line-height: 1.5; color: var(--ink-2); }
+  @media (max-width: 560px) {
+    .po-line { display: none; }
+    .po-row { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 16px; }
+    .po-card { --y: 0px; }
+  }
+  @media (prefers-reduced-motion: reduce) { .po-card, .po-photo, .po-photo b { transition: none; } }
+</style>

@@ -68,7 +68,7 @@ export type Graphic =
       quads: { case: string; name: string; items: string[] }[];
       source: string;
     }
-  | { type: 'list'; title?: string; flip?: boolean; layout?: 'one' | 'two' | 'three' | 'timeline'; items: { title: string; desc?: string; at?: number; more?: More }[]; source: string }
+  | { type: 'list'; title?: string; flip?: boolean; layout?: 'one' | 'two' | 'three' | 'timeline' | 'tram' | 'polaroid' | 'hanger'; items: { title: string; desc?: string; at?: number; more?: More }[]; source: string }
   /** 案例圖片（可多張，第 k 段主文顯示第 k 張） */
   | { type: 'images'; images: (Img & { at: number; links?: Link[] })[]; source: string }
   /** d3 互動圖表；chart 對應 src/components/d3/ 下的元件 */
