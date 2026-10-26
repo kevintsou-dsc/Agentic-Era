@@ -133,6 +133,7 @@ export const story: Story = {
         ],
         more: {
           title: '資料來源',
+          text: '兩個數字各有出處：**56%** 亞太企業招募 AI 專職人才，出自 KPMG 的亞太 AI 採用報告；台灣科技業**每月 19.3 萬個職缺**無人填補，出自 Taipei Times 的報導。',
           links: [
             { url: 'https://kpmg.com/xx/en/our-insights/ai-and-technology/asia-pacific-ai-adoption-advantage.html', label: 'KPMG 亞太 AI 採用報告', kind: 'report' },
             { url: 'https://www.taipeitimes.com/News/feat/archives/2026/06/26/2003859752', label: 'Taipei Times 報導', kind: 'web' },

@@ -132,6 +132,7 @@ a { color: inherit; }
   margin: 8px 6px 0 0; padding: 4px 12px; border-radius: 8px; background: var(--accent); color: var(--ink);
   font-size: 13px; font-weight: 700; line-height: 1.5; transition: transform .15s, box-shadow .15s;
 }
+.more-link { text-decoration: none; color: inherit; }
 .more-ref:hover { transform: translateY(-1px); box-shadow: 0 4px 0 var(--accent-ink); }
 /* 圖表元素上的細節：透明覆蓋整個元素，角落小圓點提示，不影響圖表排版 */
 .more-ref.overlay { position: absolute; inset: 0; z-index: 2; margin: 0; padding: 0; border-radius: inherit; background: transparent; }
