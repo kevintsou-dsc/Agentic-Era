@@ -8,11 +8,23 @@ interface Props { g: G }
 const { g } = Astro.props;
 // 所有項目同一步出現（主文沒有逐項對應）時，不做逐段加重，整張清單一起顯示
 const together = new Set(g.items.map((it, i) => it.at ?? i + 1)).size === 1;
+// 排列（docs/story-guide.md §5「卡片組排列」）：
+//   ≤3 張：一欄；卡片內容很短（偏窄）時三欄。
+//   5 張：內容都短（高度不高）時一欄，否則兩欄、最後一張橫跨兩欄。
+//   其他：兩欄；奇數張時最後一張橫跨兩欄，不留缺口。
+//   layout 可手動指定（one／two／three），意象更適合其他排法時改用 cycle 等圖表。
+const n = g.items.length;
+const len = (it: G['items'][number]) => it.title.length + (it.desc ?? '').length;
+const short = g.items.every((it) => len(it) <= 24);
+const brief = g.items.every((it) => len(it) <= 40);
+const auto = n <= 3 ? (short ? 'three' : 'one') : n === 5 && brief ? 'one' : 'two';
+const layout = g.layout ?? auto;
+const span = layout === 'two' && n % 2 === 1;
 ---
 <div class="stage list">
   {g.title && <p class="title">{g.title}</p>}
   {g.flip && <p class="hint">滑過或點按卡片，翻面看背後原因</p>}
-  <ol class:list={['items', { together, 'fc-set': g.flip }]} style={`--n:${g.items.length}`}>
+  <ol class:list={['items', `cols-${layout}`, { together, 'fc-set': g.flip, 'span-last': span }]} style={`--n:${g.items.length}`}>
     {g.items.map((it, i) => g.flip ? (
       <li data-at={it.at ?? i + 1} data-focus={together ? undefined : (it.at ?? i + 1)} tabindex="0" aria-label={`${it.title}：${it.desc ?? ''}`}>
         <div class="fc-card">
@@ -44,7 +56,11 @@ const together = new Set(g.items.map((it, i) => it.at ?? i + 1)).size === 1;
   .list { width: 100%; display: grid; gap: 14px; }
   .title { margin: 0; font-weight: 700; font-size: clamp(18px, 1.6vw + 10px, 24px); }
   .hint { margin: -8px 0 0; font-size: 13px; color: var(--ink-3); }
-  .items { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 14rem), 1fr)); gap: 10px; }
+  .items { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 1fr; gap: 10px; }
+  .cols-two { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .cols-three { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .span-last > li:last-child { grid-column: 1 / -1; }
+  @media (max-width: 560px) { .cols-two, .cols-three { grid-template-columns: 1fr; } }
   li { position: relative; display: grid; gap: 2px; align-content: start; padding: 12px 14px; border-radius: 12px; border: 2px solid color-mix(in srgb, var(--accent-ink) calc(var(--focus) * 100%), var(--line)); background: color-mix(in srgb, var(--accent) calc(var(--focus) * 100%), var(--paper)); opacity: calc(.2 + .8 * var(--on)); transform: translateY(calc((1 - var(--on)) * 10px)); transition: opacity .5s, transform .5s, background .4s, border-color .4s; }
   .together li { --focus: 0; border-color: var(--ink-3); }
   .no { font-family: var(--font-mono); font-size: 12px; color: var(--ink-3); }
