@@ -540,6 +540,47 @@ function venn(el: HTMLElement, c: Extract<D3Chart, { kind: 'venn' }>): Instance 
   };
 }
 
+// ---------- iceberg：水面上的工具指標 vs 水面下的文化暗流（冰山輕微浮動、水面波動） ----------
+function iceberg(el: HTMLElement, c: Extract<D3Chart, { kind: 'iceberg' }>): Instance {
+  const W = 560, H = 460, cx = W / 2, sea = 150;
+  const svg = select(el).append('svg').attr('viewBox', `0 0 ${W} ${H}`).attr('class', 'ib');
+  const bind = tipLayer(el);
+  svg.append('rect').attr('class', 'ib-water').attr('x', 0).attr('y', sea).attr('width', W).attr('height', H - sea);
+  const berg = svg.append('g').attr('class', 'ib-berg');
+  berg.append('path').attr('class', 'ib-tip').attr('d', `M${cx - 92},${sea} L${cx - 40},${sea - 92} L${cx + 6},${sea - 70} L${cx + 34},${sea - 112} L${cx + 96},${sea} Z`);
+  berg.append('path').attr('class', 'ib-base').attr('d', `M${cx - 92},${sea} L${cx + 96},${sea} L${cx + 210},${sea + 120} L${cx + 160},${H - 30} L${cx - 150},${H - 16} L${cx - 220},${sea + 150} Z`);
+  const wave = svg.append('path').attr('class', 'ib-wave');
+  const label = (y: number, t: string, cls: string) => svg.append('text').attr('class', cls).attr('x', 16).attr('y', y).text(t);
+  label(24, c.aboveTitle, 'ib-zone');
+  label(sea + 28, c.belowTitle, 'ib-zone below');
+  const chips = (items: (Tipped & { label: string })[], y0: number, cls: string) => {
+    const g = svg.append('g').attr('class', `ib-chips ${cls}`);
+    const n = items.length, w = 150, gap = 14, x0 = cx - (n * w + (n - 1) * gap) / 2;
+    const cs = g.selectAll('g').data(items).join('g').attr('class', 'ib-chip').attr('transform', (_, i) => `translate(${x0 + i * (w + gap)},${y0})`);
+    cs.append('rect').attr('width', w).attr('height', 40).attr('rx', 20);
+    cs.append('text').attr('x', w / 2).attr('y', 25).attr('text-anchor', 'middle').text((d) => d.label);
+    cs.each(function (d) { bind(this, { title: d.label, extra: d.extra }); });
+    return g;
+  };
+  const up = chips(c.above, 40, 'up');
+  const down = chips(c.below, sea + 150, 'down');
+  let base = 0;
+  return {
+    update(s) {
+      const st = reduce ? 99 : s;
+      up.classed('on', st >= c.aboveAt).classed('focus', st === c.aboveAt);
+      down.classed('on', st >= c.belowAt).classed('focus', st >= c.belowAt);
+      base = st >= c.belowAt ? 1 : 0;
+      svg.classed('deep', base === 1);
+    },
+    tick(t) {
+      berg.attr('transform', `translate(0,${Math.sin(t / 900) * 4})`);
+      const pts = [...Array(15).keys()].map((i) => `${(i * W) / 14},${sea + Math.sin(t / 500 + i * 0.9) * 3}`);
+      wave.attr('d', `M${pts.join(' L')}`);
+    },
+  };
+}
+
 // ---------- rings：由內往外擴大的同心圓，漣漪持續向外擴散；pulls 從中心被往外帶走 ----------
 function rings(el: HTMLElement, c: Extract<D3Chart, { kind: 'rings' }>): Instance {
   const W = 520, H = 500, cx = W / 2, cy = 236, r0 = 42, band = 46;
@@ -590,7 +631,7 @@ function rings(el: HTMLElement, c: Extract<D3Chart, { kind: 'rings' }>): Instanc
   };
 }
 
-const builders: Record<string, (el: HTMLElement, c: never) => Instance> = { flowloop, groups, logrange, stages, esov, rings, allocate, balance, venn } as never;
+const builders: Record<string, (el: HTMLElement, c: never) => Instance> = { flowloop, groups, logrange, stages, esov, rings, allocate, balance, venn, iceberg } as never;
 
 export function initD3() {
   const charts = Array.from(document.querySelectorAll<HTMLElement>('[data-d3]'));

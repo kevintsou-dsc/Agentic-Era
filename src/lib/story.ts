@@ -134,6 +134,13 @@ export type D3Chart =
       fail?: string; leftAt: number; rightAt: number; failAt?: number; bothAt: number;
     }
   /**
+   * 冰山：水面上看得見的（工具、指標）vs 水面下真正的阻力（文化、情緒）。aboveAt／belowAt：第幾段點亮。
+   */
+  | {
+      kind: 'iceberg'; title: string; aboveTitle: string; belowTitle: string;
+      above: (Tipped & { label: string })[]; below: (Tipped & { label: string })[]; aboveAt: number; belowAt: number;
+    }
+  /**
    * 同心圓：範圍由內往外擴大的概念（例如競爭從同品類擴大到整個生活預算）。所有圈一開始就全部顯示；
    * pulls（選用）在第 pullsAt 段出現：從中心往外被帶走的東西。
    */
