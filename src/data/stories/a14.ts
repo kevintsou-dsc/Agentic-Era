@@ -279,17 +279,10 @@ export const story: Story = {
     {
       kind: 'graphic',
       graphic: {
-        type: 'list',
+        type: 'art',
+        art: 'media-pp',
         title: 'Media++：六大模組、三個階段串聯',
-        items: [
-          { title: 'Business', desc: '成長策略：效率優化、交易捕捉、品牌成長三大槓桿', at: 1 },
-          { title: 'Audience', desc: '成長策略：辨識與活化真正具潛力的消費者', at: 1 },
-          { title: 'Insight', desc: '體驗轉型：資料 → 資訊 → 知識 → 洞察', at: 2 },
-          { title: 'Experience', desc: '體驗轉型：從四個維度管理消費者體驗', at: 2 },
-          { title: 'Activation', desc: '成效敏捷：把策略轉化為具體市場行動', at: 3 },
-          { title: 'Optimization', desc: '成效敏捷：依品牌成熟度持續優化', at: 3 },
-        ],
-        source: '圖：Media++ 發展方向與差異化路線圖｜資料來源 凱絡媒體／製圖，強義明〈衡斷力〉紙本 p.134',
+        source: '圖4：Media++ 發展方向與差異化路線圖（依原圖重製）｜資料來源 凱絡媒體／製圖，強義明〈衡斷力〉紙本 p.134',
       },
       src: [{ article: 'a14', page: 134, text: 'Media++ 發展方向與差異化路線圖' }],
       figures: [
