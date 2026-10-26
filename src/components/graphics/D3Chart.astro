@@ -26,7 +26,7 @@ const summary =
   c.kind === 'balance' ? c.states.map((s) => `${s.label}（${s.years}）：${s.desc}`) :
   c.kind === 'rings' ? [...c.rings.map((r) => `${r.label}：${r.desc}`), ...(c.pulls ? [`會被帶走的：${c.pulls.join('、')}`] : [])] :
   c.rows.map((r) => `${r.model}（${r.era}）：${r.steps.map((s) => s.zh).join(' → ')}`);
-const hintTarget = c.kind === 'flowloop' ? '圓圈' : c.kind === 'stages' ? '方格' : c.kind === 'esov' ? '長條與方塊' : c.kind === 'rings' ? '每一圈' : c.kind === 'allocate' ? '每一列與區塊' : c.kind === 'balance' ? '兩端與時間軸' : c.kind === 'venn' ? '兩個圓與交集' : c.kind === 'iceberg' ? '水面上下的標籤' : c.kind === 'spectrum' ? '等級與案例標記' : '長條';
+const hintTarget = c.kind === 'flowloop' ? '圓圈' : c.kind === 'stages' ? '方格' : c.kind === 'esov' ? '長條與方塊' : c.kind === 'rings' ? '每一圈' : c.kind === 'allocate' ? '每一列與區塊' : c.kind === 'balance' ? '兩端與時間軸（也可以按住方塊往下拉）' : c.kind === 'venn' ? '兩個圓與交集' : c.kind === 'iceberg' ? '水面上下的標籤' : c.kind === 'spectrum' ? '等級與案例標記' : '長條';
 ---
 <div class="stage d3wrap">
   <p class="title">{c.title}</p>
@@ -201,6 +201,13 @@ const hintTarget = c.kind === 'flowloop' ? '圓圈' : c.kind === 'stages' ? '方
   .d3 :global(.bl-ground) { stroke: var(--ink-3); stroke-width: 2; }
   .d3 :global(.bl-beam) { transition: transform 1.1s cubic-bezier(.3,1.4,.5,1); }
   .d3 :global(.bl-beam > rect) { fill: var(--ink-2); }
+  /* 拖曳彩蛋：拖曳與回彈期間由 tick 逐格控制，關掉 transition 才不會拖泥帶水 */
+  .d3 :global(.bl-free .bl-beam) { transition: none; }
+  .d3 :global(.bl-dragging .bl-weight) { transition: none; }
+  .d3 :global(.bl-drag) { cursor: grab; touch-action: none; }
+  .d3 :global(.bl-dragging .bl-drag) { cursor: grabbing; }
+  .d3 :global(.bl-egg) { font: 700 12px var(--font-sans); fill: var(--accent-ink); opacity: 0; transition: opacity .3s; pointer-events: none; }
+  .d3 :global(.bl-dragging .bl-egg) { opacity: 1; }
   .d3 :global(.bl-weight) { transition: x .8s, y .8s, width .8s, height .8s; }
   .d3 :global(.bl-side.l .bl-weight) { fill: var(--accent); stroke: var(--accent-ink); stroke-width: 2; }
   .d3 :global(.bl-side.r .bl-weight) { fill: var(--paper-2); stroke: var(--ink-2); stroke-width: 2; }

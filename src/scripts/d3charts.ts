@@ -451,8 +451,10 @@ function balance(el: HTMLElement, c: Extract<D3Chart, { kind: 'balance' }>): Ins
   // 橫桿與兩端的重量方塊：整組以支點為中心旋轉
   const beam = svg.append('g').attr('class', 'bl-beam').style('transform-origin', `${cx}px ${cy}px`);
   beam.append('rect').attr('x', cx - half).attr('y', cy - 6).attr('width', half * 2).attr('height', 12).attr('rx', 6);
+  const sides: Record<number, ReturnType<typeof select<SVGGElement, unknown>>> = {};
   const side = (sign: number, d: Tipped & { label: string }) => {
     const g = beam.append('g').attr('class', `bl-side ${sign < 0 ? 'l' : 'r'}`);
+    sides[sign] = g as never;
     const box = g.append('rect').attr('class', 'bl-weight').attr('rx', 8);
     const t = g.append('text').attr('class', 'bl-label').attr('text-anchor', 'middle').text(d.label);
     bind(g.node()!, { title: d.label, extra: d.extra });
@@ -473,6 +475,37 @@ function balance(el: HTMLElement, c: Extract<D3Chart, { kind: 'balance' }>): Ins
   nodes.append('text').attr('class', 'bl-years').attr('y', 48).attr('text-anchor', 'middle').text((d) => d.years);
   nodes.each(function (d) { bind(this, { title: `${d.label}　${d.en}`, body: d.desc, extra: d.extra }); });
 
+  // 彩蛋：按住方塊往下拉，那一側變重；放開或移開後，像彈簧一樣慢慢回到這個時代的平衡（減少動態時不啟用）
+  let bias = 0, vel = 0, dragging = 0, lastY = 0, sizeL = 40, sizeR = 40;
+  svg.append('text').attr('class', 'bl-egg').attr('x', cx).attr('y', cy + 76).attr('text-anchor', 'middle').text('放手，它會回到這個時代的平衡');
+  const resize = () => {
+    setL(sizeL + Math.max(0, -bias) * 26);
+    setR(sizeR + Math.max(0, bias) * 26);
+  };
+  if (!reduce) {
+    const toSvg = (e: PointerEvent) => e.clientY * (H / (svg.node() as SVGSVGElement).getBoundingClientRect().height);
+    [-1, 1].forEach((sign) => {
+      const g = sides[sign];
+      g.classed('bl-drag', true)
+        .on('pointerdown', (e: PointerEvent) => {
+          dragging = sign; lastY = toSvg(e); vel = 0;
+          (e.currentTarget as Element).setPointerCapture(e.pointerId);
+          svg.classed('bl-free', true).classed('bl-dragging', true);
+          e.preventDefault();
+        })
+        .on('pointermove', (e: PointerEvent) => {
+          if (dragging !== sign) return;
+          const y = toSvg(e);
+          // 往下拉＝這一側加重：左側加重讓 bias 變負（逆時針），右側加重讓 bias 變正
+          bias = Math.max(-1.8, Math.min(1.8, bias + sign * (y - lastY) / 70));
+          lastY = y;
+          resize();
+        })
+        .on('pointerup pointercancel lostpointercapture', () => { dragging = 0; svg.classed('bl-dragging', false); });
+    });
+    svg.on('pointerleave', () => { dragging = 0; svg.classed('bl-dragging', false); });
+  }
+
   let tilt = 0, cur = -1;
   return {
     update(s) {
@@ -483,13 +516,22 @@ function balance(el: HTMLElement, c: Extract<D3Chart, { kind: 'balance' }>): Ins
       const st = c.states[i];
       tilt = st.tilt;
       eraT.text(st.label); eraEn.text(`${st.en}｜${st.years}`); eraD.text(st.desc);
-      setL(40 + Math.max(0, -tilt) * 34 + (tilt === 0 ? 8 : 0));
-      setR(40 + Math.max(0, tilt) * 34 + (tilt === 0 ? 8 : 0));
+      sizeL = 40 + Math.max(0, -tilt) * 34 + (tilt === 0 ? 8 : 0);
+      sizeR = 40 + Math.max(0, tilt) * 34 + (tilt === 0 ? 8 : 0);
+      resize();
       nodes.classed('on', (_, k) => k === i);
       beam.style('transform', `rotate(${tilt * 11}deg)`);
     },
     tick(t) {
-      beam.style('transform', `rotate(${tilt * 11 + Math.sin(t / 700) * 1.2}deg)`);
+      // 放開後用阻尼彈簧回到 0：會稍微晃過頭再停下
+      if (!dragging && bias !== 0) {
+        vel = (vel - bias * 0.012) * 0.93;
+        bias += vel;
+        if (Math.abs(bias) < 0.002 && Math.abs(vel) < 0.002) { bias = 0; vel = 0; svg.classed('bl-free', false); }
+        resize();
+      }
+      const eff = Math.max(-2.2, Math.min(2.2, tilt + bias));
+      beam.style('transform', `rotate(${eff * 11 + Math.sin(t / 700) * 1.2}deg)`);
     },
   };
 }
