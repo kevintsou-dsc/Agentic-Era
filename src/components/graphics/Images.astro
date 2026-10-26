@@ -22,7 +22,8 @@ const { g } = Astro.props;
 <style>
   .images { width: 100%; display: grid; gap: 8px; }
   .frame { display: grid; }
-  .pic { grid-area: 1 / 1; margin: 0; display: grid; gap: 8px; align-content: start; opacity: var(--on); transform: translateY(calc((1 - var(--on)) * 16px)) rotate(calc((var(--z) - 1) * .6deg)); transition: opacity .6s, transform .6s; z-index: var(--z); }
+  /* 疊放時整格都要有底色：上面那張要完整蓋住下面那張（含圖說），否則較長的舊圖說會從縫隙露出 */
+  .pic { grid-area: 1 / 1; margin: 0; display: grid; gap: 8px; align-content: start; background: var(--paper); padding-bottom: 4px; opacity: var(--on); transform: translateY(calc((1 - var(--on)) * 16px)) rotate(calc((var(--z) - 1) * .4deg)); transition: opacity .6s, transform .6s; z-index: var(--z); }
   .pic img { width: 100%; height: auto; max-height: 52svh; object-fit: contain; border-radius: 12px; border: 2px solid var(--ink); background: var(--paper-2); box-shadow: 6px 6px 0 var(--accent); }
   figcaption { font-size: 13px; color: var(--ink-2); line-height: 1.6; background: var(--paper); }
   .credit { color: var(--ink-3); }
