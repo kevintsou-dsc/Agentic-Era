@@ -224,7 +224,7 @@ export type Scene =
   | { kind: 'quote'; lead?: Beat; quote: Src }
   /** people：人形圖，例如 { total: 20, filled: 13 } 表示 65%（filled／total 必須等於 value％） */
   | { kind: 'bignum'; value: number; decimals?: number; prefix?: string; unit: string; caption: Beat; figure: Src; source: string;
-      people?: { total: number; filled: number; label?: string } }
+      people?: { total: number; filled: number; label?: string; icon?: 'elder' } }
   | { kind: 'statement'; eyebrow?: string; text: string; lede?: Beat };
 
 export interface Story {

@@ -75,14 +75,18 @@ const { scenes } = Astro.props;
         </p>
         {s.people && (
           <div class="people reveal" role="img" aria-label={`${s.people.total} 人中有 ${s.people.filled} 人${s.people.label ? `：${s.people.label}` : ''}`}>
-            <ol class:list={['people-grid', { dense: s.people.total > 20 }]} style={`--cols:${s.people.total > 20 ? 10 : Math.ceil(s.people.total / 2)}`}>
+            <ol class:list={['people-grid', { dense: s.people.total > 20 }]} style={`--cols:${s.people.total <= 10 ? s.people.total : 10}`}>
               {Array.from({ length: s.people.total }, (_, i) => (
                 <li class:list={['person', { on: i < s.people!.filled }]} style={`--i:${i}`}>
-                  <svg viewBox="0 0 24 40" aria-hidden="true"><circle cx="12" cy="7" r="6" /><path d="M3 38 V22 q0 -8 9 -8 q9 0 9 8 V38 z" /></svg>
+                  {s.people!.icon === 'elder' && i < s.people!.filled ? (
+                    <svg viewBox="0 0 24 40" aria-hidden="true"><circle cx="14" cy="9" r="5" /><path d="M4 38 V28 Q3 17 11 16 Q17 15.5 18 21 L17 25 L13 26 V38 Z" /><path class="cane" d="M16 22 L20.5 25.5" /><path class="cane" d="M21 39 V26 Q21 23 18.5 23" /></svg>
+                  ) : (
+                    <svg viewBox="0 0 24 40" aria-hidden="true"><circle cx="12" cy="7" r="6" /><path d="M3 38 V22 q0 -8 9 -8 q9 0 9 8 V38 z" /></svg>
+                  )}
                 </li>
               ))}
             </ol>
-            {s.people.label && <p class="people-label"><b>{s.people.filled}</b> / {s.people.total} {s.people.label}</p>}
+            {s.people.label && <p class="people-label"><b>{s.people.filled}</b>{` ／ ${s.people.total} ${s.people.label}`}</p>}
           </div>
         )}
         <p class="lede reveal"><span set:html={rich(s.caption.text)} /><SourceRef src={s.caption.src} /></p>
@@ -110,6 +114,7 @@ const { scenes } = Astro.props;
   .person svg { display: block; width: 100%; height: auto; overflow: visible; }
   .person circle, .person path { fill: transparent; stroke: var(--ink-3); stroke-width: 2; transition: fill .35s, stroke .35s; transition-delay: calc(var(--i) * 70ms + .3s); }
   .people.is-in .person.on circle, .people.is-in .person.on path { fill: var(--accent-ink); stroke: var(--accent-ink); }
+  .person .cane { fill: none !important; stroke-linecap: round; stroke-width: 2.4; }
   .people-label { margin: 0; font-size: 14px; color: var(--ink-2); }
   .people-label b { font-size: 18px; color: var(--accent-ink); }
   @media (prefers-reduced-motion: reduce) {

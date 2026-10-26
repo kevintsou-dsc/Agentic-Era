@@ -204,7 +204,7 @@ export const story: Story = {
         ],
       },
       figure: { article: 'a03', page: 25, text: '每五個人裡就有一個 65 歲以上' },
-      people: { total: 5, filled: 1, label: '位台灣人是 65 歲以上' },
+      people: { total: 5, filled: 1, label: '位台灣人是 65 歲以上', icon: 'elder' },
       source: '周麗君〈真實的力量〉紙本 p.25（原文：每五個人裡就有一個 65 歲以上）',
     },
     {
