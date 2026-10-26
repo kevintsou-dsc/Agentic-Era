@@ -224,3 +224,4 @@
 - 卡片組排列：list 原本用 auto-fill，3 張會排成 2＋1 留缺口。改為依張數自動判斷（≤3 一欄或短卡三欄、5 張短卡一欄、奇數張最後一張跨兩欄），可用 layout 手動指定。
 - 有先後順序的五組卡片：a06、a15、a20、a11 改為 list timeline（橫向／直向時間軸，隨捲動點亮）；a18 顧客旅程壓縮改為 art journey-compress（六站長旅程 → Agent 加入 → 壓縮成「說出條件 → 幾套方案」，30 個選項收成 3 個）。
 - balance 蹺蹺板彩蛋：按住品牌／需求方塊往下拉可加重那一側，放開或移開後以阻尼彈簧回到該時代的平衡；拖曳時顯示「放手，它會回到這個時代的平衡」。減少動態時停用。
+- a14 三位執行長卡片加上人物頭像：Wikimedia Commons CC 授權照片（Nadella：Brian Smale and Microsoft，CC BY-SA 4.0；Krishna：Bea Phi，CC BY-SA 4.0；Altman：TechCrunch，CC BY 2.0），下載 960px 縮圖、裁成方形 WebP（15–30 KB），卡片標攝影者、授權、經裁切與 Commons 連結。

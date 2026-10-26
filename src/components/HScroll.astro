@@ -30,10 +30,28 @@ const view = s.panels.map((p) => {
           <li class="hs-panel">
             <span class="hs-no">{String(i + 1).padStart(2, '0')} / {String(s.panels.length).padStart(2, '0')}</span>
             {image && <img class:list={['hs-img', { wide: !!image.w && !!image.h && image.w / image.h > 2.2 }]} src={image.src} alt={image.alt} width={image.w} height={image.h} loading="lazy" decoding="async" />}
-            {p.kicker && <span class="hs-kicker">{p.kicker}</span>}
-            <h3>{p.title}</h3>
+            {p.portrait ? (
+              <div class="hs-person">
+                <img class="hs-face" src={p.portrait.src} alt={p.portrait.alt} width="400" height="400" loading="lazy" decoding="async" />
+                <div>
+                  {p.kicker && <span class="hs-kicker">{p.kicker}</span>}
+                  <h3>{p.title}</h3>
+                </div>
+              </div>
+            ) : (
+              <>
+                {p.kicker && <span class="hs-kicker">{p.kicker}</span>}
+                <h3>{p.title}</h3>
+              </>
+            )}
             {p.figure && <p class="hs-fig"><b>{p.figure.value}</b><span>{p.figure.label}</span></p>}
             <p class="hs-text"><span set:html={rich(p.text)} /><SourceRef src={p.src} /></p>
+            {p.portrait && (
+              <p class="hs-credit">
+                照片：<a href={p.portrait.sourceUrl} target="_blank" rel="noopener noreferrer">{p.portrait.credit}</a>，
+                <a href={p.portrait.licenseUrl} target="_blank" rel="noopener noreferrer">{p.portrait.license}</a>{p.portrait.cropped && '（經裁切）'}，取自 Wikimedia Commons
+              </p>
+            )}
             {!inline && <MoreRef m={p.more} />}
             {inline && !fold && (
               <div class="hs-more">
@@ -71,6 +89,12 @@ const view = s.panels.map((p) => {
   /* 橫幅型圖片（例如寬 4:1 的海報）若用 cover 會被裁成一小塊再放大而變糊，改為完整顯示 */
   .hs-img.wide { height: auto; max-height: min(24svh, 12rem); object-fit: contain; }
   .hs-kicker { font-size: 12px; font-weight: 700; color: var(--accent-ink); }
+  /* 人物頭像：圓形，與職稱、姓名並排；授權小字放在主文下方 */
+  .hs-person { display: flex; align-items: center; gap: 14px; }
+  .hs-person > div { display: grid; gap: 4px; }
+  .hs-face { flex: none; width: clamp(64px, 5vw + 32px, 88px); height: auto; aspect-ratio: 1; border-radius: 50%; object-fit: cover; border: 2px solid var(--ink); box-shadow: 3px 3px 0 var(--accent); background: var(--paper-2); }
+  .hs-credit { margin: -2px 0 0; font-size: 11px; line-height: 1.5; color: var(--ink-3); }
+  .hs-credit a { color: inherit; }
   .hs-panel h3 { margin: 0; font-size: clamp(20px, 1.4vw + 14px, 26px); line-height: 1.35; }
   .hs-fig { margin: 4px 0; display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap; }
   .hs-fig b { font-size: clamp(30px, 3vw + 16px, 44px); color: var(--accent-ink); line-height: 1.1; font-variant-numeric: tabular-nums; }

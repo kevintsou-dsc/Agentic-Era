@@ -184,6 +184,7 @@ export const story: Story = {
       panels: [
         {
           kicker: '微軟執行長', title: 'Satya Nadella',
+          portrait: { src: '/fig/a14/people/nadella.webp', alt: 'Satya Nadella 的肖像照', credit: 'Brian Smale and Microsoft', license: 'CC BY-SA 4.0', licenseUrl: 'https://creativecommons.org/licenses/by-sa/4.0/', sourceUrl: 'https://commons.wikimedia.org/wiki/File:MS-Exec-Nadella-Satya-2017-08-31-22_(cropped).jpg', cropped: true },
           text: '過度外包給 AI，會讓企業能力「空洞化」。企業不應只是部署 AI，而要重新設計工作流程，讓人的獨特經驗、行業脈絡判斷與組織知識發揮核心價值。',
           src: [
             { article: 'a14', page: 131, text: '過度外包給 AI，將導致企業能力「空洞化」' },
@@ -193,6 +194,7 @@ export const story: Story = {
         },
         {
           kicker: 'IBM 執行長', title: 'Arvind Krishna',
+          portrait: { src: '/fig/a14/people/krishna.webp', alt: 'Arvind Krishna 在 SXSW 2025 座談中發言', credit: 'Bea Phi', license: 'CC BY-SA 4.0', licenseUrl: 'https://creativecommons.org/licenses/by-sa/4.0/', sourceUrl: 'https://commons.wikimedia.org/wiki/File:Arvind_Krishna_at_SXSW_2025.jpg', cropped: true },
           text: 'AI 沒有偷走工作，是過度依賴讓人盲目。重點不在通用的操作工具，而是提升數據素養與批判性思考。',
           src: [
             { article: 'a14', page: 132, text: 'AI 沒偷走工作，是過度依賴讓人盲目' },
@@ -202,6 +204,7 @@ export const story: Story = {
         },
         {
           kicker: 'OpenAI 執行長', title: 'Sam Altman',
+          portrait: { src: '/fig/a14/people/altman.webp', alt: 'Sam Altman 在 TechCrunch Disrupt 2019 座談中', credit: 'TechCrunch', license: 'CC BY 2.0', licenseUrl: 'https://creativecommons.org/licenses/by/2.0/', sourceUrl: 'https://commons.wikimedia.org/wiki/File:Sam_Altman_CropEdit_James_Tamim.jpg', cropped: true },
           text: '他對 AI「不自覺轉移決策」感到危險：AI 只是提高工作速率的工具，集體決策與價值判斷的責任，絕對不能從人類手中移開。',
           src: [
             { article: 'a14', page: 132, text: '對 AI 的「不自覺轉移決策」感到危險' },

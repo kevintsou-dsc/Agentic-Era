@@ -205,6 +205,8 @@ export interface Panel {
   src: Src[];
   figure?: { value: string; label: string };
   image?: Img;
+  /** 人物頭像（公眾人物）：只用 CC 等開放授權照片，存成站內檔案，卡片上標攝影者與授權並連回原始頁 */
+  portrait?: { src: string; alt: string; credit: string; license: string; licenseUrl: string; sourceUrl: string; cropped?: boolean };
   more?: More;
 }
 
