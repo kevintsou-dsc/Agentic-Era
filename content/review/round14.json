@@ -1,0 +1,1501 @@
+{
+ "label": "round14",
+ "thresholds": {
+  "faithful": 0.3,
+  "overclaim": 0.8,
+  "complete": 0.3,
+  "coverage": 2.5,
+  "coherence": 2.2
+ },
+ "stories": [
+  {
+   "id": "a01",
+   "units": 16,
+   "flagged": 0,
+   "story": {
+    "coverage": {
+     "score": 2.96,
+     "conf": 0.96
+    },
+    "coherence": {
+     "score": 2.87,
+     "conf": 0.86
+    }
+   },
+   "story_flags": [],
+   "passed": true,
+   "rows": [
+    {
+     "kind": "main",
+     "text": "唐心慧坦言，自己談到 AI 總是很興奮。不是因為沒有擔憂，而是她看到消費者與市場都在快速變化，人和 AI 協作共同決策的時代已經來了。",
+     "jev": {
+      "faithful": 0.71,
+      "overclaim": 0.33,
+      "complete": 0.83,
+      "fluency": {
+       "score": 2.43,
+       "conf": 0.45
+      }
+     },
+     "reasons": [],
+     "pages": [
+      7,
+      7,
+      7
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "和客戶聊到 AI，會遇到兩種心情。一邊是焦慮：變化太快，等待的成本變得最貴，CEO 都在問要從哪開始；知道變化在發生，和真的能跟上變化，是兩回事。",
+     "jev": {
+      "faithful": 0.89,
+      "overclaim": 0.15,
+      "complete": 0.47,
+      "fluency": {
+       "score": 2.13,
+       "conf": 0.49
+      }
+     },
+     "reasons": [],
+     "pages": [
+      7,
+      7
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "另一邊是機會：敢用 AI 改造決策方式的品牌，已經在市場上拉開距離。",
+     "jev": {
+      "faithful": 0.86,
+      "overclaim": 0.34,
+      "complete": 0.73,
+      "fluency": {
+       "score": 2.2,
+       "conf": 0.41
+      }
+     },
+     "reasons": [],
+     "pages": [
+      7
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "但有一件事沒有變：為客戶創造價值、靠人才驅動成長、用信任贏得品牌。難的是，多數企業還沒想清楚，要怎麼守住這些不變的東西，同時做出改變。",
+     "jev": {
+      "faithful": 0.82,
+      "overclaim": 0.35,
+      "complete": 0.72,
+      "fluency": {
+       "score": 2.45,
+       "conf": 0.46
+      }
+     },
+     "reasons": [],
+     "pages": [
+      7,
+      7
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "面對 AI，企業其實有三種選擇。差別不在誰的計畫更聰明，而在誰的學習循環更快。",
+     "jev": {
+      "faithful": 0.62,
+      "overclaim": 0.66,
+      "complete": 0.53,
+      "fluency": {
+       "score": 2.36,
+       "conf": 0.38
+      }
+     },
+     "reasons": [],
+     "pages": [
+      7,
+      7
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "沒有人能完美預測未來，只能不斷從做中學。他們很快把新產品推進市場、看反應、學習調整，再推下一個；也把行銷當成要保護的成長引擎，而不是可以隨意砍除的支出。",
+     "jev": {
+      "faithful": 0.79,
+      "overclaim": 0.44,
+      "complete": 0.62,
+      "fluency": {
+       "score": 2.23,
+       "conf": 0.5
+      }
+     },
+     "reasons": [],
+     "pages": [
+      7,
+      7,
+      8
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "他們等市場信號更明確、計畫更周全、看到成功案例，用等待換一份確定性；但這個時代，市場不會等。對資源有限的中小企業與新創，起點可以是一個成本可控的小範圍學習循環。",
+     "jev": {
+      "faithful": 0.87,
+      "overclaim": 0.29,
+      "complete": 0.61,
+      "fluency": {
+       "score": 2.14,
+       "conf": 0.45
+      }
+     },
+     "reasons": [],
+     "pages": [
+      8,
+      8
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "他們根本沒意識到消費者變了，員工也變了。這類企業一定會被淘汰，因為在他們還沒發現時，競爭對手已經動起來了。",
+     "jev": {
+      "faithful": 0.95,
+      "overclaim": 0.13,
+      "complete": 0.68,
+      "fluency": {
+       "score": 2.13,
+       "conf": 0.55
+      }
+     },
+     "reasons": [],
+     "pages": [
+      8,
+      8
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "唐心慧發現，AI 時代的企業主面臨三個挑戰：效率與價值、創意與創新、人與 AI，正好對應 Business、People 與 Organization 三個成長維度。",
+     "jev": {
+      "faithful": 0.77,
+      "overclaim": 0.34,
+      "complete": 0.76,
+      "fluency": {
+       "score": 2.01,
+       "conf": 0.47
+      }
+     },
+     "reasons": [],
+     "pages": [
+      8,
+      9,
+      9,
+      10
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "第一個挑戰是效率與價值。AI 讓一切變快，但效率不是目的，價值才是；用省成本的角度看 AI，頂多省下一點錢，用創造價值的角度，才可能贏得整個市場。",
+     "jev": {
+      "faithful": 0.86,
+      "overclaim": 0.37,
+      "complete": 0.74,
+      "fluency": {
+       "score": 2.18,
+       "conf": 0.52
+      }
+     },
+     "reasons": [],
+     "pages": [
+      9,
+      9
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "第二個挑戰是創意與創新。光有創意已經不夠，員工要學會用 AI 快速驗證想法，把創意變成一次次的模擬實驗，讓創新真正發生。",
+     "jev": {
+      "faithful": 0.7,
+      "overclaim": 0.29,
+      "complete": 0.62,
+      "fluency": {
+       "score": 2.0,
+       "conf": 0.51
+      }
+     },
+     "reasons": [],
+     "pages": [
+      9,
+      9
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "第三個挑戰是人與 AI。她的答案是：AI 改變的是分工，沒改變的是判斷；把人解放出來，去建立信任、做出有溫度的決策，並在不確定中承擔責任。",
+     "jev": {
+      "faithful": 0.34,
+      "overclaim": 0.24,
+      "complete": 0.52,
+      "fluency": {
+       "score": 1.96,
+       "conf": 0.45
+      }
+     },
+     "reasons": [],
+     "pages": [
+      10,
+      10
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "這很像當年的網路，起初是新行業，後來各行各業都數位化了。走在前頭的企業，用速度與判斷力交付價值、讓員工從創意走向創新，也讓人與 AI 找到新的分工與信任。",
+     "jev": {
+      "faithful": 0.83,
+      "overclaim": 0.31,
+      "complete": 0.63,
+      "fluency": {
+       "score": 2.37,
+       "conf": 0.39
+      }
+     },
+     "reasons": [],
+     "pages": [
+      10,
+      10
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "但興奮不能取代警覺。第一個隱憂是資料安全：沒有清楚的資料治理和安全防線，一次做中學的教訓，可能就是一次無法挽回的信任崩塌。",
+     "jev": {
+      "faithful": 0.92,
+      "overclaim": 0.22,
+      "complete": 0.64,
+      "fluency": {
+       "score": 2.36,
+       "conf": 0.36
+      }
+     },
+     "reasons": [],
+     "pages": [
+      10,
+      10
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "第二個隱憂是 AI 成癮：當每個人都習慣把思考外包給 AI，久而久之，人的角色也會逐漸消失。速度與警覺，本是同一件事的兩面。",
+     "jev": {
+      "faithful": 0.89,
+      "overclaim": 0.37,
+      "complete": 0.61,
+      "fluency": {
+       "score": 2.31,
+       "conf": 0.47
+      }
+     },
+     "reasons": [],
+     "pages": [
+      10,
+      10
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "回頭看，她談 AI 之所以興奮，是因為 AI 改變的其實不是世界，而是我們理解世界的方式。Modern marketing 正站在時代的轉折點上：Idea-led、AI-powered、Value-driven。",
+     "jev": {
+      "faithful": 0.45,
+      "overclaim": 0.27,
+      "complete": 0.41,
+      "fluency": {
+       "score": 1.93,
+       "conf": 0.47
+      }
+     },
+     "reasons": [],
+     "pages": [
+      10,
+      10
+     ]
+    }
+   ]
+  },
+  {
+   "id": "a02",
+   "units": 17,
+   "flagged": 0,
+   "story": {
+    "coverage": {
+     "score": 2.89,
+     "conf": 0.9
+    },
+    "coherence": {
+     "score": 2.77,
+     "conf": 0.77
+    }
+   },
+   "story_flags": [],
+   "passed": true,
+   "rows": [
+    {
+     "kind": "main",
+     "text": "過去兩年，生成式 AI 改變了工作的方式；今年，Agentic AI 要改變的是企業做決策的方式。AI 正一步步從工具變成代理人，能理解目標、拆解任務、串連資訊，甚至主動把事情做完。",
+     "jev": {
+      "faithful": 0.94,
+      "overclaim": 0.2,
+      "complete": 0.69,
+      "fluency": {
+       "score": 2.41,
+       "conf": 0.41
+      }
+     },
+     "reasons": [],
+     "pages": [
+      13,
+      13
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "企業愈來愈習慣把文案、分析、媒體規劃，甚至部分策略思考交給 AI。一個更值得思考的問題也隨之浮現：品牌離 AI 越來越近，會不會反而離人越來越遠？",
+     "jev": {
+      "faithful": 0.85,
+      "overclaim": 0.24,
+      "complete": 0.77,
+      "fluency": {
+       "score": 2.54,
+       "conf": 0.54
+      }
+     },
+     "reasons": [],
+     "pages": [
+      13,
+      13,
+      13
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "品牌存在的理由，從來不是會做廣告或會用最新科技，而是能理解人、創造價值並建立信任。AI 能在幾分鐘內整理完一份分析，但快，不等於理解。",
+     "jev": {
+      "faithful": 0.87,
+      "overclaim": 0.25,
+      "complete": 0.66,
+      "fluency": {
+       "score": 2.53,
+       "conf": 0.55
+      }
+     },
+     "reasons": [],
+     "pages": [
+      13,
+      13
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "消費者為什麼選這個、不選那個？新產品到底有沒有人想要？這些答案建立在真實的人與長期累積的洞察上。所以 Agentic 時代比的不是誰用了更多 AI，而是誰更懂人。",
+     "jev": {
+      "faithful": 0.9,
+      "overclaim": 0.33,
+      "complete": 0.79,
+      "fluency": {
+       "score": 2.28,
+       "conf": 0.45
+      }
+     },
+     "reasons": [],
+     "pages": [
+      13,
+      13,
+      13
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "社群、電商與會員系統縮短的多半只是接觸的頻率，理解的深度沒有跟上。決策現場真正焦急的不是找不到答案，而是等答案的時間：等報告完成，市場風向可能又變了，對手也可能已經先動手。",
+     "jev": {
+      "faithful": 0.83,
+      "overclaim": 0.22,
+      "complete": 0.74,
+      "fluency": {
+       "score": 2.34,
+       "conf": 0.35
+      }
+     },
+     "reasons": [],
+     "pages": [
+      13,
+      13,
+      13
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "品牌天生從產品出發思考：這個功能能做什麼、給誰用、賣點該怎麼說。",
+     "jev": {
+      "faithful": 0.97,
+      "overclaim": 0.12,
+      "complete": 0.73,
+      "fluency": {
+       "score": 2.6,
+       "conf": 0.58
+      }
+     },
+     "reasons": [],
+     "pages": [
+      14
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "但消費者的起點是：我在什麼情境下會遇到這個問題，什麼能真正解決它。這兩種視角，不是一份調查報告就能疊合的。",
+     "jev": {
+      "faithful": 0.88,
+      "overclaim": 0.13,
+      "complete": 0.36,
+      "fluency": {
+       "score": 2.12,
+       "conf": 0.41
+      }
+     },
+     "reasons": [],
+     "pages": [
+      14,
+      14
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "過去的市場研究像拍照，記錄某個時間點的想法；AI 讓研究更像一場持續進行的對話。而 People Model，第一次讓這場對話在品牌做決策之前就先發生。",
+     "jev": {
+      "faithful": 0.88,
+      "overclaim": 0.27,
+      "complete": 0.71,
+      "fluency": {
+       "score": 2.62,
+       "conf": 0.64
+      }
+     },
+     "reasons": [],
+     "pages": [
+      14,
+      14,
+      14
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "過去要回答一個複雜的問題，得先靠人拆解、找部門、調資料、再整合。真正的 Agentic 系統會自己把問題拆成子問題，同時交給消費者調查、市場數據與生活型態資料庫處理，再由負責整合的角色比對、篩選，送回最完整的答案。",
+     "jev": {
+      "faithful": 0.84,
+      "overclaim": 0.29,
+      "complete": 0.79,
+      "fluency": {
+       "score": 2.23,
+       "conf": 0.5
+      }
+     },
+     "reasons": [],
+     "pages": [
+      15,
+      15,
+      15
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "在電通台灣的系統裡，負責理解人的模型是 People Model。發展它不是因為相信 AI 能取代消費者，而是想讓品牌更頻繁地跟消費者對上話。",
+     "jev": {
+      "faithful": 0.95,
+      "overclaim": 0.09,
+      "complete": 0.71,
+      "fluency": {
+       "score": 2.25,
+       "conf": 0.49
+      }
+     },
+     "reasons": [],
+     "pages": [
+      15,
+      15
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "People Model 以電通每年的大型消費者調查為底，每一位 AI 數位分身都對應一位真實受訪者，與真人調查結果的吻合程度達到 0.89，已具備支持商業決策的可信度。",
+     "jev": {
+      "faithful": 0.85,
+      "overclaim": 0.49,
+      "complete": 0.74,
+      "fluency": {
+       "score": 2.11,
+       "conf": 0.52
+      }
+     },
+     "reasons": [],
+     "pages": [
+      15,
+      15,
+      15
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "模擬再精準也有邊界。面對從未出現過的品類、劇烈的社會情緒轉變，或沒有先例的全新概念，AI Persona 的判斷仍需要真人研究校準。People Model 不是取代市場研究，而是把研究資源留給真正需要深度洞察的地方。",
+     "jev": {
+      "faithful": 0.93,
+      "overclaim": 0.21,
+      "complete": 0.8,
+      "fluency": {
+       "score": 2.46,
+       "conf": 0.46
+      }
+     },
+     "reasons": [],
+     "pages": [
+      15,
+      15,
+      15
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "這場改變的時間表已經起跑。Future Market Insights 預估，AI 驅動的市場研究服務規模，2025 年將近八十億美元。",
+     "jev": {
+      "faithful": 0.88,
+      "overclaim": 0.28,
+      "complete": 0.53,
+      "fluency": {
+       "score": 1.91,
+       "conf": 0.52
+      }
+     },
+     "reasons": [],
+     "pages": [
+      15,
+      16
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "到 2030 年將成長到約一百六十八億美元，消費品與零售是投入最深的產業。報告指出關鍵驅動力是合成受測者與虛擬樣本群的興起，這是一場決策效率與決策品質的競爭。",
+     "jev": {
+      "faithful": 0.87,
+      "overclaim": 0.28,
+      "complete": 0.39,
+      "fluency": {
+       "score": 1.66,
+       "conf": 0.41
+      }
+     },
+     "reasons": [],
+     "pages": [
+      16,
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "模擬還解決了企業內部一個巨大的隱形成本：最珍貴的資訊在部門交接時被切成碎片。新品上市的問題散落在研發、設計、業務與行銷手上，傳統流程要動用八到十二個團隊、三十場以上會議、歷經數個月才能定案。",
+     "jev": {
+      "faithful": 0.3,
+      "overclaim": 0.35,
+      "complete": 0.57,
+      "fluency": {
+       "score": 2.17,
+       "conf": 0.54
+      }
+     },
+     "reasons": [],
+     "pages": [
+      16,
+      16
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "當驗證被壓縮到幾天甚至幾小時，省下的不只是時間，還有不斷被打散、又要重新拼起來的資訊。門檻不在企業規模，而在有沒有準備好把「理解人」當作核心決策依據。",
+     "jev": {
+      "faithful": 0.89,
+      "overclaim": 0.27,
+      "complete": 0.68,
+      "fluency": {
+       "score": 2.43,
+       "conf": 0.43
+      }
+     },
+     "reasons": [],
+     "pages": [
+      16,
+      16
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "速度從來不是目的。Agentic AI 真正改變的不只是工作效率，而是企業驗證假設、修正方向與做出決策的方式；人，仍然是最後的答案。",
+     "jev": {
+      "faithful": 0.85,
+      "overclaim": 0.52,
+      "complete": 0.69,
+      "fluency": {
+       "score": 2.45,
+       "conf": 0.43
+      }
+     },
+     "reasons": [],
+     "pages": [
+      16,
+      17,
+      17
+     ]
+    }
+   ]
+  },
+  {
+   "id": "a05",
+   "units": 25,
+   "flagged": 3,
+   "story": {
+    "coverage": {
+     "score": 3.0,
+     "conf": 1.0
+    },
+    "coherence": {
+     "score": 2.87,
+     "conf": 0.86
+    }
+   },
+   "story_flags": [],
+   "passed": false,
+   "rows": [
+    {
+     "kind": "main",
+     "text": "AI 能在幾秒內完成資料整理、競品掃描、初步分析與內容生成，代理商的工作流程與商業模式都被重新檢視。但朱芳儀把 AI 帶進日常策略工作後發現，策略人反而被推向更上游的位置。",
+     "jev": {
+      "faithful": 0.29,
+      "overclaim": 0.32,
+      "complete": 0.78,
+      "fluency": {
+       "score": 2.36,
+       "conf": 0.37
+      }
+     },
+     "reasons": [
+      "出處不足或不忠實（faithful 0.29）"
+     ],
+     "pages": [
+      37,
+      37
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "當重複性工作被加速，真正重要的變成如何定義問題、判斷方向，並從大量資訊中看見值得品牌投入的機會。",
+     "jev": {
+      "faithful": 0.93,
+      "overclaim": 0.31,
+      "complete": 0.81,
+      "fluency": {
+       "score": 2.42,
+       "conf": 0.44
+      }
+     },
+     "reasons": [],
+     "pages": [
+      37
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "過去的傳播策略容易被框定在「說什麼」。但消費旅程已經是由搜尋、社群、電商、會員與 AI 代理交織的動態旅程，策略的重點在於離生意更近，而不只是產出得更快。",
+     "jev": {
+      "faithful": 0.85,
+      "overclaim": 0.35,
+      "complete": 0.75,
+      "fluency": {
+       "score": 2.43,
+       "conf": 0.44
+      }
+     },
+     "reasons": [],
+     "pages": [
+      37,
+      37,
+      37
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "品牌面對的挑戰從來不是單一問題：看似聲量不足，背後可能是定位不清；看似轉換不佳，背後可能是對產品價值缺乏信任；看似年輕人不買單，可能是品牌進不了文化語境。",
+     "jev": {
+      "faithful": 0.9,
+      "overclaim": 0.2,
+      "complete": 0.62,
+      "fluency": {
+       "score": 2.33,
+       "conf": 0.45
+      }
+     },
+     "reasons": [],
+     "pages": [
+      37,
+      37,
+      37
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "所以未來的策略，必須從商業課題開始、回到成長績效結束。增長架構師要把商業目標、品牌定位、消費者洞察、旅程設計、內容、媒體觸點與成效衡量，串成一套完整的增長藍圖。",
+     "jev": {
+      "faithful": 0.89,
+      "overclaim": 0.31,
+      "complete": 0.79,
+      "fluency": {
+       "score": 2.3,
+       "conf": 0.31
+      }
+     },
+     "reasons": [],
+     "pages": [
+      37,
+      38
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "AI 擅長給出合理、安全、平均的答案，但策略最關鍵的，是看見人那些不一定理性、甚至有點矛盾的真實動機：人會因為怕丟臉而放棄學習，也會因為厭倦演算法而重新渴望真實。NVIDIA 執行長黃仁勳說，AI 時代人最重要的是三種能力。",
+     "jev": {
+      "faithful": 0.73,
+      "overclaim": 0.34,
+      "complete": 0.28,
+      "fluency": {
+       "score": 2.04,
+       "conf": 0.49
+      }
+     },
+     "reasons": [
+      "可能不完整（complete 0.28）"
+     ],
+     "pages": [
+      38,
+      38,
+      38,
+      38
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "說故事的能力，讓策略人能把商業問題，轉化為人願意理解、參與與相信的品牌敘事。",
+     "jev": {
+      "faithful": 0.84,
+      "overclaim": 0.22,
+      "complete": 0.9,
+      "fluency": {
+       "score": 2.47,
+       "conf": 0.49
+      }
+     },
+     "reasons": [],
+     "pages": [
+      38
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "提問的能力，讓策略人不被客戶的表面資訊限制，繼續追問：消費者為什麼不行動？品牌為什麼不被相信？市場真正的阻力在哪裡？",
+     "jev": {
+      "faithful": 0.91,
+      "overclaim": 0.14,
+      "complete": 0.73,
+      "fluency": {
+       "score": 2.35,
+       "conf": 0.35
+      }
+     },
+     "reasons": [],
+     "pages": [
+      38,
+      38
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "感知不完美的能力，讓人在數據與演算法之外，看見生活中的摩擦、尷尬、焦慮與未被滿足的情緒。AI 負責擴張資訊與效率，人負責提出判斷與意義，兩者是分工而不是競爭。",
+     "jev": {
+      "faithful": 0.45,
+      "overclaim": 0.63,
+      "complete": 0.77,
+      "fluency": {
+       "score": 2.25,
+       "conf": 0.27
+      }
+     },
+     "reasons": [],
+     "pages": [
+      39,
+      39
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "以 AI 英文口說 App Speak 為例。只看功能，最容易提出的訴求是字彙量、課程效率或 AI 語音辨識；這些都合理，卻不一定打得開台灣消費者的心。",
+     "jev": {
+      "faithful": 0.89,
+      "overclaim": 0.13,
+      "complete": 0.39,
+      "fluency": {
+       "score": 1.84,
+       "conf": 0.46
+      }
+     },
+     "reasons": [],
+     "pages": [
+      39,
+      39
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "很多台灣人英文卡住的，不是文法或字彙，而是開口前那一秒的心理壓力：怕講錯、怕被笑。Speak 的核心因此不是學得更快，而是成為一個不會評價你的練習對象。",
+     "jev": {
+      "faithful": 0.88,
+      "overclaim": 0.45,
+      "complete": 0.84,
+      "fluency": {
+       "score": 2.45,
+       "conf": 0.46
+      }
+     },
+     "reasons": [],
+     "pages": [
+      39,
+      39
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "數據與媒體策略再把這個洞察精準放大：分析年輕上班族與通勤族最容易被觸發的地點與時間，選擇高人流、高通勤的忠孝復興站，讓戶外廣告成為城市話題的引爆點。",
+     "jev": {
+      "faithful": 0.6,
+      "overclaim": 0.47,
+      "complete": 0.6,
+      "fluency": {
+       "score": 1.9,
+       "conf": 0.47
+      }
+     },
+     "reasons": [],
+     "pages": [
+      39,
+      39
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "先是搭配錯誤英文的納豆「我會很帥 coming son」，三天後換成「敢講最帥」的鳳小岳，把敢講轉化為一種新的自信。數據決定如何精準抵達，人性洞察決定為何能真正打動。",
+     "jev": {
+      "faithful": 0.77,
+      "overclaim": 0.32,
+      "complete": 0.47,
+      "fluency": {
+       "score": 1.93,
+       "conf": 0.49
+      }
+     },
+     "reasons": [],
+     "pages": [
+      39,
+      40
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "當 AI 代理介入搜尋、比較與購買，品牌面對的也包括替人做決策的系統。智能化，是讓品牌被 AI 讀懂，並在代理決策中成為值得被推薦的選項。",
+     "jev": {
+      "faithful": 0.91,
+      "overclaim": 0.25,
+      "complete": 0.69,
+      "fluency": {
+       "score": 2.24,
+       "conf": 0.47
+      }
+     },
+     "reasons": [],
+     "pages": [
+      40,
+      40
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "人性化，則是讓品牌身處演算法之中，仍能被消費者記得、相信、主動想起。增長架構師給客戶的方向，是建立一套智能與人性並進的增長系統。",
+     "jev": {
+      "faithful": 0.83,
+      "overclaim": 0.24,
+      "complete": 0.64,
+      "fluency": {
+       "score": 2.01,
+       "conf": 0.46
+      }
+     },
+     "reasons": [],
+     "pages": [
+      40,
+      40
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "朱芳儀提出五個落地方向：進入 AI 代理的決策語境、重新投資人性洞察、建立全旅程內容策略、把社群與文化視為資產，以及讓策略成為持續的營運機制。",
+     "jev": {
+      "faithful": 0.03,
+      "overclaim": 0.75,
+      "complete": 0.63,
+      "fluency": {
+       "score": 2.37,
+       "conf": 0.36
+      }
+     },
+     "reasons": [
+      "出處不足或不忠實（faithful 0.03）"
+     ],
+     "pages": [
+      41
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "品牌內容不能只寫給人看，也要能被 AI 正確理解。產品資訊、評價、常見問答與電商資料，都要整理成更結構化、可被解析的品牌知識層；品牌若無法被理解，就等於缺席。",
+     "jev": {
+      "faithful": 0.82,
+      "overclaim": 0.3,
+      "complete": 0.7,
+      "fluency": {
+       "score": 2.19,
+       "conf": 0.52
+      }
+     },
+     "reasons": [],
+     "pages": [
+      40,
+      40,
+      40
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "當每個品牌都能用 AI 做出相似的內容與個人化，拉開差距的是對人更深的理解：找到不是人人都看得見，但一說出來大家都覺得「這就是我」的洞察。",
+     "jev": {
+      "faithful": 0.85,
+      "overclaim": 0.34,
+      "complete": 0.82,
+      "fluency": {
+       "score": 2.46,
+       "conf": 0.46
+      }
+     },
+     "reasons": [],
+     "pages": [
+      40,
+      40
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "內容不該只服務單一活動上線，而要服務整個消費者旅程。策略的責任，是定義每個階段的內容各自要解決什麼問題，而不是讓品牌大量生產更多素材。",
+     "jev": {
+      "faithful": 0.91,
+      "overclaim": 0.24,
+      "complete": 0.85,
+      "fluency": {
+       "score": 2.43,
+       "conf": 0.44
+      }
+     },
+     "reasons": [],
+     "pages": [
+      40,
+      41
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "品牌偏好往往來自長期的文化參與。要經營的是社群而不只是受眾，讓消費者願意反覆回來與分享，這也是品牌在演算法世界裡避免被替換的防線。",
+     "jev": {
+      "faithful": 0.9,
+      "overclaim": 0.31,
+      "complete": 0.77,
+      "fluency": {
+       "score": 2.4,
+       "conf": 0.42
+      }
+     },
+     "reasons": [],
+     "pages": [
+      41,
+      41,
+      41
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "市場與消費旅程變動太快，策略不能只在年初制定一次，而要持續接收數據、觀察文化訊號、檢視成效並修正，讓品牌在變化中保持學習能力。",
+     "jev": {
+      "faithful": 0.94,
+      "overclaim": 0.2,
+      "complete": 0.86,
+      "fluency": {
+       "score": 2.59,
+       "conf": 0.59
+      }
+     },
+     "reasons": [],
+     "pages": [
+      41,
+      41
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "AI 擅長根據過去資料推測下一個答案，但新的成長機會，往往來自還沒被定義、還沒有歷史數據的微弱訊號。這是電通推動近未來研究的原因。",
+     "jev": {
+      "faithful": 0.3,
+      "overclaim": 0.26,
+      "complete": 0.63,
+      "fluency": {
+       "score": 2.13,
+       "conf": 0.5
+      }
+     },
+     "reasons": [],
+     "pages": [
+      41,
+      41,
+      41
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "團隊用未來學與科幻思考，探索多種可能的未來生活情境，發布《電通創意未來學：2030s 台灣近未來生活預測》。例如超高齡社會不只代表照護市場，也可能是新的移動、娛樂、學習與社交。",
+     "jev": {
+      "faithful": 0.9,
+      "overclaim": 0.19,
+      "complete": 0.67,
+      "fluency": {
+       "score": 2.13,
+       "conf": 0.54
+      }
+     },
+     "reasons": [],
+     "pages": [
+      42,
+      42,
+      42
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "當 AI 代理成為日常生活的數位管家，哪些品牌能成為被信任委託的對象，哪些又會被悄悄跳過？近未來研究的價值，是幫客戶從「追逐趨勢」轉向「佈局機會」。",
+     "jev": {
+      "faithful": 0.87,
+      "overclaim": 0.26,
+      "complete": 0.67,
+      "fluency": {
+       "score": 2.5,
+       "conf": 0.52
+      }
+     },
+     "reasons": [],
+     "pages": [
+      42,
+      42
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "當工具變得更快，判斷就更重要；當內容變得更多，意義就更稀缺；當旅程變得更自動化，信任就更珍貴。策略人的角色不會消失，而是進化為整合商業、品牌、體驗與科技的增長架構師。",
+     "jev": {
+      "faithful": 0.77,
+      "overclaim": 0.41,
+      "complete": 0.77,
+      "fluency": {
+       "score": 2.73,
+       "conf": 0.74
+      }
+     },
+     "reasons": [],
+     "pages": [
+      42,
+      43
+     ]
+    }
+   ]
+  },
+  {
+   "id": "a09",
+   "units": 19,
+   "flagged": 0,
+   "story": {
+    "coverage": {
+     "score": 2.98,
+     "conf": 0.98
+    },
+    "coherence": {
+     "score": 2.92,
+     "conf": 0.92
+    }
+   },
+   "story_flags": [],
+   "passed": true,
+   "rows": [
+    {
+     "kind": "main",
+     "text": "品牌主最深沉的痛點是：為什麼數位指標、曝光量、點擊率都很好，終端生意卻不見起色？關鍵原因在於，消費者認識、評估品牌的方式，已經徹底換了一條路。",
+     "jev": {
+      "faithful": 0.96,
+      "overclaim": 0.19,
+      "complete": 0.68,
+      "fluency": {
+       "score": 2.46,
+       "conf": 0.48
+      }
+     },
+     "reasons": [],
+     "pages": [
+      67,
+      67
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "過去消費者看廣告、逛官網、被促銷打動；今天，他愈來愈習慣先問 AI「哪個牌子好」，或滑一圈社群、看幾則評論，才決定要不要把你放進候選清單。",
+     "jev": {
+      "faithful": 0.95,
+      "overclaim": 0.12,
+      "complete": 0.79,
+      "fluency": {
+       "score": 2.46,
+       "conf": 0.48
+      }
+     },
+     "reasons": [],
+     "pages": [
+      67,
+      67
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "當 AI 回答時，它讀的不是你怎麼說自己，而是別人怎麼說你。品牌精心經營的官網與廣告文案，在那一刻幾乎使不上力。",
+     "jev": {
+      "faithful": 0.93,
+      "overclaim": 0.4,
+      "complete": 0.65,
+      "fluency": {
+       "score": 2.42,
+       "conf": 0.43
+      }
+     },
+     "reasons": [],
+     "pages": [
+      67
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "台灣消費者查東西習慣加上「評價」、「推薦」，甚至直接帶上 Dcard、PTT；Google 的 AI 摘要又出現在搜尋結果最上方。AI 回答「哪個好」時，大量讀的是 PTT、Dcard、YouTube、Google 評論裡的真實討論，而且讀的是語意與細節。",
+     "jev": {
+      "faithful": 0.9,
+      "overclaim": 0.14,
+      "complete": 0.57,
+      "fluency": {
+       "score": 2.09,
+       "conf": 0.58
+      }
+     },
+     "reasons": [],
+     "pages": [
+      67,
+      67,
+      67
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "很多人會很快得到結論：那就多生產 AI 喜歡的內容吧。但這正是最危險的地方。AI 偏好的是具體、像真實經驗、結構清楚、可被擷取的資訊，例如規格、優缺點與條列比較。",
+     "jev": {
+      "faithful": 0.89,
+      "overclaim": 0.17,
+      "complete": 0.37,
+      "fluency": {
+       "score": 2.05,
+       "conf": 0.57
+      }
+     },
+     "reasons": [],
+     "pages": [
+      68,
+      68
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "但真正會打動人、讓人願意自己說出口的，往往是情緒、共鳴，以及有故事、有溫度的內容。它們不見得結構化，卻是社群擴散真正的燃料。",
+     "jev": {
+      "faithful": 0.95,
+      "overclaim": 0.19,
+      "complete": 0.81,
+      "fluency": {
+       "score": 2.52,
+       "conf": 0.54
+      }
+     },
+     "reasons": [],
+     "pages": [
+      68,
+      68
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "只餵 AI 愛吃的，內容會像一座精準卻沒人想轉述的產品資料庫；只顧打動人卻講得空泛，AI 也抓不到重點。為了討好演算法而犧牲人味，會兩邊落空。",
+     "jev": {
+      "faithful": 0.92,
+      "overclaim": 0.32,
+      "complete": 0.72,
+      "fluency": {
+       "score": 2.4,
+       "conf": 0.41
+      }
+     },
+     "reasons": [],
+     "pages": [
+      68,
+      68,
+      68
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "所以這不是二選一，而是拿捏：真正吸引人的內容，是真實的人願意自發說出口、而且說得具體到 AI 願意引用的那一種。守住這個交集，是 AI 時代社群經營的第一道功課。",
+     "jev": {
+      "faithful": 0.92,
+      "overclaim": 0.22,
+      "complete": 0.8,
+      "fluency": {
+       "score": 2.46,
+       "conf": 0.47
+      }
+     },
+     "reasons": [],
+     "pages": [
+      68,
+      68,
+      68
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "這個拿捏更難，是因為三股力量同時在動：AI 讓製作成本崩跌，平台與 AI 愈來愈會分辨真實經歷與業配腔，消費者對生成感與業配感也幾乎一眼識破。",
+     "jev": {
+      "faithful": 0.87,
+      "overclaim": 0.22,
+      "complete": 0.68,
+      "fluency": {
+       "score": 2.14,
+       "conf": 0.49
+      }
+     },
+     "reasons": [],
+     "pages": [
+      68,
+      68,
+      68
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "三股力量指向同一個結論：當量產變得幾乎免費，真實反而成了最稀缺、也最貴的資產。",
+     "jev": {
+      "faithful": 0.9,
+      "overclaim": 0.23,
+      "complete": 0.76,
+      "fluency": {
+       "score": 2.55,
+       "conf": 0.57
+      }
+     },
+     "reasons": [],
+     "pages": [
+      68
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "這個課題對不同產業、不同客戶面臨的生意痛點並不一樣，整合解方自然也不該一樣。",
+     "jev": {
+      "faithful": 0.98,
+      "overclaim": 0.23,
+      "complete": 0.87,
+      "fluency": {
+       "score": 2.23,
+       "conf": 0.21
+      }
+     },
+     "reasons": [],
+     "pages": [
+      69
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "市場已累積大量真實的穿搭、開箱與評價，挑戰在於讓這些討論被 AI 正確讀到、引用到對的賣點，而不是被零星負評定義。還沒被討論的新客群，則得從零養起。",
+     "jev": {
+      "faithful": 0.88,
+      "overclaim": 0.18,
+      "complete": 0.62,
+      "fluency": {
+       "score": 2.14,
+       "conf": 0.53
+      }
+     },
+     "reasons": [],
+     "pages": [
+      69,
+      69,
+      69
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "高度依賴專業與信任的品類，口碑的質遠比量重要：一則具體可信的配戴心得，價值遠超過一百則空泛好評。代言話題若沉澱不成真實討論，只是一場煙火。",
+     "jev": {
+      "faithful": 0.87,
+      "overclaim": 0.3,
+      "complete": 0.7,
+      "fluency": {
+       "score": 2.41,
+       "conf": 0.42
+      }
+     },
+     "reasons": [],
+     "pages": [
+      69,
+      69,
+      69
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "話題很容易帶來被討論，卻不等於被推薦；爆紅衝高的往往只是好奇心，而不是購買意圖。被討論是注意力，被推薦才是被選擇。",
+     "jev": {
+      "faithful": 0.9,
+      "overclaim": 0.38,
+      "complete": 0.83,
+      "fluency": {
+       "score": 2.34,
+       "conf": 0.34
+      }
+     },
+     "reasons": [],
+     "pages": [
+      69,
+      69,
+      69
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "社群的角色變了，衡量方式就不能停在聲量與觸及，而要換成真正反映「被選擇」的問題：你被怎麼談、被談到的是不是想被記住的賣點，以及 AI 的答案裡有沒有你。",
+     "jev": {
+      "faithful": 0.83,
+      "overclaim": 0.35,
+      "complete": 0.69,
+      "fluency": {
+       "score": 2.29,
+       "conf": 0.46
+      }
+     },
+     "reasons": [],
+     "pages": [
+      70,
+      70,
+      70
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "執行上有五個舉措。最關鍵的是把真實經驗鋪在別人會自然討論的場域，因為品牌官方帳號反而不是 AI 最信任的來源；並引導 KOC 說具體經驗，誠實的優缺點比一面倒的好評更可信。",
+     "jev": {
+      "faithful": 0.67,
+      "overclaim": 0.36,
+      "complete": 0.48,
+      "fluency": {
+       "score": 2.18,
+       "conf": 0.56
+      }
+     },
+     "reasons": [],
+     "pages": [
+      70,
+      70
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "面對負評，重點不是用假帳號把星等刷高，而是讓它被正確回應、補上脈絡；面對正評，則是引導真實的討論談到對的賣點。",
+     "jev": {
+      "faithful": 0.94,
+      "overclaim": 0.14,
+      "complete": 0.84,
+      "fluency": {
+       "score": 2.24,
+       "conf": 0.48
+      }
+     },
+     "reasons": [],
+     "pages": [
+      70
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "社群買的是未來被信任、被選擇，不是當下成交，它的回報在以末端轉換為目標的系統裡天生難看。每次都用最後一哩去衡量，品牌會在最不該退場時，親手撤掉決定 AI 推不推薦你的場域。",
+     "jev": {
+      "faithful": 0.88,
+      "overclaim": 0.23,
+      "complete": 0.64,
+      "fluency": {
+       "score": 2.13,
+       "conf": 0.43
+      }
+     },
+     "reasons": [],
+     "pages": [
+      71,
+      71
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "社群不再只是品牌發聲的管道，而是別人替你發聲、再由 AI 轉述出去的現場。在內容可以無限量產的時代，稀缺的只剩一樣：真實的人，願意用自己的話，具體地說你好。",
+     "jev": {
+      "faithful": 0.94,
+      "overclaim": 0.14,
+      "complete": 0.75,
+      "fluency": {
+       "score": 2.66,
+       "conf": 0.66
+      }
+     },
+     "reasons": [],
+     "pages": [
+      71,
+      71
+     ]
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,498 @@
+{
+ "label": "round15",
+ "thresholds": {
+  "faithful": 0.3,
+  "overclaim": 0.8,
+  "complete": 0.3,
+  "coverage": 2.5,
+  "coherence": 2.2
+ },
+ "stories": [
+  {
+   "id": "a05",
+   "units": 25,
+   "flagged": 2,
+   "story": {
+    "coverage": {
+     "score": 3.0,
+     "conf": 1.0
+    },
+    "coherence": {
+     "score": 2.86,
+     "conf": 0.85
+    }
+   },
+   "story_flags": [],
+   "passed": false,
+   "rows": [
+    {
+     "kind": "main",
+     "text": "AI 能在幾秒內完成資料整理、競品掃描、初步分析與內容生成，代理商的工作流程與商業模式都被重新檢視。但朱芳儀把 AI 帶進日常策略工作後發現，策略人反而被推向更上游的位置。",
+     "jev": {
+      "faithful": 0.3,
+      "overclaim": 0.32,
+      "complete": 0.76,
+      "fluency": {
+       "score": 2.32,
+       "conf": 0.47
+      }
+     },
+     "reasons": [],
+     "pages": [
+      37,
+      37,
+      37,
+      37,
+      37
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "當重複性工作被加速，真正重要的變成如何定義問題、判斷方向，並從大量資訊中看見值得品牌投入的機會。",
+     "jev": {
+      "faithful": 0.93,
+      "overclaim": 0.28,
+      "complete": 0.83,
+      "fluency": {
+       "score": 2.44,
+       "conf": 0.44
+      }
+     },
+     "reasons": [],
+     "pages": [
+      37
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "過去的傳播策略容易被框定在「說什麼」。但消費旅程已經是由搜尋、社群、電商、會員與 AI 代理交織的動態旅程，策略的重點在於離生意更近，而不只是產出得更快。",
+     "jev": {
+      "faithful": 0.85,
+      "overclaim": 0.35,
+      "complete": 0.75,
+      "fluency": {
+       "score": 2.42,
+       "conf": 0.42
+      }
+     },
+     "reasons": [],
+     "pages": [
+      37,
+      37,
+      37
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "品牌面對的挑戰從來不是單一問題：看似聲量不足，背後可能是定位不清；看似轉換不佳，背後可能是對產品價值缺乏信任；看似年輕人不買單，可能是品牌進不了文化語境。",
+     "jev": {
+      "faithful": 0.9,
+      "overclaim": 0.22,
+      "complete": 0.61,
+      "fluency": {
+       "score": 2.35,
+       "conf": 0.36
+      }
+     },
+     "reasons": [],
+     "pages": [
+      37,
+      37,
+      37
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "所以未來的策略，必須從商業課題開始、回到成長績效結束。增長架構師要把商業目標、品牌定位、消費者洞察、旅程設計、內容、媒體觸點與成效衡量，串成一套完整的增長藍圖。",
+     "jev": {
+      "faithful": 0.89,
+      "overclaim": 0.31,
+      "complete": 0.81,
+      "fluency": {
+       "score": 2.29,
+       "conf": 0.31
+      }
+     },
+     "reasons": [],
+     "pages": [
+      37,
+      38
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "AI 擅長給出合理、安全、平均的答案，策略最關鍵的卻是看見人有點矛盾的真實動機。黃仁勳說，AI 時代人最重要的是說故事、提問與感知不完美的能力，這幾乎就是策略人的核心能力。",
+     "jev": {
+      "faithful": 0.84,
+      "overclaim": 0.46,
+      "complete": 0.82,
+      "fluency": {
+       "score": 2.48,
+       "conf": 0.49
+      }
+     },
+     "reasons": [],
+     "pages": [
+      38,
+      38,
+      38,
+      38
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "說故事的能力，讓策略人能把商業問題，轉化為人願意理解、參與與相信的品牌敘事。",
+     "jev": {
+      "faithful": 0.87,
+      "overclaim": 0.23,
+      "complete": 0.91,
+      "fluency": {
+       "score": 2.49,
+       "conf": 0.5
+      }
+     },
+     "reasons": [],
+     "pages": [
+      38
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "提問的能力，讓策略人不被客戶的表面資訊限制，繼續追問：消費者為什麼不行動？品牌為什麼不被相信？市場真正的阻力在哪裡？",
+     "jev": {
+      "faithful": 0.9,
+      "overclaim": 0.14,
+      "complete": 0.71,
+      "fluency": {
+       "score": 2.3,
+       "conf": 0.46
+      }
+     },
+     "reasons": [],
+     "pages": [
+      38,
+      38
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "感知不完美的能力，讓人在數據與演算法之外，看見生活中的摩擦、尷尬、焦慮與未被滿足的情緒。AI 負責擴張資訊與效率，人負責提出判斷與意義，兩者是分工而不是競爭。",
+     "jev": {
+      "faithful": 0.39,
+      "overclaim": 0.62,
+      "complete": 0.77,
+      "fluency": {
+       "score": 2.24,
+       "conf": 0.23
+      }
+     },
+     "reasons": [],
+     "pages": [
+      39,
+      39
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "以 AI 英文口說 App Speak 為例。只看功能，最容易提出的訴求是字彙量、課程效率或 AI 語音辨識；這些都合理，卻不一定打得開台灣消費者的心。",
+     "jev": {
+      "faithful": 0.88,
+      "overclaim": 0.13,
+      "complete": 0.39,
+      "fluency": {
+       "score": 1.87,
+       "conf": 0.49
+      }
+     },
+     "reasons": [],
+     "pages": [
+      39,
+      39
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "很多台灣人英文卡住的，不是文法或字彙，而是開口前那一秒的心理壓力：怕講錯、怕被笑。Speak 的核心因此不是學得更快，而是成為一個不會評價你的練習對象。",
+     "jev": {
+      "faithful": 0.87,
+      "overclaim": 0.45,
+      "complete": 0.82,
+      "fluency": {
+       "score": 2.43,
+       "conf": 0.43
+      }
+     },
+     "reasons": [],
+     "pages": [
+      39,
+      39
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "數據與媒體策略再把這個洞察精準放大：分析年輕上班族與通勤族最容易被觸發的地點與時間，選擇高人流、高通勤的忠孝復興站，讓戶外廣告成為城市話題的引爆點。",
+     "jev": {
+      "faithful": 0.58,
+      "overclaim": 0.51,
+      "complete": 0.61,
+      "fluency": {
+       "score": 1.93,
+       "conf": 0.47
+      }
+     },
+     "reasons": [],
+     "pages": [
+      39,
+      39
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "先是搭配錯誤英文的納豆「我會很帥 coming son」，三天後換成「敢講最帥」的鳳小岳，把敢講轉化為一種新的自信。數據決定如何精準抵達，人性洞察決定為何能真正打動。",
+     "jev": {
+      "faithful": 0.79,
+      "overclaim": 0.34,
+      "complete": 0.46,
+      "fluency": {
+       "score": 1.88,
+       "conf": 0.48
+      }
+     },
+     "reasons": [],
+     "pages": [
+      39,
+      40
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "當 AI 代理介入搜尋、比較與購買，品牌面對的也包括替人做決策的系統。智能化，是讓品牌被 AI 讀懂，並在代理決策中成為值得被推薦的選項。",
+     "jev": {
+      "faithful": 0.9,
+      "overclaim": 0.27,
+      "complete": 0.68,
+      "fluency": {
+       "score": 2.24,
+       "conf": 0.48
+      }
+     },
+     "reasons": [],
+     "pages": [
+      40,
+      40
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "人性化，則是讓品牌身處演算法之中，仍能被消費者記得、相信、主動想起。增長架構師給客戶的方向，是建立一套智能與人性並進的增長系統。",
+     "jev": {
+      "faithful": 0.83,
+      "overclaim": 0.26,
+      "complete": 0.66,
+      "fluency": {
+       "score": 2.0,
+       "conf": 0.46
+      }
+     },
+     "reasons": [],
+     "pages": [
+      40,
+      40
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "朱芳儀提出五個落地方向：進入 AI 代理的決策語境、重新投資人性洞察、建立全旅程內容策略、把社群與文化視為資產，以及讓策略成為持續的營運機制。",
+     "jev": {
+      "faithful": 0.26,
+      "overclaim": 0.3,
+      "complete": 0.67,
+      "fluency": {
+       "score": 2.36,
+       "conf": 0.38
+      }
+     },
+     "reasons": [
+      "出處不足或不忠實（faithful 0.26）"
+     ],
+     "pages": [
+      41,
+      40,
+      40,
+      40,
+      41,
+      41
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "品牌內容不能只寫給人看，也要能被 AI 正確理解。產品資訊、評價、常見問答與電商資料，都要整理成更結構化、可被解析的品牌知識層；品牌若無法被理解，就等於缺席。",
+     "jev": {
+      "faithful": 0.83,
+      "overclaim": 0.28,
+      "complete": 0.7,
+      "fluency": {
+       "score": 2.21,
+       "conf": 0.52
+      }
+     },
+     "reasons": [],
+     "pages": [
+      40,
+      40,
+      40
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "當每個品牌都能用 AI 做出相似的內容與個人化，拉開差距的是對人更深的理解：找到不是人人都看得見，但一說出來大家都覺得「這就是我」的洞察。",
+     "jev": {
+      "faithful": 0.86,
+      "overclaim": 0.35,
+      "complete": 0.82,
+      "fluency": {
+       "score": 2.44,
+       "conf": 0.45
+      }
+     },
+     "reasons": [],
+     "pages": [
+      40,
+      40
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "內容不該只服務單一活動上線，而要服務整個消費者旅程。策略的責任，是定義每個階段的內容各自要解決什麼問題，而不是讓品牌大量生產更多素材。",
+     "jev": {
+      "faithful": 0.9,
+      "overclaim": 0.24,
+      "complete": 0.84,
+      "fluency": {
+       "score": 2.38,
+       "conf": 0.4
+      }
+     },
+     "reasons": [],
+     "pages": [
+      40,
+      41
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "品牌偏好往往來自長期的文化參與。要經營的是社群而不只是受眾，讓消費者願意反覆回來與分享，這也是品牌在演算法世界裡避免被替換的防線。",
+     "jev": {
+      "faithful": 0.89,
+      "overclaim": 0.3,
+      "complete": 0.77,
+      "fluency": {
+       "score": 2.4,
+       "conf": 0.4
+      }
+     },
+     "reasons": [],
+     "pages": [
+      41,
+      41,
+      41
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "市場與消費旅程變動太快，策略不能只在年初制定一次，而要持續接收數據、觀察文化訊號、檢視成效並修正，讓品牌在變化中保持學習能力。",
+     "jev": {
+      "faithful": 0.93,
+      "overclaim": 0.21,
+      "complete": 0.87,
+      "fluency": {
+       "score": 2.57,
+       "conf": 0.58
+      }
+     },
+     "reasons": [],
+     "pages": [
+      41,
+      41
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "AI 擅長根據過去資料推測下一個答案，但新的成長機會，往往來自還沒被定義、還沒有歷史數據的微弱訊號。這是電通推動近未來研究的原因。",
+     "jev": {
+      "faithful": 0.28,
+      "overclaim": 0.28,
+      "complete": 0.64,
+      "fluency": {
+       "score": 2.11,
+       "conf": 0.51
+      }
+     },
+     "reasons": [
+      "出處不足或不忠實（faithful 0.28）"
+     ],
+     "pages": [
+      41,
+      41,
+      41
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "團隊用未來學與科幻思考，探索多種可能的未來生活情境，發布《電通創意未來學：2030s 台灣近未來生活預測》。例如超高齡社會不只代表照護市場，也可能是新的移動、娛樂、學習與社交。",
+     "jev": {
+      "faithful": 0.89,
+      "overclaim": 0.17,
+      "complete": 0.65,
+      "fluency": {
+       "score": 2.13,
+       "conf": 0.55
+      }
+     },
+     "reasons": [],
+     "pages": [
+      42,
+      42,
+      42
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "當 AI 代理成為日常生活的數位管家，哪些品牌能成為被信任委託的對象，哪些又會被悄悄跳過？近未來研究的價值，是幫客戶從「追逐趨勢」轉向「佈局機會」。",
+     "jev": {
+      "faithful": 0.85,
+      "overclaim": 0.25,
+      "complete": 0.63,
+      "fluency": {
+       "score": 2.53,
+       "conf": 0.54
+      }
+     },
+     "reasons": [],
+     "pages": [
+      42,
+      42
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "當工具變得更快，判斷就更重要；當內容變得更多，意義就更稀缺；當旅程變得更自動化，信任就更珍貴。策略人的角色不會消失，而是進化為整合商業、品牌、體驗與科技的增長架構師。",
+     "jev": {
+      "faithful": 0.77,
+      "overclaim": 0.45,
+      "complete": 0.76,
+      "fluency": {
+       "score": 2.71,
+       "conf": 0.72
+      }
+     },
+     "reasons": [],
+     "pages": [
+      42,
+      43
+     ]
+    }
+   ]
+  }
+ ]
+}

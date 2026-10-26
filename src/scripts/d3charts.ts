@@ -494,6 +494,52 @@ function balance(el: HTMLElement, c: Extract<D3Chart, { kind: 'balance' }>): Ins
   };
 }
 
+// ---------- venn：兩個圓的交集，逐段強調左、右、落空、交集 ----------
+function venn(el: HTMLElement, c: Extract<D3Chart, { kind: 'venn' }>): Instance {
+  const W = 560, H = 420, cy = 210, r = 150, lx = 205, rx = 355;
+  const svg = select(el).append('svg').attr('viewBox', `0 0 ${W} ${H}`).attr('class', 'vn');
+  const bind = tipLayer(el);
+  const id = `vn-${Math.random().toString(36).slice(2, 7)}`;
+  svg.append('defs').append('clipPath').attr('id', id).append('circle').attr('cx', lx).attr('cy', cy).attr('r', r);
+  const L = svg.append('circle').attr('class', 'vn-c vn-l').attr('cx', lx).attr('cy', cy).attr('r', r);
+  const R = svg.append('circle').attr('class', 'vn-c vn-r').attr('cx', rx).attr('cy', cy).attr('r', r);
+  const both = svg.append('circle').attr('class', 'vn-both').attr('cx', rx).attr('cy', cy).attr('r', r).attr('clip-path', `url(#${id})`);
+  const side = (x: number, d: { label: string; items: string[] }) => {
+    const g = svg.append('g').attr('class', 'vn-text').attr('pointer-events', 'none');
+    g.append('text').attr('class', 'vn-label').attr('x', x).attr('y', cy - 48).attr('text-anchor', 'middle').text(d.label);
+    d.items.forEach((t, i) => g.append('text').attr('class', 'vn-item').attr('x', x).attr('y', cy - 16 + i * 22).attr('text-anchor', 'middle').text(t));
+  };
+  side(lx - 72, c.left);
+  side(rx + 72, c.right);
+  const mid = svg.append('g').attr('class', 'vn-mid').attr('pointer-events', 'none');
+  mid.append('text').attr('class', 'vn-both-label').attr('x', W / 2).attr('y', cy - 6).attr('text-anchor', 'middle').text(c.both.label);
+  // 交集的說明拆成兩行
+  const half = Math.ceil(c.both.desc.length / 2);
+  [c.both.desc.slice(0, half), c.both.desc.slice(half)].forEach((t, i) =>
+    mid.append('text').attr('class', 'vn-both-desc').attr('x', W / 2).attr('y', cy + 18 + i * 16).attr('text-anchor', 'middle').text(t));
+  const fail = svg.append('text').attr('class', 'vn-fail').attr('x', W / 2).attr('y', H - 8).attr('text-anchor', 'middle').text(c.fail ?? '');
+  bind(L.node()!, { title: c.left.label, body: c.left.items.join('、'), extra: c.left.extra });
+  bind(R.node()!, { title: c.right.label, body: c.right.items.join('、'), extra: c.right.extra });
+  bind(both.node()!, { title: c.both.label, body: c.both.desc, extra: c.both.extra });
+  let lit = false;
+  return {
+    update(s) {
+      const st = reduce ? 99 : s;
+      L.classed('focus', st === c.leftAt).classed('dim', st === c.rightAt);
+      R.classed('focus', st === c.rightAt).classed('dim', st === c.leftAt);
+      const failing = !!c.failAt && st === c.failAt;
+      svg.classed('failing', failing);
+      fail.style('opacity', failing ? 1 : 0);
+      lit = st >= c.bothAt;
+      both.classed('on', lit);
+      mid.style('opacity', lit ? 1 : 0.25);
+    },
+    tick(t) {
+      if (lit) both.style('opacity', 0.75 + Math.sin(t / 500) * 0.2);
+    },
+  };
+}
+
 // ---------- rings：由內往外擴大的同心圓，漣漪持續向外擴散；pulls 從中心被往外帶走 ----------
 function rings(el: HTMLElement, c: Extract<D3Chart, { kind: 'rings' }>): Instance {
   const W = 520, H = 500, cx = W / 2, cy = 236, r0 = 42, band = 46;
@@ -544,7 +590,7 @@ function rings(el: HTMLElement, c: Extract<D3Chart, { kind: 'rings' }>): Instanc
   };
 }
 
-const builders: Record<string, (el: HTMLElement, c: never) => Instance> = { flowloop, groups, logrange, stages, esov, rings, allocate, balance } as never;
+const builders: Record<string, (el: HTMLElement, c: never) => Instance> = { flowloop, groups, logrange, stages, esov, rings, allocate, balance, venn } as never;
 
 export function initD3() {
   const charts = Array.from(document.querySelectorAll<HTMLElement>('[data-d3]'));

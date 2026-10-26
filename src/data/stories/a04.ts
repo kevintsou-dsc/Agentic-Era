@@ -1,0 +1,228 @@
+import type { Story } from '../../lib/story';
+
+// 紀緻謙〈Agents of Growth：AI 代理時代的增長推手〉紙本 p.28–35
+// 原刊圖表：圖1 AI 重塑顧客旅程（d3 循環）、圖2 Creative E2E 與 AI-Powered IMC（清單）；
+// 文字數據：89% CMO（大數字＋人形圖）；增長三角 12 項專業（hscroll）
+export const story: Story = {
+  id: 'a04',
+  status: 'judged',
+  oneLiner: '未來的競爭不是 Human versus AI，而是 Human plus AI；演算法決定效率，人性決定偏好。',
+  scenes: [
+    {
+      kind: 'prose',
+      eyebrow: '開場',
+      heading: '站在全新的商業轉折點',
+      beats: [
+        {
+          text: '紀緻謙觀察到，企業的投資策略正變得更理性、聚焦、結果導向：預算不只從傳統媒體轉向數位，而是重新分配到能直接回應商業成果的場域，專案型、成效導向的合作成為常態。',
+          src: [
+            { article: 'a04', page: 29, text: '企業在投資策略上，正變得更加理性、聚焦，也更加結果導向' },
+            { article: 'a04', page: 29, text: '而是更根本地重新分配到能夠直接回應商業成果的場域' },
+            { article: 'a04', page: 29, text: '專案型、模組型、成效導向的合作模式成為常態' },
+          ],
+        },
+        {
+          text: '行銷渠道也高度碎片化：品牌要在媒體上被看見、在社群中被討論、在內容中被理解、在體驗中被選擇，最終在商務場景中被轉換。',
+          src: [{ article: 'a04', page: 29, text: '品牌不只要在媒體上被看見，更要在社群中被討論、在內容中被理解、在體驗中被選擇，最終在商務場景中被轉換' }],
+        },
+        {
+          text: '客戶需要的不再是單一渠道的創意，而是能同時整合聲量、體驗、流量與轉單的端到端夥伴。AI 確實帶來前所未有的效率，但它無法取代人對文化的理解、對人性的洞察與對品味的判斷。',
+          src: [
+            { article: 'a04', page: 29, text: '而是能夠同時整合聲量、體驗、流量與轉單的端到端夥伴' },
+            { article: 'a04', page: 29, text: 'AI 仍無法取代人類對文化的理解、對人性的洞察、對品味的判斷' },
+          ],
+        },
+      ],
+    },
+    {
+      kind: 'statement',
+      eyebrow: '未來的競爭',
+      text: '不是 Human versus AI，而是 Human plus AI',
+      lede: {
+        text: '當 AI 承擔效率、速度與規模，人類的創造力、判斷力與連結能力，就成為決定成長方向的關鍵。效率被科技普及之後，真正能創造差異化的，是洞察、品味、信任與文化影響力。',
+        src: [
+          { article: 'a04', page: 29, text: '當 AI 承擔效率、速度與規模，人類的創造力、判斷力與連結能力，就成為決定成長方向的關鍵' },
+          { article: 'a04', page: 29, text: '真正能夠創造差異化的，將是洞察、品味、信任、文化影響力' },
+        ],
+      },
+    },
+    {
+      kind: 'graphic',
+      side: 'right',
+      graphic: {
+        type: 'd3',
+        chart: {
+          kind: 'flowloop',
+          title: 'AI 介入顧客旅程的每一個決策節點',
+          center: 'AI 代理',
+          centerExtra: 'AI 代理（Agentic AI）不只回答問題，還能代替消費者搜尋、比價、篩選，甚至完成購買。品牌因此要同時說服兩種對象：真正的消費者，以及替他做功課的 AI。',
+          nodes: [
+            { label: '觸及', sub: 'Activate', desc: 'AI 驅動全渠道觸及', extra: '需求剛出現的階段。AI 讓品牌能依每個人的興趣與情境，在不同平台推送個人化的廣告與內容，也讓 AI 搜尋最佳化（被 AI 找到）成為新的基本功。' },
+            { label: '探索與連結', sub: 'Inspire', desc: 'AI 賦能顧客體驗', extra: '消費者開始了解、比較的階段。對話式導購、個人化頁面與虛擬門市，讓每個人看到的品牌體驗都不一樣，也讓品牌有機會在比較時被留下來。' },
+            { label: '行動與轉換', sub: 'Convert', desc: 'AI 培育顧客價值與忠誠', extra: '從第一次購買到持續回購。AI 可以預測需求、即時調整優惠與推薦，把一次交易延伸成長期關係，例如會員分群、自動化行銷與忠誠計畫。' },
+            { label: '擁護與擴散', sub: 'Advocate', desc: 'AI 建構品牌服務生態', extra: '忠實顧客替品牌說話的階段。品牌社群共創、輿情洞察，以及未來由品牌代理人與消費者的 AI 代理直接協作，都會讓口碑回到下一輪的觸及。' },
+          ],
+        },
+        source: '圖：AI 驅動新時代並重塑顧客旅程與行銷策略｜資料來源 dentsu Creative，紀緻謙〈Agents of Growth〉紙本 p.30',
+      },
+      src: [{ article: 'a04', page: 30, text: 'AI 驅動新時代並重塑顧客旅程與行銷策略' }],
+      figures: [
+        { article: 'a04', page: 30, text: '觸及 Activate' }, { article: 'a04', page: 30, text: '探索與連結 Inspire' },
+        { article: 'a04', page: 30, text: '行動與轉換 Convert' }, { article: 'a04', page: 30, text: '擁護與擴散 Advocate' },
+      ],
+      beats: [
+        {
+          text: '隨著代理型 AI 崛起，從觸發需求、啟發探索、比較評估、轉換購買到品牌擁護，AI 已經開始介入顧客旅程的每一個決策節點。',
+          src: [{ article: 'a04', page: 30, text: '從觸發需求、啟發探索、比較評估、轉換購買，到最終的品牌擁護，AI 已經開始介入每一個決策節點' }],
+        },
+        {
+          text: '對話式解答引擎讓產品探索進入「零點擊體驗」：消費者不必再瀏覽多個網頁比較資訊，AI 代理就能在對話中整合資訊、提供初步判斷與建議。',
+          src: [
+            { article: 'a04', page: 30, text: '對話式解答引擎正在讓產品探索進入「零點擊體驗」' },
+            { article: 'a04', page: 30, text: 'AI 代理就能在對話介面中整合資訊，提供初步判斷與建議' },
+          ],
+        },
+        {
+          text: '品牌未來面對的不只是人類消費者，也包括替人整理資訊、做判斷、甚至完成任務的 AI 代理。當 AI 開始代表消費者搜尋、比價與購買，傳統行銷漏斗已不足以解釋完整的決策歷程。',
+          src: [
+            { article: 'a04', page: 30, text: '品牌未來面對的不只是一群人類消費者，也包括替人類消費者整理資訊、進行判斷、甚至完成任務的 AI 代理' },
+            { article: 'a04', page: 30, text: '傳統行銷漏斗將不再足以解釋完整的決策歷程' },
+          ],
+        },
+        {
+          text: '品牌如果無法讓產品資訊、內容結構與品牌價值被 AI 清楚讀取、正確理解、有效推薦，就可能在新的消費旅程中失去能見度。',
+          src: [
+            { article: 'a04', page: 31, text: '品牌如果無法讓自身的產品資訊、內容結構、數據訊號與品牌價值被 AI 清楚讀取、正確理解、有效推薦' },
+            { article: 'a04', page: 31, text: '就可能在新的消費旅程中失去能見度' },
+          ],
+          quote: { article: 'a04', page: 31, text: '未來的競爭，不只是在消費者心中占有一席之地，也是在 AI 所理解的世界裡，成為值得被選擇的品牌。' },
+        },
+      ],
+    },
+    {
+      kind: 'bignum',
+      value: 89,
+      unit: '%',
+      caption: {
+        text: 'dentsu《2025 全球行銷長報告》調查 14 個國家區域、超過 1950 位行銷長，89% 同意代理型 AI 將對業務產生重大影響；也有 90% 相信，強大的品牌偏好將是未來致勝的關鍵。',
+        src: [
+          { article: 'a04', page: 31, text: '橫跨 14 個國家區域、針對超過 1950 位行銷長的調查結果' },
+          { article: 'a04', page: 31, text: '高達 89% 的行銷長同意，代理型 AI 將對業務產生重大影響' },
+          { article: 'a04', page: 31, text: '高達 90% 的 CMO 相信，強大的品牌偏好 (Brand Preference) 將是未來致勝的關鍵' },
+        ],
+      },
+      figure: { article: 'a04', page: 31, text: '高達 89% 的行銷長同意' },
+      people: { total: 100, filled: 89, label: '位行銷長認為代理型 AI 將重大影響業務' },
+      source: '資料來源 dentsu《2025 CMO Report》，紀緻謙〈Agents of Growth〉紙本 p.31',
+    },
+    {
+      kind: 'quote',
+      lead: {
+        text: '當所有品牌都能使用相似的 AI 工具，技術就不再是唯一壁壘；只追逐演算法訊號與短期轉換，很容易陷入內容、體驗與主張都相似的同質化競爭。',
+        src: [
+          { article: 'a04', page: 31, text: '當所有品牌都能使用相似的 AI 工具，追求效率、個人化與規模化，技術本身將不再是唯一壁壘' },
+          { article: 'a04', page: 31, text: '很容易陷入內容相似、體驗相似、主張相似的同質化競爭' },
+        ],
+      },
+      quote: { article: 'a04', page: 31, text: '當機器接手更多效率與執行，品味與信任將成為企業創造商業溢價的關鍵資產。' },
+    },
+    {
+      kind: 'hscroll',
+      title: '增長三角：贏得演算法、贏得人心、贏得文化',
+      intro: {
+        text: '電通重新整合創意事業群的十二項專業能力，建構「增長三角」。三個面向分別回答：如何被 AI 正確理解與推薦、如何在人類決策中建立信任，以及如何進入文化、形成長期品牌資產。',
+        src: [
+          { article: 'a04', page: 31, text: '我們重新整合電通創意事業群旗下十二項專業能力，建構出能夠在 AI 時代為客戶創造實質成長的「增長三角 (The Growth Triangle) 」' },
+          { article: 'a04', page: 31, text: '如何被 AI 正確理解與推薦、如何在人類決策中建立信任與偏好，以及如何進一步進入文化，形成長期且深層的品牌資產' },
+        ],
+      },
+      panels: [
+        {
+          kicker: '主軸一', title: '贏得演算法', figure: { value: '4 項', label: 'AI Content Production／TAG、Data & Martech、Media、Social Commerce' },
+          text: '當 AI 能快速生成大量內容，品牌需要的不是更多素材，而是更清楚的判斷標準。AI 負責速度、規模與變體生成，人類專家把關策略方向、美學標準與品牌一致性。',
+          src: [
+            { article: 'a04', page: 31, text: '當 AI 可以快速生成大量內容，品牌最需要的不是更多素材，而是更清楚的判斷標準' },
+            { article: 'a04', page: 31, text: 'AI 負責提高速度、規模與變體生成，人類專家則專注在策略方向、美學標準與品牌一致性的把關' },
+          ],
+          more: {
+            title: '在 AI 比價之前，先被選擇',
+            quote: { article: 'a04', page: 32, text: '品牌必須在 AI 介入比價之前，就先在人心中建立被選擇的理由。' },
+          },
+        },
+        {
+          kicker: '主軸二', title: '贏得人心', figure: { value: '4 項', label: 'Strategy & Consult、Brand & Creative、Experience Design／Dentsu Lab、BX' },
+          text: 'AI 讓消費旅程更快、更順，但信任與情感連結不會自動發生，必須刻意投資。品牌不能只求被看見，更要被記得、被相信、被偏好，讓消費者面對 AI 的理性比較時，仍主動選擇它。',
+          src: [
+            { article: 'a04', page: 32, text: '信任、情感連結與深層理解並不會隨之自動發生，它們是品牌在這個階段必須刻意投資的資產' },
+            { article: 'a04', page: 32, text: '品牌不能只追求被看見，更要被記得、被相信、被偏好' },
+            { article: 'a04', page: 32, text: '創造讓消費者即使面對 AI 的理性比較，仍然願意主動選擇的品牌偏好' },
+          ],
+          more: {
+            title: '體驗直接變成成長引擎',
+            quote: { article: 'a04', page: 32, text: '當官網、會員系統、數位服務與內容接觸點能即時回應不同需求，體驗就不只是服務，而會直接成為轉換與留存的成長引擎。' },
+          },
+        },
+        {
+          kicker: '主軸三', title: '贏得文化', figure: { value: '4 項', label: 'PR Influence、Event、Entertainment & Sports、IP Design Lab' },
+          text: '只停留在功能比較的品牌，很容易被演算法替換。品牌偏好不是一次廣告就能創造，而是長期在文化中累積的信任、記憶與情感資產；擁有世界觀、角色與粉絲參與機制，品牌才會成為文化資產。',
+          src: [
+            { article: 'a04', page: 33, text: '品牌若只停留在功能比較，很容易被演算法替換' },
+            { article: 'a04', page: 33, text: '品牌偏好不是一次廣告活動能創造的結果，而是長期在文化中累積的信任、記憶與情感資產' },
+            { article: 'a04', page: 33, text: '當品牌能夠擁有自己的世界觀、角色、內容資產與粉絲參與機制' },
+          ],
+          more: {
+            title: '真實的線下連結更珍貴',
+            quote: { article: 'a04', page: 33, text: '同時，當消費者面對越來越多數位訊息與內容疲勞，真實的線下連結將變得更加珍貴。' },
+          },
+        },
+      ],
+      source: '整理：策展者｜依據 紀緻謙〈Agents of Growth〉紙本 p.31–33',
+    },
+    {
+      kind: 'graphic',
+      side: 'right',
+      graphic: {
+        type: 'list',
+        title: '兩大落地增長解方：兼顧短期營收與長期 AI 轉型',
+        items: [
+          { title: 'Creative E2E 服務矩陣', desc: '把 12 項專業整合成可組合的服務模組，打破服務孤島', at: 1 },
+          { title: 'AI-Powered IMC', desc: '從行為預測、內容生成、媒體配置到轉換追蹤的動態顧客旅程', at: 2 },
+        ],
+        source: '圖：Creative E2E 服務矩陣及 AI-Powered IMC 方案｜資料來源 dentsu Creative，紀緻謙〈Agents of Growth〉紙本 p.33–34',
+      },
+      src: [{ article: 'a04', page: 33, text: '協助企業同時兼顧短期營收變現與長期 AI 轉型' }],
+      beats: [
+        {
+          text: '第一個解方是 Creative E2E 服務矩陣：把 12 項專業服務整合為可組合的模組，依電商導流、品牌重塑或社群商務等目標精準組合，企業不必再在多個代理商之間反覆協調。',
+          src: [
+            { article: 'a04', page: 33, text: '我們將電通創意事業群的 12 項專業服務，進一步整合為更清楚、更可組合的服務模組' },
+            { article: 'a04', page: 33, text: '企業不再需要在多個代理商與服務供應商之間反覆協調' },
+          ],
+        },
+        {
+          text: '第二個解方是 AI-Powered IMC：單一爆款廣告已難以支撐長期成長，品牌需要一套能持續學習、即時優化的整合行銷系統，讓 campaign 變成能隨時調整的動態顧客旅程。',
+          src: [
+            { article: 'a04', page: 34, text: '在碎片化的市場中，單一爆款廣告已難以支撐長期成長' },
+            { article: 'a04', page: 34, text: '品牌需要的是一套能夠持續學習、即時優化' },
+            { article: 'a04', page: 34, text: '這讓整合行銷不再只是事前規劃好的 campaign，而是一套能夠持續調整、即時回應市場變化的動態顧客旅程' },
+          ],
+        },
+      ],
+    },
+    {
+      kind: 'quote',
+      lead: {
+        text: '企業需要的已不再是更多代理商，而是更少的協作摩擦、更深的能力整合，以及更具確定性的成長成果。在 AI 時代，演算法將決定效率，但人性將決定偏好。',
+        src: [
+          { article: 'a04', page: 35, text: '企業需要的已不再是更多代理商，而是更少的協作摩擦、更深的能力整合，以及更具確定性的成長成果' },
+          { article: 'a04', page: 35, text: '在 AI 時代，演算法將決定效率，但人性將決定偏好' },
+        ],
+      },
+      quote: { article: 'a04', page: 35, text: '未來，不屬於最會使用 AI 的企業，而屬於最懂得運用 Human + AI 共創價值的企業。' },
+    },
+  ],
+  asksTitle: '帶走一個問題',
+  asks: [
+    { article: 'a04', page: 31, text: '面對這樣由演算法與自動化深度介入的未來，品牌該如何建立真正的競爭優勢？' },
+  ],
+};

@@ -124,6 +124,16 @@ export type D3Chart =
       states: (Tipped & { label: string; en: string; years: string; desc: string; tilt: number; at: number })[];
     }
   /**
+   * 文氏圖：兩種條件的交集才是答案（例如 AI 愛的 ∩ 人愛的）。
+   * leftAt／rightAt：第幾段強調左／右圓；failAt：只顧一邊會兩邊落空；bothAt：之後交集亮起並持續脈動。
+   */
+  | {
+      kind: 'venn'; title: string;
+      left: Tipped & { label: string; items: string[] }; right: Tipped & { label: string; items: string[] };
+      both: Tipped & { label: string; desc: string };
+      fail?: string; leftAt: number; rightAt: number; failAt?: number; bothAt: number;
+    }
+  /**
    * 同心圓：範圍由內往外擴大的概念（例如競爭從同品類擴大到整個生活預算）。所有圈一開始就全部顯示；
    * pulls（選用）在第 pullsAt 段出現：從中心往外被帶走的東西。
    */

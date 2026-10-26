@@ -75,7 +75,7 @@ const { scenes } = Astro.props;
         </p>
         {s.people && (
           <div class="people reveal" role="img" aria-label={`${s.people.total} 人中有 ${s.people.filled} 人${s.people.label ? `：${s.people.label}` : ''}`}>
-            <ol class="people-grid" style={`--cols:${Math.ceil(s.people.total / 2)}`}>
+            <ol class:list={['people-grid', { dense: s.people.total > 20 }]} style={`--cols:${s.people.total > 20 ? 10 : Math.ceil(s.people.total / 2)}`}>
               {Array.from({ length: s.people.total }, (_, i) => (
                 <li class:list={['person', { on: i < s.people!.filled }]} style={`--i:${i}`}>
                   <svg viewBox="0 0 24 40" aria-hidden="true"><circle cx="12" cy="7" r="6" /><path d="M3 38 V22 q0 -8 9 -8 q9 0 9 8 V38 z" /></svg>
@@ -104,6 +104,9 @@ const { scenes } = Astro.props;
   /* 人形圖：例如 20 人中 13 人實心＝65%；進入視窗時依序填滿 */
   .people { display: grid; justify-items: center; gap: 10px; margin: 8px auto 20px; }
   .people-grid { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(var(--cols), clamp(22px, 3.4vw, 38px)); gap: clamp(6px, 1vw, 12px) clamp(4px, .8vw, 10px); }
+  /* 100 人（例如 89%）：每列 10 人，縮小圖示，填色間隔縮短 */
+  .people-grid.dense { grid-template-columns: repeat(10, clamp(14px, 2vw, 22px)); gap: 4px 6px; }
+  .people-grid.dense .person circle, .people-grid.dense .person path { transition-delay: calc(var(--i) * 14ms + .3s); }
   .person svg { display: block; width: 100%; height: auto; overflow: visible; }
   .person circle, .person path { fill: transparent; stroke: var(--ink-3); stroke-width: 2; transition: fill .35s, stroke .35s; transition-delay: calc(var(--i) * 70ms + .3s); }
   .people.is-in .person.on circle, .people.is-in .person.on path { fill: var(--accent-ink); stroke: var(--accent-ink); }
