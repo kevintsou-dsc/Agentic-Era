@@ -14,7 +14,7 @@ const pad = (n: number) => String(n).padStart(2, '0');
 const crowd = Array.from({ length: 15 }, (_, i) => i);
 const r = (x: CaseResult) => x;
 ---
-<div class="cs" style={`--n:${steps}`}>
+<div class="stage cs" style={`--n:${steps}`}>
   <header class="cs-head">
     <p class="cs-no">CASE {pad(g.no)} / {pad(g.total)}<span class="cs-kicker">{g.kicker}</span></p>
     <h3 class="cs-title">{g.title}</h3>
@@ -346,6 +346,17 @@ const r = (x: CaseResult) => x;
 
   @keyframes cs-down { to { background-position: 0 6px; } }
   @keyframes cs-pulse { 50% { box-shadow: 0 0 0 6px color-mix(in srgb, #c2413b 25%, transparent); } }
+  /* 窄螢幕：圖只有約半個畫面高（global.css 的 52svh），縮小素材與字級，避免壓到下方主文卡 */
+  @media (max-width: 899px) {
+    .cs { gap: 8px; }
+    .cs-title { font-size: 19px; }
+    .has-img .cs-opt img { max-height: 20svh; }
+    .cs-vd img { max-height: 14svh; }
+    .cs-opt { padding: 6px; }
+    .cs-node { padding: 6px 10px; font-size: 13px; }
+    .cs-crowd svg { width: 110px; height: 40px; }
+    .cs-headline b { font-size: 30px; }
+  }
   @media (max-width: 560px) {
     .cs-rank .cs-bar { grid-template-columns: 7em 1fr 3em; }
     .cs-st-row { grid-template-columns: 6em 1fr 1fr; }
