@@ -33,7 +33,8 @@ for (const f of readdirSync(dir).filter((x) => /^a\d\d\.ts$/.test(x))) {
   for (const m of src.matchAll(/\{\s*\n?\s*text:\s*'((?:[^'\\]|\\.)*)',\s*\n?\s*(?!src:)(\w+):/g)) {
     if (m[2] !== 'src' && !/^(at|label|value|display|highlight)$/.test(m[2])) problems.push(`${id}：主文缺少出處「${m[1].slice(0, 20)}…」`);
   }
-  if (total < 500 || total > 3000) problems.push(`${id}：主文合計 ${total} 字，建議 500–3,000 字`);
+  const budget = Number(src.match(/budget:\s*(\d+)/)?.[1] ?? 3000);
+  if (total < 500 || total > budget) problems.push(`${id}：主文合計 ${total} 字，建議 500–${budget.toLocaleString()} 字`);
   // d3 說明框：Node 24 可直接載入 .ts（型別會被移除）
   const { story } = await import(pathToFileURL(join(dir, f)).href);
   let tips = 0;
@@ -54,6 +55,10 @@ for (const f of readdirSync(dir).filter((x) => /^a\d\d\.ts$/.test(x))) {
     // 人形圖的實心比例必須等於大數字（例如 13／20＝65%）
     if (sc.kind === 'bignum' && sc.people && Math.abs((sc.people.filled / sc.people.total) * 100 - sc.value) > 0.5) {
       problems.push(`${id}：人形圖 ${sc.people.filled}/${sc.people.total} 與大數字 ${sc.value}${sc.unit} 不一致`);
+    }
+    // 案例模擬：主文段數＝情境＋方法＋每個模擬結果各一段
+    if (sc.kind === 'graphic' && sc.graphic.type === 'case' && sc.beats.length !== 2 + sc.graphic.results.length) {
+      problems.push(`${id}：案例「${sc.graphic.title}」有 ${sc.beats.length} 段主文，但畫面是 ${2 + sc.graphic.results.length} 個（情境＋方法＋${sc.graphic.results.length} 個模擬）`);
     }
     // 翻面卡每張都要有背面（desc）
     if (sc.kind === 'graphic' && sc.graphic.type === 'list' && sc.graphic.flip) {

@@ -1,0 +1,838 @@
+{
+ "label": "round27",
+ "thresholds": {
+  "faithful": 0.3,
+  "overclaim": 0.8,
+  "complete": 0.3,
+  "coverage": 2.5,
+  "coherence": 2.2
+ },
+ "stories": [
+  {
+   "id": "a12",
+   "units": 44,
+   "flagged": 0,
+   "story": {
+    "coverage": {
+     "score": 3.0,
+     "conf": 1.0
+    },
+    "coherence": {
+     "score": 2.8,
+     "conf": 0.8
+    }
+   },
+   "story_flags": [],
+   "passed": true,
+   "rows": [
+    {
+     "kind": "main",
+     "text": "25 歲的 Lisa 買 3C 先算「CP 值高嗎」，35 歲的 Cindy 先想「能不能解決我的麻煩」。這個答案不是猜出來的，而是「問了又問」出來的：同一群消費者隨時都在，隨時能追問。",
+     "jev": {
+      "faithful": 0.84,
+      "overclaim": 0.21,
+      "complete": 0.53,
+      "fluency": {
+       "score": 2.27,
+       "conf": 0.5
+      }
+     },
+     "reasons": [],
+     "pages": [
+      97,
+      97,
+      97
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "傳統研究從問題定義、問卷設計到報告撰寫，少則數週、多則數月；等報告送到，市場可能已經轉了風向。研究成本也讓它只能用在「大哉問」上，沒有品牌會為每次臨時提問重跑焦點訪談。",
+     "jev": {
+      "faithful": 0.88,
+      "overclaim": 0.16,
+      "complete": 0.63,
+      "fluency": {
+       "score": 2.43,
+       "conf": 0.43
+      }
+     },
+     "reasons": [],
+     "pages": [
+      97,
+      97
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "過去的研究像一本印好的說明書，寫的時候很完整，但客戶要問的永遠不在那一頁上。他們真正想要的，是一個能被追問、能對話的消費者，這正是電通台灣開發 People Model 的出發點。",
+     "jev": {
+      "faithful": 0.83,
+      "overclaim": 0.21,
+      "complete": 0.69,
+      "fluency": {
+       "score": 2.48,
+       "conf": 0.48
+      }
+     },
+     "reasons": [],
+     "pages": [
+      97,
+      97,
+      98
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "通用模型靠「35 歲、住台北、愛運動」一句話人設去推測角色，回答自然表淺。People Model 則注入電通獨家的 CCS 資料，這是持續十餘年、每年執行的大型消費者追蹤調查。",
+     "jev": {
+      "faithful": 0.92,
+      "overclaim": 0.19,
+      "complete": 0.65,
+      "fluency": {
+       "score": 2.06,
+       "conf": 0.54
+      }
+     },
+     "reasons": [],
+     "pages": [
+      98,
+      98
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "CCS 依性別、年齡及地區配額抽樣，在全台取得 5,000 份以上、15 至 74 歲的有效樣本。每位受訪者花約 60 分鐘完成數百道題，橫跨人口輪廓、生活態度、品牌關係、媒體接觸與購買行為。",
+     "jev": {
+      "faithful": 0.92,
+      "overclaim": 0.09,
+      "complete": 0.64,
+      "fluency": {
+       "score": 2.06,
+       "conf": 0.5
+      }
+     },
+     "reasons": [],
+     "pages": [
+      98,
+      98
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "每位受訪者的資料展開成約 6,900 個資料點，一比一捏塑成數位分身，再用來微調大型語言模型。產生的不是幾千個消費者故事，而是一群有統計結構的人，稱為 AI Persona。",
+     "jev": {
+      "faithful": 0.66,
+      "overclaim": 0.27,
+      "complete": 0.49,
+      "fluency": {
+       "score": 1.71,
+       "conf": 0.46
+      }
+     },
+     "reasons": [],
+     "pages": [
+      98,
+      98,
+      99
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "模擬準不準，最終要用數字檢驗。團隊保留一部分未參與訓練的真實調查當測試集，就像學生讀完教材後還得通過一場獨立的期末考。結果，模擬與真人回答的相關係數達 0.89。",
+     "jev": {
+      "faithful": 0.9,
+      "overclaim": 0.19,
+      "complete": 0.57,
+      "fluency": {
+       "score": 2.31,
+       "conf": 0.46
+      }
+     },
+     "reasons": [],
+     "pages": [
+      100,
+      100,
+      100
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "0.89 多準？想像兩個人替同一批電影打分數：你給高分的對方也給高分，你給低分的對方也給低分，品味愈一致就愈接近 1.0。通用模型的角色扮演沒有標準答案可對，People Model 每次模擬背後都有一份真人考卷。",
+     "jev": {
+      "faithful": 0.89,
+      "overclaim": 0.2,
+      "complete": 0.66,
+      "fluency": {
+       "score": 2.05,
+       "conf": 0.5
+      }
+     },
+     "reasons": [],
+     "pages": [
+      100,
+      100
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "同時檢驗的還有 MAE 9.4% 與 RMSE 13.1%。但相關係數不是誤差率，不能用「1 − 0.89」推論模型平均只差 11%，也不代表模型能正確預測每一個人的行為。",
+     "jev": {
+      "faithful": 0.63,
+      "overclaim": 0.19,
+      "complete": 0.41,
+      "fluency": {
+       "score": 1.62,
+       "conf": 0.42
+      }
+     },
+     "reasons": [],
+     "pages": [
+      110,
+      110,
+      110
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "回到開場的 Lisa 和 Cindy。設定兩人的 AI Persona 後問同一件事：最近買新 3C 時在考量什麼？Lisa 依序看價格、續航、使用者評價，心裡想的是「可別花這筆錢還買到斷線爛音質」。",
+     "jev": {
+      "faithful": 0.81,
+      "overclaim": 0.2,
+      "complete": 0.3,
+      "fluency": {
+       "score": 1.86,
+       "conf": 0.53
+      }
+     },
+     "reasons": [],
+     "pages": [
+      102,
+      102
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "Cindy 則依序看續航、規格效能、價格，最怕出門在外沒電。Lisa 較開放，看重網紅試用與社群聲量；Cindy 認為代言人再紅也不代表安全好用，更看重品質聲譽與親友口碑。",
+     "jev": {
+      "faithful": 0.81,
+      "overclaim": 0.29,
+      "complete": 0.54,
+      "fluency": {
+       "score": 1.87,
+       "conf": 0.52
+      }
+     },
+     "reasons": [],
+     "pages": [
+      102,
+      102
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "這就是模擬出的「信任門檻」：不同的人對同一個行銷動作，會啟動完全不同的防禦機制。過去只能事後發現，現在能在行銷動作開始前先看到，例如為 Cindy 這類受眾強化實體試用與真實口碑。",
+     "jev": {
+      "faithful": 0.85,
+      "overclaim": 0.38,
+      "complete": 0.72,
+      "fluency": {
+       "score": 2.2,
+       "conf": 0.47
+      }
+     },
+     "reasons": [],
+     "pages": [
+      102,
+      102,
+      102
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "品牌的商業問題很少只有一個面向。眼前的 AI Persona 看起來是一個消費者分身，背後卻是一個多 Agent 協作的系統：由 Super Agent 擔任專案負責人，拆解問題後，再把子任務分派給各領域專家。",
+     "jev": {
+      "faithful": 0.87,
+      "overclaim": 0.26,
+      "complete": 0.65,
+      "fluency": {
+       "score": 2.21,
+       "conf": 0.49
+      }
+     },
+     "reasons": [],
+     "pages": [
+      102,
+      102,
+      102
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "AI Persona 負責模擬消費者觀點，Deep Research Agent 搜尋網路資料補充脈絡，CCS Agent 回頭檢索原始調查驗證，最後交回 Super Agent 比對、彙整成一份完整回答。",
+     "jev": {
+      "faithful": 0.62,
+      "overclaim": 0.24,
+      "complete": 0.68,
+      "fluency": {
+       "score": 1.91,
+       "conf": 0.54
+      }
+     },
+     "reasons": [],
+     "pages": [
+      102,
+      103
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "作者把價值收斂成四點：快，幾分鐘內展開探索；靈活，隨時調整受眾與問法；量質並進，用數字找現象、用對話補原因；縱深，多個 Agent 補上市場、媒體與生活型態的視角。",
+     "jev": {
+      "faithful": 0.87,
+      "overclaim": 0.19,
+      "complete": 0.65,
+      "fluency": {
+       "score": 1.92,
+       "conf": 0.51
+      }
+     },
+     "reasons": [],
+     "pages": [
+      103
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "過去品牌最昂貴的代價，往往來自產品開發出來、預算燒下去才看成效修正。People Model 讓品牌在真實資金投入前，先在虛擬世界試錯、淘汰，只把最高勝率的方案推向真實市場。",
+     "jev": {
+      "faithful": 0.86,
+      "overclaim": 0.27,
+      "complete": 0.73,
+      "fluency": {
+       "score": 2.08,
+       "conf": 0.5
+      }
+     },
+     "reasons": [],
+     "pages": [
+      104,
+      104
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "People Model 能派上用場的不只是「哪個比較好」。以下五個案例涵蓋創意概念、新品測試與分眾溝通，每一個都依「情境—方法—模擬」呈現：先提出問題，再看解法與模擬結果。",
+     "jev": {
+      "faithful": 0.79,
+      "overclaim": 0.23,
+      "complete": 0.56,
+      "fluency": {
+       "score": 2.12,
+       "conf": 0.52
+      }
+     },
+     "reasons": [],
+     "pages": [
+      105,
+      105
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "一個保養品牌想推「一瓶多效」新概念，內部有兩個包裝方向：極簡科技感與溫潤自然感。不確定哪一個版本會有更好的效果？",
+     "jev": {
+      "faithful": 0.96,
+      "overclaim": 0.08,
+      "complete": 0.6,
+      "fluency": {
+       "score": 2.41,
+       "conf": 0.42
+      }
+     },
+     "reasons": [],
+     "pages": [
+      105,
+      105
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "把兩個廣告版本分別交給設定好目標客群輪廓的 AI Persona，看第一印象、喜好排序與「會不會想再了解更多」。先用虛擬量化問卷看整體分布，再用虛擬深度訪談追問為什麼。",
+     "jev": {
+      "faithful": 0.93,
+      "overclaim": 0.15,
+      "complete": 0.39,
+      "fluency": {
+       "score": 1.77,
+       "conf": 0.5
+      }
+     },
+     "reasons": [],
+     "pages": [
+      105,
+      105
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "溫潤自然感以 98% 的第一眼吸引力勝出；但評估是否值得選擇時，68% 偏好極簡科技感。兩者的進一步了解意願皆達 100%：便利負責建立關聯，成分與功效證據負責建立可信度。",
+     "jev": {
+      "faithful": 0.87,
+      "overclaim": 0.25,
+      "complete": 0.72,
+      "fluency": {
+       "score": 2.16,
+       "conf": 0.45
+      }
+     },
+     "reasons": [],
+     "pages": [
+      105,
+      106,
+      106,
+      106
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "一支保健食品廣告準備了兩個版本：理性版強調專利成分與臨床數據，找營養學博士掛名代言；感性版強調家人健康的溫馨畫面，找知名藝人代言。針對 45 歲以上客群，哪一種更打得動人？",
+     "jev": {
+      "faithful": 0.89,
+      "overclaim": 0.17,
+      "complete": 0.39,
+      "fluency": {
+       "score": 2.3,
+       "conf": 0.48
+      }
+     },
+     "reasons": [],
+     "pages": [
+      106,
+      106,
+      106
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "把同一個核心賣點換成不同的說法，讓 AI Persona 模擬看到廣告的第一反應和記憶點，篩出最容易被接受、也最容易被記住的版本，再把預算集中在勝出的版本上正式投放。",
+     "jev": {
+      "faithful": 0.92,
+      "overclaim": 0.32,
+      "complete": 0.67,
+      "fluency": {
+       "score": 2.05,
+       "conf": 0.51
+      }
+     },
+     "reasons": [],
+     "pages": [
+      106,
+      106
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "受訪 AI Persona 均偏好理性訴求與專業人士的組合。60 歲世代對家庭陪伴情境較有共鳴，40 歲世代則視為常見廣告套路，但兩者都以專業證據作為購買主因。",
+     "jev": {
+      "faithful": 0.86,
+      "overclaim": 0.32,
+      "complete": 0.68,
+      "fluency": {
+       "score": 2.12,
+       "conf": 0.51
+      }
+     },
+     "reasons": [],
+     "pages": [
+      106,
+      107
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "手搖飲品牌有三款候選新口味：荔枝烏龍、黑糖桂圓、油柑氣泡。想在上市前先確認，各口味是否須設定不同的目標對象，或是直接砍掉不受市場歡迎的口味。",
+     "jev": {
+      "faithful": 0.94,
+      "overclaim": 0.22,
+      "complete": 0.75,
+      "fluency": {
+       "score": 2.22,
+       "conf": 0.52
+      }
+     },
+     "reasons": [],
+     "pages": [
+      107,
+      107,
+      107
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "先設定目標客群，例如 25 至 34 歲、注重 CP 值的都會女性，把新品概念、定價、包裝放進去做多重分眾測試，同時比較不同客群、不同定價區間的接受度和購買意願。",
+     "jev": {
+      "faithful": 0.96,
+      "overclaim": 0.2,
+      "complete": 0.53,
+      "fluency": {
+       "score": 1.86,
+       "conf": 0.54
+      }
+     },
+     "reasons": [],
+     "pages": [
+      107,
+      107
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "荔枝烏龍以 58% 的首次購買率勝出。它在 25 至 34 歲女性中的首選率達 71%–83%，到了 40 至 44 歲降至 36%，黑糖桂圓則升至 64%，適合鎖定成熟職場女性。",
+     "jev": {
+      "faithful": 0.7,
+      "overclaim": 0.35,
+      "complete": 0.6,
+      "fluency": {
+       "score": 2.03,
+       "conf": 0.54
+      }
+     },
+     "reasons": [],
+     "pages": [
+      107,
+      107
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "以市場均價 65 元為基準，74% 可接受高於均價的定價，58% 可接受約 17% 以上的溢價。建議荔枝烏龍作常態主力、黑糖桂圓作分眾或季節限定，油柑氣泡現階段淘汰。",
+     "jev": {
+      "faithful": 0.71,
+      "overclaim": 0.51,
+      "complete": 0.59,
+      "fluency": {
+       "score": 2.1,
+       "conf": 0.49
+      }
+     },
+     "reasons": [],
+     "pages": [
+      108,
+      108
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "「25 到 44 歲男性」聽起來是很明確的目標客群。但同一支廣告，打得動剛出社會的 26 歲，也打得動上有老下有小的 42 歲嗎？他們買刮鬍刀真的在意一樣的事？",
+     "jev": {
+      "faithful": 0.9,
+      "overclaim": 0.14,
+      "complete": 0.41,
+      "fluency": {
+       "score": 2.48,
+       "conf": 0.49
+      }
+     },
+     "reasons": [],
+     "pages": [
+      108,
+      108
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "打破這個假設，讓 People Model 依真實態度和行為資料，反映不同年齡層的決策邏輯，例如 CP 值導向或避險導向；再針對每一群跑一次消費者旅程模擬，看在哪個環節卡關或被打動。",
+     "jev": {
+      "faithful": 0.93,
+      "overclaim": 0.25,
+      "complete": 0.5,
+      "fluency": {
+       "score": 1.8,
+       "conf": 0.5
+      }
+     },
+     "reasons": [],
+     "pages": [
+      108,
+      108
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "25 至 34 歲男性中，60% 偏向多付一些錢換取耐用、可靠與完善售後，33% 以 CP 值比較為主；到了 35 至 44 歲，避險導向升至 71%，CP 值導向為 29%。",
+     "jev": {
+      "faithful": 0.95,
+      "overclaim": 0.18,
+      "complete": 0.63,
+      "fluency": {
+       "score": 2.03,
+       "conf": 0.56
+      }
+     },
+     "reasons": [],
+     "pages": [
+      108,
+      108
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "兩群都最容易在搜尋與比較階段流失：真正建立信任的是 Google 搜尋、YouTube 實測與真實使用者評價。對 25 至 34 歲強化評測與 CP 值，對 35 至 44 歲主打耐用、保固與長期省心。",
+     "jev": {
+      "faithful": 0.9,
+      "overclaim": 0.43,
+      "complete": 0.64,
+      "fluency": {
+       "score": 1.94,
+       "conf": 0.5
+      }
+     },
+     "reasons": [],
+     "pages": [
+      108,
+      108,
+      108
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "一款掃地機器人有省時、安靜、續航、售後等好幾個賣點，但行銷預算只夠針對雙薪家庭主打一個。到底該主打哪個賣點，才最打動目標客群？",
+     "jev": {
+      "faithful": 0.86,
+      "overclaim": 0.15,
+      "complete": 0.55,
+      "fluency": {
+       "score": 2.34,
+       "conf": 0.37
+      }
+     },
+     "reasons": [],
+     "pages": [
+      108,
+      108,
+      108
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "把產品的多個賣點分別設計成不同版本的訊息，丟給同一群 AI Persona 測試接受度排序。這一步用虛擬量化問卷就能快速跑出排序，不需要每個賣點都做一輪真人訪談。",
+     "jev": {
+      "faithful": 0.93,
+      "overclaim": 0.19,
+      "complete": 0.71,
+      "fluency": {
+       "score": 1.84,
+       "conf": 0.51
+      }
+     },
+     "reasons": [],
+     "pages": [
+      108,
+      108
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "售後與養護成本無憂以 73% 成為選購第一優先，明顯領先集塵與清潔容易的 14% 及續航更久的 11%；更安靜與個資安全皆無人列為第一優先。",
+     "jev": {
+      "faithful": 0.88,
+      "overclaim": 0.27,
+      "complete": 0.59,
+      "fluency": {
+       "score": 2.14,
+       "conf": 0.51
+      }
+     },
+     "reasons": [],
+     "pages": [
+      109,
+      109
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "女性選擇集塵與清潔容易的比例達 30%，高於男性的 7%。但 49% 可能因不清楚家庭地圖與影像的資料用途而放棄購買，建議在落地頁清楚交代資料政策。",
+     "jev": {
+      "faithful": 0.86,
+      "overclaim": 0.16,
+      "complete": 0.64,
+      "fluency": {
+       "score": 2.06,
+       "conf": 0.55
+      }
+     },
+     "reasons": [],
+     "pages": [
+      109,
+      109,
+      109
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "五個案例回答的問題各不相同，卻都依「情境—方法—模擬」走完一輪：先提出問題，看 People Model 的解法與模擬結果，最後各自落到一個整體建議。",
+     "jev": {
+      "faithful": 0.63,
+      "overclaim": 0.46,
+      "complete": 0.65,
+      "fluency": {
+       "score": 2.15,
+       "conf": 0.49
+      }
+     },
+     "reasons": [],
+     "pages": [
+      105,
+      106,
+      107
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "當每個對手都能用模擬取代猜測，真正拉開差距的，是誰能把「先模擬、後決策」變成組織的日常反射動作，而不是偶爾才用一次的工具。",
+     "jev": {
+      "faithful": 0.94,
+      "overclaim": 0.18,
+      "complete": 0.71,
+      "fluency": {
+       "score": 2.49,
+       "conf": 0.48
+      }
+     },
+     "reasons": [],
+     "pages": [
+      105
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "模擬也有邊界。如果先向模型介紹一個陌生品牌，再問它「是否聽過」，測量本身就已受污染；沒有參考資料時，系統會明確提出「目前證據不足」，而不是生成一組看似精確的百分比。",
+     "jev": {
+      "faithful": 0.79,
+      "overclaim": 0.31,
+      "complete": 0.79,
+      "fluency": {
+       "score": 2.37,
+       "conf": 0.39
+      }
+     },
+     "reasons": [],
+     "pages": [
+      110,
+      110,
+      112
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "因此輸出分成三種層次。第一種是資料直接支持的洞察，來自真實調查或可核對的資料，證據基礎明確，但仍要注意調查時間、樣本與適用母體。",
+     "jev": {
+      "faithful": 0.86,
+      "overclaim": 0.22,
+      "complete": 0.4,
+      "fluency": {
+       "score": 1.9,
+       "conf": 0.49
+      }
+     },
+     "reasons": [],
+     "pages": [
+      112,
+      112
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "第二種是模型估計：問題在模型熟悉的領域、但對不上既有問卷時，系統依過去資料估計回答分布。適合形成假設，但不能被描述成實際市場調查結果。",
+     "jev": {
+      "faithful": 0.94,
+      "overclaim": 0.09,
+      "complete": 0.71,
+      "fluency": {
+       "score": 2.02,
+       "conf": 0.54
+      }
+     },
+     "reasons": [],
+     "pages": [
+      112,
+      112
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "第三種是情境模擬：涉及新品牌、新概念或尚未發生的事件時，結果只代表在這組條件下模型可能的反應，不能當成市場已經發生的事實。",
+     "jev": {
+      "faithful": 0.94,
+      "overclaim": 0.11,
+      "complete": 0.79,
+      "fluency": {
+       "score": 2.39,
+       "conf": 0.4
+      }
+     },
+     "reasons": [],
+     "pages": [
+      112,
+      112
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "什麼時候要做真人研究有明確原則：決策金額或風險高、牽涉非理性情緒或文化脈絡，或 CCS 完全沒有可參照的資料。符合任一項，就搭配真人研究，用模擬做篩選、用真人做把關。",
+     "jev": {
+      "faithful": 0.9,
+      "overclaim": 0.27,
+      "complete": 0.83,
+      "fluency": {
+       "score": 2.36,
+       "conf": 0.37
+      }
+     },
+     "reasons": [],
+     "pages": [
+      113,
+      113
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "它和尼爾森、益普索等研究公司是互補關係：一邊為特定題目重新採集一手真人資料，一邊即時讀懂 CCS 已累積的態度與動機，並能反覆深問「為什麼」。",
+     "jev": {
+      "faithful": 0.79,
+      "overclaim": 0.21,
+      "complete": 0.64,
+      "fluency": {
+       "score": 2.12,
+       "conf": 0.55
+      }
+     },
+     "reasons": [],
+     "pages": [
+      114,
+      114,
+      114
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "高相關係數只能表示模擬與真人的變動趨勢相近，不能證明模型已理解人的心理機制。People Model 最適合被定位為協助提出假設、探索情境與加速決策的工具，而重大決策仍需要真實的人把關。",
+     "jev": {
+      "faithful": 0.83,
+      "overclaim": 0.25,
+      "complete": 0.82,
+      "fluency": {
+       "score": 2.47,
+       "conf": 0.47
+      }
+     },
+     "reasons": [],
+     "pages": [
+      111,
+      104
+     ]
+    }
+   ]
+  }
+ ]
+}

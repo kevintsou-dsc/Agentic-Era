@@ -1,0 +1,356 @@
+---
+// 案例模擬（情境 → 方法 → 模擬）。第 1 段主文顯示情境（要比較的選項與問題），第 2 段顯示方法（交給哪群 AI Persona、
+// 用什麼工具），第 3 段起依序顯示 results。畫面疊在同一格，同一時間只亮一個；最後一個畫面捲過後保留。
+// 數字全部是 AI Persona 模擬結果，且已逐字寫在左側主文。class 一律加 cs- 前綴。
+import type { Graphic, CaseResult } from '../../lib/story';
+type G = Extract<Graphic, { type: 'case' }>;
+interface Props { g: G }
+const { g } = Astro.props;
+const tones = ['var(--accent-ink)', '#4f7fa8', '#8a5a3b', '#6c8f4e', '#9a958c'];
+const tone = (i?: number) => tones[(i ?? 0) % tones.length];
+const steps = 2 + g.results.length;
+const last = (k: number) => k === steps;
+const pad = (n: number) => String(n).padStart(2, '0');
+const crowd = Array.from({ length: 15 }, (_, i) => i);
+const r = (x: CaseResult) => x;
+---
+<div class="cs" style={`--n:${steps}`}>
+  <header class="cs-head">
+    <p class="cs-no">CASE {pad(g.no)} / {pad(g.total)}<span class="cs-kicker">{g.kicker}</span></p>
+    <h3 class="cs-title">{g.title}</h3>
+    <ol class="cs-stepper" aria-hidden="true">
+      <li class="cs-s1" data-focus="1">情境</li>
+      <li data-focus="2">方法</li>
+      <li data-at="3">模擬</li>
+    </ol>
+  </header>
+
+  <div class="cs-panes">
+    <!-- ① 情境 -->
+    <section class="cs-pane cs-p1" data-focus="1" style="--show: var(--focus)">
+      <div class:list={['cs-opts', { 'has-img': g.options.some((o) => o.img), chips: g.options.every((o) => !o.img && !o.icon) }]} style={`--k:${g.options.length}`}>
+        {g.options.map((o, i) => (
+          <figure class="cs-opt" style={`--tone:${tone(i)}; --d:${i * 120}ms`}>
+            {o.img ? (
+              <img src={o.img.src} alt={o.img.alt} width={o.img.w} height={o.img.h} loading="lazy" decoding="async" />
+            ) : o.icon === 'cup' ? (
+              <svg class="cs-cup" viewBox="0 0 60 80" aria-hidden="true">
+                <path class="cs-cup-lid" d="M10 18 h40 l-2 -6 h-36 z" />
+                <path class="cs-straw" d="M34 12 l6 -12" />
+                <path class="cs-cup-body" d="M12 20 h36 l-5 56 h-26 z" />
+                <path class="cs-cup-tea" d="M14 34 h32 l-4 40 h-24 z" />
+                <circle cx="24" cy="66" r="3" class="cs-pearl" /><circle cx="32" cy="69" r="3" class="cs-pearl" /><circle cx="38" cy="64" r="3" class="cs-pearl" />
+              </svg>
+            ) : o.icon === 'person' ? (
+              <svg class="cs-man" viewBox="0 0 60 70" aria-hidden="true"><circle cx="30" cy="20" r="12" /><path d="M8 70 q2 -28 22 -28 q20 0 22 28 z" /></svg>
+            ) : null}
+            <figcaption><strong>{o.label}</strong>{o.sub && <span>{o.sub}</span>}</figcaption>
+          </figure>
+        ))}
+      </div>
+      <p class="cs-q"><span>？</span>{g.question}</p>
+    </section>
+
+    <!-- ② 方法 -->
+    <section class="cs-pane" data-focus="2" style="--show: var(--focus)">
+      <div class="cs-flow">
+        <div class="cs-node cs-feed"><span class="cs-lbl">輸入</span>{g.method.feed}</div>
+        <span class="cs-arrow" aria-hidden="true"></span>
+        <div class="cs-node cs-crowd">
+          <span class="cs-lbl">交給</span>
+          <svg viewBox="0 0 150 54" aria-hidden="true">
+            {crowd.map((i) => (
+              <g class="cs-p" style={`--d:${i * 60}ms`} transform={`translate(${10 + (i % 8) * 18 + (i >= 8 ? 9 : 0)} ${i >= 8 ? 40 : 14})`}>
+                <circle r="5" cy="-4" /><path d="M-7 10 q7 -12 14 0 z" />
+              </g>
+            ))}
+          </svg>
+          <span>{g.method.persona}</span>
+        </div>
+        <span class="cs-arrow" aria-hidden="true"></span>
+        <div class="cs-node cs-tools">
+          <span class="cs-lbl">用</span>
+          {g.method.tools.map((t, i) => <span class="cs-tool" style={`--d:${300 + i * 160}ms`}>{t}</span>)}
+        </div>
+        <span class="cs-arrow" aria-hidden="true"></span>
+        <div class="cs-node cs-out"><span class="cs-lbl">看</span>{g.method.out}</div>
+      </div>
+    </section>
+
+    <!-- ③ 起：模擬結果 -->
+    {g.results.map((res, ri) => {
+      const k = 3 + ri;
+      const x = r(res);
+      return (
+        <section class="cs-pane cs-res" {...(last(k) ? { 'data-at': k } : { 'data-focus': k })} style={last(k) ? '--show: var(--on)' : '--show: var(--focus)'}>
+          <p class="cs-rt"><span class="cs-badge">模擬結果</span>{x.title}</p>
+
+          {x.kind === 'stages' && (
+            <div class="cs-stages">
+              <div class="cs-st-row cs-st-head">
+                <span></span>
+                {g.options.map((o, i) => (
+                  <span class="cs-st-opt" style={`--tone:${tone(i)}`}>
+                    {o.img && <img src={o.img.src} alt="" width={o.img.w} height={o.img.h} loading="lazy" decoding="async" />}
+                    {o.label}
+                  </span>
+                ))}
+              </div>
+              {x.rows.map((row, i) => (
+                <div class="cs-st-row" style={`--d:${200 + i * 450}ms`}>
+                  <span class="cs-st-label">{row.label}</span>
+                  {g.options.map((_, oi) => (
+                    (row.win === oi || row.win === -1)
+                      ? <span class="cs-st-cell win" style={`--tone:${tone(oi)}`}>{row.value}<em>{row.win === -1 ? '並列' : '勝出'}</em></span>
+                      : <span class="cs-st-cell"></span>
+                  ))}
+                </div>
+              ))}
+              {x.takeaway && <p class="cs-take">{x.takeaway.map((t) => <span>{t}</span>)}</p>}
+            </div>
+          )}
+
+          {x.kind === 'verdict' && (
+            <div class="cs-verdict">
+              <div class="cs-vd-cards">
+                {x.items.map((it, i) => {
+                  const o = g.options[it.opt];
+                  return (
+                    <div class="cs-vd" style={`--tone:${tone(it.opt)}; --d:${200 + i * 300}ms`}>
+                      {o.img && <img src={o.img.src} alt="" width={o.img.w} height={o.img.h} loading="lazy" decoding="async" />}
+                      <strong>{o.label}</strong>
+                      <span class="cs-stamp">{it.stamp}</span>
+                      <span class="cs-vd-note">{it.note}</span>
+                    </div>
+                  );
+                })}
+              </div>
+              {x.voices && (
+                <div class="cs-voices">
+                  {x.voices.map((v) => <p><b>{v.who}</b>{v.text}</p>)}
+                </div>
+              )}
+              {x.common && <p class="cs-common">{x.common}</p>}
+            </div>
+          )}
+
+          {x.kind === 'groups' && (
+            <div class="cs-groups">
+              {x.headline && <p class="cs-headline"><b>{x.headline.value}</b>{x.headline.label}</p>}
+              <div class="cs-g-cols" style={`--k:${x.groups.length}`}>
+                {x.groups.map((gr, gi) => (
+                  <div class="cs-g">
+                    <p class="cs-g-label">{gr.label}</p>
+                    {gr.bars.map((b, bi) => (
+                      <div class="cs-bar" style={`--v:${b.v}; --tone:${tone(b.tone)}; --d:${200 + gi * 400 + bi * 150}ms`}>
+                        <span class="cs-bar-l">{b.label}</span>
+                        <span class="cs-bar-track"><span class="cs-bar-fill"></span></span>
+                        <span class="cs-bar-v">{b.text}</span>
+                      </div>
+                    ))}
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {x.kind === 'split' && (
+            <div class="cs-split">
+              {x.groups.map((gr, gi) => {
+                const rest = 100 - gr.parts.reduce((a, p) => a + p.v, 0);
+                return (
+                  <div class="cs-sp" style={`--d:${200 + gi * 400}ms`}>
+                    <p class="cs-g-label">{gr.label}</p>
+                    <div class="cs-sp-bar">
+                      {gr.parts.map((p) => <span style={`--v:${p.v}; --tone:${tone(p.tone)}`}><b>{p.label} {p.v}%</b></span>)}
+                      {rest > 0 && <span class="cs-rest" style={`--v:${rest}`}></span>}
+                    </div>
+                  </div>
+                );
+              })}
+              {x.note && <p class="cs-common">{x.note}</p>}
+            </div>
+          )}
+
+          {x.kind === 'journey' && (
+            <div class="cs-journey">
+              <ol class="cs-j-line" style={`--k:${x.stages.length}`}>
+                {x.stages.map((s, i) => (
+                  <li class:list={[{ drop: i === x.drop }]} style={`--d:${200 + i * 300}ms`}>
+                    <span class="cs-j-dot"></span>{s}
+                    {i === x.drop && <span class="cs-j-drop">最容易流失</span>}
+                  </li>
+                ))}
+              </ol>
+              <p class="cs-common">{x.dropNote}</p>
+              <div class="cs-needs">
+                {x.needs.map((n, i) => <p style={`--tone:${tone(i)}`}><b>{n.who}</b>{n.text}</p>)}
+              </div>
+            </div>
+          )}
+
+          {x.kind === 'rank' && (
+            <div class="cs-rank">
+              {x.bars.map((b, i) => (
+                <div class:list={['cs-bar', { top: i === 0 }]} style={`--v:${b.v}; --tone:${tone(i === 0 ? 0 : 4)}; --d:${200 + i * 140}ms`}>
+                  <span class="cs-bar-l">{b.label}</span>
+                  <span class="cs-bar-track"><span class="cs-bar-fill"></span></span>
+                  <span class="cs-bar-v">{b.v}%</span>
+                </div>
+              ))}
+            </div>
+          )}
+
+          {x.kind === 'points' && (
+            <div class="cs-points">
+              <div class="cs-pt-grid">
+                {x.points.map((p, i) => (
+                  <p class:list={['cs-pt', { warn: p.warn }]} style={`--d:${200 + i * 250}ms`}><b>{p.value}</b>{p.label}</p>
+                ))}
+              </div>
+              {x.tags && (
+                <div class="cs-tags">
+                  {x.tags.map((t, i) => <p style={`--tone:${tone(t.tone)}; --d:${700 + i * 200}ms`}><b>{t.label}</b>{t.text}</p>)}
+                </div>
+              )}
+            </div>
+          )}
+        </section>
+      );
+    })}
+  </div>
+  <p class="source">{g.source}</p>
+</div>
+
+<style>
+  .cs { width: 100%; display: grid; gap: 12px; }
+  .cs-head { display: grid; gap: 6px; }
+  .cs-no { margin: 0; font-family: var(--font-mono); font-size: 12px; color: var(--ink-3); display: flex; gap: 10px; align-items: center; }
+  .cs-kicker { font-family: inherit; font-weight: 700; font-size: 12px; padding: 1px 8px; border-radius: 999px; background: var(--accent); color: var(--ink); }
+  .cs-title { margin: 0; font-size: clamp(20px, 1.6vw + 12px, 28px); line-height: 1.3; }
+  .cs-stepper { list-style: none; margin: 4px 0 0; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; }
+  .cs-stepper li { position: relative; padding-top: 8px; font-size: 12px; font-weight: 800; letter-spacing: .1em; color: color-mix(in srgb, var(--ink) calc(35% + var(--hit) * 65%), transparent); }
+  .cs-stepper li::before { content: ''; position: absolute; inset: 0 0 auto; height: 4px; border-radius: 2px; background: color-mix(in srgb, var(--accent-ink) calc(var(--hit) * 100%), var(--line)); transition: background .4s; }
+  .cs-stepper li[data-focus] { --hit: var(--focus); }
+  .cs-stepper li[data-at] { --hit: var(--on); }
+  :global(.graphic:not(.is-1)) .cs-stepper .cs-s1 { --hit: 1; }
+
+  .cs-panes { display: grid; }
+  .cs-pane { grid-area: 1 / 1; display: grid; gap: 12px; align-content: start; opacity: var(--show); transform: translateY(calc((1 - var(--show)) * 12px)); transition: opacity .45s, transform .45s; pointer-events: none; }
+  :global(.graphic:not(.is-1)) .cs-p1 { --show: 1 !important; }
+  :global(.graphic[data-step="1"]) .cs-p1, :global(.graphic:not(.is-1)) .cs-p1 { pointer-events: auto; }
+
+  /* ① 情境 */
+  .cs-opts { display: grid; grid-template-columns: repeat(var(--k), minmax(0, 1fr)); gap: 10px; }
+  .cs-opt { margin: 0; display: grid; gap: 6px; justify-items: center; align-content: start; padding: 10px; border-radius: 14px; border: 2px solid color-mix(in srgb, var(--tone) 45%, var(--line)); background: var(--paper);
+    opacity: var(--show); transform: translateY(calc((1 - var(--show)) * 10px)); transition: opacity .4s var(--d), transform .4s var(--d); }
+  .cs-opts.chips { display: flex; flex-wrap: wrap; }
+  .chips .cs-opt { padding: 8px 14px; border-radius: 999px; --tone: var(--ink-3) !important; }
+  .has-img .cs-opt img { width: 100%; max-height: min(34vh, 300px); object-fit: contain; border-radius: 8px; }
+  .cs-opt figcaption { display: grid; text-align: center; gap: 2px; font-size: 14px; }
+  .cs-opt figcaption span { font-size: 12px; color: var(--ink-3); }
+  .cs-cup { width: 54px; height: 72px; }
+  .cs-cup-lid { fill: var(--ink-3); } .cs-straw { stroke: var(--ink-2); stroke-width: 4; stroke-linecap: round; }
+  .cs-cup-body { fill: color-mix(in srgb, var(--tone) 12%, var(--paper)); stroke: var(--ink-3); stroke-width: 2; }
+  .cs-cup-tea { fill: var(--tone); opacity: .75; }
+  .cs-pearl { fill: #3a2d28; }
+  .cs-man { width: 48px; height: 56px; fill: var(--tone); }
+  .cs-q { position: relative; margin: 0; padding: 10px 14px 10px 40px; border-radius: 14px; background: var(--ink); color: var(--paper); font-size: 14px; font-weight: 700; line-height: 1.55; }
+  .cs-q span { position: absolute; left: 12px; top: 8px; font-size: 18px; color: var(--accent); }
+
+  /* ② 方法 */
+  .cs-flow { display: grid; gap: 4px; }
+  .cs-node { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 8px; padding: 10px 12px; border-radius: 12px; border: 2px solid var(--line); background: var(--paper); font-size: 14px; font-weight: 700; line-height: 1.5; }
+  .cs-lbl { flex: none; font-size: 11px; font-weight: 800; letter-spacing: .1em; padding: 1px 8px; border-radius: 6px; background: var(--ink); color: var(--paper); }
+  .cs-crowd { border-color: var(--accent-ink); }
+  .cs-crowd svg { width: 150px; height: 54px; flex: none; }
+  .cs-p { fill: var(--accent-ink); opacity: calc(.15 + .85 * var(--show)); transition: opacity .3s var(--d); }
+  .cs-tool { padding: 2px 10px; border-radius: 999px; background: var(--accent); border: 1px solid var(--accent-ink); font-size: 13px; opacity: var(--show); transition: opacity .4s var(--d); }
+  .cs-out { background: color-mix(in srgb, var(--accent) 35%, var(--paper)); }
+  .cs-arrow { justify-self: center; width: 2px; height: 14px; background: repeating-linear-gradient(var(--ink-3) 0 3px, transparent 3px 6px); background-size: 2px 6px; animation: cs-down .6s linear infinite; }
+
+  /* ③ 模擬結果共用 */
+  .cs-rt { margin: 0; display: flex; flex-wrap: wrap; align-items: center; gap: 8px; font-weight: 800; font-size: 16px; }
+  .cs-badge { font-size: 11px; letter-spacing: .1em; padding: 2px 8px; border-radius: 6px; background: var(--accent-ink); color: var(--paper); }
+  .cs-common { margin: 0; font-size: 13px; color: var(--ink-2); line-height: 1.6; }
+  .cs-g-label { margin: 0 0 6px; font-size: 13px; font-weight: 800; }
+
+  /* stages */
+  .cs-stages { display: grid; gap: 6px; }
+  .cs-st-row { display: grid; grid-template-columns: 7.5em 1fr 1fr; gap: 8px; align-items: center; opacity: var(--show); transition: opacity .4s var(--d); }
+  .cs-st-head { opacity: 1; font-size: 13px; font-weight: 800; }
+  .cs-st-opt { display: grid; justify-items: center; gap: 4px; color: var(--tone); text-align: center; }
+  .cs-st-opt img { width: 52px; height: 68px; object-fit: cover; border-radius: 6px; border: 2px solid var(--tone); }
+  .cs-st-label { font-size: 13px; font-weight: 700; }
+  .cs-st-cell { height: 44px; border-radius: 10px; border: 2px dashed var(--line); display: flex; align-items: center; justify-content: center; gap: 6px; }
+  .cs-st-cell.win { border: 0; background: var(--tone); color: #fff; font-size: 22px; font-weight: 800; transform: scale(calc(.85 + .15 * var(--show))); transition: transform .4s var(--d); }
+  .cs-st-cell em { font-style: normal; font-size: 11px; font-weight: 700; opacity: .85; }
+  .cs-take { margin: 6px 0 0; display: grid; gap: 4px; }
+  .cs-take span { font-size: 13px; font-weight: 700; padding: 6px 10px; border-radius: 8px; background: color-mix(in srgb, var(--accent) 30%, var(--paper)); }
+
+  /* verdict */
+  .cs-verdict { display: grid; gap: 10px; }
+  .cs-vd-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .cs-vd { position: relative; display: grid; gap: 6px; justify-items: center; text-align: center; padding: 10px; border-radius: 14px; border: 2px solid color-mix(in srgb, var(--tone) 45%, var(--line)); }
+  .cs-vd img { width: 100%; max-height: min(22vh, 180px); object-fit: contain; border-radius: 8px; }
+  .cs-vd strong { font-size: 14px; color: var(--tone); }
+  .cs-stamp { padding: 4px 12px; border: 3px solid var(--tone); border-radius: 8px; color: var(--tone); font-weight: 900; font-size: 15px; letter-spacing: .05em;
+    transform: rotate(-6deg) scale(calc(1.6 - .6 * var(--show))); opacity: var(--show); transition: transform .35s var(--d) cubic-bezier(.3, 1.6, .5, 1), opacity .2s var(--d); }
+  .cs-vd-note { font-size: 12px; color: var(--ink-2); line-height: 1.5; }
+  .cs-voices { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .cs-voices p, .cs-needs p, .cs-tags p { margin: 0; display: grid; gap: 2px; padding: 8px 10px; border-radius: 10px; background: color-mix(in srgb, var(--tone, var(--ink-3)) 12%, var(--paper)); font-size: 13px; line-height: 1.5; }
+  .cs-voices b, .cs-needs b, .cs-tags b { font-size: 12px; color: var(--tone, var(--ink-2)); }
+
+  /* groups / rank 長條 */
+  .cs-groups { display: grid; gap: 10px; }
+  .cs-headline { margin: 0; display: flex; align-items: baseline; gap: 8px; font-size: 13px; font-weight: 700; color: var(--ink-2); }
+  .cs-headline b { font-size: 40px; line-height: 1; color: var(--accent-ink); }
+  .cs-g-cols { display: grid; grid-template-columns: repeat(var(--k), minmax(0, 1fr)); gap: 14px; }
+  .cs-bar { display: grid; grid-template-columns: 1fr; gap: 2px; margin-bottom: 8px; }
+  .cs-bar-l { font-size: 13px; font-weight: 700; }
+  .cs-bar-track { display: block; height: 14px; border-radius: 7px; background: var(--line); overflow: hidden; }
+  .cs-bar-fill { display: block; height: 100%; width: calc(var(--v) * 1% * var(--show)); min-width: 2px; border-radius: 7px; background: var(--tone); transition: width .8s var(--d) cubic-bezier(.2, .7, .2, 1); }
+  .cs-bar-v { font-size: 13px; font-weight: 800; color: var(--tone); }
+  .cs-rank .cs-bar { grid-template-columns: 9em 1fr 3em; align-items: center; gap: 8px; }
+  .cs-rank .cs-bar-v { text-align: right; }
+  .cs-rank .top .cs-bar-track { height: 20px; }
+  .cs-rank .top .cs-bar-v { font-size: 18px; }
+
+  /* split */
+  .cs-split { display: grid; gap: 12px; }
+  .cs-sp { opacity: var(--show); transition: opacity .4s var(--d); }
+  .cs-sp-bar { display: flex; height: 40px; border-radius: 10px; overflow: hidden; background: var(--line); }
+  .cs-sp-bar span { flex: 0 0 calc(var(--v) * 1% * var(--show)); display: flex; align-items: center; padding: 0 8px; overflow: hidden; background: var(--tone); color: #fff; white-space: nowrap; transition: flex-basis .8s var(--d) cubic-bezier(.2, .7, .2, 1); }
+  .cs-sp-bar b { font-size: 13px; }
+  .cs-sp-bar .cs-rest { background: repeating-linear-gradient(45deg, var(--line) 0 4px, transparent 4px 8px); }
+
+  /* journey */
+  .cs-journey { display: grid; gap: 10px; }
+  .cs-j-line { list-style: none; margin: 0; padding: 14px 0 0; display: grid; grid-template-columns: repeat(var(--k), 1fr); position: relative; }
+  .cs-j-line::before { content: ''; position: absolute; left: 8%; right: 8%; top: 21px; height: 3px; background: var(--line); }
+  .cs-j-line li { position: relative; display: grid; justify-items: center; gap: 6px; text-align: center; font-size: 13px; font-weight: 700; opacity: var(--show); transition: opacity .4s var(--d); }
+  .cs-j-dot { width: 16px; height: 16px; border-radius: 50%; background: var(--paper); border: 3px solid var(--ink-3); z-index: 1; }
+  .cs-j-line li.drop .cs-j-dot { border-color: #c2413b; background: #c2413b; animation: cs-pulse 1.4s ease-in-out infinite; }
+  .cs-j-drop { font-size: 11px; font-weight: 800; color: #c2413b; }
+  .cs-needs { display: grid; gap: 6px; }
+
+  /* points */
+  .cs-points { display: grid; gap: 10px; }
+  .cs-pt-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr)); gap: 8px; }
+  .cs-pt { margin: 0; display: grid; gap: 4px; padding: 10px 12px; border-radius: 12px; border: 2px solid var(--line); font-size: 13px; line-height: 1.5; opacity: var(--show); transform: translateY(calc((1 - var(--show)) * 8px)); transition: opacity .4s var(--d), transform .4s var(--d); }
+  .cs-pt b { font-size: 26px; line-height: 1.1; color: var(--accent-ink); }
+  .cs-pt.warn { border-color: #c2413b; background: color-mix(in srgb, #c2413b 8%, var(--paper)); }
+  .cs-pt.warn b { color: #c2413b; }
+  .cs-tags { display: grid; grid-template-columns: repeat(auto-fit, minmax(8rem, 1fr)); gap: 6px; }
+  .cs-tags p { opacity: var(--show); transition: opacity .4s var(--d); }
+
+  @keyframes cs-down { to { background-position: 0 6px; } }
+  @keyframes cs-pulse { 50% { box-shadow: 0 0 0 6px color-mix(in srgb, #c2413b 25%, transparent); } }
+  @media (max-width: 560px) {
+    .cs-rank .cs-bar { grid-template-columns: 7em 1fr 3em; }
+    .cs-st-row { grid-template-columns: 6em 1fr 1fr; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .cs-pane, .cs-pane * { transition: none !important; animation: none !important; }
+  }
+</style>

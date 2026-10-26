@@ -9,7 +9,8 @@
 // 所有 Src 都會被 scripts/verify/verify-quotes.mjs 逐字比對；寫法必須維持
 // { article: 'aNN', page: N, text: '…' } 這個順序，比對腳本才抓得到。
 
-export interface Src { article: string; page: number; text: string }
+/** by：引言不是文章作者說的（例如原刊側欄的受訪者），寫「姓名｜職稱」 */
+export interface Src { article: string; page: number; text: string; by?: string }
 
 /** 案例圖片（由 scripts/extract/extract_figures.py 從 PDF 抽出，放在 /fig/aNN/） */
 export interface Img { src: string; alt: string; caption?: string; credit?: string; w?: number; h?: number }
@@ -29,6 +30,8 @@ export interface More {
 
 /** 主文段落：完整的句子；讀者只讀主文也能讀懂整篇 */
 export interface Beat {
+  /** 段落標籤，例如案例的「情境」「方法」「模擬」 */
+  tag?: string;
   text: string;
   src: Src[];
   /** 這段之後接一則原文引言 */
@@ -71,7 +74,39 @@ export type Graphic =
   /** d3 互動圖表；chart 對應 src/components/d3/ 下的元件 */
   | { type: 'd3'; chart: D3Chart; source: string }
   /** 分格插畫：作者小故事、個人經驗（不是統計數據，不用 bignum／長條呈現）。第 k 段主文顯示第 k 格 */
-  | { type: 'art'; art: 'magnet-mount' | 'escalation' | 'persona-duo' | 'agent-team'; title?: string; source: string };
+  | { type: 'art'; art: 'magnet-mount' | 'escalation' | 'persona-duo' | 'agent-team'; title?: string; source: string }
+  /**
+   * 案例模擬（情境 → 方法 → 模擬）：第 1 段主文顯示情境、第 2 段顯示方法、第 3 段起依序顯示 results。
+   * 主文段數 = 2 + results.length。
+   */
+  | {
+      type: 'case';
+      no: number; total: number; kicker: string; title: string;
+      /** 情境：要比較的選項（有素材圖就放圖） */
+      options: { label: string; sub?: string; img?: Img; icon?: string }[];
+      question: string;
+      /** 方法：把什麼交給哪群 AI Persona、用什麼工具、看什麼反應 */
+      method: { feed: string; persona: string; tools: string[]; out: string };
+      results: CaseResult[];
+      source: string;
+    };
+
+/** 案例模擬的結果畫面。數字一律是 AI Persona 模擬結果，必須逐字出現在主文。 */
+export type CaseResult =
+  /** 分階段比勝負：每一列標出勝出的選項（-1 = 兩者並列） */
+  | { kind: 'stages'; title: string; rows: { label: string; win: number; value: string }[]; takeaway?: string[] }
+  /** 判定章：每個選項的用途 */
+  | { kind: 'verdict'; title: string; items: { opt: number; stamp: string; note: string }[]; voices?: { who: string; text: string }[]; common?: string }
+  /** 分組長條（例如不同年齡層的首選率）；text 可寫區間「71–83%」 */
+  | { kind: 'groups'; title: string; headline?: { value: string; label: string }; groups: { label: string; bars: { label: string; v: number; text: string; tone?: number }[] }[] }
+  /** 比例拆分（100% 堆疊條） */
+  | { kind: 'split'; title: string; groups: { label: string; parts: { label: string; v: number; tone: number }[] }[]; note?: string }
+  /** 旅程：在哪一站流失 */
+  | { kind: 'journey'; title: string; stages: string[]; drop: number; dropNote: string; needs: { who: string; text: string }[] }
+  /** 排行長條 */
+  | { kind: 'rank'; title: string; bars: { label: string; v: number }[] }
+  /** 重點數字卡（warn = 風險） */
+  | { kind: 'points'; title: string; points: { value: string; label: string; warn?: boolean }[]; tags?: { label: string; text: string; tone: number }[] };
 
 export type D3Chart =
   /** 粒子沿循環流動的生態系／循環圖 */
@@ -195,4 +230,6 @@ export interface Story {
   asksTitle?: string;
   /** 審稿狀態：draft → judged（Jev 初評通過）→ reviewed（人工校閱完成） */
   status: 'draft' | 'judged' | 'reviewed';
+  /** 主文字數上限（預設 3,000）。重點長文可放寬到 4,500，須在檔頭註明原因 */
+  budget?: number;
 }

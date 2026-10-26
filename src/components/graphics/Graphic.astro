@@ -9,6 +9,7 @@ import List from './List.astro';
 import Images from './Images.astro';
 import D3Chart from './D3Chart.astro';
 import Art from './Art.astro';
+import CaseSim from './CaseSim.astro';
 interface Props { g: Graphic }
 const { g } = Astro.props;
 ---
@@ -21,3 +22,4 @@ const { g } = Astro.props;
 {g.type === 'images' && <Images g={g} />}
 {g.type === 'd3' && <D3Chart g={g} />}
 {g.type === 'art' && <Art g={g} />}
+{g.type === 'case' && <CaseSim g={g} />}

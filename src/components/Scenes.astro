@@ -20,6 +20,7 @@ const { scenes } = Astro.props;
           {s.beats.map((b: Beat) => (
             <div class="step">
               <div class="card">
+                {b.tag && <p class="beat-tag">{b.tag}</p>}
                 <p class="beat"><span set:html={rich(b.text)} /><SourceRef src={b.src} /></p>
                 {b.quote && <Quote q={b.quote} />}
                 <MoreRef m={b.more} />
@@ -115,6 +116,7 @@ const { scenes } = Astro.props;
     .person.on circle, .person.on path { fill: var(--accent-ink); stroke: var(--accent-ink); }
   }
   .beat { margin: 0 0 .6em; }
+  .beat-tag { display: inline-block; margin: 0 0 8px !important; padding: 2px 10px; border-radius: 999px; background: var(--ink); color: var(--paper); font-size: 12px; font-weight: 800; letter-spacing: .12em; }
   .graphic { flex-direction: column; }
 
   .prose { display: grid; gap: clamp(24px, 4vw, 56px); align-items: center; padding-top: 12svh; padding-bottom: 12svh; }
