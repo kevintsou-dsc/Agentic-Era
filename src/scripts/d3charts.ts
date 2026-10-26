@@ -540,6 +540,51 @@ function venn(el: HTMLElement, c: Extract<D3Chart, { kind: 'venn' }>): Instance 
   };
 }
 
+// ---------- spectrum：由低到高的等級光譜，案例標記逐一落到自己的位置 ----------
+function spectrum(el: HTMLElement, c: Extract<D3Chart, { kind: 'spectrum' }>): Instance {
+  const W = 560, H = 380, x0 = 40, x1 = W - 40, ty = 210;
+  const n = c.levels.length, seg = (x1 - x0) / n;
+  const px = (pos: number) => x0 + seg * (pos + 0.5);
+  const svg = select(el).append('svg').attr('viewBox', `0 0 ${W} ${H}`).attr('class', 'sp');
+  const bind = tipLayer(el);
+  const levels = svg.append('g').attr('class', 'sp-levels');
+  const lv = levels.selectAll('g').data(c.levels).join('g').attr('class', (_, i) => `sp-level sp-l${i}`)
+    .attr('transform', (_, i) => `translate(${x0 + i * seg},${ty})`);
+  lv.append('rect').attr('width', seg - 4).attr('height', 34).attr('rx', 8);
+  lv.append('text').attr('class', 'sp-lab').attr('x', (seg - 4) / 2).attr('y', 22).attr('text-anchor', 'middle').text((d) => d.label);
+  // 等級說明拆兩行
+  lv.each(function (d) {
+    const g = select(this);
+    const half = Math.ceil(d.desc.length / 2);
+    [d.desc.slice(0, half), d.desc.slice(half)].forEach((t, i) =>
+      g.append('text').attr('class', 'sp-desc').attr('x', (seg - 4) / 2).attr('y', 56 + i * 16).attr('text-anchor', 'middle').text(t));
+    bind(this, { title: d.label, body: d.desc, extra: d.extra });
+  });
+  svg.append('path').attr('class', 'sp-arrow').attr('d', `M${x0},${ty + 110} H${x1} m-10,-6 l10,6 l-10,6`);
+  svg.append('text').attr('class', 'sp-axis').attr('x', x0).attr('y', ty + 132).text('自主程度低');
+  svg.append('text').attr('class', 'sp-axis').attr('x', x1).attr('y', ty + 132).attr('text-anchor', 'end').text('自主程度高');
+  // 案例標記：同一位置的標記往上疊
+  const seen = new Map<number, number>();
+  const stack = c.markers.map((m) => { const k = Math.round(m.pos * 2); const s = seen.get(k) ?? 0; seen.set(k, s + 1); return s; });
+  const mk = svg.append('g').selectAll('g').data(c.markers).join('g').attr('class', 'sp-mk');
+  mk.append('line').attr('x1', 0).attr('x2', 0).attr('y1', 0).attr('y2', (_, i) => 30 + stack[i] * 44);
+  mk.append('rect').attr('x', -56).attr('y', -18).attr('width', 112).attr('height', 30).attr('rx', 15);
+  mk.append('text').attr('y', 2).attr('text-anchor', 'middle').text((d) => d.label);
+  mk.each(function (d) { bind(this, { title: d.label, body: `約在「${c.levels[Math.min(n - 1, Math.round(d.pos))].label}」層`, extra: d.extra }); });
+  // 用 CSS transform（而不是 SVG 屬性）才能套用落下的 transition
+  const place = (st: number) => mk.style('transform', (d, i) => {
+    const y = ty - 30 - stack[i] * 44;
+    return `translate(${px(d.pos)}px,${st >= d.at ? y : y - 40}px)`;
+  }).classed('on', (d) => st >= d.at);
+  return {
+    update(s) {
+      const st = reduce ? 99 : s;
+      levels.classed('on', st >= c.levelsAt);
+      place(st);
+    },
+  };
+}
+
 // ---------- iceberg：水面上的工具指標 vs 水面下的文化暗流（冰山輕微浮動、水面波動） ----------
 function iceberg(el: HTMLElement, c: Extract<D3Chart, { kind: 'iceberg' }>): Instance {
   const W = 560, H = 460, cx = W / 2, sea = 150;
@@ -631,7 +676,7 @@ function rings(el: HTMLElement, c: Extract<D3Chart, { kind: 'rings' }>): Instanc
   };
 }
 
-const builders: Record<string, (el: HTMLElement, c: never) => Instance> = { flowloop, groups, logrange, stages, esov, rings, allocate, balance, venn, iceberg } as never;
+const builders: Record<string, (el: HTMLElement, c: never) => Instance> = { flowloop, groups, logrange, stages, esov, rings, allocate, balance, venn, iceberg, spectrum } as never;
 
 export function initD3() {
   const charts = Array.from(document.querySelectorAll<HTMLElement>('[data-d3]'));

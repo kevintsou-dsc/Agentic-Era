@@ -20,12 +20,13 @@ const summary =
     `${c.splitTitle}：${c.main.label}；${c.roles.map((r) => r.label).join('、')}`,
     `${c.outcomeTitle}：${c.once.label}，或${c.asset.label}`,
   ] :
+  c.kind === 'spectrum' ? [...c.levels.map((l) => `${l.label}：${l.desc}`), ...c.markers.map((m) => `${m.label}：約在「${c.levels[Math.min(c.levels.length - 1, Math.round(m.pos))].label}」層`)] :
   c.kind === 'iceberg' ? [`${c.aboveTitle}：${c.above.map((x) => x.label).join('、')}`, `${c.belowTitle}：${c.below.map((x) => x.label).join('、')}`] :
   c.kind === 'venn' ? [`${c.left.label}：${c.left.items.join('、')}`, `${c.right.label}：${c.right.items.join('、')}`, `${c.both.label}：${c.both.desc}`] :
   c.kind === 'balance' ? c.states.map((s) => `${s.label}（${s.years}）：${s.desc}`) :
   c.kind === 'rings' ? [...c.rings.map((r) => `${r.label}：${r.desc}`), ...(c.pulls ? [`會被帶走的：${c.pulls.join('、')}`] : [])] :
   c.rows.map((r) => `${r.model}（${r.era}）：${r.steps.map((s) => s.zh).join(' → ')}`);
-const hintTarget = c.kind === 'flowloop' ? '圓圈' : c.kind === 'stages' ? '方格' : c.kind === 'esov' ? '長條與方塊' : c.kind === 'rings' ? '每一圈' : c.kind === 'allocate' ? '每一列與區塊' : c.kind === 'balance' ? '兩端與時間軸' : c.kind === 'venn' ? '兩個圓與交集' : c.kind === 'iceberg' ? '水面上下的標籤' : '長條';
+const hintTarget = c.kind === 'flowloop' ? '圓圈' : c.kind === 'stages' ? '方格' : c.kind === 'esov' ? '長條與方塊' : c.kind === 'rings' ? '每一圈' : c.kind === 'allocate' ? '每一列與區塊' : c.kind === 'balance' ? '兩端與時間軸' : c.kind === 'venn' ? '兩個圓與交集' : c.kind === 'iceberg' ? '水面上下的標籤' : c.kind === 'spectrum' ? '等級與案例標記' : '長條';
 ---
 <div class="stage d3wrap">
   <p class="title">{c.title}</p>
@@ -139,6 +140,26 @@ const hintTarget = c.kind === 'flowloop' ? '圓圈' : c.kind === 'stages' ? '方
   .d3 :global(.es-check.has-tip:hover rect), .d3 :global(.es-check.has-tip:focus-visible rect) { fill: var(--accent); }
   .d3 :global(.es-check text) { font: 700 13px var(--font-sans); fill: var(--ink); }
   .d3 :global(.es-check .es-check-no) { font: 800 11px var(--font-mono); fill: var(--accent-ink); }
+
+  /* spectrum */
+  .d3 :global(.sp-levels) { opacity: .3; transition: opacity .5s; }
+  .d3 :global(.sp-levels.on) { opacity: 1; }
+  .d3 :global(.sp-level rect) { stroke: var(--accent-ink); stroke-width: 2; }
+  .d3 :global(.sp-l0 rect) { fill: color-mix(in srgb, var(--accent) 25%, var(--paper)); }
+  .d3 :global(.sp-l1 rect) { fill: color-mix(in srgb, var(--accent) 50%, var(--paper)); }
+  .d3 :global(.sp-l2 rect) { fill: color-mix(in srgb, var(--accent) 75%, var(--paper)); }
+  .d3 :global(.sp-l3 rect) { fill: var(--accent); }
+  .d3 :global(.sp-level.has-tip:hover rect) { stroke: var(--ink); stroke-width: 3; }
+  .d3 :global(.sp-lab) { font: 800 15px var(--font-sans); fill: var(--ink); }
+  .d3 :global(.sp-desc) { font: 500 11px var(--font-sans); fill: var(--ink-2); }
+  .d3 :global(.sp-arrow) { fill: none; stroke: var(--ink-3); stroke-width: 2; }
+  .d3 :global(.sp-axis) { font: 600 11px var(--font-sans); fill: var(--ink-3); }
+  .d3 :global(.sp-mk) { opacity: 0; transition: transform .7s cubic-bezier(.3,1.4,.5,1), opacity .4s; }
+  .d3 :global(.sp-mk.on) { opacity: 1; }
+  .d3 :global(.sp-mk line) { stroke: var(--ink); stroke-width: 2; stroke-dasharray: 3 3; }
+  .d3 :global(.sp-mk rect) { fill: var(--ink); }
+  .d3 :global(.sp-mk.has-tip:hover rect) { fill: var(--accent-ink); }
+  .d3 :global(.sp-mk text) { font: 700 12px var(--font-sans); fill: var(--paper); }
 
   /* iceberg */
   .d3 :global(.ib-water) { fill: color-mix(in srgb, #5f8fa8 30%, var(--paper)); transition: fill .6s; }

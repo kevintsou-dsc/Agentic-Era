@@ -84,7 +84,11 @@ export const story: Story = {
         },
         {
           text: '於是品牌再依同一套有缺陷的指標繼續優化，陷入「成效越優化、品牌越萎縮」的惡性循環，WARC 稱之為 **The Doom Loop**。',
-          src: [{ article: 'a10', page: 73, text: '陷入成效越優化、品牌越萎縮的惡性循環「The Doom Loop」' }],
+          src: [
+            { article: 'a10', page: 73, text: '依據有缺陷的指標進行優化' },
+            { article: 'a10', page: 73, text: '陷入成效越優化、品牌越萎縮的惡性循環「The Doom Loop」' },
+            { article: 'a10', page: 73, text: '資料來源：WARC《The Multiplier Effect》(2025)' },
+          ],
         },
         {
           text: '預算沒少、聲量沒小，品牌卻在競品的雜訊裡一點一點變淡。作者因此主張，曝光不是不重要，而是必須被重新定義。',
@@ -251,12 +255,24 @@ export const story: Story = {
           },
         },
         {
-          text: '需求一致但主張難證明時，就讓廣告負責創造注意、內容負責完成驗證，兩者雙管齊下。',
-          src: [{ article: 'a10', page: 76, text: 'AI 影響消費者決策下的媒體布局矩陣' }],
+          text: '當需求一致、主張難證明，原圖給的做法是「雙管齊下」：廣告創造注意，內容完成驗證，USP 與體驗證據同步推進。',
+          src: [
+            { article: 'a10', page: 76, text: '需求一致－主張難證明' },
+            { article: 'a10', page: 76, text: '雙管齊下' },
+            { article: 'a10', page: 76, text: '廣告創造注意' },
+            { article: 'a10', page: 76, text: '內容完成驗證' },
+            { article: 'a10', page: 76, text: 'USP與體驗證據同步推進' },
+          ],
         },
         {
-          text: '需求分歧但主張容易證明時，就拆解需求情境，優先攻下高商機的場景，各個擊破。',
-          src: [{ article: 'a10', page: 76, text: 'AI 影響消費者決策下的媒體布局矩陣' }],
+          text: '當需求分歧、主張易證明，原圖給的做法是「各個擊破」：拆解需求情境，優先攻高商機場景，再測出最有效的轉換切角。',
+          src: [
+            { article: 'a10', page: 76, text: '需求分歧－主張易證明' },
+            { article: 'a10', page: 76, text: '各個擊破' },
+            { article: 'a10', page: 76, text: '拆解需求情境' },
+            { article: 'a10', page: 76, text: '優先攻高商機場景' },
+            { article: 'a10', page: 76, text: '測出最有效的轉換切角' },
+          ],
         },
         {
           text: '需求一致、主張又容易證明時，品牌反而應該先讓內容成為 AI、搜尋與社群可以引用的答案。',
@@ -294,8 +310,11 @@ export const story: Story = {
           text: '日本電通的研究比較了同一則廣告：注意力是消費者自己選擇給的，品牌回想明顯較高。注視 5–10 秒時多出 18%，注視超過 10 秒時多出 **79%**。',
           src: [
             { article: 'a10', page: 77, text: '日本電通的研究曾做過一組對照：同樣一則廣告，當這份注意力是消費者「自己選擇」給的，品牌回想明顯高於被迫觀看' },
+            { article: 'a10', page: 77, text: '注視 5~10 秒' },
             { article: 'a10', page: 77, text: '+18%' },
+            { article: 'a10', page: 77, text: '注視 > 10 秒' },
             { article: 'a10', page: 77, text: '+79%' },
+            { article: 'a10', page: 77, text: '自願性注意力相較強迫性注意力的品牌回想增幅' },
           ],
           more: {
             title: '強迫式格式為什麼反而吃虧？',

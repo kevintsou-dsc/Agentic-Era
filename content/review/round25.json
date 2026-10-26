@@ -1,0 +1,508 @@
+{
+ "label": "round25",
+ "thresholds": {
+  "faithful": 0.3,
+  "overclaim": 0.8,
+  "complete": 0.3,
+  "coverage": 2.5,
+  "coherence": 2.2
+ },
+ "stories": [
+  {
+   "id": "a10",
+   "units": 26,
+   "flagged": 1,
+   "story": {
+    "coverage": {
+     "score": 3.0,
+     "conf": 1.0
+    },
+    "coherence": {
+     "score": 2.82,
+     "conf": 0.83
+    }
+   },
+   "story_flags": [],
+   "passed": false,
+   "rows": [
+    {
+     "kind": "main",
+     "text": "報表上的曝光越買越多、單次成本越壓越低，可是一打開品牌市調，卻是知名度遇到瓶頸、指名度下滑，消費者描述品牌時，用的全是別人家的形容詞。",
+     "jev": {
+      "faithful": 0.91,
+      "overclaim": 0.24,
+      "complete": 0.76,
+      "fluency": {
+       "score": 2.37,
+       "conf": 0.38
+      }
+     },
+     "reasons": [],
+     "pages": [
+      73,
+      73,
+      73
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "徐莉媛認為，真正的問題不在執行，而是遊戲規則正在改變：生成式 AI 可以無限產內容，版位也可以無限切割，曝光正在通膨、注意力正在升值。",
+     "jev": {
+      "faithful": 0.46,
+      "overclaim": 0.22,
+      "complete": 0.53,
+      "fluency": {
+       "score": 2.46,
+       "conf": 0.45
+      }
+     },
+     "reasons": [],
+     "pages": [
+      73,
+      73
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "所以品牌要重新問的，不是「我出現了幾次」，而是有多少次真的被看進去、被想起來、被帶進決策。",
+     "jev": {
+      "faithful": 0.95,
+      "overclaim": 0.16,
+      "complete": 0.73,
+      "fluency": {
+       "score": 2.21,
+       "conf": 0.41
+      }
+     },
+     "reasons": [],
+     "pages": [
+      73
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "為了交出能即時量化的成效，品牌把預算一步步移向短期、點擊與轉換型的格式。",
+     "jev": {
+      "faithful": 0.84,
+      "overclaim": 0.32,
+      "complete": 0.74,
+      "fluency": {
+       "score": 1.94,
+       "conf": 0.49
+      }
+     },
+     "reasons": [],
+     "pages": [
+      73
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "可是無盡的優化，有時反而稀釋了廣告本身的力量，也悄悄磨損了品牌，讓廣告效果進入高原期。",
+     "jev": {
+      "faithful": 0.8,
+      "overclaim": 0.27,
+      "complete": 0.63,
+      "fluency": {
+       "score": 2.19,
+       "conf": 0.46
+      }
+     },
+     "reasons": [],
+     "pages": [
+      73,
+      73
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "於是品牌再依同一套有缺陷的指標繼續優化，陷入「成效越優化、品牌越萎縮」的惡性循環，WARC 稱之為 The Doom Loop。",
+     "jev": {
+      "faithful": 0.78,
+      "overclaim": 0.3,
+      "complete": 0.66,
+      "fluency": {
+       "score": 2.17,
+       "conf": 0.44
+      }
+     },
+     "reasons": [],
+     "pages": [
+      73,
+      73,
+      73
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "預算沒少、聲量沒小，品牌卻在競品的雜訊裡一點一點變淡。作者因此主張，曝光不是不重要，而是必須被重新定義。",
+     "jev": {
+      "faithful": 0.87,
+      "overclaim": 0.21,
+      "complete": 0.63,
+      "fluency": {
+       "score": 2.46,
+       "conf": 0.47
+      }
+     },
+     "reasons": [],
+     "pages": [
+      73,
+      73
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "dentsu 與 Lumen 的眼動研究發現，可視率與品牌回想之間幾乎沒有關係；真正更能預測回想的，是平均觀看秒數。廣告「出現在畫面上」與「被人看進去」，是兩回事。",
+     "jev": {
+      "faithful": 0.96,
+      "overclaim": 0.17,
+      "complete": 0.83,
+      "fluency": {
+       "score": 2.38,
+       "conf": 0.46
+      }
+     },
+     "reasons": [],
+     "pages": [
+      74,
+      74
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "因此高 SOV 場域仍然重要，但 SOV 要換一種算法：不是聲量佔比，也不是畫面佔比，而是注意力佔比，看品牌能不能在夠乾淨、夠完整的環境裡，獨佔消費者一段專注的心思。",
+     "jev": {
+      "faithful": 0.9,
+      "overclaim": 0.2,
+      "complete": 0.75,
+      "fluency": {
+       "score": 2.26,
+       "conf": 0.49
+      }
+     },
+     "reasons": [],
+     "pages": [
+      74,
+      74
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "作者介紹了一把新的尺 APM：每千次曝光的注意力秒數。它把「有沒有看到」與「看了多久」放在同一個標準裡；秒數是門檻而非目標，用來排除不合格的曝光。",
+     "jev": {
+      "faithful": 0.94,
+      "overclaim": 0.2,
+      "complete": 0.72,
+      "fluency": {
+       "score": 2.28,
+       "conf": 0.45
+      }
+     },
+     "reasons": [],
+     "pages": [
+      74,
+      74
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "台灣一家日系專櫃美妝品牌，過去把近三成預算壓在轉換目標；重新加重電視、CTV、OOH 等高注意力場域後，不只在轉型檔期拿下 YOY +20% 的短期業績，也在成長趨緩的專櫃美妝市場連續三年維持正成長。",
+     "jev": {
+      "faithful": 0.72,
+      "overclaim": 0.25,
+      "complete": 0.8,
+      "fluency": {
+       "score": 2.31,
+       "conf": 0.3
+      }
+     },
+     "reasons": [],
+     "pages": [
+      74,
+      74,
+      74,
+      75
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "如果 APM 讓我們看見廣告裡的注意力，AI 改變的就是廣告外的注意力：當 AI 開始整理資訊、生成摘要、推薦品牌，注意力的戰場已經從版位延伸到答案與推薦。",
+     "jev": {
+      "faithful": 0.91,
+      "overclaim": 0.29,
+      "complete": 0.77,
+      "fluency": {
+       "score": 2.52,
+       "conf": 0.53
+      }
+     },
+     "reasons": [],
+     "pages": [
+      75,
+      75
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "消費者旅程因此從 AISAS 往 AICAS 移動。AICAS 的起點不再是被動接收的 Attention，而是消費者主動發出的 Ask。",
+     "jev": {
+      "faithful": 0.91,
+      "overclaim": 0.33,
+      "complete": 0.6,
+      "fluency": {
+       "score": 2.1,
+       "conf": 0.46
+      }
+     },
+     "reasons": [],
+     "pages": [
+      75
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "當消費者先問 AI「哪個品牌適合我」，品牌若沒有足夠清楚、可信、可被引用的內容，可能還沒進入比較，就已經被排除在答案之外。這對預算較小的品牌尤其重要。",
+     "jev": {
+      "faithful": 0.89,
+      "overclaim": 0.22,
+      "complete": 0.75,
+      "fluency": {
+       "score": 2.37,
+       "conf": 0.38
+      }
+     },
+     "reasons": [],
+     "pages": [
+      75,
+      75
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "有限的注意力預算該押哪裡？作者用兩個問題判斷：消費者是不是都在問同一個問題，以及產品主張好不好被快速證明。需求分歧又難證明時，要先建立清楚的品牌主敘事。",
+     "jev": {
+      "faithful": 0.86,
+      "overclaim": 0.32,
+      "complete": 0.62,
+      "fluency": {
+       "score": 2.34,
+       "conf": 0.47
+      }
+     },
+     "reasons": [],
+     "pages": [
+      76,
+      77
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "當需求一致、主張難證明，原圖給的做法是「雙管齊下」：廣告創造注意，內容完成驗證，USP 與體驗證據同步推進。",
+     "jev": {
+      "faithful": 0.26,
+      "overclaim": 0.67,
+      "complete": 0.64,
+      "fluency": {
+       "score": 1.95,
+       "conf": 0.46
+      }
+     },
+     "reasons": [
+      "出處不足或不忠實（faithful 0.26）"
+     ],
+     "pages": [
+      76,
+      76,
+      76,
+      76
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "當需求分歧、主張易證明，原圖給的做法是「各個擊破」：拆解需求情境，優先攻高商機場景，再測出最有效的轉換切角。",
+     "jev": {
+      "faithful": 0.51,
+      "overclaim": 0.58,
+      "complete": 0.67,
+      "fluency": {
+       "score": 2.02,
+       "conf": 0.47
+      }
+     },
+     "reasons": [],
+     "pages": [
+      76,
+      76,
+      76,
+      76
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "需求一致、主張又容易證明時，品牌反而應該先讓內容成為 AI、搜尋與社群可以引用的答案。",
+     "jev": {
+      "faithful": 0.96,
+      "overclaim": 0.14,
+      "complete": 0.77,
+      "fluency": {
+       "score": 2.21,
+       "conf": 0.44
+      }
+     },
+     "reasons": [],
+     "pages": [
+      77
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "當 AI 接手媒體的執行與優化，「把曝光買對、買便宜」很快會變成人人都會的基本功。媒體還能做出差異的，是設計那些消費者願意主動給出的注意力。",
+     "jev": {
+      "faithful": 0.93,
+      "overclaim": 0.33,
+      "complete": 0.76,
+      "fluency": {
+       "score": 2.44,
+       "conf": 0.45
+      }
+     },
+     "reasons": [],
+     "pages": [
+      77,
+      77
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "日本電通的研究比較了同一則廣告：注意力是消費者自己選擇給的，品牌回想明顯較高。注視 5–10 秒時多出 18%，注視超過 10 秒時多出 79%。",
+     "jev": {
+      "faithful": 0.85,
+      "overclaim": 0.22,
+      "complete": 0.79,
+      "fluency": {
+       "score": 2.37,
+       "conf": 0.38
+      }
+     },
+     "reasons": [],
+     "pages": [
+      77,
+      77,
+      77,
+      77,
+      77,
+      77
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "自願的注意力，常出現在演算法管不到、但消費者願意停下來的地方。高注意力場域的價值，不只在專注，更在專注之上還能疊加信任與參與。",
+     "jev": {
+      "faithful": 0.92,
+      "overclaim": 0.32,
+      "complete": 0.8,
+      "fluency": {
+       "score": 2.56,
+       "conf": 0.58
+      }
+     },
+     "reasons": [],
+     "pages": [
+      77,
+      78
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "dentsu 與 JCDecaux、Ocean Outdoor 的研究發現，54% 的路人至少注視過一次戶外廣告；全動態數位戶外比靜態多觸及 20% 的人，貼近視線高度的候車亭，回想甚至贏過高掛的大看板。",
+     "jev": {
+      "faithful": 0.76,
+      "overclaim": 0.29,
+      "complete": 0.69,
+      "fluency": {
+       "score": 1.93,
+       "conf": 0.51
+      }
+     },
+     "reasons": [],
+     "pages": [
+      77,
+      77,
+      77
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "CeraVe 在淡水信義線把上萬份 30ml 潔膚露體驗瓶掛上車廂吊環，乘客抬頭看到、伸手帶走，再靠車廂裡的 QR Code 接到線上優惠。",
+     "jev": {
+      "faithful": 0.9,
+      "overclaim": 0.12,
+      "complete": 0.79,
+      "fluency": {
+       "score": 2.36,
+       "conf": 0.46
+      }
+     },
+     "reasons": [],
+     "pages": [
+      78,
+      78
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "外送平台把捷運通道的牆面變成互動優惠牆，讓通勤族停下來、掃碼領折扣，把單向曝光翻成雙向參與。",
+     "jev": {
+      "faithful": 0.95,
+      "overclaim": 0.15,
+      "complete": 0.9,
+      "fluency": {
+       "score": 2.49,
+       "conf": 0.49
+      }
+     },
+     "reasons": [],
+     "pages": [
+      78
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "美妝品牌走進 Podcast，借主持人與聽眾長年累積的信任，在沒有視覺干擾的伴聽時光裡，好好把話講完。",
+     "jev": {
+      "faithful": 0.97,
+      "overclaim": 0.11,
+      "complete": 0.8,
+      "fluency": {
+       "score": 2.56,
+       "conf": 0.56
+      }
+     },
+     "reasons": [],
+     "pages": [
+      78
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "說到底，品牌與其在零碎的注意力裡多撿幾片碎片，不如找到消費者真正專注的那個當下，在對的場景遞上對的邀請；親身經歷過的時刻，演算法搶不走。",
+     "jev": {
+      "faithful": 0.85,
+      "overclaim": 0.44,
+      "complete": 0.66,
+      "fluency": {
+       "score": 2.59,
+       "conf": 0.59
+      }
+     },
+     "reasons": [],
+     "pages": [
+      79,
+      78
+     ]
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,1367 @@
+{
+ "label": "round23",
+ "thresholds": {
+  "faithful": 0.3,
+  "overclaim": 0.8,
+  "complete": 0.3,
+  "coverage": 2.5,
+  "coherence": 2.2
+ },
+ "stories": [
+  {
+   "id": "a08",
+   "units": 21,
+   "flagged": 0,
+   "story": {
+    "coverage": {
+     "score": 2.99,
+     "conf": 0.99
+    },
+    "coherence": {
+     "score": 2.82,
+     "conf": 0.82
+    }
+   },
+   "story_flags": [],
+   "passed": true,
+   "rows": [
+    {
+     "kind": "main",
+     "text": "UC Irvine 資訊學系榮譽教授 Gloria Mark 長期研究人與數位科技的互動，她發現 2004 年，人們平均在單一螢幕上停留約 150 秒。",
+     "jev": {
+      "faithful": 0.83,
+      "overclaim": 0.16,
+      "complete": 0.62,
+      "fluency": {
+       "score": 2.09,
+       "conf": 0.51
+      }
+     },
+     "reasons": [],
+     "pages": [
+      59,
+      59
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "如今，人們平均停留在單一螢幕上的時間已下降到約 47 秒。從社群、串流、短影音到生成式 AI，每天都有大量內容在爭奪我們有限的時間與注意力。",
+     "jev": {
+      "faithful": 0.84,
+      "overclaim": 0.32,
+      "complete": 0.69,
+      "fluency": {
+       "score": 2.3,
+       "conf": 0.5
+      }
+     },
+     "reasons": [],
+     "pages": [
+      59,
+      59,
+      59
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "但消費者並非失去了專注能力，而是對內容的選擇變得更加挑剔。品牌真正的挑戰，是如何在消費者短暫的注意力停留中，建立情感連結、留下品牌記憶。",
+     "jev": {
+      "faithful": 0.75,
+      "overclaim": 0.3,
+      "complete": 0.75,
+      "fluency": {
+       "score": 2.55,
+       "conf": 0.57
+      }
+     },
+     "reasons": [],
+     "pages": [
+      59,
+      59
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "在注意力高度碎片化的環境下，人們越來越難被單純的產品資訊吸引，反而更願意為情緒價值買單；快樂、感動、陪伴、療癒與歸屬感，都成了驅動消費的因素。",
+     "jev": {
+      "faithful": 0.8,
+      "overclaim": 0.65,
+      "complete": 0.86,
+      "fluency": {
+       "score": 2.43,
+       "conf": 0.44
+      }
+     },
+     "reasons": [],
+     "pages": [
+      59,
+      59
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "這在 Gen Z 身上最明顯。成長於資訊爆炸與高度競爭的環境，他們發展出「與其一味追求成功，不如先照顧好自己的情緒狀態」的生活哲學；而這群約占全球人口四分之一的世代，貢獻了近四成的消費影響力。",
+     "jev": {
+      "faithful": 0.82,
+      "overclaim": 0.3,
+      "complete": 0.38,
+      "fluency": {
+       "score": 1.68,
+       "conf": 0.37
+      }
+     },
+     "reasons": [],
+     "pages": [
+      59,
+      59
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "對 Gen Z 來說，選擇品牌是在表達自己的價值觀、興趣圈層與身份認同，品牌是否參與文化，往往比產品本身更能影響他們的選擇。",
+     "jev": {
+      "faithful": 0.89,
+      "overclaim": 0.34,
+      "complete": 0.84,
+      "fluency": {
+       "score": 2.5,
+       "conf": 0.51
+      }
+     },
+     "reasons": [],
+     "pages": [
+      60,
+      60
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "文化討論在哪裡發生？作者列出六個現場，它們是文化占比被重新分配的第一線，也是品牌累積共同記憶的入口。",
+     "jev": {
+      "faithful": 0.89,
+      "overclaim": 0.43,
+      "complete": 0.33,
+      "fluency": {
+       "score": 2.07,
+       "conf": 0.44
+      }
+     },
+     "reasons": [],
+     "pages": [
+      60
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "2026 年台北國際動漫節吸引超過 50.5 萬人次、創造約 2.5 億元商機。粉絲主動參與二創與應援，被納入其中的品牌，才真正進入這個生態。",
+     "jev": {
+      "faithful": 0.83,
+      "overclaim": 0.32,
+      "complete": 0.6,
+      "fluency": {
+       "score": 2.06,
+       "conf": 0.53
+      }
+     },
+     "reasons": [],
+     "pages": [
+      60,
+      60
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "周邊商品已成為泛娛樂粉絲最共通的消費語言：過去是買商品送周邊，如今是為了周邊而購買商品。",
+     "jev": {
+      "faithful": 0.85,
+      "overclaim": 0.47,
+      "complete": 0.82,
+      "fluency": {
+       "score": 2.49,
+       "conf": 0.48
+      }
+     },
+     "reasons": [],
+     "pages": [
+      60,
+      60
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "《魔女宅急便》音樂劇首度來台、《神隱少女》舞台劇也將登台；當角色從平面走向真人，粉絲買單的，是一段能夠親身參與的世界觀體驗。",
+     "jev": {
+      "faithful": 0.82,
+      "overclaim": 0.28,
+      "complete": 0.66,
+      "fluency": {
+       "score": 2.28,
+       "conf": 0.45
+      }
+     },
+     "reasons": [],
+     "pages": [
+      61,
+      61,
+      61
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "《憤怒鳥》宣布回歸、《亂馬½》推出重製版，眾多經典 IP 以不同形式重返大眾視野，帶來懷舊情懷與新鮮感兼具的雙重體驗。",
+     "jev": {
+      "faithful": 0.81,
+      "overclaim": 0.23,
+      "complete": 0.76,
+      "fluency": {
+       "score": 2.37,
+       "conf": 0.38
+      }
+     },
+     "reasons": [],
+     "pages": [
+      61,
+      61,
+      62
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "短影音完成用戶教育之後，市場轉向更完整的故事與長期的 IP 價值，短劇正快速成為下一個內容競爭的新戰場。",
+     "jev": {
+      "faithful": 0.84,
+      "overclaim": 0.27,
+      "complete": 0.76,
+      "fluency": {
+       "score": 2.2,
+       "conf": 0.49
+      }
+     },
+     "reasons": [],
+     "pages": [
+      62,
+      62
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "台灣棒球已從國際賽熱潮發展為全年性的運動娛樂，啦啦隊也逐漸成為獨立的娛樂 IP 與品牌合作的媒介。",
+     "jev": {
+      "faithful": 0.89,
+      "overclaim": 0.36,
+      "complete": 0.83,
+      "fluency": {
+       "score": 2.5,
+       "conf": 0.51
+      }
+     },
+     "reasons": [],
+     "pages": [
+      63,
+      63
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "許多品牌即使創造了大量線上觀看與社群互動，仍無法把數位聲量轉成線下參與與實際消費；對 Gen Z 而言，被動式廣告與折扣促銷，已不足以建立有意義的品牌連結。",
+     "jev": {
+      "faithful": 0.95,
+      "overclaim": 0.31,
+      "complete": 0.7,
+      "fluency": {
+       "score": 2.19,
+       "conf": 0.5
+      }
+     },
+     "reasons": [],
+     "pages": [
+      64,
+      64
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "2025 年，電通娛樂與韓國 The SMC Group 共同打造全球版原創娛樂 IP《The Inspector Global》，由來自台灣的 K-pop 偶像葉舒華主持，串聯 YouTube 節目、Shorts、Reels、Talk Concert 與周邊商品。",
+     "jev": {
+      "faithful": 0.87,
+      "overclaim": 0.18,
+      "complete": 0.68,
+      "fluency": {
+       "score": 2.32,
+       "conf": 0.34
+      }
+     },
+     "reasons": [],
+     "pages": [
+      64,
+      64,
+      64
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "這是一條完整的 Content-to-Commerce 消費旅程：從線上內容互動、社群擴散，一路走到線下體驗與實際購買，把 Attention 轉化為 Action。",
+     "jev": {
+      "faithful": 0.85,
+      "overclaim": 0.4,
+      "complete": 0.69,
+      "fluency": {
+       "score": 1.88,
+       "conf": 0.47
+      }
+     },
+     "reasons": [],
+     "pages": [
+      64,
+      64
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "作者把未來的機會畫成一張生態系：以 IP 為核心，娛樂、體驗、粉絲社群與商業四個面向相互驅動，形成閉環。",
+     "jev": {
+      "faithful": 0.31,
+      "overclaim": 0.34,
+      "complete": 0.81,
+      "fluency": {
+       "score": 2.33,
+       "conf": 0.35
+      }
+     },
+     "reasons": [],
+     "pages": [
+      65
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "娛樂內容（影視、音樂、遊戲、偶像與演唱會）先建立粉絲的情感連結，線上互動、主題展覽與快閃活動等沉浸式體驗，再提升熱度與忠誠度。",
+     "jev": {
+      "faithful": 0.65,
+      "overclaim": 0.46,
+      "complete": 0.77,
+      "fluency": {
+       "score": 1.55,
+       "conf": 0.41
+      }
+     },
+     "reasons": [],
+     "pages": [
+      65,
+      65,
+      65,
+      65
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "粉絲社群透過口碑傳播與社群活動，激發 UGC 與二次創作，把影響力擴散出去，也建立長期的社群關係。",
+     "jev": {
+      "faithful": 0.43,
+      "overclaim": 0.5,
+      "complete": 0.9,
+      "fluency": {
+       "score": 1.91,
+       "conf": 0.58
+      }
+     },
+     "reasons": [],
+     "pages": [
+      65,
+      65,
+      65
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "商業端則透過周邊商品、授權合作、電商零售與 IP 聯名多元變現，讓情感價值與商業價值形成正向循環。",
+     "jev": {
+      "faithful": 0.77,
+      "overclaim": 0.42,
+      "complete": 0.85,
+      "fluency": {
+       "score": 2.42,
+       "conf": 0.42
+      }
+     },
+     "reasons": [],
+     "pages": [
+      65,
+      65,
+      65,
+      65
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "當 AI 能大量生成內容、演算法持續分配流量，真實感與情感溫度反而成為最珍貴的價值。娛樂與運動之所以重要，正是因為它們能夠將 Attention 轉化為 Memory。",
+     "jev": {
+      "faithful": 0.93,
+      "overclaim": 0.27,
+      "complete": 0.78,
+      "fluency": {
+       "score": 2.62,
+       "conf": 0.63
+      }
+     },
+     "reasons": [],
+     "pages": [
+      64,
+      65
+     ]
+    }
+   ]
+  },
+  {
+   "id": "a10",
+   "units": 26,
+   "flagged": 2,
+   "story": {
+    "coverage": {
+     "score": 2.99,
+     "conf": 1.0
+    },
+    "coherence": {
+     "score": 2.81,
+     "conf": 0.81
+    }
+   },
+   "story_flags": [],
+   "passed": false,
+   "rows": [
+    {
+     "kind": "main",
+     "text": "報表上的曝光越買越多、單次成本越壓越低，可是一打開品牌市調，卻是知名度遇到瓶頸、指名度下滑，消費者描述品牌時，用的全是別人家的形容詞。",
+     "jev": {
+      "faithful": 0.91,
+      "overclaim": 0.25,
+      "complete": 0.75,
+      "fluency": {
+       "score": 2.39,
+       "conf": 0.39
+      }
+     },
+     "reasons": [],
+     "pages": [
+      73,
+      73,
+      73
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "徐莉媛認為，真正的問題不在執行，而是遊戲規則正在改變：生成式 AI 可以無限產內容，版位也可以無限切割，曝光正在通膨、注意力正在升值。",
+     "jev": {
+      "faithful": 0.45,
+      "overclaim": 0.21,
+      "complete": 0.54,
+      "fluency": {
+       "score": 2.45,
+       "conf": 0.44
+      }
+     },
+     "reasons": [],
+     "pages": [
+      73,
+      73
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "所以品牌要重新問的，不是「我出現了幾次」，而是有多少次真的被看進去、被想起來、被帶進決策。",
+     "jev": {
+      "faithful": 0.95,
+      "overclaim": 0.15,
+      "complete": 0.73,
+      "fluency": {
+       "score": 2.26,
+       "conf": 0.25
+      }
+     },
+     "reasons": [],
+     "pages": [
+      73
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "為了交出能即時量化的成效，品牌把預算一步步移向短期、點擊與轉換型的格式。",
+     "jev": {
+      "faithful": 0.84,
+      "overclaim": 0.34,
+      "complete": 0.74,
+      "fluency": {
+       "score": 1.95,
+       "conf": 0.5
+      }
+     },
+     "reasons": [],
+     "pages": [
+      73
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "可是無盡的優化，有時反而稀釋了廣告本身的力量，也悄悄磨損了品牌，讓廣告效果進入高原期。",
+     "jev": {
+      "faithful": 0.68,
+      "overclaim": 0.32,
+      "complete": 0.76,
+      "fluency": {
+       "score": 2.21,
+       "conf": 0.4
+      }
+     },
+     "reasons": [],
+     "pages": [
+      73,
+      73
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "於是品牌再依同一套有缺陷的指標繼續優化，陷入「成效越優化、品牌越萎縮」的惡性循環，WARC 稱之為 The Doom Loop。",
+     "jev": {
+      "faithful": 0.78,
+      "overclaim": 0.3,
+      "complete": 0.72,
+      "fluency": {
+       "score": 2.1,
+       "conf": 0.46
+      }
+     },
+     "reasons": [],
+     "pages": [
+      73,
+      73,
+      73
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "預算沒少、聲量沒小，品牌卻在競品的雜訊裡一點一點變淡。作者因此主張，曝光不是不重要，而是必須被重新定義。",
+     "jev": {
+      "faithful": 0.89,
+      "overclaim": 0.22,
+      "complete": 0.64,
+      "fluency": {
+       "score": 2.43,
+       "conf": 0.43
+      }
+     },
+     "reasons": [],
+     "pages": [
+      73,
+      73
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "dentsu 與 Lumen 的眼動研究發現，可視率與品牌回想之間幾乎沒有關係；真正更能預測回想的，是平均觀看秒數。廣告「出現在畫面上」與「被人看進去」，是兩回事。",
+     "jev": {
+      "faithful": 0.96,
+      "overclaim": 0.17,
+      "complete": 0.82,
+      "fluency": {
+       "score": 2.37,
+       "conf": 0.39
+      }
+     },
+     "reasons": [],
+     "pages": [
+      74,
+      74
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "因此高 SOV 場域仍然重要，但 SOV 要換一種算法：不是聲量佔比，也不是畫面佔比，而是注意力佔比，看品牌能不能在夠乾淨、夠完整的環境裡，獨佔消費者一段專注的心思。",
+     "jev": {
+      "faithful": 0.9,
+      "overclaim": 0.19,
+      "complete": 0.75,
+      "fluency": {
+       "score": 2.25,
+       "conf": 0.48
+      }
+     },
+     "reasons": [],
+     "pages": [
+      74,
+      74
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "作者介紹了一把新的尺 APM：每千次曝光的注意力秒數。它把「有沒有看到」與「看了多久」放在同一個標準裡；秒數是門檻而非目標，用來排除不合格的曝光。",
+     "jev": {
+      "faithful": 0.94,
+      "overclaim": 0.2,
+      "complete": 0.73,
+      "fluency": {
+       "score": 2.31,
+       "conf": 0.33
+      }
+     },
+     "reasons": [],
+     "pages": [
+      74,
+      74
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "台灣一家日系專櫃美妝品牌，過去把近三成預算壓在轉換目標；重新加重電視、CTV、OOH 等高注意力場域後，不只在轉型檔期拿下 YOY +20% 的短期業績，也在成長趨緩的專櫃美妝市場連續三年維持正成長。",
+     "jev": {
+      "faithful": 0.7,
+      "overclaim": 0.27,
+      "complete": 0.78,
+      "fluency": {
+       "score": 2.3,
+       "conf": 0.28
+      }
+     },
+     "reasons": [],
+     "pages": [
+      74,
+      74,
+      74,
+      75
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "如果 APM 讓我們看見廣告裡的注意力，AI 改變的就是廣告外的注意力：當 AI 開始整理資訊、生成摘要、推薦品牌，注意力的戰場已經從版位延伸到答案與推薦。",
+     "jev": {
+      "faithful": 0.9,
+      "overclaim": 0.29,
+      "complete": 0.78,
+      "fluency": {
+       "score": 2.48,
+       "conf": 0.47
+      }
+     },
+     "reasons": [],
+     "pages": [
+      75,
+      75
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "消費者旅程因此從 AISAS 往 AICAS 移動。AICAS 的起點不再是被動接收的 Attention，而是消費者主動發出的 Ask。",
+     "jev": {
+      "faithful": 0.91,
+      "overclaim": 0.28,
+      "complete": 0.6,
+      "fluency": {
+       "score": 2.12,
+       "conf": 0.46
+      }
+     },
+     "reasons": [],
+     "pages": [
+      75
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "當消費者先問 AI「哪個品牌適合我」，品牌若沒有足夠清楚、可信、可被引用的內容，可能還沒進入比較，就已經被排除在答案之外。這對預算較小的品牌尤其重要。",
+     "jev": {
+      "faithful": 0.85,
+      "overclaim": 0.22,
+      "complete": 0.76,
+      "fluency": {
+       "score": 2.39,
+       "conf": 0.39
+      }
+     },
+     "reasons": [],
+     "pages": [
+      75,
+      75
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "有限的注意力預算該押哪裡？作者用兩個問題判斷：消費者是不是都在問同一個問題，以及產品主張好不好被快速證明。需求分歧又難證明時，要先建立清楚的品牌主敘事。",
+     "jev": {
+      "faithful": 0.84,
+      "overclaim": 0.33,
+      "complete": 0.63,
+      "fluency": {
+       "score": 2.32,
+       "conf": 0.47
+      }
+     },
+     "reasons": [],
+     "pages": [
+      76,
+      77
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "矩陣右上角是「需求一致、主張難證明」：原圖建議雙管齊下，讓廣告負責創造注意、內容負責完成驗證。",
+     "jev": {
+      "faithful": 0.28,
+      "overclaim": 0.46,
+      "complete": 0.62,
+      "fluency": {
+       "score": 2.0,
+       "conf": 0.51
+      }
+     },
+     "reasons": [
+      "出處不足或不忠實（faithful 0.28）"
+     ],
+     "pages": [
+      76,
+      76,
+      76,
+      76
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "矩陣左下角是「需求分歧、主張易證明」：原圖建議各個擊破，先拆解需求情境，再優先攻下高商機的場景。",
+     "jev": {
+      "faithful": 0.18,
+      "overclaim": 0.44,
+      "complete": 0.64,
+      "fluency": {
+       "score": 1.75,
+       "conf": 0.49
+      }
+     },
+     "reasons": [
+      "出處不足或不忠實（faithful 0.18）"
+     ],
+     "pages": [
+      76,
+      76,
+      76,
+      76
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "需求一致、主張又容易證明時，品牌反而應該先讓內容成為 AI、搜尋與社群可以引用的答案。",
+     "jev": {
+      "faithful": 0.96,
+      "overclaim": 0.12,
+      "complete": 0.75,
+      "fluency": {
+       "score": 2.2,
+       "conf": 0.45
+      }
+     },
+     "reasons": [],
+     "pages": [
+      77
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "當 AI 接手媒體的執行與優化，「把曝光買對、買便宜」很快會變成人人都會的基本功。媒體還能做出差異的，是設計那些消費者願意主動給出的注意力。",
+     "jev": {
+      "faithful": 0.9,
+      "overclaim": 0.34,
+      "complete": 0.77,
+      "fluency": {
+       "score": 2.45,
+       "conf": 0.46
+      }
+     },
+     "reasons": [],
+     "pages": [
+      77,
+      77
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "日本電通的研究比較了同一則廣告：注意力是消費者自己選擇給的，品牌回想明顯較高。注視 5–10 秒時多出 18%，注視超過 10 秒時多出 79%。",
+     "jev": {
+      "faithful": 0.77,
+      "overclaim": 0.31,
+      "complete": 0.57,
+      "fluency": {
+       "score": 2.01,
+       "conf": 0.48
+      }
+     },
+     "reasons": [],
+     "pages": [
+      77,
+      77,
+      77,
+      77,
+      77,
+      77
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "自願的注意力，常出現在演算法管不到、但消費者願意停下來的地方。高注意力場域的價值，不只在專注，更在專注之上還能疊加信任與參與。",
+     "jev": {
+      "faithful": 0.92,
+      "overclaim": 0.31,
+      "complete": 0.78,
+      "fluency": {
+       "score": 2.58,
+       "conf": 0.59
+      }
+     },
+     "reasons": [],
+     "pages": [
+      77,
+      78
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "dentsu 與 JCDecaux、Ocean Outdoor 的研究發現，54% 的路人至少注視過一次戶外廣告；全動態數位戶外比靜態多觸及 20% 的人，貼近視線高度的候車亭，回想甚至贏過高掛的大看板。",
+     "jev": {
+      "faithful": 0.8,
+      "overclaim": 0.26,
+      "complete": 0.7,
+      "fluency": {
+       "score": 1.95,
+       "conf": 0.52
+      }
+     },
+     "reasons": [],
+     "pages": [
+      77,
+      77,
+      77
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "CeraVe 在淡水信義線把上萬份 30ml 潔膚露體驗瓶掛上車廂吊環，乘客抬頭看到、伸手帶走，再靠車廂裡的 QR Code 接到線上優惠。",
+     "jev": {
+      "faithful": 0.89,
+      "overclaim": 0.13,
+      "complete": 0.79,
+      "fluency": {
+       "score": 2.36,
+       "conf": 0.37
+      }
+     },
+     "reasons": [],
+     "pages": [
+      78,
+      78
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "外送平台把捷運通道的牆面變成互動優惠牆，讓通勤族停下來、掃碼領折扣，把單向曝光翻成雙向參與。",
+     "jev": {
+      "faithful": 0.97,
+      "overclaim": 0.16,
+      "complete": 0.89,
+      "fluency": {
+       "score": 2.48,
+       "conf": 0.49
+      }
+     },
+     "reasons": [],
+     "pages": [
+      78
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "美妝品牌走進 Podcast，借主持人與聽眾長年累積的信任，在沒有視覺干擾的伴聽時光裡，好好把話講完。",
+     "jev": {
+      "faithful": 0.97,
+      "overclaim": 0.11,
+      "complete": 0.81,
+      "fluency": {
+       "score": 2.53,
+       "conf": 0.51
+      }
+     },
+     "reasons": [],
+     "pages": [
+      78
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "說到底，品牌與其在零碎的注意力裡多撿幾片碎片，不如找到消費者真正專注的那個當下，在對的場景遞上對的邀請；親身經歷過的時刻，演算法搶不走。",
+     "jev": {
+      "faithful": 0.85,
+      "overclaim": 0.46,
+      "complete": 0.68,
+      "fluency": {
+       "score": 2.61,
+       "conf": 0.61
+      }
+     },
+     "reasons": [],
+     "pages": [
+      79,
+      78
+     ]
+    }
+   ]
+  },
+  {
+   "id": "a18",
+   "units": 24,
+   "flagged": 0,
+   "story": {
+    "coverage": {
+     "score": 2.99,
+     "conf": 0.99
+    },
+    "coherence": {
+     "score": 2.5,
+     "conf": 0.5
+    }
+   },
+   "story_flags": [],
+   "passed": true,
+   "rows": [
+    {
+     "kind": "main",
+     "text": "晚上八點，理財顧問 Wendy 第四次把 AI Agent 剛產出的客戶資產配置報告，重新拉開 Excel 手動核對。這套 Agent 能在幾秒內彙整股票、基金與保單，上線三個月使用率卻遠低於預期。",
+     "jev": {
+      "faithful": 0.9,
+      "overclaim": 0.16,
+      "complete": 0.6,
+      "fluency": {
+       "score": 2.23,
+       "conf": 0.5
+      }
+     },
+     "reasons": [],
+     "pages": [
+      161,
+      161
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "問題出在它從不告訴顧問自己在做什麼：有沒有存取到最新資料、有沒有漏掉某個帳戶。它像一個悶著頭做事、從不回報進度的新人，動作再快，也沒人敢把重要的事交給它。",
+     "jev": {
+      "faithful": 0.85,
+      "overclaim": 0.25,
+      "complete": 0.6,
+      "fluency": {
+       "score": 2.4,
+       "conf": 0.41
+      }
+     },
+     "reasons": [],
+     "pages": [
+      161,
+      161
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "問題不在 Agent 的運算能力，而在它從沒被設計成「值得被信任的工作對象」。這就是 Agent Experience（AX）要談的，而它牽動的，還有每一個正在把決策交給 AI 的顧客。",
+     "jev": {
+      "faithful": 0.83,
+      "overclaim": 0.36,
+      "complete": 0.68,
+      "fluency": {
+       "score": 2.12,
+       "conf": 0.45
+      }
+     },
+     "reasons": [],
+     "pages": [
+      161,
+      161
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "在企業現場，討論的焦點永遠是那個拿著手機、坐在電腦前的消費者。從 1990 年代 Donald Norman 確立概念起，UX 從未被質疑過：體驗的主體，一直只有真實的人類消費者。",
+     "jev": {
+      "faithful": 0.78,
+      "overclaim": 0.51,
+      "complete": 0.59,
+      "fluency": {
+       "score": 2.23,
+       "conf": 0.46
+      }
+     },
+     "reasons": [],
+     "pages": [
+      161,
+      161,
+      161
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "Gartner 在 2022 年提出 Total Experience 框架，把 CX、UX 與員工體驗 EX 視為相互牽連的生態系。Forrester 研究也發現，員工體驗好的企業，年均股票回報比同業高出 2.3% 至 3.8%。",
+     "jev": {
+      "faithful": 0.86,
+      "overclaim": 0.16,
+      "complete": 0.7,
+      "fluency": {
+       "score": 2.25,
+       "conf": 0.47
+      }
+     },
+     "reasons": [],
+     "pages": [
+      161,
+      162
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "但 TX 的主體仍然只有人。2025 年，Netlify 執行長 Mathias Biilmann 提出 Agent Experience：當 AI Agent 成為使用產品的主體之一，它在互動時也需要順暢、可預測、可信賴的體驗。",
+     "jev": {
+      "faithful": 0.74,
+      "overclaim": 0.35,
+      "complete": 0.73,
+      "fluency": {
+       "score": 2.04,
+       "conf": 0.52
+      }
+     },
+     "reasons": [],
+     "pages": [
+      162,
+      162,
+      162
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "麥肯錫 2025 年的報告顯示，88% 的受訪企業已在至少一項功能中定期使用 AI，但只有約三分之一開始規模化。現在做的設計決策，將決定未來十年的基準線。",
+     "jev": {
+      "faithful": 0.75,
+      "overclaim": 0.33,
+      "complete": 0.62,
+      "fluency": {
+       "score": 2.2,
+       "conf": 0.53
+      }
+     },
+     "reasons": [],
+     "pages": [
+      162,
+      162
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "過去二十年的顧客體驗建立在「人主動操作」上：有需求就搜尋、看到廣告就點擊、遇到問題就問客服。企業在顧客發出明確訊號後才回應，這是指令回應式體驗。",
+     "jev": {
+      "faithful": 0.95,
+      "overclaim": 0.1,
+      "complete": 0.79,
+      "fluency": {
+       "score": 2.23,
+       "conf": 0.48
+      }
+     },
+     "reasons": [],
+     "pages": [
+      162,
+      162
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "AI Agent 正把體驗推向代理協作式：它理解目標、判斷情境、整理選項，在授權範圍內協助完成任務。Chatbot 解決的是回答問題的效率，Agent 改變的是任務本身如何被執行。",
+     "jev": {
+      "faithful": 0.94,
+      "overclaim": 0.28,
+      "complete": 0.84,
+      "fluency": {
+       "score": 2.29,
+       "conf": 0.44
+      }
+     },
+     "reasons": [],
+     "pages": [
+      162,
+      162
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "過去買旅遊產品要逐一比較航班、飯店、評論與保險；現在顧客只要說出預算、日期與偏好，Agent 就先整理出幾套方案。當 Agent 只呈現三個選項而不是三十個，品牌如何被理解、排序與信任，就是新的競爭場。",
+     "jev": {
+      "faithful": 0.87,
+      "overclaim": 0.31,
+      "complete": 0.84,
+      "fluency": {
+       "score": 2.36,
+       "conf": 0.46
+      }
+     },
+     "reasons": [],
+     "pages": [
+      162,
+      162
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "AI 讓企業能理解還沒說出口的訊號：反覆查看某類商品、購買週期接近、在流程中停留過久。但同一種預測能力，可以拿來更早打擾顧客，也可以讓 Agent 懂得什麼時候該提醒、什麼時候該沉默。",
+     "jev": {
+      "faithful": 0.87,
+      "overclaim": 0.29,
+      "complete": 0.71,
+      "fluency": {
+       "score": 2.24,
+       "conf": 0.51
+      }
+     },
+     "reasons": [],
+     "pages": [
+      163,
+      163
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "UX 的訓練核心是同理心，但 Agent 沒有情緒，不會因為頁面好看而多停留；它會因為 API 回應不穩而中斷任務。Nielsen Norman Group 直言，2026 年信任將是 AI 體驗最核心的設計問題。",
+     "jev": {
+      "faithful": 0.81,
+      "overclaim": 0.28,
+      "complete": 0.7,
+      "fluency": {
+       "score": 1.81,
+       "conf": 0.53
+      }
+     },
+     "reasons": [],
+     "pages": [
+      163,
+      163
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "信任的建立有兩層。設計層有六個 AX 信任模式：意圖預覽、自主性調節、信心訊號、可解釋推理、行動稽核與升級路徑；治理層則要先回答 AI 知道我什麼、可以替我做什麼、做錯了誰負責。",
+     "jev": {
+      "faithful": 0.86,
+      "overclaim": 0.29,
+      "complete": 0.7,
+      "fluency": {
+       "score": 2.24,
+       "conf": 0.49
+      }
+     },
+     "reasons": [],
+     "pages": [
+      164,
+      164
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "低風險任務如查詢訂單可以高度自動化，高風險任務如金融交易、醫療建議則需要明確確認與人工支援。顧客不授權，功能再多的 Agent 也動不了。",
+     "jev": {
+      "faithful": 0.93,
+      "overclaim": 0.21,
+      "complete": 0.74,
+      "fluency": {
+       "score": 2.16,
+       "conf": 0.51
+      }
+     },
+     "reasons": [],
+     "pages": [
+      164,
+      164
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "六個信任模式中的「升級路徑」有多重要，作者團隊在一個電商客戶的退換貨 Agent 上親身見證：初版設計裡沒有清晰的升級路徑，遇到複雜案例時，Agent 不知道何時該停下來。",
+     "jev": {
+      "faithful": 0.37,
+      "overclaim": 0.31,
+      "complete": 0.62,
+      "fluency": {
+       "score": 2.09,
+       "conf": 0.52
+      }
+     },
+     "reasons": [],
+     "pages": [
+      164,
+      164,
+      164
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "Agent 沒有停下來，先引用一般政策，發現不適用又改口引用瑕疵品條款，兩次回覆前後矛盾。",
+     "jev": {
+      "faithful": 0.93,
+      "overclaim": 0.2,
+      "complete": 0.56,
+      "fluency": {
+       "score": 1.84,
+       "conf": 0.53
+      }
+     },
+     "reasons": [],
+     "pages": [
+      164
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "前後兩個答案讓顧客更困惑，他打出「所以到底可以退還是不可以」，語氣已經明顯不耐。",
+     "jev": {
+      "faithful": 0.8,
+      "overclaim": 0.21,
+      "complete": 0.42,
+      "fluency": {
+       "score": 1.66,
+       "conf": 0.44
+      }
+     },
+     "reasons": [],
+     "pages": [
+      164
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "後來加入門檻：一旦涉及兩項以上政策交叉判斷，Agent 主動停下，請同仁協助確認，並把三個衝突點整理成摘要轉接。改版後，這類案例的顧客滿意度不再斷崖式下滑。",
+     "jev": {
+      "faithful": 0.9,
+      "overclaim": 0.18,
+      "complete": 0.69,
+      "fluency": {
+       "score": 2.13,
+       "conf": 0.49
+      }
+     },
+     "reasons": [],
+     "pages": [
+      164,
+      164,
+      164
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "AX 不是舊酒裝新瓶：UX 的失敗發生在人看不懂畫面的那一刻，AX 的失敗發生在另一套系統沒有能力表達自己狀態的那一刻。好看、直覺的評分表，得換成穩定性、可驗證性、可追溯性。",
+     "jev": {
+      "faithful": 0.72,
+      "overclaim": 0.71,
+      "complete": 0.72,
+      "fluency": {
+       "score": 2.37,
+       "conf": 0.36
+      }
+     },
+     "reasons": [],
+     "pages": [
+      164,
+      165
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "對 Agent 來說，介面幾乎不存在；它的工作條件是任務指令的精確度、資料存取的邊界與錯誤回饋機制。早期成功案例的共同點，不是挑了最聰明的模型，而是挑了最清晰的工作流程。",
+     "jev": {
+      "faithful": 0.86,
+      "overclaim": 0.36,
+      "complete": 0.69,
+      "fluency": {
+       "score": 2.27,
+       "conf": 0.48
+      }
+     },
+     "reasons": [],
+     "pages": [
+      165,
+      165
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "協同不只發生在 Agent 之間，也在顧客端與員工端之間。前台 Agent 再聰明，如果後台資料分散、流程斷裂、員工無法接手，顧客感受到的仍是不連貫的體驗。",
+     "jev": {
+      "faithful": 0.91,
+      "overclaim": 0.18,
+      "complete": 0.68,
+      "fluency": {
+       "score": 2.19,
+       "conf": 0.53
+      }
+     },
+     "reasons": [],
+     "pages": [
+      165,
+      165
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "UX 優化單次會話，AX 優化持續的關係。設計師必須思考記憶架構：Agent 該記住什麼、記多久，什麼情況下記憶反而帶來偏誤而需要被重置。",
+     "jev": {
+      "faithful": 0.92,
+      "overclaim": 0.23,
+      "complete": 0.65,
+      "fluency": {
+       "score": 2.1,
+       "conf": 0.48
+      }
+     },
+     "reasons": [],
+     "pages": [
+      165,
+      165
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "對人類，信任靠一致的視覺語言建立；對 Agent，信任靠穩定的 API 回應與可驗證的資料格式。要讓人信任 AI，得先讓人看懂它知道什麼、被允許做什麼、實際做了什麼。",
+     "jev": {
+      "faithful": 0.86,
+      "overclaim": 0.24,
+      "complete": 0.75,
+      "fluency": {
+       "score": 2.39,
+       "conf": 0.4
+      }
+     },
+     "reasons": [],
+     "pages": [
+      165,
+      165
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "未來品牌競爭不只是顧客喜不喜歡你，也包括 AI 能不能正確理解你、代表顧客選擇你。品牌的每一個承諾、條款、評價與回應速度，都可能成為 AI 判斷的一部分。",
+     "jev": {
+      "faithful": 0.91,
+      "overclaim": 0.19,
+      "complete": 0.81,
+      "fluency": {
+       "score": 2.42,
+       "conf": 0.43
+      }
+     },
+     "reasons": [],
+     "pages": [
+      166,
+      166
+     ]
+    }
+   ]
+  }
+ ]
+}

@@ -50,10 +50,29 @@ def pages(article):
 
 
 _cache = {}
+_figcache = {}
+FIGTEXT = ROOT / "content" / "figtext"
+
+
+def figpages(article):
+    """原刊圖表上的文字（figtext），依頁碼合併；圖表專屬的內容只出現在這裡。"""
+    path = FIGTEXT / f"{article}.md"
+    out, page = {}, None
+    if not path.exists():
+        return out
+    for line in path.read_text(encoding="utf-8").replace("\r\n", "\n").split("\n"):
+        m = re.match(r"<!-- p\.(\d+) -->", line)
+        if m:
+            page = int(m.group(1))
+            continue
+        t = line.strip().lstrip(":")
+        if page is not None and t:
+            out.setdefault(page, []).append(t)
+    return out
 
 
 def context(src, pad=140):
-    """引文所在段落前後各約 pad 字（原文），找不到就回傳引文本身。"""
+    """引文所在段落前後各約 pad 字（原文）。只出現在圖表上的文字，回傳同頁的圖表文字；都找不到就回傳引文本身。"""
     p = _cache.setdefault(src["article"], pages(src["article"]))
     target = mapped(src["text"])[0]
     for raw in (p.get(src["page"], ""), p.get(src["page"], "") + p.get(src["page"] + 1, "")):
@@ -62,6 +81,10 @@ def context(src, pad=140):
         if at >= 0:
             s, e = idx[at], idx[at + len(target) - 1] + 1
             return raw[max(0, s - pad): min(len(raw), e + pad)]
+    figs = _figcache.setdefault(src["article"], figpages(src["article"]))
+    lines = figs.get(src["page"], [])
+    if any(target in mapped(t)[0] for t in lines):
+        return "［原刊圖表上的文字，同一頁］" + "／".join(lines)[:600]
     return src["text"]
 
 

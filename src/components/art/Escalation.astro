@@ -1,0 +1,104 @@
+---
+// a18 作者經驗「退換貨 AI 客服 Agent 沒有升級路徑」的分格插畫。每一格對應一段主文（data-focus），
+// 捲到那一段時該格淡入；純 SVG＋CSS。
+const issues = ['商品瑕疵', '超過鑑賞期 2 天', '跨境退貨物流特例'];
+---
+<svg class="es-art" viewBox="0 0 480 400" role="img" aria-label="插畫：顧客同時遇到三個問題；退換貨 Agent 先後引用兩種政策、回覆前後矛盾；顧客不耐地問到底能不能退；加入門檻後，Agent 主動停下並把三個衝突點整理成摘要轉給真人同仁。">
+  <!-- 共用：對話視窗 -->
+  <rect class="win" x="60" y="40" width="360" height="330" rx="18" />
+  <rect class="bar" x="60" y="40" width="360" height="40" rx="18" />
+  <rect class="bar-fix" x="60" y="62" width="360" height="18" />
+  <text class="bar-t" x="240" y="66">退換貨客服 Agent</text>
+
+  <!-- ① 三個問題疊在一起 -->
+  <g class="pane" data-focus="1">
+    <text class="tag" x="240" y="24">① 一位顧客，同時遇上三個問題</text>
+    {issues.map((t, i) => (
+      <g class="issue" style={`--d:${i * 220}ms`} transform={`translate(${130 + i * 26} ${120 + i * 70})`}>
+        <rect width="200" height="50" rx="12" />
+        <text x="100" y="31">{t}</text>
+      </g>
+    ))}
+    <text class="plus" x="108" y="190">＋</text>
+    <text class="plus" x="134" y="260">＋</text>
+  </g>
+
+  <!-- ② Agent 前後矛盾 -->
+  <g class="pane" data-focus="2">
+    <text class="tag" x="240" y="24">② Agent 沒停下來，兩次回答互相矛盾</text>
+    <g class="msg bot" style="--d:0ms"><rect x="80" y="100" width="270" height="56" rx="14" /><text x="96" y="124">依一般政策，超過鑑賞期</text><text x="96" y="144">無法退貨。</text></g>
+    <g class="msg bot" style="--d:600ms"><rect x="80" y="176" width="270" height="56" rx="14" /><text x="96" y="200">依瑕疵品條款，</text><text x="96" y="220">可以辦理退貨。</text></g>
+    <g class="warn" style="--d:1100ms"><circle cx="372" cy="166" r="22" /><text x="372" y="174">!</text></g>
+    <text class="warn-t" x="372" y="210">前後矛盾</text>
+  </g>
+
+  <!-- ③ 顧客不耐 -->
+  <g class="pane" data-focus="3">
+    <text class="tag" x="240" y="24">③ 顧客的語氣，明顯不耐</text>
+    <g class="msg user"><rect x="130" y="110" width="270" height="56" rx="14" /><text x="146" y="134">所以到底可以退</text><text x="146" y="154">還是不可以？</text></g>
+    <g class="face">
+      <circle cx="160" cy="260" r="46" />
+      <circle class="eye" cx="144" cy="250" r="5" /><circle class="eye" cx="176" cy="250" r="5" />
+      <path class="brow" d="M134 236 l18 6 M186 236 l-18 6" />
+      <path class="mouth" d="M142 282 q18 -14 36 0" />
+    </g>
+    <path class="steam" d="M214 220 q10 -12 0 -24 q-10 -12 0 -24 M232 228 q10 -12 0 -24 q-10 -12 0 -24" />
+  </g>
+
+  <!-- ④ 加入門檻：主動停下、整理摘要、轉給真人 -->
+  <g class="pane" data-focus="4">
+    <text class="tag" x="240" y="24">④ 兩項以上政策交叉 → Agent 主動停下</text>
+    <g class="msg bot"><rect x="80" y="96" width="300" height="56" rx="14" /><text x="96" y="120">這個問題我想讓同仁</text><text x="96" y="140">協助您確認。</text></g>
+    <g class="summary">
+      <rect x="80" y="176" width="190" height="150" rx="12" />
+      <text class="sum-h" x="96" y="202">轉接摘要</text>
+      {issues.map((t, i) => <text class="sum-i" x="96" y={232 + i * 30}>{`衝突點 ${i + 1}：${t}`}</text>)}
+    </g>
+    <path class="handoff" d="M282 250 h50" />
+    <path class="handoff-h" d="M324 242 l10 8 l-10 8" />
+    <g class="human">
+      <circle cx="372" cy="226" r="18" />
+      <path d="M346 300 v-26 q0 -24 26 -24 q26 0 26 24 v26 z" />
+      <text x="372" y="324">真人同仁</text>
+    </g>
+  </g>
+</svg>
+<style>
+  .es-art { width: 100%; height: auto; max-height: 62svh; overflow: visible; font-family: var(--font-sans); }
+  .pane { opacity: var(--focus); transition: opacity .5s; }
+  text { text-anchor: middle; }
+  .tag { font-size: 16px; font-weight: 800; fill: var(--ink); }
+  .win { fill: var(--paper); stroke: var(--ink); stroke-width: 2.5; }
+  .bar, .bar-fix { fill: var(--ink); }
+  .bar-t { font-size: 14px; font-weight: 700; fill: var(--paper); }
+
+  .issue { opacity: var(--focus); transform-box: fill-box; transition: opacity .4s var(--d); }
+  .issue rect { fill: var(--accent); stroke: var(--accent-ink); stroke-width: 2; }
+  .issue text { font-size: 15px; font-weight: 800; fill: var(--ink); }
+  .plus { font-size: 26px; font-weight: 800; fill: var(--ink-3); }
+
+  .msg { opacity: var(--focus); transition: opacity .4s var(--d, 0ms); }
+  .msg text { text-anchor: start; font-size: 15px; fill: var(--ink); }
+  .msg.bot rect { fill: var(--paper-2); stroke: var(--ink-3); stroke-width: 2; }
+  .msg.user rect { fill: var(--accent); stroke: var(--accent-ink); stroke-width: 2; }
+  .msg.user text { font-weight: 700; }
+  .warn { opacity: var(--focus); transition: opacity .4s var(--d); }
+  .warn circle { fill: #b0412e; }
+  .warn text { font-size: 28px; font-weight: 800; fill: #fff; }
+  .warn-t { font-size: 14px; font-weight: 800; fill: #b0412e; }
+
+  .face circle:first-child { fill: #f1d3b8; stroke: var(--ink); stroke-width: 2.5; }
+  .face .eye { fill: var(--ink); }
+  .brow, .mouth { fill: none; stroke: var(--ink); stroke-width: 3; stroke-linecap: round; }
+  .steam { fill: none; stroke: var(--ink-3); stroke-width: 3; stroke-linecap: round; animation: puff 1.4s ease-in-out infinite; }
+  @keyframes puff { 50% { transform: translateY(-6px); opacity: .5; } }
+
+  .summary rect { fill: var(--paper-2); stroke: var(--ink-2); stroke-width: 2; }
+  .sum-h { text-anchor: start; font-size: 14px; font-weight: 800; fill: var(--ink); }
+  .sum-i { text-anchor: start; font-size: 12px; fill: var(--ink-2); }
+  .handoff, .handoff-h { fill: none; stroke: var(--accent-ink); stroke-width: 3; stroke-linecap: round; stroke-dasharray: 60; stroke-dashoffset: calc((1 - var(--focus)) * 60); transition: stroke-dashoffset .8s .4s; }
+  .human circle, .human path { fill: var(--accent-ink); }
+  .human text { font-size: 13px; font-weight: 700; fill: var(--ink); }
+
+  @media (prefers-reduced-motion: reduce) { .steam { animation: none; } }
+</style>

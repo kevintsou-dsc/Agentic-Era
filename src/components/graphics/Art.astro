@@ -3,6 +3,7 @@
 // art 對應 src/components/art/ 下的元件；每格以 data-focus 對應第幾段主文。
 import type { Graphic } from '../../lib/story';
 import MagnetMount from '../art/MagnetMount.astro';
+import Escalation from '../art/Escalation.astro';
 type G = Extract<Graphic, { type: 'art' }>;
 interface Props { g: G }
 const { g } = Astro.props;
@@ -10,6 +11,7 @@ const { g } = Astro.props;
 <figure class="stage art">
   {g.title && <p class="title">{g.title}</p>}
   {g.art === 'magnet-mount' && <MagnetMount />}
+  {g.art === 'escalation' && <Escalation />}
   <figcaption class="source">{g.source}</figcaption>
 </figure>
 <style>

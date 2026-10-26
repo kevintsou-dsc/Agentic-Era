@@ -71,7 +71,7 @@ export type Graphic =
   /** d3 互動圖表；chart 對應 src/components/d3/ 下的元件 */
   | { type: 'd3'; chart: D3Chart; source: string }
   /** 分格插畫：作者小故事、個人經驗（不是統計數據，不用 bignum／長條呈現）。第 k 段主文顯示第 k 格 */
-  | { type: 'art'; art: 'magnet-mount'; title?: string; source: string };
+  | { type: 'art'; art: 'magnet-mount' | 'escalation'; title?: string; source: string };
 
 export type D3Chart =
   /** 粒子沿循環流動的生態系／循環圖 */
@@ -132,6 +132,15 @@ export type D3Chart =
       left: Tipped & { label: string; items: string[] }; right: Tipped & { label: string; items: string[] };
       both: Tipped & { label: string; desc: string };
       fail?: string; leftAt: number; rightAt: number; failAt?: number; bothAt: number;
+    }
+  /**
+   * 光譜：由低到高的等級（例如 Agent 權限：觀察 → 推薦 → 決策 → 行動），上方插上案例標記。
+   * levelsAt：第幾段顯示等級；markers 依 at 逐一落下；pos 為 0 起算的等級位置，可用小數表示介於兩級之間。
+   */
+  | {
+      kind: 'spectrum'; title: string; levelsAt: number;
+      levels: (Tipped & { label: string; desc: string })[];
+      markers: (Tipped & { label: string; pos: number; at: number })[];
     }
   /**
    * 冰山：水面上看得見的（工具、指標）vs 水面下真正的阻力（文化、情緒）。aboveAt／belowAt：第幾段點亮。
