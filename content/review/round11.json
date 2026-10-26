@@ -1,0 +1,442 @@
+{
+ "label": "round11",
+ "thresholds": {
+  "faithful": 0.3,
+  "overclaim": 0.8,
+  "complete": 0.3,
+  "coverage": 2.5,
+  "coherence": 2.2
+ },
+ "stories": [
+  {
+   "id": "a14",
+   "units": 22,
+   "flagged": 2,
+   "story": {
+    "coverage": {
+     "score": 2.99,
+     "conf": 0.99
+    },
+    "coherence": {
+     "score": 2.36,
+     "conf": 0.47
+    }
+   },
+   "story_flags": [],
+   "passed": false,
+   "rows": [
+    {
+     "kind": "main",
+     "text": "近兩年，生成式 AI 幾乎成為所有產業最熱門的關鍵字。它確實讓執行變得更快、更便宜、更有效率，但強義明認為，真正決定成敗的關鍵，依然是人類的判斷。",
+     "jev": {
+      "faithful": 0.17,
+      "overclaim": 0.38,
+      "complete": 0.65,
+      "fluency": {
+       "score": 1.98,
+       "conf": 0.43
+      }
+     },
+     "reasons": [
+      "出處不足或不忠實（faithful 0.17）"
+     ],
+     "pages": [
+      129,
+      129
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "當所有企業都能使用相同的大語言模型、演算法與工具，競爭優勢就不再來自誰擁有 AI，而是誰能做出更好的判斷。這項能力，作者稱為「衡斷力 (Judgment)」。",
+     "jev": {
+      "faithful": 0.94,
+      "overclaim": 0.21,
+      "complete": 0.89,
+      "fluency": {
+       "score": 2.46,
+       "conf": 0.47
+      }
+     },
+     "reasons": [],
+     "pages": [
+      129,
+      129
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "第一個階段是 2008 年以前的「放送世代」：以電視廣告為核心，品牌透過大量媒體曝光建立知名度，但訊息是單向的，很難真正理解消費者的需求與想法。",
+     "jev": {
+      "faithful": 0.96,
+      "overclaim": 0.11,
+      "complete": 0.84,
+      "fluency": {
+       "score": 2.48,
+       "conf": 0.47
+      }
+     },
+     "reasons": [],
+     "pages": [
+      129,
+      129,
+      129
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "第二個階段是 2009 到 2020 年的「精準世代」：數位媒體與 Cookies 讓品牌第一次看見消費者行為，競爭關鍵變成誰能用數據預測需求，並在需求發生時精準出現。",
+     "jev": {
+      "faithful": 0.85,
+      "overclaim": 0.19,
+      "complete": 0.84,
+      "fluency": {
+       "score": 2.39,
+       "conf": 0.4
+      }
+     },
+     "reasons": [],
+     "pages": [
+      129,
+      129,
+      129
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "後疫情時代進入「演算法世代」：消費者看到的內容由平台演算法主導，品牌除了理解消費者，更必須理解演算法如何理解消費者。原圖也顯示，品牌與成效投資的比重漸趨平衡。",
+     "jev": {
+      "faithful": 0.81,
+      "overclaim": 0.29,
+      "complete": 0.65,
+      "fluency": {
+       "score": 2.36,
+       "conf": 0.47
+      }
+     },
+     "reasons": [],
+     "pages": [
+      129,
+      129,
+      130
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "把 Agentic AI 想成一群能力極強的員工：能快速蒐集資訊、生成文案、製作簡報。但它的任務是生成而非核實，能生成最合理的答案，卻無法保證答案一定正確。",
+     "jev": {
+      "faithful": 0.87,
+      "overclaim": 0.19,
+      "complete": 0.61,
+      "fluency": {
+       "score": 1.91,
+       "conf": 0.54
+      }
+     },
+     "reasons": [],
+     "pages": [
+      130,
+      130,
+      130,
+      131
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "使用者缺乏專業知識時，容易把 AI 生成的內容誤認為事實。People Intelligence 代表人類的專業決斷：如果 AI 是高效率的執行者，PI 就是負責指揮與決策的領導者。",
+     "jev": {
+      "faithful": 0.88,
+      "overclaim": 0.4,
+      "complete": 0.7,
+      "fluency": {
+       "score": 2.04,
+       "conf": 0.52
+      }
+     },
+     "reasons": [],
+     "pages": [
+      130,
+      130,
+      131
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "優秀的 PI 有三項核心能力。第一是 Sense 感知與洞察：理解市場脈絡、品牌現況與消費者需求，並從大量資訊中察覺變化與機會。",
+     "jev": {
+      "faithful": 0.58,
+      "overclaim": 0.26,
+      "complete": 0.25,
+      "fluency": {
+       "score": 2.37,
+       "conf": 0.37
+      }
+     },
+     "reasons": [
+      "可能不完整（complete 0.25）"
+     ],
+     "pages": [
+      131
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "第二是 Connect 創造與聯結：整合跨領域專業，把策略、創意、媒體、數據與技術串聯起來，讓想法真正落地。",
+     "jev": {
+      "faithful": 0.95,
+      "overclaim": 0.12,
+      "complete": 0.65,
+      "fluency": {
+       "score": 2.25,
+       "conf": 0.44
+      }
+     },
+     "reasons": [],
+     "pages": [
+      131
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "第三是 Judge 判斷與決策。Sense 看見問題、Connect 解決問題，Judge 則決定方向；一旦人放棄思考，就容易淪為 AI 答案的接收端，而不是問題的定義者。",
+     "jev": {
+      "faithful": 0.85,
+      "overclaim": 0.33,
+      "complete": 0.69,
+      "fluency": {
+       "score": 1.96,
+       "conf": 0.47
+      }
+     },
+     "reasons": [],
+     "pages": [
+      131,
+      131,
+      131
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "全球產業巨頭、甚至 AI 大語言模型的創辦人，都提出了人類核心價值的倡議。結論是：讓 AI 處理可被規格化的執行，人保留不可取代的價值判斷。",
+     "jev": {
+      "faithful": 0.79,
+      "overclaim": 0.58,
+      "complete": 0.81,
+      "fluency": {
+       "score": 2.03,
+       "conf": 0.49
+      }
+     },
+     "reasons": [],
+     "pages": [
+      131,
+      132
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "過度外包給 AI，會讓企業能力「空洞化」。企業不應只是部署 AI，而要重新設計工作流程，讓人的獨特經驗、行業脈絡判斷與組織知識發揮核心價值。",
+     "jev": {
+      "faithful": 0.86,
+      "overclaim": 0.38,
+      "complete": 0.87,
+      "fluency": {
+       "score": 2.5,
+       "conf": 0.52
+      }
+     },
+     "reasons": [],
+     "pages": [
+      131,
+      132
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "AI 沒有偷走工作，是過度依賴讓人盲目。重點不在通用的操作工具，而是提升數據素養與批判性思考。",
+     "jev": {
+      "faithful": 0.82,
+      "overclaim": 0.41,
+      "complete": 0.77,
+      "fluency": {
+       "score": 2.15,
+       "conf": 0.46
+      }
+     },
+     "reasons": [],
+     "pages": [
+      132,
+      132
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "他對 AI「不自覺轉移決策」感到危險：AI 只是提高工作速率的工具，集體決策與價值判斷的責任，絕對不能從人類手中移開。",
+     "jev": {
+      "faithful": 0.69,
+      "overclaim": 0.25,
+      "complete": 0.68,
+      "fluency": {
+       "score": 1.76,
+       "conf": 0.35
+      }
+     },
+     "reasons": [],
+     "pages": [
+      132,
+      132
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "2026 年初，Apple 宣布深化與 Google Gemini 的合作，把部分大型語言模型能力導入生態系統。但產品方向、隱私規範與使用者體驗的最終判斷權，Apple 並沒有交出去。",
+     "jev": {
+      "faithful": 0.92,
+      "overclaim": 0.15,
+      "complete": 0.83,
+      "fluency": {
+       "score": 2.43,
+       "conf": 0.44
+      }
+     },
+     "reasons": [],
+     "pages": [
+      132,
+      132
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "即使 AI 能協助完成 Sense 與 Connect 的部分工作，衡斷力仍是企業最不該交出的能力。AI 能彙整大量資訊，難的是判斷哪些訊號值得相信、哪些機會值得投入，並為結果負責。",
+     "jev": {
+      "faithful": 0.92,
+      "overclaim": 0.19,
+      "complete": 0.78,
+      "fluency": {
+       "score": 2.4,
+       "conf": 0.4
+      }
+     },
+     "reasons": [],
+     "pages": [
+      132,
+      132
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "衡斷力可以從五個面向累積：生而為人的感受與感知、長期可驗證的數據基礎、觀察市場與產業趨勢的能力、跨產業與專案的經驗判斷，以及在有限資源下完成協作的組織能力。",
+     "jev": {
+      "faithful": 0.74,
+      "overclaim": 0.25,
+      "complete": 0.8,
+      "fluency": {
+       "score": 1.92,
+       "conf": 0.42
+      }
+     },
+     "reasons": [],
+     "pages": [
+      132,
+      132,
+      132,
+      132,
+      132
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "這些能力無法透過一次 Prompt 生成，也無法透過單一工具取得，必須經過長時間累積與磨練。",
+     "jev": {
+      "faithful": 0.96,
+      "overclaim": 0.19,
+      "complete": 0.51,
+      "fluency": {
+       "score": 2.36,
+       "conf": 0.34
+      }
+     },
+     "reasons": [],
+     "pages": [
+      132
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "電通媒體用 Media++ 方法論培養能駕馭技術與人性的「媒體工匠」。前兩個模組屬於成長策略：Business 用效率優化、交易捕捉與品牌成長三大槓桿創造價值，Audience 辨識並活化真正具潛力的消費者。",
+     "jev": {
+      "faithful": 0.55,
+      "overclaim": 0.35,
+      "complete": 0.6,
+      "fluency": {
+       "score": 2.31,
+       "conf": 0.43
+      }
+     },
+     "reasons": [],
+     "pages": [
+      133,
+      134,
+      134,
+      134
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "接著是體驗轉型：Insight 用洞察金字塔把資料轉成資訊、知識與洞察；Experience 從 People as Themselves、Browser、Buyer 與 User 四個維度管理消費者體驗。",
+     "jev": {
+      "faithful": 0.75,
+      "overclaim": 0.23,
+      "complete": 0.54,
+      "fluency": {
+       "score": 1.83,
+       "conf": 0.55
+      }
+     },
+     "reasons": [],
+     "pages": [
+      134,
+      134,
+      134
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "最後是成效敏捷：Activation 把策略轉化為有效的市場行動，Optimization 依品牌成熟度與數據能力，用品牌金字塔、3×3 與 Layer Cake 等框架持續優化。",
+     "jev": {
+      "faithful": 0.67,
+      "overclaim": 0.35,
+      "complete": 0.52,
+      "fluency": {
+       "score": 1.79,
+       "conf": 0.51
+      }
+     },
+     "reasons": [],
+     "pages": [
+      134,
+      134,
+      134
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "放送世代比的是媒體資源，精準世代比的是數據資源；到了演算法世代，AI 讓工具能力趨於平等，企業最終的競爭不再是誰的工具更強，而是誰的衡斷更準確。",
+     "jev": {
+      "faithful": 0.87,
+      "overclaim": 0.25,
+      "complete": 0.76,
+      "fluency": {
+       "score": 2.52,
+       "conf": 0.53
+      }
+     },
+     "reasons": [],
+     "pages": [
+      135,
+      135
+     ]
+    }
+   ]
+  }
+ ]
+}

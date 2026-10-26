@@ -20,9 +20,10 @@ const summary =
     `${c.splitTitle}：${c.main.label}；${c.roles.map((r) => r.label).join('、')}`,
     `${c.outcomeTitle}：${c.once.label}，或${c.asset.label}`,
   ] :
+  c.kind === 'balance' ? c.states.map((s) => `${s.label}（${s.years}）：${s.desc}`) :
   c.kind === 'rings' ? [...c.rings.map((r) => `${r.label}：${r.desc}`), ...(c.pulls ? [`會被帶走的：${c.pulls.join('、')}`] : [])] :
   c.rows.map((r) => `${r.model}（${r.era}）：${r.steps.map((s) => s.zh).join(' → ')}`);
-const hintTarget = c.kind === 'flowloop' ? '圓圈' : c.kind === 'stages' ? '方格' : c.kind === 'esov' ? '長條與方塊' : c.kind === 'rings' ? '每一圈' : c.kind === 'allocate' ? '每一列與區塊' : '長條';
+const hintTarget = c.kind === 'flowloop' ? '圓圈' : c.kind === 'stages' ? '方格' : c.kind === 'esov' ? '長條與方塊' : c.kind === 'rings' ? '每一圈' : c.kind === 'allocate' ? '每一列與區塊' : c.kind === 'balance' ? '兩端與時間軸' : '長條';
 ---
 <div class="stage d3wrap">
   <p class="title">{c.title}</p>
@@ -136,6 +137,26 @@ const hintTarget = c.kind === 'flowloop' ? '圓圈' : c.kind === 'stages' ? '方
   .d3 :global(.es-check.has-tip:hover rect), .d3 :global(.es-check.has-tip:focus-visible rect) { fill: var(--accent); }
   .d3 :global(.es-check text) { font: 700 13px var(--font-sans); fill: var(--ink); }
   .d3 :global(.es-check .es-check-no) { font: 800 11px var(--font-mono); fill: var(--accent-ink); }
+
+  /* balance */
+  .d3 :global(.bl-era) { font: 800 22px var(--font-sans); fill: var(--ink); }
+  .d3 :global(.bl-en) { font: 700 12px var(--font-mono); fill: var(--accent-ink); }
+  .d3 :global(.bl-desc) { font: 500 13px var(--font-sans); fill: var(--ink-2); }
+  .d3 :global(.bl-fulcrum) { fill: var(--ink); }
+  .d3 :global(.bl-ground) { stroke: var(--ink-3); stroke-width: 2; }
+  .d3 :global(.bl-beam) { transition: transform 1.1s cubic-bezier(.3,1.4,.5,1); }
+  .d3 :global(.bl-beam > rect) { fill: var(--ink-2); }
+  .d3 :global(.bl-weight) { transition: x .8s, y .8s, width .8s, height .8s; }
+  .d3 :global(.bl-side.l .bl-weight) { fill: var(--accent); stroke: var(--accent-ink); stroke-width: 2; }
+  .d3 :global(.bl-side.r .bl-weight) { fill: var(--paper-2); stroke: var(--ink-2); stroke-width: 2; }
+  .d3 :global(.bl-side.has-tip:hover .bl-weight) { stroke: var(--ink); stroke-width: 3; }
+  .d3 :global(.bl-label) { font: 800 14px var(--font-sans); fill: var(--ink); transition: y .8s; }
+  .d3 :global(.bl-timeline line) { stroke: var(--line); stroke-width: 3; }
+  .d3 :global(.bl-node circle) { fill: var(--paper); stroke: var(--ink-3); stroke-width: 3; transition: fill .4s; }
+  .d3 :global(.bl-node.on circle) { fill: var(--accent-ink); stroke: var(--accent-ink); }
+  .d3 :global(.bl-node text) { font: 700 13px var(--font-sans); fill: var(--ink-2); }
+  .d3 :global(.bl-node.on text) { fill: var(--ink); }
+  .d3 :global(.bl-node .bl-years) { font: 500 11px var(--font-mono); fill: var(--ink-3); }
 
   /* allocate */
   .d3 :global(.al-h) { font: 800 15px var(--font-sans); fill: var(--ink); }

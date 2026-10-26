@@ -115,6 +115,15 @@ export type D3Chart =
       outcomeTitle: string; once: Tipped & { label: string }; asset: Tipped & { label: string };
     }
   /**
+   * 蹺蹺板：兩股力量的比重隨時代或情境改變（例如品牌 vs 成效投資）。示意圖，不代表實際比例。
+   * states 依 at 逐段切換；tilt：-1 左邊重、0 平衡、1 右邊重。
+   */
+  | {
+      kind: 'balance'; title: string;
+      left: Tipped & { label: string }; right: Tipped & { label: string };
+      states: (Tipped & { label: string; en: string; years: string; desc: string; tilt: number; at: number })[];
+    }
+  /**
    * 同心圓：範圍由內往外擴大的概念（例如競爭從同品類擴大到整個生活預算）。所有圈一開始就全部顯示；
    * pulls（選用）在第 pullsAt 段出現：從中心往外被帶走的東西。
    */

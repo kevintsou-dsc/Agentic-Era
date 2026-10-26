@@ -15,9 +15,10 @@ function blocks(md) {
   let page = 0;
   const out = [];
   for (const raw of md.split('\n\n')) {
-    const t = raw.trim();
-    const m = t.match(/^<!-- p\.(\d+) -->$/);
-    if (m) { page = Number(m[1]); continue; }
+    // 頁碼標記可能自成一段（全文），也可能和文字同一段（figtext：標記下一行就是文字）
+    let t = raw.trim();
+    const m = t.match(/^<!-- p\.(\d+) -->\s*/);
+    if (m) { page = Number(m[1]); t = t.slice(m[0].length).trim(); }
     if (t) out.push([page, t]);
   }
   return out;

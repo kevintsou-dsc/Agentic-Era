@@ -59,6 +59,7 @@ for (const f of readdirSync(dir).filter((x) => /^a\d\d\.ts$/.test(x))) {
     else if (c.kind === 'esov') [c.som, c.sov, c.result, ...c.fields, ...c.checks].forEach((o) => tip(o.label, o));
     else if (c.kind === 'allocate') [...c.layers, c.main, ...c.roles, c.once, c.asset].forEach((o) => tip(o.label, o));
     else if (c.kind === 'rings') c.rings.forEach((r) => tip(r.label, r));
+    else if (c.kind === 'balance') [c.left, c.right, ...c.states].forEach((o) => tip(o.label, o));
   }
   summary.push(`${id} 主文 ${beats.length - details.length} 段、細節 ${details.length} 則、合計 ${total} 字${tips ? `、圖表說明 ${tips} 則` : ''}`);
 }

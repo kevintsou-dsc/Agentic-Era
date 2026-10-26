@@ -438,6 +438,62 @@ function allocate(el: HTMLElement, c: Extract<D3Chart, { kind: 'allocate' }>): I
   };
 }
 
+// ---------- balance：蹺蹺板，兩股力量的比重隨段落改變（輕微晃動） ----------
+function balance(el: HTMLElement, c: Extract<D3Chart, { kind: 'balance' }>): Instance {
+  const W = 560, H = 420, cx = W / 2, cy = 236, half = 200;
+  const svg = select(el).append('svg').attr('viewBox', `0 0 ${W} ${H}`).attr('class', 'bl');
+  const bind = tipLayer(el);
+  const eraT = svg.append('text').attr('class', 'bl-era').attr('x', cx).attr('y', 34).attr('text-anchor', 'middle');
+  const eraEn = svg.append('text').attr('class', 'bl-en').attr('x', cx).attr('y', 56).attr('text-anchor', 'middle');
+  const eraD = svg.append('text').attr('class', 'bl-desc').attr('x', cx).attr('y', 80).attr('text-anchor', 'middle');
+  svg.append('path').attr('class', 'bl-fulcrum').attr('d', `M${cx},${cy} l-30,52 h60 z`);
+  svg.append('line').attr('class', 'bl-ground').attr('x1', cx - 150).attr('x2', cx + 150).attr('y1', cy + 52).attr('y2', cy + 52);
+  // 橫桿與兩端的重量方塊：整組以支點為中心旋轉
+  const beam = svg.append('g').attr('class', 'bl-beam').style('transform-origin', `${cx}px ${cy}px`);
+  beam.append('rect').attr('x', cx - half).attr('y', cy - 6).attr('width', half * 2).attr('height', 12).attr('rx', 6);
+  const side = (sign: number, d: Tipped & { label: string }) => {
+    const g = beam.append('g').attr('class', `bl-side ${sign < 0 ? 'l' : 'r'}`);
+    const box = g.append('rect').attr('class', 'bl-weight').attr('rx', 8);
+    const t = g.append('text').attr('class', 'bl-label').attr('text-anchor', 'middle').text(d.label);
+    bind(g.node()!, { title: d.label, extra: d.extra });
+    return (size: number) => {
+      const x = cx + sign * (half - 46);
+      box.attr('x', x - size / 2).attr('y', cy - 6 - size).attr('width', size).attr('height', size);
+      t.attr('x', x).attr('y', cy - 16 - size);
+    };
+  };
+  const setL = side(-1, c.left), setR = side(1, c.right);
+  // 下方時間軸：目前所在的時代
+  const tl = svg.append('g').attr('class', 'bl-timeline');
+  const tx = (i: number) => 90 + (i * (W - 180)) / Math.max(1, c.states.length - 1);
+  tl.append('line').attr('x1', tx(0)).attr('x2', tx(c.states.length - 1)).attr('y1', 350).attr('y2', 350);
+  const nodes = tl.selectAll('g').data(c.states).join('g').attr('class', 'bl-node').attr('transform', (_, i) => `translate(${tx(i)},350)`);
+  nodes.append('circle').attr('r', 9);
+  nodes.append('text').attr('y', 30).attr('text-anchor', 'middle').text((d) => d.label);
+  nodes.append('text').attr('class', 'bl-years').attr('y', 48).attr('text-anchor', 'middle').text((d) => d.years);
+  nodes.each(function (d) { bind(this, { title: `${d.label}　${d.en}`, body: d.desc, extra: d.extra }); });
+
+  let tilt = 0, cur = -1;
+  return {
+    update(s) {
+      let i = 0;
+      c.states.forEach((st, k) => { if (reduce ? k === c.states.length - 1 : s >= st.at) i = k; });
+      if (i === cur) return;
+      cur = i;
+      const st = c.states[i];
+      tilt = st.tilt;
+      eraT.text(st.label); eraEn.text(`${st.en}｜${st.years}`); eraD.text(st.desc);
+      setL(40 + Math.max(0, -tilt) * 34 + (tilt === 0 ? 8 : 0));
+      setR(40 + Math.max(0, tilt) * 34 + (tilt === 0 ? 8 : 0));
+      nodes.classed('on', (_, k) => k === i);
+      beam.style('transform', `rotate(${tilt * 11}deg)`);
+    },
+    tick(t) {
+      beam.style('transform', `rotate(${tilt * 11 + Math.sin(t / 700) * 1.2}deg)`);
+    },
+  };
+}
+
 // ---------- rings：由內往外擴大的同心圓，漣漪持續向外擴散；pulls 從中心被往外帶走 ----------
 function rings(el: HTMLElement, c: Extract<D3Chart, { kind: 'rings' }>): Instance {
   const W = 520, H = 500, cx = W / 2, cy = 236, r0 = 42, band = 46;
@@ -488,7 +544,7 @@ function rings(el: HTMLElement, c: Extract<D3Chart, { kind: 'rings' }>): Instanc
   };
 }
 
-const builders: Record<string, (el: HTMLElement, c: never) => Instance> = { flowloop, groups, logrange, stages, esov, rings, allocate } as never;
+const builders: Record<string, (el: HTMLElement, c: never) => Instance> = { flowloop, groups, logrange, stages, esov, rings, allocate, balance } as never;
 
 export function initD3() {
   const charts = Array.from(document.querySelectorAll<HTMLElement>('[data-d3]'));
