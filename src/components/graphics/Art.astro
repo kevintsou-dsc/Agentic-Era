@@ -5,6 +5,7 @@ import type { Graphic } from '../../lib/story';
 import MagnetMount from '../art/MagnetMount.astro';
 import Escalation from '../art/Escalation.astro';
 import PersonaDuo from '../art/PersonaDuo.astro';
+import AgentTeam from '../art/AgentTeam.astro';
 type G = Extract<Graphic, { type: 'art' }>;
 interface Props { g: G }
 const { g } = Astro.props;
@@ -14,6 +15,7 @@ const { g } = Astro.props;
   {g.art === 'magnet-mount' && <MagnetMount />}
   {g.art === 'escalation' && <Escalation />}
   {g.art === 'persona-duo' && <PersonaDuo />}
+  {g.art === 'agent-team' && <AgentTeam />}
   <figcaption class="source">{g.source}</figcaption>
 </figure>
 <style>

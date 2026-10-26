@@ -1,0 +1,157 @@
+---
+// a12 People Model 的 Multi-Agent 分工（原刊 p.111 的「Orchestrator–Worker」結構）。三段主文各對一個畫面：
+// ① 問題進來，Super Agent 拆解成子問題並往下分派（data-at=1）
+// ② 三位專家亮起、各自工作，結果往回流，Super Agent 檢核後送出可追問的回答（data-at=2）
+// ③ 四個價值標在系統上對應的位置：快、靈活、量質並進、縱深（data-at=3）
+// 純 SVG＋CSS（粒子用 SMIL animateMotion），class 一律加 at- 前綴。
+const hub = { x: 260, y: 178 };
+const workers = [
+  { x: 92, name: 'People Model', sub: 'AI Persona', role: '模擬消費者觀點', icon: 'persona' },
+  { x: 260, name: 'CCS Agent', sub: '原始調查', role: '回頭檢索原始調查驗證', icon: 'data' },
+  { x: 428, name: 'Deep Research', sub: 'Agent', role: '搜尋網路資料補充脈絡', icon: 'web' },
+];
+const wy = 330;
+const down = (w: { x: number }) => `M${hub.x} ${hub.y + 44} C${hub.x} ${hub.y + 90} ${w.x} ${wy - 90} ${w.x} ${wy - 40}`;
+const up = (w: { x: number }) => `M${w.x + 10} ${wy - 40} C${w.x + 10} ${wy - 96} ${hub.x + 10} ${hub.y + 96} ${hub.x + 10} ${hub.y + 44}`;
+---
+<svg class="at" viewBox="0 0 520 470" role="img" aria-label="People Model 的 Multi-Agent 分工：使用者提問進來，Super Agent 擔任專案負責人，拆解問題並分派給三位專家：People Model 生成的 AI Persona 模擬消費者觀點、CCS Agent 回頭檢索原始調查驗證、Deep Research Agent 搜尋網路資料補充脈絡；各自完成後交回 Super Agent 檢核彙整，成為一份可追問的回答。價值：快、靈活、量質並進、縱深。">
+  <defs>
+    <marker id="at-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" class="at-arrowhead" /></marker>
+    {workers.map((w, i) => <path id={`at-down-${i}`} d={down(w)} />)}
+    {workers.map((w, i) => <path id={`at-up-${i}`} d={up(w)} />)}
+  </defs>
+
+  <!-- 使用者提問 → Super Agent -->
+  <g class="at-q" data-at="1">
+    <rect x="40" y="20" width="170" height="54" rx="14" class="at-bubble" />
+    <text x="125" y="42" class="at-small">使用者提問</text>
+    <text x="125" y="62" class="at-qt">例：台北女性怎麼選 3C？</text>
+    <path d="M150 74 C 170 110 200 140 222 152" class="at-flow" marker-end="url(#at-arrow)" />
+  </g>
+
+  <!-- 可追問的回答（第 2 段出現） -->
+  <g class="at-a" data-at="2">
+    <path d="M298 152 C 320 130 350 100 372 76" class="at-flow" marker-end="url(#at-arrow)" />
+    <rect x="310" y="20" width="170" height="54" rx="14" class="at-bubble at-answer" />
+    <text x="395" y="42" class="at-small">交回使用者</text>
+    <text x="395" y="62" class="at-qt">一份可追問的回答</text>
+  </g>
+
+  <!-- 分派線與回傳線 -->
+  {workers.map((w, i) => (
+    <g>
+      <path d={down(w)} class="at-line at-line-down" data-at="1" />
+      <path d={up(w)} class="at-line at-line-up" data-at="2" />
+      <g class="at-dots-down" data-at="1">
+        {[0, 1].map((k) => (
+          <g class="at-chip">
+            <rect x="-15" y="-8" width="30" height="16" rx="8" />
+            <text y="4">子題</text>
+            <animateMotion dur="2.6s" begin={`${i * 0.35 + k * 1.3}s`} repeatCount="indefinite" rotate="0"><mpath href={`#at-down-${i}`} /></animateMotion>
+          </g>
+        ))}
+      </g>
+      <g class="at-dots-up" data-at="2">
+        {[0, 1].map((k) => (
+          <circle r="4.5" class="at-dot">
+            <animateMotion dur="2.2s" begin={`${0.6 + i * 0.3 + k * 1.1}s`} repeatCount="indefinite"><mpath href={`#at-up-${i}`} /></animateMotion>
+          </circle>
+        ))}
+      </g>
+    </g>
+  ))}
+
+  <!-- Super Agent -->
+  <g class="at-hub" data-at="1">
+    <circle cx={hub.x} cy={hub.y} r="62" class="at-halo" />
+    <circle cx={hub.x} cy={hub.y} r="46" class="at-core" />
+    <text x={hub.x} y={hub.y - 4} class="at-hub-t">Super Agent</text>
+    <text x={hub.x} y={hub.y + 14} class="at-hub-s">專案負責人</text>
+    <g class="at-hub-step1" data-focus="1">
+      <text x={hub.x + 70} y={hub.y - 18} class="at-note at-left">拆解問題</text>
+      <text x={hub.x + 70} y={hub.y} class="at-note at-left">判斷需要哪些資料</text>
+      <text x={hub.x + 70} y={hub.y + 18} class="at-note at-left">分派子任務</text>
+    </g>
+    <g class="at-hub-step2" data-at="2">
+      <text x={hub.x - 70} y={hub.y - 18} class="at-note at-right">比對：實際調查？</text>
+      <text x={hub.x - 70} y={hub.y} class="at-note at-right">模型估計？</text>
+      <text x={hub.x - 70} y={hub.y + 18} class="at-note at-right">證據衝突？</text>
+    </g>
+  </g>
+
+  <!-- 三位專家 -->
+  {workers.map((w) => (
+    <g class="at-worker" data-at="2" transform={`translate(${w.x} ${wy})`}>
+      <rect x="-76" y="-40" width="152" height="112" rx="16" class="at-card" />
+      <circle cx="0" cy="-6" r="20" class="at-icon-bg" />
+      <g class="at-icon">
+        {w.icon === 'persona' && <g><circle cx="0" cy="-12" r="6" /><path d="M-10 4 q10 -12 20 0" /><path d="M7 -20 l5 -5 M10 -16 h6" /></g>}
+        {w.icon === 'data' && <g><ellipse cx="0" cy="-17" rx="10" ry="4" /><path d="M-10 -17 v16 q10 7 20 0 v-16 M-10 -9 q10 7 20 0" /></g>}
+        {w.icon === 'web' && <g><circle cx="0" cy="-6" r="11" /><path d="M-11 -6 h22 M0 -17 q-7 11 0 22 q7 -11 0 -22" /></g>}
+      </g>
+      <text y="30" class="at-w-name">{w.name}</text>
+      <text y="46" class="at-w-sub">{w.sub}</text>
+      <text y="63" class="at-w-role">{w.role}</text>
+    </g>
+  ))}
+  <text x="260" y="430" class="at-ph" data-at="1">各領域專家</text>
+
+  <!-- 第 3 段：四個價值 -->
+  <g class="at-values" data-at="3">
+    <g transform="translate(125 98)" style="--d:0ms"><rect x="-38" y="-14" width="76" height="28" rx="14" /><text y="5">① 快</text></g>
+    <g transform="translate(80 452)" style="--d:200ms"><rect x="-38" y="-14" width="76" height="28" rx="14" /><text y="5">② 靈活</text></g>
+    <g transform="translate(180 452)" style="--d:400ms"><rect x="-48" y="-14" width="96" height="28" rx="14" /><text y="5">③ 量質並進</text></g>
+    <g transform="translate(428 452)" style="--d:600ms"><rect x="-38" y="-14" width="76" height="28" rx="14" /><text y="5">④ 縱深</text></g>
+  </g>
+</svg>
+
+<style>
+  .at { display: block; width: 100%; height: auto; overflow: visible; font-family: inherit; }
+  text { text-anchor: middle; fill: var(--ink); }
+  .at-small { font-size: 11px; fill: var(--ink-3); font-weight: 700; }
+  .at-qt { font-size: 13px; font-weight: 800; }
+  .at-bubble { fill: var(--paper); stroke: var(--ink-3); stroke-width: 2; }
+  .at-answer { fill: var(--accent); stroke: var(--accent-ink); }
+  .at-flow { fill: none; stroke: var(--ink-3); stroke-width: 2; stroke-dasharray: 5 5; animation: at-dash 1s linear infinite; }
+  .at-arrowhead { fill: var(--ink-3); }
+
+  .at-q, .at-a, .at-hub, .at-ph { opacity: calc(.2 + .8 * var(--on)); transition: opacity .5s; }
+  .at-a { opacity: var(--on); }
+  .at-line { fill: none; stroke-width: 2.5; opacity: calc(.15 + .85 * var(--on)); transition: opacity .5s; }
+  .at-line-down { stroke: var(--line); }
+  .at-line-up { stroke: color-mix(in srgb, var(--accent-ink) 55%, transparent); stroke-dasharray: 3 5; }
+  .at-dots-down, .at-dots-up { opacity: var(--on); transition: opacity .4s; }
+  .at-chip rect { fill: var(--paper); stroke: var(--accent-ink); stroke-width: 1.5; }
+  .at-chip text { font-size: 9px; font-weight: 700; }
+  .at-dot { fill: var(--accent-ink); }
+
+  .at-halo { fill: color-mix(in srgb, var(--accent) 40%, transparent); transform-box: fill-box; transform-origin: center; animation: at-pulse 2.4s ease-in-out infinite; }
+  .at-core { fill: var(--ink); }
+  .at-hub-t { fill: var(--paper); font-size: 15px; font-weight: 800; }
+  .at-hub-s { fill: var(--paper); font-size: 11px; opacity: .8; }
+  .at-note { font-size: 12px; font-weight: 700; fill: var(--ink-2); }
+  .at-left { text-anchor: start; }
+  .at-right { text-anchor: end; }
+  .at-hub-step1 { opacity: var(--focus); transition: opacity .4s; }
+  .at-hub-step2 { opacity: var(--on); transition: opacity .4s .3s; }
+
+  .at-worker { opacity: calc(.3 + .7 * var(--on)); transition: opacity .5s; }
+  .at-card { fill: var(--paper); stroke-width: 2; stroke: color-mix(in srgb, var(--accent-ink) calc(var(--on) * 100%), var(--line)); transition: stroke .4s; }
+  .at-icon-bg { fill: color-mix(in srgb, var(--accent) calc(var(--on) * 100%), var(--line)); transition: fill .4s; }
+  .at-icon { fill: none; stroke: var(--ink); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+  .at-w-name { font-size: 14px; font-weight: 800; }
+  .at-w-sub { font-size: 11px; fill: var(--ink-3); font-weight: 700; }
+  .at-w-role { font-size: 11.5px; fill: var(--ink-2); }
+  .at-ph { font-size: 11px; fill: var(--ink-3); }
+
+  .at-values g { opacity: var(--on); transition: opacity .4s var(--d); }
+  .at-values rect { fill: var(--accent); stroke: var(--accent-ink); stroke-width: 1.5; }
+  .at-values text { font-size: 12.5px; font-weight: 800; }
+
+  @keyframes at-dash { to { stroke-dashoffset: -10; } }
+  @keyframes at-pulse { 50% { transform: scale(1.08); } }
+  @media (prefers-reduced-motion: reduce) {
+    .at-flow, .at-halo { animation: none; }
+    .at-dots-down, .at-dots-up { display: none; }
+  }
+</style>

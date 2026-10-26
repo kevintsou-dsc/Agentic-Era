@@ -2,7 +2,7 @@ import type { Story } from '../../lib/story';
 
 // 陳介立、孫郁喬、高靖萍〈People Model 讓消費者研究變成一場隨時能開口的對話〉紙本 p.96–115
 // 原刊圖表：CCS 八大構面（清單）、訓練方法表（細節卡）、模擬 vs 真人散布圖（圖片）、Lisa／Cindy 對照表（art persona-duo 人物檔案）、
-// Multi-Agent 流程（d3 循環）、五個模擬案例（hscroll，含兩組廣告素材圖）、三種輸出層次（layers）
+// Multi-Agent 分工（art agent-team）、五個模擬案例（hscroll，含兩組廣告素材圖）、三種輸出層次（layers）
 export const story: Story = {
   id: 'a12',
   status: 'judged',
@@ -170,19 +170,9 @@ export const story: Story = {
     {
       kind: 'graphic',
       graphic: {
-        type: 'd3',
-        chart: {
-          kind: 'flowloop',
-          title: 'People Model 的 Multi-Agent 運作流程',
-          center: 'Super Agent',
-          centerExtra: 'Super Agent 像研究專案的負責人：自己不直接回答，而是決定要問誰、問什麼，最後比對各方證據。這種「主控協調、專業子代理分工」的設計，也常見於其他 AI 研究系統。',
-          nodes: [
-            { label: '拆解問題', desc: '把複合式問題重新梳理成數個子問題', extra: '「25–34 歲和 35–44 歲台北女性選 3C 有什麼不同」其實包含偏好、媒體、通路等多個子問題。先拆開，才知道每一題該用哪種資料回答。' },
-            { label: '分派任務', desc: 'People Model、CCS Agent、Deep Research Agent', extra: '三個專家各有分工：People Model 模擬消費者觀點，CCS Agent 回頭查原始調查驗證，Deep Research Agent 上網搜尋補充最新脈絡。' },
-            { label: '判斷答案品質', desc: '蒐集各來源回答，判斷是否真正回應問題', extra: '比對哪些結果來自實際調查、哪些是模型估計，不同來源的時間與樣本是否一致、證據是否衝突，而不是把結果全部堆在一起。' },
-            { label: '回答使用者', desc: '整理成一份可以持續追問的回答', extra: '拿到的不是定稿報告，而是可以繼續問「為什麼」的過程。每個答案都能成為下一個問題的起點，研究因此從一次性變成持續對話。' },
-          ],
-        },
+        type: 'art',
+        art: 'agent-team',
+        title: 'People Model 的 Multi-Agent 分工',
         source: '圖：PEOPLE MODEL MULTI-AGENT 運作流程｜資料來源 電通智能中心，〈People Model〉紙本 p.111',
       },
       src: [{ article: 'a12', page: 111, text: '一個問題進來，Super Agent 拆解並分派給 People Model、CCS Agent 與 Deep Research Agent，再把三方結果檢核彙整成一份可追問的回答' }],
