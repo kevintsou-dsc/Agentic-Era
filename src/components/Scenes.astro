@@ -38,7 +38,7 @@ const { scenes } = Astro.props;
           {s.eyebrow && <p class="eyebrow reveal">{s.eyebrow}</p>}
           {s.heading && <h2 class="prose-h reveal" set:html={rich(s.heading)} />}
           {s.beats.map((b) => (
-            <div class="reveal">
+            <div class:list={['reveal', { 'has-more': !!b.more }]}>
               <p class="beat"><span set:html={rich(b.text)} /><SourceRef src={b.src} /></p>
               {b.quote && <Quote q={b.quote} />}
               <MoreRef m={b.more} />
@@ -121,6 +121,9 @@ const { scenes } = Astro.props;
   .prose-text { max-width: 40rem; font-size: clamp(17px, .6vw + 14px, 19px); }
   .prose-h { font-size: clamp(24px, 2.4vw + 12px, 36px); line-height: 1.35; margin: 4px 0 18px; }
   .prose-text .beat { margin-bottom: 1em; }
+  /* 細節按鈕緊貼它補充的那段，與下一段拉開距離，看得出屬於上一段 */
+  .prose-text .has-more .beat { margin-bottom: 0; }
+  .prose-text .has-more > :global(.more-ref) { margin: 6px 0 1.6em; }
   @media (min-width: 900px) {
     .prose.with-img { grid-template-columns: 1.1fr .9fr; }
     .prose.with-img.flip .prose-text { order: 2; }
