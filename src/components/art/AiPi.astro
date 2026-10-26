@@ -1,0 +1,113 @@
+---
+// a14 原刊 p.131 圖2「AI 是強大的執行者，尤其在 PI 三大核心能力的引導下，能實際創造兩者平衡又合一的綜效」的網頁版，版面依原圖：
+// 左（上）：AI 面板（輸入資料 → AI 生成內容 → 輸出結果、AI 的侷限）；右（下）：PI 面板，Sense／Judge／Connect 三角循環＋三項核心能力說明。
+// 五段主文：① AI 面板 ② PI 面板 ③ Sense ④ Connect ⑤ Judge（依文章敘述順序點亮三角的節點與右側說明）。
+// 文字照錄 figtext。class 一律加 ap- 前綴。
+const abilities = [
+  { k: 'Sense', no: 1, t: 'Sense 理解脈絡與洞察', d: ['能夠理解市場脈絡、品牌現況與消費者需求', '從大量資訊中察覺變化與機會'], node: ['理解脈絡', '洞察需求'], at: 3 },
+  { k: 'Judge', no: 2, t: 'Judge 判斷真偽與決策', d: ['能夠判斷資訊真偽、辨識優先順序', '並在有限資源下做出最適切的決策'], node: ['判斷真偽', '做出決策'], at: 5 },
+  { k: 'Connect', no: 3, t: 'Connect 整合與創造價值', d: ['能夠整合跨領域專業 (策略、創意、媒體、數據與技術)', '讓想法真正落地，創造最大價值'], node: ['整合資源', '創造價值'], at: 4 },
+];
+const pos: Record<string, [number, number]> = { Sense: [110, 40], Judge: [42, 150], Connect: [178, 150] };
+---
+<div class="ap" role="img" aria-label="AI（Artificial Intelligence）：強大的執行者，但缺乏判斷力；輸入資料、AI 生成內容、輸出結果；AI 的侷限是只能「生成」，不能「查核」，AI 是效率工具，但容易出現偏誤與錯誤。PI（People Intelligence）：專業的決策者，具備判斷力與責任感；Sense、Judge、Connect 三項核心能力缺一不可，PI 補足 AI 的盲點，做出正確且有價值的決策。">
+  <section class="ap-panel ap-ai" data-at="1" data-focus="1" aria-hidden="true">
+    <p class="ap-h"><span class="ap-badge">AI</span><span><em>Artificial Intelligence</em>強大的執行者，但缺乏判斷力</span></p>
+    <ol class="ap-flow">
+      {[['輸入', '資料', 'doc'], ['AI 生成', '內容', 'brain'], ['輸出', '結果', 'check']].map(([a, b, ic], i) => (
+        <li style={`--d:${i * 200}ms`}>
+          <span class="ap-bubble">
+            <svg viewBox="0 0 24 24">
+              {ic === 'doc' && <g><path d="M6 3 h9 l4 4 v14 h-13 z" /><path d="M9 10 h7 M9 14 h7 M9 18 h5" /></g>}
+              {ic === 'brain' && <g><path d="M12 4 q-4 -1 -5 3 q-3 1 -2 5 q-2 3 1 5 q1 3 6 3 q5 0 6 -3 q3 -2 1 -5 q1 -4 -2 -5 q-1 -4 -5 -3 z" /><path d="M12 4 v16" /></g>}
+              {ic === 'check' && <g><rect x="4" y="5" width="15" height="15" rx="2" /><path d="M8 12 l3 3 l9 -10" /></g>}
+            </svg>
+            {a}<br />{b}
+          </span>
+        </li>
+      ))}
+    </ol>
+    <div class="ap-limit">
+      <span class="ap-limit-tag">AI 的侷限</span>
+      <p><b>只能「生成」，不能「查核」</b>根據訓練資料生成內容，而非真實經驗；缺乏根本專業者容易被「AI幻覺」(Hallucination) 誤導</p>
+    </div>
+    <p class="ap-foot">AI 是效率工具，但容易出現偏誤與錯誤</p>
+  </section>
+
+  <section class="ap-panel ap-pi" data-at="2" aria-hidden="true">
+    <p class="ap-h"><span class="ap-badge">PI</span><span><em>People Intelligence</em>專業的決策者，具備判斷力與責任感</span></p>
+    <div class="ap-pi-body">
+      <svg class="ap-tri" viewBox="0 0 220 210">
+        <defs><marker id="ap-arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0 L10 5 L0 10 z" /></marker></defs>
+        <path class="ap-loop" d="M84 62 Q 55 90 48 118" marker-end="url(#ap-arr)" />
+        <path class="ap-loop" d="M80 168 Q 110 186 140 168" marker-end="url(#ap-arr)" />
+        <path class="ap-loop" d="M172 118 Q 165 90 136 62" marker-end="url(#ap-arr)" />
+        <text x="110" y="104" class="ap-core">三項核心</text>
+        <text x="110" y="120" class="ap-core">能力</text>
+        <text x="110" y="136" class="ap-core">缺一不可</text>
+        {abilities.map((a) => {
+          const [x, y] = pos[a.k];
+          return (
+            <g class="ap-node" data-focus={a.at} transform={`translate(${x} ${y})`}>
+              <circle r="24" />
+              <text y="5" class="ap-node-k">{a.k}</text>
+              <text y={a.k === 'Sense' ? -32 : 40} x={a.k === 'Sense' ? 46 : 0} class="ap-node-d" text-anchor={a.k === 'Sense' ? 'start' : 'middle'}>{a.node[0]}</text>
+              <text y={a.k === 'Sense' ? -18 : 54} x={a.k === 'Sense' ? 46 : 0} class="ap-node-d" text-anchor={a.k === 'Sense' ? 'start' : 'middle'}>{a.node[1]}</text>
+            </g>
+          );
+        })}
+      </svg>
+      <div class="ap-list">
+        <p class="ap-list-h">PI 的三項核心能力</p>
+        {abilities.map((a) => (
+          <div class="ap-item" data-focus={a.at}>
+            <b>{a.no}. {a.t}</b>
+            {a.d.map((t) => <span>{t}</span>)}
+          </div>
+        ))}
+      </div>
+    </div>
+    <p class="ap-foot">PI 補足 AI 的盲點，做出正確且有價值的決策</p>
+  </section>
+</div>
+
+<style>
+  .ap { --red: #d64545; display: grid; gap: 10px; padding: 12px; border-radius: 14px; background: color-mix(in srgb, var(--accent) 35%, var(--paper)); }
+  .ap p { margin: 0; }
+  .ap-panel { display: grid; gap: 10px; padding: 12px 14px; border-radius: 10px; background: var(--paper); opacity: calc(.25 + .75 * var(--on)); transition: opacity .5s, box-shadow .4s; }
+  .ap-ai { box-shadow: inset 0 0 0 calc(var(--focus) * 2px) var(--red); }
+  .ap-h { display: flex; align-items: center; gap: 10px; padding-bottom: 8px; border-bottom: 1px solid var(--line); }
+  .ap-badge { flex: none; display: grid; place-items: center; width: 40px; height: 40px; border-radius: 50%; background: var(--red); color: #fff; font-weight: 800; font-size: 16px; }
+  .ap-h span:last-child { display: grid; font-size: 13px; font-weight: 700; }
+  .ap-h em { font-style: normal; font-size: 11px; font-weight: 600; color: var(--red); }
+
+  .ap-flow { list-style: none; margin: 0; padding: 0; display: flex; justify-content: space-around; gap: 6px; }
+  .ap-flow li { position: relative; opacity: calc(.2 + .8 * var(--on)); transition: opacity .4s var(--d); }
+  .ap-flow li + li::before { content: '→'; position: absolute; left: -14px; top: 50%; transform: translateY(-50%); color: var(--red); font-weight: 800; }
+  .ap-bubble { display: grid; justify-items: center; gap: 2px; width: 76px; padding: 10px 4px; border-radius: 50%; aspect-ratio: 1; align-content: center; background: color-mix(in srgb, var(--ink) 6%, var(--paper)); font-size: 12px; font-weight: 700; line-height: 1.25; text-align: center; }
+  .ap-bubble svg { width: 22px; height: 22px; fill: none; stroke: var(--ink); stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+  .ap-limit { display: grid; grid-template-columns: auto 1fr; gap: 10px; align-items: start; }
+  .ap-limit-tag { writing-mode: vertical-rl; padding: 6px 3px; background: var(--ink); color: var(--paper); font-size: 11px; font-weight: 800; letter-spacing: .1em; border-radius: 3px; }
+  .ap-limit p { font-size: 11.5px; line-height: 1.6; color: var(--ink-2); }
+  .ap-limit b { display: block; font-size: 13px; color: var(--ink); }
+  .ap-foot { text-align: center; font-size: 13px; font-weight: 800; padding-top: 8px; border-top: 1px solid var(--line); }
+
+  .ap-pi-body { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); gap: 10px; align-items: center; }
+  .ap-tri { width: 100%; height: auto; overflow: visible; }
+  .ap-loop { fill: none; stroke: var(--ink); stroke-width: 2; }
+  .ap-tri marker path { fill: var(--ink); }
+  .ap-core { font-size: 12px; font-weight: 800; text-anchor: middle; fill: var(--ink); }
+  .ap-node circle { fill: color-mix(in srgb, var(--ink) 6%, var(--paper)); stroke: color-mix(in srgb, var(--red) calc(var(--focus) * 100%), var(--line)); stroke-width: calc(2px + var(--focus) * 2px); transition: stroke .3s; }
+  .ap-node-k { font-size: 12px; font-weight: 800; text-anchor: middle; fill: var(--ink); }
+  .ap-node-d { font-size: 10.5px; fill: color-mix(in srgb, var(--red) calc(var(--focus) * 100%), var(--ink-2)); }
+  .ap-list { display: grid; gap: 8px; }
+  .ap-list-h { padding: 4px 8px; background: var(--red); color: #fff; font-size: 12px; font-weight: 800; text-align: center; }
+  .ap-item { display: grid; gap: 1px; padding: 4px 6px; border-radius: 6px; font-size: 11px; color: var(--ink-2); line-height: 1.5;
+    background: color-mix(in srgb, var(--accent) calc(var(--focus) * 60%), transparent); transition: background .4s; }
+  .ap-item b { font-size: 12.5px; color: var(--ink); }
+  @media (max-width: 560px) {
+    .ap-pi-body { grid-template-columns: 1fr; }
+    .ap-tri { max-width: 240px; justify-self: center; }
+  }
+  @media (prefers-reduced-motion: reduce) { .ap-panel, .ap-flow li { transition: none; } }
+</style>

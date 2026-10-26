@@ -1,7 +1,7 @@
 import type { Story } from '../../lib/story';
 
 // 強義明〈AI 普及下的演算法世代，「衡斷力 (Judgment)」將成為最稀缺的競爭力〉紙本 p.128–135
-// 原刊圖表：圖1 媒體三世代（d3 蹺蹺板）、圖2 AI vs PI（清單＋三能力循環）、圖3 衡斷力五大來源（清單）、圖4 Media++（清單）
+// 原刊圖表：圖1 媒體三世代（d3 蹺蹺板）、圖2 AI vs PI（art ai-pi）、圖3 衡斷力五大來源（art judgment-sources）、圖4 Media++（art media-pp），圖2–4 皆依原圖重製
 export const story: Story = {
   id: 'a14',
   status: 'judged',
@@ -96,15 +96,17 @@ export const story: Story = {
     {
       kind: 'graphic',
       graphic: {
-        type: 'list',
+        type: 'art',
+        art: 'ai-pi',
         title: 'AI 是強大的執行者，PI 是負責決策的人',
-        items: [
-          { title: 'Artificial Intelligence', desc: '強大的執行者，但缺乏判斷力；只能「生成」，不能「查核」', at: 1 },
-          { title: 'People Intelligence', desc: '專業的決策者，具備判斷力與責任感；補足 AI 的盲點', at: 2 },
-        ],
-        source: '圖：AI 是強大的執行者，在 PI 三大核心能力的引導下創造綜效｜資料來源 凱絡媒體／製圖，強義明〈衡斷力〉紙本 p.131',
+        source: '圖2：AI 是強大的執行者，尤其在 PI 三大核心能力的引導下，能實際創造兩者平衡又合一的綜效（依原圖重製）｜資料來源 凱絡媒體／製圖，強義明〈衡斷力〉紙本 p.131',
       },
       src: [{ article: 'a14', page: 131, text: 'AI 是強大的執行者，尤其在 PI 三大核心能力的引導下，能實際創造兩者平衡又合一的綜效' }],
+      figures: [
+        { article: 'a14', page: 131, text: '只能「生成」，不能「查核」' },
+        { article: 'a14', page: 131, text: 'PI 補足 AI 的盲點，做出正確且有價值的決策' },
+        { article: 'a14', page: 131, text: 'PI 的三項核心能力' },
+      ],
       beats: [
         {
           text: '把 Agentic AI 想成一群能力極強的員工：能快速蒐集資訊、生成文案、製作簡報。但它的任務是生成而非核實，能生成最合理的答案，卻無法保證答案一定正確。',
@@ -128,28 +130,6 @@ export const story: Story = {
             { article: 'a14', page: 131, text: '專業的決策者，具備判斷力與責任感' },
           ],
         },
-      ],
-    },
-    {
-      kind: 'graphic',
-      side: 'right',
-      graphic: {
-        type: 'd3',
-        chart: {
-          kind: 'flowloop',
-          title: 'PI 的三項核心能力：缺一不可',
-          center: 'PI',
-          centerExtra: 'People Intelligence（PI）是作者相對於 Artificial Intelligence 提出的說法，指人類的專業判斷力。三項能力彼此銜接：看見問題、串起解法、決定方向，少了任何一項，AI 的產出都難以真正落地。',
-          nodes: [
-            { label: 'Sense', sub: '感知與洞察', desc: '理解市場脈絡、品牌現況與消費者需求', extra: '從大量資訊裡察覺「哪裡變了」。例如發現某個族群的搜尋與討論開始轉向，比競品早一步看見機會。AI 能整理資料，但要先有人知道該看什麼。' },
-            { label: 'Connect', sub: '創造與聯結', desc: '整合策略、創意、媒體、數據與技術', extra: '把不同專業串成一個能執行的方案。好的點子如果沒有接上媒體、數據與技術，就只會停在簡報裡；Connect 讓想法真正落地。' },
-            { label: 'Judge', sub: '判斷與決策', desc: '判斷資訊真偽、辨識優先順序、做出決策', extra: '在資源有限時決定先做什麼、不做什麼，並為結果負責。AI 可以給十個選項，Judge 是挑出一個、說清楚為什麼，並承擔後果的能力。' },
-          ],
-        },
-        source: '圖：PI 的三項核心能力｜資料來源 凱絡媒體／製圖，強義明〈衡斷力〉紙本 p.131',
-      },
-      src: [{ article: 'a14', page: 131, text: 'PI 的三項核心能力' }],
-      beats: [
         {
           text: '那麼優秀的 PI 該具備哪些能力？作者列出三項，第一項是 Sense 感知與洞察，也就是能理解市場脈絡、品牌現況與消費者需求，並從大量資訊中察覺變化與機會。',
           src: [

@@ -12,6 +12,7 @@ import IProof from '../art/IProof.astro';
 import MediaPP from '../art/MediaPP.astro';
 import Pillars from '../art/Pillars.astro';
 import CcsModel from '../art/CcsModel.astro';
+import AiPi from '../art/AiPi.astro';
 type G = Extract<Graphic, { type: 'art' }>;
 interface Props { g: G }
 const { g } = Astro.props;
@@ -28,6 +29,7 @@ const { g } = Astro.props;
   {g.art === 'media-pp' && <MediaPP />}
   {g.art === 'pillars' && <Pillars />}
   {g.art === 'ccs-model' && <CcsModel />}
+  {g.art === 'ai-pi' && <AiPi />}
   <figcaption class="source">{g.source}</figcaption>
 </figure>
 <style>
