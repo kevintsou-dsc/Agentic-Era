@@ -60,6 +60,7 @@ export const story: Story = {
         ],
       },
       figure: { article: 'a11', page: 82, text: '65% 的 Z 世代' },
+      people: { total: 20, filled: 13, label: '位 Z 世代，對沒經歷過的年代懷舊' },
       source: '資料來源 Vevo《Then Is Now》(2026)，吳宗霖、陳炯文〈從金曲獎到甄嬛傳〉紙本 p.82',
     },
     {

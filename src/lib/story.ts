@@ -145,7 +145,9 @@ export type Scene =
   /** 一般排版：一段或多段主文，可配一張圖（左右交錯），不固定 */
   | { kind: 'prose'; eyebrow?: string; heading?: string; beats: Beat[]; image?: Img; links?: Link[] }
   | { kind: 'quote'; lead?: Beat; quote: Src }
-  | { kind: 'bignum'; value: number; decimals?: number; prefix?: string; unit: string; caption: Beat; figure: Src; source: string }
+  /** people：人形圖，例如 { total: 20, filled: 13 } 表示 65%（filled／total 必須等於 value％） */
+  | { kind: 'bignum'; value: number; decimals?: number; prefix?: string; unit: string; caption: Beat; figure: Src; source: string;
+      people?: { total: number; filled: number; label?: string } }
   | { kind: 'statement'; eyebrow?: string; text: string; lede?: Beat };
 
 export interface Story {

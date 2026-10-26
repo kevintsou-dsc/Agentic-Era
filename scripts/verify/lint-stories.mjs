@@ -44,6 +44,10 @@ for (const f of readdirSync(dir).filter((x) => /^a\d\d\.ts$/.test(x))) {
     if ('detail' in o || 'centerDetail' in o) problems.push(`${id}：圖表說明不放原文（detail）「${name}」，原文請寫進左側主文`);
   };
   for (const sc of story.scenes) {
+    // 人形圖的實心比例必須等於大數字（例如 13／20＝65%）
+    if (sc.kind === 'bignum' && sc.people && Math.abs((sc.people.filled / sc.people.total) * 100 - sc.value) > 0.5) {
+      problems.push(`${id}：人形圖 ${sc.people.filled}/${sc.people.total} 與大數字 ${sc.value}${sc.unit} 不一致`);
+    }
     const c = sc.kind === 'graphic' && sc.graphic.type === 'd3' ? sc.graphic.chart : null;
     if (!c) continue;
     if (c.kind === 'flowloop') {

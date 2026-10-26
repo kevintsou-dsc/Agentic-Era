@@ -69,9 +69,22 @@ const { scenes } = Astro.props;
   if (s.kind === 'bignum') {
     return (
       <section class="section center bignum-scene">
-        <p class="bignum reveal" data-count={s.value} data-decimals={s.decimals ?? 0} data-prefix={s.prefix ?? ''}>
-          {(s.prefix ?? '') + s.value.toFixed(s.decimals ?? 0)}<small>{s.unit}</small>
+        {/* 數字動畫只改 data-count 這個 span，單位放在外面才不會被覆蓋掉 */}
+        <p class="bignum reveal">
+          <span data-count={s.value} data-decimals={s.decimals ?? 0} data-prefix={s.prefix ?? ''}>{(s.prefix ?? '') + s.value.toFixed(s.decimals ?? 0)}</span><small>{s.unit}</small>
         </p>
+        {s.people && (
+          <div class="people reveal" role="img" aria-label={`${s.people.total} 人中有 ${s.people.filled} 人${s.people.label ? `：${s.people.label}` : ''}`}>
+            <ol class="people-grid" style={`--cols:${Math.ceil(s.people.total / 2)}`}>
+              {Array.from({ length: s.people.total }, (_, i) => (
+                <li class:list={['person', { on: i < s.people!.filled }]} style={`--i:${i}`}>
+                  <svg viewBox="0 0 24 40" aria-hidden="true"><circle cx="12" cy="7" r="6" /><path d="M3 38 V22 q0 -8 9 -8 q9 0 9 8 V38 z" /></svg>
+                </li>
+              ))}
+            </ol>
+            {s.people.label && <p class="people-label"><b>{s.people.filled}</b> / {s.people.total} {s.people.label}</p>}
+          </div>
+        )}
         <p class="lede reveal"><span set:html={rich(s.caption.text)} /><SourceRef src={s.caption.src} /></p>
         <p class="source reveal">{s.source}</p>
       </section>
@@ -88,6 +101,17 @@ const { scenes } = Astro.props;
 <style>
   .statement { font-size: clamp(28px, 4.5vw, 52px); }
   .bignum-scene .bignum { color: var(--accent-ink); }
+  /* 人形圖：例如 20 人中 13 人實心＝65%；進入視窗時依序填滿 */
+  .people { display: grid; justify-items: center; gap: 10px; margin: 8px auto 20px; }
+  .people-grid { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(var(--cols), clamp(22px, 3.4vw, 38px)); gap: clamp(6px, 1vw, 12px) clamp(4px, .8vw, 10px); }
+  .person svg { display: block; width: 100%; height: auto; overflow: visible; }
+  .person circle, .person path { fill: transparent; stroke: var(--ink-3); stroke-width: 2; transition: fill .35s, stroke .35s; transition-delay: calc(var(--i) * 70ms + .3s); }
+  .people.is-in .person.on circle, .people.is-in .person.on path { fill: var(--accent-ink); stroke: var(--accent-ink); }
+  .people-label { margin: 0; font-size: 14px; color: var(--ink-2); }
+  .people-label b { font-size: 18px; color: var(--accent-ink); }
+  @media (prefers-reduced-motion: reduce) {
+    .person.on circle, .person.on path { fill: var(--accent-ink); stroke: var(--accent-ink); }
+  }
   .beat { margin: 0 0 .6em; }
   .graphic { flex-direction: column; }
   .graphic-src { margin: 8px 0 0; font-size: 12px; color: var(--ink-3); }
