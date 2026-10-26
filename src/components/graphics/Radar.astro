@@ -1,0 +1,56 @@
+---
+// 雷達圖（原刊示意雷達的網頁版）：第一個軸在正上方、順時針排列，數值標在頂點旁。
+// 第 1 段主文時多邊形由中心展開；軸可標 at，第 at 段主文時該軸加重（其他軸淡出）。class 一律加 rd- 前綴。
+import type { Graphic } from '../../lib/story';
+type G = Extract<Graphic, { type: 'radar' }>;
+interface Props { g: G }
+const { g } = Astro.props;
+const n = g.axes.length, max = g.max ?? 100, R = 120, cx = 200, cy = 170;
+const ang = (i: number) => -Math.PI / 2 + (i * 2 * Math.PI) / n;
+const pt = (i: number, v: number) => [cx + Math.cos(ang(i)) * R * (v / max), cy + Math.sin(ang(i)) * R * (v / max)];
+const rings = [20, 40, 60, 80, 100].filter((v) => v <= max);
+const poly = (vals: number[]) => vals.map((v, i) => pt(i, v).join(',')).join(' ');
+const anchor = (i: number) => { const c = Math.cos(ang(i)); return Math.abs(c) < 0.2 ? 'middle' : c > 0 ? 'start' : 'end'; };
+---
+<div class="stage rd">
+  {g.title && <p class="title">{g.title}</p>}
+  <svg viewBox="0 0 400 340" role="img" aria-label={`${g.title ?? ''}：` + g.axes.map((a) => `${a.label} ${a.v}`).join('、') + (g.note ? `（${g.note}）` : '')}>
+    {rings.map((v) => <polygon class="rd-ring" points={poly(g.axes.map(() => v))} />)}
+    {g.axes.map((_, i) => { const [x, y] = pt(i, max); return <line class="rd-spoke" x1={cx} y1={cy} x2={x} y2={y} />; })}
+    {rings.map((v) => <text class="rd-tick" x={cx + 4} y={cy - (R * v) / max + 3}>{v}</text>)}
+    <g class="rd-shape" data-at="1" style={`transform-origin:${cx}px ${cy}px`}>
+      <polygon class="rd-area" points={poly(g.axes.map((a) => a.v))} />
+      {g.axes.map((a, i) => { const [x, y] = pt(i, a.v); return <circle class="rd-dot" cx={x} cy={y} r="4" />; })}
+    </g>
+    {g.axes.map((a, i) => {
+      const [lx, ly] = pt(i, max * 1.14);
+      const [vx, vy] = pt(i, a.v);
+      const c = Math.cos(ang(i)), s = Math.sin(ang(i));
+      return (
+        <g class="rd-axis" {...(a.at ? { 'data-focus': a.at } : {})}>
+          <text class="rd-label" x={lx} y={ly + 5} text-anchor={anchor(i)}>{a.label}</text>
+          <text class="rd-val" data-at="1" x={vx + c * 16 + (Math.abs(c) < 0.2 ? 14 : 0)} y={vy + s * 16 + 5} text-anchor="middle">{a.v}</text>
+        </g>
+      );
+    })}
+  </svg>
+  {g.note && <p class="rd-note">{g.note}</p>}
+  <p class="source">{g.source}</p>
+</div>
+<style>
+  .rd { width: 100%; display: grid; gap: 8px; }
+  .title { margin: 0; font-weight: 700; font-size: clamp(18px, 1.6vw + 10px, 24px); }
+  svg { width: 100%; max-width: 34rem; height: auto; overflow: visible; justify-self: center; }
+  .rd-ring { fill: none; stroke: var(--line); stroke-width: 1; }
+  .rd-spoke { stroke: var(--line); stroke-width: 1; }
+  .rd-tick { font-size: 9px; fill: var(--ink-3); }
+  .rd-shape { transform: scale(var(--on)); transition: transform 1s cubic-bezier(.2, .8, .2, 1.1); }
+  .rd-area { fill: color-mix(in srgb, var(--accent) 70%, transparent); stroke: var(--accent-ink); stroke-width: 2; stroke-linejoin: round; }
+  .rd-dot { fill: var(--accent-ink); }
+  .rd-label { font-size: 14px; font-weight: 800; fill: var(--ink); transition: fill .4s, opacity .4s; }
+  .rd-val { font-size: 16px; font-weight: 800; fill: var(--accent-ink); opacity: var(--on); transition: opacity .5s .6s; }
+  /* 某段主文點名的軸：加重；其他軸在那一段淡出 */
+  .rd-axis[data-focus] .rd-label { fill: color-mix(in srgb, var(--accent-ink) calc(var(--focus) * 100%), var(--ink)); }
+  .rd-note { margin: 0; font-size: 12px; color: var(--ink-3); text-align: center; }
+  @media (prefers-reduced-motion: reduce) { .rd-shape { transition: none; } }
+</style>

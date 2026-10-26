@@ -1,7 +1,7 @@
 import type { Story } from '../../lib/story';
 
 // 王馥蓓、周允玉〈贏在 AI 時代的隱形戰場：看見「文化暗流」啟動企業真實的轉型動能〉紙本 p.144–149
-// 原刊圖表：圖1 AI 轉型暗流雷達圖（原刊即為示意圖，數值與項目對應不明，只列六個病灶名稱）
+// 原刊圖表：圖1 AI 轉型暗流雷達圖（radar，數值依原圖各軸標示照錄，標示示意）
 // 文字結構：水面上 vs 水面下（d3 冰山）、BCG 調查（長條）、3C 策略行動與案例（hscroll）
 export const story: Story = {
   id: 'a16',
@@ -159,27 +159,32 @@ export const story: Story = {
       kind: 'graphic',
       side: 'right',
       graphic: {
-        type: 'list',
-        title: 'AI 轉型暗流診斷：六種常見病灶',
-        items: [
-          { title: '願景幻覺', at: 1 },
-          { title: '沉默抗拒', at: 1 },
-          { title: '經驗依賴', at: 1 },
-          { title: '創新落差', at: 1 },
-          { title: '中層阻塞', at: 1 },
-          { title: '工具孤兒', at: 1 },
+        type: 'radar',
+        title: 'AI 轉型暗流雷達圖（示意）',
+        axes: [
+          { label: '願景幻覺', v: 43, at: 2 },
+          { label: '中層阻塞', v: 15 },
+          { label: '工具孤兒', v: 39 },
+          { label: '沉默抗拒', v: 53 },
+          { label: '創新落差', v: 18, at: 2 },
+          { label: '經驗依賴', v: 77 },
         ],
-        source: '圖：AI 轉型暗流雷達圖示意圖（原刊為 0–100 指數示意，數值越高潛在風險越大；本頁只列病灶名稱）｜資料來源 電通商業顧問，王馥蓓、周允玉〈贏在 AI 時代的隱形戰場〉紙本 p.146',
+        note: '0–100 指數｜數值越高，潛在風險越大；原刊標示為示意圖',
+        source: '圖1：AI 轉型暗流雷達圖示意圖（依原刊重製）｜資料來源 電通商業顧問，王馥蓓、周允玉〈贏在 AI 時代的隱形戰場〉紙本 p.146',
       },
       src: [{ article: 'a16', page: 146, text: 'AI 轉型暗流雷達圖示意圖' }],
       figures: [
         { article: 'a16', page: 146, text: '願景幻覺' }, { article: 'a16', page: 146, text: '沉默抗拒' }, { article: 'a16', page: 146, text: '經驗依賴' },
         { article: 'a16', page: 146, text: '創新落差' }, { article: 'a16', page: 146, text: '中層阻塞' }, { article: 'a16', page: 146, text: '工具孤兒' },
+        { article: 'a16', page: 146, text: '77' }, { article: 'a16', page: 146, text: '43' }, { article: 'a16', page: 146, text: '15' },
+        { article: 'a16', page: 146, text: '39' }, { article: 'a16', page: 146, text: '53' }, { article: 'a16', page: 146, text: '18' },
       ],
       beats: [
         {
-          text: '電通的「AI 轉型暗流指數」從文化與組織配套出發，檢視導入 AI 後在願景、心態、能力、協作、落地與價值創造六大維度上的結構性矛盾，找出轉型的落點與病灶。',
+          text: '電通的「AI 轉型暗流指數」從文化與組織配套出發，檢視導入 AI 後在六大維度上的結構性矛盾，找出轉型的落點與病灶。原刊的示意雷達圖中，「經驗依賴」最高，達 77。',
           src: [
+            { article: 'a16', page: 146, text: '77' },
+            { article: 'a16', page: 146, text: '經驗依賴' },
             { article: 'a16', page: 146, text: '「AI 轉型暗流指數」(AI Transformation Undercurrent Index) 診斷工具' },
             { article: 'a16', page: 147, text: '在願景、心態、能力、協作、落地、價值創造等六大維度上所展現的結構性矛盾' },
           ],
