@@ -93,7 +93,7 @@ export type D3Chart =
   | { kind: 'stages'; title: string; rows: (Tipped & { era: string; model: string; steps: (Tipped & { en: string; zh: string })[]; at: number })[] }
   /**
    * ESOV 減法圖：第 1 段 SOM 長條滑下來疊到 SOV 上，只剩超出的部分（ESOV）亮著；
-   * 第 2 段攤開不同媒體場域（同樣一次曝光意義不同）；第 3 段收成「主場域＋輔助角色」。
+   * 第 2 段攤開不同媒體場域（同樣一次曝光意義不同）；第 3 段用問題逐一檢查場域值不值得進攻。
    */
   | {
       kind: 'esov'; title: string;
@@ -101,7 +101,18 @@ export type D3Chart =
       sov: Tipped & { label: string; sub: string; value: number };
       result: Tipped & { label: string };
       fieldsTitle: string; fields: (Tipped & { label: string })[];
-      main: Tipped & { label: string }; roles: (Tipped & { label: string })[];
+      checksTitle: string; checks: (Tipped & { label: string })[];
+    }
+  /**
+   * 預算分配點陣（示意，非實際比例）：同一筆預算的點，
+   * 第 1 段平均灑在每一層（每層都不夠深）→ 第 2 段聚到主場域、少數給輔助角色 →
+   * 第 3 段持續投放：只換到一次交易的點落下消失，累積成品牌資產的點疊成越來越高的長條。
+   */
+  | {
+      kind: 'allocate'; title: string; dots: number;
+      layersTitle: string; layers: (Tipped & { label: string })[];
+      splitTitle: string; main: Tipped & { label: string }; roles: (Tipped & { label: string })[];
+      outcomeTitle: string; once: Tipped & { label: string }; asset: Tipped & { label: string };
     }
   /**
    * 同心圓：範圍由內往外擴大的概念（例如競爭從同品類擴大到整個生活預算）。所有圈一開始就全部顯示；

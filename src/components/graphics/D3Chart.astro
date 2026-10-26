@@ -13,11 +13,16 @@ const summary =
   c.kind === 'esov' ? [
     `${c.som.label}（${c.som.sub}）${c.som.value}%，${c.sov.label}（${c.sov.sub}）${c.sov.value}%，${c.result.label} = ${c.sov.value} − ${c.som.value} = +${c.sov.value - c.som.value}`,
     `${c.fieldsTitle}：${c.fields.map((f) => f.label).join('、')}`,
-    `${c.main.label}負責主要 SOV，其他場域負責${c.roles.map((r) => r.label).join('、')}`,
+    `${c.checksTitle}${c.checks.map((q) => q.label).join('')}`,
+  ] :
+  c.kind === 'allocate' ? [
+    `${c.layersTitle}：${c.layers.map((l) => l.label).join('、')}`,
+    `${c.splitTitle}：${c.main.label}；${c.roles.map((r) => r.label).join('、')}`,
+    `${c.outcomeTitle}：${c.once.label}，或${c.asset.label}`,
   ] :
   c.kind === 'rings' ? [...c.rings.map((r) => `${r.label}：${r.desc}`), ...(c.pulls ? [`會被帶走的：${c.pulls.join('、')}`] : [])] :
   c.rows.map((r) => `${r.model}（${r.era}）：${r.steps.map((s) => s.zh).join(' → ')}`);
-const hintTarget = c.kind === 'flowloop' ? '圓圈' : c.kind === 'stages' ? '方格' : c.kind === 'esov' ? '長條與方塊' : c.kind === 'rings' ? '每一圈' : '長條';
+const hintTarget = c.kind === 'flowloop' ? '圓圈' : c.kind === 'stages' ? '方格' : c.kind === 'esov' ? '長條與方塊' : c.kind === 'rings' ? '每一圈' : c.kind === 'allocate' ? '每一列與區塊' : '長條';
 ---
 <div class="stage d3wrap">
   <p class="title">{c.title}</p>
@@ -124,13 +129,35 @@ const hintTarget = c.kind === 'flowloop' ? '圓圈' : c.kind === 'stages' ? '方
   .d3 :global(.es-tile text) { font: 700 12px var(--font-sans); fill: var(--ink); }
   .d3 :global(.es-tile .es-one) { font: 500 10px var(--font-mono); fill: var(--ink-3); }
   .d3 :global(.es-note) { font: 500 12px var(--font-sans); fill: var(--ink-2); }
-  .d3 :global(.es-link) { stroke: var(--accent-ink); stroke-width: 2; stroke-dasharray: 6 6; }
-  .d3 :global(.es-role rect) { fill: var(--paper); stroke: var(--accent-ink); stroke-width: 2; }
-  .d3 :global(.es-role.has-tip:hover rect) { fill: var(--accent); }
-  .d3 :global(.es-role text) { font: 700 13px var(--font-sans); fill: var(--ink); }
-  .d3 :global(.es-hub circle) { fill: var(--accent-ink); }
-  .d3 :global(.es-hub text) { font: 800 16px var(--font-sans); fill: var(--paper); }
-  .d3 :global(.es-hub .es-hub-sub) { font: 500 10px var(--font-sans); }
+  .d3 :global(.es-note) { transition: opacity .4s; }
+  .d3 :global(.es-beam) { fill: none; stroke: var(--accent-ink); stroke-width: 3; transition: x .35s, opacity .4s; pointer-events: none; }
+  .d3 :global(.es-tile.scan rect) { fill: var(--accent); }
+  .d3 :global(.es-check rect) { fill: var(--paper); stroke: var(--accent-ink); stroke-width: 2; }
+  .d3 :global(.es-check.has-tip:hover rect), .d3 :global(.es-check.has-tip:focus-visible rect) { fill: var(--accent); }
+  .d3 :global(.es-check text) { font: 700 13px var(--font-sans); fill: var(--ink); }
+  .d3 :global(.es-check .es-check-no) { font: 800 11px var(--font-mono); fill: var(--accent-ink); }
+
+  /* allocate */
+  .d3 :global(.al-h) { font: 800 15px var(--font-sans); fill: var(--ink); }
+  .d3 :global(.al-tag) { font: 500 11px var(--font-sans); fill: var(--ink-3); }
+  .d3 :global(.al-rows), .d3 :global(.al-out) { opacity: 0; pointer-events: none; transition: opacity .5s; }
+  .d3 :global(.al-rows.on), .d3 :global(.al-out.on) { opacity: 1; pointer-events: auto; }
+  .d3 :global(.al-hit) { fill: transparent; }
+  .d3 :global(.al-row.has-tip:hover .al-hit), .d3 :global(.al-row.has-tip:focus-visible .al-hit) { fill: rgba(0, 0, 0, .05); stroke: var(--ink-3); }
+  .d3 :global(.al-label) { font: 700 13px var(--font-sans); fill: var(--ink-2); }
+  .d3 :global(.al-row.main .al-label) { font-size: 15px; font-weight: 800; fill: var(--accent-ink); }
+  .d3 :global(.al-dots) { transition: opacity .5s; }
+  .d3 :global(.al-dots:not(.on)) { opacity: 0; }
+  .d3 :global(.al-dots circle) { fill: var(--accent-ink); transition: transform .9s cubic-bezier(.3,.7,.2,1); }
+  .d3 :global(.al-emit) { font: 700 12px var(--font-sans); fill: var(--ink-2); }
+  .d3 :global(.al-emitter) { fill: var(--ink); }
+  .d3 :global(.al-zone-bg) { fill: var(--paper-2); }
+  .d3 :global(.al-zone.has-tip:hover .al-zone-bg) { stroke: var(--ink); stroke-width: 2; }
+  .d3 :global(.al-floor) { stroke: var(--ink-3); stroke-width: 2; }
+  .d3 :global(.al-zone-t) { font: 800 14px var(--font-sans); fill: var(--ink); }
+  .d3 :global(.al-bar) { fill: var(--accent-ink); pointer-events: none; }
+  .d3 :global(.al-p) { fill: var(--ink-3); pointer-events: none; }
+  .d3 :global(.al-p.keep) { fill: var(--accent-ink); }
 
   /* rings */
   .d3 :global(.rg-ring circle) { stroke: var(--paper); stroke-width: 3; transition: fill .2s; }

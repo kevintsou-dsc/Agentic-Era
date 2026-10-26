@@ -5,7 +5,7 @@
 import { select } from 'd3-selection';
 import { scaleLinear, scaleLog, scaleBand } from 'd3-scale';
 import { max } from 'd3-array';
-import type { D3Chart } from '../lib/story';
+import type { D3Chart, Tipped } from '../lib/story';
 
 const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -258,7 +258,7 @@ function stages(el: HTMLElement, c: Extract<D3Chart, { kind: 'stages' }>): Insta
 
 // ---------- esov：SOV 減去 SOM 的減法動畫 → 媒體場域 → 主場域分工 ----------
 function esov(el: HTMLElement, c: Extract<D3Chart, { kind: 'esov' }>): Instance {
-  const W = 560, H = 430, left = 112, right = 40;
+  const W = 560, H = 470, left = 112, right = 40;
   const x = scaleLinear().domain([0, Math.ceil(Math.max(c.sov.value, c.som.value) / 10) * 10 + 10]).range([left, W - right]);
   const svg = select(el).append('svg').attr('viewBox', `0 0 ${W} ${H}`).attr('class', 'es');
   const bind = tipLayer(el);
@@ -299,26 +299,23 @@ function esov(el: HTMLElement, c: Extract<D3Chart, { kind: 'esov' }>): Instance 
   tiles.append('text').attr('x', tw / 2).attr('y', 30).attr('text-anchor', 'middle').text((d) => d.label);
   tiles.append('text').attr('class', 'es-one').attr('x', tw / 2).attr('y', 50).attr('text-anchor', 'middle').text('1 次曝光');
   tiles.each(function (d) { bind(this, { title: d.label, body: '同樣算一次曝光，意義卻不同', extra: d.extra }); });
-  b.append('text').attr('class', 'es-note').attr('x', W / 2).attr('y', 356).attr('text-anchor', 'middle').text('注意力品質、情境、競品干擾、記憶效果都不同');
+  const note = b.append('text').attr('class', 'es-note').attr('x', W / 2).attr('y', 356).attr('text-anchor', 'middle').text('注意力品質、情境、競品干擾、記憶效果都不同');
+  // 掃描光條：第 3 段時從左到右掃過每個場域，代表逐一用問題檢查
+  const beam = b.append('rect').attr('class', 'es-beam').attr('y', 252).attr('width', tw + 12).attr('height', 76).attr('rx', 12);
 
-  // C. 主場域＋輔助角色（連線上的虛線持續流動）
+  // C. 判斷場域值不值得進攻的問題
   const cc = svg.append('g').attr('class', 'es-c');
-  const hx = W / 2, hy = 330;
-  const sat = c.roles.map((_, i) => {
-    const ang = Math.PI + (i * Math.PI) / Math.max(1, c.roles.length - 1);
-    return [hx + 200 * Math.cos(ang), hy + 74 * Math.sin(ang) - 8] as [number, number];
+  cc.append('text').attr('class', 'es-h').attr('x', W / 2).attr('y', 360).attr('text-anchor', 'middle').text(c.checksTitle);
+  const cw = 168, per = 3;
+  const checks = cc.selectAll('g.es-check').data(c.checks).join('g').attr('class', 'es-check').attr('transform', (_, i) => {
+    const r = Math.floor(i / per), inRow = Math.min(per, c.checks.length - r * per);
+    const rowX = (W - (inRow * cw + (inRow - 1) * 8)) / 2;
+    return `translate(${rowX + (i % per) * (cw + 8)},${376 + r * 42})`;
   });
-  const links = cc.selectAll('line').data(sat).join('line').attr('class', 'es-link')
-    .attr('x1', hx).attr('y1', hy).attr('x2', (d) => d[0]).attr('y2', (d) => d[1]);
-  const roles = cc.selectAll('g.es-role').data(c.roles).join('g').attr('class', 'es-role').attr('transform', (_, i) => `translate(${sat[i].join(',')})`);
-  roles.append('rect').attr('x', -42).attr('y', -17).attr('width', 84).attr('height', 34).attr('rx', 17);
-  roles.append('text').attr('y', 5).attr('text-anchor', 'middle').text((d) => d.label);
-  roles.each(function (d) { bind(this, { title: `輔助場域：${d.label}`, extra: d.extra }); });
-  const hub = cc.append('g').attr('class', 'es-hub').attr('transform', `translate(${hx},${hy})`);
-  hub.append('circle').attr('r', 46);
-  hub.append('text').attr('y', -2).attr('text-anchor', 'middle').text(c.main.label);
-  hub.append('text').attr('class', 'es-hub-sub').attr('y', 18).attr('text-anchor', 'middle').text('承擔主要 SOV');
-  bind(hub.node()!, { title: c.main.label, extra: c.main.extra });
+  checks.append('rect').attr('width', cw).attr('height', 34).attr('rx', 17);
+  checks.append('text').attr('class', 'es-check-no').attr('x', 16).attr('y', 22).text((_, i) => `Q${i + 1}`);
+  checks.append('text').attr('x', 38).attr('y', 22).text((d) => d.label);
+  checks.each(function (d) { bind(this, { title: d.label, extra: d.extra }); });
 
   let step = 0;
   // p：0–0.2 分開 → 0.2–0.45 SOM 滑下疊上 → 0.45–0.95 只剩超出的部分亮著 → 重來
@@ -335,13 +332,108 @@ function esov(el: HTMLElement, c: Extract<D3Chart, { kind: 'esov' }>): Instance 
     update(s) {
       step = s;
       a.classed('on', reduce || s >= 1);
-      b.classed('on', !reduce && s === 2);
+      b.classed('on', reduce || s >= 2);
       cc.classed('on', reduce || s >= 3);
-      if (reduce) { setA(0.7); b.style('display', 'none'); } else if (s < 1) setA(0);
+      note.style('opacity', reduce || s >= 3 ? 0 : 1);
+      beam.style('opacity', !reduce && s >= 3 ? 1 : 0);
+      if (reduce) setA(0.7); else if (s < 1) setA(0);
     },
     tick(t) {
       if (step >= 1) setA((t % 5200) / 5200);
-      links.attr('stroke-dashoffset', -(t / 40) % 24);
+      if (step >= 3) {
+        // 每個場域停 0.6 秒，依序掃過
+        const i = Math.floor(t / 600) % n;
+        beam.attr('x', x0 + i * (tw + 6) - 6);
+        tiles.classed('scan', (_, j) => j === i);
+      }
+    },
+  };
+}
+
+// ---------- allocate：同一筆預算的點陣，平均灑開 → 集中到主場域 → 一次交易 vs 累積資產 ----------
+function allocate(el: HTMLElement, c: Extract<D3Chart, { kind: 'allocate' }>): Instance {
+  const W = 560, H = 440, lx = 184, dx = 13;
+  const svg = select(el).append('svg').attr('viewBox', `0 0 ${W} ${H}`).attr('class', 'al');
+  const bind = tipLayer(el);
+  const N = c.dots, L = c.layers.length, R = c.roles.length;
+  const perRole = Math.max(3, Math.round(N * 0.08)), mainN = N - perRole * R;
+  const title = svg.append('text').attr('class', 'al-h').attr('x', 0).attr('y', 22);
+  svg.append('text').attr('class', 'al-tag').attr('x', W).attr('y', 22).attr('text-anchor', 'end').text('示意，非實際比例');
+
+  // 兩組列標題：第 1 段是 full funnel 各層，第 2 段是主場域＋輔助角色
+  const rowY1 = (i: number) => 52 + i * 31;
+  const rowY2 = (i: number) => 74 + i * 66;
+  const rowsOf = (cls: string, data: (Tipped & { label: string })[], y: (i: number) => number, sub: (i: number) => string) => {
+    const g = svg.append('g').attr('class', `al-rows ${cls}`);
+    const rows = g.selectAll('g').data(data).join('g').attr('class', (_, i) => `al-row${cls === 'al-r2' && i === 0 ? ' main' : ''}`)
+      .attr('transform', (_, i) => `translate(0,${y(i)})`);
+    rows.append('rect').attr('class', 'al-hit').attr('x', 0).attr('y', -14).attr('width', W).attr('height', 28).attr('rx', 8);
+    rows.append('text').attr('class', 'al-label').attr('x', lx - 12).attr('y', 5).attr('text-anchor', 'end').text((d) => d.label);
+    rows.each(function (d, i) { bind(this, { title: d.label, body: sub(i), extra: d.extra }); });
+    return g;
+  };
+  const g1 = rowsOf('al-r1', c.layers, rowY1, () => 'full funnel 的一層');
+  const g2 = rowsOf('al-r2', [c.main, ...c.roles], rowY2, (i) => (i === 0 ? '主場域：承擔主要 SOV' : '輔助場域'));
+
+  // 預算點：位置用 CSS transform，切換段落時以 transition 移動
+  const pos1 = (k: number) => [lx + Math.floor(k / L) * dx, rowY1(k % L)];
+  const pos2 = (k: number) => {
+    if (k < mainN) { const line = k % 2, j = Math.floor(k / 2); return [lx + j * dx, rowY2(0) + (line ? 9 : -9)]; }
+    const r = Math.floor((k - mainN) / perRole), j = (k - mainN) % perRole;
+    return [lx + j * dx, rowY2(1 + r)];
+  };
+  const dotsG = svg.append('g').attr('class', 'al-dots');
+  const dots = dotsG.selectAll('circle').data([...Array(N).keys()]).join('circle').attr('r', 4.5)
+    .style('transition-delay', (k) => `${(k % 12) * 25}ms`);
+  const place = (fn: (k: number) => number[]) => dots.style('transform', (k) => { const [x, y] = fn(k); return `translate(${x}px,${y}px)`; });
+
+  // 第 3 段：每一次投放的去向
+  const g3 = svg.append('g').attr('class', 'al-out');
+  const ex = W / 2, ey = 74, floor = 372, barX = 362, barW = 92, barMax = 250;
+  g3.append('text').attr('class', 'al-emit').attr('x', ex).attr('y', ey - 16).attr('text-anchor', 'middle').text('每一次投放');
+  g3.append('circle').attr('class', 'al-emitter').attr('cx', ex).attr('cy', ey).attr('r', 10);
+  const zone = (x0: number, x1: number, d: Tipped & { label: string }, cls: string) => {
+    const z = g3.append('g').attr('class', `al-zone ${cls}`);
+    z.append('rect').attr('class', 'al-zone-bg').attr('x', x0).attr('y', 110).attr('width', x1 - x0).attr('height', floor - 110 + 14).attr('rx', 14);
+    z.append('line').attr('class', 'al-floor').attr('x1', x0 + 12).attr('x2', x1 - 12).attr('y1', floor).attr('y2', floor);
+    z.append('text').attr('class', 'al-zone-t').attr('x', (x0 + x1) / 2).attr('y', floor + 44).attr('text-anchor', 'middle').text(d.label);
+    bind(z.node()!, { title: d.label, extra: d.extra });
+  };
+  zone(54, 254, c.once, 'once');
+  zone(306, 506, c.asset, 'asset');
+  const bar = g3.append('rect').attr('class', 'al-bar').attr('x', barX).attr('width', barW).attr('rx', 6).attr('y', floor).attr('height', 0);
+  const P = 18;
+  const parts = g3.selectAll('circle.al-p').data([...Array(P).keys()]).join('circle').attr('class', 'al-p').attr('r', 5);
+  const barH = (t: number) => ((t % 36000) / 36000) * barMax;
+
+  let step = 0;
+  return {
+    update(s) {
+      step = reduce ? 3 : s;
+      const st = Math.max(1, step);
+      title.text(st >= 3 ? c.outcomeTitle : st === 2 ? c.splitTitle : c.layersTitle);
+      g1.classed('on', st === 1);
+      g2.classed('on', st === 2);
+      dotsG.classed('on', st <= 2);
+      g3.classed('on', st >= 3);
+      place(st === 2 ? pos2 : pos1);
+      if (reduce) { bar.attr('y', floor - barMax * 0.6).attr('height', barMax * 0.6); parts.style('opacity', 0); }
+    },
+    tick(t) {
+      if (step < 3) return;
+      const h = barH(t), top = floor - h;
+      bar.attr('y', top).attr('height', h);
+      parts.each(function (i) {
+        const p = ((t / 2600) + i / P) % 1;
+        const left = i % 2 === 0;
+        const tx = left ? 84 + ((i * 37) % 140) : barX + 14 + ((i * 29) % (barW - 28));
+        const ty = left ? floor - 6 : top - 6;
+        const k = Math.min(1, p / 0.55), e = k * k * (3 - 2 * k);
+        const x = ex + (tx - ex) * e, y = ey + (ty - ey) * e - Math.sin(Math.PI * e) * 26;
+        // 左邊：落地後慢慢消失；右邊：碰到長條就融進去
+        const o = p < 0.55 ? 1 : left ? Math.max(0, 1 - (p - 0.55) / 0.4) : Math.max(0, 1 - (p - 0.55) / 0.08);
+        select(this).attr('cx', x).attr('cy', y).style('opacity', o).classed('keep', !left);
+      });
     },
   };
 }
@@ -396,7 +488,7 @@ function rings(el: HTMLElement, c: Extract<D3Chart, { kind: 'rings' }>): Instanc
   };
 }
 
-const builders: Record<string, (el: HTMLElement, c: never) => Instance> = { flowloop, groups, logrange, stages, esov, rings } as never;
+const builders: Record<string, (el: HTMLElement, c: never) => Instance> = { flowloop, groups, logrange, stages, esov, rings, allocate } as never;
 
 export function initD3() {
   const charts = Array.from(document.querySelectorAll<HTMLElement>('[data-d3]'));
