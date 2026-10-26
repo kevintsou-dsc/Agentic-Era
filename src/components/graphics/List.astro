@@ -89,7 +89,8 @@ const name = (t: string) => (t.includes('｜') ? t.split('｜').slice(1).join('�
 
   /* 時間軸：軌道在節點列，跟著第 k 段點亮到第 k 個節點；最後一段帶箭頭 */
   .tl { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(var(--n), minmax(0, 1fr)); gap: 0 12px; }
-  .tl li { position: relative; display: grid; grid-template-rows: auto 1fr; gap: 10px; opacity: calc(.25 + .75 * var(--on)); transition: opacity .5s; }
+  /* 時間軸的項目不是卡片：重設一般清單 li 的外框、底色與內距 */
+  .tl li { position: relative; display: grid; grid-template-rows: auto 1fr; gap: 10px; padding: 0; border: 0; border-radius: 0; background: none; transform: none; opacity: calc(.25 + .75 * var(--on)); transition: opacity .5s; }
   .tl-node { position: relative; display: flex; align-items: center; gap: 8px; height: 28px; }
   .tl li::before { content: ''; position: absolute; top: 13px; left: 0; right: -12px; height: 3px; border-radius: 2px;
     background: linear-gradient(90deg, var(--accent-ink) calc(var(--on) * 100%), var(--line) 0); transition: background .6s; }
