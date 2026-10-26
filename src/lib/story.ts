@@ -89,7 +89,19 @@ export type D3Chart =
   /** 對數尺度的範圍長條（例如成本倍數 1×、5–10×、10–100×） */
   | { kind: 'logrange'; title: string; unit: string; rows: (Tipped & { label: string; sub?: string; min: number; max: number; open?: boolean; at: number })[] }
   /** 消費模型演進：每列一個時代、每格一個階段，起點逐列改變；列本身也有說明（模型名稱） */
-  | { kind: 'stages'; title: string; rows: (Tipped & { era: string; model: string; steps: (Tipped & { en: string; zh: string })[]; at: number })[] };
+  | { kind: 'stages'; title: string; rows: (Tipped & { era: string; model: string; steps: (Tipped & { en: string; zh: string })[]; at: number })[] }
+  /**
+   * ESOV 減法圖：第 1 段 SOM 長條滑下來疊到 SOV 上，只剩超出的部分（ESOV）亮著；
+   * 第 2 段攤開不同媒體場域（同樣一次曝光意義不同）；第 3 段收成「主場域＋輔助角色」。
+   */
+  | {
+      kind: 'esov'; title: string;
+      som: Tipped & { label: string; sub: string; value: number };
+      sov: Tipped & { label: string; sub: string; value: number };
+      result: Tipped & { label: string };
+      fieldsTitle: string; fields: (Tipped & { label: string })[];
+      main: Tipped & { label: string }; roles: (Tipped & { label: string })[];
+    };
 
 /** 說明框內容（策展補充） */
 export interface Tipped { extra?: string }

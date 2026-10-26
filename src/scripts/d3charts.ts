@@ -256,7 +256,97 @@ function stages(el: HTMLElement, c: Extract<D3Chart, { kind: 'stages' }>): Insta
   };
 }
 
-const builders: Record<string, (el: HTMLElement, c: never) => Instance> = { flowloop, groups, logrange, stages } as never;
+// ---------- esov：SOV 減去 SOM 的減法動畫 → 媒體場域 → 主場域分工 ----------
+function esov(el: HTMLElement, c: Extract<D3Chart, { kind: 'esov' }>): Instance {
+  const W = 560, H = 430, left = 112, right = 40;
+  const x = scaleLinear().domain([0, Math.ceil(Math.max(c.sov.value, c.som.value) / 10) * 10 + 10]).range([left, W - right]);
+  const svg = select(el).append('svg').attr('viewBox', `0 0 ${W} ${H}`).attr('class', 'es');
+  const bind = tipLayer(el);
+  const yA = 44, yB = 104, bh = 34;
+
+  // A. 減法：SOM 疊到 SOV 上，只剩超出的部分
+  const a = svg.append('g').attr('class', 'es-a');
+  a.append('text').attr('class', 'es-formula').attr('x', left).attr('y', 18).text(`${c.result.label} ＝ SOV − SOM`);
+  const label = (y: number, d: { label: string; sub: string }) => {
+    a.append('text').attr('class', 'es-label').attr('x', left - 12).attr('y', y + 16).attr('text-anchor', 'end').text(d.label);
+    a.append('text').attr('class', 'es-sub').attr('x', left - 12).attr('y', y + 32).attr('text-anchor', 'end').text(d.sub);
+  };
+  label(yA, c.som);
+  label(yB, c.sov);
+  a.append('line').attr('class', 'es-axis').attr('x1', left).attr('x2', left).attr('y1', yA - 8).attr('y2', yB + bh + 8);
+  const som = a.append('rect').attr('class', 'es-som').attr('x', left).attr('y', yA).attr('height', bh).attr('rx', 6).attr('width', x(c.som.value) - left);
+  a.append('text').attr('class', 'es-val').attr('x', x(c.som.value) + 8).attr('y', yA + 23).text(`${c.som.value}%`);
+  const sovBase = a.append('rect').attr('class', 'es-sov').attr('x', left).attr('y', yB).attr('height', bh).attr('rx', 6).attr('width', x(c.sov.value) - left);
+  const excess = a.append('rect').attr('class', 'es-excess').attr('x', x(c.som.value)).attr('y', yB).attr('height', bh).attr('rx', 6)
+    .attr('width', x(c.sov.value) - x(c.som.value));
+  a.append('text').attr('class', 'es-val').attr('x', x(c.sov.value) + 8).attr('y', yB + 23).text(`${c.sov.value}%`);
+  const cutter = a.append('rect').attr('class', 'es-cutter').attr('x', left).attr('y', yA).attr('height', bh).attr('rx', 6).attr('width', x(c.som.value) - left);
+  const ex = x(c.som.value), ex2 = x(c.sov.value), yBr = yB + bh + 10;
+  const brace = a.append('g').attr('class', 'es-brace');
+  brace.append('path').attr('d', `M${ex},${yBr} v8 H${ex2} v-8 M${(ex + ex2) / 2},${yBr + 8} v8`);
+  brace.append('text').attr('x', (ex + ex2) / 2).attr('y', yBr + 34).attr('text-anchor', 'middle').text(`${c.result.label} +${c.sov.value - c.som.value}`);
+  bind(som.node()!, { title: `${c.som.label}　${c.som.value}%`, body: c.som.sub, extra: c.som.extra });
+  bind(sovBase.node()!, { title: `${c.sov.label}　${c.sov.value}%`, body: c.sov.sub, extra: c.sov.extra });
+  bind(excess.node()!, { title: `${c.result.label}　+${c.sov.value - c.som.value}`, body: `${c.sov.value}% − ${c.som.value}%`, extra: c.result.extra });
+
+  // B. 媒體場域：同樣算一次曝光，意義卻不同
+  const b = svg.append('g').attr('class', 'es-b');
+  b.append('text').attr('class', 'es-h').attr('x', W / 2).attr('y', 238).attr('text-anchor', 'middle').text(c.fieldsTitle);
+  const n = c.fields.length, tw = Math.min(70, (W - 40 - (n - 1) * 6) / n), x0 = (W - (n * tw + (n - 1) * 6)) / 2;
+  const tiles = b.selectAll('g.es-tile').data(c.fields).join('g').attr('class', 'es-tile')
+    .attr('transform', (_, i) => `translate(${x0 + i * (tw + 6)},258)`);
+  tiles.append('rect').attr('width', tw).attr('height', 64).attr('rx', 10);
+  tiles.append('text').attr('x', tw / 2).attr('y', 30).attr('text-anchor', 'middle').text((d) => d.label);
+  tiles.append('text').attr('class', 'es-one').attr('x', tw / 2).attr('y', 50).attr('text-anchor', 'middle').text('1 次曝光');
+  tiles.each(function (d) { bind(this, { title: d.label, body: '同樣算一次曝光，意義卻不同', extra: d.extra }); });
+  b.append('text').attr('class', 'es-note').attr('x', W / 2).attr('y', 356).attr('text-anchor', 'middle').text('注意力品質、情境、競品干擾、記憶效果都不同');
+
+  // C. 主場域＋輔助角色（連線上的虛線持續流動）
+  const cc = svg.append('g').attr('class', 'es-c');
+  const hx = W / 2, hy = 330;
+  const sat = c.roles.map((_, i) => {
+    const ang = Math.PI + (i * Math.PI) / Math.max(1, c.roles.length - 1);
+    return [hx + 200 * Math.cos(ang), hy + 74 * Math.sin(ang) - 8] as [number, number];
+  });
+  const links = cc.selectAll('line').data(sat).join('line').attr('class', 'es-link')
+    .attr('x1', hx).attr('y1', hy).attr('x2', (d) => d[0]).attr('y2', (d) => d[1]);
+  const roles = cc.selectAll('g.es-role').data(c.roles).join('g').attr('class', 'es-role').attr('transform', (_, i) => `translate(${sat[i].join(',')})`);
+  roles.append('rect').attr('x', -42).attr('y', -17).attr('width', 84).attr('height', 34).attr('rx', 17);
+  roles.append('text').attr('y', 5).attr('text-anchor', 'middle').text((d) => d.label);
+  roles.each(function (d) { bind(this, { title: `輔助場域：${d.label}`, extra: d.extra }); });
+  const hub = cc.append('g').attr('class', 'es-hub').attr('transform', `translate(${hx},${hy})`);
+  hub.append('circle').attr('r', 46);
+  hub.append('text').attr('y', -2).attr('text-anchor', 'middle').text(c.main.label);
+  hub.append('text').attr('class', 'es-hub-sub').attr('y', 18).attr('text-anchor', 'middle').text('承擔主要 SOV');
+  bind(hub.node()!, { title: c.main.label, extra: c.main.extra });
+
+  let step = 0;
+  // p：0–0.2 分開 → 0.2–0.45 SOM 滑下疊上 → 0.45–0.95 只剩超出的部分亮著 → 重來
+  const setA = (p: number) => {
+    const k = Math.min(1, Math.max(0, (p - 0.2) / 0.25));
+    const ease = k * k * (3 - 2 * k);
+    const lit = p > 0.45 && p < 0.95;
+    cutter.attr('y', yA + (yB - yA) * ease).style('opacity', p < 0.95 ? 1 : 0);
+    sovBase.classed('dim', lit);
+    excess.classed('lit', lit);
+    brace.style('opacity', lit ? 1 : 0);
+  };
+  return {
+    update(s) {
+      step = s;
+      a.classed('on', reduce || s >= 1);
+      b.classed('on', !reduce && s === 2);
+      cc.classed('on', reduce || s >= 3);
+      if (reduce) { setA(0.7); b.style('display', 'none'); } else if (s < 1) setA(0);
+    },
+    tick(t) {
+      if (step >= 1) setA((t % 5200) / 5200);
+      links.attr('stroke-dashoffset', -(t / 40) % 24);
+    },
+  };
+}
+
+const builders: Record<string, (el: HTMLElement, c: never) => Instance> = { flowloop, groups, logrange, stages, esov } as never;
 
 export function initD3() {
   const charts = Array.from(document.querySelectorAll<HTMLElement>('[data-d3]'));

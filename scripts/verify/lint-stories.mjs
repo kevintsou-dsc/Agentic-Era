@@ -52,6 +52,7 @@ for (const f of readdirSync(dir).filter((x) => /^a\d\d\.ts$/.test(x))) {
     } else if (c.kind === 'groups') c.groups.forEach((g) => g.items.forEach((i) => tip(`${g.name} ${i.label}`, i)));
     else if (c.kind === 'logrange') c.rows.forEach((r) => tip(r.label, r));
     else if (c.kind === 'stages') c.rows.forEach((r) => { tip(r.model, r); r.steps.forEach((st) => tip(`${r.model} ${st.en}`, st)); });
+    else if (c.kind === 'esov') [c.som, c.sov, c.result, ...c.fields, c.main, ...c.roles].forEach((o) => tip(o.label, o));
   }
   summary.push(`${id} 主文 ${beats.length - details.length} 段、細節 ${details.length} 則、合計 ${total} 字${tips ? `、圖表說明 ${tips} 則` : ''}`);
 }
