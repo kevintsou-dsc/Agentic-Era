@@ -1,0 +1,205 @@
+---
+// a12 Lisa／Cindy 兩個 AI Persona 的人物檔案。文字一律照錄原刊 p.102 的表格與內文。
+// 第 1 段 Lisa、第 2 段 Cindy 依序亮起（data-at／data-focus）；第 3 段出現「信任門檻」：
+// 同一則「代言＋社群聲量」的訊息送向兩人，Lisa 的門檻低、訊息通過，Cindy 的門檻高、訊息被擋下。
+// 純 SVG＋CSS，class 一律加 pd- 前綴。
+const people = [
+  {
+    key: 'lisa', at: 1, name: 'Lisa', age: '25–34 歲', bought: '藍芽耳機',
+    order: [{ t: '價格', i: 'price' }, { t: '續航', i: 'battery' }, { t: '使用者評價', i: 'star' }],
+    voice: '這 CP 值高不高？可別花這筆錢還買到斷線爛音質',
+    insight: '偏向體驗探索，關注 CP 值與社群風向',
+  },
+  {
+    key: 'cindy', at: 2, name: 'Cindy', age: '35–44 歲', bought: '換手機',
+    order: [{ t: '續航', i: 'battery' }, { t: '規格效能', i: 'chip' }, { t: '價格', i: 'price' }],
+    voice: '這電池到底撐不撐得了一整天？很怕出門在外沒電很麻煩',
+    insight: '避險導向，高度看重安全感與品質信任度',
+  },
+];
+---
+<div class="pd" role="img" aria-label="兩張 AI Persona 人物檔案：Lisa（25–34 歲）買藍芽耳機，依序考量價格、續航、使用者評價，心聲是「這 CP 值高不高？可別花這筆錢還買到斷線爛音質」，偏向體驗探索；Cindy（35–44 歲）換手機，依序考量續航、規格效能、價格，心聲是「這電池到底撐不撐得了一整天？很怕出門在外沒電很麻煩」，避險導向。信任門檻：網紅試用與社群聲量打得動 Lisa，打不動 Cindy；Cindy 看重品質聲譽與真實親友口碑。">
+  <div class="pd-cards" aria-hidden="true">
+    {people.map((p) => (
+      <article class:list={['pd-card', `pd-${p.key}`]} data-at={p.at} data-focus={p.at}>
+        <header class="pd-head">
+          <div class="pd-face">
+            <svg viewBox="0 0 120 120">
+              <circle class="pd-bg" cx="60" cy="60" r="56" />
+              <circle class="pd-scan" cx="60" cy="60" r="56" />
+              {p.key === 'lisa' ? (
+                <g>
+                  <path class="pd-hair" d="M34 58 q0 -30 26 -30 q26 0 26 30 v34 q-6 6 -12 0 v-30 h-28 v30 q-6 6 -12 0 z" />
+                  <path class="pd-hair" d="M84 46 q16 6 12 34 q-4 -10 -12 -14 z" />
+                  <path class="pd-body" d="M24 120 q2 -26 36 -28 q34 2 36 28 z" />
+                  <path class="pd-collar" d="M50 93 l10 12 l10 -12" />
+                  <rect class="pd-skin" x="53" y="78" width="14" height="16" rx="5" />
+                  <ellipse class="pd-skin" cx="60" cy="62" rx="20" ry="23" />
+                  <path class="pd-hair" d="M40 56 q6 -22 22 -20 q16 0 20 18 q-14 -4 -24 -14 q-6 10 -18 16 z" />
+                  <circle class="pd-eye" cx="52" cy="64" r="2.2" /><circle class="pd-eye" cx="68" cy="64" r="2.2" />
+                  <path class="pd-mouth" d="M55 74 q5 4 10 0" />
+                  <circle class="pd-bud" cx="40" cy="66" r="3.4" /><circle class="pd-bud" cx="80" cy="66" r="3.4" />
+                  <g class="pd-wave"><path d="M88 58 q5 8 0 16" /><path d="M94 54 q8 12 0 24" /><path d="M100 50 q11 16 0 32" /></g>
+                </g>
+              ) : (
+                <g>
+                  <path class="pd-hair" d="M34 64 q-2 -36 26 -36 q28 0 26 36 q0 14 -6 20 h-40 q-6 -6 -6 -20 z" />
+                  <path class="pd-body" d="M24 120 q2 -26 36 -28 q34 2 36 28 z" />
+                  <path class="pd-collar" d="M48 92 l12 14 l12 -14" />
+                  <rect class="pd-skin" x="53" y="78" width="14" height="16" rx="5" />
+                  <ellipse class="pd-skin" cx="60" cy="62" rx="20" ry="23" />
+                  <path class="pd-hair" d="M38 60 q2 -24 24 -24 q20 0 22 22 q-20 2 -30 -10 q-6 8 -16 12 z" />
+                  <g class="pd-glass"><circle cx="52" cy="64" r="6" /><circle cx="68" cy="64" r="6" /><path d="M58 64 h4" /></g>
+                  <circle class="pd-eye" cx="52" cy="64" r="2" /><circle class="pd-eye" cx="68" cy="64" r="2" />
+                  <path class="pd-mouth" d="M55 75 h10" />
+                  <g class="pd-phone">
+                    <rect x="84" y="70" width="18" height="32" rx="3" />
+                    <rect class="pd-batt" x="88" y="80" width="10" height="5" rx="1" />
+                    <rect class="pd-batt-lv" x="89" y="81" width="2" height="3" />
+                  </g>
+                </g>
+              )}
+            </svg>
+            <span class="pd-badge">AI PERSONA</span>
+          </div>
+          <div class="pd-id">
+            <p class="pd-name">{p.name}<span class="pd-age">{p.age}</span></p>
+            <p class="pd-meta">台北・女性上班族</p>
+            <p class="pd-buy"><span>買了</span>{p.bought}</p>
+          </div>
+        </header>
+
+        <p class="pd-voice">「{p.voice}」</p>
+
+        <div class="pd-order">
+          <p class="pd-label">考量排序</p>
+          <ol>
+            {p.order.map((o, i) => (
+              <li style={`--d:${300 + i * 180}ms; --w:${100 - i * 16}%`}>
+                <span class="pd-rank">{i + 1}</span>
+                <svg class="pd-ic" viewBox="0 0 24 24">
+                  {o.i === 'price' && <g><circle cx="12" cy="12" r="9" /><path d="M12 6 v12 M9 9 q0 -2 3 -2 q3 0 3 2 q0 2 -3 3 q-3 1 -3 3 q0 2 3 2 q3 0 3 -2" /></g>}
+                  {o.i === 'battery' && <g><rect x="3" y="7" width="16" height="10" rx="2" /><path d="M21 10 v4" /><rect class="pd-fill" x="5" y="9" width="5" height="6" /></g>}
+                  {o.i === 'star' && <path d="M12 3 l2.7 5.6 6.1 .8 -4.5 4.2 1.1 6.1 L12 16.8 6.6 19.7l1.1-6.1L3.2 9.4l6.1-.8z" />}
+                  {o.i === 'chip' && <g><rect x="6" y="6" width="12" height="12" rx="2" /><path d="M9 3v3M15 3v3M9 18v3M15 18v3M3 9h3M3 15h3M18 9h3M18 15h3" /></g>}
+                </svg>
+                <span class="pd-ot">{o.t}</span>
+              </li>
+            ))}
+          </ol>
+        </div>
+
+        <p class="pd-insight">{p.insight}</p>
+      </article>
+    ))}
+  </div>
+
+  <section class="pd-gate" data-at="3" aria-hidden="true">
+    <p class="pd-gate-h">信任門檻：同一個行銷動作，啟動完全不同的防禦機制</p>
+    <div class="pd-lane pd-lane-lisa">
+      <span class="pd-who">Lisa</span>
+      <div class="pd-track">
+        <span class="pd-msg">網紅試用・社群聲量</span>
+        <span class="pd-wall low"></span>
+      </div>
+      <span class="pd-res ok">打得動 ✓</span>
+    </div>
+    <div class="pd-lane pd-lane-cindy">
+      <span class="pd-who">Cindy</span>
+      <div class="pd-track">
+        <span class="pd-msg">網紅試用・社群聲量</span>
+        <span class="pd-wall high"></span>
+      </div>
+      <span class="pd-res no">打不動 ✗</span>
+    </div>
+    <p class="pd-key">要打動 Cindy：品質聲譽、真實親友的口碑推薦、線下實體試用</p>
+  </section>
+</div>
+
+<style>
+  .pd { display: grid; gap: 14px; }
+  .pd-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .pd-card {
+    --tone: #d9816b; --tone-soft: #f6dcd2;
+    position: relative; display: grid; gap: 10px; align-content: start; padding: 14px; border-radius: 16px;
+    background: var(--paper); border: 2px solid color-mix(in srgb, var(--tone) calc(30% + var(--focus) * 70%), var(--line));
+    box-shadow: 0 calc(var(--focus) * 10px) calc(var(--focus) * 24px) color-mix(in srgb, var(--tone) 25%, transparent);
+    opacity: calc(.28 + .72 * var(--on)); transform: translateY(calc((1 - var(--on)) * 14px)) scale(calc(.98 + .02 * var(--focus)));
+    transition: opacity .5s, transform .5s, border-color .4s, box-shadow .4s;
+  }
+  .pd-cindy { --tone: #4f7fa8; --tone-soft: #d8e5f0; }
+
+  .pd-head { display: grid; grid-template-columns: 76px 1fr; gap: 10px; align-items: center; }
+  .pd-face { position: relative; }
+  .pd-face svg { display: block; width: 76px; height: 76px; }
+  .pd-bg { fill: var(--tone-soft); }
+  .pd-scan { fill: none; stroke: var(--tone); stroke-width: 2; stroke-dasharray: 4 6; transform-origin: center; animation: pd-spin 18s linear infinite; }
+  .pd-skin { fill: #f1cdb0; }
+  .pd-hair { fill: #3a2d28; }
+  .pd-cindy .pd-hair { fill: #5a4034; }
+  .pd-body { fill: var(--tone); }
+  .pd-collar { fill: none; stroke: #fff; stroke-width: 3; stroke-linejoin: round; }
+  .pd-eye { fill: #2a211d; }
+  .pd-mouth { fill: none; stroke: #9a5a4a; stroke-width: 2; stroke-linecap: round; }
+  .pd-bud { fill: #fff; stroke: #2a211d; stroke-width: 1.5; }
+  .pd-wave path { fill: none; stroke: var(--tone); stroke-width: 2.4; stroke-linecap: round; opacity: 0; animation: pd-wave 1.8s infinite; }
+  .pd-wave path:nth-child(2) { animation-delay: .25s; } .pd-wave path:nth-child(3) { animation-delay: .5s; }
+  .pd-glass { fill: none; stroke: #2a211d; stroke-width: 1.6; }
+  .pd-phone rect:first-child { fill: #2a211d; }
+  .pd-batt { fill: none; stroke: #fff; stroke-width: 1; }
+  .pd-batt-lv { fill: #e5484d; animation: pd-blink 1.2s steps(2) infinite; }
+  .pd-badge { position: absolute; left: 50%; bottom: -6px; transform: translateX(-50%); white-space: nowrap; font-family: var(--font-mono); font-size: 9px; font-weight: 700; letter-spacing: .06em; padding: 1px 6px; border-radius: 999px; background: var(--ink); color: var(--paper); }
+
+  .pd-id p { margin: 0; }
+  .pd-name { font-weight: 800; font-size: 22px; line-height: 1.2; }
+  .pd-age { margin-left: 6px; font-size: 13px; font-weight: 700; color: var(--tone); }
+  .pd-meta { font-size: 12px; color: var(--ink-3); }
+  .pd-buy { margin-top: 4px !important; font-size: 14px; font-weight: 700; }
+  .pd-buy span { margin-right: 6px; font-size: 11px; font-weight: 700; padding: 1px 6px; border-radius: 6px; background: var(--tone-soft); color: var(--ink-2); }
+
+  .pd-voice { position: relative; margin: 4px 0 0; padding: 10px 12px; border-radius: 14px; background: var(--tone-soft); font-size: 14px; line-height: 1.55; font-weight: 700; }
+  .pd-voice::before { content: ''; position: absolute; left: 26px; top: -8px; border: 8px solid transparent; border-top: 0; border-bottom-color: var(--tone-soft); }
+
+  .pd-label { margin: 0 0 6px; font-size: 11px; font-weight: 700; letter-spacing: .08em; color: var(--ink-3); }
+  .pd-order ol { list-style: none; margin: 0; padding: 0; display: grid; gap: 5px; }
+  .pd-order li {
+    display: grid; grid-template-columns: 20px 20px 1fr; align-items: center; gap: 6px; width: var(--w); min-width: 9.5rem;
+    padding: 5px 8px; border-radius: 8px; background: color-mix(in srgb, var(--tone) 14%, var(--paper)); font-size: 13px; font-weight: 700;
+    opacity: var(--on); transform: translateX(calc((1 - var(--on)) * -12px)); transition: opacity .4s var(--d), transform .4s var(--d);
+  }
+  .pd-rank { display: grid; place-items: center; width: 20px; height: 20px; border-radius: 50%; background: var(--tone); color: #fff; font-family: var(--font-mono); font-size: 11px; }
+  .pd-ic { width: 18px; height: 18px; fill: none; stroke: var(--ink); stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+  .pd-fill { fill: var(--ink); stroke: none; }
+  .pd-insight { margin: 0; padding-top: 8px; border-top: 1px dashed var(--line); font-size: 13px; color: var(--ink-2); line-height: 1.5; }
+
+  /* 信任門檻 */
+  .pd-gate { display: grid; gap: 8px; padding: 12px 14px; border-radius: 14px; border: 2px dashed var(--ink-3); opacity: var(--on); transform: translateY(calc((1 - var(--on)) * 12px)); transition: opacity .5s, transform .5s; }
+  .pd-gate-h { margin: 0; font-weight: 800; font-size: 14px; }
+  .pd-lane { display: grid; grid-template-columns: 3.4rem 1fr 4.6rem; gap: 8px; align-items: center; font-size: 13px; font-weight: 700; }
+  .pd-lane-lisa { --tone: #d9816b; } .pd-lane-cindy { --tone: #4f7fa8; }
+  .pd-who { color: var(--tone); }
+  .pd-track { position: relative; height: 34px; border-radius: 8px; background: repeating-linear-gradient(90deg, var(--line) 0 6px, transparent 6px 12px) center / 100% 2px no-repeat; }
+  .pd-wall { position: absolute; left: 68%; bottom: 2px; width: 8px; border-radius: 3px; background: var(--tone); }
+  .pd-wall.low { height: 8px; }
+  .pd-wall.high { height: 30px; }
+  .pd-msg { position: absolute; top: 50%; left: 0; white-space: nowrap; font-size: 11px; padding: 2px 8px; border-radius: 999px; background: var(--accent); border: 1px solid var(--accent-ink); transform: translate(0, -50%); transition: left 1.4s .4s cubic-bezier(.4, 0, .2, 1); }
+  .pd-lane-lisa .pd-msg { left: calc(var(--on) * 100%); transform: translate(calc(var(--on) * -100%), -50%); transition: left 1.6s .4s cubic-bezier(.4, 0, .2, 1), transform 1.6s .4s cubic-bezier(.4, 0, .2, 1); }
+  .pd-lane-cindy .pd-msg { left: calc(var(--on) * 68%); transform: translate(calc(var(--on) * -100% - var(--on) * 4px), -50%); transition: left 1.2s .4s cubic-bezier(.3, 1.4, .5, 1), transform 1.2s .4s cubic-bezier(.3, 1.4, .5, 1); }
+  .pd-res { opacity: var(--on); transition: opacity .4s 1.8s; }
+  .pd-res.ok { color: #2f7d4f; } .pd-res.no { color: #c2413b; }
+  .pd-key { margin: 2px 0 0; font-size: 12px; color: var(--ink-2); opacity: var(--on); transition: opacity .4s 2.1s; }
+
+  @keyframes pd-spin { to { transform: rotate(360deg); } }
+  @keyframes pd-wave { 0% { opacity: 0; } 40% { opacity: 1; } 100% { opacity: 0; } }
+  @keyframes pd-blink { to { opacity: .2; } }
+
+  @media (max-width: 560px) {
+    .pd-cards { grid-template-columns: 1fr; }
+    .pd-order li { width: 100%; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .pd-scan, .pd-wave path, .pd-batt-lv { animation: none; }
+    .pd-wave path { opacity: 1; }
+    .pd-card, .pd-order li, .pd-gate, .pd-msg, .pd-res, .pd-key { transition: none; }
+  }
+</style>

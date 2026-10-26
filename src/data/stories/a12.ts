@@ -1,7 +1,7 @@
 import type { Story } from '../../lib/story';
 
 // 陳介立、孫郁喬、高靖萍〈People Model 讓消費者研究變成一場隨時能開口的對話〉紙本 p.96–115
-// 原刊圖表：CCS 八大構面（清單）、訓練方法表（細節卡）、模擬 vs 真人散布圖（圖片）、Lisa／Cindy 對照表（清單）、
+// 原刊圖表：CCS 八大構面（清單）、訓練方法表（細節卡）、模擬 vs 真人散布圖（圖片）、Lisa／Cindy 對照表（art persona-duo 人物檔案）、
 // Multi-Agent 流程（d3 循環）、五個模擬案例（hscroll，含兩組廣告素材圖）、三種輸出層次（layers）
 export const story: Story = {
   id: 'a12',
@@ -132,12 +132,9 @@ export const story: Story = {
       kind: 'graphic',
       side: 'right',
       graphic: {
-        type: 'list',
+        type: 'art',
+        art: 'persona-duo',
         title: '同樣是台北女性上班族，十歲之差',
-        items: [
-          { title: 'Lisa（25–34 歲）買藍芽耳機', desc: '價格 → 續航 → 使用者評價｜「這 CP 值高不高？」偏向體驗探索，關注 CP 值與社群風向', at: 1 },
-          { title: 'Cindy（35–44 歲）換手機', desc: '續航 → 規格效能 → 價格｜「電池撐不撐得了一整天？」避險導向，看重安全感與品質信任', at: 2 },
-        ],
         source: '表：設定兩個 AI Persona 後模擬的購買考量與心聲｜〈People Model〉紙本 p.102',
       },
       src: [{ article: 'a12', page: 102, text: '設定完兩個 AI Persona 後，可以透過 People Model 模擬他們的購買考量因素、心聲' }],
