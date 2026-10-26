@@ -176,6 +176,7 @@ export const story: Story = {
       side: 'right',
       graphic: {
         type: 'list',
+        layout: 'timeline',
         title: '顧客體驗三階段演進：從固定流程，走向依情境調整',
         items: [
           { title: 'Stage 1｜靜態顧客體驗 Static CX', desc: '破碎通路，被動回應', at: 1 },

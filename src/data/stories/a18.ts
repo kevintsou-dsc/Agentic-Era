@@ -94,12 +94,9 @@ export const story: Story = {
     {
       kind: 'graphic',
       graphic: {
-        type: 'list',
+        type: 'art',
+        art: 'journey-compress',
         title: '顧客旅程正在被壓縮',
-        items: [
-          { title: '指令回應式體驗', desc: 'Request-Based：顧客發出明確訊號，系統才回應', at: 1 },
-          { title: '代理協作式體驗', desc: 'Agent-Assisted：理解目標、判斷情境、整理選項，在授權內完成任務', at: 2 },
-        ],
         source: '依據 王姿喨、詹佳穎、黃靖婷〈體驗這件事，我們一直只問了一半〉紙本 p.162',
       },
       src: [{ article: 'a18', page: 162, text: '這就是顧客旅程壓縮 (Journey Compression)' }],

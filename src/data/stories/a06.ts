@@ -32,6 +32,7 @@ export const story: Story = {
       side: 'right',
       graphic: {
         type: 'list',
+        layout: 'timeline',
         title: '信任的來源，一路在轉移',
         items: [
           { title: '透過媒體認識世界', desc: '媒體承擔查證與把關，是社會真實性的守門人', at: 1 },

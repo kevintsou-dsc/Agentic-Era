@@ -1,0 +1,97 @@
+---
+// a18「顧客旅程正在被壓縮」（原文 p.162 的旅遊例子）。三段主文各對一個狀態：
+// ① 指令回應式：一段長旅程，每一站都要人自己操作（data-at=1）
+// ② 代理協作式：Agent 出現，理解目標、判斷情境、整理選項（data-at=2）
+// ③ 壓縮：中間的搜尋與比較被 Agent 吸收，只剩「說出條件 → 幾套方案」；30 個選項收成 3 個（data-at=3）
+// 純 HTML＋CSS，class 一律加 jc- 前綴。
+const mids = ['比較航班', '飯店', '評論', '保險'];
+const dots = Array.from({ length: 30 }, (_, i) => i);
+---
+<div class="jc" role="img" aria-label="顧客旅程壓縮：過去買旅遊產品，要從搜尋目的地開始，逐一比較航班、飯店、評論、保險，再完成付款與行程安排；有了 AI Agent，顧客只要說出預算、日期與偏好，Agent 就先整理出幾套可執行方案。Agent 可能只呈現三個選項，而不是三十個。">
+  <div class="jc-row" data-at="1" aria-hidden="true">
+    <p class="jc-cap"><span class="c1">指令回應式：每一步都要人自己來</span><span class="c2">代理協作式：Agent 加入，協助完成任務</span><span class="c3">旅程壓縮：大量搜尋與比較被 AI 吸收</span></p>
+    <div class="jc-chain">
+      <span class="jc-who" title="顧客">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="7" r="4" /><path d="M4 22 q1 -9 8 -9 q7 0 8 9 z" /></svg>
+      </span>
+      <span class="jc-chip jc-end">
+        <span class="jc-old">搜尋目的地</span><span class="jc-new">說出預算、日期與偏好</span>
+      </span>
+      {mids.map((m, i) => (
+        <span class="jc-mid" style={`--d:${i * 90}ms`}><span class="jc-arrow">→</span><span class="jc-chip">{m}</span></span>
+      ))}
+      <span class="jc-agent" data-at="2">
+        <span class="jc-arrow">→</span>
+        <span class="jc-chip jc-bot">
+          <svg viewBox="0 0 24 24"><rect x="4" y="7" width="16" height="12" rx="4" /><path d="M12 3 v4 M9 13 h.01 M15 13 h.01" /></svg>
+          AI Agent
+        </span>
+      </span>
+      <span class="jc-arrow">→</span>
+      <span class="jc-chip jc-end">
+        <span class="jc-old">付款與行程安排</span><span class="jc-new">幾套可執行方案</span>
+      </span>
+    </div>
+  </div>
+
+  <div class="jc-does" data-at="2" aria-hidden="true">
+    {['理解目標', '判斷情境', '整理選項', '在授權範圍內完成任務'].map((t, i) => <span style={`--d:${200 + i * 150}ms`}>{t}</span>)}
+  </div>
+
+  <div class="jc-choice" data-at="3" aria-hidden="true">
+    <div class="jc-dots">
+      {dots.map((i) => <span class:list={{ keep: i === 4 || i === 15 || i === 26 }} style={`--d:${(i % 10) * 30}ms`}></span>)}
+    </div>
+    <p class="jc-choice-t"><b>3</b> 個選項，而不是 <s>30</s> 個<br /><span>品牌如何被理解、被排序、被信任，成為新的競爭場</span></p>
+  </div>
+</div>
+
+<style>
+  .jc { display: grid; gap: 16px; }
+  .jc-cap { margin: 0; font-size: 14px; font-weight: 800; }
+  /* 文字切換：第 3 段之前顯示舊版，之後顯示新版 */
+  .jc-old, .jc-new { transition: opacity .4s; }
+  .jc-new { display: none; }
+  .jc-cap .c2, .jc-cap .c3 { display: none; }
+  :global(.graphic.is-2) .jc-cap .c1 { display: none; }
+  :global(.graphic.is-2) .jc-cap .c2 { display: inline; color: var(--accent-ink); }
+  :global(.graphic.is-3) .jc-cap .c2 { display: none; }
+  :global(.graphic.is-3) .jc-cap .c3 { display: inline; color: var(--accent-ink); }
+  :global(.graphic.is-3) .jc-old { display: none; }
+  :global(.graphic.is-3) .jc-new { display: inline; }
+
+  .jc-row { opacity: calc(.25 + .75 * var(--on)); transition: opacity .5s; display: grid; gap: 10px; }
+  .jc-chain { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 6px; }
+  .jc-who { display: grid; place-items: center; width: 34px; height: 34px; border-radius: 50%; background: var(--ink); }
+  .jc-who svg { width: 20px; height: 20px; fill: var(--paper); }
+  .jc-chip { display: inline-flex; align-items: center; gap: 6px; padding: 7px 12px; border-radius: 10px; border: 2px solid var(--ink-3); background: var(--paper); font-size: 13px; font-weight: 700; white-space: nowrap; }
+  .jc-end { border-color: var(--ink); }
+  :global(.graphic.is-3) .jc-end { background: var(--accent); border-color: var(--accent-ink); }
+  .jc-arrow { color: var(--ink-3); font-weight: 800; }
+  .jc-mid { display: inline-flex; align-items: center; gap: 6px; overflow: hidden; max-width: 9em; transition: max-width .7s var(--d) cubic-bezier(.6, 0, .2, 1), opacity .4s var(--d); }
+  :global(.graphic.is-3) .jc-mid { max-width: 0; opacity: 0; }
+  .jc-agent { display: inline-flex; align-items: center; gap: 6px; overflow: hidden; max-width: calc(var(--on) * 10em); opacity: var(--on); transition: max-width .6s, opacity .4s; }
+  .jc-bot { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+  .jc-bot svg { width: 18px; height: 18px; fill: none; stroke: var(--paper); stroke-width: 2; stroke-linecap: round; }
+  :global(.graphic[data-step="2"]) .jc-bot { animation: jc-bob 1.6s ease-in-out infinite; }
+
+  .jc-does { display: flex; flex-wrap: wrap; gap: 6px; }
+  .jc-does span { padding: 3px 10px; border-radius: 999px; border: 1px dashed var(--accent-ink); font-size: 12px; font-weight: 700; color: var(--ink-2); opacity: var(--on); transform: translateY(calc((1 - var(--on)) * 6px)); transition: opacity .4s var(--d), transform .4s var(--d); }
+
+  .jc-choice { display: grid; grid-template-columns: auto 1fr; gap: 16px; align-items: center; padding: 14px; border-radius: 14px; border: 2px dashed var(--ink-3); opacity: var(--on); transition: opacity .5s; }
+  .jc-dots { display: grid; grid-template-columns: repeat(10, 12px); gap: 5px; }
+  .jc-dots span { width: 12px; height: 12px; border-radius: 3px; background: var(--ink-3); opacity: calc(1 - var(--on) * .85); transform: scale(calc(1 - var(--on) * .4)); transition: opacity .5s calc(.4s + var(--d)), transform .5s calc(.4s + var(--d)); }
+  .jc-dots span.keep { background: var(--accent-ink); opacity: 1; transform: scale(calc(1 + var(--on) * .35)); }
+  .jc-choice-t { margin: 0; font-size: 15px; font-weight: 800; line-height: 1.5; }
+  .jc-choice-t b { font-size: 30px; color: var(--accent-ink); }
+  .jc-choice-t s { color: var(--ink-3); }
+  .jc-choice-t span { font-size: 12px; font-weight: 700; color: var(--ink-2); }
+
+  @keyframes jc-bob { 50% { transform: translateY(-3px); } }
+  @media (max-width: 560px) {
+    .jc-choice { grid-template-columns: 1fr; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .jc *, .jc { transition: none !important; animation: none !important; }
+  }
+</style>

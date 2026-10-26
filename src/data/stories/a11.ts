@@ -527,6 +527,7 @@ export const story: Story = {
       kind: 'graphic',
       graphic: {
         type: 'list',
+        layout: 'timeline',
         title: '從記憶符碼到新記憶：五個階段',
         items: [
           { title: '記憶｜大家已經共同記得什麼？', desc: '盤點記憶符碼、獨特品牌資產、經典內容與生活場景', at: 1 },

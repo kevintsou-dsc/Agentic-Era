@@ -43,6 +43,7 @@ export const story: Story = {
       side: 'right',
       graphic: {
         type: 'list',
+        layout: 'timeline',
         title: '品牌競爭力的三次遷移',
         items: [
           { title: '第一階段｜創意競爭', desc: '比拼消費者洞察、核心概念與創意表現', at: 1 },

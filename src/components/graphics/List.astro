@@ -20,10 +20,29 @@ const brief = g.items.every((it) => len(it) <= 40);
 const auto = n <= 3 ? (short ? 'three' : 'one') : n === 5 && brief ? 'one' : 'two';
 const layout = g.layout ?? auto;
 const span = layout === 'two' && n % 2 === 1;
+// timeline：有先後順序的轉變。4 項以內橫向、5 項以上直向（手機一律直向）；標題「階段｜名稱」拆成節點標籤與卡片標題
+const timeline = layout === 'timeline';
+const vertical = n >= 5;
+const phase = (t: string, i: number) => (t.includes('｜') ? t.split('｜')[0] : String(i + 1).padStart(2, '0'));
+const name = (t: string) => (t.includes('｜') ? t.split('｜').slice(1).join('｜') : t);
 ---
 <div class="stage list">
   {g.title && <p class="title">{g.title}</p>}
   {g.flip && <p class="hint">滑過或點按卡片，翻面看背後原因</p>}
+  {timeline ? (
+    <ol class:list={['tl', { 'tl-v': vertical, together }]} style={`--n:${n}`}>
+      {g.items.map((it, i) => (
+        <li data-at={it.at ?? i + 1} data-focus={together ? undefined : (it.at ?? i + 1)} class:list={{ 'tl-last': i === n - 1 }}>
+          <span class="tl-node"><span class="tl-dot"></span><span class="tl-phase">{phase(it.title, i)}</span></span>
+          <span class="tl-card">
+            <span class="t">{name(it.title)}</span>
+            {it.desc && <span class="d">{it.desc}</span>}
+            <MoreRef m={it.more} overlay />
+          </span>
+        </li>
+      ))}
+    </ol>
+  ) : (
   <ol class:list={['items', `cols-${layout}`, { together, 'fc-set': g.flip, 'span-last': span }]} style={`--n:${g.items.length}`}>
     {g.items.map((it, i) => g.flip ? (
       <li data-at={it.at ?? i + 1} data-focus={together ? undefined : (it.at ?? i + 1)} tabindex="0" aria-label={`${it.title}：${it.desc ?? ''}`}>
@@ -50,6 +69,7 @@ const span = layout === 'two' && n % 2 === 1;
       </li>
     ))}
   </ol>
+  )}
   <p class="source">{g.source}</p>
 </div>
 <style>
@@ -67,6 +87,38 @@ const span = layout === 'two' && n % 2 === 1;
   .t { font-weight: 800; font-size: 16px; line-height: 1.4; }
   .d { font-size: 13px; color: var(--ink-2); line-height: 1.5; }
 
+  /* 時間軸：軌道在節點列，跟著第 k 段點亮到第 k 個節點；最後一段帶箭頭 */
+  .tl { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(var(--n), minmax(0, 1fr)); gap: 0 12px; }
+  .tl li { position: relative; display: grid; grid-template-rows: auto 1fr; gap: 10px; opacity: calc(.25 + .75 * var(--on)); transition: opacity .5s; }
+  .tl-node { position: relative; display: flex; align-items: center; gap: 8px; height: 28px; }
+  .tl li::before { content: ''; position: absolute; top: 13px; left: 0; right: -12px; height: 3px; border-radius: 2px;
+    background: linear-gradient(90deg, var(--accent-ink) calc(var(--on) * 100%), var(--line) 0); transition: background .6s; }
+  .tl li.tl-last::before { right: 10px; }
+  .tl li.tl-last::after { content: ''; position: absolute; top: 8px; right: 0; border: 7px solid transparent; border-right: 0; border-left: 11px solid color-mix(in srgb, var(--accent-ink) calc(var(--on) * 100%), var(--line)); }
+  .tl-dot { position: relative; z-index: 1; flex: none; width: 20px; height: 20px; border-radius: 50%; border: 3px solid color-mix(in srgb, var(--accent-ink) calc(var(--on) * 100%), var(--line)); background: color-mix(in srgb, var(--accent) calc(var(--focus) * 100%), var(--paper));
+    box-shadow: 0 0 0 calc(var(--focus) * 6px) color-mix(in srgb, var(--accent) 50%, transparent); transition: box-shadow .4s, background .4s, border-color .4s; }
+  .tl-phase { position: relative; z-index: 1; padding: 0 6px; background: var(--paper); font-family: var(--font-mono); font-size: 12px; font-weight: 700; color: var(--ink-2); white-space: nowrap; }
+  .tl-card { position: relative; display: grid; gap: 4px; align-content: start; padding: 12px 14px; border-radius: 12px; border: 2px solid color-mix(in srgb, var(--accent-ink) calc(var(--focus) * 100%), var(--ink-3));
+    background: color-mix(in srgb, var(--accent) calc(var(--focus) * 100%), var(--paper)); transform: translateY(calc((1 - var(--on)) * 10px)); transition: transform .5s, background .4s, border-color .4s; }
+  .together .tl-card { --focus: 0; }
+  /* 直向：軌道在左側 */
+  .tl-v, .tl-v li { grid-template-columns: 1fr; }
+  .tl-v { gap: 12px; }
+  .tl-v li { grid-template-columns: 20px 1fr; grid-template-rows: auto; column-gap: 14px; }
+  .tl-v .tl-node { flex-direction: column; align-items: center; height: auto; padding-top: 12px; }
+  .tl-v .tl-phase { display: none; }
+  .tl-v li::before { top: 12px; bottom: -12px; left: 8.5px; right: auto; width: 3px; height: auto; background: linear-gradient(180deg, var(--accent-ink) calc(var(--on) * 100%), var(--line) 0); }
+  .tl-v li.tl-last::before { bottom: 10px; }
+  .tl-v li.tl-last::after { top: auto; bottom: 0; right: auto; left: 3px; border: 7px solid transparent; border-bottom: 0; border-top: 11px solid color-mix(in srgb, var(--accent-ink) calc(var(--on) * 100%), var(--line)); }
+  @media (max-width: 560px) {
+    .tl { grid-template-columns: 1fr; gap: 12px; }
+    .tl li { grid-template-columns: 20px 1fr; grid-template-rows: auto; column-gap: 14px; }
+    .tl .tl-node { flex-direction: column; height: auto; padding-top: 12px; }
+    .tl .tl-phase { display: none; }
+    .tl li::before { top: 12px; bottom: -12px; left: 8.5px; right: auto; width: 3px; height: auto; background: linear-gradient(180deg, var(--accent-ink) calc(var(--on) * 100%), var(--line) 0); }
+    .tl li.tl-last::before { bottom: 10px; }
+    .tl li.tl-last::after { top: auto; bottom: 0; right: auto; left: 3px; border: 7px solid transparent; border-bottom: 0; border-top: 11px solid color-mix(in srgb, var(--accent-ink) calc(var(--on) * 100%), var(--line)); }
+  }
   /* 翻面卡：兩面疊在同一格，卡高取兩面較高者；class 一律加 fc- 前綴，避免撞到全站 .card／.flip */
   .fc-set { grid-auto-rows: 1fr; }
   .fc-set li { align-content: stretch; padding: 0; border: 0; background: none; perspective: 900px; cursor: pointer; outline: none; }
