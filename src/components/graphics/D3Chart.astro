@@ -15,8 +15,9 @@ const summary =
     `${c.fieldsTitle}：${c.fields.map((f) => f.label).join('、')}`,
     `${c.main.label}負責主要 SOV，其他場域負責${c.roles.map((r) => r.label).join('、')}`,
   ] :
+  c.kind === 'rings' ? [...c.rings.map((r) => `${r.label}：${r.desc}`), ...(c.pulls ? [`會被帶走的：${c.pulls.join('、')}`] : [])] :
   c.rows.map((r) => `${r.model}（${r.era}）：${r.steps.map((s) => s.zh).join(' → ')}`);
-const hintTarget = c.kind === 'flowloop' ? '圓圈' : c.kind === 'stages' ? '方格' : c.kind === 'esov' ? '長條與方塊' : '長條';
+const hintTarget = c.kind === 'flowloop' ? '圓圈' : c.kind === 'stages' ? '方格' : c.kind === 'esov' ? '長條與方塊' : c.kind === 'rings' ? '每一圈' : '長條';
 ---
 <div class="stage d3wrap">
   <p class="title">{c.title}</p>
@@ -130,6 +131,26 @@ const hintTarget = c.kind === 'flowloop' ? '圓圈' : c.kind === 'stages' ? '方
   .d3 :global(.es-hub circle) { fill: var(--accent-ink); }
   .d3 :global(.es-hub text) { font: 800 16px var(--font-sans); fill: var(--paper); }
   .d3 :global(.es-hub .es-hub-sub) { font: 500 10px var(--font-sans); }
+
+  /* rings */
+  .d3 :global(.rg-ring circle) { stroke: var(--paper); stroke-width: 3; transition: fill .2s; }
+  .d3 :global(.rg-0 circle) { fill: color-mix(in srgb, var(--accent) 100%, var(--paper)); }
+  .d3 :global(.rg-1 circle) { fill: color-mix(in srgb, var(--accent) 72%, var(--paper)); }
+  .d3 :global(.rg-2 circle) { fill: color-mix(in srgb, var(--accent) 48%, var(--paper)); }
+  .d3 :global(.rg-3 circle) { fill: color-mix(in srgb, var(--accent) 26%, var(--paper)); }
+  .d3 :global(.rg-ring.has-tip:hover circle), .d3 :global(.rg-ring.has-tip:focus-visible circle) { fill: var(--accent-ink); }
+  .d3 :global(.rg-ring.has-tip:hover text), .d3 :global(.rg-ring.has-tip:focus-visible text) { fill: var(--paper); }
+  .d3 :global(.rg-label) { font: 800 14px var(--font-sans); fill: var(--ink); pointer-events: none; }
+  .d3 :global(.rg-sub) { font: 500 10px var(--font-sans); fill: var(--ink-2); pointer-events: none; }
+  .d3 :global(.rg-core circle) { fill: var(--ink); }
+  .d3 :global(.rg-core text) { font: 800 16px var(--font-sans); fill: var(--paper); }
+  .d3 :global(.rg-ripple) { fill: none; stroke: var(--accent-ink); stroke-width: 2; pointer-events: none; }
+  .d3 :global(.rg-pulls) { opacity: 0; transition: opacity .6s; pointer-events: none; }
+  .d3 :global(.rg-pulls.on) { opacity: 1; }
+  .d3 :global(.rg-pull line) { stroke: var(--ink); stroke-width: 2; stroke-dasharray: 4 5; }
+  .d3 :global(.rg-token rect) { fill: var(--paper); stroke: var(--ink); stroke-width: 2; }
+  .d3 :global(.rg-token text) { font: 800 13px var(--font-sans); fill: var(--ink); }
+  .d3 :global(.rg-pull-note) { font: 700 13px var(--font-sans); fill: var(--ink-2); }
 
   /* stages */
   .d3 :global(.st-row) { opacity: .25; transition: opacity .5s; }

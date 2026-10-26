@@ -54,7 +54,8 @@ export type Graphic =
       source: string;
     }
   | { type: 'cycle'; label: string; nodes: { zh: string; en?: string; more?: More }[]; center: string; shrinkAt?: number; source: string }
-  | { type: 'layers'; from?: string; to: string; layers: { title: string; desc: string; more?: More }[]; source: string }
+  /** layers：預設第 k 段主文點亮第 k 層；主文第一段是總覽時，用 at 指定該層對應第幾段 */
+  | { type: 'layers'; from?: string; to: string; layers: { title: string; desc: string; at?: number; more?: More }[]; source: string }
   | {
       type: 'matrix';
       title: string;
@@ -101,6 +102,15 @@ export type D3Chart =
       result: Tipped & { label: string };
       fieldsTitle: string; fields: (Tipped & { label: string })[];
       main: Tipped & { label: string }; roles: (Tipped & { label: string })[];
+    }
+  /**
+   * 同心圓：範圍由內往外擴大的概念（例如競爭從同品類擴大到整個生活預算）。所有圈一開始就全部顯示；
+   * pulls（選用）在第 pullsAt 段出現：從中心往外被帶走的東西。
+   */
+  | {
+      kind: 'rings'; title: string; center: string;
+      rings: (Tipped & { label: string; sub: string; desc: string })[];
+      pulls?: string[]; pullsAt?: number;
     };
 
 /** 說明框內容（策展補充） */

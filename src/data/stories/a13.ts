@@ -37,8 +37,8 @@ export const story: Story = {
         items: [
           { title: '看完一支廣告', desc: '下一秒可能被短影音帶走', at: 1 },
           { title: '點進商品頁', desc: '平台推薦其他相似品牌', at: 1 },
-          { title: '搜尋品牌字', desc: '看到競品比較文', at: 2 },
-          { title: '進入電商站內', desc: '被促銷、評價、排序與相似商品重新影響', at: 2 },
+          { title: '搜尋品牌字', desc: '看到競品比較文', at: 1 },
+          { title: '進入電商站內', desc: '被促銷、評價、排序與相似商品重新影響', at: 1 },
         ],
         source: '整理：策展者｜依據 吳宗霖〈重建 SOV〉紙本 p.118',
       },
@@ -284,21 +284,21 @@ export const story: Story = {
         to: 'Share of Choice Context',
         layers: [
           {
-            title: 'System Share', desc: '品牌在平台、通路與生活系統中的可見位置',
+            title: 'System Share', desc: '品牌在平台、通路與生活系統中的可見位置', at: 2,
             more: {
               title: 'System Share 不只發生在線上',
               quote: { article: 'a13', page: 123, text: '對很多實體通路品牌來說，門市、貨架、店員、地點、陳列、商圈、生活動線，本身就是系統的一部分。' },
             },
           },
           {
-            title: 'Consumer & Community Share', desc: '品牌在消費者與社群心中的份額',
+            title: 'Consumer & Community Share', desc: '品牌在消費者與社群心中的份額', at: 3,
             more: {
               title: '新品牌的做法',
               quote: { article: 'a13', page: 123, text: '這時候更重要的，可能是讓第一批使用者願意分享，讓會員推薦會員，讓真實體驗變成信任來源，讓社群裡有人願意替品牌說話。' },
             },
           },
           {
-            title: 'Attention & Memory Share', desc: '品牌在注意力與記憶中的份額',
+            title: 'Attention & Memory Share', desc: '品牌在注意力與記憶中的份額', at: 4,
             more: {
               title: '例子：爬樓梯時想到關節保養',
               quote: { article: 'a13', page: 124, text: '真正重要的情境可能是消費者爬樓梯時覺得膝蓋卡卡、蹲下起身時覺得不舒服、陪家人出遊時擔心長輩走不久。' },
@@ -341,15 +341,33 @@ export const story: Story = {
       kind: 'graphic',
       side: 'right',
       graphic: {
-        type: 'list',
-        title: '競品干擾不只來自同品類：四種競爭',
-        items: [
-          { title: '品類競爭', desc: '在同一類商品中比較不同品牌', at: 1 },
-          { title: '通路競爭', desc: '在電商推薦、門市促銷、店員建議、貨架陳列中被改變選擇', at: 1 },
-          { title: '信任競爭', desc: '比較誰比較可靠、誰比較多人用、誰比較有專業背書', at: 2 },
-          { title: '預算競爭', desc: '錢不一定只在同品類裡流動，也可能流向醫美、旅遊或運動課程', at: 2 },
-        ],
-        source: '整理：策展者｜依據 吳宗霖〈重建 SOV〉紙本 p.125',
+        type: 'd3',
+        chart: {
+          kind: 'rings',
+          title: '競品干擾不只來自同品類：一圈比一圈大的四種競爭',
+          center: '品牌',
+          rings: [
+            {
+              label: '品類競爭', sub: '同一類商品比品牌', desc: '消費者在同一類商品中比較不同品牌',
+              extra: '最直覺的一圈：消費者在同類商品裡比功能、價格與口碑。傳統 SOV 算的，主要就是這一圈裡誰的聲量比較大。',
+            },
+            {
+              label: '通路競爭', sub: '購買場域改變選擇', desc: '電商推薦、門市促銷、店員建議、貨架陳列',
+              extra: '消費者已經想買了，卻在購買的地方被改變心意：電商的推薦欄、門市的促銷堆頭、店員一句建議，都可能把他帶向別的品牌。',
+            },
+            {
+              label: '信任競爭', sub: '誰比較可靠', desc: '誰比較可靠、誰比較多人用、誰比較有專業背書',
+              extra: '功能差不多的時候，消費者比的是誰比較可信。評價數、口碑、專家或第三方背書，都是這一圈的武器，光喊得大聲不一定贏。',
+            },
+            {
+              label: '預算競爭', sub: '錢流向別的生活消費', desc: '同一筆錢，也可能拿去醫美、旅遊或運動課程',
+              extra: '最外圈的對手可能根本不賣同類商品：同一筆錢可以買保健食品，也可以拿去醫美、旅遊或上運動課。品牌爭的是在生活開銷中的優先順序。',
+            },
+          ],
+          pulls: ['注意力', '信任', '預算'],
+          pullsAt: 2,
+        },
+        source: '圖：策展者依原文整理製圖（由內到外表示競爭範圍逐漸擴大）｜吳宗霖〈重建 SOV〉紙本 p.125',
       },
       src: [{ article: 'a13', page: 125, text: '一個產品可能同時面對品類競爭、通路競爭、信任競爭與預算競爭' }],
       beats: [
@@ -373,10 +391,10 @@ export const story: Story = {
         title: '選一個主場域，其他場域分工',
         items: [
           { title: '建立主要心智', desc: '主場域：承擔主要 SOV 建立任務', at: 1 },
-          { title: '放大聲量', at: 2 },
-          { title: '提供信任', at: 2 },
-          { title: '承接需求', at: 3 },
-          { title: '轉換與再行銷', at: 3 },
+          { title: '放大聲量', at: 1 },
+          { title: '提供信任', at: 1 },
+          { title: '承接需求', at: 1 },
+          { title: '轉換與再行銷', at: 1 },
         ],
         source: '整理：策展者｜依據 吳宗霖〈重建 SOV〉紙本 p.122、126',
       },

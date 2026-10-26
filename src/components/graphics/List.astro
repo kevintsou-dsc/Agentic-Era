@@ -5,12 +5,14 @@ import MoreRef from '../MoreRef.astro';
 type G = Extract<Graphic, { type: 'list' }>;
 interface Props { g: G }
 const { g } = Astro.props;
+// 所有項目同一步出現（主文沒有逐項對應）時，不做逐段加重，整張清單一起顯示
+const together = new Set(g.items.map((it, i) => it.at ?? i + 1)).size === 1;
 ---
 <div class="stage list">
   {g.title && <p class="title">{g.title}</p>}
-  <ol class="items" style={`--n:${g.items.length}`}>
+  <ol class:list={['items', { together }]} style={`--n:${g.items.length}`}>
     {g.items.map((it, i) => (
-      <li data-at={it.at ?? i + 1} data-focus={it.at ?? i + 1} >
+      <li data-at={it.at ?? i + 1} data-focus={together ? undefined : (it.at ?? i + 1)} >
         <span class="no">{String(i + 1).padStart(2, '0')}</span>
         <span class="t">{it.title}</span>
         {it.desc && <span class="d">{it.desc}</span>}
@@ -25,6 +27,7 @@ const { g } = Astro.props;
   .title { margin: 0; font-weight: 700; font-size: clamp(18px, 1.6vw + 10px, 24px); }
   .items { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 14rem), 1fr)); gap: 10px; }
   li { position: relative; display: grid; gap: 2px; align-content: start; padding: 12px 14px; border-radius: 12px; border: 2px solid color-mix(in srgb, var(--accent-ink) calc(var(--focus) * 100%), var(--line)); background: color-mix(in srgb, var(--accent) calc(var(--focus) * 100%), var(--paper)); opacity: calc(.2 + .8 * var(--on)); transform: translateY(calc((1 - var(--on)) * 10px)); transition: opacity .5s, transform .5s, background .4s, border-color .4s; }
+  .together li { --focus: 0; border-color: var(--ink-3); }
   .no { font-family: var(--font-mono); font-size: 12px; color: var(--ink-3); }
   .t { font-weight: 800; font-size: 16px; line-height: 1.4; }
   .d { font-size: 13px; color: var(--ink-2); line-height: 1.5; }

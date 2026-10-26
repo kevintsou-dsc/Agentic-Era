@@ -10,7 +10,7 @@ const { g } = Astro.props;
   <p class="title">{g.from && <><span class="from">{g.from}</span><span class="arrow">→</span></>}<b>{g.to}</b></p>
   <ol class="stack">
     {g.layers.map((l, i) => (
-      <li class="layer" data-at={i + 1} data-focus={i + 1}>
+      <li class="layer" data-at={l.at ?? i + 1} data-focus={l.at ?? i + 1}>
         <span class="t">{l.title}</span>
         <span class="d">{l.desc}</span>
         {l.more?.text && <span class="x">{l.more.text}</span>}

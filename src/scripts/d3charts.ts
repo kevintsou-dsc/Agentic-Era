@@ -346,7 +346,57 @@ function esov(el: HTMLElement, c: Extract<D3Chart, { kind: 'esov' }>): Instance 
   };
 }
 
-const builders: Record<string, (el: HTMLElement, c: never) => Instance> = { flowloop, groups, logrange, stages, esov } as never;
+// ---------- rings：由內往外擴大的同心圓，漣漪持續向外擴散；pulls 從中心被往外帶走 ----------
+function rings(el: HTMLElement, c: Extract<D3Chart, { kind: 'rings' }>): Instance {
+  const W = 520, H = 500, cx = W / 2, cy = 236, r0 = 42, band = 46;
+  const n = c.rings.length, rMax = r0 + n * band;
+  const svg = select(el).append('svg').attr('viewBox', `0 0 ${W} ${H}`).attr('class', 'rg');
+  const bind = tipLayer(el);
+  const ripple = svg.append('circle').attr('class', 'rg-ripple').attr('cx', cx).attr('cy', cy).attr('r', r0);
+  // 外圈先畫，內圈蓋在上面；每一圈是一個可 hover 的環
+  const ringG = svg.append('g').selectAll('g').data(c.rings.map((d, i) => ({ d, i })).reverse()).join('g')
+    .attr('class', (o) => `rg-ring rg-${o.i}`);
+  ringG.append('circle').attr('cx', cx).attr('cy', cy).attr('r', (o) => r0 + (o.i + 1) * band);
+  ringG.append('text').attr('class', 'rg-label').attr('x', cx).attr('y', (o) => cy - (r0 + o.i * band) - band / 2 + 1).attr('text-anchor', 'middle').text((o) => o.d.label);
+  ringG.append('text').attr('class', 'rg-sub').attr('x', cx).attr('y', (o) => cy - (r0 + o.i * band) - band / 2 + 16).attr('text-anchor', 'middle').text((o) => o.d.sub);
+  ringG.each(function (o) { bind(this, { title: o.d.label, body: o.d.desc, extra: o.d.extra }); });
+  const core = svg.append('g').attr('class', 'rg-core');
+  core.append('circle').attr('cx', cx).attr('cy', cy).attr('r', r0 - 4);
+  core.append('text').attr('x', cx).attr('y', cy + 6).attr('text-anchor', 'middle').text(c.center);
+  // 被帶走的東西：箭頭從中心往下方三個方向射出
+  const pulls = svg.append('g').attr('class', 'rg-pulls');
+  const dirs = (c.pulls ?? []).map((p, i, arr) => {
+    const ang = Math.PI / 2 + (i - (arr.length - 1) / 2) * 0.62;
+    return { p, ang };
+  });
+  const arrows = pulls.selectAll('g').data(dirs).join('g').attr('class', 'rg-pull');
+  arrows.append('line').attr('x1', (d) => cx + r0 * Math.cos(d.ang)).attr('y1', (d) => cy + r0 * Math.sin(d.ang))
+    .attr('x2', (d) => cx + (rMax + 6) * Math.cos(d.ang)).attr('y2', (d) => cy + (rMax + 6) * Math.sin(d.ang));
+  const tokens = arrows.append('g').attr('class', 'rg-token');
+  tokens.append('rect').attr('x', -30).attr('y', -13).attr('width', 60).attr('height', 26).attr('rx', 13);
+  tokens.append('text').attr('y', 5).attr('text-anchor', 'middle').text((d) => d.p);
+  pulls.append('text').attr('class', 'rg-pull-note').attr('x', cx).attr('y', H - 6).attr('text-anchor', 'middle').text('誰會把這些從品牌身邊帶走？');
+  const at = c.pullsAt ?? 99;
+  const place = (k: number) => tokens.attr('transform', (d) => {
+    const r = r0 + 16 + k * (rMax - r0 - 6);
+    return `translate(${cx + r * Math.cos(d.ang)},${cy + r * Math.sin(d.ang)})`;
+  });
+  place(1);
+  let step = 0;
+  return {
+    update(s) {
+      step = s;
+      pulls.classed('on', reduce ? !!c.pulls : s >= at);
+    },
+    tick(t) {
+      const p = (t % 3600) / 3600;
+      ripple.attr('r', r0 + p * (rMax - r0)).style('opacity', 0.55 * (1 - p));
+      if (step >= at) place(((t % 3000) / 3000) * 0.85 + 0.1);
+    },
+  };
+}
+
+const builders: Record<string, (el: HTMLElement, c: never) => Instance> = { flowloop, groups, logrange, stages, esov, rings } as never;
 
 export function initD3() {
   const charts = Array.from(document.querySelectorAll<HTMLElement>('[data-d3]'));
