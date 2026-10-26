@@ -1,0 +1,54 @@
+---
+// a15 原刊 p.142 圖3「信任與安全感設計的五大防禦支柱」的網頁版，版面依原圖：
+// 上排五個編號圓（編號＋支柱名），中間各一段做法說明，下方五根柱子標雙語原則（可信度標示 Credibility…）。
+// 第 1 段主文：五根柱子一起立起；第 2 段點亮 1–2；第 3 段點亮 3–5。文字照錄 figtext。class 一律加 pl- 前綴。
+const pillars = [
+  { n: '透明度', d: '在 AI 建議旁明確註明資料來源、更新時間、演算法信心程度。唯有讓答案的基礎透明，顧客才敢依循行動。', zh: '可信度標示', en: 'Credibility', f: 2 },
+  { n: '控制權', d: '針對付款、改票、簽約等高風險或關鍵變更動作，必須設計顯著的確認按鈕，並提供一鍵取消、快速修改的彈性回溯路徑。', zh: '可逆轉確認步驟', en: 'Reversibility', f: 2 },
+  { n: '安全網', d: '當 AI 無法判斷、顧客明確表示不滿，或交易金額/敏感度超過門檻時，主動轉真人引導，而不是讓顧客自己摸索。', zh: '真人介入觸發機制', en: 'Escalation', f: 3 },
+  { n: '隱私力', d: '必須在設計初期將個資法、GDPR 規範架構化。資料跨通路的授權範疇、儲存週期、一鍵撤回權利，都必須向顧客明確揭露。', zh: '資料授權與隱私合規', en: 'Compliance', f: 3 },
+  { n: '治理力', d: '建立完整的互動日誌（Log），所有軌跡皆須可追溯、可回溯，作為異常發生時釐清責任的商務依據。', zh: '軌跡稽核紀錄', en: 'Auditing', f: 3 },
+];
+---
+<div class="pl" role="img" aria-label={'信任與安全感設計的五大防禦支柱：' + pillars.map((p, i) => `${i + 1} ${p.n}（${p.zh} ${p.en}）：${p.d}`).join('')}>
+  <ol aria-hidden="true">
+    {pillars.map((p, i) => (
+      <li data-at="1" data-focus={p.f} style={`--d:${i * 120}ms`}>
+        <span class="pl-badge"><b>{i + 1}</b>{p.n}</span>
+        <p class="pl-d">{p.d}</p>
+        <span class="pl-col">
+          <svg viewBox="0 0 100 40" class="pl-cap" preserveAspectRatio="none"><rect x="0" y="0" width="100" height="10" rx="3" /><rect x="8" y="12" width="84" height="8" rx="2" /></svg>
+          <span class="pl-shaft"><b>{p.zh}</b><em>{p.en}</em></span>
+          <svg viewBox="0 0 100 20" class="pl-base" preserveAspectRatio="none"><rect x="8" y="0" width="84" height="8" rx="2" /><rect x="0" y="10" width="100" height="10" rx="3" /></svg>
+        </span>
+      </li>
+    ))}
+  </ol>
+</div>
+
+<style>
+  .pl { --red: #e5707a; padding: 16px 10px 12px; border-radius: 14px; background: color-mix(in srgb, var(--ink) 9%, var(--paper)); }
+  ol { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 8px; }
+  li { display: grid; grid-template-rows: auto 1fr auto; justify-items: center; gap: 8px; opacity: calc(.15 + .85 * var(--on)); transform: translateY(calc((1 - var(--on)) * 16px)); transition: opacity .5s var(--d), transform .5s var(--d); }
+  .pl-badge { display: grid; place-items: center; align-content: center; width: min(100%, 84px); aspect-ratio: 1; border-radius: 50%; background: var(--red); color: #fff; font-size: 14px; font-weight: 800; line-height: 1.1;
+    box-shadow: 0 0 0 calc(var(--focus) * 5px) color-mix(in srgb, var(--red) 35%, transparent); transform: scale(calc(1 + var(--focus) * .06)); transition: box-shadow .4s, transform .4s; }
+  .pl-badge b { font-size: 26px; }
+  .pl-d { margin: 0; font-size: 11.5px; line-height: 1.6; color: var(--ink-2); opacity: calc(.55 + .45 * var(--focus)); transition: opacity .4s; }
+  .pl-col { display: grid; width: 100%; }
+  .pl-cap, .pl-base { width: 100%; height: 14px; fill: var(--paper); stroke: color-mix(in srgb, var(--ink) 25%, transparent); stroke-width: 1; }
+  .pl-base { height: 10px; }
+  .pl-shaft { display: grid; place-items: center; align-content: center; gap: 2px; margin: 0 9%; min-height: 64px; padding: 6px 2px; text-align: center;
+    background: repeating-linear-gradient(90deg, var(--paper) 0 8px, color-mix(in srgb, var(--ink) 6%, var(--paper)) 8px 10px); border-inline: 1px solid color-mix(in srgb, var(--ink) 20%, transparent); }
+  .pl-shaft b { font-size: 12px; color: color-mix(in srgb, var(--red) calc(55% + var(--focus) * 45%), var(--ink-3)); line-height: 1.3; }
+  .pl-shaft em { font-style: normal; font-size: 11px; color: var(--ink-2); }
+  @media (max-width: 560px) {
+    ol { grid-template-columns: 1fr; gap: 10px; }
+    li { grid-template-columns: 64px 1fr; grid-template-rows: auto auto; justify-items: start; column-gap: 12px; }
+    .pl-badge { grid-row: span 2; width: 64px; font-size: 12px; }
+    .pl-badge b { font-size: 20px; }
+    .pl-col { display: block; }
+    .pl-cap, .pl-base { display: none; }
+    .pl-shaft { margin: 0; min-height: 0; justify-items: start; padding: 4px 8px; border-radius: 6px; }
+  }
+  @media (prefers-reduced-motion: reduce) { li, .pl-badge { transition: none; } }
+</style>

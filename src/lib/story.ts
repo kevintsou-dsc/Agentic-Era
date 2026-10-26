@@ -79,7 +79,7 @@ export type Graphic =
   /** 雷達圖：第一軸在正上方、順時針；note 寫「示意」等說明 */
   | { type: 'radar'; title?: string; axes: { label: string; v: number; at?: number }[]; max?: number; note?: string; source: string }
   | { type: 'table'; title?: string; cols: string[]; rows: { cells: string[]; icon?: 'question' | 'blocks' | 'arrows' | 'data' | 'gear'; at: number }[]; source: string }
-  | { type: 'art'; art: 'magnet-mount' | 'escalation' | 'persona-duo' | 'agent-team' | 'journey-compress' | 'judgment-sources' | 'iproof' | 'media-pp'; title?: string; source: string }
+  | { type: 'art'; art: 'magnet-mount' | 'escalation' | 'persona-duo' | 'agent-team' | 'journey-compress' | 'judgment-sources' | 'iproof' | 'media-pp' | 'pillars'; title?: string; source: string }
   /**
    * 案例模擬（情境 → 方法 → 模擬）：第 1 段主文顯示情境、第 2 段顯示方法、第 3 段起依序顯示 results。
    * 主文段數 = 2 + results.length。
