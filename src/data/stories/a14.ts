@@ -272,10 +272,12 @@ export const story: Story = {
       ],
       beats: [
         {
-          text: '電通媒體用 Media++ 方法論培養能駕馭技術與人性的「媒體工匠」。前兩個模組屬於成長策略：Business 用效率優化、交易捕捉與品牌成長三大槓桿創造價值，Audience 辨識並活化真正具潛力的消費者。',
+          text: '電通媒體以 Media++ 方法論培養能駕馭技術與人性的「媒體工匠」，由六大模組組成。Business 聚焦於品牌成長策略，透過效率優化、交易捕捉與品牌成長三大槓桿創造價值；Audience 透過數據資產辨識與活化真正具潛力的消費者。',
           src: [
+            { article: 'a14', page: 133, text: '電通媒體以 Media++ 方法論培養演算法世代擁有 Judgment 的媒體工匠' },
             { article: 'a14', page: 133, text: '如同一位能夠駕馭技術與人性的媒體工匠' },
-            { article: 'a14', page: 134, text: '透過效率優化、交易捕捉與品牌成長三大槓桿創造商業價值' },
+            { article: 'a14', page: 134, text: '這套方法論由 Business、Audience、Insight、Experience、Activation 與 Optimization六大模組組成' },
+            { article: 'a14', page: 134, text: 'Business，聚焦於品牌成長策略，透過效率優化、交易捕捉與品牌成長三大槓桿創造商業價值' },
             { article: 'a14', page: 134, text: '辨識與活化真正具潛力的消費者' },
             { article: 'a14', page: 134, text: 'GROWTH STRATEGY 成長策略' },
           ],

@@ -181,10 +181,10 @@ export const story: Story = {
       ],
       beats: [
         {
-          text: '電通的「AI 轉型暗流指數」從文化與組織配套出發，檢視導入 AI 後在六大維度上的結構性矛盾，找出轉型的落點與病灶。原刊的示意雷達圖中，「經驗依賴」最高，達 77。',
+          text: '電通的「AI 轉型暗流指數」從企業文化與組織配套角度出發，檢視導入 AI 後在六大維度上的結構性矛盾。原刊雷達圖以 0–100 指數示意，數值越高，潛在風險越大。',
           src: [
-            { article: 'a16', page: 146, text: '77' },
-            { article: 'a16', page: 146, text: '經驗依賴' },
+            { article: 'a16', page: 146, text: '從企業文化與組織配套角度出發' },
+            { article: 'a16', page: 146, text: '（0-100指數｜數值越高，潛在風險越大）' },
             { article: 'a16', page: 146, text: '「AI 轉型暗流指數」(AI Transformation Undercurrent Index) 診斷工具' },
             { article: 'a16', page: 147, text: '在願景、心態、能力、協作、落地、價值創造等六大維度上所展現的結構性矛盾' },
           ],

@@ -13,6 +13,7 @@ import MediaPP from '../art/MediaPP.astro';
 import Pillars from '../art/Pillars.astro';
 import CcsModel from '../art/CcsModel.astro';
 import AiPi from '../art/AiPi.astro';
+import E2eRings from '../art/E2eRings.astro';
 type G = Extract<Graphic, { type: 'art' }>;
 interface Props { g: G }
 const { g } = Astro.props;
@@ -30,6 +31,7 @@ const { g } = Astro.props;
   {g.art === 'pillars' && <Pillars />}
   {g.art === 'ccs-model' && <CcsModel />}
   {g.art === 'ai-pi' && <AiPi />}
+  {g.art === 'e2e-rings' && <E2eRings />}
   <figcaption class="source">{g.source}</figcaption>
 </figure>
 <style>

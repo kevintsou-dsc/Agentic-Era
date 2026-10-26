@@ -226,3 +226,4 @@
 - balance 蹺蹺板彩蛋：按住品牌／需求方塊往下拉可加重那一側，放開或移開後以阻尼彈簧回到該時代的平衡；拖曳時顯示「放手，它會回到這個時代的平衡」。減少動態時停用。
 - a14 三位執行長卡片加上人物頭像：Wikimedia Commons CC 授權照片（Nadella：Brian Smale and Microsoft，CC BY-SA 4.0；Krishna：Bea Phi，CC BY-SA 4.0；Altman：TechCrunch，CC BY 2.0），下載 960px 縮圖、裁成方形 WebP（15–30 KB），卡片標攝影者、授權、經裁切與 Commons 連結。
 - 原刊資訊圖盤點：a14 衡斷力第一版只讀 figtext 就壓成五張卡片，漏掉 AI vs. Judgment。改為依原圖重製（art judgment-sources）。全站盤點 16 張向量圖，結構流失或缺漏 9 張，列於 docs/figure-audit.md；playbook §3 加「先看原圖，再選圖」，自我審查清單加「看過原圖縮圖」。
+- 依盤點表重製九張原刊資訊圖：a15 表1（新 table 類型）、a16 雷達圖（新 radar 類型，figtext 數值頁碼更正）、a19 i-Proof、a14 Media++、a15 五大防禦支柱（主文補 3–5）、a12 CCS 九宮格＋訓練方法表（取代細節卡）、a14 AI vs. PI（兩場景合併）、a04 E2E 同心圓（figtext 補標籤）。Jev round28–30 全部通過。

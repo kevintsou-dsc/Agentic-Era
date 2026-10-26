@@ -1,0 +1,78 @@
+---
+// a04 原刊 p.34 圖2「Creative E2E 服務矩陣及 AI-Powered IMC 方案」的網頁版，版面依原圖：
+// 左：同心圓，核心是 Integrated Client Services，第二圈六項專業能力，第三圈對應的事業單位，最外圈是數據與平台夥伴（原圖為各家標誌，此處以文字標示）；
+// 一條連線接到右側「Innovating to Impact」成果導向的端到端解決方案。
+// 第 1 段主文點亮同心圓（服務矩陣），第 2 段點亮連線與右側方案（AI-Powered IMC）。文字照錄 figtext。class 一律加 er- 前綴。
+const caps = ['Strategy & Consult', 'Creative & production', 'Media', 'Entertainment & PR Influence', 'Experience Design', 'Social Commerce & MarTech'];
+const units = ['dentsu consult', 'dentsu Studio', 'Dentsu X／iProspect／CARAT', 'Dentsu group／Entertainment', 'Dentsu lab', 'Solution center／MERKLE'];
+const cx = 170, cy = 180;
+const lines = (t: string, sep: string) => t.split(sep);
+const at = (i: number, n: number, r: number, from = -150, span = 300) => {
+  const a = ((from + (span * (i + 0.5)) / n) * Math.PI) / 180;
+  return [cx + Math.cos(a) * r, cy + Math.sin(a) * r];
+};
+---
+<div class="er" role="img" aria-label={'Creative E2E 服務矩陣：以 Integrated Client Services 為核心，整合 ' + caps.join('、') + ' 六項專業能力，對應 ' + units.join('、') + '，再加上數據與平台夥伴；連結到 Innovating to Impact：成果導向的端到端解決方案，dentsu AI platforms + data systems through transformative creativity。'}>
+  <svg viewBox="0 0 560 360" aria-hidden="true">
+    <g class="er-rings" data-at="1" data-focus="1">
+      <circle class="er-r4" cx={cx} cy={cy} r="165" />
+      <circle class="er-r3" cx={cx} cy={cy} r="128" />
+      <circle class="er-r2" cx={cx} cy={cy} r="84" />
+      <circle class="er-r1" cx={cx} cy={cy} r="44" />
+      <text class="er-core" x={cx} y={cy - 6}>Integrated</text>
+      <text class="er-core" x={cx} y={cy + 8}>Client</text>
+      <text class="er-core" x={cx} y={cy + 22}>Services</text>
+      {caps.map((c, i) => { const [x, y] = at(i, caps.length, 64); const ls = lines(c, ' & '); return <text class="er-cap" x={x} y={y + 3 - (ls.length - 1) * 5} style={`--d:${i * 90}ms`}>{ls.map((l, k) => <tspan x={x} dy={k ? 10 : 0}>{k ? `& ${l}` : l}</tspan>)}</text>; })}
+      {units.map((u, i) => { const [x, y] = at(i, units.length, 106); const ls = lines(u, '／'); return <text class="er-unit" x={x} y={y + 3 - (ls.length - 1) * 5} style={`--d:${300 + i * 90}ms`}>{ls.map((l, k) => <tspan x={x} dy={k ? 10 : 0}>{l}</tspan>)}</text>; })}
+      {Array.from({ length: 12 }, (_, i) => { const [x, y] = at(i, 12, 147, -165, 330); return <circle class="er-logo" cx={x} cy={y} r="7" style={`--d:${600 + i * 50}ms`} />; })}
+      <text class="er-partner" x={cx} y={cy + 160}>＋ 數據與平台夥伴（CCS、CMoney、91APP 等）</text>
+    </g>
+    <g class="er-link" data-at="2">
+      <line x1={cx + 44} y1={cy} x2="360" y2={cy} />
+      <circle cx={cx + 112} cy={cy} r="5" /><circle cx={cx + 150} cy={cy} r="5" />
+    </g>
+    <g class="er-impact" data-at="2" data-focus="2">
+      <rect class="er-tag" x="362" y="24" width="190" height="28" rx="2" />
+      <text class="er-tag-t" x="372" y="43">Innovating to Impact</text>
+      <text class="er-h" x="372" y="78">成果導向的</text>
+      <text class="er-h" x="372" y="100">端到端解決方案</text>
+      <text class="er-en" x="372" y="122">Result-driven end-to-end Solutions</text>
+      <rect class="er-box" x="362" y="140" width="190" height="80" rx="2" />
+      <text class="er-box-t" x="457" y="164">dentsu AI platforms</text>
+      <text class="er-box-t" x="457" y="182">+ data systems</text>
+      <text class="er-box-t" x="457" y="204">through transformative creativity</text>
+      <text class="er-note" x="362" y="248">結合 AI 整合解決方案與獨家數據</text>
+      <text class="er-note" x="362" y="266">生態系，創造跨產業、跨文化的影</text>
+      <text class="er-note" x="362" y="284">響力——只因我們相信，客戶值得</text>
+      <text class="er-note" x="362" y="302">更好的行銷成果。</text>
+    </g>
+  </svg>
+</div>
+
+<style>
+  .er { padding: 10px; border-radius: 14px; background: color-mix(in srgb, var(--ink) 8%, var(--paper)); }
+  svg { display: block; width: 100%; height: auto; overflow: visible; }
+  text { font-family: inherit; text-anchor: middle; }
+  .er-rings { opacity: calc(.3 + .7 * var(--on)); transition: opacity .5s; }
+  .er-r4 { fill: var(--paper); stroke: var(--line); }
+  .er-r3 { fill: color-mix(in srgb, var(--ink) 4%, var(--paper)); stroke: var(--line); }
+  .er-r2 { fill: var(--paper); stroke: var(--line); }
+  .er-r1 { fill: color-mix(in srgb, #8fb83a 45%, var(--paper)); stroke: none; transform-box: fill-box; transform-origin: center; transform: scale(calc(1 + var(--focus) * .06)); transition: transform .5s; }
+  .er-core { font-size: 11px; font-weight: 800; fill: #2f4d12; }
+  .er-cap { font-size: 8.5px; font-weight: 800; fill: var(--ink); opacity: calc(.3 + .7 * var(--on)); transition: opacity .4s var(--d); }
+  .er-unit { font-size: 8px; fill: var(--ink-2); opacity: calc(.2 + .8 * var(--on)); transition: opacity .4s var(--d); }
+  .er-logo { fill: color-mix(in srgb, #6a5cf0 calc(25% + var(--on) * 30%), var(--paper)); opacity: var(--on); transition: opacity .4s var(--d); }
+  .er-partner { font-size: 9.5px; fill: var(--ink-3); }
+  .er-link line { stroke: #b9d26a; stroke-width: 3; stroke-dasharray: 210; stroke-dashoffset: calc(210 - var(--on) * 210); transition: stroke-dashoffset .8s; }
+  .er-link circle { fill: var(--ink-3); opacity: var(--on); transition: opacity .4s .5s; }
+  .er-impact { opacity: calc(.2 + .8 * var(--on)); transition: opacity .5s .3s; }
+  .er-impact text { text-anchor: start; }
+  .er-tag { fill: var(--paper); stroke: var(--line); }
+  .er-tag-t { font-size: 13px; fill: #4c7a12; }
+  .er-h { font-size: 16px; font-weight: 700; fill: var(--ink-2); }
+  .er-en { font-size: 10px; fill: var(--ink-3); }
+  .er-box { fill: color-mix(in srgb, #b9d26a calc(45% + var(--focus) * 25%), var(--paper)); transition: fill .4s; }
+  .er-impact .er-box-t { text-anchor: middle; font-size: 11px; fill: #2f4d12; }
+  .er-note { font-size: 10.5px; fill: var(--ink-2); }
+  @media (prefers-reduced-motion: reduce) { .er * { transition: none !important; } }
+</style>

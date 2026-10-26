@@ -1,7 +1,7 @@
 import type { Story } from '../../lib/story';
 
 // 紀緻謙〈Agents of Growth：AI 代理時代的增長推手〉紙本 p.28–35
-// 原刊圖表：圖1 AI 重塑顧客旅程（d3 循環）、圖2 Creative E2E 與 AI-Powered IMC（清單）；
+// 原刊圖表：圖1 AI 重塑顧客旅程（d3 循環）、圖2 Creative E2E 與 AI-Powered IMC（art e2e-rings，依原圖同心圓重製）；
 // 文字數據：89% CMO（大數字＋人形圖）；增長三角 12 項專業（hscroll）
 export const story: Story = {
   id: 'a04',
@@ -182,13 +182,10 @@ export const story: Story = {
       kind: 'graphic',
       side: 'right',
       graphic: {
-        type: 'list',
+        type: 'art',
+        art: 'e2e-rings',
         title: '兩大落地增長解方：兼顧短期營收與長期 AI 轉型',
-        items: [
-          { title: 'Creative E2E 服務矩陣', desc: '把 12 項專業整合成可組合的服務模組，打破服務孤島', at: 1 },
-          { title: 'AI-Powered IMC', desc: '從行為預測、內容生成、媒體配置到轉換追蹤的動態顧客旅程', at: 2 },
-        ],
-        source: '圖：Creative E2E 服務矩陣及 AI-Powered IMC 方案｜資料來源 dentsu Creative，紀緻謙〈Agents of Growth〉紙本 p.33–34',
+        source: '圖2：Creative E2E 服務矩陣及 AI-Powered IMC 方案（依原圖重製；外圈原為各數據與平台夥伴標誌）｜資料來源 dentsu Creative，紀緻謙〈Agents of Growth〉紙本 p.33–34',
       },
       src: [{ article: 'a04', page: 33, text: '協助企業同時兼顧短期營收變現與長期 AI 轉型' }],
       beats: [
