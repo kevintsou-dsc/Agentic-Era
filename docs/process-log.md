@@ -225,3 +225,4 @@
 - 有先後順序的五組卡片：a06、a15、a20、a11 改為 list timeline（橫向／直向時間軸，隨捲動點亮）；a18 顧客旅程壓縮改為 art journey-compress（六站長旅程 → Agent 加入 → 壓縮成「說出條件 → 幾套方案」，30 個選項收成 3 個）。
 - balance 蹺蹺板彩蛋：按住品牌／需求方塊往下拉可加重那一側，放開或移開後以阻尼彈簧回到該時代的平衡；拖曳時顯示「放手，它會回到這個時代的平衡」。減少動態時停用。
 - a14 三位執行長卡片加上人物頭像：Wikimedia Commons CC 授權照片（Nadella：Brian Smale and Microsoft，CC BY-SA 4.0；Krishna：Bea Phi，CC BY-SA 4.0；Altman：TechCrunch，CC BY 2.0），下載 960px 縮圖、裁成方形 WebP（15–30 KB），卡片標攝影者、授權、經裁切與 Commons 連結。
+- 原刊資訊圖盤點：a14 衡斷力第一版只讀 figtext 就壓成五張卡片，漏掉 AI vs. Judgment。改為依原圖重製（art judgment-sources）。全站盤點 16 張向量圖，結構流失或缺漏 9 張，列於 docs/figure-audit.md；playbook §3 加「先看原圖，再選圖」，自我審查清單加「看過原圖縮圖」。
