@@ -1,0 +1,95 @@
+---
+// a12 原刊 p.98「電通 CCS 消費者調查八大構面」與 p.99「表：PEOPLE MODEL 訓練方法」（含人群倒入漏斗的插畫）的網頁版。
+// 第 1 段主文：3×3 九宮格，CCS 在中央、八個構面圍繞（依原圖）。
+// 第 2–3 段：換成訓練方法表＋漏斗；第 2 段亮「模型訓練資料」列，第 3 段亮「訓練方法」列，人群點點落入漏斗成 PEOPLE MODEL。
+// 文字照錄 figtext。class 一律加 cm- 前綴。
+const facets = [
+  ['人口輪廓', 'DEMOGRAPHICS'], ['態度與興趣', 'ATTITUDES & INTERESTS'], ['意見與人格', 'OPINIONS & PERSONALITY'],
+  ['嗜好與活動', 'HOBBIES & ACTIVITIES'], null, ['產品與品牌', 'PRODUCTS & BRANDS'],
+  ['決策與購買旅程', 'DECISION & JOURNEY'], ['媒體接觸', 'MEDIA'], ['通路規劃', 'CHANNEL PLANNING'],
+];
+const data = ['5,045 份有效樣本', '台灣 15 至 74 歲', '根據性別、年齡、地區配額抽樣', '每人約 60 分鐘、展開約 6,900 個資料點'];
+const crowd = Array.from({ length: 36 }, (_, i) => ({ x: 14 + (i % 12) * 11 + (Math.floor(i / 12) % 2) * 5, y: 8 + Math.floor(i / 12) * 12, i }));
+---
+<div class="cm" role="img" aria-label={'電通 CCS 消費者調查八大構面：' + facets.filter(Boolean).map((f) => f![0]).join('、') + '。PEOPLE MODEL 訓練方法：模型訓練資料為電通 Consumer Connection System 消費者溝通研究資料庫，' + data.join('、') + '；訓練方法為大型語言模型微調，未參與訓練資料回測，相關係數 0.89。'}>
+  <section class="cm-pane cm-p1" data-focus="1" aria-hidden="true">
+    <p class="cm-cap">圖：電通 CCS 消費者調查八大構面</p>
+    <div class="cm-grid">
+      {facets.map((f, i) => f ? (
+        <div class="cm-cell" style={`--d:${i * 70}ms`}><b>{f[0]}</b><span>{f[1]}</span></div>
+      ) : (
+        <div class="cm-hub"><span class="cm-logo">CCS</span><span class="cm-hub-s">Consumer Connection System</span></div>
+      ))}
+    </div>
+  </section>
+
+  <section class="cm-pane cm-p2" data-at="2" aria-hidden="true">
+    <p class="cm-cap">表：PEOPLE MODEL 訓練方法</p>
+    <div class="cm-tablewrap">
+      <div class="cm-table">
+        <div class="cm-tr cm-th"><span>項目</span><span>規格</span></div>
+        <div class="cm-tr" data-focus="2">
+          <span class="cm-k">模型訓練資料</span>
+          <span>電通 Consumer Connection System<br />消費者溝通研究資料庫
+            <ul>{data.map((d) => <li>{d}</li>)}</ul>
+          </span>
+        </div>
+        <div class="cm-tr" data-focus="3">
+          <span class="cm-k">訓練方法</span>
+          <span>大型語言模型微調<br />未參與訓練資料回測，相關係數 0.89</span>
+        </div>
+      </div>
+      <svg class="cm-funnel" viewBox="0 0 150 170" data-at="3">
+        {crowd.map((p) => (
+          <g class="cm-dot" style={`--d:${(p.i % 12) * 60 + Math.floor(p.i / 12) * 140}ms; --tx:${75 - p.x}px; --ty:${96 - p.y}px`} transform={`translate(${p.x} ${p.y})`}>
+            <circle r="2.6" cy="-3" /><path d="M-3 4 q3 -5 6 0 z" />
+          </g>
+        ))}
+        <path class="cm-cone" d="M20 50 h110 l-40 52 v26 h-30 v-26 z" />
+        <text x="75" y="156" class="cm-pm">PEOPLE MODEL</text>
+      </svg>
+    </div>
+  </section>
+</div>
+
+<style>
+  .cm { display: grid; }
+  .cm p { margin: 0; }
+  .cm-pane { grid-area: 1 / 1; display: grid; gap: 10px; align-content: start; padding: 14px; border-radius: 12px; background: color-mix(in srgb, var(--ink) 8%, var(--paper)); transition: opacity .5s, transform .5s; }
+  .cm-p1 { opacity: var(--focus); transform: translateY(calc((1 - var(--focus)) * -10px)); }
+  :global(.graphic:not(.is-1)) .cm-p1 { opacity: 1; transform: none; }
+  .cm-p2 { opacity: var(--on); transform: translateY(calc((1 - var(--on)) * 12px)); }
+  .cm-cap { font-size: 12px; color: var(--ink-3); }
+
+  .cm-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+  .cm-cell { display: grid; place-items: center; align-content: center; gap: 4px; min-height: 76px; padding: 8px 6px; background: var(--paper); text-align: center; border-radius: 4px; }
+  .cm-cell b { font-size: 14px; font-weight: 700; }
+  .cm-cell span { font-size: 10.5px; letter-spacing: .04em; color: var(--ink-2); line-height: 1.3; }
+  .cm-hub { display: grid; place-items: center; align-content: center; gap: 2px; text-align: center; }
+  .cm-logo { font-size: 30px; font-weight: 900; letter-spacing: .02em; background: linear-gradient(120deg, #6a5cf0, #2bb3e6); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .cm-hub-s { font-size: 9.5px; color: var(--ink-3); }
+
+  .cm-tablewrap { display: grid; grid-template-columns: 1fr 120px; gap: 10px; align-items: center; }
+  .cm-table { display: grid; gap: 6px; }
+  .cm-tr { display: grid; grid-template-columns: 6.5em 1fr; gap: 0; background: var(--paper); border-radius: 4px; font-size: 12.5px; line-height: 1.6; color: var(--ink-2);
+    box-shadow: inset 0 0 0 calc(var(--focus, 0) * 2px) var(--accent-ink); transition: box-shadow .4s; }
+  .cm-tr > span { padding: 8px 10px; }
+  .cm-tr > span + span { border-left: 1px solid var(--line); }
+  .cm-th { background: none; font-weight: 800; color: var(--ink); box-shadow: none; }
+  .cm-th > span { padding: 0 10px; text-align: center; border: 0 !important; }
+  .cm-k { display: grid; place-items: center; font-weight: 800; color: var(--ink); }
+  .cm-tr ul { margin: 4px 0 0; padding-left: 1.1em; }
+  .cm-tr li::marker { content: '◆ '; color: #d64545; font-size: 10px; }
+  .cm-funnel { width: 100%; height: auto; overflow: visible; }
+  .cm-dot { fill: var(--accent-ink); }
+  .cm-dot > * { transform: translate(calc(var(--tx) * var(--on)), calc(var(--ty) * var(--on))) scale(calc(1 - var(--on) * .7)); opacity: calc(1 - var(--on) * .9); transition: transform .9s var(--d) ease-in, opacity .9s var(--d); }
+  .cm-cone { fill: color-mix(in srgb, var(--accent) 70%, var(--paper)); stroke: var(--ink); stroke-width: 2; stroke-linejoin: round; }
+  .cm-pm { font-size: 15px; font-weight: 900; text-anchor: middle; fill: var(--ink); letter-spacing: .02em; }
+  @media (max-width: 560px) {
+    .cm-cell { min-height: 60px; }
+    .cm-cell b { font-size: 12px; } .cm-cell span { display: none; }
+    .cm-tablewrap { grid-template-columns: 1fr; }
+    .cm-funnel { width: 120px; justify-self: center; }
+  }
+  @media (prefers-reduced-motion: reduce) { .cm-pane, .cm-dot > * { transition: none; } }
+</style>

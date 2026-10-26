@@ -1,7 +1,7 @@
 import type { Story } from '../../lib/story';
 
 // 陳介立、孫郁喬、高靖萍〈People Model 讓消費者研究變成一場隨時能開口的對話〉紙本 p.96–115
-// 原刊圖表：CCS 八大構面（清單）、訓練方法表（細節卡）、模擬 vs 真人散布圖（圖片）、Lisa／Cindy 對照表（art persona-duo 人物檔案）、
+// 原刊圖表：CCS 八大構面＋訓練方法表（art ccs-model，依原圖九宮格與表格重製）、模擬 vs 真人散布圖（圖片）、Lisa／Cindy 對照表（art persona-duo 人物檔案）、
 // Multi-Agent 分工（art agent-team）、五個模擬案例（case 情境→方法→模擬，含兩組廣告素材圖）＋總結（list）、三種輸出層次（layers）
 export const story: Story = {
   id: 'a12',
@@ -45,21 +45,17 @@ export const story: Story = {
       kind: 'graphic',
       side: 'right',
       graphic: {
-        type: 'list',
-        title: '電通 CCS 消費者調查八大構面',
-        items: [
-          { title: '人口輪廓', desc: 'Demographics', at: 1 },
-          { title: '嗜好與活動', desc: 'Hobbies & Activities', at: 1 },
-          { title: '態度與興趣', desc: 'Attitudes & Interests', at: 1 },
-          { title: '意見與人格', desc: 'Opinions & Personality', at: 1 },
-          { title: '產品與品牌', desc: 'Products & Brands', at: 1 },
-          { title: '決策與購買旅程', desc: 'Decision & Journey', at: 1 },
-          { title: '媒體接觸', desc: 'Media', at: 1 },
-          { title: '通路規劃', desc: 'Channel Planning', at: 1 },
-        ],
-        source: '圖：電通 CCS 消費者調查八大構面｜〈People Model〉紙本 p.98',
+        type: 'art',
+        art: 'ccs-model',
+        title: '把十餘年的 CCS 調查，捏塑成 People Model',
+        source: '圖：電通 CCS 消費者調查八大構面、表：PEOPLE MODEL 訓練方法（依原圖重製）｜〈People Model〉紙本 p.98–99',
       },
       src: [{ article: 'a12', page: 98, text: '電通 CCS 消費者調查八大構面' }],
+      figures: [
+        { article: 'a12', page: 99, text: '5,045 份有效樣本' },
+        { article: 'a12', page: 99, text: '每人約 60 分鐘、展開約 6,900 個資料點' },
+        { article: 'a12', page: 99, text: '未參與訓練資料回測，相關係數 0.89' },
+      ],
       beats: [
         {
           text: '通用模型靠「35 歲、住台北、愛運動」一句話人設去推測角色，回答自然表淺。People Model 則注入電通獨家的 CCS 資料，這是持續十餘年、每年執行的大型消費者追蹤調查。',
@@ -82,11 +78,7 @@ export const story: Story = {
             { article: 'a12', page: 98, text: '它產生的不是幾千個消費者故事，而是一群有統計結構的人' },
             { article: 'a12', page: 99, text: '這些數位分身就是「虛擬消費者」，我們稱為 AI Persona' },
           ],
-          more: {
-            title: 'People Model 訓練方法',
-            text: '模型訓練資料：電通 Consumer Connection System 消費者溝通研究資料庫，5,045 份有效樣本、台灣 15 至 74 歲、依性別年齡地區配額抽樣；每人約 60 分鐘、展開約 6,900 個資料點。訓練方法為大型語言模型微調，以未參與訓練的資料回測。',
-            quote: { article: 'a12', page: 99, text: '你要它演誰，它就像誰。' },
-          },
+          quote: { article: 'a12', page: 99, text: '你要它演誰，它就像誰。' },
         },
       ],
     },
