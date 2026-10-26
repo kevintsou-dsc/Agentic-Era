@@ -122,7 +122,7 @@ export const story: Story = {
             { article: 'a17', page: 156, text: '理解成本本身就是轉換成本' },
           ],
           more: {
-            title: 'Theodore Levitt 的比喻',
+            title: 'Theodore Levitt 的比喻', text: '行銷學者 Theodore Levitt 的老比喻：顧客買的是要解決的問題，不是產品本身。',
             quote: { article: 'a17', page: 156, text: '顧客要的不是 1/4 吋的鑽頭，而是 1/4 吋的洞。' },
           },
         },
@@ -135,7 +135,7 @@ export const story: Story = {
             { article: 'a17', page: 157, text: '透過後續會員活動、內容互動與購買行為逐步補足' },
           ],
           more: {
-            title: '真正的取捨',
+            title: '真正的取捨', text: '註冊時不必一次問完，等顧客有理由、也願意回答的時候，再逐步補齊資料。',
             quote: { article: 'a17', page: 157, text: '資料，要在顧客願意回答的時刻，用對的理由取得。' },
           },
         },

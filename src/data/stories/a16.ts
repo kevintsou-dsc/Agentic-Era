@@ -119,7 +119,7 @@ export const story: Story = {
             { article: 'a16', page: 147, text: '電通顧問以全員線上問卷方式，再輔以利害關係人訪談' },
           ],
           more: {
-            title: '典型病灶：經驗倚賴指數過高',
+            title: '典型病灶：經驗倚賴指數過高', text: '「經驗倚賴」是常見的文化暗流：導入了 AI，關鍵時刻卻仍回到憑直覺拍板。',
             quote: { article: 'a16', page: 147, text: '但是面對關鍵決策時，高層又回復以往仰賴直覺，忽略 AI 分析與預測的客觀數據，白白浪費了 AI 真正可以驅動的文化效益。' },
             links: [{ url: 'https://aif.tw/event/ai-research/', label: '台灣產業 AI 化大調查', kind: 'report' }],
           },
@@ -133,7 +133,7 @@ export const story: Story = {
             { article: 'a16', page: 147, text: '更成功創造超過 227 億小時顧客體驗時間' },
           ],
           more: {
-            title: '莫德納：把文化價值寫進 AI 行動',
+            title: '莫德納：把文化價值寫進 AI 行動', text: '莫德納把文化價值直接寫成行為準則，讓員工知道哪些工作該交給 AI 處理。',
             quote: { article: 'a16', page: 148, text: '例如「能用演算法完成的工作就不依賴人工處理」，鼓勵員工善用 AI 與低程式碼工具提升效率' },
             links: [{ url: 'https://www.modernatx.com/media-center/all-media/blogs/moderna-powered-AI', label: 'Moderna 官方部落格', kind: 'web' }],
           },
@@ -147,7 +147,7 @@ export const story: Story = {
             { article: 'a16', page: 148, text: '目前每週有超過 90 萬名員工使用，每天處理超過 300 萬個問題' },
           ],
           more: {
-            title: '賦能員工，而不是取代員工',
+            title: '賦能員工，而不是取代員工', text: '沃爾瑪的例子說明：把 AI 定位成協助員工的副駕駛，比宣示轉型更能撼動組織慣性。',
             quote: { article: 'a16', page: 148, text: '只要在文化上給予員工足夠的「心理安全感」，清楚地將 AI 定位為「賦能副駕駛」，龐大的組織慣性也有機會被改變。' },
             links: [{ url: 'https://hbr.org/2026/03/the-hbr-interview-with-outgoing-walmart-ceo-doug-mcmillon', label: 'HBR 專訪沃爾瑪 CEO', kind: 'web' }],
           },

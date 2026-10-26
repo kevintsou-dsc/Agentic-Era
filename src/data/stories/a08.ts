@@ -89,7 +89,7 @@ export const story: Story = {
             { article: 'a08', page: 60, text: '2026 年台北國際動漫節吸引超過 50.5 萬人次參與，創造約 2.5 億元商機' },
             { article: 'a08', page: 60, text: '被納入二創與應援的品牌，才真正進入了這個生態' },
           ],
-          more: { title: '動漫節的數字', quote: { article: 'a08', page: 60, text: '其中，臺灣漫畫館營收突破 200 萬元，大師與聲優活動更吸引超過 2.8 萬人次參與' }, links: [{ url: 'https://m.my-formosa.com.tw/DOC_223557.htm', label: '動漫節報導', kind: 'web' }, { url: 'https://reading.udn.com/read/story/124410/9324082', label: '臺灣漫畫館報導', kind: 'web' }] },
+          more: { title: '動漫節的數字', text: '展區營收與大師、聲優活動的參與人數，顯示動漫節的熱度不只在入場人次。', quote: { article: 'a08', page: 60, text: '其中，臺灣漫畫館營收突破 200 萬元，大師與聲優活動更吸引超過 2.8 萬人次參與' }, links: [{ url: 'https://m.my-formosa.com.tw/DOC_223557.htm', label: '動漫節報導', kind: 'web' }, { url: 'https://reading.udn.com/read/story/124410/9324082', label: '臺灣漫畫館報導', kind: 'web' }] },
         },
         {
           kicker: '現場 2', title: '周邊商品',
@@ -98,7 +98,7 @@ export const story: Story = {
             { article: 'a08', page: 60, text: '周邊商品正逐漸成為泛娛樂粉絲最共通的消費語言' },
             { article: 'a08', page: 60, text: '過去是買商品送周邊；如今則是為了周邊而購買商品' },
           ],
-          more: { title: '一天賣出人民幣 300 萬元', quote: { article: 'a08', page: 60, text: '五月天北京演唱會期間的相關快閃店，單日銷售額突破人民幣 300 萬元' } },
+          more: { title: '一天賣出人民幣 300 萬元', text: '周邊不再是贈品，而是消費動機本身：演唱會快閃店的單日業績就是例子。', quote: { article: 'a08', page: 60, text: '五月天北京演唱會期間的相關快閃店，單日銷售額突破人民幣 300 萬元' } },
         },
         {
           kicker: '現場 3', title: '2.5 次元',

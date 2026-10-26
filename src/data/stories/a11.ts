@@ -437,7 +437,7 @@ export const story: Story = {
             { article: 'a11', page: 86, text: '真正經歷過的人可以回來尋找青春' },
           ],
           more: {
-            title: '片庫可以變成「記憶型媒體」',
+            title: '片庫可以變成「記憶型媒體」', text: '經典片庫重新上架後，品牌投放買到的不只是廣告版位，而是一起主辦大家的共同記憶。',
             quote: { article: 'a11', page: 87, text: '品牌此時買的就不只是前貼片廣告 (Pre-roll)、冠名或內容置入，而是在共同主辦一段大家的記憶。' },
             links: [{ url: 'https://www.youtube.com/@TTVClassic', label: '台視時光機 YouTube', kind: 'video' }],
           },

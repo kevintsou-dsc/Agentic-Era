@@ -56,7 +56,7 @@ export const story: Story = {
             { article: 'a15', page: 138, text: '將修訂審議時間最多縮短 70%' },
           ],
           more: {
-            title: '從旅程地圖到決策地圖',
+            title: '從旅程地圖到決策地圖', text: '旅程地圖畫的是企業設計的流程；決策地圖則標出顧客在哪裡猶豫，再對上企業的支援機制。',
             quote: { article: 'a15', page: 138, text: '決策地圖主要是將顧客的「猶豫節點」對齊企業的「支援機制」。關注顧客在哪裡不確定、需要比較、需要保證或需要人工協助。' },
             links: [
               { url: 'https://news.aa.com/news/news-details/2025/Artificial-intelligence-at-American-CORP-OTH-01/default.aspx', label: 'American Airlines Newsroom', kind: 'web' },
@@ -90,7 +90,7 @@ export const story: Story = {
             { article: 'a15', page: 139, text: '「跨觸點」就不只是跨企業內部，還包含跨企業的代理界面' },
           ],
           more: {
-            title: 'Mastercard：交易可以自動化，信任不能',
+            title: 'Mastercard：交易可以自動化，信任不能', text: '交易流程可以交給 AI 自動完成，但信任不會自動產生，得由企業在每個觸點持續建立。',
             quote: { article: 'a15', page: 139, text: '「You can automate commerce, but you can\'t automate trust.」' },
             links: [
               { url: 'https://www.mastercard.com/global/en/news-and-trends/stories/2025/2026-payment-trends.html', label: 'Mastercard 2026 Payment Trends', kind: 'report' },
