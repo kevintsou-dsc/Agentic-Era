@@ -1,7 +1,7 @@
 import type { Story } from '../../lib/story';
 
 // 莊閔雯、呂季霖〈GEO 時代，被 AI 看見是技術，被消費者記住才是本事〉紙本 p.168–175
-// 原刊圖表：圖1 i-Proof 五層模型（layers 逐段）、CEPs 七個 W 聯想架構（清單）、CEPs 說明框（細節卡）；
+// 原刊圖表：圖1 i-Proof 五步驟（art iproof，依原圖波浪路徑重製）、CEPs 七個 W 聯想架構（清單）、CEPs 說明框（細節卡）；
 // 跨國美妝集團案例的四個轉變（hscroll）
 export const story: Story = {
   id: 'a19',
@@ -130,16 +130,9 @@ export const story: Story = {
       kind: 'graphic',
       side: 'right',
       graphic: {
-        type: 'layers',
-        to: 'i-Proof 模型：從信任到成效的五個步驟',
-        layers: [
-          { title: '層級 1｜可抓取 & 可拆解', desc: 'Crawlability & Chunkability：讓搜尋引擎抓得到、LLM 抽得出重點', at: 1 },
-          { title: '層級 2｜可教化的答案內容', desc: 'LLM-Teachable Content：內容能被壓成 1–2 句，且有可信來源', at: 2 },
-          { title: '層級 3｜AI 答案能見度', desc: 'AI Answer Visibility：在主要答案引擎中被點名或引用', at: 3 },
-          { title: '層級 4｜實體與信任圖譜', desc: 'Entity & Trust Graph：模型記得你、信任你', at: 4 },
-          { title: '層級 5｜持續量測', desc: 'Always-on Measurement：把「被引用」做成常態化經營', at: 5 },
-        ],
-        source: '圖：i-Proof 模型：從信任到成效的五個步驟｜資料來源 安布思沛 iProspect／製圖，莊閔雯、呂季霖〈GEO 時代〉紙本 p.172',
+        type: 'art',
+        art: 'iproof',
+        source: '圖1：i-Proof 模型：從信任到成效的五個步驟（依原圖重製）｜資料來源 安布思沛 iProspect／製圖，莊閔雯、呂季霖〈GEO 時代〉紙本 p.172',
       },
       src: [{ article: 'a19', page: 172, text: 'i-Proof 模型：從信任到成效的五個步驟' }],
       figures: [

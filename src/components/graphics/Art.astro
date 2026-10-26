@@ -8,6 +8,7 @@ import PersonaDuo from '../art/PersonaDuo.astro';
 import AgentTeam from '../art/AgentTeam.astro';
 import JourneyCompress from '../art/JourneyCompress.astro';
 import JudgmentSources from '../art/JudgmentSources.astro';
+import IProof from '../art/IProof.astro';
 type G = Extract<Graphic, { type: 'art' }>;
 interface Props { g: G }
 const { g } = Astro.props;
@@ -20,6 +21,7 @@ const { g } = Astro.props;
   {g.art === 'agent-team' && <AgentTeam />}
   {g.art === 'journey-compress' && <JourneyCompress />}
   {g.art === 'judgment-sources' && <JudgmentSources />}
+  {g.art === 'iproof' && <IProof />}
   <figcaption class="source">{g.source}</figcaption>
 </figure>
 <style>
