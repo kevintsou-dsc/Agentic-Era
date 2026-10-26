@@ -9,7 +9,8 @@ import MoreBody from './MoreBody.astro';
 import type { More } from '../lib/story';type S = Extract<Scene, { kind: 'hscroll' }>;
 interface Props { s: S }
 const { s } = Astro.props;
-// 沒有案例圖片的格：細節直接攤在卡片上（短的直接顯示，長的改成下拉展開），不另開彈窗。
+// 沒有案例圖片的格：細節攤在卡片上，一律可點擊展開／收合（scripts/expand.ts 平滑動畫）；
+// 內容長（> 90 字）預設收起，內容短、卡片留白多時預設展開。不另開彈窗。
 // 細節裡有圖片、卡片本身沒有時，把圖片升到卡片上，細節仍用彈窗。
 const moreLen = (m: More) => (m.text ?? '').length + (m.quote?.text.length ?? 0);
 const view = s.panels.map((p) => {
@@ -53,16 +54,10 @@ const view = s.panels.map((p) => {
               </p>
             )}
             {!inline && <MoreRef m={p.more} />}
-            {inline && !fold && (
-              <div class="hs-more">
-                <p class="hs-more-title">{p.more!.title}</p>
-                <MoreBody m={p.more!} />
-              </div>
-            )}
-            {fold && (
-              <details class="hs-more">
+            {inline && (
+              <details class="hs-more" data-expand open={!fold}>
                 <summary class="hs-more-title">{p.more!.title}</summary>
-                <MoreBody m={p.more!} />
+                <div class="expand-body"><MoreBody m={p.more!} /></div>
               </details>
             )}
           </li>
@@ -101,12 +96,15 @@ const view = s.panels.map((p) => {
   .hs-fig span { font-size: 13px; color: var(--ink-2); }
   .hs-text { margin: 0; font-size: 15px; line-height: 1.75; }
   /* 卡片內的細節：淡底色區塊，與主文區隔；引文縮小成卡片尺寸 */
-  .hs-more { margin-top: 4px; padding: 12px 14px; border-radius: 10px; background: var(--paper-2); max-height: 34svh; overflow: auto; }
+  .hs-more { margin-top: 4px; padding: 12px 14px; border-radius: 10px; background: var(--paper-2); }
+  .hs-more .expand-body { max-height: 34svh; overflow: auto; }
   .hs-more-title { margin: 0 0 6px; font-size: 13px; font-weight: 700; color: var(--accent-ink); }
   .hs-more-title::before { content: "延伸｜"; color: var(--ink-3); font-weight: 500; }
   details.hs-more > summary { cursor: pointer; list-style: none; margin: 0; }
   details.hs-more > summary::-webkit-details-marker { display: none; }
   details.hs-more > summary::after { content: "　▾ 展開"; font-weight: 500; color: var(--ink-3); }
+  details.hs-more > summary::after { transition: color .2s; }
+  details.hs-more > summary:hover::after { color: var(--accent-ink); }
   details.hs-more[open] > summary { margin-bottom: 8px; }
   details.hs-more[open] > summary::after { content: "　▴ 收合"; }
   .hs-more :global(.quote) { font-size: 15px; line-height: 1.7; border-left-width: 3px; padding-left: 12px; }
