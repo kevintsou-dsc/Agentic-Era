@@ -227,6 +227,30 @@ export const story: Story = {
             { article: 'a14', page: 132, text: '但產品方向、隱私規範與使用者體驗的最終判斷權，Apple 並沒有交出去' },
           ],
         },
+      ],
+    },
+    {
+      kind: 'graphic',
+      side: 'right',
+      graphic: {
+        type: 'art',
+        art: 'judgment-sources',
+        source: '圖：AI vs. Judgment／Judgment 的五大能力來源（依原刊資訊圖重製）｜強義明〈衡斷力〉紙本 p.132–133',
+      },
+      src: [{ article: 'a14', page: 133, text: 'Judgment 的五大能力來源' }],
+      figures: [
+        { article: 'a14', page: 133, text: '彙整大量數據與資訊' },
+        { article: 'a14', page: 128, text: '答案多' },
+        { article: 'a14', page: 132, text: '判斷哪些訊號值得相信' },
+        { article: 'a14', page: 133, text: '決定哪些機會值得投入' },
+        { article: 'a14', page: 133, text: '關鍵在於：判斷與責任' },
+        { article: 'a14', page: 133, text: '理解人性與需求' },
+        { article: 'a14', page: 133, text: '以數據建立洞察' },
+        { article: 'a14', page: 133, text: '掌握市場與產業趨勢' },
+        { article: 'a14', page: 133, text: '跨產業與專案的實戰經驗' },
+        { article: 'a14', page: 133, text: '在有限資源下聚焦執行' },
+      ],
+      beats: [
         {
           text: '即使 AI 能協助完成 Sense 與 Connect 的部分工作，衡斷力仍是企業最不該交出的能力。AI 能彙整大量資訊，難的是判斷哪些訊號值得相信、哪些機會值得投入，並為結果負責。',
           src: [
@@ -235,32 +259,6 @@ export const story: Story = {
           ],
           quote: { article: 'a14', page: 132, text: '「企業真正面對的問題，從來不是答案不夠，而是解法太多」' },
         },
-      ],
-    },
-    {
-      kind: 'graphic',
-      side: 'right',
-      graphic: {
-        type: 'list',
-        title: '衡斷力的五大能力來源',
-        items: [
-          { title: '感受與感知', desc: '理解人性與需求', at: 1 },
-          { title: '數據基礎', desc: '以數據建立洞察', at: 1 },
-          { title: '趨勢洞察', desc: '掌握市場與產業趨勢', at: 1 },
-          { title: '經驗判斷', desc: '跨產業與專案的實戰經驗', at: 1 },
-          { title: '組織協作', desc: '在有限資源下聚焦執行', at: 1 },
-        ],
-        source: '圖：衡斷力的五大能力來源｜強義明〈衡斷力〉紙本 p.132–133',
-      },
-      src: [{ article: 'a14', page: 133, text: 'Judgment 的五大能力來源' }],
-      figures: [
-        { article: 'a14', page: 133, text: '理解人性與需求' },
-        { article: 'a14', page: 133, text: '以數據建立洞察' },
-        { article: 'a14', page: 133, text: '掌握市場與產業趨勢' },
-        { article: 'a14', page: 133, text: '跨產業與專案的實戰經驗' },
-        { article: 'a14', page: 133, text: '在有限資源下聚焦執行' },
-      ],
-      beats: [
         {
           text: '衡斷力可以從五個面向累積：生而為人的感受與感知、長期可驗證的數據基礎、觀察市場與產業趨勢的能力、跨產業與專案的經驗判斷，以及在有限資源下完成協作的組織能力。',
           src: [

@@ -74,7 +74,7 @@ export type Graphic =
   /** d3 互動圖表；chart 對應 src/components/d3/ 下的元件 */
   | { type: 'd3'; chart: D3Chart; source: string }
   /** 分格插畫：作者小故事、個人經驗（不是統計數據，不用 bignum／長條呈現）。第 k 段主文顯示第 k 格 */
-  | { type: 'art'; art: 'magnet-mount' | 'escalation' | 'persona-duo' | 'agent-team' | 'journey-compress'; title?: string; source: string }
+  | { type: 'art'; art: 'magnet-mount' | 'escalation' | 'persona-duo' | 'agent-team' | 'journey-compress' | 'judgment-sources'; title?: string; source: string }
   /**
    * 案例模擬（情境 → 方法 → 模擬）：第 1 段主文顯示情境、第 2 段顯示方法、第 3 段起依序顯示 results。
    * 主文段數 = 2 + results.length。
