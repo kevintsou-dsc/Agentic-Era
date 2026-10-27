@@ -5,7 +5,9 @@ type G = Extract<Graphic, { type: 'bars' }>;
 interface Props { g: G }
 const { g } = Astro.props;
 const max = Math.max(...g.bars.map((b) => b.value)) * 1.12;
-const aria = `${g.title}：` + g.bars.map((b) => `${b.label}${b.sub ? b.sub : ''} ${b.display}`).join('，');
+// 每個數值都已經帶單位（例如「5.5 天」）時，下方不再重複印單位
+const showAxis = !!g.axis && !g.bars.every((b) => b.display.includes(g.axis!));
+const aria =`${g.title}：` + g.bars.map((b) => `${b.label}${b.sub ? b.sub : ''} ${b.display}`).join('，');
 ---
 <div class="stage bars">
   <p class="title">{g.title}{g.badge && <span class="badge" data-at={g.badge.at}>{g.badge.text}</span>}</p>
@@ -18,7 +20,7 @@ const aria = `${g.title}：` + g.bars.map((b) => `${b.label}${b.sub ? b.sub : ''
       </div>
     ))}
   </div>
-  {g.axis && <p class="axis">{g.axis}</p>}
+  {showAxis && <p class="axis">{g.axis}</p>}
   <p class="source">{g.source}</p>
 </div>
 <style>
