@@ -68,7 +68,7 @@ const { scenes } = Astro.props;
   }
   if (s.kind === 'bignum') {
     return (
-      <section class:list={['section center bignum-scene', { 'bn-split': (s.people?.total ?? 0) > 20 }]}>
+      <section class="section center bignum-scene">
         {/* 數字動畫只改 data-count 這個 span，單位放在外面才不會被覆蓋掉 */}
         <p class="bignum reveal">
           <span data-count={s.value} data-decimals={s.decimals ?? 0} data-prefix={s.prefix ?? ''}>{(s.prefix ?? '') + s.value.toFixed(s.decimals ?? 0)}</span><small>{s.unit}</small>
@@ -104,22 +104,15 @@ const { scenes } = Astro.props;
 })}
 <style>
   .statement { font-size: clamp(28px, 4.5vw, 52px); }
-  .bignum-scene .bignum { color: var(--accent-ink); }
+  /* p 預設 margin 以字級計算，大數字下方會空出一大段；改為固定的小間距，讓數字和人形圖連成一組 */
+  .bignum-scene .bignum { color: var(--accent-ink); margin: 0 0 clamp(14px, 2.5svh, 28px); }
   /* 人形圖：例如 20 人中 13 人實心＝65%；進入視窗時依序填滿 */
   .people { display: grid; justify-items: center; gap: 10px; margin: 8px auto 20px; }
   .people-grid { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(var(--cols), clamp(22px, 3.4vw, 38px)); gap: clamp(6px, 1vw, 12px) clamp(4px, .8vw, 10px); }
   /* 100 人（例如 89%）：每列 10 人，縮小圖示，填色間隔縮短 */
-  .people-grid.dense { grid-template-columns: repeat(10, clamp(13px, 1.7vw, 20px)); gap: 3px 5px; }
-  /* 100 人的人形圖很高：桌機改為大數字在左、人形圖在右，說明與出處橫跨下方，整段一屏看完 */
-  .bn-split { display: grid; grid-template-columns: auto auto; justify-content: center; align-items: center; column-gap: clamp(32px, 6vw, 88px); }
-  .bn-split .bignum { grid-column: 1; grid-row: 1; margin: 0; font-size: clamp(64px, 11vw, 150px); }
-  .bn-split .people { grid-column: 2; grid-row: 1; margin: 0; }
-  .bn-split .lede, .bn-split .source { grid-column: 1 / -1; }
-  .bn-split .lede { margin-top: clamp(24px, 4svh, 40px); }
-  @media (max-width: 720px) {
-    .bn-split { grid-template-columns: 1fr; row-gap: 16px; }
-    .bn-split .people { grid-column: 1; grid-row: auto; }
-  }
+  .people-grid.dense { grid-template-columns: repeat(10, clamp(14px, 2vw, 22px)); gap: 4px 6px; }
+  /* 桌機寬度夠：100 人排成 20×5，比 10×10 矮一半 */
+  @media (min-width: 720px) { .people-grid.dense { grid-template-columns: repeat(20, clamp(14px, 1.6vw, 22px)); } }
   .people-grid.dense .person circle, .people-grid.dense .person path { transition-delay: calc(var(--i) * 14ms + .3s); }
   .person svg { display: block; width: 100%; height: auto; overflow: visible; }
   .person circle, .person path { fill: transparent; stroke: var(--ink-3); stroke-width: 2; transition: fill .35s, stroke .35s; transition-delay: calc(var(--i) * 70ms + .3s); }
