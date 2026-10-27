@@ -1,0 +1,53 @@
+---
+// a04 p.31–33「增長三角」：原文沒有圖，策展者把三個主軸畫成真正的三角形。
+// 重點是三個主軸各自回答什麼問題（p.31），各主軸的 4 項專業能力只用小字附在旁邊，不再當大數字強調。
+// 第 1 段主文（整體介紹）：三條邊畫出來；第 2–4 段：依序點亮主軸一／二／三，當段的頂點加粗外框。
+// class 一律加 gt- 前綴。
+const axes = [
+  { k: '主軸一', a: '贏得', b: '演算法', q: '如何被 AI 正確理解與推薦', caps: ['AI Content Production／TAG', 'Data & Martech、Media', 'Social Commerce'], x: 280, y: 92, tx: 340, ty: 62, anchor: 'start' },
+  { k: '主軸二', a: '贏得', b: '人心', q: '如何在人類決策中建立信任', caps: ['Strategy & Consult、Brand & Creative', 'Experience Design／Dentsu Lab', 'BX'], x: 112, y: 352, tx: 52, ty: 428, anchor: 'start' },
+  { k: '主軸三', a: '贏得', b: '文化', q: '如何進入文化、形成長期品牌資產', caps: ['PR Influence、Event', 'Entertainment & Sports', 'IP Design Lab'], x: 448, y: 352, tx: 508, ty: 428, anchor: 'end' },
+];
+const tri = `M${axes[0].x} ${axes[0].y} L${axes[2].x} ${axes[2].y} L${axes[1].x} ${axes[1].y} Z`;
+const cx = Math.round(axes.reduce((s, p) => s + p.x, 0) / 3), cy = Math.round(axes.reduce((s, p) => s + p.y, 0) / 3);
+---
+<svg class="gt" viewBox="0 0 560 500" role="img" aria-label={'增長三角：' + axes.map((p) => `${p.k}${p.a}${p.b}，回答${p.q}（${p.caps.join('、')}）`).join('；')}>
+  <path class="gt-edge-bg" d={tri} />
+  <path class="gt-edge" d={tri} pathLength="1" data-at="1" />
+  <g class="gt-core" data-at="1">
+    <text class="gt-core-zh" x={cx} y={cy + 4}>增長三角</text>
+    <text class="gt-core-en" x={cx} y={cy + 24}>The Growth Triangle</text>
+  </g>
+  {axes.map((p, i) => (
+    <g class="gt-axis" data-at={i + 2} data-focus={i + 2}>
+      <circle class="gt-dot" cx={p.x} cy={p.y} r="50" />
+      <text class="gt-kicker" x={p.x} y={p.y - 16}>{p.k}</text>
+      <text class="gt-name" x={p.x} y={p.y + 6}>{p.a}</text>
+      <text class="gt-name" x={p.x} y={p.y + 28}>{p.b}</text>
+      <text class="gt-q" x={p.tx} y={p.ty} text-anchor={p.anchor}>{p.q}</text>
+      {p.caps.map((c, j) => <text class="gt-cap" x={p.tx} y={p.ty + 22 + j * 16} text-anchor={p.anchor}>{c}</text>)}
+    </g>
+  ))}
+</svg>
+
+<style>
+  .gt { display: block; width: 100%; height: auto; max-height: 64svh; overflow: visible; }
+  .gt-edge-bg { fill: none; stroke: color-mix(in srgb, var(--ink) 12%, transparent); stroke-width: 3; stroke-dasharray: 6 6; }
+  .gt-edge { fill: color-mix(in srgb, var(--accent) calc(var(--on) * 14%), transparent); stroke: var(--ink); stroke-width: 3; stroke-linejoin: round;
+    stroke-dasharray: 1; stroke-dashoffset: calc(1 - var(--on)); transition: stroke-dashoffset 1.2s ease, fill .8s .6s; }
+  .gt-core { opacity: calc(.2 + .8 * var(--on)); transition: opacity .6s .5s; }
+  .gt-core-zh { text-anchor: middle; font: 800 20px var(--font-sans); fill: var(--ink); }
+  .gt-core-en { text-anchor: middle; font: 600 11px var(--font-mono, monospace); letter-spacing: .08em; fill: var(--ink-3); }
+  .gt-axis { opacity: calc(.28 + .72 * var(--on)); transition: opacity .5s; }
+  .gt-dot { fill: color-mix(in srgb, var(--accent) calc(var(--on) * 100%), var(--paper)); stroke: var(--accent-ink); stroke-width: calc(2px + var(--focus) * 3px);
+    transform-box: fill-box; transform-origin: center; transform: scale(calc(1 + var(--focus) * .08)); transition: fill .5s, stroke-width .3s, transform .4s cubic-bezier(.3, 1.5, .5, 1); }
+  .gt-kicker { text-anchor: middle; font: 700 10.5px var(--font-sans); letter-spacing: .12em; fill: var(--accent-ink); }
+  .gt-name { text-anchor: middle; font: 800 18px var(--font-sans); fill: var(--ink); }
+  .gt-q { font: 800 15px var(--font-sans); fill: var(--accent-ink); }
+  .gt-cap { font: 500 11.5px var(--font-sans); fill: var(--ink-3); }
+  @media (max-width: 560px) {
+    .gt-q { font-size: 19px; }
+    .gt-cap { display: none; }
+  }
+  @media (prefers-reduced-motion: reduce) { .gt-edge, .gt-core, .gt-axis, .gt-dot { transition: none; } }
+</style>

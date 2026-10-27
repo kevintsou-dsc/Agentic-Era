@@ -127,18 +127,24 @@ export const story: Story = {
       quote: { article: 'a04', page: 31, text: '當機器接手更多效率與執行，品味與信任將成為企業創造商業溢價的關鍵資產。' },
     },
     {
-      kind: 'hscroll',
-      title: '增長三角：贏得演算法、贏得人心、贏得文化',
-      intro: {
-        text: '電通重新整合創意事業群的十二項專業能力，建構「增長三角」。三個面向分別回答：如何被 AI 正確理解與推薦、如何在人類決策中建立信任，以及如何進入文化、形成長期品牌資產。',
-        src: [
-          { article: 'a04', page: 31, text: '我們重新整合電通創意事業群旗下十二項專業能力，建構出能夠在 AI 時代為客戶創造實質成長的「增長三角 (The Growth Triangle) 」' },
-          { article: 'a04', page: 31, text: '如何被 AI 正確理解與推薦、如何在人類決策中建立信任與偏好，以及如何進一步進入文化，形成長期且深層的品牌資產' },
-        ],
+      kind: 'graphic',
+      graphic: {
+        type: 'art',
+        art: 'growth-triangle',
+        title: '增長三角：贏得演算法、贏得人心、贏得文化',
+        source: '圖：策展者依原文整理製圖（三角為視覺比喻，各主軸旁小字為所屬專業能力）｜紀緻謙〈Agents of Growth〉紙本 p.31–33',
       },
-      panels: [
+      src: [{ article: 'a04', page: 31, text: '「增長三角 (The Growth Triangle) 」' }],
+      beats: [
         {
-          kicker: '主軸一', title: '贏得演算法', figure: { value: '4 項', label: 'AI Content Production／TAG、Data & Martech、Media、Social Commerce' },
+          text: '電通重新整合創意事業群的十二項專業能力，建構「增長三角」。三個面向分別回答：如何被 AI 正確理解與推薦、如何在人類決策中建立信任，以及如何進入文化、形成長期品牌資產。',
+          src: [
+            { article: 'a04', page: 31, text: '我們重新整合電通創意事業群旗下十二項專業能力，建構出能夠在 AI 時代為客戶創造實質成長的「增長三角 (The Growth Triangle) 」' },
+            { article: 'a04', page: 31, text: '如何被 AI 正確理解與推薦、如何在人類決策中建立信任與偏好，以及如何進一步進入文化，形成長期且深層的品牌資產' },
+          ],
+        },
+        {
+          tag: '主軸一',
           text: '當 AI 能快速生成大量內容，品牌需要的不是更多素材，而是更清楚的判斷標準。AI 負責速度、規模與變體生成，人類專家把關策略方向、美學標準與品牌一致性。',
           src: [
             { article: 'a04', page: 31, text: '當 AI 可以快速生成大量內容，品牌最需要的不是更多素材，而是更清楚的判斷標準' },
@@ -150,7 +156,7 @@ export const story: Story = {
           },
         },
         {
-          kicker: '主軸二', title: '贏得人心', figure: { value: '4 項', label: 'Strategy & Consult、Brand & Creative、Experience Design／Dentsu Lab、BX' },
+          tag: '主軸二',
           text: 'AI 讓消費旅程更快、更順，但信任與情感連結不會自動發生，必須刻意投資。品牌不能只求被看見，更要被記得、被相信、被偏好，讓消費者面對 AI 的理性比較時，仍主動選擇它。',
           src: [
             { article: 'a04', page: 32, text: '信任、情感連結與深層理解並不會隨之自動發生，它們是品牌在這個階段必須刻意投資的資產' },
@@ -163,7 +169,7 @@ export const story: Story = {
           },
         },
         {
-          kicker: '主軸三', title: '贏得文化', figure: { value: '4 項', label: 'PR Influence、Event、Entertainment & Sports、IP Design Lab' },
+          tag: '主軸三',
           text: '只停留在功能比較的品牌，很容易被演算法替換。品牌偏好不是一次廣告就能創造，而是長期在文化中累積的信任、記憶與情感資產；擁有世界觀、角色與粉絲參與機制，品牌才會成為文化資產。',
           src: [
             { article: 'a04', page: 33, text: '品牌若只停留在功能比較，很容易被演算法替換' },
@@ -176,7 +182,6 @@ export const story: Story = {
           },
         },
       ],
-      source: '整理：策展者｜依據 紀緻謙〈Agents of Growth〉紙本 p.31–33',
     },
     {
       kind: 'graphic',
