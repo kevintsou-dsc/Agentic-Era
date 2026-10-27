@@ -607,12 +607,17 @@ function spectrum(el: HTMLElement, c: Extract<D3Chart, { kind: 'spectrum' }>): I
   svg.append('path').attr('class', 'sp-arrow').attr('d', `M${x0},${ty + 110} H${x1} m-10,-6 l10,6 l-10,6`);
   svg.append('text').attr('class', 'sp-axis').attr('x', x0).attr('y', ty + 132).text('自主程度低');
   svg.append('text').attr('class', 'sp-axis').attr('x', x1).attr('y', ty + 132).attr('text-anchor', 'end').text('自主程度高');
-  // 案例標記：同一位置的標記往上疊
-  const seen = new Map<number, number>();
-  const stack = c.markers.map((m) => { const k = Math.round(m.pos * 2); const s = seen.get(k) ?? 0; seen.set(k, s + 1); return s; });
+  // 案例標記：寬度依名稱長度；和已放好的標記水平重疊時往上疊一層（不只看是否同一位置）
+  const mw = c.markers.map((m) => Math.max(84, [...m.label].reduce((w, ch) => w + (ch.charCodeAt(0) > 255 ? 13 : 7.6), 0) + 30));
+  const stack: number[] = [];
+  c.markers.forEach((m, i) => {
+    let lvl = 0;
+    while (c.markers.some((o, j) => j < i && stack[j] === lvl && Math.abs(px(o.pos) - px(m.pos)) < (mw[i] + mw[j]) / 2 + 6)) lvl++;
+    stack.push(lvl);
+  });
   const mk = svg.append('g').selectAll('g').data(c.markers).join('g').attr('class', 'sp-mk');
   mk.append('line').attr('x1', 0).attr('x2', 0).attr('y1', 0).attr('y2', (_, i) => 30 + stack[i] * 44);
-  mk.append('rect').attr('x', -56).attr('y', -18).attr('width', 112).attr('height', 30).attr('rx', 15);
+  mk.append('rect').attr('x', (_, i) => -mw[i] / 2).attr('y', -18).attr('width', (_, i) => mw[i]).attr('height', 30).attr('rx', 15);
   mk.append('text').attr('y', 2).attr('text-anchor', 'middle').text((d) => d.label);
   mk.each(function (d) { bind(this, { title: d.label, body: `約在「${c.levels[Math.min(n - 1, Math.round(d.pos))].label}」層`, extra: d.extra }); });
   // 用 CSS transform（而不是 SVG 屬性）才能套用落下的 transition
