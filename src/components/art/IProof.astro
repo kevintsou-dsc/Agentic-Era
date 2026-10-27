@@ -1,6 +1,8 @@
 ---
 // a19 原刊 p.172 圖1「i-Proof Model：5 Steps From Trust to Performance」的網頁版，版面依原圖：
-// 上：一條起伏的波浪路徑串起五個步驟（上、下交錯），路徑尾端是箭頭；下：1–5 階梯式的「量測 AI 能見度」說明。
+// 上：一條起伏的波浪路徑串起五個步驟（上、下交錯），路徑尾端是箭頭；
+// 下：「持續優化：量測 AI 能見度」底帶（顏色較深），1–5 各段說明對齊在對應步驟正下方，以虛線連接上下。
+// 窄螢幕改為直排清單、隱藏連接線。
 // 第 k 段主文點亮第 k 個步驟與第 k 階（之前的步驟保持亮起，路徑跟著畫到第 k 個）。文字照錄 figtext。class 一律加 ip- 前綴。
 const steps = [
   { zh: '可抓取 & 可拆解', en: 'Crawlability & Chunkability', icon: 'spider', x: 55, y: 82, up: true, m: '讓搜尋引擎抓得到、LLM 抽得出重點' },
@@ -9,17 +11,20 @@ const steps = [
   { zh: '實體與信任圖譜', en: 'Entity & Trust Graph', icon: 'hands', x: 410, y: 186, up: false, m: '模型記得你、信任你' },
   { zh: '持續量測', en: 'Always-on Measurement', icon: 'chart', x: 540, y: 84, up: true, m: '把「被引用」做成常態化經營' },
 ];
+// 下方說明欄的水平位置：對齊節點 x（viewBox 寬 580），欄寬 17%，左右邊界內縮避免超出
+const col = (x: number) => Math.min(Math.max((x / 580) * 100 - 8.5, 0), 83);
 const wave = 'M8 104 C 40 70, 70 60, 100 120 S 150 214, 190 196 S 250 60, 290 90 S 360 222, 410 186 S 490 70, 540 84 L 572 74';
 ---
 <div class="ip" role="img" aria-label={'i-Proof 模型：從信任到成效的五個步驟。' + steps.map((s, i) => `${i + 1}. ${s.zh}（${s.en}）：${s.m}`).join('；')}>
   <p class="ip-h">i-Proof Model：5 Steps From Trust to Performance</p>
   <p class="ip-bar">HOW WE BUILD AI TRUST FOR BRAND 我們如何為品牌建立 AI 信任 — 五步驟流程</p>
-  <svg class="ip-wave" viewBox="0 0 580 266" aria-hidden="true">
+  <svg class="ip-wave" viewBox="0 0 580 290" aria-hidden="true">
     <defs><marker id="ip-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0 L10 5 L0 10 z" /></marker></defs>
     <path class="ip-path-bg" d={wave} />
     <path class="ip-path" d={wave} pathLength="100" marker-end="url(#ip-arrow)" />
     {steps.map((s, i) => (
       <g class="ip-node" data-at={i + 1} data-focus={i + 1} transform={`translate(${s.x} ${s.y})`}>
+        <line class="ip-link" x1="0" x2="0" y1={s.up ? 24 : 66} y2={290 - s.y} />
         <circle r="19" class="ip-dot" />
         <g class="ip-ic" transform="translate(-10 -10) scale(.84)">
           {s.icon === 'spider' && <g><circle cx="12" cy="13" r="4" /><path d="M8 11 l-6 -4 M8 14 h-6 M8 16 l-5 5 M16 11 l6 -4 M16 14 h6 M16 16 l5 5 M12 9 v-8" /></g>}
@@ -33,16 +38,18 @@ const wave = 'M8 104 C 40 70, 70 60, 100 120 S 150 214, 190 196 S 250 60, 290 90
       </g>
     ))}
   </svg>
-  <p class="ip-bar">ONGOING OPTIMIZATION: MEASURING AI VISIBILITY 持續優化：量測 AI 能見度</p>
-  <ol class="ip-stairs" aria-hidden="true">
-    {steps.map((s, i) => (
-      <li data-at={i + 1} data-focus={i + 1} style={`--i:${i}`}><b>{i + 1}</b><span class="ip-dash">--›</span>{s.m}</li>
-    ))}
-  </ol>
+  <div class="ip-band">
+    <ol class="ip-cols" aria-hidden="true">
+      {steps.map((s, i) => (
+        <li data-at={i + 1} data-focus={i + 1} style={`--x:${col(s.x)}%`}><b>{i + 1}</b><span>{s.m}</span></li>
+      ))}
+    </ol>
+    <p class="ip-bar">ONGOING OPTIMIZATION: MEASURING AI VISIBILITY 持續優化：量測 AI 能見度</p>
+  </div>
 </div>
 
 <style>
-  .ip { --teal: #3fa7c4; --teal-soft: color-mix(in srgb, #3fa7c4 18%, var(--paper)); display: grid; gap: 10px; padding: 16px; border-radius: 14px; background: var(--teal-soft); }
+  .ip { --teal: #3fa7c4; --teal-soft: color-mix(in srgb, #3fa7c4 18%, var(--paper)); --teal-band: color-mix(in srgb, #3fa7c4 34%, var(--paper)); display: grid; gap: 10px; padding: 16px; border-radius: 14px; background: var(--teal-soft); }
   .ip p { margin: 0; }
   .ip-h { text-align: center; font-size: clamp(15px, 1.2vw + 8px, 19px); font-weight: 600; color: var(--ink-2); }
   .ip-bar { justify-self: center; padding: 3px 14px; border-radius: 999px; background: color-mix(in srgb, var(--teal) 70%, var(--ink)); color: #fff; font-size: 11px; font-weight: 700; text-align: center; }
@@ -61,14 +68,23 @@ const wave = 'M8 104 C 40 70, 70 60, 100 120 S 150 214, 190 196 S 250 60, 290 90
   .ip-ic { fill: none; stroke: var(--teal); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
   .ip-zh { font-size: 14px; font-weight: 800; fill: var(--ink); }
   .ip-en { font-size: 10.5px; fill: var(--ink-2); }
-  .ip-stairs { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; }
-  .ip-stairs li { display: flex; align-items: baseline; gap: 8px; margin-left: calc(var(--i) * 7%); font-size: 13px; font-weight: 700; color: var(--ink-2);
-    opacity: calc(.3 + .7 * var(--on)); transition: opacity .5s; }
-  .ip-stairs b { font-size: 30px; line-height: 1; color: color-mix(in srgb, var(--teal) calc(60% + var(--focus) * 40%), var(--paper)); }
-  .ip-dash { color: var(--teal); font-weight: 800; }
+  .ip-link { stroke: var(--teal); stroke-width: calc(1.5px + var(--focus) * 1px); stroke-dasharray: 3 4; opacity: calc(.45 + .55 * var(--focus)); transition: opacity .3s; }
+  /* 底帶緊接在波浪圖下方，連接線從圖底直接落進對應欄位 */
+  .ip-wave { margin-bottom: -10px; }
+  .ip-band { display: grid; gap: 10px; margin: 0 -16px -16px; padding: 12px 0 14px; border-radius: 0 0 14px 14px; background: var(--teal-band); }
+  .ip-cols { position: relative; list-style: none; margin: 0 16px; padding: 0; min-height: 112px; }
+  .ip-cols li { position: absolute; top: 0; left: var(--x); width: 17%; display: grid; justify-items: center; gap: 4px; padding: 6px 4px 8px; border-radius: 8px; text-align: center;
+    font-size: 12.5px; font-weight: 700; line-height: 1.45; color: var(--ink-2);
+    background: color-mix(in srgb, var(--paper) calc(var(--focus) * 85%), transparent);
+    opacity: calc(.3 + .7 * var(--on)); transition: opacity .5s, background .3s; }
+  .ip-cols b { font-size: 26px; line-height: 1; color: color-mix(in srgb, var(--teal) calc(60% + var(--focus) * 40%), var(--ink)); }
   @media (max-width: 560px) {
-    .ip-stairs li { margin-left: calc(var(--i) * 4%); font-size: 12px; }
     .ip-zh { font-size: 16px; } .ip-en { display: none; }
+    .ip-link { display: none; }
+    .ip-wave { margin-bottom: 0; }
+    .ip-cols { min-height: 0; display: grid; gap: 4px; }
+    .ip-cols li { position: static; width: auto; display: flex; align-items: baseline; gap: 10px; padding: 2px 4px; text-align: left; font-size: 12px; }
+    .ip-cols b { font-size: 22px; }
   }
   @media (prefers-reduced-motion: reduce) { .ip-path { transition: none; } }
 </style>
