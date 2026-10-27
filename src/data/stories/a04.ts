@@ -190,7 +190,7 @@ export const story: Story = {
         type: 'art',
         art: 'e2e-rings',
         title: '兩大落地增長解方：兼顧短期營收與長期 AI 轉型',
-        source: '圖2：Creative E2E 服務矩陣及 AI-Powered IMC 方案（依原圖重製；外圈原為各數據與平台夥伴標誌）｜資料來源 dentsu Creative，紀緻謙〈Agents of Growth〉紙本 p.33–34',
+        source: '圖2：Creative E2E 服務矩陣及 AI-Powered IMC 方案（依原圖重製；外環內弧為 dentsu 自有 AI 工具、外弧為數據與平台夥伴，標誌取自原刊）｜資料來源 dentsu Creative，紀緻謙〈Agents of Growth〉紙本 p.33–34',
       },
       src: [{ article: 'a04', page: 33, text: '協助企業同時兼顧短期營收變現與長期 AI 轉型' }],
       beats: [
