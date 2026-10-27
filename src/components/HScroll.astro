@@ -18,8 +18,10 @@ const view = s.panels.map((p) => {
   const inline = !image && !!p.more;
   return { p, image, inline, fold: inline && moreLen(p.more!) > 90 };
 });
-// 同一組卡片的展開狀態要一致：只要有一張需要收起，整組都預設收起
-if (view.some((v) => v.fold)) view.forEach((v) => { v.fold = v.inline; });
+// 同一組卡片的展開狀態要一致：只要有一張需要收起，整組都預設收起；
+// 只有部分卡片有延伸區塊時也收起，避免單張卡片比同組其他張高出一截
+const someInline = view.some((v) => v.inline), allInline = view.every((v) => v.inline || v.image);
+if (view.some((v) => v.fold) || (someInline && !allInline)) view.forEach((v) => { v.fold = v.inline; });
 ---
 <section class="hscroll" data-hscroll style={`--panels:${s.panels.length}`} aria-label={s.title}>
   <div class="hs-pin">
