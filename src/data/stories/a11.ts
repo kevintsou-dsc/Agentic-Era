@@ -118,7 +118,7 @@ export const story: Story = {
             { article: 'a11', page: 83, text: '61.9%' },
           ],
           more: {
-            title: '日本市調：平成 Retro 意識調查',
+            title: '日本市調：平成 Retro 意識調查', text: '原文引用的日本市調來源：Nihon Information（NI）的平成 Retro 意識調查（日文）。文中 61.9% 以「懷舊復古」形容平成復古的數字出自這份報告。',
             links: [{ url: 'https://www.n-info.co.jp/report/report-0093/', label: 'Nihon Information 調查報告', kind: 'report' }],
           },
         },

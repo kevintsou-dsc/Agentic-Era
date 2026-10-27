@@ -79,7 +79,7 @@ export const story: Story = {
             { article: 'a18', page: 162, text: '讓 Agent 在互動時也能有順暢、可預測、可信賴的體驗' },
           ],
           more: {
-            title: '延伸閱讀：Introducing AX',
+            title: '延伸閱讀：Introducing AX', text: 'Netlify 執行長 Mathias Biilmann 提出 Agent Experience（AX）的原始文章〈Introducing AX: Why Agent Experience Matters〉，也是本文 AX 一詞的出處。',
             links: [{ url: 'https://biilmann.blog/articles/introducing-ax/', label: 'Mathias Biilmann 部落格', kind: 'web' }],
           },
         },
@@ -162,7 +162,7 @@ export const story: Story = {
             { article: 'a18', page: 163, text: '2026 年，信任將是 AI 體驗最核心的設計問題' },
           ],
           more: {
-            title: 'NN/g State of UX 2026',
+            title: 'NN/g State of UX 2026', text: 'Nielsen Norman Group 的年度報告〈State of UX 2026〉。文中「2026 年信任將是 AI 體驗最核心的設計問題」的判斷出自這份報告。',
             links: [{ url: 'https://www.nngroup.com/articles/state-of-ux-2026/', label: 'Nielsen Norman Group', kind: 'report' }],
           },
         },
@@ -263,7 +263,7 @@ export const story: Story = {
             { article: 'a18', page: 165, text: '得先讓人看懂它知道什麼、被允許做什麼、實際做了什麼' },
           ],
           more: {
-            title: '世界經濟論壇：為 AI Agent 設計信任',
+            title: '世界經濟論壇：為 AI Agent 設計信任', text: '世界經濟論壇 2026 年 2 月的文章〈How to Design for Trust in the Age of AI Agents〉，是原文在第四堵牆「以信任為中心」附註的參考來源，延伸談 AI Agent 時代怎麼設計信任。',
             links: [{ url: 'https://www.weforum.org/stories/2026/02/how-to-design-for-trust-in-the-age-of-ai-agents', label: 'World Economic Forum', kind: 'web' }],
           },
         },

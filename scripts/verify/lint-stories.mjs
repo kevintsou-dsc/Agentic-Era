@@ -44,10 +44,10 @@ for (const f of readdirSync(dir).filter((x) => /^a\d\d\.ts$/.test(x))) {
     if (len < 40) problems.push(`${id}：圖表說明太薄（${len} 字）「${name}」，請補 extra（策展補充）`);
     if ('detail' in o || 'centerDetail' in o) problems.push(`${id}：圖表說明不放原文（detail）「${name}」，原文請寫進左側主文`);
   };
-  // 細節卡（more）：只有一個連結時元件直接外連；有多個連結就要開卡，卡裡必須有說明、原文或圖片
+  // 細節卡（more）：不能只有連結，一定要有 text 說明「點開是什麼、跟這段的關係」（或原文、圖片）
   const walk = (o) => {
     if (!o || typeof o !== 'object') return;
-    if (o.more?.links?.length > 1 && !o.more.text && !o.more.quote && !o.more.image) problems.push(`${id}：細節卡「${o.more.title}」只有連結，請補 text 摘要`);
+    if (o.more && !o.more.text && !o.more.quote && !o.more.image) problems.push(`${id}：細節卡「${o.more.title}」只有連結，請補 text 說明點開是什麼、跟這段的關係`);
     Object.values(o).forEach(walk);
   };
   walk(story.scenes);

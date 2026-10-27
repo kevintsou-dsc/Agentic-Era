@@ -94,7 +94,7 @@ export const story: Story = {
             { article: 'a16', page: 145, text: '「工具層次思維」永遠大於「人的層次配套」，浪費 AI 驅動自主創新文化的大好機會' },
           ],
           more: {
-            title: 'BCG 報告',
+            title: 'BCG 報告', text: '原文引用的 BCG〈AI at Work 2026〉報告，調查員工實際使用 AI 的情況。文中「66% 沒有收到管理階層指引」的數字出自這份報告。',
             links: [{ url: 'https://www.bcg.com/publications/2026/ai-at-work-why-strategy-matters-more-than-tools', label: 'AI at Work 2026', kind: 'report' }],
           },
         },

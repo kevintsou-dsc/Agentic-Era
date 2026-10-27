@@ -293,7 +293,7 @@ export const story: Story = {
             { article: 'a15', page: 142, text: '53% 消費者對 AI-powered search results 的可靠性與公正性缺乏信心，41% 認為 AI 摘要讓搜尋過程比傳統搜尋更挫折' },
           ],
           more: {
-            title: 'Gartner 調查',
+            title: 'Gartner 調查', text: '原文引用的 Gartner 2025 年 9 月調查新聞稿，主題是消費者對 AI 搜尋結果的信任。文中 53%、41% 兩個數字出自這份調查。',
             links: [{ url: 'https://www.gartner.com/en/newsroom/press-releases/2025-09-03-gartner-survey-finds-53-percent-of-consumers-distrust-ai-powered-search-results', label: 'Gartner 新聞稿', kind: 'report' }],
           },
         },

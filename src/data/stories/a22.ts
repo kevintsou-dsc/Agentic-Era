@@ -71,7 +71,7 @@ export const story: Story = {
             { article: 'a22', page: 190, text: '對話式導購已開始連接可觀察的交易行為' },
           ],
           more: {
-            title: 'Walmart 財報電話會議',
+            title: 'Walmart 財報電話會議', text: 'Walmart 2026 財年第四季財報電話會議逐字稿（PDF，英文）。文中 Sparky 週活躍用戶成長逾一倍、使用者平均訂單金額高約 35% 的數字出自這份資料。',
             links: [{ url: 'https://corporate.walmart.com/content/dam/corporate/documents/newsroom/2026/02/19/walmart-releases-q4-fy26-earnings/q4-fy26-earnings-call-transcript.pdf', label: 'Walmart Q4 FY26 Earnings Call', kind: 'report' }],
           },
         },
@@ -174,7 +174,7 @@ export const story: Story = {
             { article: 'a22', page: 192, text: '黑色星期五期間，其對話轉換率達到 25%' },
           ],
           more: {
-            title: 'BRAINEFFECT × charles 案例',
+            title: 'BRAINEFFECT × charles 案例', text: '對話式商務平台 charles 發布的 BRAINEFFECT 成功案例，說明 WhatsApp 導購怎麼運作，以及黑色星期五 25% 對話轉換率的成效。',
             links: [{ url: 'https://www.hello-charles.com/en-gb/success/braineffect-black-friday', label: 'charles 成功案例', kind: 'web' }],
           },
         },

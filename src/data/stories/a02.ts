@@ -183,7 +183,7 @@ export const story: Story = {
             { article: 'a02', page: 16, text: 'AI 驅動的市場研究服務規模，將從 2025 年的近八十億美元' },
           ],
           more: {
-            title: '報告出處',
+            title: '報告出處', text: '原文引用的市場預估來源：Future Market Insights 的 AI 驅動市場研究服務報告。文中「2025 年近八十億美元」的數字出自這份報告。',
             links: [{ url: 'https://www.futuremarketinsights.com/reports/ai-based-research-services-market', label: 'Future Market Insights 報告', kind: 'report' }],
           },
         },

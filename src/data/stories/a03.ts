@@ -66,7 +66,7 @@ export const story: Story = {
           text: '四大足壇巨星同框玩樂高，夢幻到官方必須特別聲明：這支影片不是 AI。',
           src: [{ article: 'a03', page: 22, text: '樂高的世界盃廣告，四大足壇巨星同框出現，夢幻到官方必須特別聲明：This video is not AI.' }],
           more: {
-            title: '留言：This has to be AI',
+            title: '留言：This has to be AI', text: '樂高世界盃廣告的 Instagram 原貼文。畫面夢幻到網友留言質疑是 AI，官方才特別聲明「不是 AI」；點開可看影片和留言區的反應。',
             links: [{ url: 'https://www.instagram.com/p/DWoDIAVDyUP/', label: '樂高 Instagram 貼文', kind: 'social' }],
           },
         },
