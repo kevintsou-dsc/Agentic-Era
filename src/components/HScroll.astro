@@ -18,6 +18,8 @@ const view = s.panels.map((p) => {
   const inline = !image && !!p.more;
   return { p, image, inline, fold: inline && moreLen(p.more!) > 90 };
 });
+// 同一組卡片的展開狀態要一致：只要有一張需要收起，整組都預設收起
+if (view.some((v) => v.fold)) view.forEach((v) => { v.fold = v.inline; });
 ---
 <section class="hscroll" data-hscroll style={`--panels:${s.panels.length}`} aria-label={s.title}>
   <div class="hs-pin">
