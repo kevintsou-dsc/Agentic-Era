@@ -68,7 +68,7 @@ const { scenes } = Astro.props;
   }
   if (s.kind === 'bignum') {
     return (
-      <section class="section center bignum-scene">
+      <section class:list={['section center bignum-scene', { 'bn-split': (s.people?.total ?? 0) > 20 }]}>
         {/* 數字動畫只改 data-count 這個 span，單位放在外面才不會被覆蓋掉 */}
         <p class="bignum reveal">
           <span data-count={s.value} data-decimals={s.decimals ?? 0} data-prefix={s.prefix ?? ''}>{(s.prefix ?? '') + s.value.toFixed(s.decimals ?? 0)}</span><small>{s.unit}</small>
@@ -109,7 +109,17 @@ const { scenes } = Astro.props;
   .people { display: grid; justify-items: center; gap: 10px; margin: 8px auto 20px; }
   .people-grid { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(var(--cols), clamp(22px, 3.4vw, 38px)); gap: clamp(6px, 1vw, 12px) clamp(4px, .8vw, 10px); }
   /* 100 人（例如 89%）：每列 10 人，縮小圖示，填色間隔縮短 */
-  .people-grid.dense { grid-template-columns: repeat(10, clamp(14px, 2vw, 22px)); gap: 4px 6px; }
+  .people-grid.dense { grid-template-columns: repeat(10, clamp(13px, 1.7vw, 20px)); gap: 3px 5px; }
+  /* 100 人的人形圖很高：桌機改為大數字在左、人形圖在右，說明與出處橫跨下方，整段一屏看完 */
+  .bn-split { display: grid; grid-template-columns: auto auto; justify-content: center; align-items: center; column-gap: clamp(32px, 6vw, 88px); }
+  .bn-split .bignum { grid-column: 1; grid-row: 1; margin: 0; font-size: clamp(64px, 11vw, 150px); }
+  .bn-split .people { grid-column: 2; grid-row: 1; margin: 0; }
+  .bn-split .lede, .bn-split .source { grid-column: 1 / -1; }
+  .bn-split .lede { margin-top: clamp(24px, 4svh, 40px); }
+  @media (max-width: 720px) {
+    .bn-split { grid-template-columns: 1fr; row-gap: 16px; }
+    .bn-split .people { grid-column: 1; grid-row: auto; }
+  }
   .people-grid.dense .person circle, .people-grid.dense .person path { transition-delay: calc(var(--i) * 14ms + .3s); }
   .person svg { display: block; width: 100%; height: auto; overflow: visible; }
   .person circle, .person path { fill: transparent; stroke: var(--ink-3); stroke-width: 2; transition: fill .35s, stroke .35s; transition-delay: calc(var(--i) * 70ms + .3s); }
