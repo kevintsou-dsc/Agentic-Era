@@ -138,16 +138,10 @@ export const story: Story = {
     {
       kind: 'graphic',
       graphic: {
-        type: 'list',
+        type: 'art',
+        art: 'coffee-layers',
         title: '同樣是咖啡，每個人買的理由都不一樣',
-        items: [
-          { title: '清醒', at: 1 },
-          { title: '儀式感', at: 1 },
-          { title: '社交', at: 1 },
-          { title: '撐過上班的燃料', at: 1 },
-          { title: '值得被犒賞一下的理由', at: 1 },
-        ],
-        source: '依據 陳蒔〈品牌要讓人想買東西〉紙本 p.54–55',
+        source: '依據 陳蒔〈品牌要讓人想買東西〉紙本 p.54–55（咖啡杯分層為策展的視覺比喻）',
       },
       src: [{ article: 'a07', page: 54, text: '品牌需要從單純的需求分眾，升級為強化情境分眾' }],
       beats: [
