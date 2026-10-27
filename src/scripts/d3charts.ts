@@ -105,17 +105,19 @@ function flowloop(el: HTMLElement, c: Extract<D3Chart, { kind: 'flowloop' }>): I
   // 粒子：每條弧 3 顆
   const dots = svg.append('g').attr('class', 'fl-dots');
   const particles = paths.flatMap((p, i) => [0, 0.33, 0.66].map((o) => ({ el: dots.append('circle').attr('r', 4.5).node()!, path: p.node()!, i, o })));
-  let shown = 0;
+  // 節點第幾段亮起：預設第 k 段亮第 k 個；圓圈數與主文段數不同時用 at 指定（例如一段講兩個步驟）
+  const at = c.nodes.map((d, i) => d.at ?? i + 1);
+  let lit: boolean[] = at.map(() => false);
   return {
     update(step) {
-      shown = Math.min(n, step);
-      nodes.classed('on', (_, i) => i < shown);
-      paths.forEach((p, i) => p.classed('on', i < shown));
+      lit = at.map((a) => step >= a);
+      nodes.classed('on', (_, i) => lit[i]).classed('cur', (_, i) => at[i] === step);
+      paths.forEach((p, i) => p.classed('on', lit[i]));
       core.classed('shrink', !!c.shrink && step > n);
     },
     tick(t) {
       for (const pt of particles) {
-        const visible = pt.i < shown;
+        const visible = lit[pt.i];
         pt.el.style.opacity = visible ? '1' : '0';
         if (!visible) continue;
         const len = pt.path.getTotalLength();

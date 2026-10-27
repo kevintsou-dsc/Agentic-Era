@@ -67,6 +67,9 @@ for (const f of readdirSync(dir).filter((x) => /^a\d\d\.ts$/.test(x))) {
     const c = sc.kind === 'graphic' && sc.graphic.type === 'd3' ? sc.graphic.chart : null;
     if (!c) continue;
     if (c.kind === 'flowloop') {
+      // 高亮要對到主文：圓圈比段數多時，每個節點都要用 at 指定第幾段亮起
+      if (c.nodes.length > sc.beats.length && c.nodes.some((nd) => nd.at == null)) problems.push(`${id}：循環圖「${c.title}」有 ${c.nodes.length} 個圓圈但只有 ${sc.beats.length} 段主文，請用 at 指定每個圓圈在第幾段亮起`);
+      c.nodes.forEach((nd) => { if (nd.at != null && (nd.at < 1 || nd.at > sc.beats.length)) problems.push(`${id}：循環圖「${c.title}」的「${nd.label}」at=${nd.at} 超出主文段數`); });
       tip(c.center, { extra: c.centerExtra, ...('centerDetail' in c ? { centerDetail: c.centerDetail } : {}) });
       c.nodes.forEach((n) => tip(n.label, n));
     } else if (c.kind === 'groups') c.groups.forEach((g) => g.items.forEach((i) => tip(`${g.name} ${i.label}`, i)));

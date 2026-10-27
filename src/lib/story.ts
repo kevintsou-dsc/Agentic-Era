@@ -123,7 +123,8 @@ export type D3Chart =
    */
   | {
       kind: 'flowloop'; title: string; center: string; centerExtra?: string;
-      nodes: (Tipped & { label: string; sub?: string; desc?: string })[]; shrink?: boolean;
+      /** at：第幾段主文亮起（預設第 k 個節點對第 k 段）；圓圈數與段數不同時一定要指定 */
+      nodes: (Tipped & { label: string; sub?: string; desc?: string; at?: number })[]; shrink?: boolean;
     }
   /** 多組橫向長條比較（例如不同世代） */
   | { kind: 'groups'; title: string; unit: string; groups: { name: string; sub?: string; items: (Tipped & { label: string; value: number })[]; at: number }[] }

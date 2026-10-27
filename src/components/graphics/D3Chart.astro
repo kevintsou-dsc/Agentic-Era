@@ -78,6 +78,7 @@ const hintTarget = c.kind === 'flowloop' ? '圓圈' : c.kind === 'stages' ? '方
   .d3 :global(.fl-arc.on) { stroke: var(--accent); }
   .d3 :global(.fl-node circle) { fill: var(--paper); stroke: var(--line); stroke-width: 3; transition: fill .5s, stroke .5s; }
   .d3 :global(.fl-node.on circle) { fill: var(--accent); stroke: var(--accent-ink); }
+  .d3 :global(.fl-node.cur circle) { stroke-width: 6; }
   .d3 :global(.fl-node text) { fill: var(--ink-3); transition: fill .5s; }
   .d3 :global(.fl-node.on text) { fill: var(--ink); }
   .d3 :global(.fl-label) { font: 800 15px var(--font-sans); }
