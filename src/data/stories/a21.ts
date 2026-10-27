@@ -146,14 +146,10 @@ export const story: Story = {
       kind: 'graphic',
       side: 'right',
       graphic: {
-        type: 'list',
+        type: 'art',
+        art: 'content-engine',
         title: '服務台灣通路環境的在地內容引擎',
-        items: [
-          { title: 'PTT、Dcard', desc: '理解在地社群的文化', at: 1 },
-          { title: 'Threads、Facebook', desc: '在平台矩陣中動態投放創意素材', at: 1 },
-          { title: 'LINE', desc: '透過基礎架構即時完成消費旅程的閉環', at: 1 },
-        ],
-        source: '依據 Trent Agnew〈超越效率〉紙本 p.187',
+        source: '圖：策展者依原文整理製圖｜Trent Agnew〈超越效率〉紙本 p.186–187｜平台標誌：Simple Icons（CC0）、Wikimedia Commons（Dcard，公有領域）',
       },
       src: [{ article: 'a21', page: 187, text: '這套 AI 增強型內容引擎要服務台灣特有的通路環境' }],
       beats: [

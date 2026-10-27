@@ -251,3 +251,4 @@
 - a04 圖2 Creative E2E 服務矩陣：照搬原圖重做（靠左相切的偏心圓、核心連線穿過＋＋&接右側綠框），座標由原圖量測等比換算；外環放回 13 個標誌（內弧 7 個 dentsu 自有工具含 CCS、dentsu Audience Engine，外弧 6 個數據平台夥伴），由原刊 PDF 6 倍渲染裁切、淡灰去底存 public/fig/a04/partners/（使用者確認授權可用）。
 - a04 服務矩陣微調：5 個工具標誌補上名稱（Wonder、Personas、Writer、Clue、AI Media）；標誌改放在兩圈邊緣同角度兩點的中點並略縮小，避免碰到細線；外環放大。新增手機「放大看全圖」（zoom dialog）。
 - a07「同樣是咖啡」由五張清單卡改為 art coffee-layers：玻璃咖啡杯，第 1 段一整杯「咖啡」（商品分類），第 2 段分成五層情境由上往下倒入，第 3 段右側括號「生活情境 → 進入記憶」。
+- a21 在地內容引擎：由三張清單卡改為 art content-engine，畫出 AI 內容引擎與平台的關係（第 1 段引擎產出 tier 1–3 素材；第 2 段 PTT／Dcard→讀懂、→Threads／Facebook 投放、→LINE 完成閉環；第 3 段 KPI 最佳化回流）。平台標誌：Facebook、Threads、LINE 取自 Simple Icons 13.21.0（CC0），Dcard 取自 Wikimedia Commons（公有領域），PTT 無圖形標誌以 BBS 字樣呈現。

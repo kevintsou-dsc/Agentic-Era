@@ -1,0 +1,97 @@
+---
+// a21 p.186–187「服務台灣通路環境的在地內容引擎」：把 AI 內容引擎放在中心，畫出它和台灣通路的關係。
+// 第 1 段主文：引擎出現，往上產出 tier 1～tier 3 可立即上市的素材；
+// 第 2 段：左邊 PTT、Dcard（讀懂社群文化 → 引擎）、右邊 Threads、Facebook（引擎 → 動態投放）、下方 LINE（引擎 → 完成消費旅程閉環）依序亮起；
+// 第 3 段：平台成效沿虛線回流引擎（依 KPI 最佳化、多版本即時測試）。
+// 標誌：Facebook、Threads、LINE 取自 Simple Icons（CC0），Dcard 取自 Wikimedia Commons（公有領域）；PTT 沒有圖形標誌，以 BBS 終端機字樣呈現。
+// class 一律加 ce- 前綴。
+const P = '/fig/a21/platforms/';
+---
+<svg class="ce" viewBox="0 0 600 430" role="img" aria-label="AI 內容引擎在台灣通路中的角色：產出 tier 1 到 tier 3 可立即上市的素材；讀懂 PTT、Dcard 的社群文化，在 Threads 與 Facebook 的平台矩陣中動態投放，透過 LINE 即時完成消費旅程閉環；再依 KPI 最佳化、多版本即時測試，成效回流引擎。">
+  <defs>
+    <marker id="ce-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" /></marker>
+  </defs>
+
+  <!-- 第 1 段：引擎與分級素材 -->
+  <g class="ce-tiers" data-at="1">
+    <path class="ce-flow" d="M300 138 V 100" marker-end="url(#ce-arrow)" />
+    {['tier 1', 'tier 2', 'tier 3'].map((t, i) => (
+      <g style={`--d:${300 + i * 120}ms`} class="ce-tier"><rect x={186 + i * 80} y="50" width="68" height="28" rx="14" /><text x={220 + i * 80} y="69">{t}</text></g>
+    ))}
+    <text class="ce-small" x="300" y="34">可立即上市的素材：最高規格製作 → 基礎自動化產出</text>
+  </g>
+
+  <!-- 第 2 段：三組通路 -->
+  <g class="ce-ch" data-at="2" style="--d:0ms">
+    <path class="ce-flow" d="M172 205 H 230" marker-end="url(#ce-arrow)" />
+    <text class="ce-verb" x="201" y="195">讀懂</text>
+    <rect class="ce-card" x="16" y="150" width="156" height="110" rx="12" />
+    <g transform="translate(36 166)"><rect class="ce-ptt" width="52" height="30" rx="4" /><text class="ce-ptt-t" x="26" y="21">PTT</text></g>
+    <image href={`${P}dcard.webp`} x="104" y="164" width="34" height="34"><title>Dcard</title></image>
+    <text class="ce-name" x="94" y="226">PTT、Dcard</text>
+    <text class="ce-desc" x="94" y="246">理解在地社群文化</text>
+  </g>
+  <g class="ce-ch" data-at="2" style="--d:250ms">
+    <path class="ce-flow" d="M370 205 H 426" marker-end="url(#ce-arrow)" />
+    <text class="ce-verb" x="398" y="195">投放</text>
+    <rect class="ce-card" x="428" y="150" width="156" height="110" rx="12" />
+    <image href={`${P}threads.svg`} x="468" y="166" width="30" height="30"><title>Threads</title></image>
+    <image href={`${P}facebook.svg`} x="514" y="166" width="30" height="30"><title>Facebook</title></image>
+    <text class="ce-name" x="506" y="226">Threads、Facebook</text>
+    <text class="ce-desc" x="506" y="246">平台矩陣動態投放素材</text>
+  </g>
+  <g class="ce-ch" data-at="2" style="--d:500ms">
+    <path class="ce-flow" d="M300 272 V 318" marker-end="url(#ce-arrow)" />
+    <text class="ce-verb" x="318" y="300" style="text-anchor:start">完成</text>
+    <rect class="ce-card" x="214" y="320" width="172" height="96" rx="12" />
+    <image href={`${P}line.svg`} x="236" y="334" width="30" height="30"><title>LINE</title></image>
+    <text class="ce-name" x="276" y="356" style="text-anchor:start">LINE</text>
+    <text class="ce-desc" x="300" y="398">即時完成消費旅程閉環</text>
+  </g>
+
+  <!-- 第 3 段：成效回流 -->
+  <g class="ce-loop" data-at="3" data-focus="3">
+    <path class="ce-back" d="M520 262 C 524 340, 440 336, 352 246" marker-end="url(#ce-arrow)" />
+    <text class="ce-loop-t" x="424" y="378">依 KPI 最佳化</text>
+    <text class="ce-loop-t" x="424" y="397">多版本即時測試</text>
+  </g>
+
+  <!-- 引擎畫在最上層 -->
+  <g class="ce-engine" data-at="1" data-focus="1">
+    <circle class="ce-halo" cx="300" cy="205" r="72" />
+    <circle class="ce-core" cx="300" cy="205" r="64" />
+    <text class="ce-eng" x="300" y="200">AI 內容引擎</text>
+    <text class="ce-eng-sub" x="300" y="222">技術架構 × 專業團隊</text>
+    <text class="ce-eng-sub" x="300" y="238">× 自動化流程</text>
+  </g>
+</svg>
+
+<style>
+  .ce { display: block; width: 100%; height: auto; max-height: 64svh; overflow: visible; }
+  .ce text { text-anchor: middle; font-family: var(--font-sans); }
+  .ce marker path { fill: var(--ink); }
+  .ce-flow { fill: none; stroke: var(--ink); stroke-width: 2.5; stroke-dasharray: 6 5; animation: ce-flow 1.2s linear infinite; }
+  @keyframes ce-flow { to { stroke-dashoffset: -22; } }
+  .ce-small { font-size: 12px; fill: var(--ink-2); }
+  .ce-tiers { opacity: calc(.15 + .85 * var(--on)); transition: opacity .5s .3s; }
+  .ce-tier { opacity: var(--on); transform: translateY(calc((1 - var(--on)) * 18px)); transition: opacity .4s var(--d), transform .5s var(--d); }
+  .ce-tier rect { fill: var(--ink); }
+  .ce-tier text { font-size: 13px; font-weight: 800; fill: var(--paper); }
+  .ce-engine { opacity: calc(.3 + .7 * var(--on)); transition: opacity .5s; }
+  .ce-core { fill: var(--accent); stroke: var(--accent-ink); stroke-width: 3; }
+  .ce-halo { fill: none; stroke: var(--accent); stroke-width: 2; stroke-dasharray: 3 7; transform-box: fill-box; transform-origin: center; animation: ce-spin 14s linear infinite; }
+  @keyframes ce-spin { to { transform: rotate(360deg); } }
+  .ce-eng { font-size: 18px; font-weight: 800; fill: var(--ink); }
+  .ce-eng-sub { font-size: 11px; fill: var(--ink-2); }
+  .ce-ch { opacity: calc(.15 + .85 * var(--on)); transform: translateY(calc((1 - var(--on)) * 10px)); transition: opacity .5s var(--d), transform .5s var(--d); }
+  .ce-card { fill: var(--paper); stroke: var(--ink); stroke-width: 2; }
+  .ce-ptt { fill: #111; }
+  .ce-ptt-t { font: 800 17px var(--font-mono, monospace); fill: #3ad13a; letter-spacing: .06em; }
+  .ce-name { font-size: 15px; font-weight: 800; fill: var(--ink); }
+  .ce-desc { font-size: 12px; fill: var(--ink-2); }
+  .ce-verb { font-size: 12px; font-weight: 800; fill: var(--accent-ink); }
+  .ce-loop { opacity: var(--on); transition: opacity .6s; }
+  .ce-back { fill: none; stroke: var(--accent-ink); stroke-width: 2.5; stroke-dasharray: 2 6; stroke-linecap: round; animation: ce-flow 1s linear infinite; }
+  .ce-loop-t { text-anchor: start !important; font-size: 13px; font-weight: 800; fill: var(--accent-ink); }
+  @media (prefers-reduced-motion: reduce) { .ce-flow, .ce-back, .ce-halo { animation: none; } .ce-tier, .ce-ch, .ce-tiers, .ce-engine, .ce-loop { transition: none; } }
+</style>

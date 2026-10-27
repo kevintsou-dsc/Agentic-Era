@@ -17,6 +17,7 @@ import E2eRings from '../art/E2eRings.astro';
 import Foundation from '../art/Foundation.astro';
 import GrowthTriangle from '../art/GrowthTriangle.astro';
 import CoffeeLayers from '../art/CoffeeLayers.astro';
+import ContentEngine from '../art/ContentEngine.astro';
 type G = Extract<Graphic, { type: 'art' }>;
 interface Props { g: G }
 const { g } = Astro.props;
@@ -40,6 +41,7 @@ const zoomable = g.art === 'e2e-rings';
   {g.art === 'foundation' && <Foundation />}
   {g.art === 'growth-triangle' && <GrowthTriangle />}
   {g.art === 'coffee-layers' && <CoffeeLayers />}
+  {g.art === 'content-engine' && <ContentEngine />}
   {zoomable && <button type="button" class="zoom-btn" data-zoom aria-label="放大看全圖">⤢ 點此放大看全圖</button>}
   <figcaption class="source">{g.source}</figcaption>
 </figure>
