@@ -25,31 +25,34 @@ const units = [
   { t: ['Solution center', 'MERKLE'], at: P(305, 400) },
 ];
 // 圓：核心、白圈、灰圈、工具／夥伴分隔線、外環
-const ring = { ics: { cx: 84, r: 67 }, white: { cx: 130, r: 113 }, grey: { cx: 186, r: 174 }, sep: { cx: 220, r: 205 }, outer: { cx: 248, r: 236 } };
-// 標誌沿弧線擺放：內弧（自有工具）圓心 203、半徑 190；外弧（夥伴）圓心 234、半徑 221；避開 0° 的連線
-const arc = (cx: number, r: number, deg: number) => { const a = (deg * Math.PI) / 180; return [cx + r * Math.cos(a), cy + r * Math.sin(a)]; };
+const ring = { ics: { cx: 84, r: 67 }, white: { cx: 130, r: 113 }, grey: { cx: 186, r: 174 }, sep: { cx: 222, r: 206 }, outer: { cx: 258, r: 246 } };
+// 標誌放在兩圈之間的正中：同一角度上，取內圈與外圈邊緣兩點的中點（偏心圓的帶寬各處不同，這樣才不會碰邊）
+// 內弧（自有工具）在灰圈與分隔線之間；外弧（夥伴）在分隔線與外環之間；避開 0° 的連線
+type C = { cx: number; r: number };
+const edge = (c: C, a: number) => [c.cx + c.r * Math.cos(a), cy + c.r * Math.sin(a)];
+const mid = (inner: C, outer: C, deg: number) => { const a = (deg * Math.PI) / 180; const p = edge(inner, a), q = edge(outer, a); return [(p[0] + q[0]) / 2, (p[1] + q[1]) / 2]; };
 const tools = [
-  { f: 't-ccs', name: 'CCS', deg: -55, w: 58, h: 34 },
+  { f: 't-ccs', name: 'CCS', deg: -55, w: 52, h: 30 },
   { f: 't-dae', name: 'dentsu Audience Engine', deg: -27, w: 40, h: 45 },
-  { f: 't-x', name: 'dentsu 自有工具', deg: 20, w: 34, h: 34 },
-  { f: 't-p', name: 'dentsu 自有工具', deg: 37, w: 34, h: 34 },
-  { f: 't-w', name: 'dentsu 自有工具', deg: 54, w: 34, h: 34 },
-  { f: 't-c', name: 'dentsu 自有工具', deg: 71, w: 34, h: 34 },
-  { f: 't-n', name: 'dentsu 自有工具', deg: 88, w: 34, h: 34 },
-].map((l) => ({ ...l, at: arc(203, 190, l.deg) }));
+  { f: 't-x', name: 'Wonder', deg: 20, w: 32, h: 32 },
+  { f: 't-p', name: 'Personas', deg: 37, w: 32, h: 32 },
+  { f: 't-w', name: 'Writer', deg: 54, w: 32, h: 32 },
+  { f: 't-c', name: 'Clue', deg: 71, w: 32, h: 32 },
+  { f: 't-n', name: 'AI Media', deg: 88, w: 32, h: 32 },
+].map((l) => ({ ...l, at: mid(ring.grey, ring.sep, l.deg) }));
 const partners = [
-  { f: 'p-cht', name: '中華電信', deg: -78, w: 32, h: 32 },
-  { f: 'p-cmoney', name: 'CMoney', deg: -56, w: 40, h: 41 },
-  { f: 'p-91app', name: '91APP', deg: -31, w: 56, h: 19 },
-  { f: 'p-lndata', name: 'LnData', deg: 14, w: 56, h: 19 },
-  { f: 'p-opview', name: 'Opview 社群口碑資料庫', deg: 33, w: 56, h: 18 },
-  { f: 'p-qsearch', name: 'QSearch', deg: 52, w: 56, h: 15 },
-].map((l) => ({ ...l, at: arc(234, 221, l.deg) }));
+  { f: 'p-cht', name: '中華電信', deg: -78, w: 28, h: 28 },
+  { f: 'p-cmoney', name: 'CMoney', deg: -55, w: 34, h: 35 },
+  { f: 'p-91app', name: '91APP', deg: -30, w: 50, h: 17 },
+  { f: 'p-lndata', name: 'LnData', deg: 13, w: 50, h: 17 },
+  { f: 'p-opview', name: 'Opview 社群口碑資料庫', deg: 33, w: 50, h: 16 },
+  { f: 'p-qsearch', name: 'QSearch', deg: 53, w: 50, h: 13 },
+].map((l) => ({ ...l, at: mid(ring.sep, ring.outer, l.deg) }));
 const [px] = P(623, 0);
 const y = (oy: number) => P(0, oy)[1];
 const boxW = 223, boxX = px, boxMid = px + boxW / 2;
 ---
-<div class="er" role="img" aria-label={'Creative E2E 服務矩陣：以 Integrated Client Services 為核心，整合 Strategy & Consult、Creative & production、Media、Entertainment & PR Influence、Experience Design、Social Commerce & MarTech 六項專業能力，對應 dentsu consult、dentsu Studio、Dentsu X／iProspect／CARAT、Dentsu group／Entertainment、Dentsu lab、Solution center／MERKLE；外環是 dentsu 自有 AI 工具（' + tools.slice(0, 2).map((t) => t.name).join('、') + ' 等）與數據平台夥伴（' + partners.map((p) => p.name).join('、') + '）。連結到 Innovating to Impact：成果導向的端到端解決方案，dentsu AI platforms + data systems through transformative creativity。'}>
+<div class="er" role="img" aria-label={'Creative E2E 服務矩陣：以 Integrated Client Services 為核心，整合 Strategy & Consult、Creative & production、Media、Entertainment & PR Influence、Experience Design、Social Commerce & MarTech 六項專業能力，對應 dentsu consult、dentsu Studio、Dentsu X／iProspect／CARAT、Dentsu group／Entertainment、Dentsu lab、Solution center／MERKLE；外環是 dentsu 自有 AI 工具（' + tools.map((t) => t.name).join('、') + '）與數據平台夥伴（' + partners.map((p) => p.name).join('、') + '）。連結到 Innovating to Impact：成果導向的端到端解決方案，dentsu AI platforms + data systems through transformative creativity。'}>
   <svg viewBox="0 0 780 500" aria-hidden="true">
     <g class="er-rings" data-at="1" data-focus="1">
       <circle class="er-outer" cx={ring.outer.cx} cy={cy} r={ring.outer.r} />

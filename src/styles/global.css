@@ -161,6 +161,20 @@ dialog[open] { animation: dlg-in .26s cubic-bezier(.2,.7,.2,1); }
 .dlg-close:hover { background: var(--paper-2); }
 .dlg-close:focus-visible { outline: 3px solid var(--accent-ink); }
 
+/* 圖表放大（手機）：整張寬版插畫全螢幕、可左右捲動；複製出來的圖所有步驟都呈現完成狀態 */
+.zoom { border: 0; padding: 0; width: 100vw; max-width: none; height: 100svh; max-height: none; margin: 0; background: var(--paper); }
+.zoom-head { position: sticky; top: 0; display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 8px 8px 8px 16px; font-size: 13px; color: var(--ink-2); background: var(--paper); border-bottom: 1px solid var(--line); }
+.zoom-body { height: calc(100svh - 52px); overflow: auto; padding: 16px; touch-action: pan-x pan-y pinch-zoom; }
+.zoom-body > * { width: 760px; max-width: none; }
+.zoom [data-at] { --on: 1; }
+.zoom [data-focus] { --focus: 0; }
+.zoom-btn { display: none; }
+@media (max-width: 720px) { [data-zoom-src][data-zoom] { cursor: zoom-in; } }
+@media (max-width: 720px) {
+  .zoom-btn { all: unset; display: inline-flex; align-items: center; gap: 6px; justify-self: start; padding: 6px 12px; border-radius: 999px; border: 1.5px solid var(--ink); font-size: 13px; font-weight: 700; cursor: pointer; }
+  .zoom-btn:focus-visible { outline: 3px solid var(--accent-ink); }
+}
+
 /* 原文視窗：整篇文章，像攤開的書頁 */
 .reader { border: 0; padding: 0; background: transparent; width: min(96vw, 46rem); max-width: none; height: min(90svh, 60rem); max-height: none; }
 .reader-sheet {

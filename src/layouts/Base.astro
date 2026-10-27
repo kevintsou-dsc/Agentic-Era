@@ -61,15 +61,21 @@ const repo = 'https://github.com/kevintsou-dsc/Agentic-Era';
         <div data-more-body></div>
       </div>
     </dialog>
+    <dialog id="zoom" class="zoom" aria-label="放大圖表">
+      <div class="zoom-head"><span>左右滑動、雙指縮放查看全圖</span><button type="button" class="dlg-close" data-zoom-close aria-label="關閉">×</button></div>
+      <div class="zoom-body" data-zoom-body></div>
+    </dialog>
     <script>
       import { initScrolly } from '../scripts/scrolly';
       import { initReader } from '../scripts/reader';
       import { initMore } from '../scripts/more';
       import { initExpand } from '../scripts/expand';
+      import { initZoom } from '../scripts/zoom';
       initScrolly();
       initReader();
       initMore();
       initExpand();
+      initZoom();
     </script>
   </body>
 </html>
