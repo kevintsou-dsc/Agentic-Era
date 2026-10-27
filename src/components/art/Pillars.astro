@@ -2,6 +2,7 @@
 // a15 原刊 p.142 圖3「信任與安全感設計的五大防禦支柱」的網頁版，版面依原圖：
 // 上排五個編號圓（編號＋支柱名），中間各一段做法說明，下方五根柱子標雙語原則（可信度標示 Credibility…）。
 // 第 1 段主文：五根柱子一起立起；第 2 段點亮 1–2；第 3 段點亮 3–5。文字照錄 figtext。class 一律加 pl- 前綴。
+// 做法說明字數多，預設收起：滑過（觸控點一下、鍵盤 Tab 聚焦）某一根，該欄加寬並平滑展開說明，其他欄讓位。
 const pillars = [
   { n: '透明度', d: '在 AI 建議旁明確註明資料來源、更新時間、演算法信心程度。唯有讓答案的基礎透明，顧客才敢依循行動。', zh: '可信度標示', en: 'Credibility', f: 2 },
   { n: '控制權', d: '針對付款、改票、簽約等高風險或關鍵變更動作，必須設計顯著的確認按鈕，並提供一鍵取消、快速修改的彈性回溯路徑。', zh: '可逆轉確認步驟', en: 'Reversibility', f: 2 },
@@ -10,12 +11,12 @@ const pillars = [
   { n: '治理力', d: '建立完整的互動日誌（Log），所有軌跡皆須可追溯、可回溯，作為異常發生時釐清責任的商務依據。', zh: '軌跡稽核紀錄', en: 'Auditing', f: 3 },
 ];
 ---
-<div class="pl" role="img" aria-label={'信任與安全感設計的五大防禦支柱：' + pillars.map((p, i) => `${i + 1} ${p.n}（${p.zh} ${p.en}）：${p.d}`).join('')}>
-  <ol aria-hidden="true">
+<div class="pl">
+  <ol aria-label="信任與安全感設計的五大防禦支柱">
     {pillars.map((p, i) => (
-      <li data-at="1" data-focus={p.f} style={`--d:${i * 120}ms`}>
+      <li data-at="1" data-focus={p.f} tabindex="0" style={`--d:${i * 120}ms`}>
         <span class="pl-badge"><b>{i + 1}</b>{p.n}</span>
-        <p class="pl-d">{p.d}</p>
+        <div class="pl-dw"><p class="pl-d">{p.d}</p></div>
         <span class="pl-col">
           <svg viewBox="0 0 100 40" class="pl-cap" preserveAspectRatio="none"><rect x="0" y="0" width="100" height="10" rx="3" /><rect x="8" y="12" width="84" height="8" rx="2" /></svg>
           <span class="pl-shaft"><b>{p.zh}</b><em>{p.en}</em></span>
@@ -24,16 +25,26 @@ const pillars = [
       </li>
     ))}
   </ol>
+  <p class="pl-hint" aria-hidden="true"><span class="pl-hover">滑過</span><span class="pl-tap">點</span>任一根柱子，展開做法說明</p>
 </div>
 
 <style>
   .pl { --red: #e5707a; padding: 16px 10px 12px; border-radius: 14px; background: color-mix(in srgb, var(--ink) 9%, var(--paper)); }
-  ol { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 8px; }
-  li { display: grid; grid-template-rows: auto 1fr auto; justify-items: center; gap: 8px; opacity: calc(.15 + .85 * var(--on)); transform: translateY(calc((1 - var(--on)) * 16px)); transition: opacity .5s var(--d), transform .5s var(--d); }
+  ol { list-style: none; margin: 0; padding: 0; display: flex; gap: 8px; }
+  li { flex: 1 1 0; min-width: 0; display: grid; grid-template-rows: auto 1fr auto; justify-items: center; gap: 8px; cursor: pointer; border-radius: 10px; opacity: calc(.15 + .85 * var(--on)); transform: translateY(calc((1 - var(--on)) * 16px)); transition: opacity .5s var(--d), transform .5s var(--d), flex-grow .45s cubic-bezier(.2, .7, .2, 1); }
+  li:hover, li:focus { flex-grow: 2.6; }
   .pl-badge { display: grid; place-items: center; align-content: center; width: min(100%, 84px); aspect-ratio: 1; border-radius: 50%; background: var(--red); color: #fff; font-size: 14px; font-weight: 800; line-height: 1.1;
     box-shadow: 0 0 0 calc(var(--focus) * 5px) color-mix(in srgb, var(--red) 35%, transparent); transform: scale(calc(1 + var(--focus) * .06)); transition: box-shadow .4s, transform .4s; }
   .pl-badge b { font-size: 26px; }
-  .pl-d { margin: 0; font-size: 11.5px; line-height: 1.6; color: var(--ink-2); opacity: calc(.55 + .45 * var(--focus)); transition: opacity .4s; }
+  /* 說明用 grid-template-rows 0fr→1fr 做平滑高度展開，文字稍晚淡入，避免欄寬變化時文字跳動 */
+  .pl-dw { display: grid; grid-template-rows: 0fr; width: 100%; transition: grid-template-rows .45s cubic-bezier(.2, .7, .2, 1); }
+  .pl-d { min-height: 0; overflow: hidden; margin: 0; font-size: 12.5px; line-height: 1.65; color: var(--ink-2); opacity: 0; transition: opacity .2s; }
+  li:hover .pl-dw, li:focus .pl-dw { grid-template-rows: 1fr; }
+  li:hover .pl-d, li:focus .pl-d { opacity: 1; transition: opacity .35s .18s; }
+  li:hover .pl-badge, li:focus .pl-badge { transform: scale(1.06); }
+  .pl-hint { margin: 10px 0 0; text-align: center; font-size: 12px; color: var(--ink-3); }
+  .pl-tap { display: none; }
+  @media (hover: none) { .pl-hover { display: none; } .pl-tap { display: inline; } }
   .pl-col { display: grid; width: 100%; }
   .pl-cap, .pl-base { width: 100%; height: 14px; fill: var(--paper); stroke: color-mix(in srgb, var(--ink) 25%, transparent); stroke-width: 1; }
   .pl-base { height: 10px; }
@@ -42,7 +53,8 @@ const pillars = [
   .pl-shaft b { font-size: 12px; color: color-mix(in srgb, var(--red) calc(55% + var(--focus) * 45%), var(--ink-3)); line-height: 1.3; }
   .pl-shaft em { font-style: normal; font-size: 11px; color: var(--ink-2); }
   @media (max-width: 560px) {
-    ol { grid-template-columns: 1fr; gap: 10px; }
+    ol { flex-direction: column; gap: 10px; }
+    li:hover, li:focus { flex-grow: 1; }
     li { grid-template-columns: 64px 1fr; grid-template-rows: auto auto; justify-items: start; column-gap: 12px; }
     .pl-badge { grid-row: span 2; width: 64px; font-size: 12px; }
     .pl-badge b { font-size: 20px; }
@@ -50,5 +62,5 @@ const pillars = [
     .pl-cap, .pl-base { display: none; }
     .pl-shaft { margin: 0; min-height: 0; justify-items: start; padding: 4px 8px; border-radius: 6px; }
   }
-  @media (prefers-reduced-motion: reduce) { li, .pl-badge { transition: none; } }
+  @media (prefers-reduced-motion: reduce) { li, .pl-badge, .pl-dw, .pl-d { transition: none; } }
 </style>
