@@ -142,15 +142,10 @@ export const story: Story = {
     {
       kind: 'graphic',
       graphic: {
-        type: 'list',
+        type: 'art',
+        art: 'foundation',
         title: '生成式體驗的四個關鍵地基',
-        items: [
-          { title: '資料的透明度', at: 1 },
-          { title: '流程的銜接力', at: 1 },
-          { title: '規則的一致性', at: 1 },
-          { title: '責任的可追蹤性', at: 1 },
-        ],
-        source: '依據 鄭怡櫛、張家誠〈生成式體驗來臨〉紙本 p.140',
+        source: '依據 鄭怡櫛、張家誠〈生成式體驗來臨〉紙本 p.140（房子與地基為策展的視覺比喻）',
       },
       src: [{ article: 'a15', page: 140, text: '資料的透明度、流程的銜接力、規則的一致性，以及責任的可追蹤性' }],
       beats: [

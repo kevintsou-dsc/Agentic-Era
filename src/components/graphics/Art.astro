@@ -14,6 +14,7 @@ import Pillars from '../art/Pillars.astro';
 import CcsModel from '../art/CcsModel.astro';
 import AiPi from '../art/AiPi.astro';
 import E2eRings from '../art/E2eRings.astro';
+import Foundation from '../art/Foundation.astro';
 type G = Extract<Graphic, { type: 'art' }>;
 interface Props { g: G }
 const { g } = Astro.props;
@@ -32,6 +33,7 @@ const { g } = Astro.props;
   {g.art === 'ccs-model' && <CcsModel />}
   {g.art === 'ai-pi' && <AiPi />}
   {g.art === 'e2e-rings' && <E2eRings />}
+  {g.art === 'foundation' && <Foundation />}
   <figcaption class="source">{g.source}</figcaption>
 </figure>
 <style>
