@@ -5,10 +5,11 @@
 // class 一律加 gt- 前綴。
 const axes = [
   { k: '主軸一', a: '贏得', b: '演算法', q: '如何被 AI 正確理解與推薦', caps: ['AI Content Production／TAG', 'Data & Martech、Media', 'Social Commerce'], x: 280, y: 92, tx: 340, ty: 62, anchor: 'start' },
-  { k: '主軸二', a: '贏得', b: '人心', q: '如何在人類決策中建立信任', caps: ['Strategy & Consult、Brand & Creative', 'Experience Design／Dentsu Lab', 'BX'], x: 112, y: 352, tx: 52, ty: 428, anchor: 'start' },
-  { k: '主軸三', a: '贏得', b: '文化', q: '如何進入文化、形成長期品牌資產', caps: ['PR Influence、Event', 'Entertainment & Sports', 'IP Design Lab'], x: 448, y: 352, tx: 508, ty: 428, anchor: 'end' },
+  { k: '主軸二', a: '贏得', b: '人心', q: '如何在人類決策中建立信任', caps: ['Strategy & Consult、Brand & Creative', 'Experience Design／Dentsu Lab', 'BX'], x: 448, y: 352, tx: 508, ty: 428, anchor: 'end' },
+  { k: '主軸三', a: '贏得', b: '文化', q: '如何進入文化、形成長期品牌資產', caps: ['PR Influence、Event', 'Entertainment & Sports', 'IP Design Lab'], x: 112, y: 352, tx: 52, ty: 428, anchor: 'start' },
 ];
-const tri = `M${axes[0].x} ${axes[0].y} L${axes[2].x} ${axes[2].y} L${axes[1].x} ${axes[1].y} Z`;
+// 三角依主軸一→二→三順時針（上→右下→左下）畫，和點亮順序一致
+const tri = `M${axes[0].x} ${axes[0].y} L${axes[1].x} ${axes[1].y} L${axes[2].x} ${axes[2].y} Z`;
 const cx = Math.round(axes.reduce((s, p) => s + p.x, 0) / 3), cy = Math.round(axes.reduce((s, p) => s + p.y, 0) / 3);
 ---
 <svg class="gt" viewBox="0 0 560 500" role="img" aria-label={'增長三角：' + axes.map((p) => `${p.k}${p.a}${p.b}，回答${p.q}（${p.caps.join('、')}）`).join('；')}>
