@@ -1,0 +1,121 @@
+---
+// 首頁開場：網站標題 → 總編輯引言，一段 sticky 捲動動畫（scripts/hero.ts 依捲動比例設定 --p，0～1）。
+// 兩個提案並存，網址 ?hero=c 切換（預設 A），右下角有切換鈕供比較，定案後拿掉另一個：
+//   A「拉近距離 The New Distance」：照封面——左邊素描大衛（人）、右邊 ASCII 大衛（AI）背對背站在兩端；
+//     捲動時兩人轉身（背影翻成側臉，彼此相望）並往中間靠近，「決策智慧」虹彩字由左往右填滿，最後引言在兩人之間浮現。
+//   C「像素重組」：AI 碎裂臉的像素碎片散落滿版，捲動時飛回原位拼成一張臉，再炸開散去，引言浮現。
+// 素材取自刊物封面扉頁（public/art/cover/）。減少動態時直接呈現最後狀態。
+import Quote from '../Quote.astro';
+import type { Src } from '../../lib/story';
+interface Props { quote: Src; hours: number; mins: number; authors: number }
+const { quote, hours, mins, authors } = Astro.props;
+const C = '/art/cover/';
+---
+<section class="hx" data-hero aria-label="開場">
+  <div class="hx-stage">
+    <div class="hx-bg" aria-hidden="true"></div>
+    <img class="hx-2026" src={`${C}2026.webp`} alt="" width="1400" height="467" aria-hidden="true" />
+
+    <!-- A：兩張臉 -->
+    <div class="hx-a" aria-hidden="true">
+      <div class="hx-head hx-left">
+        <img class="hx-back" src={`${C}sketch-back.webp`} alt="" width="900" height="900" />
+        <img class="hx-front" src={`${C}david-profile.webp`} alt="" width="580" height="640" />
+      </div>
+      <div class="hx-head hx-right">
+        <img class="hx-back" src={`${C}ascii-back.webp`} alt="" width="900" height="900" />
+        <img class="hx-front" src={`${C}ai-face.webp`} alt="" width="753" height="1000" />
+      </div>
+    </div>
+
+    <!-- C：像素碎片（hero.ts 繪製） -->
+    <canvas class="hx-c" aria-hidden="true" data-hero-canvas data-src={`${C}ai-face-sample.png`}></canvas>
+
+    <div class="hx-title">
+      <p class="eyebrow">電通行銷傳播集團《決策智慧 2026》｜Agentic 時代：重塑品牌與人的真實距離</p>
+      <h1 class="display">品牌離 AI 越近，<br />會離人越遠嗎？</h1>
+      <p class="lede">22 篇觀點、{authors} 位作者，原文讀完約 <b>{hours} 小時 {mins} 分</b>。這裡用 1 分鐘帶你看懂整本，每篇再用幾分鐘讀完精華。</p>
+      <p class="hx-actions">
+        <span class="scroll-hint">往下捲動，故事會自己出現</span>
+        <a class="skiplink" href="#chapters">或直接依章節找文章 ↓</a>
+      </p>
+    </div>
+
+    <div class="hx-quote">
+      <p class="curated">本期的核心命題｜總編輯 邵懿文</p>
+      <Quote q={quote} size="lg" />
+    </div>
+
+    <img class="hx-logo" src={`${C}logotype.webp`} alt="決策智慧" width="1400" height="467" />
+  </div>
+  <nav class="hx-switch" aria-label="開場動畫提案（比較用）">
+    <a href="/?hero=a" data-v="a">動畫 A</a><a href="/?hero=c" data-v="c">動畫 C</a>
+  </nav>
+</section>
+
+<style>
+  /* --p：整段捲動進度 0～1；其他變數都由 --p 推得 */
+  .hx { --p: 0; position: relative; height: 340svh; }
+  .hx-stage { position: sticky; top: 0; height: 100svh; overflow: hidden; display: grid; place-items: center; }
+  /* 封面的牛皮紙色；結尾淡回網頁底色，接上後面的內容 */
+  .hx-bg { position: absolute; inset: 0; background: #d8c3a2 url(/art/cover/kraft.webp) 0 0 / 640px; background-blend-mode: multiply;
+    opacity: calc(1 - clamp(0, (var(--p) - .82) / .18, 1)); }
+  .hx-2026 { position: absolute; top: 2svh; left: 50%; width: min(78vw, 980px); height: auto; translate: -50% 0;
+    filter: drop-shadow(0 0 1px rgba(0, 0, 0, .25)); opacity: calc(.95 - clamp(0, (var(--p) - .55) / .25, 1) * .75); }
+  .hx-logo { position: absolute; bottom: 3svh; left: 50%; width: min(70vw, 860px); height: auto; translate: -50% 0;
+    clip-path: inset(0 calc((1 - clamp(0, (var(--p) - .04) / .36, 1)) * 100%) 0 0); opacity: calc(1 - clamp(0, (var(--p) - .62) / .18, 1)); }
+
+  .hx-title { position: relative; z-index: 3; max-width: min(42rem, 88vw); text-align: center;
+    opacity: calc(1 - clamp(0, (var(--p) - .3) / .14, 1)); transform: translateY(calc(clamp(0, (var(--p) - .3) / .14, 1) * -40px)); }
+  .hx-title .lede { margin: 0 auto; }
+  .hx-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px 24px; margin-top: 28px; font-size: 14px; }
+  .hx-actions .scroll-hint { color: var(--ink-2); }
+  .skiplink { color: var(--ink-2); }
+  .hx-quote { position: absolute; z-index: 3; width: min(30rem, 84vw); padding: 24px 28px; border-radius: 16px;
+    background: color-mix(in srgb, var(--paper) 88%, transparent); box-shadow: 0 20px 60px -30px rgba(0, 0, 0, .4);
+    opacity: clamp(0, (var(--p) - .62) / .16, 1); transform: translateY(calc((1 - clamp(0, (var(--p) - .62) / .16, 1)) * 40px)); }
+  .hx-quote .curated { margin: 0 0 8px; }
+  .hx-title, .hx-quote { pointer-events: auto; }
+
+  /* ---------- A：兩張臉從兩端轉身靠近 ---------- */
+  .hx-a { position: absolute; inset: 0; display: none; perspective: 1200px;
+    --a: clamp(0, (var(--p) - .08) / .62, 1);                 /* 靠近 */
+    --t1: clamp(0, (var(--p) - .3) / .1, 1);                  /* 背影轉開 */
+    --t2: clamp(0, (var(--p) - .4) / .12, 1); }               /* 側臉轉入 */
+  :global(html:not([data-hero="c"])) .hx-a { display: block; }
+  .hx-head { position: absolute; top: 50%; width: min(34vw, 520px); aspect-ratio: 1; translate: 0 -50%; }
+  .hx-head img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; backface-visibility: hidden; }
+  .hx-left { left: calc(-14vw + var(--a) * 16vw); }
+  .hx-right { right: calc(-14vw + var(--a) * 16vw); }
+  .hx-back { transform: rotateY(calc(var(--t1) * 90deg)); opacity: calc(1 - var(--t1)); }
+  .hx-left .hx-front { transform: scaleX(-1) rotateY(calc((1 - var(--t2)) * 90deg)); opacity: var(--t2); mix-blend-mode: multiply; }
+  .hx-right .hx-front { transform: scaleX(-1) rotateY(calc((1 - var(--t2)) * -90deg)); opacity: var(--t2); }
+  .hx-right .hx-back { transform: rotateY(calc(var(--t1) * -90deg)); }
+
+  /* ---------- C：像素碎片 ---------- */
+  .hx-c { position: absolute; inset: 0; width: 100%; height: 100%; display: none; }
+  :global(html[data-hero="c"]) .hx-c { display: block; }
+
+  /* 提案切換鈕（比較用，定案後移除） */
+  .hx-switch { position: fixed; right: 12px; bottom: 12px; z-index: 40; display: flex; gap: 2px; padding: 3px; border-radius: 999px; background: var(--ink);
+    opacity: calc(1 - clamp(0, (var(--p) - .95) / .05, 1)); }
+  .hx-switch a { padding: 4px 12px; border-radius: 999px; font-size: 12px; font-weight: 700; color: var(--paper); text-decoration: none; }
+  :global(html:not([data-hero="c"])) .hx-switch [data-v="a"], :global(html[data-hero="c"]) .hx-switch [data-v="c"] { background: var(--paper); color: var(--ink); }
+
+  @media (max-width: 720px) {
+    .hx { height: 300svh; }
+    .hx-head { width: 46vw; top: 26%; }
+    .hx-left { left: calc(-14vw + var(--a) * 14vw); }
+    .hx-right { right: calc(-14vw + var(--a) * 14vw); }
+    .hx-title .display { font-size: clamp(30px, 8vw, 40px); }
+    .hx-quote { padding: 18px 18px; }
+  }
+  /* 減少動態：不捲動演出，直接排成最後狀態（兩人相望＋引言） */
+  @media (prefers-reduced-motion: reduce) {
+    .hx { --p: 1; height: auto; }
+    .hx-stage { position: relative; height: auto; min-height: 100svh; gap: 32px; padding: 96px var(--gutter) 64px; }
+    .hx-title { opacity: 1; transform: none; }
+    .hx-quote { position: relative; opacity: 1; transform: none; }
+    .hx-bg { opacity: 1; }
+  }
+</style>

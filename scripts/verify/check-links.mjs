@@ -10,7 +10,9 @@ const pages = walk(dist).filter((f) => f.endsWith('.html'));
 const idsOf = new Map(pages.map((p) => [p, new Set([...readFileSync(p, 'utf8').matchAll(/\sid="([^"]+)"/g)].map((m) => m[1]))]));
 
 function resolve(from, url) {
-  const [path, hash] = url.split('#');
+  // 查詢字串（例如首頁 ?hero=c）不影響檔案是否存在，比對前先去掉
+  const [withQuery, hash] = url.split('#');
+  const path = withQuery.split('?')[0];
   let target;
   if (!path) target = from;
   else {

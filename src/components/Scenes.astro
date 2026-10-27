@@ -6,8 +6,18 @@ import SourceRef from './SourceRef.astro';
 import MoreRef from './MoreRef.astro';
 import HScroll from './HScroll.astro';
 import Graphic from './graphics/Graphic.astro';
-interface Props { scenes: Scene[] }
-const { scenes } = Astro.props;
+interface Props { scenes: Scene[]; chapter?: 'intro' | 'people' | 'model' | 'ai'; seed?: number }
+const { scenes, chapter = 'people', seed = 0 } = Astro.props;
+// 留白插圖（封面扉頁素材）：純文字段落的右側大片空白放一張淡淡的插圖，依章節換主圖，與向日葵素描輪流
+const SIDE: Record<string, string> = { intro: 'sunflower', people: 'heart', model: 'ai-face', ai: 'ascii-back' };
+const sideArt = (k: number) => `/art/cover/${k % 2 ? 'sunflower' : SIDE[chapter]}.webp`;
+// 文中小插圖（刊物配圖的手繪線稿）：放在引言段落上方，線條用墨色、色塊用章節色
+const SPOTS = [
+  ['search', 383, 239], ['growth', 326, 239], ['box', 292, 256], ['pie', 433, 342],
+  ['browser', 457, 289], ['board', 293, 303], ['stack', 355, 311], ['doc', 351, 333],
+] as const;
+const spot = (k: number) => SPOTS[(seed * 3 + k) % SPOTS.length];
+let proseK = 0, quoteK = 0;
 ---
 {scenes.map((s, si) => {
   if (s.kind === 'graphic') {
@@ -33,8 +43,10 @@ const { scenes } = Astro.props;
   }
   if (s.kind === 'hscroll') return <HScroll s={s} />;
   if (s.kind === 'prose') {
+    const side = !s.image ? sideArt(proseK++) : null;
     return (
-      <section class:list={['section prose', { 'with-img': !!s.image, flip: si % 2 === 1 }]}>
+      <section class:list={['section prose', { 'with-img': !!s.image, flip: si % 2 === 1, 'has-side': !!side }]}>
+        {side && <div class="side-art" aria-hidden="true"><img src={side} alt="" loading="lazy" decoding="async" /></div>}
         <div class="prose-text">
           {s.eyebrow && <p class="eyebrow reveal">{s.eyebrow}</p>}
           {s.heading && <h2 class="prose-h reveal" set:html={rich(s.heading)} />}
@@ -59,8 +71,10 @@ const { scenes } = Astro.props;
     );
   }
   if (s.kind === 'quote') {
+    const [sp, sw, sh] = spot(quoteK++);
     return (
       <section class="section">
+        <div class="spot reveal" aria-hidden="true" style={`--ar:${sw}/${sh};--fill:url(/art/spots/${sp}-fill.webp);--line:url(/art/spots/${sp}-line.webp)`}><span class="spot-fill"></span><span class="spot-line"></span></div>
         {s.lead && <div class="reveal"><p class="lede"><span set:html={rich(s.lead.text)} /><SourceRef src={s.lead.src} /></p><MoreRef m={s.lead.more} /></div>}
         <div class="reveal"><Quote q={s.quote} size="lg" /></div>
       </section>
@@ -127,6 +141,25 @@ const { scenes } = Astro.props;
   .beat-tag { display: inline-block; margin: 0 0 8px !important; padding: 2px 10px; border-radius: 999px; background: var(--ink); color: var(--paper); font-size: 12px; font-weight: 800; letter-spacing: .12em; }
   .graphic { flex-direction: column; }
 
+  /* 留白插圖：只在寬螢幕、文字欄右側有大片空白時出現；淡淡一層，隨捲動輕微視差 */
+  .has-side { position: relative; }
+  .side-art { display: none; }
+  @media (min-width: 1100px) {
+    .side-art { display: block; position: absolute; right: var(--gutter); top: 50%; width: min(26vw, 400px); translate: 0 -50%; pointer-events: none; z-index: -1; }
+    .side-art img { width: 100%; height: auto; opacity: .2; mix-blend-mode: multiply; filter: grayscale(1) contrast(1.1); }
+    @supports (animation-timeline: view()) {
+      .side-art img { animation: side-drift linear both; animation-timeline: view(); }
+    }
+  }
+  @keyframes side-drift { from { transform: translateY(60px) rotate(-1.5deg); } to { transform: translateY(-60px) rotate(1.5deg); } }
+  /* 文中小插圖：兩層遮罩，線條墨色、色塊章節色 */
+  .spot { position: relative; width: clamp(84px, 9vw, 124px); aspect-ratio: var(--ar); margin: 0 0 14px; }
+  .spot span { position: absolute; inset: 0; -webkit-mask: var(--m) center / contain no-repeat; mask: var(--m) center / contain no-repeat; }
+  .spot-fill { --m: var(--fill); background: var(--accent); }
+  .spot-line { --m: var(--line); background: var(--ink); }
+  .spot.reveal { transform: translateY(16px) rotate(-4deg); }
+  .spot.reveal.is-in { transform: none; transition-timing-function: cubic-bezier(.3, 1.5, .5, 1); }
+  @media (prefers-reduced-motion: reduce) { .side-art img { animation: none; } }
   .prose { display: grid; gap: clamp(24px, 4vw, 56px); align-items: center; padding-top: 12svh; padding-bottom: 12svh; }
   .prose-text { max-width: 40rem; font-size: clamp(17px, .6vw + 14px, 19px); }
   .prose-h { font-size: clamp(24px, 2.4vw + 12px, 36px); line-height: 1.35; margin: 4px 0 18px; }

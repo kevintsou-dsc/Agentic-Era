@@ -1,6 +1,7 @@
 ---
 import Base from '../layouts/Base.astro';
-import Quote from '../components/Quote.astro';
+import Loader from '../components/home/Loader.astro';
+import Hero from '../components/home/Hero.astro';
 import BookDots from '../components/graphics/BookDots.astro';
 import { ARTICLES, CHAPTERS, CHAPTER_ORDER, THREADS, totalMinutes, totalAuthors } from '../lib/articles';
 import { STORIES } from '../data/stories';
@@ -12,20 +13,8 @@ const mins = totalMinutes % 60;
 const firstOf = (key: string) => ARTICLES.find((a) => a.threads.includes(key as never) && STORIES[a.id]);
 ---
 <Base title="決策智慧 2026｜一個故事讀完整本" description="電通《決策智慧 2026》22 篇觀點的捲動閱讀版：1 分鐘看懂全書，幾分鐘讀完一篇精華，想深讀再看原文。" chapter="intro">
-  <section class="hero">
-    <p class="eyebrow">電通行銷傳播集團《決策智慧 2026》｜Agentic 時代：重塑品牌與人的真實距離</p>
-    <h1 class="display">品牌離 AI 越近，<br />會離人越遠嗎？</h1>
-    <p class="lede">22 篇觀點、{totalAuthors} 位作者，原文讀完約 <b>{hours} 小時 {mins} 分</b>。這裡用 1 分鐘帶你看懂整本，每篇再用幾分鐘讀完精華。</p>
-    <p class="actions">
-      <span class="scroll-hint">往下捲動，故事會自己出現</span>
-      <a class="skiplink" href="#chapters">或直接依章節找文章 ↓</a>
-    </p>
-  </section>
-
-  <section class="section">
-    <p class="curated reveal">本期的核心命題｜總編輯 邵懿文</p>
-    <div class="reveal"><Quote q={CORE_QUESTION} size="lg" /></div>
-  </section>
+  <Loader />
+  <Hero quote={CORE_QUESTION} hours={hours} mins={mins} authors={totalAuthors} />
 
   <section class="scrolly">
     <div class="graphic"><BookDots /></div>
@@ -70,11 +59,12 @@ const firstOf = (key: string) => ARTICLES.find((a) => a.threads.includes(key as 
     ))}
     <p class="source">標題、作者與職稱以文章內頁為準。精華故事陸續上線中。</p>
   </section>
+  <script>
+    import { initHero } from '../scripts/hero';
+    initHero();
+  </script>
 </Base>
 <style>
-  .actions { display: flex; flex-wrap: wrap; align-items: center; gap: 16px 28px; margin-top: 40px; }
-  .actions .scroll-hint { margin-top: 0; }
-  .skiplink { font-size: 14px; color: var(--ink-2); }
   .h2 { font-size: clamp(26px, 3vw + 12px, 40px); margin: 4px 0 8px; }
   .btn.small { padding: 8px 14px; font-size: 14px; }
   .chgroup { margin: 28px 0; }

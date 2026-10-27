@@ -28,7 +28,7 @@ const next = sameThread.length > 1 ? sameThread[(sameThread.indexOf(a) + 1) % sa
     <p class="scroll-hint">往下捲動</p>
   </section>
 
-  <Scenes scenes={story.scenes} />
+  <Scenes scenes={story.scenes} chapter={a.chapter} seed={Number(a.id.slice(1))} />
 
   <section class="section ending">
     <p class="eyebrow reveal">{story.asksTitle ?? '帶走這幾個問題'}</p>

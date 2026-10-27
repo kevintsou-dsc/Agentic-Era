@@ -38,6 +38,8 @@ body {
   overflow-x: hidden;
 }
 img, svg { max-width: 100%; display: block; }
+/* 網頁底圖：封面的牛皮紙纖維，淡淡疊一層（multiply），只增加紙本質感、不影響閱讀 */
+body::before { content: ""; position: fixed; inset: 0; z-index: -1; pointer-events: none; background: url(/art/cover/kraft.webp) 0 0 / 640px; opacity: .32; mix-blend-mode: multiply; }
 a { color: inherit; }
 :focus-visible { outline: 3px solid var(--accent-ink); outline-offset: 3px; border-radius: 4px; }
 
