@@ -198,6 +198,8 @@ export type D3Chart =
       kind: 'rings'; title: string; center: string;
       rings: (Tipped & { label: string; sub: string; desc: string })[];
       pulls?: string[]; pullsAt?: number;
+      /** grow：第 k 段主文時第 k 圈才從內圈往外長出來（強調「邊界擴張」），當段的圈加深外框 */
+      grow?: boolean;
     };
 
 /** 說明框內容（策展補充） */

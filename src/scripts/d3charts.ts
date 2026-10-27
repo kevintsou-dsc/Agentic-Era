@@ -680,7 +680,9 @@ function rings(el: HTMLElement, c: Extract<D3Chart, { kind: 'rings' }>): Instanc
   // 外圈先畫，內圈蓋在上面；每一圈是一個可 hover 的環
   const ringG = svg.append('g').selectAll('g').data(c.rings.map((d, i) => ({ d, i })).reverse()).join('g')
     .attr('class', (o) => `rg-ring rg-${o.i}`);
-  ringG.append('circle').attr('cx', cx).attr('cy', cy).attr('r', (o) => r0 + (o.i + 1) * band);
+  ringG.append('circle').attr('cx', cx).attr('cy', cy).attr('r', (o) => r0 + (o.i + 1) * band)
+    // grow 收起時縮到內一圈的半徑，展開用 CSS transform 過場
+    .style('--rg-k', (o) => String((r0 + o.i * band) / (r0 + (o.i + 1) * band)));
   ringG.append('text').attr('class', 'rg-label').attr('x', cx).attr('y', (o) => cy - (r0 + o.i * band) - band / 2 + 1).attr('text-anchor', 'middle').text((o) => o.d.label);
   ringG.append('text').attr('class', 'rg-sub').attr('x', cx).attr('y', (o) => cy - (r0 + o.i * band) - band / 2 + 16).attr('text-anchor', 'middle').text((o) => o.d.sub);
   ringG.each(function (o) { bind(this, { title: o.d.label, body: o.d.desc, extra: o.d.extra }); });
@@ -706,15 +708,21 @@ function rings(el: HTMLElement, c: Extract<D3Chart, { kind: 'rings' }>): Instanc
     return `translate(${cx + r * Math.cos(d.ang)},${cy + r * Math.sin(d.ang)})`;
   });
   place(1);
-  let step = 0;
+  let step = 0, rOut = rMax;
   return {
     update(s) {
       step = s;
       pulls.classed('on', reduce ? !!c.pulls : s >= at);
+      if (c.grow) {
+        const shown = reduce ? n : Math.min(n, s);
+        svg.classed('rg-grow', true);
+        ringG.classed('rg-in', (o) => o.i < shown).classed('cur', (o) => o.i === s - 1);
+        rOut = r0 + shown * band;
+      }
     },
     tick(t) {
       const p = (t % 3600) / 3600;
-      ripple.attr('r', r0 + p * (rMax - r0)).style('opacity', 0.55 * (1 - p));
+      ripple.attr('r', r0 + p * (rOut - r0)).style('opacity', 0.55 * (1 - p));
       if (step >= at) place(((t % 3000) / 3000) * 0.85 + 0.1);
     },
   };

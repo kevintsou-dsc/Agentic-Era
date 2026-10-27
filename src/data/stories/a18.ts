@@ -45,6 +45,7 @@ export const story: Story = {
           kind: 'rings',
           title: '體驗的主體，一直在擴張',
           center: '體驗',
+          grow: true,
           rings: [
             { label: 'UX', sub: '真實的人類消費者', desc: '從 1990 年代起，UX 的主角一直是拿著手機、坐在電腦前的消費者', extra: 'UX（使用者體驗）關心人怎麼看懂畫面、完成操作。三十年來的方法論，都假設螢幕前是一個有情緒、會猶豫的人。' },
             { label: 'TX', sub: '加上員工與決策者', desc: 'Gartner 的 Total Experience：CX、UX 與 EX 是相互牽連的生態系', extra: 'TX（整體體驗）把員工體驗也納進來：客服人員查資料很痛苦，電話那頭的顧客就不會有好體驗。但這一圈的主體仍然都是人。' },

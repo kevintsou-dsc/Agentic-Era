@@ -255,6 +255,13 @@ const hintTarget = c.kind === 'flowloop' ? '圓圈' : c.kind === 'stages' ? '方
   .d3 :global(.rg-sub) { font: 500 10px var(--font-sans); fill: var(--ink-2); pointer-events: none; }
   .d3 :global(.rg-core circle) { fill: var(--ink); }
   .d3 :global(.rg-core text) { font: 800 16px var(--font-sans); fill: var(--paper); }
+  /* grow：還沒讀到的圈縮在內一圈之下、標籤隱藏；讀到時往外長出，當段的圈加深外框 */
+  .d3 :global(.rg-grow .rg-ring circle) { transform-box: fill-box; transform-origin: center; transform: scale(var(--rg-k)); transition: transform .9s cubic-bezier(.2, .8, .2, 1.15), fill .2s, stroke .3s; }
+  .d3 :global(.rg-grow .rg-ring text) { opacity: 0; transition: opacity .4s; }
+  .d3 :global(.rg-grow .rg-ring.rg-in circle) { transform: scale(1); }
+  .d3 :global(.rg-grow .rg-ring.rg-in text) { opacity: 1; transition-delay: .5s; }
+  .d3 :global(.rg-grow .rg-ring.cur circle) { stroke: var(--accent-ink); stroke-width: 4; }
+  .d3 :global(.rg-grow .rg-ring.cur .rg-label) { font-size: 17px; }
   .d3 :global(.rg-ripple) { fill: none; stroke: var(--accent-ink); stroke-width: 2; pointer-events: none; }
   .d3 :global(.rg-pulls) { opacity: 0; transition: opacity .6s; pointer-events: none; }
   .d3 :global(.rg-pulls.on) { opacity: 1; }
