@@ -15,10 +15,17 @@ interface Props { a: Article; story: Story }
 const { a, story } = Astro.props;
 
 const fullReviewed = FULLTEXT_REVIEWED.has(a.id);
-// 同一條主線上、已有故事的下一篇（依紙本順序循環）
-const thread = THREADS.find((t) => a.threads.includes(t.key));
-const sameThread = thread ? ARTICLES.filter((x) => x.threads.includes(thread.key) && STORIES[x.id]) : [];
-const next = sameThread.length > 1 ? sameThread[(sameThread.indexOf(a) + 1) % sameThread.length] : undefined;
+// 接下來讀什麼：
+// 1. 「下一篇」＝紙本順序的下一篇（有故事的），每頁都有，保證 22 篇能一路讀完；最後一篇沒有。
+// 2. 本篇所屬的每一條主線，各給一張「同一條主線」的下一篇；主線的最後一篇不再繞回開頭。與「下一篇」相同的不重複列。
+const withStory = ARTICLES.filter((x) => STORIES[x.id]);
+const bookNext = withStory[withStory.indexOf(a) + 1];
+const threadNext = THREADS.filter((t) => a.threads.includes(t.key))
+  .map((t) => {
+    const line = withStory.filter((x) => x.threads.includes(t.key));
+    return { t, n: line[line.indexOf(a) + 1] };
+  })
+  .filter((x): x is { t: (typeof THREADS)[number]; n: Article } => !!x.n && x.n !== bookNext);
 ---
 <Base title={`${fullTitle(a)}｜決策智慧 2026`} description={story.oneLiner} chapter={a.chapter} crumb={`${a.title}．精華 ${storyMinutes(story)} 分鐘`}>
   <section class="hero">
@@ -40,13 +47,20 @@ const next = sameThread.length > 1 ? sameThread[(sameThread.indexOf(a) + 1) % sa
 
   <nav class="section next" aria-label="接下來">
     <a class="btn" href={`/a/${a.slug}/full/`}>讀原文（約 {a.minutes} 分鐘{fullReviewed ? '' : '，校正中'}）→</a>
-    {next && thread && (
-      <a class="nextcard" href={`/a/${next.slug}/`}>
-        <span class="eyebrow">同一條主線｜{thread.name}</span>
-        <b>{next.title}</b>
-        <span>{next.authors.map((x) => x.name).join('、')}｜精華 {storyMinutes(STORIES[next.id])} 分鐘</span>
+    {bookNext && (
+      <a class="nextcard" href={`/a/${bookNext.slug}/`}>
+        <span class="eyebrow">下一篇｜紙本 p.{bookNext.pages[0]}{THREADS.filter((t) => bookNext.threads.includes(t.key) && a.threads.includes(t.key)).map((t) => `・同一條主線「${t.name}」`).join('')}</span>
+        <b>{bookNext.title}</b>
+        <span>{bookNext.authors.map((x) => x.name).join('、')}｜精華 {storyMinutes(STORIES[bookNext.id])} 分鐘</span>
       </a>
     )}
+    {threadNext.map(({ t, n }) => (
+      <a class="nextcard thread" href={`/a/${n.slug}/`}>
+        <span class="eyebrow">同一條主線｜{t.name}</span>
+        <b>{n.title}</b>
+        <span>{n.authors.map((x) => x.name).join('、')}｜精華 {storyMinutes(STORIES[n.id])} 分鐘</span>
+      </a>
+    ))}
     <a class="btn ghost" href="/#chapters">← 回到全書，依章節找文章</a>
   </nav>
 </Base>
@@ -58,6 +72,7 @@ const next = sameThread.length > 1 ? sameThread[(sameThread.indexOf(a) + 1) % sa
   .next { display: flex; flex-wrap: wrap; gap: 14px; align-items: center; padding-top: 6svh; }
   .nextcard { display: grid; gap: 4px; padding: 16px 20px; border-radius: 14px; border: 2px solid var(--accent-ink); text-decoration: none; background: var(--paper); flex: 1 1 18rem; max-width: 28rem; }
   .nextcard:hover { background: var(--accent); }
+  .nextcard.thread { border-style: dashed; }
   .nextcard b { font-size: 18px; }
   .nextcard span:last-child { font-size: 13px; color: var(--ink-2); }
   [aria-disabled="true"] { opacity: .55; cursor: not-allowed; }
