@@ -95,13 +95,13 @@ export const story: Story = {
       graphic: {
         type: 'art',
         art: 'magnet-mount',
-        title: '作者的小故事：一個手機磁吸支架',
+        title: '一個手機磁吸支架的小故事',
         source: '插畫：策展者繪製｜依據 吳宗霖〈重建 SOV〉紙本 p.119 作者親身經驗',
       },
       src: [{ article: 'a13', page: 119, text: '我自己有一個貼切的消費經驗' }],
       beats: [
         {
-          text: '吳宗霖分享過一個貼切的經驗：他點了一則手機磁吸支架的廣告，本來想買能吸附在各種材質上的產品，廣告看起來很符合需求，功能也說得很清楚。',
+          text: '作者分享過一個貼切的經驗：點了一則手機磁吸支架的廣告，本來想買能吸附在各種材質上的產品，廣告看起來很符合需求，功能也說得很清楚。',
           src: [
             { article: 'a13', page: 119, text: '我點擊了一個手機磁吸支架的廣告' },
             { article: 'a13', page: 119, text: '本來想買的是一個可以吸附在各種材質上的產品，廣告看起來很符合需求，功能也說得很清楚' },
@@ -112,14 +112,14 @@ export const story: Story = {
           src: [{ article: 'a13', page: 119, text: '才發現那個產品只能吸附在玻璃上，並不符合我原本期待' }],
         },
         {
-          text: '於是他又開始搜尋，發現同時間大概有二十個左右的類似廣告在對他投放：每個都在講磁吸、穩固、方便，素材看起來差不多，價格也差異不大。',
+          text: '於是又開始搜尋，發現同時間大概有二十個左右的類似廣告在投放：每個都在講磁吸、穩固、方便，素材看起來差不多，價格也差異不大。',
           src: [
             { article: 'a13', page: 119, text: '同時間大概有二十個左右的類似廣告與類似商品都在對我投放' },
             { article: 'a13', page: 119, text: '每個素材看起來都差不多，每個價格也差異不大' },
           ],
         },
         {
-          text: '後來他又買了另一個，產品其實不錯用，但盒子丟掉之後，就不太記得那個品牌叫什麼了。',
+          text: '後來又買了另一個，產品其實不錯用，但盒子丟掉之後，就不太記得那個品牌叫什麼了。',
           src: [
             { article: 'a13', page: 119, text: '後來我又買了另一個' },
             { article: 'a13', page: 119, text: '產品其實不錯用，但盒子丟掉之後，我也不太記得那個品牌叫什麼' },
@@ -203,7 +203,7 @@ export const story: Story = {
           },
         },
         {
-          text: '到了 AI 搜尋時代，搜尋本身也變成自然語言提問、AI 摘要與推薦清單。作者認為品牌要看的，不只是 Share of Search，還有 Share of Discovery、Share of Recommendation，以及更重要的 Share of Choice。',
+          text: '到了 AI 搜尋時代，搜尋本身也變成自然語言提問、AI 摘要與推薦清單。品牌要看的，不只是 Share of Search，還有 Share of Discovery、Share of Recommendation，以及更重要的 Share of Choice。',
           src: [
             { article: 'a13', page: 120, text: '現在搜尋可能變成一段自然語言問題、一個 AI 摘要、一組整合答案、一段推薦清單' },
             { article: 'a13', page: 121, text: '未來品牌要看的，可能不只是 Share of Search，而是 Share of Discovery、Share of Consideration、Share of Store Visit、Share of Recommendation，以及更重要的 Share of Choice' },

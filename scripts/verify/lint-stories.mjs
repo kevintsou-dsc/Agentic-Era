@@ -7,6 +7,9 @@ import { join } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 
 const dir = fileURLToPath(new URL('../../src/data/stories/', import.meta.url));
+// 作者中文名：主文不直呼（改用「作者」或省略主詞）；引文出處、圖說 source、引文 by 欄位不在此限
+const articlesJson = JSON.parse(readFileSync(fileURLToPath(new URL('../../content/articles.json', import.meta.url)), 'utf8'));
+const AUTHOR_NAMES = [...new Set((Array.isArray(articlesJson) ? articlesJson : articlesJson.articles).flatMap((x) => x.authors.map((au) => au.name)))];
 const END = /[。！？」）]$/;
 const problems = [];
 const summary = [];
@@ -51,6 +54,17 @@ for (const f of readdirSync(dir).filter((x) => /^a\d\d\.ts$/.test(x))) {
     Object.values(o).forEach(walk);
   };
   walk(story.scenes);
+  const scanNames = (o, key = '') => {
+    if (typeof o === 'string') {
+      if (['source', 'by', 'credit'].includes(key)) return;
+      for (const n of AUTHOR_NAMES) if (o.includes(n)) problems.push(`${id}：主文直呼作者「${n}」（${key}）——改用「作者」或省略主詞`);
+      return;
+    }
+    if (!o || typeof o !== 'object') return;
+    if ('article' in o && 'page' in o) return; // 原文引句
+    for (const [k, v] of Object.entries(o)) scanNames(v, Array.isArray(o) ? key : k);
+  };
+  scanNames({ oneLiner: story.oneLiner, asks: story.asks, scenes: story.scenes });
   for (const sc of story.scenes) {
     // 人形圖的實心比例必須等於大數字（例如 13／20＝65%）
     if (sc.kind === 'bignum' && sc.people && Math.abs((sc.people.filled / sc.people.total) * 100 - sc.value) > 0.5) {

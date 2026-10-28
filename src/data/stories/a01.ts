@@ -13,7 +13,7 @@ export const story: Story = {
       heading: '談到 AI，為什麼總是這麼興奮？',
       beats: [
         {
-          text: '唐心慧坦言，自己談到 AI 總是很興奮。不是因為沒有擔憂，而是她看到消費者與市場都在快速變化，人和 AI 協作共同決策的時代已經來了。',
+          text: '談到 AI，作者總是很興奮。不是因為沒有擔憂，而是消費者與市場都在快速變化，人和 AI 協作共同決策的時代已經來了。',
           src: [
             { article: 'a01', page: 7, text: '你為什麼談到 AI 總是這麼興奮？' },
             { article: 'a01', page: 7, text: '這不是因為我沒有擔憂' },
@@ -109,7 +109,7 @@ export const story: Story = {
       ],
       beats: [
         {
-          text: '唐心慧發現，AI 時代的企業主面臨三個挑戰：效率與價值、創意與創新、人與 AI，正好對應 Business、People 與 Organization 三個成長維度。',
+          text: 'AI 時代的企業主面臨三個挑戰：效率與價值、創意與創新、人與 AI，正好對應 Business、People 與 Organization 三個成長維度。',
           src: [
             { article: 'a01', page: 8, text: '我發現 AI 時代的企業主也面臨三個挑戰。而這三個挑戰，正好對應企業成長的三個維度' },
             { article: 'a01', page: 9, text: '效率 vs 價值 (Business Growth)' },
@@ -140,7 +140,7 @@ export const story: Story = {
           },
         },
         {
-          text: '第三個挑戰是人與 AI。她的答案是：AI 改變的是分工，沒改變的是判斷；把人解放出來，去建立信任、做出有溫度的決策，並在不確定中承擔責任。',
+          text: '第三個挑戰是人與 AI。答案是：AI 改變的是分工，沒改變的是判斷；把人解放出來，去建立信任、做出有溫度的決策，並在不確定中承擔責任。',
           src: [
             { article: 'a01', page: 10, text: '我的答案是：AI 改變的是分工；沒改變的是判斷' },
             { article: 'a01', page: 10, text: '去做 AI 做不到的事，建立信任、做出有溫度的決策、在不確定中承擔責任' },
@@ -200,7 +200,7 @@ export const story: Story = {
     {
       kind: 'quote',
       lead: {
-        text: '回頭看，她談 AI 之所以興奮，是因為 AI 改變的其實不是世界，而是我們理解世界的方式。Modern marketing 正站在時代的轉折點上：Idea-led、AI-powered、Value-driven。',
+        text: '回頭看，談 AI 之所以令人興奮，是因為 AI 改變的其實不是世界，而是我們理解世界的方式。Modern marketing 正站在時代的轉折點上：Idea-led、AI-powered、Value-driven。',
         src: [
           { article: 'a01', page: 10, text: 'AI 改變的其實不是世界，是我們理解世界的方式' },
           { article: 'a01', page: 10, text: 'Modern marketing 正站在時代的轉折點上，Idea-led、AI-powered、Value-driven' },
