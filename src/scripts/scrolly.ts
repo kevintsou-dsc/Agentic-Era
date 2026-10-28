@@ -122,6 +122,23 @@ function initHScroll() {
   window.addEventListener('scroll', onScroll, { passive: true });
   window.addEventListener('resize', onScroll);
   update();
+
+  // 卡片展開後若比可用高度還高，收起上方引言（.hs-tight）；收合後恢復
+  const fit = (el: HTMLElement) => {
+    const pin = el.querySelector<HTMLElement>('.hs-pin');
+    const vp = el.querySelector<HTMLElement>('.hs-viewport');
+    if (!pin || !vp) return;
+    // 以「引言展開時」的可用高度判斷：目前已收起的話，要扣掉引言本身的高度
+    const room = vp.clientHeight - (pin.classList.contains('hs-tight') ? (el.querySelector<HTMLElement>('.hs-intro')?.scrollHeight ?? 0) : 0);
+    const tallest = Math.max(...Array.from(el.querySelectorAll<HTMLElement>('.hs-panel'), (p) => p.scrollHeight));
+    pin.classList.toggle('hs-tight', tallest > room - 20);
+  };
+  for (const b of blocks) {
+    // 展開動畫結束後再量（expand.ts 的高度動畫約 0.35 秒）
+    b.el.addEventListener('toggle', () => setTimeout(() => fit(b.el), 380), true);
+    fit(b.el);
+  }
+  window.addEventListener('resize', () => blocks.forEach((b) => fit(b.el)));
 }
 
 export function initScrolly() {
