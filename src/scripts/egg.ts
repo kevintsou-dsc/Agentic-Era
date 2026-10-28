@@ -6,7 +6,7 @@ const SPOTS = ['search', 'growth', 'box', 'pie', 'browser', 'board', 'stack', 'd
 
 export function initEgg() {
   console.log(
-    '%c決策智慧 2026%c\n\n給評審：辛苦了！謝謝您花時間看完這些作品。\n給原文作者群：內容很精彩，我們反覆讀了很多遍。\n給每一位讀者：喜歡的話，歡迎多多交流！\n\n小提示：在頁面上用鍵盤打 dentsu 試試看。',
+    '%c決策智慧 2026%c\n\n給評審：辛苦了！謝謝您花時間看完這些作品。\n給原文作者群：內容很精彩，我們反覆讀了很多遍。\n給每一位讀者：喜歡的話，歡迎多多交流！\n\n小提示：在頁面上用鍵盤打 dentsu 試試看。\n\n—— Kevin Tsou | DSC',
     'font: 800 20px "Noto Sans TC", sans-serif; color: #1f1d1a; background: #cbdd7a; padding: 4px 10px; border-radius: 6px;',
     'font: 14px/1.7 "Noto Sans TC", sans-serif; color: #5a544b;',
   );
