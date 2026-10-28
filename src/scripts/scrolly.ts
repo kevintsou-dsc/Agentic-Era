@@ -132,6 +132,8 @@ function initHScroll() {
     const room = vp.clientHeight - (pin.classList.contains('hs-tight') ? (el.querySelector<HTMLElement>('.hs-intro')?.scrollHeight ?? 0) : 0);
     const tallest = Math.max(...Array.from(el.querySelectorAll<HTMLElement>('.hs-panel'), (p) => p.scrollHeight));
     pin.classList.toggle('hs-tight', tallest > room - 20);
+    // 卡片最高只能到可用高度（等高拉齊後，最高那張決定整組高度）
+    requestAnimationFrame(() => el.style.setProperty('--hs-room', `${vp.clientHeight - 20}px`));
   };
   for (const b of blocks) {
     // 展開動畫結束後再量（expand.ts 的高度動畫約 0.35 秒）
