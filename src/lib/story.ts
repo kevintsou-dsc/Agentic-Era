@@ -76,6 +76,8 @@ export type Graphic =
       layout?: 'one' | 'two' | 'three' | 'timeline' | 'tram' | 'polaroid' | 'hanger' | 'vs' | 'radial' | 'checklist' | 'flatten' | 'scatter';
       items: { title: string; desc?: string; at?: number; more?: More }[]; source: string;
       vsLabels?: [string, string]; center?: string; centerAt?: number; converge?: boolean; morphAt?: number; morphLabel?: string;
+      /** 讀到第 at 段時，圖的標題換成 text（圖的狀態轉變後，標題跟著主文改說法） */
+      titleThen?: { at: number; text: string };
     }
   /** 案例圖片（可多張，第 k 段主文顯示第 k 張） */
   | { type: 'images'; images: (Img & { at: number; links?: Link[] })[]; source: string }

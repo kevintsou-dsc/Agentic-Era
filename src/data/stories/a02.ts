@@ -213,8 +213,9 @@ export const story: Story = {
       kind: 'graphic',
       graphic: {
         type: 'list',
-        layout: 'scatter', morphAt: 2, morphLabel: '問題不再被切成碎片',
+        layout: 'scatter', morphAt: 2, morphLabel: '放在同一套消費者理解上驗證',
         title: '一個新品上市，問題散落在四個部門',
+        titleThen: { at: 2, text: '當驗證壓縮到幾天甚至幾小時，資訊不再被打散' },
         items: [
           { title: '研發部門', desc: '新口味會不會被接受？', at: 1 },
           { title: '設計部門', desc: '新包裝夠不夠吸引人？', at: 1 },
