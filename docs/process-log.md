@@ -254,3 +254,4 @@
 - a21 在地內容引擎：由三張清單卡改為 art content-engine，畫出 AI 內容引擎與平台的關係（第 1 段引擎產出 tier 1–3 素材；第 2 段 PTT／Dcard→讀懂、→Threads／Facebook 投放、→LINE 完成閉環；第 3 段 KPI 最佳化回流）。平台標誌：Facebook、Threads、LINE 取自 Simple Icons 13.21.0（CC0），Dcard 取自 Wikimedia Commons（公有領域），PTT 無圖形標誌以 BBS 字樣呈現。
 - 封面扉頁素材視覺層：新增進場加載頁、首頁開場捲動動畫（A 拉近距離／C 像素重組並存，?hero=c 切換供比較）、牛皮紙底紋、純文字段落留白插圖、引言上方手繪小插圖。素材轉 webp 放 public/art/。check-links 改為忽略查詢字串。
 - 首頁開場改為「雙像匯聚」（結合 A 雙人像與 C 粒子匯聚，取代 A／C 兩案與切換鈕）：素描大衛以鉛筆短線、AI 臉以像素方塊組成，碎片持續擾動、滑鼠推開與波紋、彈簧回位。新增全站紙上筆跡（滑鼠經過空白紙面留下淡鉛筆線）。
+- header／footer 放上 dentsu 標誌（由 dentsu_logo.ai 轉向量）；全站圖表與插圖套 #hand 手繪濾鏡；新增原始碼小紙條（HTML 註解、主控台、humans.txt）與鍵盤 dentsu 彩蛋。

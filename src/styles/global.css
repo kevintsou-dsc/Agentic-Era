@@ -39,6 +39,14 @@ body {
 }
 img, svg { max-width: 100%; display: block; }
 /* 網頁底圖：封面的牛皮紙纖維，淡淡疊一層（multiply），只增加紙本質感、不影響閱讀 */
+/* 手繪線條（Base.astro 的 #hand 濾鏡）：圖表與插圖裡的線條、色塊邊緣微微彎曲、粗細不一，呼應原刊插圖的手繪感。
+   只套在圖形上，不套在文字（保持清晰）與照片／標誌（<image>）上；每幀都在動的小粒子不套，以免拖慢效能。 */
+.defs { position: absolute; width: 0; height: 0; overflow: hidden; }
+.stage svg :is(path, line, polyline, polygon, circle, ellipse, rect),
+.d3 svg :is(path, line, polyline, polygon, circle, ellipse, rect),
+.people svg :is(circle, path) { filter: url(#hand); }
+.d3 .fl-dots circle, .d3 .rg-ripple, .stage svg defs * { filter: none; }
+@media (max-width: 560px) { .d3 svg :is(rect, circle) { filter: none; } }
 /* 紙上筆跡（scripts/paper.ts）：滑鼠經過空白紙面留下的鉛筆線 */
 .paper-ink { position: fixed; inset: 0; width: 100vw; height: 100vh; z-index: 30; pointer-events: none; mix-blend-mode: multiply; }
 body::before { content: ""; position: fixed; inset: 0; z-index: -1; pointer-events: none; background: url(/art/cover/kraft.webp) 0 0 / 640px; opacity: .32; mix-blend-mode: multiply; }
@@ -281,3 +289,22 @@ details.more[open] summary::before { content: "－ "; }
   *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
   .reveal, .scrolly .card { opacity: 1; transform: none; }
 }
+
+/* 彩蛋（scripts/egg.ts）：鍵盤打 dentsu 時飄起手繪小插圖＋手寫感紙條 */
+.egg { position: fixed; inset: 0; z-index: 90; pointer-events: none; display: grid; place-items: center; }
+.egg-spot { position: absolute; left: var(--x); bottom: -120px; width: 96px; aspect-ratio: 1.2; transform: scale(var(--s)) rotate(var(--r)); animation: egg-rise 3.2s var(--d) cubic-bezier(.2, .6, .3, 1) forwards; }
+.egg-spot i { position: absolute; inset: 0; -webkit-mask: var(--m) center / contain no-repeat; mask: var(--m) center / contain no-repeat; }
+.egg-spot .f { --m: var(--fill); background: var(--accent); }
+.egg-spot .l { --m: var(--line); background: var(--ink); }
+@keyframes egg-rise { 0% { transform: translateY(0) scale(var(--s)) rotate(var(--r)); opacity: 0; } 15% { opacity: 1; } 100% { transform: translateY(-115vh) scale(var(--s)) rotate(calc(var(--r) * -1)); opacity: .2; } }
+.egg-note { pointer-events: auto; position: relative; width: min(340px, 86vw); padding: 22px 24px 18px; text-align: center; background: #fbf8f1; border: 2px solid var(--ink); border-radius: 6px 14px 8px 12px; box-shadow: 6px 6px 0 var(--accent); transform: rotate(-1.5deg); animation: egg-in .5s cubic-bezier(.3, 1.5, .5, 1); }
+.egg-note img { position: absolute; right: -36px; top: -70px; width: 90px; height: auto; mix-blend-mode: multiply; transform: rotate(12deg); }
+.egg-note p { margin: 0 0 6px; font-size: 15px; line-height: 1.7; color: var(--ink-2); }
+.egg-note .egg-h { font-size: 22px; font-weight: 800; color: var(--ink); }
+.egg-note svg { width: 180px; margin: 4px auto 10px; overflow: visible; }
+.egg-note path { fill: none; stroke: var(--accent-ink); stroke-width: 3; stroke-linecap: round; stroke-dasharray: 240; stroke-dashoffset: 240; animation: egg-draw .9s .3s ease forwards; filter: url(#hand); }
+.egg-note button { all: unset; cursor: pointer; font-size: 13px; padding: 4px 12px; border-radius: 999px; border: 1.5px solid var(--ink); }
+.egg-note button:focus-visible { outline: 3px solid var(--accent-ink); outline-offset: 2px; }
+.egg-out { opacity: 0; transition: opacity .45s; }
+@keyframes egg-in { from { opacity: 0; transform: translateY(20px) rotate(-6deg); } }
+@keyframes egg-draw { to { stroke-dashoffset: 0; } }
