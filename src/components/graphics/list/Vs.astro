@@ -1,0 +1,42 @@
+---
+// 「轉譯／對照」清單：每一列左邊是 title（原本的說法），右邊是 desc（轉譯後的說法），中間一支手繪箭頭。
+// 適合「賣點 → 文化語言」「廣告創造注意力 → 公關創造可信度」「挑戰 → 成長維度」這類一對一的轉換或分工。
+// vsLabels 可給左右欄標題。第 k 段主文點亮 at = k 的列；箭頭跟著畫出來。class 一律加 vs- 前綴。
+import type { Graphic } from '../../../lib/story';
+type G = Extract<Graphic, { type: 'list' }>;
+interface Props { g: G }
+const { g } = Astro.props;
+const together = new Set(g.items.map((it, i) => it.at ?? i + 1)).size === 1;
+---
+<div class="vs">
+  {g.vsLabels && (
+    <p class="vs-head" aria-hidden="true"><span>{g.vsLabels[0]}</span><span></span><span>{g.vsLabels[1]}</span></p>
+  )}
+  <ol class="vs-rows">
+    {g.items.map((it, i) => (
+      <li data-at={it.at ?? i + 1} data-focus={together ? undefined : (it.at ?? i + 1)} style={`--d:${i * 140}ms`}>
+        <span class="vs-from">{it.title}</span>
+        <svg class="vs-arrow" viewBox="0 0 64 24" aria-hidden="true"><path d="M3 13 C 18 9, 34 16, 54 11" pathLength="1" /><path d="M46 4 L 56 11 L 47 19" /></svg>
+        <span class="vs-to">{it.desc}</span>
+      </li>
+    ))}
+  </ol>
+</div>
+<style>
+  .vs { display: grid; gap: 8px; }
+  .vs-head { margin: 0; display: grid; grid-template-columns: 1fr 64px 1.25fr; gap: 10px; font-size: 12px; font-weight: 700; letter-spacing: .1em; color: var(--ink-3); }
+  .vs-rows { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+  .vs-rows li { display: grid; grid-template-columns: 1fr 64px 1.25fr; align-items: center; gap: 10px; opacity: calc(.22 + .78 * var(--on)); transition: opacity .5s var(--d); }
+  .vs-from { padding: 10px 12px; border-radius: 10px; border: 2px dashed var(--ink-3); font-weight: 700; font-size: 15px; line-height: 1.45; color: var(--ink-2); }
+  .vs-to { padding: 10px 14px; border-radius: 10px; border: 2px solid var(--accent-ink); font-weight: 800; font-size: 15px; line-height: 1.5;
+    background: color-mix(in srgb, var(--accent) calc(35% + var(--focus, 0) * 65%), var(--paper)); box-shadow: calc(var(--focus, 0) * 4px) calc(var(--focus, 0) * 4px) 0 var(--accent-ink); transition: background .4s, box-shadow .4s; }
+  .vs-arrow { width: 64px; height: 24px; overflow: visible; }
+  .vs-arrow path { fill: none; stroke: var(--accent-ink); stroke-width: 2.6; stroke-linecap: round; stroke-linejoin: round; }
+  .vs-arrow path:first-child { stroke-dasharray: 1; stroke-dashoffset: calc(1 - var(--on)); transition: stroke-dashoffset .6s calc(var(--d) + .2s); }
+  .vs-arrow path:last-child { opacity: var(--on); transition: opacity .3s calc(var(--d) + .6s); }
+  @media (max-width: 560px) {
+    .vs-head { display: none; }
+    .vs-rows li { grid-template-columns: 1fr; gap: 4px; }
+    .vs-arrow { transform: rotate(90deg); justify-self: center; height: 20px; }
+  }
+</style>

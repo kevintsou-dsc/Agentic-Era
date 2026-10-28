@@ -1,0 +1,41 @@
+---
+// 「散落 → 拼合」：一開始各項像散落在桌上的便利貼（不同角度、位置分散，問題被切成碎片）；
+// 到第 morphAt 段，全部收攏成一塊整齊的方陣，外框與 morphLabel 出現（例如「同一個模擬一次回答」）。
+// class 一律加 sc- 前綴。
+import type { Graphic } from '../../../lib/story';
+type G = Extract<Graphic, { type: 'list' }>;
+interface Props { g: G }
+const { g } = Astro.props;
+const at = g.morphAt ?? 2;
+const spread = [[-14, -18, -9], [16, -12, 7], [-10, 16, 5], [18, 20, -6], [0, -24, 4], [-20, 2, -4]];
+---
+<div class="sc">
+  <span class="sc-flag" data-at={at} aria-hidden="true"></span>
+  <ol class="sc-items">
+    {g.items.map((it, i) => {
+      const [x, y, r] = spread[i % spread.length];
+      return (
+        <li style={`--x:${x}px;--y:${y}px;--r:${r}deg;--d:${i * 80}ms`}>
+          <b>{it.title}</b>
+          {it.desc && <span>{it.desc}</span>}
+        </li>
+      );
+    })}
+  </ol>
+  {g.morphLabel && <p class="sc-label" data-at={at}>{g.morphLabel}</p>}
+</div>
+<style>
+  .sc { position: relative; display: grid; gap: 14px; }
+  .sc-flag { display: none; }
+  .sc { --g: 0; }
+  :global(.graphic.is-2) .sc:has(.sc-flag[data-at="2"]), :global(.graphic.is-3) .sc:has(.sc-flag[data-at="3"]), :global(.graphic.is-4) .sc:has(.sc-flag[data-at="4"]) { --g: 1; }
+  .sc-items { list-style: none; margin: 0; padding: calc(var(--g) * 14px); display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: calc(26px - var(--g) * 18px);
+    border: 2.5px dashed color-mix(in srgb, var(--accent-ink) calc(var(--g) * 100%), transparent); border-radius: 16px; transition: gap .8s, padding .8s, border-color .6s; }
+  .sc-items li { display: grid; gap: 4px; padding: 12px 14px; border-radius: 4px 12px 6px 10px; background: color-mix(in srgb, var(--accent) 60%, var(--paper)); border: 2px solid var(--ink);
+    box-shadow: 3px 4px 0 color-mix(in srgb, var(--ink) 18%, transparent);
+    transform: translate(calc(var(--x) * (1 - var(--g))), calc(var(--y) * (1 - var(--g)))) rotate(calc(var(--r) * (1 - var(--g)))); transition: transform .9s var(--d) cubic-bezier(.5, 0, .2, 1); }
+  .sc-items b { font-size: 15px; }
+  .sc-items span { font-size: 13px; line-height: 1.5; color: var(--ink-2); }
+  .sc-label { justify-self: center; margin: 0; font-weight: 800; color: var(--accent-ink); opacity: var(--on); transform: translateY(calc((1 - var(--on)) * 8px)); transition: opacity .5s .6s, transform .5s .6s; }
+  @media (max-width: 560px) { .sc-items { grid-template-columns: 1fr; } }
+</style>

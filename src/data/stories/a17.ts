@@ -195,6 +195,7 @@ export const story: Story = {
       side: 'right',
       graphic: {
         type: 'list',
+        layout: 'vs', vsLabels: ['優化項目', '要一起看的風險指標'],
         title: '別只看轉換率：每種優化都要配風險控管指標',
         items: [
           { title: '結帳優化', desc: '退款率、取消率、付款錯誤率、客服量、配送錯誤率', at: 1 },

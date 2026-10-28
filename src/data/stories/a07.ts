@@ -173,6 +173,7 @@ export const story: Story = {
       side: 'right',
       graphic: {
         type: 'list',
+        layout: 'vs', vsLabels: ['賣點：我有什麼', '文化語言：我懂你什麼'],
         title: '把商品賣點，翻譯成文化語言',
         items: [
           { title: '省時', desc: '讓你不用再被生活追著跑', at: 1 },

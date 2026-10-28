@@ -93,6 +93,7 @@ export const story: Story = {
       side: 'right',
       graphic: {
         type: 'list',
+        layout: 'vs', vsLabels: ['挑戰', '對應的成長維度'],
         title: '三個挑戰，對應企業成長的三個維度',
         items: [
           { title: '效率 vs 價值', desc: 'Business Growth：用速度換來更準的判斷', at: 2 },
@@ -166,6 +167,7 @@ export const story: Story = {
       side: 'right',
       graphic: {
         type: 'list',
+        layout: 'two',
         title: '興奮之外，兩個必須警覺的隱憂',
         items: [
           {

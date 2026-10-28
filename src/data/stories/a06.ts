@@ -208,6 +208,7 @@ export const story: Story = {
       side: 'right',
       graphic: {
         type: 'list',
+        layout: 'vs', vsLabels: ['過去的分工', '公關的新角色'],
         title: '公關的下一個角色：信任工程師',
         items: [
           { title: '廣告創造注意力', desc: '公關創造可信度', at: 1 },

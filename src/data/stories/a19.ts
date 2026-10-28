@@ -44,6 +44,7 @@ export const story: Story = {
       side: 'right',
       graphic: {
         type: 'list',
+        layout: 'flatten', morphAt: 2, morphLabel: '有效率的隱形',
         title: '當大家都給標準答案，你只會成為「有效率的隱形」',
         items: [
           { title: '保養品牌', desc: '都在談「修護、保濕、抗老」', at: 1 },
@@ -87,6 +88,7 @@ export const story: Story = {
       kind: 'graphic',
       graphic: {
         type: 'list',
+        layout: 'radial', center: 'CEPs 品類進入點', centerAt: 1,
         title: 'CEPs 七個 W 的聯想架構',
         items: [
           { title: 'Why 動機', desc: '想放鬆、想省時間', at: 1 },

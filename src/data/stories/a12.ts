@@ -550,6 +550,7 @@ export const story: Story = {
       kind: 'graphic',
       graphic: {
         type: 'list',
+        layout: 'vs', vsLabels: ['案例', '模擬後的決策'],
         title: '五個案例，五種決策',
         items: [
           { title: '素材選擇：保養品', desc: '溫潤自然感抓住目光、極簡科技感建立信任，合成一條故事線', at: 1 },
@@ -626,6 +627,7 @@ export const story: Story = {
       kind: 'graphic',
       graphic: {
         type: 'list',
+        layout: 'checklist',
         title: '三種情況，一定要搭配真人研究',
         items: [
           { title: '決策金額或風險高', desc: '例如新品上市、品牌重新定位', at: 1 },

@@ -78,6 +78,14 @@ for (const f of readdirSync(dir).filter((x) => /^a\d\d\.ts$/.test(x))) {
     if (sc.kind === 'graphic' && sc.graphic.type === 'list' && sc.graphic.flip) {
       sc.graphic.items.filter((it) => !it.desc).forEach((it) => problems.push(`${id}：翻面卡「${it.title}」沒有背面（desc）`));
     }
+    // 圖上元素的 at（第幾段亮起）不能超過主文段數，否則那個元素永遠不會亮
+    if (sc.kind === 'graphic') {
+      const ats = [];
+      const collect = (o) => { if (o && typeof o === 'object') { for (const [k, v] of Object.entries(o)) { if (typeof v === 'number' && /^(at|centerAt|morphAt|leftAt|rightAt|bothAt|failAt|pullsAt|levelsAt)$/.test(k)) ats.push(v); else collect(v); } } };
+      collect(sc.graphic);
+      const max = ats.length ? Math.max(...ats) : 0;
+      if (max > sc.beats.length) problems.push(`${id}：圖表「${sc.graphic.title ?? sc.graphic.chart?.title ?? sc.graphic.type}」有元素在第 ${max} 段才亮，但只有 ${sc.beats.length} 段主文`);
+    }
     const c = sc.kind === 'graphic' && sc.graphic.type === 'd3' ? sc.graphic.chart : null;
     if (!c) continue;
     if (c.kind === 'flowloop') {

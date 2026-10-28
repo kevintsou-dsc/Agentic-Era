@@ -33,6 +33,7 @@ export const story: Story = {
       side: 'right',
       graphic: {
         type: 'list',
+        layout: 'timeline',
         title: '同一個意圖裡，競品在每一步等著你',
         items: [
           { title: '看完一支廣告', desc: '下一秒可能被短影音帶走', at: 1 },

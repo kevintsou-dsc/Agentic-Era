@@ -113,6 +113,7 @@ export const story: Story = {
       kind: 'graphic',
       graphic: {
         type: 'list',
+        layout: 'radial', converge: true, center: '真實，變成最稀缺也最貴的資產', centerAt: 2,
         title: '三股力量同時在動：量產變便宜，真實變最貴',
         items: [
           { title: '製作成本正在崩跌', desc: '任何人都能在幾分鐘內量產像樣的貼文、評論與開箱', at: 1 },
@@ -180,13 +181,14 @@ export const story: Story = {
       side: 'right',
       graphic: {
         type: 'list',
+        layout: 'checklist',
         title: '執行紀律：五大關鍵舉措',
         items: [
-          { title: '鋪在對的地方', desc: '讓真實經驗出現在 PTT、Dcard、YouTube、Google 評論', at: 1 },
-          { title: '內容要具體，不要形容詞', desc: '說清楚什麼情境用、解決什麼、誰適合誰不適合', at: 1 },
-          { title: '讓對的賣點反覆、一致地被提到', desc: 'AI 才會把主題和品牌牢牢綁在一起', at: 1 },
-          { title: '用在地、自然的語言', desc: '避開業配腔與翻譯腔', at: 1 },
-          { title: '管理語意，不是星等', desc: '負評被正確回應、補上脈絡；正評談到對的賣點', at: 1 },
+          { title: '鋪在對的地方', desc: '讓真實經驗出現在 PTT、Dcard、YouTube、Google 評論', at: 2 },
+          { title: '內容要具體，不要形容詞', desc: '說清楚什麼情境用、解決什麼、誰適合誰不適合', at: 2 },
+          { title: '讓對的賣點反覆、一致地被提到', desc: 'AI 才會把主題和品牌牢牢綁在一起', at: 2 },
+          { title: '用在地、自然的語言', desc: '避開業配腔與翻譯腔', at: 2 },
+          { title: '管理語意，不是星等', desc: '負評被正確回應、補上脈絡；正評談到對的賣點', at: 3 },
         ],
         source: '依據 孫韞筑〈討好演算法還是打動人？〉紙本 p.70',
       },

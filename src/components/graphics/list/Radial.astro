@@ -1,0 +1,59 @@
+---
+// 「放射／匯聚」清單：項目圍成一圈，中心是 center（例如「CEPs 品類進入點」「AX 信任」「真實變最貴」）。
+// 每個項目有一支手繪線連到中心；converge 為 true 時線從項目畫向中心（多股力量匯聚成一個結論），否則從中心向外放射。
+// 項目依 at 亮起，中心在 centerAt（預設與最後一項同時）浮現。手機改成中心在上、項目兩欄。class 一律加 rd2- 前綴。
+import type { Graphic } from '../../../lib/story';
+type G = Extract<Graphic, { type: 'list' }>;
+interface Props { g: G }
+const { g } = Astro.props;
+const n = g.items.length;
+const together = new Set(g.items.map((it, i) => it.at ?? i + 1)).size === 1;
+const centerAt = g.centerAt ?? Math.max(...g.items.map((it, i) => it.at ?? i + 1));
+// 位置：從正上方開始順時針；橢圓讓寬版畫面更好排
+const pos = (i: number) => {
+  const a = -Math.PI / 2 + (i * 2 * Math.PI) / n;
+  return { x: 50 + Math.cos(a) * 38, y: 50 + Math.sin(a) * 36 };
+};
+---
+<div class:list={['rd2', { 'rd2-in': g.converge }]}>
+  <svg class="rd2-lines" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+    {g.items.map((it, i) => {
+      const p = pos(i);
+      const mx = (p.x + 50) / 2 + (i % 2 ? 3 : -3), my = (p.y + 50) / 2 + (i % 2 ? -3 : 3);
+      return <path data-at={it.at ?? i + 1} d={g.converge ? `M${p.x} ${p.y} Q ${mx} ${my} 50 50` : `M50 50 Q ${mx} ${my} ${p.x} ${p.y}`} pathLength="1" vector-effect="non-scaling-stroke" />;
+    })}
+  </svg>
+  <p class="rd2-center" data-at={centerAt} data-focus={centerAt}>{g.center}</p>
+  <ol class="rd2-items">
+    {g.items.map((it, i) => {
+      const p = pos(i);
+      return (
+        <li data-at={it.at ?? i + 1} data-focus={together ? undefined : (it.at ?? i + 1)} style={`--x:${p.x}%;--y:${p.y}%;--d:${i * 90}ms`}>
+          <b>{it.title}</b>
+          {it.desc && <span>{it.desc}</span>}
+        </li>
+      );
+    })}
+  </ol>
+</div>
+<style>
+  .rd2 { position: relative; width: 100%; aspect-ratio: 1.35; max-height: 62svh; }
+  .rd2-lines { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+  .rd2-lines path { fill: none; stroke: var(--accent-ink); stroke-width: 2.2; stroke-linecap: round; stroke-dasharray: 1; stroke-dashoffset: calc(1 - var(--on)); opacity: .55; transition: stroke-dashoffset .8s; }
+  .rd2-center { position: absolute; left: 50%; top: 50%; translate: -50% -50%; z-index: 2; margin: 0; max-width: 34%; padding: 14px 16px; border-radius: 50% 46% 52% 44% / 48% 52% 46% 54%; text-align: center;
+    font-weight: 800; font-size: clamp(15px, 1vw + 9px, 19px); line-height: 1.35; background: var(--accent); border: 2.5px solid var(--accent-ink);
+    opacity: calc(.25 + .75 * var(--on)); transform: scale(calc(.85 + .15 * var(--on) + var(--focus) * .05)); transition: opacity .5s, transform .6s cubic-bezier(.3, 1.5, .5, 1); }
+  .rd2-items { list-style: none; margin: 0; padding: 0; }
+  .rd2-items li { position: absolute; left: var(--x); top: var(--y); translate: -50% -50%; z-index: 1; display: grid; gap: 2px; width: max-content; max-width: 30%; padding: 7px 11px; text-align: center;
+    border-radius: 10px; border: 2px solid color-mix(in srgb, var(--accent-ink) calc(var(--focus, 0) * 100%), var(--ink-3)); background: var(--paper);
+    opacity: calc(.2 + .8 * var(--on)); transition: opacity .5s var(--d), border-color .4s; }
+  .rd2-items b { font-size: 14px; line-height: 1.35; }
+  .rd2-items span { font-size: 12px; line-height: 1.45; color: var(--ink-2); }
+  @media (max-width: 560px) {
+    .rd2 { aspect-ratio: auto; max-height: none; display: grid; gap: 10px; }
+    .rd2-lines { display: none; }
+    .rd2-center { position: static; translate: none; max-width: none; border-radius: 14px; }
+    .rd2-items { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+    .rd2-items li { position: static; translate: none; width: auto; max-width: none; }
+  }
+</style>

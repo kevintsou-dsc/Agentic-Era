@@ -1,0 +1,30 @@
+---
+// 「檢核清單」：手繪方框，第 k 段主文時 at = k 的項目打上手繪勾勾（一筆畫出）。
+// 適合「執行舉措」「什麼情況要做某件事」這類可以逐項檢查的內容。class 一律加 ck- 前綴。
+import type { Graphic } from '../../../lib/story';
+type G = Extract<Graphic, { type: 'list' }>;
+interface Props { g: G }
+const { g } = Astro.props;
+---
+<ol class="ck">
+  {g.items.map((it, i) => (
+    <li data-at={it.at ?? i + 1} data-focus={it.at ?? i + 1} style={`--d:${i * 120}ms`}>
+      <svg class="ck-box" viewBox="0 0 32 32" aria-hidden="true">
+        <path class="ck-frame" d="M5 6 C 12 4, 22 5, 27 5 C 28 12, 27 20, 27 27 C 19 28, 11 27, 5 27 C 4 20, 5 12, 5 6 Z" />
+        <path class="ck-tick" d="M8 16 C 11 18, 13 21, 14 24 C 18 15, 23 9, 31 2" pathLength="1" />
+      </svg>
+      <span class="ck-text"><b>{it.title}</b>{it.desc && <span>{it.desc}</span>}</span>
+    </li>
+  ))}
+</ol>
+<style>
+  .ck { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+  .ck li { display: grid; grid-template-columns: 34px 1fr; gap: 12px; align-items: start; padding: 10px 12px; border-radius: 10px;
+    background: color-mix(in srgb, var(--accent) calc(var(--focus, 0) * 45%), transparent); opacity: calc(.35 + .65 * var(--on)); transition: opacity .5s, background .4s; }
+  .ck-box { width: 34px; height: 34px; overflow: visible; }
+  .ck-frame { fill: var(--paper); stroke: var(--ink); stroke-width: 2.2; stroke-linejoin: round; }
+  .ck-tick { fill: none; stroke: var(--accent-ink); stroke-width: 3.6; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 1; stroke-dashoffset: calc(1 - var(--on)); transition: stroke-dashoffset .6s calc(var(--d) + .15s) ease-out; }
+  .ck-text { display: grid; gap: 2px; padding-top: 4px; }
+  .ck-text b { font-size: 16px; line-height: 1.45; }
+  .ck-text span { font-size: 13px; line-height: 1.55; color: var(--ink-2); }
+</style>

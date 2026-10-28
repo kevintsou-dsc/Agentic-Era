@@ -90,6 +90,7 @@ export const story: Story = {
       side: 'right',
       graphic: {
         type: 'list',
+        layout: 'flatten', morphAt: 2, morphLabel: '功能接近、價格接近、體驗接近',
         title: 'AI 比任何人都更會理性分析：這些優勢將被削平',
         items: [
           { title: '資訊落差', at: 1 },

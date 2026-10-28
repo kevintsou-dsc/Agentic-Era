@@ -68,7 +68,15 @@ export type Graphic =
       quads: { case: string; name: string; items: string[] }[];
       source: string;
     }
-  | { type: 'list'; title?: string; flip?: boolean; layout?: 'one' | 'two' | 'three' | 'timeline' | 'tram' | 'polaroid' | 'hanger'; items: { title: string; desc?: string; at?: number; more?: More }[]; source: string }
+  | {
+      type: 'list'; title?: string; flip?: boolean;
+      /** 排法：卡片（one／two／three）、時間軸與其造型（timeline／tram／polaroid／hanger），
+       *  以及依語意選的造型：vs 轉譯對照、radial 放射／匯聚（center、centerAt、converge）、checklist 檢核清單、
+       *  flatten 被削平同質化（morphAt、morphLabel）、scatter 散落後拼合（morphAt、morphLabel） */
+      layout?: 'one' | 'two' | 'three' | 'timeline' | 'tram' | 'polaroid' | 'hanger' | 'vs' | 'radial' | 'checklist' | 'flatten' | 'scatter';
+      items: { title: string; desc?: string; at?: number; more?: More }[]; source: string;
+      vsLabels?: [string, string]; center?: string; centerAt?: number; converge?: boolean; morphAt?: number; morphLabel?: string;
+    }
   /** 案例圖片（可多張，第 k 段主文顯示第 k 張） */
   | { type: 'images'; images: (Img & { at: number; links?: Link[] })[]; source: string }
   /** d3 互動圖表；chart 對應 src/components/d3/ 下的元件 */

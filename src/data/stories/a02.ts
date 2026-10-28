@@ -61,13 +61,24 @@ export const story: Story = {
       kind: 'graphic',
       side: 'right',
       graphic: {
-        type: 'list',
-        title: '兩種視角，靠對話才能疊合',
-        items: [
-          { title: '產品思維', desc: '我有什麼功能？給誰聽？想說什麼？', at: 1 },
-          { title: '用戶思維', desc: '他們在什麼場景？遇到什麼問題？我的產品解決哪一個？', at: 2 },
-          { title: '對話', desc: 'People Model 讓這場對話，在品牌做決策之前就先發生', at: 3 },
-        ],
+        type: 'd3',
+        chart: {
+          kind: 'venn',
+          title: '兩種視角，靠對話才能疊合',
+          left: {
+            label: '產品思維', items: ['我有什麼功能？', '給誰聽？', '想說什麼？'],
+            extra: '從產品出發是品牌的本能：先有功能與賣點，再找對象、想說法。問題是消費者不是從功能開始想事情，兩邊的起點不同，說法再精準也可能對不上。',
+          },
+          right: {
+            label: '用戶思維', items: ['他們在什麼場景？', '遇到什麼問題？', '我的產品解決哪一個？'],
+            extra: '消費者的起點是自己的處境：在什麼情境下卡住、需要什麼才能解決。品牌要先站到這一邊，才知道產品的哪一個功能真正有意義。',
+          },
+          both: {
+            label: '對話', desc: 'People Model 讓這場對話，在品牌做決策之前就先發生',
+            extra: '兩種視角不會因為一份調查報告就自動疊合，要靠反覆來回的對話。People Model 讓品牌在做決策前，就能先跟模擬的消費者對話、追問原因。',
+          },
+          leftAt: 1, rightAt: 2, bothAt: 3,
+        },
         source: '圖：產品思維 vs 用戶思維｜邵懿文〈Agentic 時代〉紙本 p.14',
       },
       src: [{ article: 'a02', page: 14, text: '能拉近這兩種視角的，向來只有一件事，對話' }],
@@ -202,6 +213,7 @@ export const story: Story = {
       kind: 'graphic',
       graphic: {
         type: 'list',
+        layout: 'scatter', morphAt: 2, morphLabel: '問題不再被切成碎片',
         title: '一個新品上市，問題散落在四個部門',
         items: [
           { title: '研發部門', desc: '新口味會不會被接受？', at: 1 },

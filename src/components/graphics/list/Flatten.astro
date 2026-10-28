@@ -1,0 +1,41 @@
+---
+// 「被削平／被同質化」：一開始每個項目各有顏色、大小與角度（各自的優勢或說法）；
+// 到第 morphAt 段，全部被壓成一樣大小的灰色方塊、排成整齊一列，並蓋上 morphLabel 印章（例如「被 AI 削平」「標準公版」）。
+// class 一律加 fl2- 前綴。
+import type { Graphic } from '../../../lib/story';
+type G = Extract<Graphic, { type: 'list' }>;
+interface Props { g: G }
+const { g } = Astro.props;
+const at = g.morphAt ?? 2;
+const tilt = [-6, 4, -3, 7, -5, 3, -8];
+const size = [1.15, 0.95, 1.05, 0.9, 1.2, 1, 1.1];
+---
+<div class="fl2" style={`--n:${g.items.length}`}>
+  <div class="fl2-flat" data-at={at} aria-hidden="true"></div>
+  <ol class="fl2-items">
+    {g.items.map((it, i) => (
+      <li style={`--r:${tilt[i % tilt.length]}deg;--s:${size[i % size.length]};--d:${i * 70}ms`}>
+        <b>{it.title}</b>
+        {it.desc && <span>{it.desc}</span>}
+      </li>
+    ))}
+  </ol>
+  {g.morphLabel && <p class="fl2-stamp" data-at={at}>{g.morphLabel}</p>}
+</div>
+<style>
+  /* --f：是否已被削平（讀取兄弟元素 .fl2-flat 的 --on） */
+  .fl2 { position: relative; display: grid; gap: 14px; }
+  .fl2-flat { display: none; }
+  .fl2 { --f: 0; }
+  :global(.graphic.is-2) .fl2:has(.fl2-flat[data-at="2"]), :global(.graphic.is-3) .fl2:has(.fl2-flat[data-at="3"]), :global(.graphic.is-4) .fl2:has(.fl2-flat[data-at="4"]) { --f: 1; }
+  .fl2-items { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 12px; }
+  .fl2-items li { display: grid; gap: 2px; padding: calc(10px + (1 - var(--f)) * 6px) calc(12px + (1 - var(--f)) * 8px); border-radius: 12px; text-align: center;
+    border: 2px solid color-mix(in srgb, var(--ink) calc(var(--f) * 40%), var(--accent-ink));
+    background: color-mix(in srgb, color-mix(in srgb, var(--ink) 14%, var(--paper)) calc(var(--f) * 100%), var(--accent));
+    transform: rotate(calc(var(--r) * (1 - var(--f)))) scale(calc(var(--s) * (1 - var(--f)) + var(--f) * .92)) scaleY(calc(1 - var(--f) * .18));
+    filter: grayscale(var(--f)); transition: transform .8s var(--d) cubic-bezier(.5, 0, .2, 1), background .6s var(--d), border-color .6s var(--d), padding .6s, filter .6s; }
+  .fl2-items b { font-size: calc(16px - var(--f) * 2px); line-height: 1.35; }
+  .fl2-items span { font-size: 12px; color: var(--ink-2); }
+  .fl2-stamp { justify-self: center; margin: 0; padding: 4px 16px; border: 3px solid #b23b33; border-radius: 6px; color: #b23b33; font-weight: 800; font-size: clamp(16px, 1vw + 10px, 20px); letter-spacing: .12em;
+    transform: rotate(-4deg) scale(calc(1.6 - var(--on) * .6)); opacity: var(--on); transition: opacity .3s .5s, transform .4s .5s cubic-bezier(.3, 1.6, .5, 1); }
+</style>

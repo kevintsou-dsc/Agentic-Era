@@ -151,6 +151,7 @@ export const story: Story = {
       kind: 'graphic',
       graphic: {
         type: 'list',
+        layout: 'one',
         title: '為什麼「我們都記得」特別有力量？三組研究',
         items: [
           {
@@ -391,6 +392,7 @@ export const story: Story = {
       side: 'right',
       graphic: {
         type: 'list',
+        layout: 'checklist',
         title: '把記憶設計成參與機制：三個做法',
         items: [
           { title: '記憶符碼要夠精準', desc: '真正來自某個世代共同生活過的細節', at: 1 },
