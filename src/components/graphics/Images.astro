@@ -22,10 +22,9 @@ const { g } = Astro.props;
 <style>
   .images { width: 100%; display: grid; gap: 8px; }
   .frame { display: grid; }
-  /* 疊放：不用底色（底色在紙紋上會變成一塊白底）。改為新的圖疊上來時，把下面每張舊圖的圖說藏起來，舊圖說就不會從縫隙露出 */
+  /* 疊放：不用底色（底色在紙紋上會變成一塊白底）。圖片長寬比不一，舊圖會從新圖下方露出，所以新圖出現時整張舊圖（含圖說）淡出，一次只看到一張 */
   .pic { grid-area: 1 / 1; margin: 0; display: grid; gap: 8px; align-content: start; padding-bottom: 4px; opacity: var(--on); transform: translateY(calc((1 - var(--on)) * 16px)) rotate(calc((var(--z) - 1) * .4deg)); transition: opacity .6s, transform .6s; z-index: var(--z); }
-  figcaption { transition: opacity .3s; }
-  :global(.graphic.is-2) .pic:has(~ .pic[data-at="2"]) figcaption, :global(.graphic.is-3) .pic:has(~ .pic[data-at="3"]) figcaption, :global(.graphic.is-4) .pic:has(~ .pic[data-at="4"]) figcaption, :global(.graphic.is-5) .pic:has(~ .pic[data-at="5"]) figcaption, :global(.graphic.is-6) .pic:has(~ .pic[data-at="6"]) figcaption, :global(.graphic.is-7) .pic:has(~ .pic[data-at="7"]) figcaption, :global(.graphic.is-8) .pic:has(~ .pic[data-at="8"]) figcaption { opacity: 0; visibility: hidden; }
+  :global(.graphic.is-2) .pic:has(~ .pic[data-at="2"]), :global(.graphic.is-3) .pic:has(~ .pic[data-at="3"]), :global(.graphic.is-4) .pic:has(~ .pic[data-at="4"]), :global(.graphic.is-5) .pic:has(~ .pic[data-at="5"]), :global(.graphic.is-6) .pic:has(~ .pic[data-at="6"]), :global(.graphic.is-7) .pic:has(~ .pic[data-at="7"]), :global(.graphic.is-8) .pic:has(~ .pic[data-at="8"]) { opacity: 0; transform: translateY(-10px) rotate(-.6deg); }
   .pic img { width: 100%; height: auto; max-height: 52svh; object-fit: contain; border-radius: 12px; border: 2px solid var(--ink); background: var(--paper-2); box-shadow: 6px 6px 0 var(--accent); }
   figcaption { font-size: 13px; color: var(--ink-2); line-height: 1.6; }
   .credit { color: var(--ink-3); }
