@@ -75,7 +75,7 @@ let proseK = 0, quoteK = 0;
     return (
       <section class="section">
         <div class="spot reveal" aria-hidden="true" style={`--ar:${sw}/${sh};--fill:url(/art/spots/${sp}-fill.webp);--line:url(/art/spots/${sp}-line.webp)`}><span class="spot-fill"></span><span class="spot-line"></span></div>
-        {s.lead && <div class="reveal"><p class="lede"><span set:html={rich(s.lead.text)} /><SourceRef src={s.lead.src} /></p><MoreRef m={s.lead.more} /></div>}
+        {s.lead && <div class:list={['reveal q-lead', { 'has-more': !!s.lead.more }]}><p class="lede"><span set:html={rich(s.lead.text)} /><SourceRef src={s.lead.src} /></p><MoreRef m={s.lead.more} /></div>}
         <div class="reveal"><Quote q={s.quote} size="lg" /></div>
       </section>
     );
@@ -160,6 +160,10 @@ let proseK = 0, quoteK = 0;
   .spot.reveal { transform: translateY(16px) rotate(-4deg); }
   .spot.reveal.is-in { transform: none; transition-timing-function: cubic-bezier(.3, 1.5, .5, 1); }
   @media (prefers-reduced-motion: reduce) { .side-art img { animation: none; } }
+  /* 引言段：延伸按鈕緊貼它補充的那段文字，和下方大引言之間留出明顯距離，讀者才知道它在補充上面那句 */
+  .q-lead.has-more .lede { margin-bottom: 4px; }
+  .q-lead.has-more > :global(.more-ref) { margin-top: 2px; }
+  .q-lead { margin-bottom: clamp(36px, 6svh, 64px); }
   .prose { display: grid; gap: clamp(24px, 4vw, 56px); align-items: center; padding-top: 12svh; padding-bottom: 12svh; }
   .prose-text { max-width: 40rem; font-size: clamp(17px, .6vw + 14px, 19px); }
   .prose-h { font-size: clamp(24px, 2.4vw + 12px, 36px); line-height: 1.35; margin: 4px 0 18px; }
