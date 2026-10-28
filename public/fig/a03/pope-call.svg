@@ -1,26 +1,55 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 846 341" role="img" aria-label="插畫：一支微微傾斜、正在撥出的手機，旁邊一個問號">
-  <!-- 策展插畫（非原刊圖）：a03「被掛電話的教宗」，配色取自全站色票 -->
+  <!-- 策展插畫（非原刊圖）：a03「被掛電話的教宗」，配色取自全站色票。
+       手繪風格：線條描兩次略錯開、色塊用排線，並套 #h 濾鏡（低頻位移＝線條微彎、高頻位移＝粗細不一），文字不套。 -->
+  <defs>
+    <filter id="h" filterUnits="userSpaceOnUse" x="0" y="0" width="846" height="341">
+      <feTurbulence type="fractalNoise" baseFrequency="0.03" numOctaves="2" seed="4" result="w"/>
+      <feDisplacementMap in="SourceGraphic" in2="w" scale="3.2" xChannelSelector="R" yChannelSelector="G" result="b"/>
+      <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="1" seed="9" result="g"/>
+      <feDisplacementMap in="b" in2="g" scale="1.6" xChannelSelector="R" yChannelSelector="G"/>
+    </filter>
+    <clipPath id="blob"><path d="M423 22 C 520 20, 574 96, 572 170 C 570 252, 506 320, 420 318 C 334 316, 274 250, 274 168 C 274 88, 330 24, 423 22 Z"/></clipPath>
+  </defs>
   <rect width="846" height="341" fill="#e9e3d6"/>
-  <circle cx="423" cy="170" r="150" fill="#cbdd7a" opacity=".3"/>
 
-  <!-- 撥出中的手機：微微傾斜 -->
-  <g transform="rotate(-10 380 170)">
-    <rect x="310" y="40" width="140" height="260" rx="24" fill="#1f1d1a"/>
-    <rect x="320" y="54" width="120" height="232" rx="14" fill="#f3eee4"/>
-    <rect x="360" y="60" width="40" height="6" rx="3" fill="#1f1d1a"/>
-    <text x="380" y="132" text-anchor="middle" font-family="Noto Sans TC, sans-serif" font-size="15" font-weight="800" fill="#1f1d1a">撥號中…</text>
-    <g fill="#2f5e35">
-      <circle cx="362" cy="156" r="4"/><circle cx="380" cy="156" r="4" opacity=".6"/><circle cx="398" cy="156" r="4" opacity=".3"/>
+  <g filter="url(#h)" stroke-linecap="round" stroke-linejoin="round">
+    <!-- 背景色塊：淡綠底＋斜排線＋手畫外框 -->
+    <path d="M423 22 C 520 20, 574 96, 572 170 C 570 252, 506 320, 420 318 C 334 316, 274 250, 274 168 C 274 88, 330 24, 423 22 Z" fill="#cbdd7a" fill-opacity=".28"/>
+    <g clip-path="url(#blob)" stroke="#9fb44f" stroke-width="1.6" opacity=".55">
+      <path d="M250 120 L 390 -20 M250 160 L 430 -20 M260 190 L 470 -20 M270 220 L 510 -20 M290 240 L 560 -30 M310 260 L 590 -20 M330 280 L 600 10 M360 290 L 600 50 M390 300 L 600 90 M420 310 L 600 130 M450 320 L 600 170 M490 320 L 600 210"/>
     </g>
-    <circle cx="380" cy="238" r="20" fill="#2f5e35"/>
-    <path d="M371 229 q-3 10 5 18 q8 8 18 5 l2 -6 l-7 -4 l-3 3 q-6 -3 -9 -9 l3 -3 l-4 -7 z" fill="#ffffff"/>
-  </g>
-  <!-- 撥出的訊號波 -->
-  <g fill="none" stroke="#2f5e35" stroke-width="5" stroke-linecap="round">
-    <path d="M468 96 q16 14 12 34"/>
-    <path d="M486 78 q28 24 20 58"/>
+    <path d="M425 26 C 518 24, 570 98, 568 172 C 566 250, 502 316, 418 314 C 336 312, 278 248, 278 166 C 280 90, 334 28, 425 26" fill="none" stroke="#9fb44f" stroke-width="2"/>
+
+    <!-- 撥出中的手機：微微傾斜；外框描兩次 -->
+    <g transform="rotate(-10 380 170)">
+      <path d="M334 40 H 426 Q 450 40 450 64 V 276 Q 450 300 426 300 H 334 Q 310 300 310 276 V 64 Q 310 40 334 40 Z" fill="#f3eee4" stroke="#1f1d1a" stroke-width="11"/>
+      <path d="M336 43 H 424 Q 447 44 446 66 V 274 Q 446 297 424 296 H 336 Q 314 296 314 274 V 66 Q 314 44 336 43 Z" fill="none" stroke="#1f1d1a" stroke-width="3" opacity=".7"/>
+      <path d="M362 62 H 398" stroke="#1f1d1a" stroke-width="6"/>
+      <g fill="#2f5e35">
+        <circle cx="362" cy="156" r="4.5"/><circle cx="380" cy="157" r="4.5" opacity=".6"/><circle cx="398" cy="156" r="4.5" opacity=".3"/>
+      </g>
+      <circle cx="380" cy="238" r="21" fill="#2f5e35"/>
+      <path d="M381 218 C 394 219, 401 228, 400 240" fill="none" stroke="#2f5e35" stroke-width="2.4" opacity=".6"/>
+      <path d="M371 229 q-3 10 5 18 q8 8 18 5 l2 -6 l-7 -4 l-3 3 q-6 -3 -9 -9 l3 -3 l-4 -7 z" fill="#f3eee4"/>
+    </g>
+
+    <!-- 撥出的訊號波：每條描兩筆 -->
+    <g fill="none" stroke="#2f5e35" stroke-width="5">
+      <path d="M468 96 q16 14 12 34"/>
+      <path d="M486 78 q28 24 20 58"/>
+    </g>
+    <g fill="none" stroke="#2f5e35" stroke-width="1.6" opacity=".6">
+      <path d="M471 93 q17 15 12 38"/>
+      <path d="M489 75 q29 26 20 62"/>
+    </g>
+
+    <!-- 問號：一筆畫＋點 -->
+    <g fill="none" stroke="#c2413b" stroke-width="13">
+      <path d="M536 98 C 532 70, 556 58, 576 62 C 600 67, 606 92, 590 106 C 578 117, 568 122, 568 142"/>
+    </g>
+    <path d="M539 96 C 537 74, 557 63, 575 66 C 597 71, 602 92, 588 104" fill="none" stroke="#c2413b" stroke-width="2.4" opacity=".6"/>
+    <circle cx="569" cy="170" r="9" fill="#c2413b"/>
   </g>
 
-  <!-- 問號 -->
-  <text x="548" y="150" font-family="Georgia, serif" font-size="96" font-weight="700" fill="#c2413b" transform="rotate(12 548 150)">?</text>
+  <text x="380" y="132" transform="rotate(-10 380 170)" text-anchor="middle" font-family="Noto Sans TC, sans-serif" font-size="15" font-weight="800" fill="#1f1d1a">撥號中…</text>
 </svg>

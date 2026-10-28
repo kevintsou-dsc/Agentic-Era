@@ -123,6 +123,6 @@
 ## 品牌、手繪線條與彩蛋（2026-10-28）
 
 - **dentsu 標誌**：由刊物素材 dentsu_logo.ai 轉出的向量（components/DentsuLogo.astro、public/dentsu-logo.svg），顏色跟隨文字色。header 左側「dentsu｜決策智慧 2026」，footer 第一行放大一號。不要改比例、不要加特效。
-- **手繪線條**：Base.astro 定義 `#hand` 濾鏡（低頻位移＝線條微彎、高頻位移＝邊緣粗細不一）。global.css 套在 `.stage`、`.d3`、人形圖的圖形元素上；文字、照片、標誌（<image>）不套；每幀都在動的小粒子不套。新做插圖不用自己模擬手繪，直接用一般 SVG 圖形即可。
+- **手繪線條**：Base.astro 定義 `#hand` 濾鏡（低頻位移＝線條微彎、高頻位移＝邊緣粗細不一）。global.css 套在 `.stage`、`.d3`、人形圖的圖形元素上；文字、照片、標誌（<image>）不套；每幀都在動的小粒子不套。新做插圖不用自己模擬手繪，直接用一般 SVG 圖形即可。例外：以 <img> 載入的 SVG 檔（例如 public/fig/a03/pope-call.svg）吃不到全站濾鏡，要在檔案內自帶同樣的濾鏡，並用描兩筆、排線等手繪筆法。
 - **原始碼彩蛋**：每頁 HTML 最上方有給評審、原文作者群、讀者的三封小紙條（Base.astro）；主控台也會印出精簡版；public/humans.txt 是完整版。
 - **鍵盤彩蛋**：在頁面上打 dentsu，飄起刊物手繪小插圖並出現感謝紙條（scripts/egg.ts）；在輸入框內不觸發，9 秒自動收起，減少動態時不飄插圖。
