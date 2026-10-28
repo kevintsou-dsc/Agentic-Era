@@ -557,10 +557,12 @@ function venn(el: HTMLElement, c: Extract<D3Chart, { kind: 'venn' }>): Instance 
   side(rx + 72, c.right);
   const mid = svg.append('g').attr('class', 'vn-mid').attr('pointer-events', 'none');
   mid.append('text').attr('class', 'vn-both-label').attr('x', W / 2).attr('y', cy - 6).attr('text-anchor', 'middle').text(c.both.label);
-  // 交集的說明拆成兩行
-  const half = Math.ceil(c.both.desc.length / 2);
-  [c.both.desc.slice(0, half), c.both.desc.slice(half)].forEach((t, i) =>
-    mid.append('text').attr('class', 'vn-both-desc').attr('x', W / 2).attr('y', cy + 18 + i * 16).attr('text-anchor', 'middle').text(t));
+  // 交集的說明：交集區最寬約 150px，每行最多 9 個字，置中排成數行
+  const per = 9, lines = Math.ceil(c.both.desc.length / per);
+  const each = Math.ceil(c.both.desc.length / lines);
+  for (let i = 0; i < lines; i++) {
+    mid.append('text').attr('class', 'vn-both-desc').attr('x', W / 2).attr('y', cy + 16 + i * 16 - (lines - 1) * 4).attr('text-anchor', 'middle').text(c.both.desc.slice(i * each, (i + 1) * each));
+  }
   const fail = svg.append('text').attr('class', 'vn-fail').attr('x', W / 2).attr('y', H - 8).attr('text-anchor', 'middle').text(c.fail ?? '');
   bind(L.node()!, { title: c.left.label, body: c.left.items.join('、'), extra: c.left.extra });
   bind(R.node()!, { title: c.right.label, body: c.right.items.join('、'), extra: c.right.extra });
@@ -576,6 +578,8 @@ function venn(el: HTMLElement, c: Extract<D3Chart, { kind: 'venn' }>): Instance 
       fail.style('opacity', failing ? 1 : 0);
       lit = st >= c.bothAt;
       both.classed('on', lit);
+      // 呼吸動畫寫的是行內 opacity；未亮時要清掉，否則往回捲時交集仍是深色
+      if (!lit) both.style('opacity', null);
       mid.style('opacity', lit ? 1 : 0.25);
     },
     tick(t) {

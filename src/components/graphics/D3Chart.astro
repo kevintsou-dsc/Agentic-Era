@@ -178,11 +178,12 @@ const hintTarget = c.kind === 'flowloop' ? '圓圈' : c.kind === 'stages' ? '方
   .d3 :global(.ib-chip text) { font: 700 13px var(--font-sans); fill: var(--ink); }
 
   /* venn */
-  .d3 :global(.vn-c) { fill-opacity: .35; stroke-width: 3; transition: fill-opacity .4s, opacity .4s; }
-  .d3 :global(.vn-l) { fill: var(--paper-2); stroke: var(--ink-2); }
+  /* 兩個圓同等份量：未強調時一樣淡；當段的圓填滿、加粗外框，另一個圓退到很淡，強調才明顯 */
+  .d3 :global(.vn-c) { fill-opacity: .28; stroke-width: 3; transition: fill-opacity .4s, opacity .4s, stroke-width .4s; }
+  .d3 :global(.vn-l) { fill: color-mix(in srgb, var(--ink) 26%, var(--paper)); stroke: var(--ink); }
   .d3 :global(.vn-r) { fill: var(--accent); stroke: var(--accent-ink); }
-  .d3 :global(.vn-c.focus) { fill-opacity: .75; }
-  .d3 :global(.vn-c.dim) { opacity: .4; }
+  .d3 :global(.vn-c.focus) { fill-opacity: .8; stroke-width: 5; }
+  .d3 :global(.vn-c.dim) { opacity: .22; }
   .d3 :global(.vn-c.has-tip:hover) { fill-opacity: .8; }
   .d3 :global(.vn-both) { fill: var(--accent-ink); opacity: 0; transition: opacity .5s; }
   .d3 :global(.vn-both.on) { opacity: .85; }
