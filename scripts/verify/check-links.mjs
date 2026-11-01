@@ -2,6 +2,7 @@
 import { readFileSync, readdirSync, statSync, existsSync } from 'node:fs';
 import { join, relative, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { createHash } from 'node:crypto';
 
 const dist = fileURLToPath(new URL('../../dist/', import.meta.url));
 const walk = (d) => readdirSync(d).flatMap((f) => (statSync(join(d, f)).isDirectory() ? walk(join(d, f)) : [join(d, f)]));
@@ -42,3 +43,20 @@ if (broken.length) {
   process.exit(1);
 }
 console.log(`✓ 站內連結全部有效 ${count}/${count}（${pages.length} 頁）`);
+
+// CSP：public/_headers 只允許 script-src 'self' 與列出的 sha256；HTML 裡每段行內 <script> 的雜湊都必須在清單裡，否則上線後會被瀏覽器擋掉
+const headers = readFileSync(fileURLToPath(new URL('../../public/_headers', import.meta.url)), 'utf8');
+const allowed = new Set([...headers.matchAll(/'sha256-([^']+)'/g)].map((m) => m[1]));
+const blocked = new Set();
+for (const page of pages) {
+  for (const m of readFileSync(page, 'utf8').matchAll(/<script(?![^>]* src=)[^>]*>([\s\S]*?)<\/script>/g)) {
+    const h = createHash('sha256').update(m[1]).digest('base64');
+    if (!allowed.has(h)) blocked.add(`${relative(dist, page)}：sha256-${h}`);
+  }
+}
+if (blocked.size) {
+  console.error(`✗ 行內 script 不在 CSP 允許清單（上線會被擋），請把雜湊加進 public/_headers 的 script-src：`);
+  blocked.forEach((b) => console.error('  ' + b));
+  process.exit(1);
+}
+console.log('✓ 行內 script 都在 CSP 允許清單內');

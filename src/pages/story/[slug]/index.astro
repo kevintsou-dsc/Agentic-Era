@@ -46,16 +46,16 @@ const threadNext = THREADS.filter((t) => a.threads.includes(t.key))
   </section>
 
   <nav class="section next" aria-label="接下來">
-    <a class="btn" href={`/a/${a.slug}/full/`}>讀原文（約 {a.minutes} 分鐘{fullReviewed ? '' : '，校正中'}）→</a>
+    <a class="btn" href={`/story/${a.slug}/original/`}>讀原文（約 {a.minutes} 分鐘{fullReviewed ? '' : '，校正中'}）→</a>
     {bookNext && (
-      <a class="nextcard" href={`/a/${bookNext.slug}/`}>
+      <a class="nextcard" href={`/story/${bookNext.slug}/`}>
         <span class="eyebrow">下一篇｜紙本 p.{bookNext.pages[0]}{THREADS.filter((t) => bookNext.threads.includes(t.key) && a.threads.includes(t.key)).map((t) => `・同一條主線「${t.name}」`).join('')}</span>
         <b>{bookNext.title}</b>
         <span>{bookNext.authors.map((x) => x.name).join('、')}｜精華 {storyMinutes(STORIES[bookNext.id])} 分鐘</span>
       </a>
     )}
     {threadNext.map(({ t, n }) => (
-      <a class="nextcard thread" href={`/a/${n.slug}/`}>
+      <a class="nextcard thread" href={`/story/${n.slug}/`}>
         <span class="eyebrow">同一條主線｜{t.name}</span>
         <b>{n.title}</b>
         <span>{n.authors.map((x) => x.name).join('、')}｜精華 {storyMinutes(STORIES[n.id])} 分鐘</span>

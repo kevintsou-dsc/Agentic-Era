@@ -1,5 +1,5 @@
 // 建置時把引文定位到原文頁的「第幾個文字區塊、第幾個字到第幾個字」，
-// 讓原文視窗能直接捲到那裡並高亮。區塊編號與 src/pages/a/[slug]/full.astro 的 data-i 一致。
+// 讓原文視窗能直接捲到那裡並高亮。區塊編號與 src/pages/story/[slug]/original.astro 的 data-i 一致。
 // 比對規則與 scripts/verify/normalize.mjs 相同，但逐字元正規化並保留原始位置。
 import { loadFulltext } from './fulltext';
 import { article } from './articles';

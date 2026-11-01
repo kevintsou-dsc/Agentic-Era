@@ -9,7 +9,7 @@ const pages = new Map<string, Promise<{ title: string; meta: string; body: strin
 function load(slug: string) {
   let p = pages.get(slug);
   if (!p) {
-    p = fetch(`/a/${slug}/full/`).then(async (r) => {
+    p = fetch(`/story/${slug}/original/`).then(async (r) => {
       if (!r.ok) throw new Error(String(r.status));
       const doc = new DOMParser().parseFromString(await r.text(), 'text/html');
       return {
@@ -57,7 +57,7 @@ export function initReader() {
     title.textContent = '載入原文…';
     meta.innerHTML = '';
     body.replaceChildren();
-    full.href = `/a/${data.slug}/full/#p${data.page}`;
+    full.href = `/story/${data.slug}/original/#p${data.page}`;
     if (!dialog.open) dialog.showModal();
     try {
       const page = await load(data.slug);

@@ -266,3 +266,4 @@
 - 疊放圖片的平塗底色在紙紋上變成白底塊（a03 Coinbase）：移除底色，改為新圖疊上時隱藏下層舊圖的圖說；guide 加「不要無框的底色塊」。
 - 疊放圖片長寬比不一，舊直式圖從新橫式圖下方露出、圖說壓在舊圖上（a07 Zespri）：改為新圖出現時整張舊圖（含圖說）淡出，一次只看到一張。
 - 橫捲卡片恢復等高：軌道改 align-items: stretch（拉齊到最高那張），整條軌道在可用高度內 safe center；卡片最高限制改由 scrolly.ts 量測可用高度寫入 --hs-room。
+- 網址改為人看得懂的英文短名：/a/pNN/ → /story/<短名>/，原文頁 /full/ → /original/；舊網址以 Astro redirects 轉址（content/legacy-slugs.json）；新增 docs/article-index.md 代號對照。CSP 修正：首頁加載頁的行內 script 原本會被 script-src 'self' 擋掉，加入 sha256 並在 check-links 檢查每段行內 script 都在允許清單。a13 同心圓開啟 grow。

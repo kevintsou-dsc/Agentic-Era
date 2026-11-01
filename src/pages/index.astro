@@ -26,7 +26,7 @@ const firstOf = (key: string) => ARTICLES.find((a) => a.threads.includes(key as 
           <div class="step"><div class="card">
             <p class="eyebrow">主線 {i + 1}｜{t.name}</p>
             <p set:html={rich(THREAD_LINES[t.key])} />
-            {first && <p><a class="btn small" href={`/a/${first.slug}/`}>讀這條線：{first.title} →</a></p>}
+            {first && <p><a class="btn small" href={`/story/${first.slug}/`}>讀這條線：{first.title} →</a></p>}
           </div></div>
         );
       })}
@@ -44,7 +44,7 @@ const firstOf = (key: string) => ARTICLES.find((a) => a.threads.includes(key as 
             const has = Boolean(STORIES[a.id]);
             return (
               <li>
-                <a href={has ? `/a/${a.slug}/` : `/a/${a.slug}/full/`} class:list={{ has }}>
+                <a href={has ? `/story/${a.slug}/` : `/story/${a.slug}/original/`} class:list={{ has }}>
                   {a.kicker && <span class="kick">〈{a.kicker}〉</span>}
                   <b>{a.title}</b>
                   {a.subtitle && <span class="sub">{a.subtitle}</span>}

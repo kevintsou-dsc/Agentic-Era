@@ -24,7 +24,7 @@ const blocks = loadFulltext(a.id).map((b) => (b.kind === 'page' ? b : { ...b, i:
         <p>{CHAPTERS[a.chapter].name}｜{authorNames(a)}｜紙本 p.{a.pages[0]}–{a.pages[1]}</p>
         {!reviewed && <p>此全文取自刊物的排版原始檔（InDesign），頁碼依 PDF 對照；尚未逐頁人工校正，圖表以圖說呈現，引用請以紙本為準。</p>}
       </div>
-      {STORIES[a.id] && <p><a class="btn ghost" href={`/a/${a.slug}/`}>← 回到故事</a></p>}
+      {STORIES[a.id] && <p><a class="btn ghost" href={`/story/${a.slug}/`}>← 回到故事</a></p>}
     </div>
     <div class="fulltext" data-fulltext>
       {blocks.map((b) =>

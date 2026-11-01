@@ -3,7 +3,7 @@
   "articles": [
     {
       "id": "a01",
-      "slug": "p6",
+      "slug": "ai-for-growth",
       "chapter": "intro",
       "title": "AI for Growth",
       "subtitle": "看懂世界，加速成長",
@@ -25,7 +25,7 @@
     },
     {
       "id": "a02",
-      "slug": "p12",
+      "slug": "agentic-era",
       "chapter": "intro",
       "title": "Agentic 時代",
       "subtitle": "品牌與人的真實距離",
@@ -45,7 +45,7 @@
     },
     {
       "id": "a03",
-      "slug": "p20",
+      "slug": "power-of-real",
       "chapter": "people",
       "title": "真實的力量",
       "subtitle": "重新定義中",
@@ -67,7 +67,7 @@
     },
     {
       "id": "a04",
-      "slug": "p28",
+      "slug": "agents-of-growth",
       "chapter": "people",
       "title": "Agents of Growth",
       "subtitle": "AI 代理時代的增長推手",
@@ -89,7 +89,7 @@
     },
     {
       "id": "a05",
-      "slug": "p36",
+      "slug": "growth-architect",
       "chapter": "people",
       "title": "AI 代理時代的增長架構師",
       "subtitle": "",
@@ -111,7 +111,7 @@
     },
     {
       "id": "a06",
-      "slug": "p44",
+      "slug": "trust",
       "chapter": "people",
       "title": "信任",
       "subtitle": "為何成為 AI 時代最難複製的競爭力",
@@ -133,7 +133,7 @@
     },
     {
       "id": "a07",
-      "slug": "p50",
+      "slug": "make-them-want-to-buy",
       "chapter": "people",
       "title": "AI 可以幫人買東西",
       "subtitle": "但品牌要讓人想買東西",
@@ -155,7 +155,7 @@
     },
     {
       "id": "a08",
-      "slug": "p58",
+      "slug": "attention-is-scarce",
       "chapter": "people",
       "title": "當注意力成為稀缺資源",
       "subtitle": "娛樂與運動如何累積品牌心智資產？",
@@ -177,7 +177,7 @@
     },
     {
       "id": "a09",
-      "slug": "p66",
+      "slug": "algorithm-or-people",
       "chapter": "people",
       "title": "討好演算法，還是打動人？",
       "subtitle": "別讓效率邏輯把社群砍掉",
@@ -199,7 +199,7 @@
     },
     {
       "id": "a10",
-      "slug": "p72",
+      "slug": "buy-attention",
       "chapter": "people",
       "title": "別買曝光了，開始買注意力吧",
       "subtitle": "把媒體做成體驗，幫品牌累積「滑不走」的記憶資產",
@@ -221,7 +221,7 @@
     },
     {
       "id": "a11",
-      "slug": "p80",
+      "slug": "shared-memory",
       "chapter": "people",
       "title": "從金曲獎到甄嬛傳",
       "subtitle": "共同記憶帶來的品牌價值",
@@ -248,7 +248,7 @@
     },
     {
       "id": "a12",
-      "slug": "p96",
+      "slug": "people-model",
       "chapter": "model",
       "title": "People Model",
       "subtitle": "讓消費者研究變成一場隨時能開口的對話",
@@ -281,7 +281,7 @@
     },
     {
       "id": "a13",
-      "slug": "p116",
+      "slug": "rebuild-sov",
       "chapter": "model",
       "title": "重建 SOV",
       "subtitle": "在注意力被 AI 稀釋的時代，如何守住品牌被選擇的關鍵場域",
@@ -304,7 +304,7 @@
     },
     {
       "id": "a14",
-      "slug": "p128",
+      "slug": "judgment",
       "chapter": "model",
       "title": "AI 普及下的演算法世代",
       "subtitle": "「衡斷力 (Judgment)」將成為最稀缺的競爭力",
@@ -326,7 +326,7 @@
     },
     {
       "id": "a15",
-      "slug": "p136",
+      "slug": "generative-experience",
       "chapter": "model",
       "title": "生成式體驗來臨",
       "subtitle": "誰能掌握顧客的下一步？",
@@ -354,7 +354,7 @@
     },
     {
       "id": "a16",
-      "slug": "p144",
+      "slug": "cultural-undercurrents",
       "chapter": "model",
       "title": "贏在 AI 時代的隱形戰場",
       "subtitle": "看見「文化暗流」，啟動企業真實的轉型動能",
@@ -382,7 +382,7 @@
     },
     {
       "id": "a17",
-      "slug": "p152",
+      "slug": "why-customers-stop",
       "chapter": "ai",
       "title": "顧客為何停下來？",
       "subtitle": "從洞察到治理的體驗優化",
@@ -408,7 +408,7 @@
     },
     {
       "id": "a18",
-      "slug": "p160",
+      "slug": "agent-experience",
       "chapter": "ai",
       "title": "體驗這件事",
       "subtitle": "我們一直只問了一半",
@@ -441,7 +441,7 @@
     },
     {
       "id": "a19",
-      "slug": "p168",
+      "slug": "geo",
       "chapter": "ai",
       "title": "GEO 時代",
       "subtitle": "被 AI 看見是技術，被消費者記住才是本事",
@@ -469,7 +469,7 @@
     },
     {
       "id": "a20",
-      "slug": "p176",
+      "slug": "beyond-ai-slop",
       "chapter": "ai",
       "title": "拒絕同質化 AI Slop",
       "subtitle": "將 AI 的「生成力」升級為品牌的「交付力」",
@@ -492,7 +492,7 @@
     },
     {
       "id": "a21",
-      "slug": "p182",
+      "slug": "beyond-efficiency",
       "chapter": "ai",
       "title": "超越效率",
       "subtitle": "解碼 AI 製作驅動的創意代理商",
@@ -512,7 +512,7 @@
     },
     {
       "id": "a22",
-      "slug": "p188",
+      "slug": "ai-agent-journey",
       "chapter": "ai",
       "title": "AI Agent 走進消費旅程",
       "subtitle": "保健、美妝與零售如何把 AI 變成行動能力",

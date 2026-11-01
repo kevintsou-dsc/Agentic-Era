@@ -346,6 +346,7 @@ export const story: Story = {
           kind: 'rings',
           title: '競品干擾不只來自同品類：一圈比一圈大的四種競爭',
           center: '品牌',
+          grow: true,
           rings: [
             {
               label: '品類競爭', sub: '同一類商品比品牌', desc: '消費者在同一類商品中比較不同品牌',

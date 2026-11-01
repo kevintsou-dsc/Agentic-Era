@@ -16,6 +16,6 @@ const text = label ?? `原文 p.${pages.join('、')}`;
 const a = src.length ? article(src[0].article) : undefined;
 ---
 {a && (
-  <a class="src-ref" href={`/a/${slug}/full/#p${pages[0]}`} data-reader={JSON.stringify({ slug, page: pages[0], segs })}
+  <a class="src-ref" href={`/story/${slug}/original/#p${pages[0]}`} data-reader={JSON.stringify({ slug, page: pages[0], segs })}
      aria-label={`開啟原文：${cite(a)} 紙本 p.${pages.join('、')}`}>{text}</a>
 )}
