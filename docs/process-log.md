@@ -267,3 +267,4 @@
 - 疊放圖片長寬比不一，舊直式圖從新橫式圖下方露出、圖說壓在舊圖上（a07 Zespri）：改為新圖出現時整張舊圖（含圖說）淡出，一次只看到一張。
 - 橫捲卡片恢復等高：軌道改 align-items: stretch（拉齊到最高那張），整條軌道在可用高度內 safe center；卡片最高限制改由 scrolly.ts 量測可用高度寫入 --hs-room。
 - 網址改為人看得懂的英文短名：/a/pNN/ → /story/<短名>/，原文頁 /full/ → /original/；舊網址以 Astro redirects 轉址（content/legacy-slugs.json）；新增 docs/article-index.md 代號對照。CSP 修正：首頁加載頁的行內 script 原本會被 script-src 'self' 擋掉，加入 sha256 並在 check-links 檢查每段行內 script 都在允許清單。a13 同心圓開啟 grow。
+- 瀏覽器抽查（每種圖表看一張）：發現並修正 (1) 首頁「決策智慧」字太大蓋住兩張臉 → 縮小；(2) 文氏圖交集文字未亮時仍以 25% 顯示成殘影 → 未亮時隱藏；(3) 重建 SOV 同心圓 4 圈只有 2 段主文，開 grow 後外兩圈永遠不出現 → rings 支援每圈 at、同段多圈由內往外錯開長出，lint 加檢查。其餘（vs、radial、checklist、flatten、scatter、timeline、增長三角、服務矩陣、咖啡杯、內容引擎、地基 hover、橫捲等高、大數字）正常。

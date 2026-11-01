@@ -88,6 +88,8 @@ for (const f of readdirSync(dir).filter((x) => /^a\d\d\.ts$/.test(x))) {
     }
     const c = sc.kind === 'graphic' && sc.graphic.type === 'd3' ? sc.graphic.chart : null;
     if (!c) continue;
+    // 同心圓逐圈長出：圈數比段數多時，每圈都要用 at 指定第幾段長出，否則外圈永遠不出現
+    if (c.kind === 'rings' && c.grow && c.rings.length > sc.beats.length && c.rings.some((r) => r.at == null)) problems.push(`${id}：同心圓「${c.title}」有 ${c.rings.length} 圈但只有 ${sc.beats.length} 段主文，請用 at 指定每圈第幾段長出`);
     if (c.kind === 'flowloop') {
       // 高亮要對到主文：圓圈比段數多時，每個節點都要用 at 指定第幾段亮起
       if (c.nodes.length > sc.beats.length && c.nodes.some((nd) => nd.at == null)) problems.push(`${id}：循環圖「${c.title}」有 ${c.nodes.length} 個圓圈但只有 ${sc.beats.length} 段主文，請用 at 指定每個圓圈在第幾段亮起`);

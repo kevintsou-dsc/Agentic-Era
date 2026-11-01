@@ -580,7 +580,7 @@ function venn(el: HTMLElement, c: Extract<D3Chart, { kind: 'venn' }>): Instance 
       both.classed('on', lit);
       // 呼吸動畫寫的是行內 opacity；未亮時要清掉，否則往回捲時交集仍是深色
       if (!lit) both.style('opacity', null);
-      mid.style('opacity', lit ? 1 : 0.25);
+      mid.style('opacity', lit ? 1 : 0);
     },
     tick(t) {
       if (lit) both.style('opacity', 0.75 + Math.sin(t / 500) * 0.2);
@@ -691,7 +691,9 @@ function rings(el: HTMLElement, c: Extract<D3Chart, { kind: 'rings' }>): Instanc
     .attr('class', (o) => `rg-ring rg-${o.i}`);
   ringG.append('circle').attr('cx', cx).attr('cy', cy).attr('r', (o) => r0 + (o.i + 1) * band)
     // grow 收起時縮到內一圈的半徑，展開用 CSS transform 過場
-    .style('--rg-k', (o) => String((r0 + o.i * band) / (r0 + (o.i + 1) * band)));
+    .style('--rg-k', (o) => String((r0 + o.i * band) / (r0 + (o.i + 1) * band)))
+    // 同一段長出的多圈：由內往外錯開
+    .style('transition-delay', (o) => `${(o.i - c.rings.findIndex((x, j) => (x.at ?? j + 1) === (c.rings[o.i].at ?? o.i + 1))) * 0.35}s`);
   ringG.append('text').attr('class', 'rg-label').attr('x', cx).attr('y', (o) => cy - (r0 + o.i * band) - band / 2 + 1).attr('text-anchor', 'middle').text((o) => o.d.label);
   ringG.append('text').attr('class', 'rg-sub').attr('x', cx).attr('y', (o) => cy - (r0 + o.i * band) - band / 2 + 16).attr('text-anchor', 'middle').text((o) => o.d.sub);
   ringG.each(function (o) { bind(this, { title: o.d.label, body: o.d.desc, extra: o.d.extra }); });
@@ -723,9 +725,10 @@ function rings(el: HTMLElement, c: Extract<D3Chart, { kind: 'rings' }>): Instanc
       step = s;
       pulls.classed('on', reduce ? !!c.pulls : s >= at);
       if (c.grow) {
-        const shown = reduce ? n : Math.min(n, s);
+        const at = (i: number) => c.rings[i].at ?? i + 1;
+        const shown = reduce ? n : c.rings.filter((_, i) => at(i) <= s).length;
         svg.classed('rg-grow', true);
-        ringG.classed('rg-in', (o) => o.i < shown).classed('cur', (o) => o.i === s - 1);
+        ringG.classed('rg-in', (o) => reduce || at(o.i) <= s).classed('cur', (o) => at(o.i) === s);
         rOut = r0 + shown * band;
       }
     },
