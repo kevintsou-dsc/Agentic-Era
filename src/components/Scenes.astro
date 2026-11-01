@@ -72,8 +72,9 @@ let proseK = 0, quoteK = 0;
   }
   if (s.kind === 'quote') {
     const [sp, sw, sh] = spot(quoteK++);
+    // 每篇最後一幕（22 篇都是引言）是結語：加重處理（docs/design-review/p1-02-ruling.md D2、L10）
     return (
-      <section class="section">
+      <section class:list={['section', { finale: si === scenes.length - 1 }]}>
         <div class="spot reveal" aria-hidden="true" style={`--ar:${sw}/${sh};--fill:url(/art/spots/${sp}-fill.webp);--line:url(/art/spots/${sp}-line.webp)`}><span class="spot-fill"></span><span class="spot-line"></span></div>
         {s.lead && <div class:list={['reveal q-lead', { 'has-more': !!s.lead.more }]}><p class="lede"><span set:html={rich(s.lead.text)} /><SourceRef src={s.lead.src} /></p><MoreRef m={s.lead.more} /></div>}
         <div class="reveal"><Quote q={s.quote} size="lg" /></div>
@@ -108,16 +109,29 @@ let proseK = 0, quoteK = 0;
       </section>
     );
   }
+  // 陳述幕：外層章節色帶（半透明，紙紋透得出來），作為每篇的換氣點
   return (
-    <section class="section center">
-      {s.eyebrow && <p class="eyebrow reveal">{s.eyebrow}</p>}
-      <h2 class="display reveal statement" set:html={rich(s.text)} />
-      {s.lede && <p class="lede reveal"><span set:html={rich(s.lede.text)} /><SourceRef src={s.lede.src} /></p>}
-    </section>
+    <div class="band">
+      <section class="section center">
+        {s.eyebrow && <p class="eyebrow reveal">{s.eyebrow}</p>}
+        <h2 class="display reveal statement" set:html={rich(s.text)} />
+        {s.lede && <p class="lede reveal"><span set:html={rich(s.lede.text)} /><SourceRef src={s.lede.src} /></p>}
+      </section>
+    </div>
   );
 })}
 <style>
-  .statement { font-size: clamp(28px, 4.5vw, 52px); }
+  .statement { font-size: clamp(28px, 4.5vw, 52px); font-family: var(--font-serif); font-weight: 900; }
+  /* 陳述幕色帶：章節色 55%（序章的章節色接近紙色，改用牛皮紙色 45%）；色帶裡的字一律墨色（章節深色字在章節色底上對比不足） */
+  .band { background: color-mix(in srgb, var(--accent) 55%, transparent); }
+  :global(.ch-intro) .band { background: color-mix(in srgb, var(--kraft) 45%, transparent); }
+  .band > .section { padding-block: 14svh; }
+  .band .eyebrow, .band .lede, .band :global(.src-ref) { color: var(--ink); }
+  .band :global(.src-ref) { border-color: var(--ink); }
+  /* 結語引言：上方一道章節色短線、字級再大一級；維持靠左與左線（不置中，引言前的說明段落也不會跟著置中）。
+     線畫在段落內距之內，不貼著上一幕的邊緣（陳述色帶緊接結語時才不會像色帶的底線） */
+  .finale::before { content: ""; display: block; width: min(100%, 40rem); height: 2px; margin-bottom: clamp(28px, 5svh, 48px); background: var(--accent-ink); }
+  .finale :global(.quote-block.lg .quote) { font-size: clamp(26px, 3vw + 12px, 46px); }
   /* p 預設 margin 以字級計算，大數字下方會空出一大段；改為固定的小間距，讓數字和人形圖連成一組 */
   .bignum-scene .bignum { color: var(--accent-ink); margin: 0 0 clamp(14px, 2.5svh, 28px); }
   /* 人形圖：例如 20 人中 13 人實心＝65%；進入視窗時依序填滿 */
@@ -166,7 +180,7 @@ let proseK = 0, quoteK = 0;
   .q-lead { margin-bottom: clamp(36px, 6svh, 64px); }
   .prose { display: grid; gap: clamp(24px, 4vw, 56px); align-items: center; padding-top: 12svh; padding-bottom: 12svh; }
   .prose-text { max-width: 40rem; font-size: clamp(17px, .6vw + 14px, 19px); }
-  .prose-h { font-size: clamp(24px, 2.4vw + 12px, 36px); line-height: 1.35; margin: 4px 0 18px; }
+  .prose-h { font-size: clamp(24px, 2.4vw + 12px, 36px); line-height: 1.35; margin: 4px 0 18px; font-family: var(--font-serif); font-weight: 900; }
   .prose-text .beat { margin-bottom: 1em; }
   /* 細節按鈕緊貼它補充的那段，與下一段拉開距離，看得出屬於上一段 */
   .prose-text .has-more .beat { margin-bottom: 0; }

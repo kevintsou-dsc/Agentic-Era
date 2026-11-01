@@ -143,7 +143,7 @@ const name = (t: string) => (t.includes('｜') ? t.split('｜').slice(1).join('�
   /* 翻面卡：兩面疊在同一格，卡高取兩面較高者；class 一律加 fc- 前綴，避免撞到全站 .card／.flip */
   .fc-set { grid-auto-rows: 1fr; }
   .fc-set li { align-content: stretch; padding: 0; border: 0; background: none; perspective: 900px; cursor: pointer; outline: none; }
-  .fc-card { display: grid; height: 100%; min-height: 7.5rem; transform-style: preserve-3d; transition: transform .6s cubic-bezier(.2, .7, .2, 1); }
+  .fc-card { display: grid; height: 100%; min-height: 7.5rem; transform-style: preserve-3d; transition: transform .6s var(--ease-out); }
   .fc-face { grid-area: 1 / 1; display: grid; grid-template-rows: auto auto 1fr auto; gap: 4px; padding: 12px 14px; border-radius: 12px; border: 2px solid var(--ink-3); background: var(--paper); backface-visibility: hidden; -webkit-backface-visibility: hidden; }
   .fc-back { transform: rotateY(180deg); background: var(--accent); border-color: var(--accent-ink); }
   .fc-tag { justify-self: start; font-size: 12px; font-weight: 700; padding: 1px 8px; border-radius: 999px; border: 1px solid currentColor; color: var(--ink-2); }

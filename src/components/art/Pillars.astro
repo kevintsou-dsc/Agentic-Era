@@ -31,13 +31,13 @@ const pillars = [
 <style>
   .pl { --red: #e5707a; padding: 16px 10px 12px; border-radius: 14px; background: color-mix(in srgb, var(--ink) 9%, var(--paper)); }
   ol { list-style: none; margin: 0; padding: 0; display: flex; gap: 8px; }
-  li { flex: 1 1 0; min-width: 0; display: grid; grid-template-rows: auto 1fr auto; justify-items: center; gap: 8px; cursor: pointer; border-radius: 10px; opacity: calc(.15 + .85 * var(--on)); transform: translateY(calc((1 - var(--on)) * 16px)); transition: opacity .5s var(--d), transform .5s var(--d), flex-grow .45s cubic-bezier(.2, .7, .2, 1); }
+  li { flex: 1 1 0; min-width: 0; display: grid; grid-template-rows: auto 1fr auto; justify-items: center; gap: 8px; cursor: pointer; border-radius: 10px; opacity: calc(.15 + .85 * var(--on)); transform: translateY(calc((1 - var(--on)) * 16px)); transition: opacity .5s var(--d), transform .5s var(--d), flex-grow .45s var(--ease-out); }
   li:hover, li:focus { flex-grow: 2.6; }
   .pl-badge { display: grid; place-items: center; align-content: center; width: min(100%, 84px); aspect-ratio: 1; border-radius: 50%; background: var(--red); color: #fff; font-size: 14px; font-weight: 800; line-height: 1.1;
     box-shadow: 0 0 0 calc(var(--focus) * 5px) color-mix(in srgb, var(--red) 35%, transparent); transform: scale(calc(1 + var(--focus) * .06)); transition: box-shadow .4s, transform .4s; }
   .pl-badge b { font-size: 26px; }
   /* 說明用 grid-template-rows 0fr→1fr 做平滑高度展開，文字稍晚淡入，避免欄寬變化時文字跳動 */
-  .pl-dw { display: grid; grid-template-rows: 0fr; width: 100%; transition: grid-template-rows .45s cubic-bezier(.2, .7, .2, 1); }
+  .pl-dw { display: grid; grid-template-rows: 0fr; width: 100%; transition: grid-template-rows .45s var(--ease-out); }
   .pl-d { min-height: 0; overflow: hidden; margin: 0; font-size: 12.5px; line-height: 1.65; color: var(--ink-2); opacity: 0; transition: opacity .2s; }
   li:hover .pl-dw, li:focus .pl-dw { grid-template-rows: 1fr; }
   li:hover .pl-d, li:focus .pl-d { opacity: 1; transition: opacity .35s .18s; }

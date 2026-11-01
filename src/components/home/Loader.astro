@@ -1,7 +1,7 @@
 ---
 // 進場加載頁（Base 版型的每一頁都放；每個瀏覽階段第一次進站時出現，不論從首頁或文章頁進來）：
 // 牛皮紙底上，「2026」細線字由左往右顯影，「決策智慧」虹彩字跟著掃過，下方細線是載入進度。
-// 網站載入很快，所以至少顯示 MIN 毫秒讓開場完整播完；頁面 load 之後才淡出，最多等 MAX 毫秒。
+// 網站載入很快，所以至少顯示 MIN 毫秒讓開場完整播完；頁面 load 且字體就緒之後才淡出，最多等 MAX 毫秒。
 // 進度條取「已過時間／MIN」與「已載入圖片比例」的較小者，不會一下衝到底。
 // 同一瀏覽階段再進站（sessionStorage）立刻移除；減少動態時照樣顯示但不播動畫（見 CSS）。
 // 沒有 JS 時 3.4 秒後以 CSS 自動淡出，不會擋住內容。
@@ -24,7 +24,9 @@ const C = '/art/cover/';
     el.classList.add('ld-js');
     document.documentElement.classList.add('is-loading');
     var bar = el.querySelector('[data-loader-bar]');
-    var t0 = performance.now(), loaded = false, done = false;
+    var t0 = performance.now(), loaded = false, fonts = !document.fonts, done = false;
+    // 字體（自架無襯線＋襯線顯示字）也載完才離場，避免離場後標題換字跳動
+    if (document.fonts) document.fonts.ready.then(function () { fonts = true; });
     var finish = function () {
       if (done) return; done = true;
       bar.style.transform = 'scaleX(1)';
@@ -39,7 +41,7 @@ const C = '/art/cover/';
       for (var i = 0; i < n; i++) if (imgs[i].complete) ok++;
       var p = Math.min(dt / MIN, loaded ? 1 : (n ? ok / n : 1) * 0.95);
       bar.style.transform = 'scaleX(' + Math.max(0.04, p) + ')';
-      if ((loaded && dt >= MIN) || dt >= MAX) { clearInterval(timer); finish(); }
+      if ((loaded && fonts && dt >= MIN) || dt >= MAX) { clearInterval(timer); finish(); }
     }, 100);
     if (document.readyState === 'complete') loaded = true;
     else addEventListener('load', function () { loaded = true; });
@@ -50,13 +52,13 @@ const C = '/art/cover/';
   .ld { position: fixed; inset: 0; z-index: 100; display: grid; place-content: center; justify-items: center; gap: 14px;
     background: #d8c3a2 url(/art/cover/kraft.webp) 0 0 / 640px; background-blend-mode: multiply;
     animation: ld-auto .6s 3.4s forwards; }
-  .ld-2026 { width: min(70vw, 720px); height: auto; filter: drop-shadow(0 0 1px rgba(0, 0, 0, .3)); clip-path: inset(0 100% 0 0); animation: ld-wipe 1s .1s cubic-bezier(.6, 0, .2, 1) forwards; }
-  .ld-logo { width: min(56vw, 560px); height: auto; margin-top: -2vw; clip-path: inset(0 100% 0 0); animation: ld-wipe .9s .55s cubic-bezier(.6, 0, .2, 1) forwards; }
+  .ld-2026 { width: min(70vw, 720px); height: auto; filter: drop-shadow(0 0 1px rgba(0, 0, 0, .3)); clip-path: inset(0 100% 0 0); animation: ld-wipe 1s .1s var(--ease-move) forwards; }
+  .ld-logo { width: min(56vw, 560px); height: auto; margin-top: -2vw; clip-path: inset(0 100% 0 0); animation: ld-wipe .9s .55s var(--ease-move) forwards; }
   .ld-sub { margin: 0; font-size: 13px; letter-spacing: .18em; color: #4d4234; opacity: 0; animation: ld-fade .6s 1s forwards; }
   .ld-bar { width: min(40vw, 240px); height: 2px; margin-top: 18px; background: rgba(0, 0, 0, .12); overflow: hidden; }
   .ld-bar span { display: block; height: 100%; background: #3b3328; transform: scaleX(.04); transform-origin: left; transition: transform .1s linear; }
   .ld.ld-js { animation: none; } /* 有 JS 時由腳本決定何時離場，關掉無 JS 的保底淡出 */
-  .ld.ld-out { animation: ld-leave .65s cubic-bezier(.6, 0, .2, 1) forwards; }
+  .ld.ld-out { animation: ld-leave .65s var(--ease-move) forwards; }
   @keyframes ld-wipe { to { clip-path: inset(0 0 0 0); } }
   @keyframes ld-fade { to { opacity: 1; } }
   @keyframes ld-leave { to { opacity: 0; transform: scale(1.04); visibility: hidden; } }
@@ -64,6 +66,8 @@ const C = '/art/cover/';
   :global(html.is-loading) { overflow: hidden; }
   /* 減少動態：字與副標直接顯示，只留進度條；離場改為單純淡出 */
   @media (prefers-reduced-motion: reduce) {
+    /* 全站減少動態會關掉所有 animation，包括沒有 JS 時的保底淡出；沒有 JS 就不顯示載入頁，免得蓋住內容 */
+    .ld:not(.ld-js) { display: none; }
     .ld-2026, .ld-logo { animation: none; clip-path: none; }
     .ld-sub { animation: none; opacity: 1; }
     .ld.ld-out { animation: ld-auto .3s forwards; }

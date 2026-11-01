@@ -1,0 +1,49 @@
+---
+// 結尾的全書地圖（docs/design-review/p1-02-ruling.md D6）：22 篇依章節排成小圓點，目前這篇加框，已讀的填色打勾。
+// 圓點在建置時產生；scripts/readmap.ts 只讀 localStorage 切換 class。放在「接下來」之後，當次要資訊。
+import { ARTICLES, CHAPTERS, CHAPTER_ORDER, fullTitle, type Article } from '../lib/articles';
+import { STORIES } from '../data/stories';
+interface Props { a: Article }
+const { a } = Astro.props;
+const inChapter = ARTICLES.filter((x) => x.chapter === a.chapter);
+const where = `你在這裡：${CHAPTERS[a.chapter].name} 章第 ${inChapter.findIndex((x) => x.id === a.id) + 1} 篇`;
+---
+<nav class="section readmap" aria-label="全書地圖" data-readmap data-current={a.slug}>
+  <p class="rm-line"><span data-rm-tip data-default={where}>{where}</span><span class="rm-count" data-rm-count></span></p>
+  <ol class="rm-chapters">
+    {CHAPTER_ORDER.map((ch) => (
+      <li class={`rm-ch c-${ch}`}>
+        <span class="rm-ch-name">{CHAPTERS[ch].name}</span>
+        <ol class="rm-dots">
+          {ARTICLES.filter((x) => x.chapter === ch && STORIES[x.id]).map((x) => (
+            <li>
+              <a class:list={['rm-dot', { 'is-current': x.slug === a.slug }]} href={`/story/${x.slug}/`} data-slug={x.slug} data-title={fullTitle(x)}
+                aria-current={x.slug === a.slug ? 'page' : undefined} aria-label={fullTitle(x)} title={fullTitle(x)}><span></span></a>
+            </li>
+          ))}
+        </ol>
+      </li>
+    ))}
+  </ol>
+</nav>
+<style>
+  .readmap { padding-top: 2svh; display: grid; gap: 10px; }
+  .rm-line { margin: 0; font-size: 13px; color: var(--ink-2); min-height: 1.75em; }
+  .rm-count:not(:empty)::before { content: "｜"; color: var(--ink-3); }
+  .rm-chapters { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 6px 18px; }
+  .rm-ch { display: flex; align-items: center; gap: 4px; }
+  .rm-ch-name { font-family: var(--font-mono); font-size: 11px; letter-spacing: .06em; color: var(--ink-3); margin-right: 2px; }
+  .rm-dots { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; }
+  .c-intro { --c: var(--kraft); }
+  .c-people { --c: var(--people); }
+  .c-model { --c: var(--model); }
+  .c-ai { --c: var(--ai); }
+  /* 點擊區 32px，看得到的圓點 14px；已讀＝章節色實心＋墨色外框＋勾（不只靠顏色），目前這篇＝外圈 */
+  .rm-dot { display: grid; place-items: center; width: 32px; height: 32px; border-radius: 50%; }
+  .rm-dot span { position: relative; width: 14px; height: 14px; border-radius: 50%; border: 1.5px solid var(--ink-3); background: var(--paper); transition: background .2s, border-color .2s; }
+  .rm-dot.is-read span { background: var(--c); border-color: var(--ink); }
+  .rm-dot.is-read span::after { content: ""; position: absolute; left: 3.5px; top: 1px; width: 3px; height: 6px; border: solid var(--ink); border-width: 0 1.5px 1.5px 0; transform: rotate(45deg); }
+  .rm-dot.is-current span { outline: 2px solid var(--accent-ink); outline-offset: 3px; }
+  .rm-dot:hover span, .rm-dot:focus-visible span { border-color: var(--ink); transform: scale(1.15); }
+  .rm-dot:focus-visible { outline-offset: 0; }
+</style>

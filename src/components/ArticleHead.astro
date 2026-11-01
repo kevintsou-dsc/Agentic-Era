@@ -11,7 +11,7 @@ const threads = THREADS.filter((t) => a.threads.includes(t.key));
     {mode === 'story' ? <span>精華約 {storyMinutes}｜原文約 {a.minutes} 分鐘</span> : <span>原文約 {a.minutes} 分鐘</span>}
   </p>
   {a.kicker && <p class="kicker">〈{a.kicker}〉</p>}
-  <h1 class="display">{a.title}</h1>
+  <h1 class="display serif">{a.title}</h1>
   {a.subtitle && <p class="sub">{a.subtitle}</p>}
   <ul class="authors">
     {a.authors.map((au) => (

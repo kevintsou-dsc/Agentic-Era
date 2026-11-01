@@ -16,6 +16,7 @@ ok = run('逐字比對', 'node scripts/verify/verify-quotes.mjs', (l) => /✓ �
 ok = run('作者比對', 'node scripts/verify/verify-meta.mjs') && ok;
 ok = run('主文與說明框 lint', 'node scripts/verify/lint-stories.mjs', (l) => /✓|✗|：/.test(l)) && ok;
 ok = run('文字風格與術語', 'node scripts/verify/lint-style.mjs', (l) => /✓|✗|：/.test(l)) && ok;
+ok = run('襯線字涵蓋', 'node scripts/verify/check-fonts.mjs', (l) => /✓|⚠|✗/.test(l)) && ok;
 // 型別：環境缺 @types/node 與 d3 型別造成的錯誤（TS7xxx、TS2683、node:fs）不算
 const tsBad = (l) => /src\/(data|lib\/story|components|scripts)/.test(l) && /error TS/.test(l) && !/TS7\d{3}|TS2683|TS2307|TS2580/.test(l);
 const ts = spawnSync('npx tsc --noEmit -p .', { shell: true, encoding: 'utf8' });

@@ -56,6 +56,8 @@ const repo = 'https://github.com/kevintsou-dsc/Agentic-Era';
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="theme-color" content="#f3eee4" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <!-- 襯線顯示字：標題在首屏，先預載 900 那一檔（約 110 KB） -->
+    <link rel="preload" href="/fonts/serif-900.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="author" href="/humans.txt" />
   </head>
   <body class={`ch-${chapter}`}>
@@ -119,6 +121,7 @@ const repo = 'https://github.com/kevintsou-dsc/Agentic-Era';
       import { initZoom } from '../scripts/zoom';
       import { initPaper } from '../scripts/paper';
       import { initEgg } from '../scripts/egg';
+      import { initReadMap } from '../scripts/readmap';
       initScrolly();
       initReader();
       initMore();
@@ -126,6 +129,7 @@ const repo = 'https://github.com/kevintsou-dsc/Agentic-Era';
       initZoom();
       initPaper();
       initEgg();
+      initReadMap();
     </script>
   </body>
 </html>

@@ -68,7 +68,7 @@ const dots = Array.from({ length: 30 }, (_, i) => i);
   .jc-end { border-color: var(--ink); }
   :global(.graphic.is-3) .jc-end { background: var(--accent); border-color: var(--accent-ink); }
   .jc-arrow { color: var(--ink-3); font-weight: 800; }
-  .jc-mid { display: inline-flex; align-items: center; gap: 6px; overflow: hidden; max-width: 9em; transition: max-width .7s var(--d) cubic-bezier(.6, 0, .2, 1), opacity .4s var(--d); }
+  .jc-mid { display: inline-flex; align-items: center; gap: 6px; overflow: hidden; max-width: 9em; transition: max-width .7s var(--d) var(--ease-move), opacity .4s var(--d); }
   :global(.graphic.is-3) .jc-mid { max-width: 0; opacity: 0; }
   .jc-agent { display: inline-flex; align-items: center; gap: 6px; overflow: hidden; max-width: calc(var(--on) * 10em); opacity: var(--on); transition: max-width .6s, opacity .4s; }
   .jc-bot { background: var(--ink); color: var(--paper); border-color: var(--ink); }

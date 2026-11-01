@@ -309,7 +309,7 @@ const r = (x: CaseResult) => x;
   .cs-bar { display: grid; grid-template-columns: 1fr; gap: 2px; margin-bottom: 8px; }
   .cs-bar-l { font-size: 13px; font-weight: 700; }
   .cs-bar-track { display: block; height: 14px; border-radius: 7px; background: var(--line); overflow: hidden; }
-  .cs-bar-fill { display: block; height: 100%; width: calc(var(--v) * 1% * var(--show)); min-width: 2px; border-radius: 7px; background: var(--tone); transition: width .8s var(--d) cubic-bezier(.2, .7, .2, 1); }
+  .cs-bar-fill { display: block; height: 100%; width: calc(var(--v) * 1% * var(--show)); min-width: 2px; border-radius: 7px; background: var(--tone); transition: width .8s var(--d) var(--ease-out); }
   .cs-bar-v { font-size: 13px; font-weight: 800; color: var(--tone); }
   .cs-rank .cs-bar { grid-template-columns: 9em 1fr 3em; align-items: center; gap: 8px; }
   .cs-rank .cs-bar-v { text-align: right; }
@@ -320,7 +320,7 @@ const r = (x: CaseResult) => x;
   .cs-split { display: grid; gap: 12px; }
   .cs-sp { opacity: var(--show); transition: opacity .4s var(--d); }
   .cs-sp-bar { display: flex; height: 40px; border-radius: 10px; overflow: hidden; background: var(--line); }
-  .cs-sp-bar span { flex: 0 0 calc(var(--v) * 1% * var(--show)); display: flex; align-items: center; padding: 0 8px; overflow: hidden; background: var(--tone); color: #fff; white-space: nowrap; transition: flex-basis .8s var(--d) cubic-bezier(.2, .7, .2, 1); }
+  .cs-sp-bar span { flex: 0 0 calc(var(--v) * 1% * var(--show)); display: flex; align-items: center; padding: 0 8px; overflow: hidden; background: var(--tone); color: #fff; white-space: nowrap; transition: flex-basis .8s var(--d) var(--ease-out); }
   .cs-sp-bar b { font-size: 13px; }
   .cs-sp-bar .cs-rest { background: repeating-linear-gradient(45deg, var(--line) 0 4px, transparent 4px 8px); }
 

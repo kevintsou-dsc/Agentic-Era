@@ -21,11 +21,24 @@
   /* Noto Sans TC 可變字重（100–900）自架於站內（@fontsource-variable，Base.astro 匯入），依 unicode-range 分片，只下載頁面用到的字；
      不再依賴讀者電腦是否裝了 Noto（Windows 沒裝會退到微軟正黑體）。首次進站的載入動畫會蓋住字體下載。 */
   --font-sans: "Noto Sans TC Variable", "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", "Heiti TC", system-ui, sans-serif;
+  /* 顯示字（襯線）：標題、陳述句（900）與原文引言、帶走的問題（700）。建置期子集，只含這些地方用到的字
+     （scripts/fonts/fonts.py → public/fonts/，涵蓋檢查 scripts/verify/check-fonts.mjs）；子集沒有的字由無襯線補上 */
+  --font-serif: "DW Serif Display", var(--font-sans);
   --font-mono: ui-monospace, "Cascadia Mono", "SFMono-Regular", Consolas, monospace;
+
+  /* 動態曲線：只收斂完全相同的值（docs/design-review/p1-02-ruling.md L4），其餘回彈曲線保留原值以免改變手感。
+     hover 一律立即回應：錯開延遲（transition-delay）只能寫在 transform／opacity 上，不能拖到變色。 */
+  --ease-out: cubic-bezier(.2, .7, .2, 1);
+  --ease-move: cubic-bezier(.6, 0, .2, 1);
+  --ease-std: cubic-bezier(.4, 0, .2, 1);
+  --ease-spring: cubic-bezier(.3, 1.4, .5, 1);
 
   --measure: 34rem;
   --gutter: clamp(16px, 4vw, 48px);
 }
+
+@font-face { font-family: "DW Serif Display"; src: url(/fonts/serif-900.woff2) format("woff2"); font-weight: 900; font-display: swap; }
+@font-face { font-family: "DW Serif Display"; src: url(/fonts/serif-700.woff2) format("woff2"); font-weight: 700; font-display: swap; }
 
 *, *::before, *::after { box-sizing: border-box; }
 html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
@@ -78,6 +91,7 @@ a { color: inherit; }
 .wrap { max-width: 72rem; margin: 0 auto; padding: 0 var(--gutter); }
 .eyebrow { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-3); }
 .display { font-size: clamp(32px, 6vw, 68px); line-height: 1.2; font-weight: 800; letter-spacing: -0.01em; margin: 0.2em 0; }
+.serif { font-family: var(--font-serif); font-weight: 900; }
 .lede { font-size: clamp(18px, 1.4vw + 12px, 23px); color: var(--ink-2); max-width: var(--measure); }
 .source { font-size: 13px; color: var(--ink-3); line-height: 1.5; }
 .source b { color: var(--ink-2); font-weight: 600; }
@@ -104,14 +118,17 @@ a { color: inherit; }
 .scrolly .card {
   pointer-events: auto;
   max-width: 26rem; margin-left: auto;
-  background: color-mix(in srgb, var(--paper) 94%, transparent);
+  /* 底色不透明：未啟用時只有內容淡出，圖不會從卡片後面透出來造成字疊字（docs/design-review/p1-02-ruling.md L11） */
+  background: var(--paper);
   border: 1px solid var(--line); border-radius: 14px;
   padding: 20px 22px;
   box-shadow: 0 10px 30px -18px rgba(31, 29, 26, 0.35);
-  opacity: 0.35; transform: translateY(12px);
-  transition: opacity 0.5s ease, transform 0.5s ease;
+  transform: translateY(12px);
+  transition: transform 0.5s ease;
 }
-.scrolly .step.is-active .card { opacity: 1; transform: none; }
+.scrolly .card > * { opacity: 0.35; transition: opacity 0.5s ease; }
+.scrolly .step.is-active .card { transform: none; }
+.scrolly .step.is-active .card > * { opacity: 1; }
 .scrolly .card p { margin: 0 0 0.6em; }
 .scrolly .card p:last-child { margin-bottom: 0; }
 .scrolly.graphic-right .graphic { justify-items: end; }
@@ -169,7 +186,7 @@ a { color: inherit; }
 /* 兩種 dialog 共用 */
 dialog { color: var(--ink); }
 dialog::backdrop { background: rgba(31, 29, 26, .5); backdrop-filter: blur(2px); }
-dialog[open] { animation: dlg-in .26s cubic-bezier(.2,.7,.2,1); }
+dialog[open] { animation: dlg-in .26s var(--ease-out); }
 @keyframes dlg-in { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
 .dlg-close { all: unset; cursor: pointer; font-size: 26px; line-height: 1; padding: 4px 10px; border-radius: 8px; color: var(--ink-2); }
 .dlg-close:hover { background: var(--paper-2); }
@@ -234,7 +251,8 @@ dialog[open] { animation: dlg-in .26s cubic-bezier(.2,.7,.2,1); }
   .scrolly .graphic > .stage { max-height: none; }
   .scrolly .steps { margin-top: 0; padding-bottom: 8svh; }
   .scrolly .step { min-height: 0; padding-bottom: 12px; align-items: flex-start; }
-  .scrolly .card, .scrolly.graphic-right .card { opacity: 1; transform: none; margin: 0 auto; max-width: 40rem; }
+  .scrolly .card, .scrolly.graphic-right .card { transform: none; margin: 0 auto; max-width: 40rem; }
+  .scrolly .card > * { opacity: 1; }
 }
 
 /* 大數字 */
@@ -244,14 +262,14 @@ dialog[open] { animation: dlg-in .26s cubic-bezier(.2,.7,.2,1); }
 /* 原文引文：與策展整理明確區分（引號＋左線＋頁碼） */
 .quote {
   margin: 0; padding: 4px 0 4px 18px; border-left: 4px solid var(--accent);
-  font-size: clamp(20px, 1.6vw + 13px, 28px); line-height: 1.55; font-weight: 700;
+  font-size: clamp(20px, 1.6vw + 13px, 28px); line-height: 1.55; font-family: var(--font-serif); font-weight: 700;
 }
 /* 外層不加「」：原文裡常有自己的「」，包兩層會重複。改用左上角的裝飾引號（不唸出），原文標點照原樣 */
 .quote::before {
   content: "“" / ""; display: block; height: .5em; margin: .05em 0 .1em -.04em;
   font-family: Georgia, "Times New Roman", serif; font-size: 2.4em; line-height: 1; font-weight: 700; color: var(--accent-ink);
 }
-.quote-cite { display: block; margin-top: 10px; font-size: 13px; font-weight: 400; color: var(--ink-3); }
+.quote-cite { display: block; font-family: var(--font-sans); margin-top: 10px; font-size: 13px; font-weight: 400; color: var(--ink-3); }
 .curated { font-size: 12px; color: var(--ink-3); letter-spacing: 0.06em; }
 
 /* 一般段落區（非 sticky） */
@@ -286,10 +304,25 @@ details.more[open] summary::before { content: "－ "; }
 .graphic[data-step="4"] [data-focus="4"], .graphic[data-step="5"] [data-focus="5"], .graphic[data-step="6"] [data-focus="6"],
 .graphic[data-step="7"] [data-focus="7"], .graphic[data-step="8"] [data-focus="8"] { --focus: 1; }
 
+/* 跨頁換場（docs/design-review/p1-02-ruling.md L9）：舊頁淡出、新頁上移淡入；頂欄與進度條各自成組，換頁時固定不閃。
+   Chrome／Edge 支援；其他瀏覽器照常換頁。減少動態時關閉。 */
+@view-transition { navigation: auto; }
+.topbar { view-transition-name: topbar; }
+.progress { view-transition-name: progress; }
+::view-transition-old(root) { animation: vt-out .2s var(--ease-std) both; }
+::view-transition-new(root) { animation: vt-in .35s var(--ease-out) both; }
+::view-transition-group(topbar), ::view-transition-group(progress),
+::view-transition-old(topbar), ::view-transition-new(topbar),
+::view-transition-old(progress), ::view-transition-new(progress) { animation: none; }
+@keyframes vt-out { to { opacity: 0; } }
+@keyframes vt-in { from { opacity: 0; transform: translateY(16px); } }
+
 @media (prefers-reduced-motion: reduce) {
+  @view-transition { navigation: none; }
   [data-at] { --on: 1; }
   *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
   .reveal, .scrolly .card { opacity: 1; transform: none; }
+  .scrolly .card > * { opacity: 1; }
 }
 
 /* 彩蛋（scripts/egg.ts）：鍵盤打 dentsu 時飄起手繪小插圖＋手寫感紙條 */

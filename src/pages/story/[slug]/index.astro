@@ -8,6 +8,7 @@ import { FULLTEXT_REVIEWED } from '../../../lib/fulltext';
 import type { Story } from '../../../lib/story';
 import { storyMinutes } from '../../../lib/stats';
 import { RELEASE } from '../../../lib/release';
+import ReadMap from '../../../components/ReadMap.astro';
 
 export function getStaticPaths() {
   return ARTICLES.filter((a) => STORIES[a.id]).map((a) => ({ params: { slug: a.slug }, props: { a, story: STORIES[a.id] } }));
@@ -64,12 +65,13 @@ const threadNext = THREADS.filter((t) => a.threads.includes(t.key))
     ))}
     <a class="btn ghost" href="/#chapters">← 回到全書，依章節找文章</a>
   </nav>
+  <ReadMap a={a} />
 </Base>
 <style>
   .one { margin-top: 28px; }
   .draft { justify-self: start; margin: 0 0 12px; padding: 2px 10px; border-radius: 6px; background: var(--model); font-size: 12px; font-weight: 700; }
-  .asks { margin: 24px 0 8px; padding-left: 1.4em; display: grid; gap: 18px; font-size: clamp(21px, 2vw + 12px, 32px); font-weight: 800; line-height: 1.45; max-width: 46rem; }
-  .pg { display: block; font-size: 13px; font-weight: 400; color: var(--ink-3); margin-top: 4px; }
+  .asks { margin: 24px 0 8px; padding-left: 1.4em; display: grid; gap: 18px; font-size: clamp(21px, 2vw + 12px, 32px); font-family: var(--font-serif); font-weight: 700; line-height: 1.45; max-width: 46rem; }
+  .pg { display: block; font-family: var(--font-sans); font-size: 13px; font-weight: 400; color: var(--ink-3); margin-top: 4px; }
   .next { display: flex; flex-wrap: wrap; gap: 14px; align-items: center; padding-top: 6svh; }
   .nextcard { display: grid; gap: 4px; padding: 16px 20px; border-radius: 14px; border: 2px solid var(--accent-ink); text-decoration: none; background: var(--paper); flex: 1 1 18rem; max-width: 28rem; }
   .nextcard:hover { background: var(--accent); }
