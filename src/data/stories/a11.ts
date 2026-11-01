@@ -468,7 +468,7 @@ export const story: Story = {
             { article: 'a11', page: 90, text: '而是把最舊的記憶與最新的科技放在一起' },
           ],
           more: {
-            title: '案例：3年L組 バブル先生',
+            title: '案例：「3年L組 バブル先生」',
             image: { src: '/fig/a11/p89-2.webp', alt: 'Fanta「3年L組 バブル先生」廣告畫面', w: 929, h: 478, caption: 'Fanta「3年L組 バブル先生」把經典「ファンタ学園」重新放進 2026 的產品與數位互動', credit: '資料來源：日本 Coca-Cola' },
             links: [{ url: 'https://www.coca-cola.com/jp/ja/media-center/news-20260413-10', label: '日本 Coca-Cola 新聞稿', kind: 'web' }],
           },

@@ -3,9 +3,13 @@
 對每篇故事：
   單位層級：每段主文與圖表細節 × 原文上下文 → faithful / overclaim / complete / fluency
   故事層級：一句話主張＋全部主文 × 文章摘要 → coverage / coherence
+  策展補充（--curator）：圖表說明框、延伸區塊說明、較長的卡片 desc × 同一幕主文依據的原文
+    → contradict（與原文矛盾）／attribute（把原文沒說的結論算到作者頭上）／general（屬一般公認知識）
+    門檻尚未經突變試驗校準，標記只當提示（見 docs/text-review-plan.md）。
 輸出 content/review/<label>.json 與 docs/review/<label>.md（依風險排序的待修清單）。
 
-執行：cd ../jev-test && .venv/Scripts/python <本檔> <label> [aNN ...]
+執行：先 node scripts/review/reader-text.mjs，再
+  cd ../jev-test && .venv/Scripts/python <本檔> <label> [--curator] [aNN ...]
 """
 import json
 import sys
@@ -18,7 +22,7 @@ ROOT = HERE.parents[1]
 sys.path.insert(0, str(HERE))
 sys.path.insert(0, str(Path.cwd() / "scripts" / "common"))
 from jev_pilot import ask, questions, story_questions  # noqa: E402
-from units import article_summaries, load_all  # noqa: E402
+from units import article_summaries, curator_units, load_all  # noqa: E402
 
 # 門檻（2026-10-25 試驗：誤判 16.7%，其中多數是真的「出處不足」；抓錯率 M1 100%、M2 97%、M3 89%、M4 100%）
 T_FAITHFUL = 0.30   # faithful 低於此值 → 主張超出所引原文
@@ -26,10 +30,40 @@ T_OVERCLAIM = 0.80  # overclaim 高於此值 → 語氣或範圍比原文強
 T_COMPLETE = 0.30   # complete 低於此值 → 可能是半句（僅提示；硬規則由 lint 負責）
 T_COVERAGE = 2.5    # 故事層級：0–3
 T_COHERENCE = 2.2
+# 策展補充（暫定，待校準）
+T_CONTRADICT = 0.50
+T_ATTRIBUTE = 0.70
+T_GENERAL = 0.30
+
+
+def curator_questions():
+    from typesafe_sdk import Noul, Score
+    return {
+        "contradict": Noul(instructions=(
+            "`summary` is an explanatory note written by an editor next to a passage of the article quoted in `source`. "
+            "Does `summary` contradict, distort, or misstate anything in `source`?")),
+        "attribute": Noul(instructions=(
+            "Does `summary` present a conclusion, recommendation, number, or example as if it came from the article's author, "
+            "when `source` does not contain it?")),
+        "general": Noul(instructions=(
+            "Is `summary` a neutral explanation or widely accepted general knowledge (for example, defining a term or describing "
+            "a common practice), rather than a specific new factual claim such as a statistic, study, date, or company result that "
+            "would need its own citation?")),
+        "fluency": Score(instructions="How fluent and natural is `summary` as Traditional Chinese prose?", criteria=[
+            "Awkward or hard to read", "Understandable but clumsy", "Fluent", "Polished and natural"]),
+    }
 
 
 def reasons(j):
     out = []
+    if "contradict" in j:
+        if j["contradict"] > T_CONTRADICT:
+            out.append(f"可能與原文矛盾（contradict {j['contradict']:.2f}）")
+        if j["attribute"] > T_ATTRIBUTE:
+            out.append(f"可能把原文沒說的算到作者頭上（attribute {j['attribute']:.2f}）")
+        if j["general"] < T_GENERAL:
+            out.append(f"像是需要出處的具體說法（general {j['general']:.2f}）")
+        return out
     if j["faithful"] < T_FAITHFUL:
         out.append(f"出處不足或不忠實（faithful {j['faithful']:.2f}）")
     if j["overclaim"] > T_OVERCLAIM:
@@ -39,15 +73,18 @@ def reasons(j):
     return out
 
 
-def main(label, only):
+def main(label, only, with_curator=False):
     from jev_client import get_client
     client = get_client()
     stories = [s for s in load_all() if not only or s["id"] in only]
     summaries = article_summaries()
     units = [dict(u, story=s["id"]) for s in stories for u in s["units"]]
-    qs, sq = questions(), story_questions()
+    if with_curator:
+        units += curator_units(only)
+    qs, sq, cq = questions(), story_questions(), curator_questions()
     with ThreadPoolExecutor(max_workers=8) as ex:
-        ures = list(ex.map(lambda u: ask(client, {"source": u["source"], "summary": u["text"]}, qs), units))
+        ures = list(ex.map(lambda u: ask(client, {"source": u["source"], "summary": u["text"]},
+                                         cq if u["kind"] in ("curator", "card") else qs), units))
     sstates = [{"article_summary": summaries.get(s["id"], ""),
                 "story": s["oneLiner"] + "\n\n" + "\n\n".join(u["text"] for u in s["units"] if u["kind"] == "main")} for s in stories]
     with ThreadPoolExecutor(max_workers=4) as ex:
@@ -62,7 +99,7 @@ def main(label, only):
             if u["story"] != s["id"] or "error" in j:
                 continue
             rows.append({"kind": u["kind"], "text": u["text"], "jev": j, "reasons": reasons(j), "pages": [x["page"] for x in u["src"]]})
-        flagged = sorted([r for r in rows if r["reasons"]], key=lambda r: r["jev"]["faithful"])
+        flagged = sorted([r for r in rows if r["reasons"]], key=lambda r: r["jev"].get("faithful", 1 - r["jev"].get("contradict", 0)))
         story_flags = []
         if "error" not in sj:
             if sj["coverage"]["score"] < T_COVERAGE:
@@ -89,4 +126,5 @@ def main(label, only):
 
 
 if __name__ == "__main__":
-    main(sys.argv[1], set(sys.argv[2:]))
+    args = sys.argv[2:]
+    main(sys.argv[1], {a for a in args if not a.startswith("--")}, "--curator" in args)

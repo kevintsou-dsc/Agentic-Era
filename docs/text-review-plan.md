@@ -7,6 +7,23 @@
 - 不請原文作者確認。改由多個 sub agent 扮演不同讀者盲評（只看站上文字、不看原文）。
 - 術語統一用「AI Agent」（「AI 代理」只保留在原文逐字引言與文章標題）。已於 11/1 套用到全站主文與圖表文字。
 
+## 工具（2026-11-01 完成）
+
+| 步驟 | 指令 | 產出 |
+|---|---|---|
+| 攤平讀者看得到的文字 | `node scripts/review/reader-text.mjs` | `content/review/units.json`（不進版控） |
+| 風格與術語 lint | `npm run story:check`（含 `lint-style.mjs`） | 擋下：術語表 error 詞、中文旁半形標點、中英數之間沒空格；提示寫入 `docs/review/style-report.md`（長句、待定術語） |
+| 術語表 | `content/glossary.json` | AI Agent 已定案；占／週年／Gen Z／消費者旅程為建議，待 Kevin 決定 |
+| Jev 初評（含策展補充） | `cd ../jev-test && .venv/Scripts/python ../決策智慧vibecoding比賽/scripts/review/jev_review.py <label> --curator [aNN ...]` | `content/review/<label>.json`、`docs/review/<label>.md` |
+| 讀者盲評 | 依 `docs/review/blind-readers.md` 派 3 個 sub agent 讀 `docs/review/reader/<短名>.md` | `docs/review/blind/<短名>.md` |
+| 審稿文件 | `npm run review:packet [-- 短名 ...]` | `docs/review/packets/<短名>.md`（貼給站外 AI）、`docs/review/reader/<短名>.md`（盲評用） |
+| 修改紀錄 | 手寫 `content/review/notes/<短名>.json`：`[{ path, before, after, reason }]` | 自動併入審稿文件 |
+
+試跑（信任）：
+- 盲評：三位讀者都說得出主軸；三位都卡在開場沒交代 Joeman／陶朱隱園、世壯運「傳統危機管理思維」、「信任庫」沒定義、公關三組對照沒有具體做法。
+- Jev：改用英文名後，原文以第一人稱書寫，Jev 把「Cynthia」誤判為無出處（faithful 0.24）。已在送評原文前加上「本文作者：楊欣怡（Cynthia Yang）」一行，四段回到 0.81–0.89。
+- 策展補充：延伸說明改為對照同一區塊的原文引言。門檻尚未經突變試驗校準，只當提示。
+
 ## 一、範圍：全站讀者看得到的文字
 
 | 類型 | 則數 | 字數 | 性質 | 目前把關 |

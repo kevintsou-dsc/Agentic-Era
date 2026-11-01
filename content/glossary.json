@@ -1,0 +1,10 @@
+{
+  "_note": "全站術語表（docs/text-review-plan.md）。只檢查讀者看得到、由策展者改寫的文字；原文逐字引言、帶走的問題、圖說出處、文章標題不在此限。level：error＝story:check 擋下；warn＝列入 docs/review/style-report.md 待定。status：decided＝已定案；proposed＝建議，待 Kevin 決定。",
+  "terms": [
+    { "use": "AI Agent", "avoid": ["AI 代理", "AI代理", "AI agent", "AI Agents"], "level": "error", "status": "decided", "decided": "2026-11-01", "note": "原文多寫「AI 代理」，只保留在逐字引言與文章標題" },
+    { "use": "占", "avoid": ["佔"], "level": "warn", "status": "proposed", "note": "教育部標準字作「占」（占比、占位、占有率）；原文兩者混用" },
+    { "use": "週年", "avoid": ["周年"], "level": "warn", "status": "proposed", "note": "同一篇（共同記憶）裡「50 周年」與「週年展」並存" },
+    { "use": "Gen Z", "avoid": ["Z 世代", "Z世代"], "level": "warn", "status": "proposed", "note": "注意力很稀缺一篇兩者並存；也可反過來統一為「Z 世代」" },
+    { "use": "消費者旅程", "avoid": ["消費旅程"], "level": "warn", "status": "proposed", "note": "「顧客旅程」是體驗設計（CX）用語，與消費者旅程不同，保留" }
+  ]
+}

@@ -92,6 +92,18 @@ SRC_RE = re.compile(r"\{\s*article:\s*'(a\d\d)',\s*page:\s*(\d+),\s*text:\s*'((?
 UNIT_RE = re.compile(r"(detail:\s*\{\s*)?text:\s*'((?:[^'\\]|\\.)*)',\s*src:\s*\[", re.S)
 
 
+_authors = None
+
+
+def author_note(article):
+    """原文多以第一人稱「我」書寫，站上改用作者英文名（Cynthia 等）；把作者是誰告訴 Jev，避免被誤判為無出處的人名。"""
+    global _authors
+    if _authors is None:
+        j = json.loads((ROOT / "content" / "articles.json").read_text(encoding="utf-8"))
+        _authors = {a["id"]: "、".join(f"{x['name']}（{x['en']}）" for x in a["authors"]) for a in j["articles"]}
+    return f"［本文作者：{_authors.get(article, '')}；原文中的「我」「我們」指作者］\n"
+
+
 def parse_story(path):
     code = path.read_text(encoding="utf-8")
     sid = path.stem
@@ -110,9 +122,29 @@ def parse_story(path):
             "kind": "detail" if m.group(1) else "main",
             "text": m.group(2).replace("**", ""),
             "src": srcs,
-            "source": "\n…\n".join(context(s) for s in srcs),
+            "source": (author_note(sid) if srcs else "") + "\n…\n".join(context(s) for s in srcs),
         })
     return {"id": sid, "oneLiner": one.group(1) if one else "", "units": units}
+
+
+def curator_units(only=None):
+    """策展補充（圖表說明框、延伸區塊說明）與較長的卡片短文字（desc、caption）。
+    來自 content/review/units.json（先跑 node scripts/review/reader-text.mjs）；原文沒有這些文字，
+    所以對照的是同一幕主文依據的原文（最多 3 段）。"""
+    data = json.loads((ROOT / "content" / "review" / "units.json").read_text(encoding="utf-8"))
+    out = []
+    for s in data:
+        if only and s["id"] not in only:
+            continue
+        for u in s["units"]:
+            long_short = u["kind"] == "short" and u["key"] in ("desc", "caption") and len(u["text"]) >= 15
+            if u["kind"] != "curator" and not long_short:
+                continue
+            srcs = (u.get("src") or u.get("sceneSrc") or [])[:3]  # 延伸說明有自己的原文引言時，對照那段
+            out.append({"story": s["id"], "kind": "curator" if u["kind"] == "curator" else "card", "path": u["path"],
+                        "text": u["text"].replace("**", ""), "src": srcs,
+                        "source": (author_note(s["id"]) + "\n…\n".join(context(x) for x in srcs)) if srcs else "（同一幕沒有主文）"})
+    return out
 
 
 def load_all():

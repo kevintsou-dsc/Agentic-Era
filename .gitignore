@@ -37,3 +37,6 @@ dist/
 .astro/
 __pycache__/
 *.map
+
+# 審稿用的中間檔（node scripts/review/reader-text.mjs 重新產生）
+content/review/units.json

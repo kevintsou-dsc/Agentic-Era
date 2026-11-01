@@ -5,10 +5,11 @@
   "scripts": {
     "dev": "astro dev",
     "build": "npm run verify && astro build && node scripts/verify/check-links.mjs",
-    "verify": "node scripts/verify/verify-quotes.mjs && node scripts/verify/verify-meta.mjs && node scripts/verify/lint-stories.mjs",
+    "verify": "node scripts/verify/verify-quotes.mjs && node scripts/verify/verify-meta.mjs && node scripts/verify/lint-stories.mjs && node scripts/verify/lint-style.mjs",
     "verify:release": "node scripts/verify/verify-release.mjs",
     "story:inventory": "node scripts/extract/inventory.mjs",
     "story:check": "node scripts/verify/story-check.mjs",
+    "review:packet": "node scripts/review/packet.mjs",
     "preview": "astro preview",
     "check:repo": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/check-repo.ps1"
   },

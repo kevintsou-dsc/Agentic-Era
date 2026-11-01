@@ -1,0 +1,528 @@
+{
+ "label": "pilot-curator-a06",
+ "thresholds": {
+  "faithful": 0.3,
+  "overclaim": 0.8,
+  "complete": 0.3,
+  "coverage": 2.5,
+  "coherence": 2.2
+ },
+ "stories": [
+  {
+   "id": "a06",
+   "units": 27,
+   "flagged": 0,
+   "story": {
+    "coverage": {
+     "score": 2.83,
+     "conf": 0.83
+    },
+    "coherence": {
+     "score": 2.93,
+     "conf": 0.93
+    }
+   },
+   "story_flags": [],
+   "passed": true,
+   "rows": [
+    {
+     "kind": "main",
+     "text": "Cynthia 曾在新聞現場工作 12 年。看到 Joeman 開箱陶朱隱園時，第一個感受是一種媒體人的失落：這種兼具稀缺性與話題性的夢幻獨家，選擇了 YouTube，而不是傳統媒體。",
+     "jev": {
+      "faithful": 0.81,
+      "overclaim": 0.22,
+      "complete": 0.74,
+      "fluency": {
+       "score": 2.28,
+       "conf": 0.45
+      }
+     },
+     "reasons": [],
+     "pages": [
+      45,
+      45,
+      45
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "這看似只是媒介形式的改變，背後反映的卻是更深層的現象：信任權威正在轉移。",
+     "jev": {
+      "faithful": 0.93,
+      "overclaim": 0.23,
+      "complete": 0.73,
+      "fluency": {
+       "score": 2.69,
+       "conf": 0.69
+      }
+     },
+     "reasons": [],
+     "pages": [
+      45
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "很長一段時間裡，媒體是社會真實性的守門人。企業登上財經雜誌封面，人們相信的不只是企業，更相信媒體願意用自身公信力為這個故事背書。",
+     "jev": {
+      "faithful": 0.91,
+      "overclaim": 0.3,
+      "complete": 0.71,
+      "fluency": {
+       "score": 2.45,
+       "conf": 0.47
+      }
+     },
+     "reasons": [],
+     "pages": [
+      45,
+      46
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "網路降低了內容生產門檻，信任開始從機構轉向個人：人們不一定訂閱報紙，卻會追蹤自己認同的 YouTuber。品牌選擇合作的，也變成那些擁有信任資本的人。",
+     "jev": {
+      "faithful": 0.89,
+      "overclaim": 0.28,
+      "complete": 0.74,
+      "fluency": {
+       "score": 2.29,
+       "conf": 0.48
+      }
+     },
+     "reasons": [],
+     "pages": [
+      46,
+      46,
+      46
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "如今從百萬粉絲的虛擬網紅，到能模擬真人聲音與影像的 AI 分身，我們進入「內容可以被生成、身分也可能被生成」的時代，人們要問的變成：眼前這個人是否真實存在？",
+     "jev": {
+      "faithful": 0.85,
+      "overclaim": 0.2,
+      "complete": 0.77,
+      "fluency": {
+       "score": 2.39,
+       "conf": 0.41
+      }
+     },
+     "reasons": [],
+     "pages": [
+      45,
+      45,
+      45
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "在 Cynthia 當記者的年代，真實不是抽象概念，而是一套嚴格的流程。新聞工作的珍貴，不只是生產內容，更是驗證內容。",
+     "jev": {
+      "faithful": 0.89,
+      "overclaim": 0.3,
+      "complete": 0.8,
+      "fluency": {
+       "score": 2.41,
+       "conf": 0.42
+      }
+     },
+     "reasons": [],
+     "pages": [
+      46,
+      46
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "每個新聞主題至少要有三個消息來源交叉驗證：一個來源可能有立場，兩個可能有偏誤，第三個獨立來源也指向同樣的事實時，可信度才開始建立。",
+     "jev": {
+      "faithful": 0.89,
+      "overclaim": 0.31,
+      "complete": 0.79,
+      "fluency": {
+       "score": 2.03,
+       "conf": 0.4
+      }
+     },
+     "reasons": [],
+     "pages": [
+      46,
+      46
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "企業會包裝自己，發言人會選擇性揭露，競爭者往往能提供另一個角度。讀者看到兩千字的報導，背後可能是數十通電話、十幾位受訪者與數週的查證。",
+     "jev": {
+      "faithful": 0.83,
+      "overclaim": 0.24,
+      "complete": 0.65,
+      "fluency": {
+       "score": 2.13,
+       "conf": 0.46
+      }
+     },
+     "reasons": [],
+     "pages": [
+      46,
+      46,
+      46
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "Cynthia 曾花將近兩週獨家採訪一位國際知名寶石專家，查證後發現市場評價分歧，這篇報導最後沒有刊出。新聞的責任，是確認故事可以被相信。",
+     "jev": {
+      "faithful": 0.85,
+      "overclaim": 0.25,
+      "complete": 0.79,
+      "fluency": {
+       "score": 2.15,
+       "conf": 0.38
+      }
+     },
+     "reasons": [],
+     "pages": [
+      46,
+      46,
+      47
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "一家香氛品牌代理商不斷強調業績亮眼，卻始終提不出財務數據，報導因此沒有完成；不久後，這家代理商真的因財務困難結束代理業務。",
+     "jev": {
+      "faithful": 0.88,
+      "overclaim": 0.16,
+      "complete": 0.88,
+      "fluency": {
+       "score": 2.35,
+       "conf": 0.37
+      }
+     },
+     "reasons": [],
+     "pages": [
+      47,
+      47
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "過去，內容最大的成本是生產：一篇報導要經過大量採訪與查證才能成立。",
+     "jev": {
+      "faithful": 0.45,
+      "overclaim": 0.33,
+      "complete": 0.63,
+      "fluency": {
+       "score": 2.44,
+       "conf": 0.43
+      }
+     },
+     "reasons": [],
+     "pages": [
+      47
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "今天，內容最大的成本是驗證。AI 能在幾秒內生成文章、圖片與影片，卻無法告訴你：這個故事是否真的發生、這個數據是否真的存在、這個人是否真的說過這句話。",
+     "jev": {
+      "faithful": 0.9,
+      "overclaim": 0.31,
+      "complete": 0.85,
+      "fluency": {
+       "score": 2.66,
+       "conf": 0.67
+      }
+     },
+     "reasons": [],
+     "pages": [
+      47,
+      47
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "2025 年雙北世界壯年運動會開賽前並不被看好，質疑與批評不曾間斷。按傳統危機管理思維，應該持續回應與澄清；但真正改變社會觀感的，是發生在賽場上的真實故事。",
+     "jev": {
+      "faithful": 0.79,
+      "overclaim": 0.36,
+      "complete": 0.82,
+      "fluency": {
+       "score": 2.49,
+       "conf": 0.49
+      }
+     },
+     "reasons": [],
+     "pages": [
+      47,
+      47
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "105 歲的爺爺擲出標槍奪金，88 歲的阿嬤跑完 100 公尺率先衝線，78 歲的阿公撐竿騰空而起。這些故事沒有腳本、沒有包裝，更沒有 AI 生成，批評聲音也逐漸安靜下來。",
+     "jev": {
+      "faithful": 0.73,
+      "overclaim": 0.41,
+      "complete": 0.59,
+      "fluency": {
+       "score": 2.29,
+       "conf": 0.46
+      }
+     },
+     "reasons": [],
+     "pages": [
+      47,
+      47,
+      47
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "那段經驗讓 Cynthia 體會到，真正有力量的溝通，不是改變人們的想法，而是讓人們看見真實。信任往往不是來自品牌說了什麼，而是來自人們親眼看見了什麼。",
+     "jev": {
+      "faithful": 0.88,
+      "overclaim": 0.3,
+      "complete": 0.87,
+      "fluency": {
+       "score": 2.6,
+       "conf": 0.61
+      }
+     },
+     "reasons": [],
+     "pages": [
+      47,
+      48
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "AI 讓內容供給幾乎無限增加，注意力快速貶值。消費者可能看見你的廣告但未必相信，可能追蹤你的帳號但未必購買；真正影響商業決策的，不是曝光，而是信任。",
+     "jev": {
+      "faithful": 0.91,
+      "overclaim": 0.18,
+      "complete": 0.79,
+      "fluency": {
+       "score": 2.37,
+       "conf": 0.35
+      }
+     },
+     "reasons": [],
+     "pages": [
+      48,
+      48,
+      48
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "公關的角色因此被重新定義：廣告創造注意力，公關創造可信度；行銷負責轉換，公關負責建立關係；AI 讓品牌更有效率，公關確保品牌仍值得被相信。",
+     "jev": {
+      "faithful": 0.88,
+      "overclaim": 0.29,
+      "complete": 0.66,
+      "fluency": {
+       "score": 2.4,
+       "conf": 0.41
+      }
+     },
+     "reasons": [],
+     "pages": [
+      48
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "未來最有價值的資產不是內容庫，而是信任庫：不是品牌說了多少話，而是有多少人願意替品牌說話；不是包裝得多完美，而是面對不完美時，是否仍選擇誠實。",
+     "jev": {
+      "faithful": 0.89,
+      "overclaim": 0.46,
+      "complete": 0.76,
+      "fluency": {
+       "score": 2.57,
+       "conf": 0.58
+      }
+     },
+     "reasons": [],
+     "pages": [
+      48,
+      48,
+      49
+     ]
+    },
+    {
+     "kind": "main",
+     "text": "回到陶朱隱園：值得關注的不是獨家給了誰，而是信任的生產機制已經改變。當所有故事都能被編寫，建立在真實之上的信任，將成為最稀缺的商業資源。",
+     "jev": {
+      "faithful": 0.9,
+      "overclaim": 0.27,
+      "complete": 0.75,
+      "fluency": {
+       "score": 2.5,
+       "conf": 0.51
+      }
+     },
+     "reasons": [],
+     "pages": [
+      49,
+      49
+     ]
+    },
+    {
+     "kind": "card",
+     "text": "媒體承擔查證與把關，是社會真實性的守門人",
+     "jev": {
+      "contradict": 0.08,
+      "attribute": 0.07,
+      "general": 0.86,
+      "fluency": {
+       "score": 2.15,
+       "conf": 0.39
+      }
+     },
+     "reasons": [],
+     "pages": [
+      45,
+      46,
+      46
+     ]
+    },
+    {
+     "kind": "card",
+     "text": "社群打破傳播壟斷，信任從機構轉向個人",
+     "jev": {
+      "contradict": 0.07,
+      "attribute": 0.08,
+      "general": 0.84,
+      "fluency": {
+       "score": 2.27,
+       "conf": 0.27
+      }
+     },
+     "reasons": [],
+     "pages": [
+      45,
+      46,
+      46
+     ]
+    },
+    {
+     "kind": "card",
+     "text": "內容可以被生成，身分也可能被生成",
+     "jev": {
+      "contradict": 0.32,
+      "attribute": 0.63,
+      "general": 0.76,
+      "fluency": {
+       "score": 1.75,
+       "conf": 0.36
+      }
+     },
+     "reasons": [],
+     "pages": [
+      45,
+      46,
+      46
+     ]
+    },
+    {
+     "kind": "curator",
+     "text": "Cynthia 回顧那篇沒有完成的報導：故事再動聽，拿不出證據就不寫，事後證明這個堅持是對的。",
+     "jev": {
+      "contradict": 0.14,
+      "attribute": 0.13,
+      "general": 0.48,
+      "fluency": {
+       "score": 2.25,
+       "conf": 0.42
+      }
+     },
+     "reasons": [],
+     "pages": [
+      47
+     ]
+    },
+    {
+     "kind": "curator",
+     "text": "寫一篇文章、拍一支影片、做一張圖所需要的人力與時間。過去這是內容最貴的部分，所以內容本身就是門檻，能大量生產的機構相對稀少。",
+     "jev": {
+      "contradict": 0.34,
+      "attribute": 0.28,
+      "general": 0.84,
+      "fluency": {
+       "score": 1.59,
+       "conf": 0.26
+      }
+     },
+     "reasons": [],
+     "pages": [
+      47,
+      47,
+      47
+     ]
+    },
+    {
+     "kind": "curator",
+     "text": "確認一則內容是真的：找獨立來源交叉比對、要求證據、聽不同立場的說法。生成式 AI 讓生產幾乎免費，查證卻沒有變便宜，反而變成最稀缺的工作。",
+     "jev": {
+      "contradict": 0.15,
+      "attribute": 0.55,
+      "general": 0.84,
+      "fluency": {
+       "score": 2.13,
+       "conf": 0.38
+      }
+     },
+     "reasons": [],
+     "pages": [
+      47,
+      47,
+      47
+     ]
+    },
+    {
+     "kind": "curator",
+     "text": "一篇報導要經過採訪、撰寫、編輯與查證才能刊出。因為產出不易，能刊出的內容本身就隱含了「有人把關過」的訊號。",
+     "jev": {
+      "contradict": 0.3,
+      "attribute": 0.58,
+      "general": 0.88,
+      "fluency": {
+       "score": 2.39,
+       "conf": 0.37
+      }
+     },
+     "reasons": [],
+     "pages": [
+      47,
+      47,
+      47
+     ]
+    },
+    {
+     "kind": "curator",
+     "text": "AI 能在幾秒內生成看起來很專業的文章、圖片與影片，連專家的語氣都能模仿。讀者與品牌要花更多力氣，才能判斷哪些內容值得相信。",
+     "jev": {
+      "contradict": 0.14,
+      "attribute": 0.33,
+      "general": 0.83,
+      "fluency": {
+       "score": 2.32,
+       "conf": 0.33
+      }
+     },
+     "reasons": [],
+     "pages": [
+      47,
+      47,
+      47
+     ]
+    }
+   ]
+  }
+ ]
+}
