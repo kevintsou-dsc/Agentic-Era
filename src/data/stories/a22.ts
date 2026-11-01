@@ -49,7 +49,7 @@ export const story: Story = {
           { src: '/fig/a22/p190-3.webp', alt: 'Walmart app 中的 AI 購物助理 Sparky 畫面（三）', w: 629, h: 352, caption: 'Sparky 對話畫面（3／4）', credit: '資料來源：截自 Walmart 官網', at: 3 },
           { src: '/fig/a22/p190-4.webp', alt: 'Walmart app 中的 AI 購物助理 Sparky 畫面（四）', w: 629, h: 352, caption: 'Sparky 對話畫面（4／4）', credit: '資料來源：截自 Walmart 官網', at: 4 },
         ],
-        source: '圖1：Walmart 的 AI agent Sparky 從認知需求、評論搜索適當推薦，到延伸導購｜資料來源 截自 Walmart 官網，〈AI Agent 走進消費旅程〉紙本 p.190',
+        source: '圖1：Walmart 的 AI Agent Sparky 從認知需求、評論搜索適當推薦，到延伸導購｜資料來源 截自 Walmart 官網，〈AI Agent 走進消費旅程〉紙本 p.190',
       },
       src: [{ article: 'a22', page: 190, text: '被 Walmart 用於服務顧客的 AI agent Sparky 一路從認知需求、評論搜索適當推薦，到延伸導購' }],
       beats: [
@@ -107,7 +107,7 @@ export const story: Story = {
       figures: [{ article: 'a22', page: 191, text: '最終購買轉換率為 73%，高於未使用者的 53%' }],
       beats: [
         {
-          text: '美妝的難題在個人差異：膚質、膚色、季節與生活環境都會改變答案，大量 SKU 又讓人搜尋疲勞。韓國美妝零售巨頭 Olive Young 服務來自 189 個國家的消費者，用 AI agent 賦能門市人員。',
+          text: '美妝的難題在個人差異：膚質、膚色、季節與生活環境都會改變答案，大量 SKU 又讓人搜尋疲勞。韓國美妝零售巨頭 Olive Young 服務來自 189 個國家的消費者，用 AI Agent 賦能門市人員。',
           src: [
             { article: 'a22', page: 191, text: '美妝產業的難題則來自個人差異，膚質、膚色、季節、生活環境與使用偏好會改變每個人的答案' },
             { article: 'a22', page: 191, text: '韓國最大美妝零售巨頭 Olive Young 服務來自 189 個國家的消費者與觀光客' },

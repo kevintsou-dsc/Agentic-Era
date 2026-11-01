@@ -13,7 +13,7 @@ export const story: Story = {
       heading: '談到 AI，為什麼總是這麼興奮？',
       beats: [
         {
-          text: '談到 AI，作者總是很興奮。不是因為沒有擔憂，而是消費者與市場都在快速變化，人和 AI 協作共同決策的時代已經來了。',
+          text: '談到 AI，Jennifer 總是很興奮。不是因為沒有擔憂，而是消費者與市場都在快速變化，人和 AI 協作共同決策的時代已經來了。',
           src: [
             { article: 'a01', page: 7, text: '你為什麼談到 AI 總是這麼興奮？' },
             { article: 'a01', page: 7, text: '這不是因為我沒有擔憂' },

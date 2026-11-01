@@ -118,7 +118,7 @@ const name = (t: string) => (t.includes('｜') ? t.split('｜').slice(1).join('�
   .tl li.tl-last::after { content: ''; position: absolute; top: 8px; right: 0; border: 7px solid transparent; border-right: 0; border-left: 11px solid color-mix(in srgb, var(--accent-ink) calc(var(--on) * 100%), var(--line)); }
   .tl-dot { position: relative; z-index: 1; flex: none; width: 20px; height: 20px; border-radius: 50%; border: 3px solid color-mix(in srgb, var(--accent-ink) calc(var(--on) * 100%), var(--line)); background: color-mix(in srgb, var(--accent) calc(var(--focus) * 100%), var(--paper));
     box-shadow: 0 0 0 calc(var(--focus) * 6px) color-mix(in srgb, var(--accent) 50%, transparent); transition: box-shadow .4s, background .4s, border-color .4s; }
-  .tl-phase { position: relative; z-index: 1; padding: 0 6px; background: var(--paper); font-family: var(--font-mono); font-size: 12px; font-weight: 700; color: var(--ink-2); white-space: nowrap; }
+  .tl-phase { position: relative; z-index: 1; padding: 0 6px; background: color-mix(in srgb, var(--paper) 60%, transparent); font-family: var(--font-mono); font-size: 12px; font-weight: 700; color: var(--ink-2); white-space: nowrap; }
   .tl-card { position: relative; display: grid; gap: 4px; align-content: start; padding: 12px 14px; border-radius: 12px; border: 2px solid color-mix(in srgb, var(--accent-ink) calc(var(--focus) * 100%), var(--ink-3));
     background: color-mix(in srgb, var(--accent) calc(var(--focus) * 100%), var(--paper)); transform: translateY(calc((1 - var(--on)) * 10px)); transition: transform .5s, background .4s, border-color .4s; }
   .together .tl-card { --focus: 0; }

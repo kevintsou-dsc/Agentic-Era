@@ -268,3 +268,4 @@
 - 橫捲卡片恢復等高：軌道改 align-items: stretch（拉齊到最高那張），整條軌道在可用高度內 safe center；卡片最高限制改由 scrolly.ts 量測可用高度寫入 --hs-room。
 - 網址改為人看得懂的英文短名：/a/pNN/ → /story/<短名>/，原文頁 /full/ → /original/；舊網址以 Astro redirects 轉址（content/legacy-slugs.json）；新增 docs/article-index.md 代號對照。CSP 修正：首頁加載頁的行內 script 原本會被 script-src 'self' 擋掉，加入 sha256 並在 check-links 檢查每段行內 script 都在允許清單。a13 同心圓開啟 grow。
 - 瀏覽器抽查（每種圖表看一張）：發現並修正 (1) 首頁「決策智慧」字太大蓋住兩張臉 → 縮小；(2) 文氏圖交集文字未亮時仍以 25% 顯示成殘影 → 未亮時隱藏；(3) 重建 SOV 同心圓 4 圈只有 2 段主文，開 grow 後外兩圈永遠不出現 → rings 支援每圈 at、同段多圈由內往外錯開長出，lint 加檢查。其餘（vs、radial、checklist、flatten、scatter、timeline、增長三角、服務矩陣、咖啡杯、內容引擎、地基 hover、橫捲等高、大數字）正常。
+- 移除紙張皺摺（試用後效果不佳），保留滑鼠筆跡。時間軸階段小標的底色改為 60% 半透明紙色。作者親身經歷的 6 處「作者」改為英文名：AI for Growth → Jennifer、信任 → Cynthia（含卡片 1 處）、重建 SOV → Jeremy；guide 更新稱呼規則。策展文字審查計畫定案：產出審稿文件交站外 AI 審查、不請原文作者確認、改由多個 sub agent 扮演讀者盲評、術語統一為「AI Agent」。

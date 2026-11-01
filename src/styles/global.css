@@ -48,11 +48,6 @@ img, svg { max-width: 100%; display: block; }
 .d3 .fl-dots circle, .d3 .rg-ripple, .stage svg defs * { filter: none; }
 @media (max-width: 560px) { .d3 svg :is(rect, circle) { filter: none; } }
 /* 紙上筆跡（scripts/paper.ts）：滑鼠經過空白紙面留下的鉛筆線 */
-/* 紙張皺摺（scripts/paper.ts）：按下處的一團起伏，中心最明顯、邊緣淡出，撫平後消失 */
-.paper-crease { position: fixed; z-index: 29; pointer-events: none; mix-blend-mode: multiply; border-radius: 50%;
-  -webkit-mask: radial-gradient(closest-side, #000 35%, transparent); mask: radial-gradient(closest-side, #000 35%, transparent);
-  transform: rotate(var(--rot)) scale(.6); opacity: 0; animation: crease 1.6s cubic-bezier(.2, .7, .2, 1) forwards; }
-@keyframes crease { 12% { opacity: .75; transform: rotate(var(--rot)) scale(1); } 40% { opacity: .6; } 100% { opacity: 0; transform: rotate(var(--rot)) scale(1.08); } }
 .paper-ink { position: fixed; inset: 0; width: 100vw; height: 100vh; z-index: 30; pointer-events: none; mix-blend-mode: multiply; }
 body::before { content: ""; position: fixed; inset: 0; z-index: -1; pointer-events: none; background: url(/art/cover/kraft.webp) 0 0 / 640px; opacity: .32; mix-blend-mode: multiply; }
 a { color: inherit; }
