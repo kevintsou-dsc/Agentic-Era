@@ -309,13 +309,16 @@ details.more[open] summary::before { content: "－ "; }
 @view-transition { navigation: auto; }
 .topbar { view-transition-name: topbar; }
 .progress { view-transition-name: progress; }
-::view-transition-old(root) { animation: vt-out .2s var(--ease-std) both; }
-::view-transition-new(root) { animation: vt-in .35s var(--ease-out) both; }
+/* 先退後進，不交疊：舊頁上移淡出（.28s），中間露出一瞬紙色，新頁再從下方升起（.6s）。
+   交疊的淡入淡出看起來只像閃一下，讀者感覺不到換頁。 */
+::view-transition { background: var(--paper); }
+::view-transition-old(root) { animation: vt-out .28s var(--ease-std) both; }
+::view-transition-new(root) { animation: vt-in .6s var(--ease-out) .2s both; }
 ::view-transition-group(topbar), ::view-transition-group(progress),
 ::view-transition-old(topbar), ::view-transition-new(topbar),
 ::view-transition-old(progress), ::view-transition-new(progress) { animation: none; }
-@keyframes vt-out { to { opacity: 0; } }
-@keyframes vt-in { from { opacity: 0; transform: translateY(16px); } }
+@keyframes vt-out { to { opacity: 0; transform: translateY(-4svh) scale(.985); } }
+@keyframes vt-in { from { opacity: 0; transform: translateY(8svh); } }
 
 @media (prefers-reduced-motion: reduce) {
   @view-transition { navigation: none; }
