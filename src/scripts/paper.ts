@@ -58,4 +58,27 @@ export function initPaper() {
     last = { x, y };
   }, { passive: true });
   document.addEventListener('pointerleave', () => { last = null; });
+
+  // 紙張皺摺：在空白紙面上按下滑鼠，按點周圍的紙出現一團皺摺（SVG 光照濾鏡做出起伏），約 1.6 秒後慢慢撫平。
+  // 每次的皺紋形狀不同（亂數 seed）；同時最多 3 團。
+  let creases = 0;
+  addEventListener('pointerdown', (e) => {
+    if (e.pointerType !== 'mouse' || e.button !== 0 || creases >= 3) return;
+    const t = e.target as Element | null;
+    if (t?.closest?.(SKIP)) return;
+    creases++;
+    const size = 240 + Math.random() * 80;
+    const seed = Math.floor(Math.random() * 999);
+    const el = document.createElement('div');
+    el.className = 'paper-crease';
+    el.setAttribute('aria-hidden', 'true');
+    el.style.cssText = `left:${e.clientX - size / 2}px;top:${e.clientY - size / 2}px;width:${size}px;height:${size}px;--rot:${Math.round(Math.random() * 360)}deg`;
+    el.innerHTML = `<svg width="100%" height="100%"><filter id="crease-${seed}" x="0" y="0" width="100%" height="100%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.018 0.03" numOctaves="3" seed="${seed}" result="n"/>
+      <feDiffuseLighting in="n" lighting-color="#fff" surfaceScale="6" result="l"><feDistantLight azimuth="225" elevation="48"/></feDiffuseLighting>
+      <feColorMatrix in="l" type="matrix" values="0 0 0 0 .32  0 0 0 0 .27  0 0 0 0 .2  -1.1 0 0 0 1"/>
+    </filter><rect width="100%" height="100%" filter="url(#crease-${seed})"/></svg>`;
+    document.body.append(el);
+    setTimeout(() => { el.remove(); creases--; }, 1700);
+  });
 }
