@@ -692,8 +692,8 @@ function rings(el: HTMLElement, c: Extract<D3Chart, { kind: 'rings' }>): Instanc
   ringG.append('circle').attr('cx', cx).attr('cy', cy).attr('r', (o) => r0 + (o.i + 1) * band)
     // grow 收起時縮到內一圈的半徑，展開用 CSS transform 過場
     .style('--rg-k', (o) => String((r0 + o.i * band) / (r0 + (o.i + 1) * band)))
-    // 同一段長出的多圈：由內往外錯開
-    .style('transition-delay', (o) => `${(o.i - c.rings.findIndex((x, j) => (x.at ?? j + 1) === (c.rings[o.i].at ?? o.i + 1))) * 0.35}s`);
+    // 同一段長出的多圈：由內往外錯開（只延遲 transform，hover 變色不等）
+    .style('--rg-d', (o) => `${(o.i - c.rings.findIndex((x, j) => (x.at ?? j + 1) === (c.rings[o.i].at ?? o.i + 1))) * 0.35}s`);
   ringG.append('text').attr('class', 'rg-label').attr('x', cx).attr('y', (o) => cy - (r0 + o.i * band) - band / 2 + 1).attr('text-anchor', 'middle').text((o) => o.d.label);
   ringG.append('text').attr('class', 'rg-sub').attr('x', cx).attr('y', (o) => cy - (r0 + o.i * band) - band / 2 + 16).attr('text-anchor', 'middle').text((o) => o.d.sub);
   ringG.each(function (o) { bind(this, { title: o.d.label, body: o.d.desc, extra: o.d.extra }); });
