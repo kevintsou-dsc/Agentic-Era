@@ -18,7 +18,9 @@
   --accent: var(--people);
   --accent-ink: var(--people-ink);
 
-  --font-sans: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", "Heiti TC", system-ui, sans-serif;
+  /* Noto Sans TC 可變字重（100–900）自架於站內（@fontsource-variable，Base.astro 匯入），依 unicode-range 分片，只下載頁面用到的字；
+     不再依賴讀者電腦是否裝了 Noto（Windows 沒裝會退到微軟正黑體）。首次進站的載入動畫會蓋住字體下載。 */
+  --font-sans: "Noto Sans TC Variable", "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", "Heiti TC", system-ui, sans-serif;
   --font-mono: ui-monospace, "Cascadia Mono", "SFMono-Regular", Consolas, monospace;
 
   --measure: 34rem;

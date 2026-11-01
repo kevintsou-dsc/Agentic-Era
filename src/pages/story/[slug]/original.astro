@@ -16,7 +16,7 @@ const reviewed = FULLTEXT_REVIEWED.has(a.id);
 let i = 0;
 const blocks = loadFulltext(a.id).map((b) => (b.kind === 'page' ? b : { ...b, i: i++ }));
 ---
-<Base title={`原文｜${fullTitle(a)}｜決策智慧 2026`} description={`${fullTitle(a)} 原文全文，標示紙本頁碼。`} chapter={a.chapter} crumb={`${a.title}．原文`}>
+<Base title={`原文｜${fullTitle(a)}｜決策智慧 2026`} description={`${fullTitle(a)} 原文全文，標示紙本頁碼。`} chapter={a.chapter} crumb={`${a.title}．原文`} og={`/og/${a.slug}.png`}>
   <article class="full wrap">
     <div class="head">
       <ArticleHead a={a} mode="full" />

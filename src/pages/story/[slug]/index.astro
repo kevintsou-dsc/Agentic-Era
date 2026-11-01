@@ -7,6 +7,7 @@ import { STORIES } from '../../../data/stories';
 import { FULLTEXT_REVIEWED } from '../../../lib/fulltext';
 import type { Story } from '../../../lib/story';
 import { storyMinutes } from '../../../lib/stats';
+import { RELEASE } from '../../../lib/release';
 
 export function getStaticPaths() {
   return ARTICLES.filter((a) => STORIES[a.id]).map((a) => ({ params: { slug: a.slug }, props: { a, story: STORIES[a.id] } }));
@@ -27,9 +28,9 @@ const threadNext = THREADS.filter((t) => a.threads.includes(t.key))
   })
   .filter((x): x is { t: (typeof THREADS)[number]; n: Article } => !!x.n && x.n !== bookNext);
 ---
-<Base title={`${fullTitle(a)}｜決策智慧 2026`} description={story.oneLiner} chapter={a.chapter} crumb={`${a.title}．精華 ${storyMinutes(story)} 分鐘`}>
+<Base title={`${fullTitle(a)}｜決策智慧 2026`} description={story.oneLiner} chapter={a.chapter} crumb={`${a.title}．精華 ${storyMinutes(story)} 分鐘`} og={`/og/${a.slug}.png`}>
   <section class="hero">
-    {story.status !== 'reviewed' && <p class="draft">{story.status === 'judged' ? 'AI 初評通過・待人工校閱' : '草稿：待審定'}</p>}
+    {!RELEASE && story.status !== 'reviewed' && <p class="draft">{story.status === 'judged' ? 'AI 初評通過・待人工校閱' : '草稿：待審定'}</p>}
     <ArticleHead a={a} mode="story" storyMinutes={`${storyMinutes(story)} 分鐘`} />
     <p class="lede one"><span class="curated">一句話｜策展者整理</span><br />{story.oneLiner}</p>
     <p class="scroll-hint">往下捲動</p>

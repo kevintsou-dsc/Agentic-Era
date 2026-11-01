@@ -275,3 +275,4 @@
 - 同心圓 hover 變色延遲：長出動畫的由內往外錯開（每圈 0.35 秒）寫在整個 transition-delay 上，連 hover 變色也被延遲（最外圈 1.05 秒）。改為只延遲 transform。
 - 載入動畫改為每個瀏覽階段第一次進站必定顯示（不論首頁或文章網址）：移到 Base 版型，至少 2.4 秒、頁面 load 後才淡出、最多 6 秒；進度條取時間與圖片載入的較小值；改用計時器（rAF 在背景分頁會暫停）；減少動態時照樣顯示但不播動畫；有 JS 時關掉無 JS 的 3.4 秒保底淡出。CSP 雜湊更新。
 - 藝術總監審查（docs/art-direction-review.md）：P0 字體未內嵌（評審電腦沒有 Noto Sans TC 會退到微軟正黑體）、審稿徽章保險、首頁頁尾過時字、缺分享圖；P1 襯線字層級、幕序節奏、首屏空白、動態 token、跨頁 View Transitions、結尾已讀地圖；讀者互動盤點 A 級 5 項（真實的力量拖動句子、重建 SOV 磁吸、授權光譜拖放、People Model 先猜再看、收進筆記）、B 級 5 項。
+- P0 完成：(1) 自架 Noto Sans TC 可變字重（fontsource，依 unicode-range 分片；一篇約 1.4 MB，載入動畫期間下載完），不再依賴讀者本機字體；(2) src/lib/release.ts：Cloudflare 建置（CF_PAGES=1）或 RELEASE=1 時不顯示審稿徽章；(3) 首頁頁尾過時字改寫；(4) scripts/og.mjs 用 sharp＋本機 Noto 產生首頁與 22 篇分享圖（牛皮紙底、章節色、標題自動縮字級與在標點斷行），Base 加 og:image／twitter:card，check-links 檢查分享圖存在。待 Cloudflare 網域確定後設 astro.config site。

@@ -21,6 +21,13 @@
 
 ## 二、P0：送件前一定要處理
 
+> **2026-11-02 已全部完成**：
+> 1. 字體改為自架 Noto Sans TC 可變字重（`@fontsource-variable/noto-sans-tc`，OFL 授權）。依 unicode-range 分片，一篇文章約下載 1.4 MB／23 片，本機 0.6 秒內完成，在載入動畫時間內。
+> 2. 正式建置（Cloudflare Pages 的 `CF_PAGES=1`，或 `RELEASE=1`）不顯示審稿徽章，本機建置照常顯示。原文頁的「尚未逐頁人工校正」說明是給讀者的誠實揭露，保留。
+> 3. 首頁頁尾改為「每篇精華的每一句都附紙本頁碼，可逐句對照原文」。
+> 4. `npm run og` 產生 23 張分享圖到 `public/og/`，Base 加上 og:image 與 twitter:card；check-links 檢查每頁的分享圖都存在。**待辦：Cloudflare 網域確定後，在 astro.config 設 `site`，og:image 才會是絕對網址**（多數平台要求）。
+> 5. 剩一處小例外：`public/fig/a03/pope-call.svg` 以 `<img>` 顯示，圖裡的文字不會套用網頁字體，會用讀者電腦的字體。
+
 | # | 問題 | 證據 | 建議 |
 |---|---|---|---|
 | 1 | **沒有內嵌字體** | `document.fonts` 是空的；`--font-sans` 第一順位 Noto Sans TC 靠讀者電腦本機安裝。評審多用 Windows，沒裝 Noto 就會退到微軟正黑體，標題的粗細、字距、版面節奏全部跑掉 | 自架 Noto Sans TC（400／700／900），建置時依全站實際用字做子集（約 3,500 字，每個字重約 300–500 KB woff2）。現在有至少 2.4 秒的載入動畫可以完整遮住字體下載，`font-display: swap` 也不會被看見 |

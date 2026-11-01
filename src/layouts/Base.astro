@@ -1,4 +1,5 @@
 ---
+import '@fontsource-variable/noto-sans-tc';
 import '../styles/global.css';
 import DentsuLogo from '../components/DentsuLogo.astro';
 import Loader from '../components/home/Loader.astro';
@@ -8,8 +9,12 @@ interface Props {
   description: string;
   chapter?: 'intro' | 'people' | 'model' | 'ai';
   crumb?: string;
+  /** 分享預覽圖（public/og/，由 npm run og 產生）；沒給就用首頁那張 */
+  og?: string;
 }
-const { title, description, chapter = 'people', crumb } = Astro.props;
+const { title, description, chapter = 'people', crumb, og = '/og/home.png' } = Astro.props;
+// og:image 多數平台要絕對網址：astro.config 設了 site（正式網域）就用絕對網址，否則先用站內路徑
+const ogImage = Astro.site ? new URL(og, Astro.site).href : og;
 const repo = 'https://github.com/kevintsou-dsc/Agentic-Era';
 ---
 <!doctype html>
@@ -45,6 +50,10 @@ const repo = 'https://github.com/kevintsou-dsc/Agentic-Era';
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="article" />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
     <meta name="theme-color" content="#f3eee4" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="author" href="/humans.txt" />

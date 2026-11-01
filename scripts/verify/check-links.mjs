@@ -27,6 +27,12 @@ const broken = [];
 let count = 0;
 for (const page of pages) {
   const html = readFileSync(page, 'utf8');
+  // 分享預覽圖（og:image）也要存在；正式網域的絕對網址取路徑部分比對
+  for (const m of html.matchAll(/<meta property="og:image" content="([^"]+)"/g)) {
+    count++;
+    const path = m[1].replace(/^https?:\/\/[^/]+/, '');
+    if (!existsSync(join(dist, path))) broken.push(`${relative(dist, page)} → ${m[1]}（分享預覽圖不存在，跑 npm run og）`);
+  }
   for (const m of html.matchAll(/\s(?:href|src)="([^"]+)"/g)) {
     const url = m[1];
     if (/^(https?:|mailto:|data:)/.test(url)) continue;
