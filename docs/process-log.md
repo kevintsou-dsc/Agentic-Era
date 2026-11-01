@@ -272,3 +272,6 @@
 - 審稿工具：reader-text.mjs 依頁面順序攤平讀者看得到的文字（主文／一句話／策展補充／短文字／引言／出處）；lint-style.mjs 進 story:check（術語表 content/glossary.json、半形標點、中英數空格擋下；長句與待定術語寫 docs/review/style-report.md）；packet.mjs 產生每篇審稿文件與盲評讀者版；jev_review.py 加 --curator 評策展補充（contradict／attribute／general），送評原文前加作者名一行，修正英文名被誤判無出處；docs/review/blind-readers.md 三位讀者設定，信任試跑。順手修正〈從金曲獎到甄嬛傳〉延伸標題的日文劇名（加引號）。
 - 術語定案：「佔」（佔比、佔位、佔有率），主文與圖表文字 18 處「占」改為「佔」（當注意力成為稀缺資源 2、重建 SOV 16），逐字引言保留原字；glossary 改為 error。
 - 其餘術語依建議定案：「週年」（從金曲獎到甄嬛傳 7 處）、「Gen Z」（4 處）、「消費者旅程」（6 處；「顧客旅程」是 CX 用語保留；文章標題〈AI Agent 走進消費旅程〉不改）；glossary 全部改為 error。
+- 同心圓 hover 變色延遲：長出動畫的由內往外錯開（每圈 0.35 秒）寫在整個 transition-delay 上，連 hover 變色也被延遲（最外圈 1.05 秒）。改為只延遲 transform。
+- 載入動畫改為每個瀏覽階段第一次進站必定顯示（不論首頁或文章網址）：移到 Base 版型，至少 2.4 秒、頁面 load 後才淡出、最多 6 秒；進度條取時間與圖片載入的較小值；改用計時器（rAF 在背景分頁會暫停）；減少動態時照樣顯示但不播動畫；有 JS 時關掉無 JS 的 3.4 秒保底淡出。CSP 雜湊更新。
+- 藝術總監審查（docs/art-direction-review.md）：P0 字體未內嵌（評審電腦沒有 Noto Sans TC 會退到微軟正黑體）、審稿徽章保險、首頁頁尾過時字、缺分享圖；P1 襯線字層級、幕序節奏、首屏空白、動態 token、跨頁 View Transitions、結尾已讀地圖；讀者互動盤點 A 級 5 項（真實的力量拖動句子、重建 SOV 磁吸、授權光譜拖放、People Model 先猜再看、收進筆記）、B 級 5 項。

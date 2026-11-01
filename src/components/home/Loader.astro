@@ -1,7 +1,10 @@
 ---
-// 進場加載頁（只在首頁、每個瀏覽階段第一次進站時出現）：牛皮紙底上，「2026」細線字由左往右顯影，
-// 「決策智慧」虹彩字跟著掃過，下方細線是載入進度。圖片載入完成（至少 1.1 秒、最多 3 秒）後淡出。
-// 回訪（sessionStorage）或減少動態時立刻移除；沒有 JS 時 3.4 秒後以 CSS 自動淡出，不會擋住內容。
+// 進場加載頁（Base 版型的每一頁都放；每個瀏覽階段第一次進站時出現，不論從首頁或文章頁進來）：
+// 牛皮紙底上，「2026」細線字由左往右顯影，「決策智慧」虹彩字跟著掃過，下方細線是載入進度。
+// 網站載入很快，所以至少顯示 MIN 毫秒讓開場完整播完；頁面 load 之後才淡出，最多等 MAX 毫秒。
+// 進度條取「已過時間／MIN」與「已載入圖片比例」的較小者，不會一下衝到底。
+// 同一瀏覽階段再進站（sessionStorage）立刻移除；減少動態時照樣顯示但不播動畫（見 CSS）。
+// 沒有 JS 時 3.4 秒後以 CSS 自動淡出，不會擋住內容。
 const C = '/art/cover/';
 ---
 <div class="ld" id="loader" aria-hidden="true">
@@ -14,32 +17,32 @@ const C = '/art/cover/';
   (function () {
     var el = document.getElementById('loader');
     if (!el) return;
+    var MIN = 2400, MAX = 6000;
     var seen = false;
     try { seen = sessionStorage.getItem('dw-loaded') === '1'; sessionStorage.setItem('dw-loaded', '1'); } catch (e) {}
-    if (seen || matchMedia('(prefers-reduced-motion: reduce)').matches) { el.remove(); return; }
+    if (seen) { el.remove(); return; }
+    el.classList.add('ld-js');
     document.documentElement.classList.add('is-loading');
     var bar = el.querySelector('[data-loader-bar]');
-    var t0 = performance.now(), done = false;
+    var t0 = performance.now(), loaded = false, done = false;
     var finish = function () {
       if (done) return; done = true;
-      var wait = Math.max(0, 1100 - (performance.now() - t0));
-      setTimeout(function () {
-        bar.style.transform = 'scaleX(1)';
-        el.classList.add('ld-out');
-        document.documentElement.classList.remove('is-loading');
-        setTimeout(function () { el.remove(); }, 700);
-      }, wait);
+      bar.style.transform = 'scaleX(1)';
+      el.classList.add('ld-out');
+      document.documentElement.classList.remove('is-loading');
+      setTimeout(function () { el.remove(); }, 700);
     };
-    var tick = function () {
-      if (done) return;
+    // 用計時器而不是 requestAnimationFrame：分頁在背景或被節流時一樣會準時離場；進度條的平滑交給 CSS transition
+    var timer = setInterval(function () {
+      var dt = performance.now() - t0;
       var imgs = document.images, n = imgs.length, ok = 0;
       for (var i = 0; i < n; i++) if (imgs[i].complete) ok++;
-      bar.style.transform = 'scaleX(' + Math.max(0.08, n ? ok / n : 1) + ')';
-      requestAnimationFrame(tick);
-    };
-    tick();
-    addEventListener('load', finish);
-    setTimeout(finish, 3000);
+      var p = Math.min(dt / MIN, loaded ? 1 : (n ? ok / n : 1) * 0.95);
+      bar.style.transform = 'scaleX(' + Math.max(0.04, p) + ')';
+      if ((loaded && dt >= MIN) || dt >= MAX) { clearInterval(timer); finish(); }
+    }, 100);
+    if (document.readyState === 'complete') loaded = true;
+    else addEventListener('load', function () { loaded = true; });
   })();
 </script>
 
@@ -51,11 +54,18 @@ const C = '/art/cover/';
   .ld-logo { width: min(56vw, 560px); height: auto; margin-top: -2vw; clip-path: inset(0 100% 0 0); animation: ld-wipe .9s .55s cubic-bezier(.6, 0, .2, 1) forwards; }
   .ld-sub { margin: 0; font-size: 13px; letter-spacing: .18em; color: #4d4234; opacity: 0; animation: ld-fade .6s 1s forwards; }
   .ld-bar { width: min(40vw, 240px); height: 2px; margin-top: 18px; background: rgba(0, 0, 0, .12); overflow: hidden; }
-  .ld-bar span { display: block; height: 100%; background: #3b3328; transform: scaleX(.08); transform-origin: left; transition: transform .3s; }
+  .ld-bar span { display: block; height: 100%; background: #3b3328; transform: scaleX(.04); transform-origin: left; transition: transform .1s linear; }
+  .ld.ld-js { animation: none; } /* 有 JS 時由腳本決定何時離場，關掉無 JS 的保底淡出 */
   .ld.ld-out { animation: ld-leave .65s cubic-bezier(.6, 0, .2, 1) forwards; }
   @keyframes ld-wipe { to { clip-path: inset(0 0 0 0); } }
   @keyframes ld-fade { to { opacity: 1; } }
   @keyframes ld-leave { to { opacity: 0; transform: scale(1.04); visibility: hidden; } }
   @keyframes ld-auto { to { opacity: 0; visibility: hidden; } }
   :global(html.is-loading) { overflow: hidden; }
+  /* 減少動態：字與副標直接顯示，只留進度條；離場改為單純淡出 */
+  @media (prefers-reduced-motion: reduce) {
+    .ld-2026, .ld-logo { animation: none; clip-path: none; }
+    .ld-sub { animation: none; opacity: 1; }
+    .ld.ld-out { animation: ld-auto .3s forwards; }
+  }
 </style>

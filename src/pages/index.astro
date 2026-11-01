@@ -1,6 +1,5 @@
 ---
 import Base from '../layouts/Base.astro';
-import Loader from '../components/home/Loader.astro';
 import Hero from '../components/home/Hero.astro';
 import BookDots from '../components/graphics/BookDots.astro';
 import { ARTICLES, CHAPTERS, CHAPTER_ORDER, THREADS, totalMinutes, totalAuthors } from '../lib/articles';
@@ -13,7 +12,6 @@ const mins = totalMinutes % 60;
 const firstOf = (key: string) => ARTICLES.find((a) => a.threads.includes(key as never) && STORIES[a.id]);
 ---
 <Base title="決策智慧 2026｜一個故事讀完整本" description="電通《決策智慧 2026》22 篇觀點的捲動閱讀版：1 分鐘看懂全書，幾分鐘讀完一篇精華，想深讀再看原文。" chapter="intro">
-  <Loader />
   <Hero quote={CORE_QUESTION} hours={hours} mins={mins} authors={totalAuthors} />
 
   <section class="scrolly">
