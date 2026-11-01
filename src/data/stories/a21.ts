@@ -161,7 +161,7 @@ export const story: Story = {
           ],
         },
         {
-          text: '更重要的是服務台灣特有的通路：理解 PTT、Dcard 的社群文化，在 Threads 與 Facebook 的平台矩陣中動態投放，並透過 LINE 即時完成消費旅程的閉環，因為台灣消費者就在這些地方。',
+          text: '更重要的是服務台灣特有的通路：理解 PTT、Dcard 的社群文化，在 Threads 與 Facebook 的平台矩陣中動態投放，並透過 LINE 即時完成消費者旅程的閉環，因為台灣消費者就在這些地方。',
           src: [
             { article: 'a21', page: 187, text: '它必須理解 PTT、Dcard 等在地社群的文化，能在 Threads 與 Facebook 組成的平台矩陣中動態投放創意素材，也能透過 LINE 的基礎架構即時完成消費旅程的閉環' },
             { article: 'a21', page: 187, text: '因為台灣消費者就在這些地方出現' },

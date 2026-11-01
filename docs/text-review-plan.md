@@ -13,7 +13,7 @@
 |---|---|---|
 | 攤平讀者看得到的文字 | `node scripts/review/reader-text.mjs` | `content/review/units.json`（不進版控） |
 | 風格與術語 lint | `npm run story:check`（含 `lint-style.mjs`） | 擋下：術語表 error 詞、中文旁半形標點、中英數之間沒空格；提示寫入 `docs/review/style-report.md`（長句、待定術語） |
-| 術語表 | `content/glossary.json` | AI Agent 已定案；占／週年／Gen Z／消費者旅程為建議，待 Kevin 決定 |
+| 術語表 | `content/glossary.json` | AI Agent、佔、週年、Gen Z、消費者旅程 全部定案（2026-11-01），story:check 擋下 |
 | Jev 初評（含策展補充） | `cd ../jev-test && .venv/Scripts/python ../決策智慧vibecoding比賽/scripts/review/jev_review.py <label> --curator [aNN ...]` | `content/review/<label>.json`、`docs/review/<label>.md` |
 | 讀者盲評 | 依 `docs/review/blind-readers.md` 派 3 個 sub agent 讀 `docs/review/reader/<短名>.md` | `docs/review/blind/<短名>.md` |
 | 審稿文件 | `npm run review:packet [-- 短名 ...]` | `docs/review/packets/<短名>.md`（貼給站外 AI）、`docs/review/reader/<短名>.md`（盲評用） |

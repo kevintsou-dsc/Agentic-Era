@@ -53,14 +53,14 @@ export const story: Story = {
       value: 65,
       unit: '%',
       caption: {
-        text: '串流平台 Vevo 的研究發現，65% 的 Z 世代會對自己出生前、或年紀太小記不得的年代產生「借用式懷舊」：我沒有活過那個年代，但我喜歡它代表的感覺。',
+        text: '串流平台 Vevo 的研究發現，65% 的 Gen Z 會對自己出生前、或年紀太小記不得的年代產生「借用式懷舊」：我沒有活過那個年代，但我喜歡它代表的感覺。',
         src: [
           { article: 'a11', page: 82, text: '65% 的 Z 世代會對自己出生前、或年紀太小無法真正記得的文化時代產生「借用式懷舊」(Borrowed Nostalgia)' },
           { article: 'a11', page: 82, text: '我沒有活過那個年代，但我喜歡那個年代代表的感覺' },
         ],
       },
       figure: { article: 'a11', page: 82, text: '65% 的 Z 世代' },
-      people: { total: 20, filled: 13, label: '位 Z 世代，對沒經歷過的年代懷舊' },
+      people: { total: 20, filled: 13, label: '位 Gen Z，對沒經歷過的年代懷舊' },
       source: '資料來源 Vevo《Then Is Now》(2026)，吳宗霖、陳炯文〈從金曲獎到甄嬛傳〉紙本 p.82',
     },
     {
@@ -86,7 +86,7 @@ export const story: Story = {
               items: [
                 { label: '感性 emo', value: 58.0, extra: '十幾歲的受訪者大多沒真正經歷過平成文化，對他們來說這是一種新鮮、有個性的美感，所以最常用「emo」而不是「懷念」來形容。' },
                 { label: '適合拍照打卡', value: 38.9, extra: '對年輕世代而言，復古元素是可以被拍下來、放上社群的視覺素材，例如底片相機質感或舊式手機。重點是「好分享」，不是「好懷念」。' },
-                { label: '覺得時髦', value: 33.8, extra: '舊元素在年輕人眼中反而是新的流行，這和 Z 世代的「借用式懷舊」一致：喜歡的是那個年代代表的氛圍，而不是真實的過去。' },
+                { label: '覺得時髦', value: 33.8, extra: '舊元素在年輕人眼中反而是新的流行，這和 Gen Z 的「借用式懷舊」一致：喜歡的是那個年代代表的氛圍，而不是真實的過去。' },
               ],
             },
             {
@@ -445,7 +445,7 @@ export const story: Story = {
           },
         },
         {
-          kicker: '日清', title: 'どん兵衛 50 周年復刻',
+          kicker: '日清', title: 'どん兵衛 50 週年復刻',
           image: { src: '/fig/a11/p89-1.webp', alt: '日清「どん兵衛 Classic」復刻包裝', w: 404, h: 401 },
           text: '日清真的找回約 50 年前的配方資料，重現 1976 年上市時的產品設定。懷舊從行銷溝通走進產品體驗：記憶不只可以被看見，也可以被重新吃一次。',
           src: [
@@ -475,17 +475,17 @@ export const story: Story = {
         },
         {
           kicker: '香港麥當勞', title: '重回 1975 年的起點',
-          image: { src: '/fig/a11/p90-1.webp', alt: '香港麥當勞 50 周年展覽現場', w: 508, h: 696 },
-          text: '香港麥當勞 50 周年重建第一間店舖、制服與城市情境，再延伸成實體週年展；2026 年又讓劉德華與姜濤兩個世代共同演繹新版〈沒有翅膀的天使〉。',
+          image: { src: '/fig/a11/p90-1.webp', alt: '香港麥當勞 50 週年展覽現場', w: 508, h: 696 },
+          text: '香港麥當勞 50 週年重建第一間店舖、制服與城市情境，再延伸成實體週年展；2026 年又讓劉德華與姜濤兩個世代共同演繹新版〈沒有翅膀的天使〉。',
           src: [
             { article: 'a11', page: 90, text: '重建第一間香港麥當勞的店舖、制服、產品與城市情境' },
             { article: 'a11', page: 90, text: '讓劉德華與姜濤兩個世代的代表人物共同演繹新版〈沒有翅膀的天使〉' },
           ],
           more: {
-            title: '案例：香港麥當勞 50 周年',
-            image: { src: '/fig/a11/p90-1.webp', alt: '香港麥當勞 50 周年展覽現場', w: 508, h: 696, caption: '香港麥當勞 50 周年展把首店、經典角色與商品記憶重新組成消費者可進入、可體驗的品牌歷史', credit: '資料來源：McDonald\'s Hong Kong' },
+            title: '案例：香港麥當勞 50 週年',
+            image: { src: '/fig/a11/p90-1.webp', alt: '香港麥當勞 50 週年展覽現場', w: 508, h: 696, caption: '香港麥當勞 50 週年展把首店、經典角色與商品記憶重新組成消費者可進入、可體驗的品牌歷史', credit: '資料來源：McDonald\'s Hong Kong' },
             quote: { article: 'a11', page: 90, text: '好的懷舊，不是讓上一代再看一次，而是讓下一代也在今天第一次走進來。' },
-            links: [{ url: 'https://mcdonalds.com.hk/en/news/the-ultimate-reveal-mcdonalds-hong-kong-celebrates-50th-anniversary-with-back-to-the-beginning-in-1975-microfilms-ten-unmissable-highlights/', label: '香港麥當勞 50 周年企劃', kind: 'web' }],
+            links: [{ url: 'https://mcdonalds.com.hk/en/news/the-ultimate-reveal-mcdonalds-hong-kong-celebrates-50th-anniversary-with-back-to-the-beginning-in-1975-microfilms-ten-unmissable-highlights/', label: '香港麥當勞 50 週年企劃', kind: 'web' }],
           },
         },
       ],

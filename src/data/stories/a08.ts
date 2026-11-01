@@ -58,7 +58,7 @@ export const story: Story = {
           ],
         },
         {
-          text: '這在 Gen Z 身上最明顯。成長於資訊爆炸與高度競爭的環境，他們發展出「與其一味追求成功，不如先照顧好自己的情緒狀態」的生活哲學；而這群約占全球人口四分之一的世代，貢獻了近四成的消費影響力。',
+          text: '這在 Gen Z 身上最明顯。成長於資訊爆炸與高度競爭的環境，他們發展出「與其一味追求成功，不如先照顧好自己的情緒狀態」的生活哲學；而這群約佔全球人口四分之一的世代，貢獻了近四成的消費影響力。',
           src: [
             { article: 'a08', page: 59, text: '與其一味追求成功，不如先照顧好自己的情緒狀態' },
             { article: 'a08', page: 59, text: 'Gen Z 約占全球人口四分之一，並貢獻近四成的消費影響力' },
@@ -78,7 +78,7 @@ export const story: Story = {
       kind: 'hscroll',
       title: '粉絲經濟的六個現場',
       intro: {
-        text: '文化討論發生在六個現場，它們是文化占比被重新分配的第一線，也是品牌累積共同記憶的入口。',
+        text: '文化討論發生在六個現場，它們是文化佔比被重新分配的第一線，也是品牌累積共同記憶的入口。',
         src: [{ article: 'a08', page: 60, text: '以下六個現場是文化占比被重新分配的第一線，也是品牌累積共同記憶的六個入口' }],
       },
       panels: [
@@ -131,7 +131,7 @@ export const story: Story = {
           },
         },
         {
-          kicker: '現場 5', title: '短劇', figure: { value: '97%', label: 'Z 世代三個月內看過短影音' },
+          kicker: '現場 5', title: '短劇', figure: { value: '97%', label: 'Gen Z 三個月內看過短影音' },
           image: { src: '/fig/a08/p62-1.webp', alt: 'Catchplay+ 與 SLL 合作的直式短劇', w: 1270, h: 575 },
           text: '短影音完成用戶教育之後，市場轉向更完整的故事與長期的 IP 價值，短劇正快速成為下一個內容競爭的新戰場。',
           src: [
@@ -184,7 +184,7 @@ export const story: Story = {
           ],
         },
         {
-          text: '這是一條完整的 Content-to-Commerce 消費旅程：從線上內容互動、社群擴散，一路走到線下體驗與實際購買，把 Attention 轉化為 Action。',
+          text: '這是一條完整的 Content-to-Commerce 消費者旅程：從線上內容互動、社群擴散，一路走到線下體驗與實際購買，把 Attention 轉化為 Action。',
           src: [
             { article: 'a08', page: 64, text: '打造完整的 Content-to-Commerce 消費旅程' },
             { article: 'a08', page: 64, text: '真正將 Attention轉化為 Action' },

@@ -270,3 +270,5 @@
 - 瀏覽器抽查（每種圖表看一張）：發現並修正 (1) 首頁「決策智慧」字太大蓋住兩張臉 → 縮小；(2) 文氏圖交集文字未亮時仍以 25% 顯示成殘影 → 未亮時隱藏；(3) 重建 SOV 同心圓 4 圈只有 2 段主文，開 grow 後外兩圈永遠不出現 → rings 支援每圈 at、同段多圈由內往外錯開長出，lint 加檢查。其餘（vs、radial、checklist、flatten、scatter、timeline、增長三角、服務矩陣、咖啡杯、內容引擎、地基 hover、橫捲等高、大數字）正常。
 - 移除紙張皺摺（試用後效果不佳），保留滑鼠筆跡。時間軸階段小標的底色改為 60% 半透明紙色。作者親身經歷的 6 處「作者」改為英文名：AI for Growth → Jennifer、信任 → Cynthia（含卡片 1 處）、重建 SOV → Jeremy；guide 更新稱呼規則。策展文字審查計畫定案：產出審稿文件交站外 AI 審查、不請原文作者確認、改由多個 sub agent 扮演讀者盲評、術語統一為「AI Agent」。
 - 審稿工具：reader-text.mjs 依頁面順序攤平讀者看得到的文字（主文／一句話／策展補充／短文字／引言／出處）；lint-style.mjs 進 story:check（術語表 content/glossary.json、半形標點、中英數空格擋下；長句與待定術語寫 docs/review/style-report.md）；packet.mjs 產生每篇審稿文件與盲評讀者版；jev_review.py 加 --curator 評策展補充（contradict／attribute／general），送評原文前加作者名一行，修正英文名被誤判無出處；docs/review/blind-readers.md 三位讀者設定，信任試跑。順手修正〈從金曲獎到甄嬛傳〉延伸標題的日文劇名（加引號）。
+- 術語定案：「佔」（佔比、佔位、佔有率），主文與圖表文字 18 處「占」改為「佔」（當注意力成為稀缺資源 2、重建 SOV 16），逐字引言保留原字；glossary 改為 error。
+- 其餘術語依建議定案：「週年」（從金曲獎到甄嬛傳 7 處）、「Gen Z」（4 處）、「消費者旅程」（6 處；「顧客旅程」是 CX 用語保留；文章標題〈AI Agent 走進消費旅程〉不改）；glossary 全部改為 error。

@@ -5,7 +5,7 @@ import type { Story } from '../../lib/story';
 export const story: Story = {
   id: 'a13',
   status: 'judged',
-  oneLiner: 'AI 投放讓廣告更精準，也讓品牌被選擇的理由更容易被稀釋。SOV 要從聲量占比，升級為選擇場域的占位。',
+  oneLiner: 'AI 投放讓廣告更精準，也讓品牌被選擇的理由更容易被稀釋。SOV 要從聲量佔比，升級為選擇場域的佔位。',
   scenes: [
     {
       kind: 'prose',
@@ -13,7 +13,7 @@ export const story: Story = {
       heading: 'SOV 不是過時，而是要被重新定義',
       beats: [
         {
-          text: '過去談 SOV，談的是品牌在某個品類、某段時間裡的聲量占比。邏輯很直接：消費者進入需求情境時，誰的聲音比較常出現，誰就比較容易被想起、被選擇。',
+          text: '過去談 SOV，談的是品牌在某個品類、某段時間裡的聲量佔比。邏輯很直接：消費者進入需求情境時，誰的聲音比較常出現，誰就比較容易被想起、被選擇。',
           src: [
             { article: 'a13', page: 117, text: '品牌在某一個品類、某一段時間、某一組媒體環境中的聲量占比' },
             { article: 'a13', page: 117, text: '誰的聲音比較常出現，誰的品牌比較容易被想起，誰就更有機會被選擇' },
@@ -219,12 +219,12 @@ export const story: Story = {
         type: 'd3',
         chart: {
           kind: 'esov',
-          title: 'ESOV：聲量比市占多出來的那一段',
-          som: { label: 'SOM', sub: '市場占有率', value: 20, extra: 'SOM（Share of Market）是品牌的銷售額或銷量占整個品類的比例，代表品牌「現在」有多大。ESOV 拿它當基準線，看聲量有沒有超過自己的規模。' },
-          sov: { label: 'SOV', sub: '品類聲量占比', value: 30, extra: 'SOV（Share of Voice）是品牌的廣告聲量占整個品類的比例，傳統上用媒體花費或曝光量來算。它反映的是品牌「正在說多大聲」，而不是賣了多少。' },
+          title: 'ESOV：聲量比市佔多出來的那一段',
+          som: { label: 'SOM', sub: '市場佔有率', value: 20, extra: 'SOM（Share of Market）是品牌的銷售額或銷量佔整個品類的比例，代表品牌「現在」有多大。ESOV 拿它當基準線，看聲量有沒有超過自己的規模。' },
+          sov: { label: 'SOV', sub: '品類聲量佔比', value: 30, extra: 'SOV（Share of Voice）是品牌的廣告聲量佔整個品類的比例，傳統上用媒體花費或曝光量來算。它反映的是品牌「正在說多大聲」，而不是賣了多少。' },
           result: {
             label: 'ESOV',
-            extra: '超出市占的這段聲量，就是 ESOV（Excess Share of Voice）。業界常引用 Binet 與 Field 的研究：長期維持正向 ESOV 的品牌，市占率較容易成長；聲量低於市占的品牌，則容易慢慢流失份額。',
+            extra: '超出市佔的這段聲量，就是 ESOV（Excess Share of Voice）。業界常引用 Binet 與 Field 的研究：長期維持正向 ESOV 的品牌，市佔率較容易成長；聲量低於市佔的品牌，則容易慢慢流失份額。',
           },
           fieldsTitle: '但「聲量」該怎麼算？把所有媒體換算成一個總曝光？',
           fields: [
@@ -239,13 +239,13 @@ export const story: Story = {
           checksTitle: '先分場域判斷：這裡值不值得進攻？',
           checks: [
             { label: '接觸到重要消費者？', extra: '不是曝光越多越好，而是先看這個場域裡，有沒有品牌最需要的那群人，例如核心客群，或正在成長的新客群。' },
-            { label: '影響關鍵決策？', extra: '消費者在這裡只是隨意瀏覽，還是正在比較、準備做選擇？越接近關鍵決策的時刻，在這裡占位的價值越高。' },
+            { label: '影響關鍵決策？', extra: '消費者在這裡只是隨意瀏覽，還是正在比較、準備做選擇？越接近關鍵決策的時刻，在這裡佔位的價值越高。' },
             { label: '建立品牌記憶？', extra: '這個場域能不能讓人看清楚、記得住品牌？畫面完整、停留時間長、情境清楚的地方，記憶效果通常比較好。' },
             { label: '降低競品干擾？', extra: '有些場域裡競品擠在同一頁、同一排版位，品牌很難被單獨記住；干擾少的場域，比較容易建立清楚的印象。' },
             { label: '累積長期偏好？', extra: '在這裡的投入只換到一次點擊，還是能讓消費者下次更傾向選擇品牌？能累積偏好的場域，才值得長期佔位。' },
           ],
         },
-        source: '圖：依原文舉例與文字整理製圖（市占 20%、聲量 30% 為原文舉例；媒體場域與判斷問題依原文列舉）｜吳宗霖〈重建 SOV〉紙本 p.121',
+        source: '圖：依原文舉例與文字整理製圖（市佔 20%、聲量 30% 為原文舉例；媒體場域與判斷問題依原文列舉）｜吳宗霖〈重建 SOV〉紙本 p.121',
       },
       src: [{ article: 'a13', page: 121, text: '如果一個品牌的市場占有率是 20%，但它在品類中的聲量占比是 30%，那它的 ESOV 就是 +10' }],
       figures: [
@@ -254,7 +254,7 @@ export const story: Story = {
       ],
       beats: [
         {
-          text: 'ESOV 是品牌的 SOV 減去市占率。傳統觀點認為，長期維持正向 ESOV、讓聲量高於市占率，就更有機會推動未來成長。',
+          text: 'ESOV 是品牌的 SOV 減去市佔率。傳統觀點認為，長期維持正向 ESOV、讓聲量高於市佔率，就更有機會推動未來成長。',
           src: [
             { article: 'a13', page: 121, text: '就是品牌的 SOV 減去 SOM 市占率' },
             { article: 'a13', page: 121, text: '當品牌能長期維持正向 ESOV，也就是聲量高於市場占有率，就更有機會推動未來成長' },
@@ -310,7 +310,7 @@ export const story: Story = {
       src: [{ article: 'a13', page: 123, text: '品牌在消費者選擇情境中的占位能力。這個占位能力，可以拆成三個層次' }],
       beats: [
         {
-          text: '核心解方，是把 SOV 從 Share of Voice 升級為 Share of Choice Context：品牌在消費者選擇情境中的占位能力，並拆成三個層次。',
+          text: '核心解方，是把 SOV 從 Share of Voice 升級為 Share of Choice Context：品牌在消費者選擇情境中的佔位能力，並拆成三個層次。',
           src: [
             { article: 'a13', page: 122, text: 'SOV 要從 Share of Voice 升級為 Share of Choice Context' },
             { article: 'a13', page: 123, text: '品牌在消費者選擇情境中的占位能力。這個占位能力，可以拆成三個層次' },
