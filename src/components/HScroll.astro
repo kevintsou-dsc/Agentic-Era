@@ -91,7 +91,7 @@ if (view.some((v) => v.fold) || (someInline && !allInline)) view.forEach((v) => 
   .hs-img { width: 100%; height: min(24svh, 12rem); object-fit: cover; border-radius: 10px; border: 1px solid var(--line); background: var(--paper-2); }
   /* 橫幅型圖片（例如寬 4:1 的海報）若用 cover 會被裁成一小塊再放大而變糊，改為完整顯示 */
   .hs-img.wide { height: auto; max-height: min(24svh, 12rem); object-fit: contain; }
-  .hs-kicker { font-size: 12px; font-weight: 700; color: var(--accent-ink); }
+  .hs-kicker { font-size: 12px; font-weight: var(--fw-bold); color: var(--accent-ink); }
   /* 人物頭像：圓形，與職稱、姓名並排；授權小字放在主文下方 */
   .hs-person { display: flex; align-items: center; gap: 14px; }
   .hs-person > div { display: grid; gap: 4px; }
@@ -105,7 +105,7 @@ if (view.some((v) => v.fold) || (someInline && !allInline)) view.forEach((v) => 
   .hs-text { margin: 0; font-size: 15px; line-height: 1.75; }
   /* 卡片內的細節：淡底色區塊，與主文區隔；引文縮小成卡片尺寸 */
   .hs-more { margin-top: 4px; padding: 12px 14px; border-radius: 10px; background: var(--paper-2); }
-  .hs-more-title { margin: 0 0 6px; font-size: 13px; font-weight: 700; color: var(--accent-ink); }
+  .hs-more-title { margin: 0 0 6px; font-size: 13px; font-weight: var(--fw-bold); color: var(--accent-ink); }
   .hs-more-title::before { content: "延伸｜"; color: var(--ink-3); font-weight: 500; }
   details.hs-more > summary { cursor: pointer; list-style: none; margin: 0; }
   details.hs-more > summary::-webkit-details-marker { display: none; }

@@ -148,23 +148,23 @@ const people = [
   .pd-phone rect:first-child { fill: #2a211d; }
   .pd-batt { fill: none; stroke: #fff; stroke-width: 1; }
   .pd-batt-lv { fill: #e5484d; animation: pd-blink 1.2s steps(2) infinite; }
-  .pd-badge { position: absolute; left: 50%; bottom: -6px; transform: translateX(-50%); white-space: nowrap; font-family: var(--font-mono); font-size: 9px; font-weight: 700; letter-spacing: .06em; padding: 1px 6px; border-radius: 999px; background: var(--ink); color: var(--paper); }
+  .pd-badge { position: absolute; left: 50%; bottom: -6px; transform: translateX(-50%); white-space: nowrap; font-family: var(--font-mono); font-size: var(--fs-micro); font-weight: var(--fw-bold); letter-spacing: .06em; padding: 1px 6px; border-radius: 999px; background: var(--ink); color: var(--paper); }
 
   .pd-id p { margin: 0; }
-  .pd-name { font-weight: 800; font-size: 22px; line-height: 1.2; }
-  .pd-age { margin-left: 6px; font-size: 13px; font-weight: 700; color: var(--tone); }
+  .pd-name { font-weight: var(--fw-bold); font-size: 22px; line-height: 1.2; }
+  .pd-age { margin-left: 6px; font-size: 13px; font-weight: var(--fw-bold); color: var(--tone); }
   .pd-meta { font-size: 12px; color: var(--ink-3); }
-  .pd-buy { margin-top: 4px !important; font-size: 14px; font-weight: 700; }
-  .pd-buy span { margin-right: 6px; font-size: 11px; font-weight: 700; padding: 1px 6px; border-radius: 6px; background: var(--tone-soft); color: var(--ink-2); }
+  .pd-buy { margin-top: 4px !important; font-size: 14px; font-weight: var(--fw-bold); }
+  .pd-buy span { margin-right: 6px; font-size: 11px; font-weight: var(--fw-bold); padding: 1px 6px; border-radius: 6px; background: var(--tone-soft); color: var(--ink-2); }
 
-  .pd-voice { position: relative; margin: 4px 0 0; padding: 10px 12px; border-radius: 14px; background: var(--tone-soft); font-size: 14px; line-height: 1.55; font-weight: 700; }
+  .pd-voice { position: relative; margin: 4px 0 0; padding: 10px 12px; border-radius: 14px; background: var(--tone-soft); font-size: 14px; line-height: 1.55; font-weight: var(--fw-bold); }
   .pd-voice::before { content: ''; position: absolute; left: 26px; top: -8px; border: 8px solid transparent; border-top: 0; border-bottom-color: var(--tone-soft); }
 
-  .pd-label { margin: 0 0 6px; font-size: 11px; font-weight: 700; letter-spacing: .08em; color: var(--ink-3); }
+  .pd-label { margin: 0 0 6px; font-size: 11px; font-weight: var(--fw-bold); letter-spacing: .08em; color: var(--ink-3); }
   .pd-order ol { list-style: none; margin: 0; padding: 0; display: grid; gap: 5px; }
   .pd-order li {
     display: grid; grid-template-columns: 20px 20px 1fr; align-items: center; gap: 6px; width: var(--w); min-width: 9.5rem;
-    padding: 5px 8px; border-radius: 8px; background: color-mix(in srgb, var(--tone) 14%, var(--paper)); font-size: 13px; font-weight: 700;
+    padding: 5px 8px; border-radius: 8px; background: color-mix(in srgb, var(--tone) 14%, var(--paper)); font-size: 13px; font-weight: var(--fw-bold);
     opacity: var(--on); transform: translateX(calc((1 - var(--on)) * -12px)); transition: opacity .4s var(--d), transform .4s var(--d);
   }
   .pd-rank { display: grid; place-items: center; width: 20px; height: 20px; border-radius: 50%; background: var(--tone); color: #fff; font-family: var(--font-mono); font-size: 11px; }
@@ -174,8 +174,8 @@ const people = [
 
   /* 信任門檻 */
   .pd-gate { display: grid; gap: 8px; padding: 12px 14px; border-radius: 14px; border: 2px dashed var(--ink-3); opacity: var(--on); transform: translateY(calc((1 - var(--on)) * 12px)); transition: opacity .5s, transform .5s; }
-  .pd-gate-h { margin: 0; font-weight: 800; font-size: 14px; }
-  .pd-lane { display: grid; grid-template-columns: 3.4rem 1fr 4.6rem; gap: 8px; align-items: center; font-size: 13px; font-weight: 700; }
+  .pd-gate-h { margin: 0; font-weight: var(--fw-bold); font-size: 14px; }
+  .pd-lane { display: grid; grid-template-columns: 3.4rem 1fr 4.6rem; gap: 8px; align-items: center; font-size: 13px; font-weight: var(--fw-bold); }
   .pd-lane-lisa { --tone: #d9816b; } .pd-lane-cindy { --tone: #4f7fa8; }
   .pd-who { color: var(--tone); }
   .pd-track { position: relative; height: 34px; border-radius: 8px; background: repeating-linear-gradient(90deg, var(--line) 0 6px, transparent 6px 12px) center / 100% 2px no-repeat; }

@@ -49,7 +49,7 @@ const cols: Record<string, string> = { intro: '2fr', people: '9fr', model: '5fr'
   :global(.graphic[data-step="4"]) .dot:not(.t-agent),
   :global(.graphic[data-step="5"]) .dot:not(.t-memory) { opacity: .18; transform: scale(.8); }
   :global(.graphic[data-step="2"]) .th-trust, :global(.graphic[data-step="3"]) .th-judge,
-  :global(.graphic[data-step="4"]) .th-agent, :global(.graphic[data-step="5"]) .th-memory { opacity: 1; font-weight: 700; }
+  :global(.graphic[data-step="4"]) .th-agent, :global(.graphic[data-step="5"]) .th-memory { opacity: 1; font-weight: var(--fw-bold); }
   :global(.graphic.is-6) .th { opacity: 1; }
   @media (max-width: 560px) { .chapters { grid-template-columns: 1fr 1fr !important; } }
 </style>

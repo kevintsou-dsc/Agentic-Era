@@ -77,31 +77,31 @@ const pos: Record<string, [number, number]> = { Sense: [110, 40], Judge: [42, 15
   .ap-panel { display: grid; gap: 10px; padding: 12px 14px; border-radius: 10px; background: var(--paper); opacity: calc(.25 + .75 * var(--on)); transition: opacity .5s, box-shadow .4s; }
   .ap-ai { box-shadow: inset 0 0 0 calc(var(--focus) * 2px) var(--red); }
   .ap-h { display: flex; align-items: center; gap: 10px; padding-bottom: 8px; border-bottom: 1px solid var(--line); }
-  .ap-badge { flex: none; display: grid; place-items: center; width: 40px; height: 40px; border-radius: 50%; background: var(--red); color: #fff; font-weight: 800; font-size: 16px; }
-  .ap-h span:last-child { display: grid; font-size: 13px; font-weight: 700; }
+  .ap-badge { flex: none; display: grid; place-items: center; width: 40px; height: 40px; border-radius: 50%; background: var(--red); color: #fff; font-weight: var(--fw-bold); font-size: 16px; }
+  .ap-h span:last-child { display: grid; font-size: 13px; font-weight: var(--fw-bold); }
   .ap-h em { font-style: normal; font-size: 11px; font-weight: 600; color: var(--red); }
 
   .ap-flow { list-style: none; margin: 0; padding: 0; display: flex; justify-content: space-around; gap: 6px; }
   .ap-flow li { position: relative; opacity: calc(.2 + .8 * var(--on)); transition: opacity .4s var(--d); }
-  .ap-flow li + li::before { content: '→'; position: absolute; left: -14px; top: 50%; transform: translateY(-50%); color: var(--red); font-weight: 800; }
-  .ap-bubble { display: grid; justify-items: center; gap: 2px; width: 76px; padding: 10px 4px; border-radius: 50%; aspect-ratio: 1; align-content: center; background: color-mix(in srgb, var(--ink) 6%, var(--paper)); font-size: 12px; font-weight: 700; line-height: 1.25; text-align: center; }
+  .ap-flow li + li::before { content: '→'; position: absolute; left: -14px; top: 50%; transform: translateY(-50%); color: var(--red); font-weight: var(--fw-bold); }
+  .ap-bubble { display: grid; justify-items: center; gap: 2px; width: 76px; padding: 10px 4px; border-radius: 50%; aspect-ratio: 1; align-content: center; background: color-mix(in srgb, var(--ink) 6%, var(--paper)); font-size: 12px; font-weight: var(--fw-bold); line-height: 1.25; text-align: center; }
   .ap-bubble svg { width: 22px; height: 22px; fill: none; stroke: var(--ink); stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
   .ap-limit { display: grid; grid-template-columns: auto 1fr; gap: 10px; align-items: start; }
-  .ap-limit-tag { writing-mode: vertical-rl; padding: 6px 3px; background: var(--ink); color: var(--paper); font-size: 11px; font-weight: 800; letter-spacing: .1em; border-radius: 3px; }
+  .ap-limit-tag { writing-mode: vertical-rl; padding: 6px 3px; background: var(--ink); color: var(--paper); font-size: 11px; font-weight: var(--fw-bold); letter-spacing: .1em; border-radius: 3px; }
   .ap-limit p { font-size: 11.5px; line-height: 1.6; color: var(--ink-2); }
   .ap-limit b { display: block; font-size: 13px; color: var(--ink); }
-  .ap-foot { text-align: center; font-size: 13px; font-weight: 800; padding-top: 8px; border-top: 1px solid var(--line); }
+  .ap-foot { text-align: center; font-size: 13px; font-weight: var(--fw-bold); padding-top: 8px; border-top: 1px solid var(--line); }
 
   .ap-pi-body { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); gap: 10px; align-items: center; }
   .ap-tri { width: 100%; height: auto; overflow: visible; }
   .ap-loop { fill: none; stroke: var(--ink); stroke-width: 2; }
   .ap-tri marker path { fill: var(--ink); }
-  .ap-core { font-size: 12px; font-weight: 800; text-anchor: middle; fill: var(--ink); }
+  .ap-core { font-size: 12px; font-weight: var(--fw-bold); text-anchor: middle; fill: var(--ink); }
   .ap-node circle { fill: color-mix(in srgb, var(--ink) 6%, var(--paper)); stroke: color-mix(in srgb, var(--red) calc(var(--focus) * 100%), var(--line)); stroke-width: calc(2px + var(--focus) * 2px); transition: stroke .3s; }
-  .ap-node-k { font-size: 12px; font-weight: 800; text-anchor: middle; fill: var(--ink); }
+  .ap-node-k { font-size: 12px; font-weight: var(--fw-bold); text-anchor: middle; fill: var(--ink); }
   .ap-node-d { font-size: 10.5px; fill: color-mix(in srgb, var(--red) calc(var(--focus) * 100%), var(--ink-2)); }
   .ap-list { display: grid; gap: 8px; }
-  .ap-list-h { padding: 4px 8px; background: var(--red); color: #fff; font-size: 12px; font-weight: 800; text-align: center; }
+  .ap-list-h { padding: 4px 8px; background: var(--red); color: #fff; font-size: 12px; font-weight: var(--fw-bold); text-align: center; }
   .ap-item { display: grid; gap: 1px; padding: 4px 6px; border-radius: 6px; font-size: 11px; color: var(--ink-2); line-height: 1.5;
     background: color-mix(in srgb, var(--accent) calc(var(--focus) * 60%), transparent); transition: background .4s; }
   .ap-item b { font-size: 12.5px; color: var(--ink); }

@@ -103,20 +103,20 @@ const boxW = 223, boxX = px, boxMid = px + boxW / 2;
   .er-sep { fill: #fff; stroke: color-mix(in srgb, var(--ink) 14%, transparent); }
   .er-grey { fill: color-mix(in srgb, var(--ink) 12%, #fff); }
   .er-white { fill: #fff; }
-  .er-cap { font-size: 11px; font-weight: 800; fill: var(--ink); opacity: calc(.3 + .7 * var(--on)); transition: opacity .4s var(--d); }
+  .er-cap { font-size: 11px; font-weight: var(--fw-bold); fill: var(--ink); opacity: calc(.3 + .7 * var(--on)); transition: opacity .4s var(--d); }
   .er-unit { font-size: 12px; fill: var(--ink-2); opacity: calc(.2 + .8 * var(--on)); transition: opacity .4s var(--d); }
   .er-logo { opacity: calc(.15 + .85 * var(--on)); transition: opacity .4s var(--d); }
   .er-core circle { fill: #b9d26a; transform-box: fill-box; transform-origin: center; transform: scale(calc(1 + var(--focus) * .05)); transition: transform .5s; }
-  .er-core text { font-size: 17px; font-weight: 800; fill: #22330d; }
+  .er-core text { font-size: 17px; font-weight: var(--fw-bold); fill: #22330d; }
   .er-link line { stroke: #d4e39a; stroke-width: 7; stroke-dasharray: 460; stroke-dashoffset: calc(460 - var(--on) * 460); transition: stroke-dashoffset .9s; }
   .er-mark { opacity: var(--on); transition: opacity .4s .5s; }
   .er-mark circle { fill: #6f6f6f; }
-  .er-mark text { font-size: 15px; font-weight: 700; fill: #fff; }
+  .er-mark text { font-size: 15px; font-weight: var(--fw-bold); fill: #fff; }
   .er-impact { opacity: calc(.2 + .8 * var(--on)); transition: opacity .5s .3s; }
   .er-impact text { text-anchor: start; }
   .er-tag { fill: #fff; }
   .er-tag-t { font-size: 17px; fill: #3f6b17; }
-  .er-h { font-size: 20px; font-weight: 700; fill: var(--ink-2); }
+  .er-h { font-size: 20px; font-weight: var(--fw-bold); fill: var(--ink-2); }
   .er-en { font-size: 13px; fill: var(--ink-3); }
   .er-box { fill: color-mix(in srgb, #c9de86 calc(70% + var(--focus) * 30%), var(--paper)); transition: fill .4s; }
   .er-impact .er-box-t { text-anchor: middle; font-size: 15px; fill: #2f4d12; }

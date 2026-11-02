@@ -24,11 +24,11 @@ const together = new Set(g.items.map((it, i) => it.at ?? i + 1)).size === 1;
 </div>
 <style>
   .vs { display: grid; gap: 8px; }
-  .vs-head { margin: 0; display: grid; grid-template-columns: 1fr 64px 1.25fr; gap: 10px; font-size: 12px; font-weight: 700; letter-spacing: .1em; color: var(--ink-3); }
+  .vs-head { margin: 0; display: grid; grid-template-columns: 1fr 64px 1.25fr; gap: 10px; font-size: 12px; font-weight: var(--fw-bold); letter-spacing: .1em; color: var(--ink-3); }
   .vs-rows { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
   .vs-rows li { display: grid; grid-template-columns: 1fr 64px 1.25fr; align-items: center; gap: 10px; opacity: calc(.22 + .78 * var(--on)); transition: opacity .5s var(--d); }
-  .vs-from { padding: 10px 12px; border-radius: 10px; border: 2px dashed var(--ink-3); font-weight: 700; font-size: 15px; line-height: 1.45; color: var(--ink-2); }
-  .vs-to { padding: 10px 14px; border-radius: 10px; border: 2px solid var(--accent-ink); font-weight: 800; font-size: 15px; line-height: 1.5;
+  .vs-from { padding: 10px 12px; border-radius: 10px; border: 2px dashed var(--ink-3); font-weight: var(--fw-bold); font-size: 15px; line-height: 1.45; color: var(--ink-2); }
+  .vs-to { padding: 10px 14px; border-radius: 10px; border: 2px solid var(--accent-ink); font-weight: var(--fw-bold); font-size: 15px; line-height: 1.5;
     background: color-mix(in srgb, var(--accent) calc(35% + var(--focus, 0) * 65%), var(--paper)); box-shadow: calc(var(--focus, 0) * 4px) calc(var(--focus, 0) * 4px) 0 var(--accent-ink); transition: background .4s, box-shadow .4s; }
   .vs-arrow { width: 64px; height: 24px; overflow: visible; }
   .vs-arrow path { fill: none; stroke: var(--accent-ink); stroke-width: 2.6; stroke-linecap: round; stroke-linejoin: round; }

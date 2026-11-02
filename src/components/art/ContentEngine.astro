@@ -76,22 +76,22 @@ const P = '/fig/a21/platforms/';
   .ce-tiers { opacity: calc(.15 + .85 * var(--on)); transition: opacity .5s .3s; }
   .ce-tier { opacity: var(--on); transform: translateY(calc((1 - var(--on)) * 18px)); transition: opacity .4s var(--d), transform .5s var(--d); }
   .ce-tier rect { fill: var(--ink); }
-  .ce-tier text { font-size: 13px; font-weight: 800; fill: var(--paper); }
+  .ce-tier text { font-size: 13px; font-weight: var(--fw-bold); fill: var(--paper); }
   .ce-engine { opacity: calc(.3 + .7 * var(--on)); transition: opacity .5s; }
   .ce-core { fill: var(--accent); stroke: var(--accent-ink); stroke-width: 3; }
   .ce-halo { fill: none; stroke: var(--accent); stroke-width: 2; stroke-dasharray: 3 7; transform-box: fill-box; transform-origin: center; animation: ce-spin 14s linear infinite; }
   @keyframes ce-spin { to { transform: rotate(360deg); } }
-  .ce-eng { font-size: 18px; font-weight: 800; fill: var(--ink); }
+  .ce-eng { font-size: 18px; font-weight: var(--fw-bold); fill: var(--ink); }
   .ce-eng-sub { font-size: 11px; fill: var(--ink-2); }
   .ce-ch { opacity: calc(.15 + .85 * var(--on)); transform: translateY(calc((1 - var(--on)) * 10px)); transition: opacity .5s var(--d), transform .5s var(--d); }
   .ce-card { fill: var(--paper); stroke: var(--ink); stroke-width: 2; }
   .ce-ptt { fill: #111; }
   .ce-ptt-t { font: 800 17px var(--font-mono, monospace); fill: #3ad13a; letter-spacing: .06em; }
-  .ce-name { font-size: 15px; font-weight: 800; fill: var(--ink); }
+  .ce-name { font-size: 15px; font-weight: var(--fw-bold); fill: var(--ink); }
   .ce-desc { font-size: 12px; fill: var(--ink-2); }
-  .ce-verb { font-size: 12px; font-weight: 800; fill: var(--accent-ink); }
+  .ce-verb { font-size: 12px; font-weight: var(--fw-bold); fill: var(--accent-ink); }
   .ce-loop { opacity: var(--on); transition: opacity .6s; }
   .ce-back { fill: none; stroke: var(--accent-ink); stroke-width: 2.5; stroke-dasharray: 2 6; stroke-linecap: round; animation: ce-flow 1s linear infinite; }
-  .ce-loop-t { text-anchor: start !important; font-size: 13px; font-weight: 800; fill: var(--accent-ink); }
+  .ce-loop-t { text-anchor: start !important; font-size: 13px; font-weight: var(--fw-bold); fill: var(--accent-ink); }
   @media (prefers-reduced-motion: reduce) { .ce-flow, .ce-back, .ce-halo { animation: none; } .ce-tier, .ce-ch, .ce-tiers, .ce-engine, .ce-loop { transition: none; } }
 </style>

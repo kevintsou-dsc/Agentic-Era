@@ -42,7 +42,7 @@ const hintTarget = c.kind === 'flowloop' ? '圓圈' : c.kind === 'stages' ? '方
 </script>
 <style>
   .d3wrap { width: 100%; display: grid; gap: 10px; }
-  .title { margin: 0; font-weight: 700; font-size: clamp(17px, 1.4vw + 10px, 22px); }
+  .title { margin: 0; font-weight: var(--fw-bold); font-size: clamp(17px, 1.4vw + 10px, 22px); }
   .d3 { position: relative; }
   .d3 :global(svg) { width: 100%; height: auto; max-height: 56svh; overflow: visible; }
   .hint { margin: 0; font-size: 12px; color: var(--ink-3); }
@@ -230,7 +230,7 @@ const hintTarget = c.kind === 'flowloop' ? '圓圈' : c.kind === 'stages' ? '方
   .d3 :global(.al-hit) { fill: transparent; }
   .d3 :global(.al-row.has-tip:hover .al-hit), .d3 :global(.al-row.has-tip:focus-visible .al-hit) { fill: rgba(0, 0, 0, .05); stroke: var(--ink-3); }
   .d3 :global(.al-label) { font: 700 13px var(--font-sans); fill: var(--ink-2); }
-  .d3 :global(.al-row.main .al-label) { font-size: 15px; font-weight: 800; fill: var(--accent-ink); }
+  .d3 :global(.al-row.main .al-label) { font-size: 15px; font-weight: var(--fw-bold); fill: var(--accent-ink); }
   .d3 :global(.al-dots) { transition: opacity .5s; }
   .d3 :global(.al-dots:not(.on)) { opacity: 0; }
   .d3 :global(.al-dots circle) { fill: var(--accent-ink); transition: transform .9s cubic-bezier(.3,.7,.2,1); }

@@ -67,25 +67,25 @@ const issues = ['商品瑕疵', '超過鑑賞期 2 天', '跨境退貨物流特�
   .es-art { width: 100%; height: auto; max-height: 62svh; overflow: visible; font-family: var(--font-sans); }
   .pane { opacity: var(--focus); transition: opacity .5s; }
   text { text-anchor: middle; }
-  .tag { font-size: 16px; font-weight: 800; fill: var(--ink); }
+  .tag { font-size: 16px; font-weight: var(--fw-bold); fill: var(--ink); }
   .win { fill: var(--paper); stroke: var(--ink); stroke-width: 2.5; }
   .bar, .bar-fix { fill: var(--ink); }
-  .bar-t { font-size: 14px; font-weight: 700; fill: var(--paper); }
+  .bar-t { font-size: 14px; font-weight: var(--fw-bold); fill: var(--paper); }
 
   .issue { opacity: var(--focus); transform-box: fill-box; transition: opacity .4s var(--d); }
   .issue rect { fill: var(--accent); stroke: var(--accent-ink); stroke-width: 2; }
-  .issue text { font-size: 15px; font-weight: 800; fill: var(--ink); }
-  .plus { font-size: 26px; font-weight: 800; fill: var(--ink-3); }
+  .issue text { font-size: 15px; font-weight: var(--fw-bold); fill: var(--ink); }
+  .plus { font-size: 26px; font-weight: var(--fw-bold); fill: var(--ink-3); }
 
   .msg { opacity: var(--focus); transition: opacity .4s var(--d, 0ms); }
   .msg text { text-anchor: start; font-size: 15px; fill: var(--ink); }
   .msg.bot rect { fill: var(--paper-2); stroke: var(--ink-3); stroke-width: 2; }
   .msg.user rect { fill: var(--accent); stroke: var(--accent-ink); stroke-width: 2; }
-  .msg.user text { font-weight: 700; }
+  .msg.user text { font-weight: var(--fw-bold); }
   .warn { opacity: var(--focus); transition: opacity .4s var(--d); }
   .warn circle { fill: #b0412e; }
-  .warn text { font-size: 28px; font-weight: 800; fill: #fff; }
-  .warn-t { font-size: 14px; font-weight: 800; fill: #b0412e; }
+  .warn text { font-size: 28px; font-weight: var(--fw-bold); fill: #fff; }
+  .warn-t { font-size: 14px; font-weight: var(--fw-bold); fill: #b0412e; }
 
   .face circle:first-child { fill: #f1d3b8; stroke: var(--ink); stroke-width: 2.5; }
   .face .eye { fill: var(--ink); }
@@ -94,11 +94,11 @@ const issues = ['商品瑕疵', '超過鑑賞期 2 天', '跨境退貨物流特�
   @keyframes puff { 50% { transform: translateY(-6px); opacity: .5; } }
 
   .summary rect { fill: var(--paper-2); stroke: var(--ink-2); stroke-width: 2; }
-  .sum-h { text-anchor: start; font-size: 14px; font-weight: 800; fill: var(--ink); }
+  .sum-h { text-anchor: start; font-size: 14px; font-weight: var(--fw-bold); fill: var(--ink); }
   .sum-i { text-anchor: start; font-size: 12px; fill: var(--ink-2); }
   .handoff, .handoff-h { fill: none; stroke: var(--accent-ink); stroke-width: 3; stroke-linecap: round; stroke-dasharray: 60; stroke-dashoffset: calc((1 - var(--focus)) * 60); transition: stroke-dashoffset .8s .4s; }
   .human circle, .human path { fill: var(--accent-ink); }
-  .human text { font-size: 13px; font-weight: 700; fill: var(--ink); }
+  .human text { font-size: 13px; font-weight: var(--fw-bold); fill: var(--ink); }
 
   @media (prefers-reduced-motion: reduce) { .steam { animation: none; } }
 </style>

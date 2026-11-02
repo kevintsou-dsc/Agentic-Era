@@ -89,7 +89,7 @@ const name = (t: string) => (t.includes('｜') ? t.split('｜').slice(1).join('�
 </div>
 <style>
   .list { width: 100%; display: grid; gap: 14px; }
-  .title { margin: 0; font-weight: 700; font-size: clamp(18px, 1.6vw + 10px, 24px); }
+  .title { margin: 0; font-weight: var(--fw-bold); font-size: clamp(18px, 1.6vw + 10px, 24px); }
   /* 標題隨主文換句：讀到 titleThen.at 那段時，原標題淡出、新標題淡入（兩行疊在同一格，高度取較高者） */
   .t-swap { display: grid; }
   .t-swap > span { grid-area: 1 / 1; transition: opacity .5s, transform .5s; }
@@ -104,7 +104,7 @@ const name = (t: string) => (t.includes('｜') ? t.split('｜').slice(1).join('�
   li { position: relative; display: grid; gap: 2px; align-content: start; padding: 12px 14px; border-radius: 12px; border: 2px solid color-mix(in srgb, var(--accent-ink) calc(var(--focus) * 100%), var(--line)); background: color-mix(in srgb, var(--accent) calc(var(--focus) * 100%), var(--paper)); opacity: calc(.2 + .8 * var(--on)); transform: translateY(calc((1 - var(--on)) * 10px)); transition: opacity .5s, transform .5s, background .4s, border-color .4s; }
   .together li { --focus: 0; border-color: var(--ink-3); }
   .no { font-family: var(--font-mono); font-size: 12px; color: var(--ink-3); }
-  .t { font-weight: 800; font-size: 16px; line-height: 1.4; }
+  .t { font-weight: var(--fw-bold); font-size: 16px; line-height: 1.4; }
   .d { font-size: 13px; color: var(--ink-2); line-height: 1.5; }
 
   /* 時間軸：軌道在節點列，跟著第 k 段點亮到第 k 個節點；最後一段帶箭頭 */
@@ -118,7 +118,7 @@ const name = (t: string) => (t.includes('｜') ? t.split('｜').slice(1).join('�
   .tl li.tl-last::after { content: ''; position: absolute; top: 8px; right: 0; border: 7px solid transparent; border-right: 0; border-left: 11px solid color-mix(in srgb, var(--accent-ink) calc(var(--on) * 100%), var(--line)); }
   .tl-dot { position: relative; z-index: 1; flex: none; width: 20px; height: 20px; border-radius: 50%; border: 3px solid color-mix(in srgb, var(--accent-ink) calc(var(--on) * 100%), var(--line)); background: color-mix(in srgb, var(--accent) calc(var(--focus) * 100%), var(--paper));
     box-shadow: 0 0 0 calc(var(--focus) * 6px) color-mix(in srgb, var(--accent) 50%, transparent); transition: box-shadow .4s, background .4s, border-color .4s; }
-  .tl-phase { position: relative; z-index: 1; padding: 0 6px; background: color-mix(in srgb, var(--paper) 60%, transparent); font-family: var(--font-mono); font-size: 12px; font-weight: 700; color: var(--ink-2); white-space: nowrap; }
+  .tl-phase { position: relative; z-index: 1; padding: 0 6px; background: color-mix(in srgb, var(--paper) 60%, transparent); font-family: var(--font-mono); font-size: 12px; font-weight: var(--fw-bold); color: var(--ink-2); white-space: nowrap; }
   .tl-card { position: relative; display: grid; gap: 4px; align-content: start; padding: 12px 14px; border-radius: 12px; border: 2px solid color-mix(in srgb, var(--accent-ink) calc(var(--focus) * 100%), var(--ink-3));
     background: color-mix(in srgb, var(--accent) calc(var(--focus) * 100%), var(--paper)); transform: translateY(calc((1 - var(--on)) * 10px)); transition: transform .5s, background .4s, border-color .4s; }
   .together .tl-card { --focus: 0; }
@@ -146,7 +146,7 @@ const name = (t: string) => (t.includes('｜') ? t.split('｜').slice(1).join('�
   .fc-card { display: grid; height: 100%; min-height: 7.5rem; transform-style: preserve-3d; transition: transform .6s var(--ease-out); }
   .fc-face { grid-area: 1 / 1; display: grid; grid-template-rows: auto auto 1fr auto; gap: 4px; padding: 12px 14px; border-radius: 12px; border: 2px solid var(--ink-3); background: var(--paper); backface-visibility: hidden; -webkit-backface-visibility: hidden; }
   .fc-back { transform: rotateY(180deg); background: var(--accent); border-color: var(--accent-ink); }
-  .fc-tag { justify-self: start; font-size: 12px; font-weight: 700; padding: 1px 8px; border-radius: 999px; border: 1px solid currentColor; color: var(--ink-2); }
+  .fc-tag { justify-self: start; font-size: 12px; font-weight: var(--fw-bold); padding: 1px 8px; border-radius: 999px; border: 1px solid currentColor; color: var(--ink-2); }
   .fc-back .fc-tag { color: var(--accent-ink); }
   .fc-turn { justify-self: end; font-size: 12px; color: var(--ink-3); }
   .fc-set li:hover .fc-card, .fc-set li:focus-within .fc-card { transform: rotateY(180deg); }

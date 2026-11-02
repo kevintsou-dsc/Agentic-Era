@@ -56,9 +56,9 @@ const wave = (sign: number) => {
   .mp { --red: var(--signal-art); display: grid; gap: 10px; padding: 14px 0 18px; border-radius: 14px; background: color-mix(in srgb, var(--ink) 7%, var(--paper)); overflow: hidden; }
   .mp p { margin: 0; }
   .mp-head { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
-  .mp-tag { padding: 8px 18px; background: var(--red); color: #fff; font-size: 13px; font-weight: 700; letter-spacing: .04em; }
+  .mp-tag { padding: 8px 18px; background: var(--red); color: #fff; font-size: 13px; font-weight: var(--fw-bold); letter-spacing: .04em; }
   .mp-road { flex: 1 1 14rem; font-size: 13px; font-weight: 600; color: var(--ink-2); line-height: 1.4; padding-right: 14px; }
-  .mp-bar { margin: 0 0 0 0 !important; padding: 4px 14px; background: var(--paper); text-align: center; font-size: 14px; font-weight: 700; letter-spacing: .02em; }
+  .mp-bar { margin: 0 0 0 0 !important; padding: 4px 14px; background: var(--paper); text-align: center; font-size: 14px; font-weight: var(--fw-bold); letter-spacing: .02em; }
   .mp-chain { position: relative; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); padding: 0 6px; }
   .mp-loops { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
   .mp-loops path { fill: none; stroke: color-mix(in srgb, var(--red) 35%, var(--paper)); stroke-width: 2.5; vector-effect: non-scaling-stroke; }
@@ -67,13 +67,13 @@ const wave = (sign: number) => {
   .mp-stage::before { content: ''; position: absolute; inset: 8% 6%; border-radius: 50%; background: color-mix(in srgb, var(--red) calc(var(--focus) * 10%), transparent); transition: background .4s; z-index: -1; }
   .mp-ic { width: 38px; height: 38px; fill: none; stroke: var(--ink); stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
   .mp-fill { fill: var(--ink); }
-  .mp-en { font-size: 12px; font-weight: 700; letter-spacing: .03em; color: var(--ink-2); line-height: 1.35; }
+  .mp-en { font-size: 12px; font-weight: var(--fw-bold); letter-spacing: .03em; color: var(--ink-2); line-height: 1.35; }
   .mp-en b { display: block; font-size: 15px; color: var(--ink); }
   .mp-tagline { font-size: 11px; color: var(--ink-3); line-height: 1.4; padding-bottom: 6px; border-bottom: 1px solid var(--line); }
   .mp-mod { display: grid; gap: 1px; margin-top: 6px; }
-  .mp-k { font-size: 12px; font-weight: 800; letter-spacing: .06em; color: var(--red); }
+  .mp-k { font-size: 12px; font-weight: var(--fw-bold); letter-spacing: .06em; color: var(--red); }
   .mp-men { font-size: 11px; color: var(--ink-2); line-height: 1.35; }
-  .mp-mzh { font-size: 12.5px; font-weight: 700; color: var(--ink); }
+  .mp-mzh { font-size: 12.5px; font-weight: var(--fw-bold); color: var(--ink); }
   @media (max-width: 560px) {
     .mp-chain { grid-template-columns: 1fr; }
     .mp-loops { display: none; }

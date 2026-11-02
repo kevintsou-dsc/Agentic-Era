@@ -39,16 +39,18 @@ const anchor = (i: number) => { const c = Math.cos(ang(i)); return Math.abs(c) <
 </div>
 <style>
   .rd { width: 100%; display: grid; gap: 8px; }
-  .title { margin: 0; font-weight: 700; font-size: clamp(18px, 1.6vw + 10px, 24px); }
+  .title { margin: 0; font-weight: var(--fw-bold); font-size: clamp(18px, 1.6vw + 10px, 24px); }
   svg { width: 100%; max-width: 34rem; height: auto; overflow: visible; justify-self: center; }
   .rd-ring { fill: none; stroke: var(--line); stroke-width: 1; }
   .rd-spoke { stroke: var(--line); stroke-width: 1; }
-  .rd-tick { font-size: 9px; fill: var(--ink-3); }
+  .rd-tick { font-size: 11px; fill: var(--ink-3); }
+  /* 圖會隨版面縮小：窄螢幕放大刻度字，讓實際顯示不低於約 11px */
+  @media (max-width: 560px) { .rd-tick { font-size: 13px; } }
   .rd-shape { transform: scale(var(--on)); transition: transform 1s cubic-bezier(.2, .8, .2, 1.1); }
   .rd-area { fill: color-mix(in srgb, var(--accent) 70%, transparent); stroke: var(--accent-ink); stroke-width: 2; stroke-linejoin: round; }
   .rd-dot { fill: var(--accent-ink); }
-  .rd-label { font-size: 14px; font-weight: 800; fill: var(--ink); transition: fill .4s, opacity .4s; }
-  .rd-val { font-size: 16px; font-weight: 800; fill: var(--accent-ink); opacity: var(--on); transition: opacity .5s .6s; }
+  .rd-label { font-size: 14px; font-weight: var(--fw-bold); fill: var(--ink); transition: fill .4s, opacity .4s; }
+  .rd-val { font-size: 16px; font-weight: var(--fw-bold); fill: var(--accent-ink); opacity: var(--on); transition: opacity .5s .6s; }
   /* 某段主文點名的軸：加重；其他軸在那一段淡出 */
   .rd-axis[data-focus] .rd-label { fill: color-mix(in srgb, var(--accent-ink) calc(var(--focus) * 100%), var(--ink)); }
   .rd-note { margin: 0; font-size: 12px; color: var(--ink-3); text-align: center; }

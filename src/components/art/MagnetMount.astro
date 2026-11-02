@@ -102,7 +102,7 @@ const words = ['磁吸', '穩固', '方便', '車用', '家用'];
 <style>
   .mm { width: 100%; height: auto; max-height: 62svh; overflow: visible; font-family: var(--font-sans); }
   .pane { opacity: var(--focus); transition: opacity .5s; }
-  .tag { font-size: 17px; font-weight: 800; text-anchor: middle; fill: var(--ink); }
+  .tag { font-size: 17px; font-weight: var(--fw-bold); text-anchor: middle; fill: var(--ink); }
   .lbl { font-size: 14px; font-weight: 600; text-anchor: middle; fill: var(--ink-2); }
   text { text-anchor: middle; }
 
@@ -111,10 +111,10 @@ const words = ['磁吸', '穩固', '方便', '車用', '家用'];
   .card { fill: var(--paper-2); stroke: var(--line); }
   .disk { fill: var(--accent); stroke: var(--ink); stroke-width: 3; }
   .mini { fill: var(--ink-2); }
-  .ad-h { font-size: 17px; font-weight: 800; fill: var(--ink); }
-  .ad-s { font-size: 12px; fill: var(--accent-ink); font-weight: 700; }
+  .ad-h { font-size: 17px; font-weight: var(--fw-bold); fill: var(--ink); }
+  .ad-s { font-size: 12px; fill: var(--accent-ink); font-weight: var(--fw-bold); }
   .buy { fill: var(--accent-ink); }
-  .buy-t { font-size: 12px; font-weight: 700; fill: var(--paper); }
+  .buy-t { font-size: 12px; font-weight: var(--fw-bold); fill: var(--paper); }
   .finger { fill: #f1d3b8; stroke: var(--ink); stroke-width: 2.5; stroke-linejoin: round; transform-box: fill-box;
     transform: translateY(calc((1 - var(--focus)) * 30px)); transition: transform .6s .2s; }
   .ripple { fill: none; stroke: var(--accent-ink); stroke-width: 3; transform-box: fill-box; transform-origin: center; animation: ripple 1.6s infinite; }
@@ -124,8 +124,8 @@ const words = ['磁吸', '穩固', '方便', '車用', '家用'];
   .shine { stroke: #fff; stroke-width: 6; stroke-linecap: round; fill: none; }
   .wood { fill: #d9b98f; stroke: var(--ink-3); stroke-width: 2; }
   .grain { stroke: #b8925f; stroke-width: 3; fill: none; }
-  .ok { font-size: 40px; font-weight: 800; fill: #3d7a45; }
-  .no { font-size: 40px; font-weight: 800; fill: #b0412e; }
+  .ok { font-size: 40px; font-weight: var(--fw-bold); fill: #3d7a45; }
+  .no { font-size: 40px; font-weight: var(--fw-bold); fill: #b0412e; }
   .fall { transform: translateY(calc(var(--focus) * 96px)) rotate(calc(var(--focus) * 18deg)); transform-box: fill-box; transform-origin: center;
     transition: transform 1s .5s cubic-bezier(.5,0,.8,.4); }
 
@@ -136,32 +136,32 @@ const words = ['磁吸', '穩固', '方便', '車用', '家用'];
   .ad-line { fill: var(--ink-3); }
   .bubble { opacity: var(--focus); transition: opacity .3s var(--d); }
   .bubble rect { fill: var(--paper); stroke: var(--ink); stroke-width: 2; }
-  .bubble text { font-size: 14px; font-weight: 800; fill: var(--accent-ink); }
+  .bubble text { font-size: 14px; font-weight: var(--fw-bold); fill: var(--accent-ink); }
 
   .box { transform: translate(calc(var(--focus) * 150px), calc(var(--focus) * 60px)) rotate(calc(var(--focus) * 24deg)) scale(calc(1 - var(--focus) * .45));
     transform-box: fill-box; transform-origin: center; transition: transform 1.2s .9s cubic-bezier(.5,0,.6,1); }
   .box-side { fill: #c9a27a; stroke: var(--ink); stroke-width: 2.5; stroke-linejoin: round; }
   .box-top { fill: #dcbb93; stroke: var(--ink); stroke-width: 2.5; stroke-linejoin: round; }
   .box-edge { stroke: var(--ink); stroke-width: 2; }
-  .brand { font-size: 18px; font-weight: 800; fill: var(--ink); opacity: calc(1 - var(--focus)); transition: opacity .6s 1.6s; }
-  .brand-q { font-size: 22px; font-weight: 800; fill: var(--ink); opacity: var(--focus); transition: opacity .6s 1.8s; }
+  .brand { font-size: 18px; font-weight: var(--fw-bold); fill: var(--ink); opacity: calc(1 - var(--focus)); transition: opacity .6s 1.6s; }
+  .brand-q { font-size: 22px; font-weight: var(--fw-bold); fill: var(--ink); opacity: var(--focus); transition: opacity .6s 1.8s; }
   .bin-body { fill: var(--ink-3); stroke: var(--ink); stroke-width: 2.5; }
   .bin-lid { fill: var(--ink-2); }
   .bin-line { stroke: var(--paper-2); stroke-width: 3; }
   .think circle, .think ellipse { fill: var(--paper); stroke: var(--ink); stroke-width: 2; }
-  .think text { font-size: 15px; font-weight: 800; fill: var(--ink); }
+  .think text { font-size: 15px; font-weight: var(--fw-bold); fill: var(--ink); }
   .think { opacity: var(--focus); transition: opacity .5s 2.1s; }
 
   .dash { fill: var(--paper); stroke: var(--ink); stroke-width: 2.5; }
-  .dash-h { font-size: 15px; font-weight: 800; fill: var(--ink); }
+  .dash-h { font-size: 15px; font-weight: var(--fw-bold); fill: var(--ink); }
   .kpi { fill: var(--accent); stroke: var(--accent-ink); stroke-width: 2; transform-box: fill-box; transform-origin: bottom; transform: scaleY(var(--focus)); transition: transform .8s; }
   .k2 { transition-delay: .15s; } .k3 { transition-delay: .3s; }
-  .kpi-t { font-size: 13px; font-weight: 700; fill: var(--accent-ink); }
-  .vs { font-size: 44px; font-weight: 800; fill: var(--ink-3); }
+  .kpi-t { font-size: 13px; font-weight: var(--fw-bold); fill: var(--accent-ink); }
+  .vs { font-size: 44px; font-weight: var(--fw-bold); fill: var(--ink-3); }
   .head { fill: var(--paper-2); stroke: var(--ink); stroke-width: 2.5; stroke-linejoin: round; }
   .mem { fill: var(--paper); stroke: var(--ink-3); stroke-width: 2; stroke-dasharray: 5 5; }
   .mem-t { font-size: 12px; fill: var(--ink-3); }
-  .mem-q { font-size: 24px; font-weight: 800; fill: var(--ink-3); }
+  .mem-q { font-size: 24px; font-weight: var(--fw-bold); fill: var(--ink-3); }
 
   @media (prefers-reduced-motion: reduce) {
     .ripple { display: none; }

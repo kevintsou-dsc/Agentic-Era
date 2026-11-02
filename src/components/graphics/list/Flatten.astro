@@ -36,6 +36,6 @@ const size = [1.15, 0.95, 1.05, 0.9, 1.2, 1, 1.1];
     filter: grayscale(var(--f)); transition: transform .8s var(--d) cubic-bezier(.5, 0, .2, 1), background .6s var(--d), border-color .6s var(--d), padding .6s, filter .6s; }
   .fl2-items b { font-size: calc(16px - var(--f) * 2px); line-height: 1.35; }
   .fl2-items span { font-size: 12px; color: var(--ink-2); }
-  .fl2-stamp { justify-self: center; margin: 0; padding: 4px 16px; border: 3px solid #b23b33; border-radius: 6px; color: #b23b33; font-weight: 800; font-size: clamp(16px, 1vw + 10px, 20px); letter-spacing: .12em;
+  .fl2-stamp { justify-self: center; margin: 0; padding: 4px 16px; border: 3px solid #b23b33; border-radius: 6px; color: #b23b33; font-weight: var(--fw-bold); font-size: clamp(16px, 1vw + 10px, 20px); letter-spacing: .12em;
     transform: rotate(-4deg) scale(calc(1.6 - var(--on) * .6)); opacity: var(--on); transition: opacity .3s .5s, transform .4s .5s cubic-bezier(.3, 1.6, .5, 1); }
 </style>

@@ -63,8 +63,8 @@ const crowd = Array.from({ length: 36 }, (_, i) => ({ x: 14 + (i % 12) * 11 + (M
 
   .cm-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
   .cm-cell { display: grid; place-items: center; align-content: center; gap: 4px; min-height: 76px; padding: 8px 6px; background: var(--paper); text-align: center; border-radius: 4px; }
-  .cm-cell b { font-size: 14px; font-weight: 700; }
-  .cm-cell span { font-size: 10.5px; letter-spacing: .04em; color: var(--ink-2); line-height: 1.3; }
+  .cm-cell b { font-size: 14px; font-weight: var(--fw-bold); }
+  .cm-cell span { font-size: var(--fs-micro); letter-spacing: .04em; color: var(--ink-2); line-height: 1.3; }
   .cm-hub { display: grid; place-items: center; align-content: center; gap: 2px; text-align: center; }
   .cm-logo { font-size: 30px; font-weight: 900; letter-spacing: .02em; background: linear-gradient(120deg, #6a5cf0, #2bb3e6); -webkit-background-clip: text; background-clip: text; color: transparent; }
   .cm-hub-s { font-size: 9.5px; color: var(--ink-3); }
@@ -75,9 +75,9 @@ const crowd = Array.from({ length: 36 }, (_, i) => ({ x: 14 + (i % 12) * 11 + (M
     box-shadow: inset 0 0 0 calc(var(--focus, 0) * 2px) var(--accent-ink); transition: box-shadow .4s; }
   .cm-tr > span { padding: 8px 10px; }
   .cm-tr > span + span { border-left: 1px solid var(--line); }
-  .cm-th { background: none; font-weight: 800; color: var(--ink); box-shadow: none; }
+  .cm-th { background: none; font-weight: var(--fw-bold); color: var(--ink); box-shadow: none; }
   .cm-th > span { padding: 0 10px; text-align: center; border: 0 !important; }
-  .cm-k { display: grid; place-items: center; font-weight: 800; color: var(--ink); }
+  .cm-k { display: grid; place-items: center; font-weight: var(--fw-bold); color: var(--ink); }
   .cm-tr ul { margin: 4px 0 0; padding-left: 1.1em; }
   .cm-tr li::marker { content: '◆ '; color: #d64545; font-size: 10px; }
   .cm-funnel { width: 100%; height: auto; overflow: visible; }

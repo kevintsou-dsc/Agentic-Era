@@ -33,10 +33,10 @@ const firstOf = (key: string) => ARTICLES.find((a) => a.threads.includes(key as 
 
   <section class="section" id="chapters">
     <p class="eyebrow">依章節找文章</p>
-    <h2 class="h2">22 篇觀點</h2>
+    <h2 class="h2 serif">22 篇觀點</h2>
     {CHAPTER_ORDER.map((ch) => (
       <div class={`chgroup ch-${ch}`}>
-        <h3><span class="chip">{CHAPTERS[ch].name}</span> {CHAPTERS[ch].zh}</h3>
+        <h3><span class="chip">{CHAPTERS[ch].name}</span> <span class="serif">{CHAPTERS[ch].zh}</span></h3>
         <ul>
           {ARTICLES.filter((a) => a.chapter === ch).map((a) => {
             const has = Boolean(STORIES[a.id]);
@@ -72,8 +72,8 @@ const firstOf = (key: string) => ARTICLES.find((a) => a.threads.includes(key as 
   .chgroup a.has { border: 2px solid var(--accent-ink); }
   .chgroup a:hover { background: var(--accent); }
   .chgroup b { font-size: 16px; line-height: 1.45; }
-  .kick { font-size: var(--fs-caption); font-weight: 700; color: var(--accent-ink); }
+  .kick { font-size: var(--fs-caption); font-weight: var(--fw-bold); color: var(--accent-ink); }
   .sub { font-size: var(--fs-meta); color: var(--ink-2); line-height: 1.45; }
   .by { font-size: var(--fs-caption); color: var(--ink-3); margin-top: 4px; }
-  .chgroup em { font-style: normal; font-size: var(--fs-caption); font-weight: 700; color: var(--accent-ink); }
+  .chgroup em { font-style: normal; font-size: var(--fs-caption); font-weight: var(--fw-bold); color: var(--accent-ink); }
 </style>

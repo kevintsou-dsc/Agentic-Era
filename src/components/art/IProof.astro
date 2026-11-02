@@ -52,7 +52,7 @@ const wave = 'M8 104 C 40 70, 70 60, 100 120 S 150 214, 190 196 S 250 60, 290 90
   .ip { --teal: #3fa7c4; --teal-soft: color-mix(in srgb, #3fa7c4 18%, var(--paper)); --teal-band: color-mix(in srgb, #3fa7c4 34%, var(--paper)); display: grid; gap: 10px; padding: 16px; border-radius: 14px; background: var(--teal-soft); }
   .ip p { margin: 0; }
   .ip-h { text-align: center; font-size: clamp(15px, 1.2vw + 8px, 19px); font-weight: 600; color: var(--ink-2); }
-  .ip-bar { justify-self: center; padding: 3px 14px; border-radius: 999px; background: color-mix(in srgb, var(--teal) 70%, var(--ink)); color: #fff; font-size: 11px; font-weight: 700; text-align: center; }
+  .ip-bar { justify-self: center; padding: 3px 14px; border-radius: 999px; background: color-mix(in srgb, var(--teal) 70%, var(--ink)); color: #fff; font-size: 11px; font-weight: var(--fw-bold); text-align: center; }
   .ip-wave { width: 100%; height: auto; overflow: visible; }
   .ip-path-bg { fill: none; stroke: color-mix(in srgb, var(--ink) 15%, transparent); stroke-width: 3; }
   .ip-path { fill: none; stroke: var(--ink); stroke-width: 3; stroke-linecap: round; stroke-dasharray: 100; stroke-dashoffset: calc(100 - var(--drawn, 0) * 100); transition: stroke-dashoffset .9s ease; }
@@ -66,15 +66,15 @@ const wave = 'M8 104 C 40 70, 70 60, 100 120 S 150 214, 190 196 S 250 60, 290 90
   .ip-node { opacity: calc(.3 + .7 * var(--on)); transition: opacity .5s; }
   .ip-dot { fill: var(--paper); stroke: var(--teal); stroke-width: calc(2px + var(--focus) * 2px); filter: drop-shadow(0 0 calc(var(--focus) * 6px) var(--teal)); transition: stroke-width .3s; }
   .ip-ic { fill: none; stroke: var(--teal); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
-  .ip-zh { font-size: 14px; font-weight: 800; fill: var(--ink); }
-  .ip-en { font-size: 10.5px; fill: var(--ink-2); }
+  .ip-zh { font-size: 14px; font-weight: var(--fw-bold); fill: var(--ink); }
+  .ip-en { font-size: 11px; fill: var(--ink-2); }
   .ip-link { stroke: var(--teal); stroke-width: calc(1.5px + var(--focus) * 1px); stroke-dasharray: 3 4; opacity: calc(.45 + .55 * var(--focus)); transition: opacity .3s; }
   /* 底帶緊接在波浪圖下方，連接線從圖底直接落進對應欄位 */
   .ip-wave { margin-bottom: -10px; }
   .ip-band { display: grid; gap: 10px; margin: 0 -16px -16px; padding: 12px 0 14px; border-radius: 0 0 14px 14px; background: var(--teal-band); }
   .ip-cols { position: relative; list-style: none; margin: 0 16px; padding: 0; min-height: 112px; }
   .ip-cols li { position: absolute; top: 0; left: var(--x); width: 17%; display: grid; justify-items: center; gap: 4px; padding: 6px 4px 8px; border-radius: 8px; text-align: center;
-    font-size: 12.5px; font-weight: 700; line-height: 1.45; color: var(--ink-2);
+    font-size: 12.5px; font-weight: var(--fw-bold); line-height: 1.45; color: var(--ink-2);
     background: color-mix(in srgb, var(--paper) calc(var(--focus) * 85%), transparent);
     opacity: calc(.3 + .7 * var(--on)); transition: opacity .5s, background .3s; }
   .ip-cols b { font-size: 26px; line-height: 1; color: color-mix(in srgb, var(--teal) calc(60% + var(--focus) * 40%), var(--ink)); }

@@ -108,8 +108,8 @@ const up = (w: { x: number }) => `M${w.x + 10} ${wy - 40} C${w.x + 10} ${wy - 96
 <style>
   .at { display: block; width: 100%; height: auto; overflow: visible; font-family: inherit; }
   text { text-anchor: middle; fill: var(--ink); }
-  .at-small { font-size: 11px; fill: var(--ink-3); font-weight: 700; }
-  .at-qt { font-size: 13px; font-weight: 800; }
+  .at-small { font-size: 11px; fill: var(--ink-3); font-weight: var(--fw-bold); }
+  .at-qt { font-size: 13px; font-weight: var(--fw-bold); }
   .at-bubble { fill: var(--paper); stroke: var(--ink-3); stroke-width: 2; }
   .at-answer { fill: var(--accent); stroke: var(--accent-ink); }
   .at-flow { fill: none; stroke: var(--ink-3); stroke-width: 2; stroke-dasharray: 5 5; animation: at-dash 1s linear infinite; }
@@ -122,14 +122,19 @@ const up = (w: { x: number }) => `M${w.x + 10} ${wy - 40} C${w.x + 10} ${wy - 96
   .at-line-up { stroke: color-mix(in srgb, var(--accent-ink) 55%, transparent); stroke-dasharray: 3 5; }
   .at-dots-down, .at-dots-up { opacity: var(--on); transition: opacity .4s; }
   .at-chip rect { fill: var(--paper); stroke: var(--accent-ink); stroke-width: 1.5; }
-  .at-chip text { font-size: 9px; font-weight: 700; }
+  .at-chip text { font-size: 9px; font-weight: var(--fw-bold); }
+  /* 窄螢幕整張圖縮到約 0.65 倍，「子題」小籤放大到實際約 11px（SVG2 的 rect 幾何可用 CSS 設定） */
+  @media (max-width: 700px) {
+    .at-chip rect { x: -26px; y: -13px; width: 52px; height: 26px; rx: 13px; }
+    .at-chip text { font-size: 17px; transform: translateY(3px); }
+  }
   .at-dot { fill: var(--accent-ink); }
 
   .at-halo { fill: color-mix(in srgb, var(--accent) 40%, transparent); transform-box: fill-box; transform-origin: center; animation: at-pulse 2.4s ease-in-out infinite; }
   .at-core { fill: var(--ink); }
-  .at-hub-t { fill: var(--paper); font-size: 15px; font-weight: 800; }
+  .at-hub-t { fill: var(--paper); font-size: 15px; font-weight: var(--fw-bold); }
   .at-hub-s { fill: var(--paper); font-size: 11px; opacity: .8; }
-  .at-note { font-size: 12px; font-weight: 700; fill: var(--ink-2); }
+  .at-note { font-size: 12px; font-weight: var(--fw-bold); fill: var(--ink-2); }
   .at-left { text-anchor: start; }
   .at-right { text-anchor: end; }
   .at-hub-step1 { opacity: var(--focus); transition: opacity .4s; }
@@ -139,14 +144,14 @@ const up = (w: { x: number }) => `M${w.x + 10} ${wy - 40} C${w.x + 10} ${wy - 96
   .at-card { fill: var(--paper); stroke-width: 2; stroke: color-mix(in srgb, var(--accent-ink) calc(var(--on) * 100%), var(--line)); transition: stroke .4s; }
   .at-icon-bg { fill: color-mix(in srgb, var(--accent) calc(var(--on) * 100%), var(--line)); transition: fill .4s; }
   .at-icon { fill: none; stroke: var(--ink); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
-  .at-w-name { font-size: 14px; font-weight: 800; }
-  .at-w-sub { font-size: 11px; fill: var(--ink-3); font-weight: 700; }
+  .at-w-name { font-size: 14px; font-weight: var(--fw-bold); }
+  .at-w-sub { font-size: 11px; fill: var(--ink-3); font-weight: var(--fw-bold); }
   .at-w-role { font-size: 11.5px; fill: var(--ink-2); }
   .at-ph { font-size: 11px; fill: var(--ink-3); }
 
   .at-values g { opacity: var(--on); transition: opacity .4s var(--d); }
   .at-values rect { fill: var(--accent); stroke: var(--accent-ink); stroke-width: 1.5; }
-  .at-values text { font-size: 12.5px; font-weight: 800; }
+  .at-values text { font-size: 12.5px; font-weight: var(--fw-bold); }
 
   @keyframes at-dash { to { stroke-dashoffset: -10; } }
   @keyframes at-pulse { 50% { transform: scale(1.08); } }

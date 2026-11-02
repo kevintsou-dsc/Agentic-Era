@@ -36,6 +36,6 @@ const spread = [[-14, -18, -9], [16, -12, 7], [-10, 16, 5], [18, 20, -6], [0, -2
     transform: translate(calc(var(--x) * (1 - var(--g))), calc(var(--y) * (1 - var(--g)))) rotate(calc(var(--r) * (1 - var(--g)))); transition: transform .9s var(--d) cubic-bezier(.5, 0, .2, 1); }
   .sc-items b { font-size: 15px; }
   .sc-items span { font-size: 13px; line-height: 1.5; color: var(--ink-2); }
-  .sc-label { justify-self: center; margin: 0; font-weight: 800; color: var(--accent-ink); opacity: var(--on); transform: translateY(calc((1 - var(--on)) * 8px)); transition: opacity .5s .6s, transform .5s .6s; }
+  .sc-label { justify-self: center; margin: 0; font-weight: var(--fw-bold); color: var(--accent-ink); opacity: var(--on); transform: translateY(calc((1 - var(--on)) * 8px)); transition: opacity .5s .6s, transform .5s .6s; }
   @media (max-width: 560px) { .sc-items { grid-template-columns: 1fr; } }
 </style>

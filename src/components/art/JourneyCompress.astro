@@ -48,7 +48,7 @@ const dots = Array.from({ length: 30 }, (_, i) => i);
 
 <style>
   .jc { display: grid; gap: 16px; }
-  .jc-cap { margin: 0; font-size: 14px; font-weight: 800; }
+  .jc-cap { margin: 0; font-size: 14px; font-weight: var(--fw-bold); }
   /* 文字切換：第 3 段之前顯示舊版，之後顯示新版 */
   .jc-old, .jc-new { transition: opacity .4s; }
   .jc-new { display: none; }
@@ -64,10 +64,10 @@ const dots = Array.from({ length: 30 }, (_, i) => i);
   .jc-chain { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 6px; }
   .jc-who { display: grid; place-items: center; width: 34px; height: 34px; border-radius: 50%; background: var(--ink); }
   .jc-who svg { width: 20px; height: 20px; fill: var(--paper); }
-  .jc-chip { display: inline-flex; align-items: center; gap: 6px; padding: 7px 12px; border-radius: 10px; border: 2px solid var(--ink-3); background: var(--paper); font-size: 13px; font-weight: 700; white-space: nowrap; }
+  .jc-chip { display: inline-flex; align-items: center; gap: 6px; padding: 7px 12px; border-radius: 10px; border: 2px solid var(--ink-3); background: var(--paper); font-size: 13px; font-weight: var(--fw-bold); white-space: nowrap; }
   .jc-end { border-color: var(--ink); }
   :global(.graphic.is-3) .jc-end { background: var(--accent); border-color: var(--accent-ink); }
-  .jc-arrow { color: var(--ink-3); font-weight: 800; }
+  .jc-arrow { color: var(--ink-3); font-weight: var(--fw-bold); }
   .jc-mid { display: inline-flex; align-items: center; gap: 6px; overflow: hidden; max-width: 9em; transition: max-width .7s var(--d) var(--ease-move), opacity .4s var(--d); }
   :global(.graphic.is-3) .jc-mid { max-width: 0; opacity: 0; }
   .jc-agent { display: inline-flex; align-items: center; gap: 6px; overflow: hidden; max-width: calc(var(--on) * 10em); opacity: var(--on); transition: max-width .6s, opacity .4s; }
@@ -76,16 +76,16 @@ const dots = Array.from({ length: 30 }, (_, i) => i);
   :global(.graphic[data-step="2"]) .jc-bot { animation: jc-bob 1.6s ease-in-out infinite; }
 
   .jc-does { display: flex; flex-wrap: wrap; gap: 6px; }
-  .jc-does span { padding: 3px 10px; border-radius: 999px; border: 1px dashed var(--accent-ink); font-size: 12px; font-weight: 700; color: var(--ink-2); opacity: var(--on); transform: translateY(calc((1 - var(--on)) * 6px)); transition: opacity .4s var(--d), transform .4s var(--d); }
+  .jc-does span { padding: 3px 10px; border-radius: 999px; border: 1px dashed var(--accent-ink); font-size: 12px; font-weight: var(--fw-bold); color: var(--ink-2); opacity: var(--on); transform: translateY(calc((1 - var(--on)) * 6px)); transition: opacity .4s var(--d), transform .4s var(--d); }
 
   .jc-choice { display: grid; grid-template-columns: auto 1fr; gap: 16px; align-items: center; padding: 14px; border-radius: 14px; border: 2px dashed var(--ink-3); opacity: var(--on); transition: opacity .5s; }
   .jc-dots { display: grid; grid-template-columns: repeat(10, 12px); gap: 5px; }
   .jc-dots span { width: 12px; height: 12px; border-radius: 3px; background: var(--ink-3); opacity: calc(1 - var(--on) * .85); transform: scale(calc(1 - var(--on) * .4)); transition: opacity .5s calc(.4s + var(--d)), transform .5s calc(.4s + var(--d)); }
   .jc-dots span.keep { background: var(--accent-ink); opacity: 1; transform: scale(calc(1 + var(--on) * .35)); }
-  .jc-choice-t { margin: 0; font-size: 15px; font-weight: 800; line-height: 1.5; }
+  .jc-choice-t { margin: 0; font-size: 15px; font-weight: var(--fw-bold); line-height: 1.5; }
   .jc-choice-t b { font-size: 30px; color: var(--accent-ink); }
   .jc-choice-t s { color: var(--ink-3); }
-  .jc-choice-t span { font-size: 12px; font-weight: 700; color: var(--ink-2); }
+  .jc-choice-t span { font-size: 12px; font-weight: var(--fw-bold); color: var(--ink-2); }
 
   @keyframes jc-bob { 50% { transform: translateY(-3px); } }
   @media (max-width: 560px) {
