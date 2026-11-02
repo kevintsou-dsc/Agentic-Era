@@ -34,11 +34,19 @@ const firstOf = (key: string) => ARTICLES.find((a) => a.threads.includes(key as 
   <section class="section" id="chapters">
     <p class="eyebrow">依章節找文章</p>
     <h2 class="h2 serif">22 篇觀點</h2>
-    {CHAPTER_ORDER.map((ch) => (
-      <div class={`chgroup ch-${ch}`}>
-        <h3><span class="chip">{CHAPTERS[ch].name}</span> <span class="serif">{CHAPTERS[ch].zh}</span></h3>
-        <ul>
-          {ARTICLES.filter((a) => a.chapter === ch).map((a) => {
+    {CHAPTER_ORDER.map((ch) => {
+      const list = ARTICLES.filter((a) => a.chapter === ch);
+      const mins = list.reduce((s, a) => s + (STORIES[a.id] ? storyMinutes(STORIES[a.id]) : a.minutes), 0);
+      // 章節磚跨的格數＝補滿最後一列的空格；剛好排滿時改為獨佔一整列（當章首橫幅）
+      const fill = (cols: number) => (cols - (list.length % cols)) % cols || cols;
+      return (
+      <div class={`chgroup ch-${ch}`} style={`--t2:${fill(2)};--t3:${fill(3)}`}>
+        <div class="ch-tile"><div class="ch-in">
+          <h3><span class="ch-en">{CHAPTERS[ch].name}</span> <span class="serif">{CHAPTERS[ch].zh}</span></h3>
+          <p>{list.length} 篇｜約 {mins} 分鐘</p>
+        </div></div>
+        <ul role="list">
+          {list.map((a) => {
             const has = Boolean(STORIES[a.id]);
             return (
               <li>
@@ -54,7 +62,8 @@ const firstOf = (key: string) => ARTICLES.find((a) => a.threads.includes(key as 
           })}
         </ul>
       </div>
-    ))}
+      );
+    })}
     <p class="source">標題、作者與職稱以文章內頁為準；每篇精華的每一句都附紙本頁碼，可逐句對照原文。</p>
   </section>
   <script>
@@ -65,10 +74,29 @@ const firstOf = (key: string) => ARTICLES.find((a) => a.threads.includes(key as 
 <style>
   .h2 { font-size: var(--fs-h2); margin: 4px 0 8px; }
   .btn.small { padding: 8px 14px; font-size: 14px; }
-  .chgroup { margin: 28px 0; }
-  .chgroup h3 { font-size: 18px; display: flex; gap: 10px; align-items: center; margin: 0 0 10px; }
-  .chgroup ul { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 260px), 1fr)); gap: 10px; }
-  .chgroup a { display: grid; gap: 3px; align-content: start; padding: 14px 16px; border-radius: var(--r-m); border: 1px solid var(--line); background: var(--paper); text-decoration: none; height: 100%; transition: background .2s; }
+  /* 章節區：每章一個網格，章節磚與卡片同網格；欄數依區塊寬度（與原本 260px 最小卡寬的換欄點相同） */
+  #chapters { container: chapters / inline-size; }
+  .chgroup { margin: 28px 0; display: grid; grid-template-columns: 1fr; gap: 10px; --span: 1; }
+  .chgroup ul { display: contents; list-style: none; }
+  @container (min-width: 530px) { .chgroup { grid-template-columns: repeat(2, 1fr); --span: var(--t2); } }
+  @container (min-width: 800px) { .chgroup { grid-template-columns: repeat(3, 1fr); --span: var(--t3); } }
+  .ch-tile { grid-column: span var(--span); container: tile / inline-size; padding: 14px 16px; border-radius: var(--r-m); background: var(--accent); }
+  .ch-in { height: 100%; display: flex; flex-direction: column; justify-content: space-between; gap: var(--sp-2); }
+  .ch-tile h3 { margin: 0; display: flex; flex-direction: column; gap: 2px; font-size: var(--fs-h3); line-height: 1.2; }
+  .ch-tile .ch-en { font-size: var(--fs-caption); font-weight: var(--fw-bold); letter-spacing: .08em; text-transform: uppercase; color: var(--accent-ink); }
+  .ch-tile p { margin: 0; font-size: var(--fs-meta); color: var(--ink-2); }
+  /* 獨佔整列時（磚夠寬，或手機單欄）改成一行橫幅，不要把版面撐高 */
+  @container tile (min-width: 480px) {
+    .ch-in { flex-direction: row; align-items: baseline; }
+    .ch-tile h3 { flex-direction: row; align-items: baseline; gap: var(--sp-3); }
+  }
+  @container chapters (max-width: 529.98px) {
+    .ch-tile { padding-block: 10px; }
+    .ch-in { flex-direction: row; align-items: baseline; }
+    .ch-tile h3 { flex-direction: row; align-items: baseline; gap: var(--sp-3); }
+  }
+  .chgroup a { display: flex; flex-direction: column; gap: 3px; padding: 14px 16px; border-radius: var(--r-m); border: 1px solid var(--line); background: var(--paper); text-decoration: none; height: 100%; transition: background .2s; }
+  .chgroup em { margin-top: auto; }
   .chgroup a.has { border: 2px solid var(--accent-ink); }
   .chgroup a:hover { background: var(--accent); }
   .chgroup b { font-size: 16px; line-height: 1.45; }
