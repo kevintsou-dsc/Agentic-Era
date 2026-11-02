@@ -317,6 +317,8 @@ details.more[open] summary::before { content: "－ "; }
 ::view-transition-group(topbar), ::view-transition-group(progress),
 ::view-transition-old(topbar), ::view-transition-new(topbar),
 ::view-transition-old(progress), ::view-transition-new(progress) { animation: none; }
+/* 點下連結的當下先淡出（scripts/pagexit.ts）：只動透明度，不加 transform，避免影響內容裡的 fixed／sticky 元素 */
+html.is-leaving main, html.is-leaving .footer { opacity: .12; transition: opacity .3s var(--ease-std); }
 @keyframes vt-out { to { opacity: 0; transform: translateY(-4svh) scale(.985); } }
 @keyframes vt-in { from { opacity: 0; transform: translateY(8svh); } }
 
