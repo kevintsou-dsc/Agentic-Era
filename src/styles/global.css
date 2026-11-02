@@ -304,26 +304,25 @@ details.more[open] summary::before { content: "－ "; }
 .graphic[data-step="4"] [data-focus="4"], .graphic[data-step="5"] [data-focus="5"], .graphic[data-step="6"] [data-focus="6"],
 .graphic[data-step="7"] [data-focus="7"], .graphic[data-step="8"] [data-focus="8"] { --focus: 1; }
 
-/* 跨頁換場（docs/design-review/p1-02-ruling.md L9）：舊頁淡出、新頁上移淡入；頂欄與進度條各自成組，換頁時固定不閃。
-   Chrome／Edge 支援；其他瀏覽器照常換頁。減少動態時關閉。 */
+/* 換頁翻紙（docs/design-review/p1-02-ruling.md L9 修訂；scripts/pagexit.ts）：
+   點站內連結 → 紙幕由下往上蓋滿（.36s）→ 才真正換頁 → 新頁一開始就被紙幕蓋著（Loader 的行內腳本加 is-entering）→ 紙幕繼續往上收走。
+   不靠瀏覽器原生跨頁換場：那要等新頁載入完才播，一般點連結時讀者只看到卡一下就切換。紙幕在頂欄（z 40）之下，頂欄不動。
+   沒有 JS 或模組載入失敗時，紙幕 1.2 秒後自己收走，不會擋住內容。
+   原生跨頁換場仍開著但不播動畫：兩頁交接的那一格都是紙幕，換頁時不閃白。 */
 @view-transition { navigation: auto; }
-.topbar { view-transition-name: topbar; }
-.progress { view-transition-name: progress; }
-/* 先退後進，不交疊：舊頁上移淡出（.28s），中間露出一瞬紙色，新頁再從下方升起（.6s）。
-   交疊的淡入淡出看起來只像閃一下，讀者感覺不到換頁。 */
-::view-transition { background: var(--paper); }
-::view-transition-old(root) { animation: vt-out .28s var(--ease-std) both; }
-::view-transition-new(root) { animation: vt-in .6s var(--ease-out) .2s both; }
-::view-transition-group(topbar), ::view-transition-group(progress),
-::view-transition-old(topbar), ::view-transition-new(topbar),
-::view-transition-old(progress), ::view-transition-new(progress) { animation: none; }
-/* 點下連結的當下先淡出（scripts/pagexit.ts）：只動透明度，不加 transform，避免影響內容裡的 fixed／sticky 元素 */
-html.is-leaving main, html.is-leaving .footer { opacity: .12; transition: opacity .3s var(--ease-std); }
-@keyframes vt-out { to { opacity: 0; transform: translateY(-4svh) scale(.985); } }
-@keyframes vt-in { from { opacity: 0; transform: translateY(8svh); } }
+::view-transition-old(root), ::view-transition-new(root) { animation: none; }
+.curtain { position: fixed; inset: 0; z-index: 35; pointer-events: none; visibility: hidden;
+  background: var(--paper) url(/art/cover/kraft.webp) 0 0 / 640px; background-blend-mode: multiply; transform: translateY(100%); }
+.curtain::before { content: ""; position: absolute; inset: 0 0 auto; height: 3px; background: var(--accent-ink); }
+html.is-leaving .curtain { visibility: visible; pointer-events: auto; animation: curtain-in .36s var(--ease-std) forwards; }
+html.is-entering .curtain { visibility: visible; transform: none; animation: curtain-out .55s var(--ease-move) 1.2s forwards; }
+html.is-entering.is-entered .curtain { animation-delay: 0s; }
+@keyframes curtain-in { from { transform: translateY(100%); } to { transform: none; } }
+@keyframes curtain-out { to { transform: translateY(-100%); visibility: hidden; } }
 
 @media (prefers-reduced-motion: reduce) {
   @view-transition { navigation: none; }
+  .curtain { display: none; }
   [data-at] { --on: 1; }
   *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
   .reveal, .scrolly .card { opacity: 1; transform: none; }
