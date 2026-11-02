@@ -32,6 +32,9 @@
   --ease-move: cubic-bezier(.6, 0, .2, 1);
   --ease-std: cubic-bezier(.4, 0, .2, 1);
   --ease-spring: cubic-bezier(.3, 1.4, .5, 1);
+  /* 換頁翻紙：蓋上時先慢後快再慢（像把紙拉上來），收走時起步快、尾段長（像紙被輕輕帶走） */
+  --ease-sheet: cubic-bezier(.7, 0, .3, 1);
+  --ease-lift: cubic-bezier(.65, 0, .15, 1);
 
   --measure: 34rem;
   --gutter: clamp(16px, 4vw, 48px);
@@ -305,20 +308,35 @@ details.more[open] summary::before { content: "－ "; }
 .graphic[data-step="7"] [data-focus="7"], .graphic[data-step="8"] [data-focus="8"] { --focus: 1; }
 
 /* 換頁翻紙（docs/design-review/p1-02-ruling.md L9 修訂；scripts/pagexit.ts）：
-   點站內連結 → 紙幕由下往上蓋滿（.36s）→ 才真正換頁 → 新頁一開始就被紙幕蓋著（Loader 的行內腳本加 is-entering）→ 紙幕繼續往上收走。
-   不靠瀏覽器原生跨頁換場：那要等新頁載入完才播，一般點連結時讀者只看到卡一下就切換。紙幕在頂欄（z 40）之下，頂欄不動。
-   沒有 JS 或模組載入失敗時，紙幕 1.2 秒後自己收走，不會擋住內容。
-   原生跨頁換場仍開著但不播動畫：兩頁交接的那一格都是紙幕，換頁時不閃白。 */
+   點站內連結 → 兩張紙由下往上蓋滿 → 才真正換頁 → 新頁一開始就被蓋著（Loader 的行內腳本加 is-entering）→ 紙繼續往上收走。
+   不靠瀏覽器原生跨頁換場：那要等新頁載入完才播，一般點連結時讀者只看到卡一下就切換。紙在頂欄（z 40）之下，頂欄不動。
+   柔化手法（避免一整塊平板硬切）：
+   - 兩層錯開：章節色紙先到、牛皮紙隨後 45ms（太大會變成一整塊色牆）；收走時牛皮紙先走、章節色紙殿後，前後各露出一道章節色。
+   - 紙的上下緣是緩弧（border-radius 50% / 12svh），紙比視窗高 24svh，蓋滿時弧形都在視窗外。
+   - 舊頁跟著往上退 4svh 並變淡、新頁從下方 5svh 升起：紙與內容速度不同，有前後景深。
+   - 只動 transform／opacity／translate，全由合成器處理；紙的牛皮紙紋只在開始時繪製一次。
+   沒有 JS 或模組載入失敗時，紙 1.2 秒後自己收走，不會擋住內容。
+   原生跨頁換場仍開著但不播動畫：兩頁交接的那一格都是紙，換頁時不閃白。 */
 @view-transition { navigation: auto; }
 ::view-transition-old(root), ::view-transition-new(root) { animation: none; }
-.curtain { position: fixed; inset: 0; z-index: 35; pointer-events: none; visibility: hidden;
-  background: var(--paper) url(/art/cover/kraft.webp) 0 0 / 640px; background-blend-mode: multiply; transform: translateY(100%); }
-.curtain::before { content: ""; position: absolute; inset: 0 0 auto; height: 3px; background: var(--accent-ink); }
-html.is-leaving .curtain { visibility: visible; pointer-events: auto; animation: curtain-in .36s var(--ease-std) forwards; }
-html.is-entering .curtain { visibility: visible; transform: none; animation: curtain-out .55s var(--ease-move) 1.2s forwards; }
-html.is-entering.is-entered .curtain { animation-delay: 0s; }
-@keyframes curtain-in { from { transform: translateY(100%); } to { transform: none; } }
-@keyframes curtain-out { to { transform: translateY(-100%); visibility: hidden; } }
+.curtain { position: fixed; inset: 0; z-index: 35; pointer-events: none; visibility: hidden; overflow: hidden; }
+.sheet { position: absolute; left: 0; right: 0; top: 0; height: 124svh; border-radius: 50% / 12svh; transform: translateY(100svh); }
+.sheet-a { background: var(--accent); }
+.sheet-p { background: var(--paper) url(/art/cover/kraft.webp) 0 0 / 640px; background-blend-mode: multiply;
+  box-shadow: 0 -10px 40px -18px rgba(31, 29, 26, .28); }
+html.is-leaving .curtain, html.is-entering .curtain { visibility: visible; }
+html.is-leaving .curtain { pointer-events: auto; }
+html.is-leaving .sheet { will-change: transform; animation: sheet-cover .38s var(--ease-sheet) forwards; }
+html.is-leaving .sheet-p { animation-delay: .045s; }
+html.is-entering .sheet { transform: translateY(-12svh); will-change: transform; animation: sheet-lift .75s var(--ease-lift) 1.2s forwards; }
+html.is-entering .sheet-a { animation-delay: 1.26s; }
+html.is-entering.is-entered .sheet-p { animation-delay: 0s; }
+html.is-entering.is-entered .sheet-a { animation-delay: .06s; }
+html.is-leaving main, html.is-leaving .footer { translate: 0 -4svh; opacity: .55; transition: translate .45s var(--ease-sheet), opacity .45s var(--ease-sheet); }
+html.is-entered main { animation: page-rise .9s var(--ease-out) .1s backwards; }
+@keyframes sheet-cover { from { transform: translateY(100svh); } to { transform: translateY(-12svh); } }
+@keyframes sheet-lift { from { transform: translateY(-12svh); } to { transform: translateY(-124svh); } }
+@keyframes page-rise { from { translate: 0 5svh; opacity: .35; } }
 
 @media (prefers-reduced-motion: reduce) {
   @view-transition { navigation: none; }

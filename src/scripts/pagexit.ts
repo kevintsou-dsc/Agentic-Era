@@ -3,7 +3,7 @@
 // 只處理會由瀏覽器自己換頁的一般點擊：新分頁、修飾鍵、下載、站外、同頁錨點、已被其他腳本攔下的、減少動態都不管。
 // 新頁的 is-entering 由 Loader.astro 的行內腳本在第一次繪製前加上（讀 sessionStorage['dw-nav']）。
 const NAV = 'dw-nav';
-const COVER = 360; // 與 curtain-in 的時間一致
+const COVER = 430; // 兩張紙蓋滿的時間：sheet-cover .38s＋牛皮紙延遲 .045s
 
 export function initPageExit() {
   const root = document.documentElement;
