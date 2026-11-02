@@ -330,8 +330,8 @@ const r = (x: CaseResult) => x;
   .cs-j-line::before { content: ''; position: absolute; left: 8%; right: 8%; top: 21px; height: 3px; background: var(--line); }
   .cs-j-line li { position: relative; display: grid; justify-items: center; gap: 6px; text-align: center; font-size: 13px; font-weight: 700; opacity: var(--show); transition: opacity .4s var(--d); }
   .cs-j-dot { width: 16px; height: 16px; border-radius: 50%; background: var(--paper); border: 3px solid var(--ink-3); z-index: 1; }
-  .cs-j-line li.drop .cs-j-dot { border-color: #c2413b; background: #c2413b; animation: cs-pulse 1.4s ease-in-out infinite; }
-  .cs-j-drop { font-size: 11px; font-weight: 800; color: #c2413b; }
+  .cs-j-line li.drop .cs-j-dot { border-color: var(--signal); background: var(--signal); animation: cs-pulse 1.4s ease-in-out infinite; }
+  .cs-j-drop { font-size: 11px; font-weight: 800; color: var(--signal); }
   .cs-needs { display: grid; gap: 6px; }
 
   /* points */
@@ -339,13 +339,13 @@ const r = (x: CaseResult) => x;
   .cs-pt-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr)); gap: 8px; }
   .cs-pt { margin: 0; display: grid; gap: 4px; padding: 10px 12px; border-radius: 12px; border: 2px solid var(--line); font-size: 13px; line-height: 1.5; opacity: var(--show); transform: translateY(calc((1 - var(--show)) * 8px)); transition: opacity .4s var(--d), transform .4s var(--d); }
   .cs-pt b { font-size: 26px; line-height: 1.1; color: var(--accent-ink); }
-  .cs-pt.warn { border-color: #c2413b; background: color-mix(in srgb, #c2413b 8%, var(--paper)); }
-  .cs-pt.warn b { color: #c2413b; }
+  .cs-pt.warn { border-color: var(--signal); background: color-mix(in srgb, var(--signal) 8%, var(--paper)); }
+  .cs-pt.warn b { color: var(--signal); }
   .cs-tags { display: grid; grid-template-columns: repeat(auto-fit, minmax(8rem, 1fr)); gap: 6px; }
   .cs-tags p { opacity: var(--show); transition: opacity .4s var(--d); }
 
   @keyframes cs-down { to { background-position: 0 6px; } }
-  @keyframes cs-pulse { 50% { box-shadow: 0 0 0 6px color-mix(in srgb, #c2413b 25%, transparent); } }
+  @keyframes cs-pulse { 50% { box-shadow: 0 0 0 6px color-mix(in srgb, var(--signal) 25%, transparent); } }
   /* 窄螢幕：圖只有約半個畫面高（global.css 的 52svh），縮小素材與字級，避免壓到下方主文卡 */
   @media (max-width: 899px) {
     .cs { gap: 8px; }
