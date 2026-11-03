@@ -39,6 +39,24 @@ function highlight(root: HTMLElement, segs: Seg[]) {
   }
 }
 
+// 等待抓取時的骨架：兩段假段落，末行較短，像真的段落輪廓（樣式見 global.css .skel）
+const SKEL = [92, 100, 96, 58, 0, 100, 94, 98, 40];
+function skeleton() {
+  const box = document.createElement('div');
+  box.className = 'skel';
+  box.setAttribute('aria-hidden', 'true');
+  let gap = false;
+  SKEL.forEach((w, i) => {
+    if (!w) { gap = true; return; }
+    const line = document.createElement('i');
+    line.style.width = `${w}%`;
+    line.style.setProperty('--i', String(i));
+    if (gap) { line.className = 'p'; gap = false; }
+    box.append(line);
+  });
+  return box;
+}
+
 export function initReader() {
   const dialog = document.getElementById('reader') as HTMLDialogElement | null;
   if (!dialog) return;
@@ -47,6 +65,7 @@ export function initReader() {
   const body = dialog.querySelector<HTMLElement>('[data-reader-body]')!;
   const full = dialog.querySelector<HTMLAnchorElement>('[data-reader-full]')!;
   let opener: HTMLElement | null = null;
+  let seq = 0; // 載入中又點了別的出處：只採用最後一次點擊的結果，較早的請求晚回來時直接丟掉
 
   document.addEventListener('click', async (e) => {
     const a = (e.target as HTMLElement).closest<HTMLElement>('[data-reader]');
@@ -54,13 +73,16 @@ export function initReader() {
     e.preventDefault();
     const data = JSON.parse(a.dataset.reader!) as Payload;
     opener = a;
+    const mine = ++seq;
     title.textContent = '載入原文…';
     meta.innerHTML = '';
-    body.replaceChildren();
+    body.replaceChildren(skeleton());
+    body.setAttribute('aria-busy', 'true');
     full.href = `/story/${data.slug}/original/#p${data.page}`;
     if (!dialog.open) dialog.showModal();
     try {
       const page = await load(data.slug);
+      if (mine !== seq) return;
       title.textContent = page.title;
       meta.innerHTML = page.meta;
       body.innerHTML = page.body;
@@ -69,7 +91,9 @@ export function initReader() {
       // 開啟時直接跳到引用處（不從文章開頭捲動過去）
       target?.scrollIntoView({ block: 'center', behavior: 'instant' });
     } catch {
-      window.location.href = full.href;
+      if (mine === seq) window.location.href = full.href;
+    } finally {
+      if (mine === seq) body.removeAttribute('aria-busy');
     }
   });
 

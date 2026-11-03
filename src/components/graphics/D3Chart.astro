@@ -58,9 +58,13 @@ const hintTarget = c.kind === 'flowloop' ? '圓圈' : c.kind === 'stages' ? '方
   /* 說明框 */
   .d3 :global(.d3-tip) {
     position: absolute; z-index: 8; width: min(24rem, 94%); padding: 12px 14px; border-radius: 12px;
-    background: var(--ink); color: var(--paper); box-shadow: 0 14px 30px -14px rgba(0,0,0,.6);
+    /* 深色毛玻璃：半透明墨色＋背景模糊，1px 淡白框，頂緣一道水平高光模擬受光面 */
+    background: color-mix(in srgb, var(--ink) 84%, transparent); color: var(--paper);
+    -webkit-backdrop-filter: blur(24px) saturate(1.4); backdrop-filter: blur(24px) saturate(1.4);
+    border: 1px solid rgba(255,255,255,.08); box-shadow: 0 14px 30px -14px rgba(0,0,0,.6);
     pointer-events: none; font-size: 14px; line-height: 1.6;
   }
+  .d3 :global(.d3-tip::before) { content: ""; position: absolute; top: -1px; left: 12px; right: 12px; height: 1px; background: linear-gradient(90deg, transparent, rgba(255,255,255,.3), transparent); }
   .d3 :global(.d3-tip b) { display: block; font-size: 15px; margin-bottom: 4px; }
   .d3 :global(.d3-tip p) { margin: 0 0 6px; }
   .d3 :global(.d3-tip .tip-body) { color: var(--paper-2); }

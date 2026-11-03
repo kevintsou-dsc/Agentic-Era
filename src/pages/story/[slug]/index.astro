@@ -48,7 +48,7 @@ const threadNext = THREADS.filter((t) => a.threads.includes(t.key))
   </section>
 
   <nav class="section next" aria-label="接下來">
-    <a class="btn" href={`/story/${a.slug}/original/`}>讀原文（約 {a.minutes} 分鐘{fullReviewed ? '' : '，校正中'}）→</a>
+    <a class="btn flow" href={`/story/${a.slug}/original/`}>讀原文（約 {a.minutes} 分鐘{fullReviewed ? '' : '，校正中'}）→</a>
     {bookNext && (
       <a class="nextcard" href={`/story/${bookNext.slug}/`}>
         <span class="eyebrow">下一篇｜紙本 p.{bookNext.pages[0]}{THREADS.filter((t) => bookNext.threads.includes(t.key) && a.threads.includes(t.key)).map((t) => `・同一條主線「${t.name}」`).join('')}</span>
