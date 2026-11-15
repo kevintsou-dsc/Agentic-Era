@@ -1,0 +1,10 @@
+---
+// 編註按鈕：主文用到、原文沒解釋的術語，點開看本站補充的一句白話說明。
+// 和「＋ 細節」共用細節卡（MoreRef），按鈕樣式較淡，標明「編註」，卡片內註明不一定來自原文。
+import type { Note } from '../lib/story';
+import MoreRef from './MoreRef.astro';
+
+interface Props { notes?: Note[] }
+const { notes } = Astro.props;
+---
+{notes?.map((n) => <MoreRef m={{ title: `編註：${n.term}`, text: n.text, editorial: true }} class="note-ref" />)}

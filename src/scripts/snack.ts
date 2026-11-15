@@ -1,0 +1,271 @@
+// 知識補給包（components/SnackPack.astro）。成就卡定義在 lib/achievements.ts，由已讀紀錄推算。
+// readmap.ts 記下已讀後發出 dw:read（帶讀完前後的已讀清單）：有新卡解鎖就跳出補給包。
+// 包裝依這次解鎖的卡而定（scripts/packs.ts）：第一篇＝糖果紙、篇數＝鋁箔袋、讀完一章＝摺紙信封、讀完一條主線＝扭蛋；
+// 一次解鎖多種時取最稀有的。補給包飄在空中：拖曳旋轉；手機用陀螺儀跟著晃動轉（iOS 第一次觸碰時請求授權）。
+// 把拉條往右拉打開。右上角、首頁底部與全書地圖上的按鈕打開收藏。
+import { absUrl, copyText } from './share';
+import { buildPack, type Light, type PackKind } from './packs';
+
+interface Card { id: string; kind: 'count' | 'chapter' | 'thread'; name: string; line: string; hint: string; color: string; n?: number; slugs?: string[] }
+const KIND = { count: '篇數', chapter: '章節', thread: '主線' } as const;
+const KEY = 'dw-read';
+const TEAR_AT = 0.7;
+// 每種包裝的動詞、標籤與提示
+const PACK: Record<PackKind, { verb: string; tag: string; hint: string; ms: number }> = {
+  candy: { verb: '扭', tag: '第一篇讀完｜糖果補給', hint: '把「扭」往右拉，扭開糖果紙', ms: 1700 },
+  foil: { verb: '撕', tag: '篇數補給｜鋁箔袋', hint: '把「撕」往右拉，撕開封口', ms: 1500 },
+  envelope: { verb: '拆', tag: '章節補給｜摺紙信封', hint: '把「拆」往右拉，拆開封蠟', ms: 2000 },
+  capsule: { verb: '轉', tag: '主線補給｜扭蛋', hint: '把「轉」往右拉，轉開上蓋', ms: 1700 },
+};
+
+export function readList(): string[] {
+  try {
+    const v: unknown = JSON.parse(localStorage.getItem(KEY) ?? '[]');
+    return Array.isArray(v) ? v.filter((s): s is string => typeof s === 'string') : [];
+  } catch { return []; }
+}
+
+export function initSnack() {
+  const dlg = document.getElementById('snack') as HTMLDialogElement | null;
+  if (!dlg) return;
+  const cards: Card[] = JSON.parse(dlg.dataset.cards!);
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const $ = <T extends HTMLElement = HTMLElement>(s: string) => dlg.querySelector<T>(s)!;
+  const stages = Array.from(dlg.querySelectorAll<HTMLElement>('[data-stage]'));
+  const show = (name: string) => stages.forEach((s) => { s.hidden = s.dataset.stage !== name; });
+  const scene = $('[data-scene]');
+  const host = $('[data-pk]');
+  let light: Light | null = null;
+  let kind: PackKind = 'foil';
+  const knob = $<HTMLButtonElement>('[data-tear]');
+  const fill = $('[data-tear-fill]');
+  const deck = $('[data-deck]');
+  const msg = $('[data-snack-msg]');
+
+  const unlocked = (read: string[]) => {
+    const set = new Set(read);
+    return cards.filter((c) => (c.kind === 'count' ? set.size >= c.n! : c.slugs!.every((s) => set.has(s))));
+  };
+
+  const cardEl = (c: Card, locked = false) => {
+    const el = document.createElement('div');
+    el.className = `acard c-${c.color}${locked ? ' locked' : ''}`;
+    const no = String(cards.indexOf(c) + 1).padStart(2, '0');
+    const top = document.createElement('span'); top.className = 'ac-top';
+    top.append(Object.assign(document.createElement('span'), { textContent: `No.${no}／${cards.length}` }), Object.assign(document.createElement('span'), { textContent: '知識補給包' }));
+    const kind = Object.assign(document.createElement('span'), { className: 'ac-kind', textContent: KIND[c.kind] });
+    const name = Object.assign(document.createElement('b'), { className: 'ac-name', textContent: locked ? '？' : c.name });
+    const line = Object.assign(document.createElement('p'), { className: 'ac-line', textContent: locked ? c.hint : c.line });
+    const foot = Object.assign(document.createElement('span'), { className: 'ac-foot', textContent: 'DECISION WISDOM 2026' });
+    el.append(top, kind, name, line, foot);
+    if (!locked) {
+      el.append(Object.assign(document.createElement('i'), { className: 'ac-shine' }));
+      // 卡片跟著指標微微傾斜，光澤跟著移動
+      el.addEventListener('pointermove', (e) => {
+        const r = el.getBoundingClientRect();
+        const x = (e.clientX - r.left) / r.width;
+        const y = (e.clientY - r.top) / r.height;
+        el.style.setProperty('--ty', `${(x - 0.5) * 18}deg`);
+        el.style.setProperty('--tx', `${(0.5 - y) * 14}deg`);
+        el.style.setProperty('--gx', `${x * 100}%`);
+        el.style.setProperty('--gy', `${y * 100}%`);
+      });
+      el.addEventListener('pointerleave', () => { el.style.removeProperty('--tx'); el.style.removeProperty('--ty'); });
+    }
+    return el;
+  };
+
+  // ── 卡片 ──
+  let got: Card[] = [];
+  let pos = 0;
+  const renderDeck = () => {
+    deck.replaceChildren(cardEl(got[pos]));
+    $('[data-deck-pos]').textContent = `${pos + 1}／${got.length}`;
+    $('[data-deck-nav]').hidden = got.length < 2;
+    msg.textContent = '';
+  };
+  $('[data-prev]').addEventListener('click', () => { pos = (pos - 1 + got.length) % got.length; renderDeck(); });
+  $('[data-next]').addEventListener('click', () => { pos = (pos + 1) % got.length; renderDeck(); });
+
+  // ── 收藏 ──
+  const openAlbum = () => {
+    const have = new Set(unlocked(readList()).map((c) => c.id));
+    $('[data-album]').replaceChildren(...cards.map((c) => { const li = document.createElement('li'); li.append(cardEl(c, !have.has(c.id))); return li; }));
+    $('[data-album-count]').textContent = `${have.size}／${cards.length}`;
+    show('album');
+  };
+  $('[data-album-open]').addEventListener('click', openAlbum);
+
+  // ── 3D 包：旋轉 ──
+  let rx = 0, ry = 0, tx = 0, ty = 0; // 目前角度與目標角度
+  let dragging = false, px = 0, py = 0, baseX = 0, baseY = 0;
+  let tilt: { x: number; y: number } | null = null; // 陀螺儀
+  let lastInput = 0;
+  let raf = 0;
+  const loop = (t: number) => {
+    const idle = performance.now() - lastInput > 1800;
+    if (!dragging) {
+      if (tilt) { tx = tilt.x; ty = tilt.y; }
+      else if (idle && !reduce) { tx = Math.sin(t / 1600) * 8; ty = Math.sin(t / 2300) * 22; }
+    }
+    rx += (tx - rx) * 0.12;
+    ry += (ty - ry) * 0.12;
+    host.style.transform = `rotateX(${rx.toFixed(2)}deg) rotateY(${ry.toFixed(2)}deg)`;
+    light?.(rx, ry); // 曲面每一條依角度算明暗
+    raf = requestAnimationFrame(loop);
+  };
+  const startLoop = () => { cancelAnimationFrame(raf); raf = requestAnimationFrame(loop); };
+
+  let askedMotion = false;
+  const onTilt = (e: DeviceOrientationEvent) => {
+    if (e.beta == null || e.gamma == null) return;
+    tilt = { x: Math.max(-35, Math.min(35, (e.beta - 45) * 0.8)), y: Math.max(-60, Math.min(60, e.gamma * 1.5)) };
+  };
+  const askMotion = async () => {
+    if (askedMotion) return;
+    askedMotion = true;
+    const D = window.DeviceOrientationEvent as unknown as { requestPermission?: () => Promise<string> } | undefined;
+    try { if (D?.requestPermission && (await D.requestPermission()) !== 'granted') return; } catch { return; }
+    window.addEventListener('deviceorientation', onTilt);
+  };
+  if (!('ontouchstart' in window)) askedMotion = true; // 桌機不需要陀螺儀
+  else if (!(window.DeviceOrientationEvent as unknown as { requestPermission?: unknown })?.requestPermission) { askedMotion = true; window.addEventListener('deviceorientation', onTilt); }
+
+  scene.addEventListener('pointerdown', (e) => {
+    void askMotion();
+    dragging = true; px = e.clientX; py = e.clientY; baseX = tx; baseY = ty; tilt = null;
+    scene.setPointerCapture(e.pointerId);
+  });
+  scene.addEventListener('pointermove', (e) => {
+    if (!dragging) return;
+    lastInput = performance.now();
+    ty = baseY + (e.clientX - px) * 0.6;
+    tx = Math.max(-50, Math.min(50, baseX - (e.clientY - py) * 0.4));
+  });
+  const stopDrag = () => { dragging = false; lastInput = performance.now(); };
+  scene.addEventListener('pointerup', stopDrag);
+  scene.addEventListener('pointercancel', stopDrag);
+
+  // ── 撕開 ──
+  let tearing = false, kx0 = 0, moved = false;
+  const setTear = (p: number) => {
+    const max = knob.parentElement!.clientWidth - knob.offsetWidth;
+    knob.style.setProperty('--kx', `${p * max}px`);
+    fill.style.width = `${p * 100}%`;
+    // 拉的時候封口、封蠟、上蓋先跟著動一點
+    host.style.setProperty('--pull', p > 0 && p < 1 ? p.toFixed(3) : '0');
+  };
+  const rip = () => {
+    if (dlg.classList.contains('is-ripped')) return;
+    setTear(1);
+    host.style.setProperty('--pull', '0');
+    dlg.classList.add('is-ripped');
+    setTimeout(() => {
+      cancelAnimationFrame(raf);
+      show('cards');
+      renderDeck();
+      dlg.querySelector<HTMLElement>('[data-next]:not([hidden])')?.focus();
+      $('[data-snack-share]').focus();
+    }, reduce ? 0 : PACK[kind].ms);
+  };
+  knob.addEventListener('pointerdown', (e) => { e.stopPropagation(); void askMotion(); tearing = true; moved = false; kx0 = e.clientX; knob.setPointerCapture(e.pointerId); });
+  knob.addEventListener('pointermove', (e) => {
+    if (!tearing) return;
+    const max = knob.parentElement!.clientWidth - knob.offsetWidth;
+    const p = Math.max(0, Math.min(1, (e.clientX - kx0) / max));
+    if (p > 0.03) moved = true;
+    setTear(p);
+    if (p >= TEAR_AT) { tearing = false; rip(); }
+  });
+  const endTear = () => { if (!tearing) return; tearing = false; if (!dlg.classList.contains('is-ripped')) setTear(0); };
+  knob.addEventListener('pointerup', endTear);
+  knob.addEventListener('pointercancel', endTear);
+  knob.addEventListener('click', () => { if (!moved) rip(); moved = false; });
+
+  // ── 開關 ──
+  const packKind = (cs: Card[]): PackKind =>
+    cs.some((c) => c.kind === 'thread') ? 'capsule' : cs.some((c) => c.kind === 'chapter') ? 'envelope' : cs.some((c) => c.id === 'n1') ? 'candy' : 'foil';
+  let opener: HTMLElement | null = null;
+  const openPack = (cs: Card[]) => {
+    got = cs; pos = 0;
+    dlg.classList.remove('is-ripped');
+    kind = packKind(cs);
+    const lead = cs.find((c) => (kind === 'capsule' ? c.kind === 'thread' : kind === 'envelope' ? c.kind === 'chapter' : true))!;
+    light = buildPack(host, kind, cs.map((c) => ({ name: c.name, color: c.color, no: `${String(cards.indexOf(c) + 1).padStart(2, '0')}／${cards.length}` })), lead.color);
+    knob.textContent = PACK[kind].verb;
+    $('[data-pk-kind]').textContent = PACK[kind].tag;
+    $('[data-pk-hint]').textContent = `拖曳或晃動手機轉轉看；${PACK[kind].hint}`;
+    setTear(0);
+    $('[data-got]').textContent = cs.length > 1 ? `一次解鎖 ${cs.length} 張成就卡！` : '解鎖一張成就卡！';
+    show('pack');
+    opener = document.activeElement as HTMLElement | null;
+    tilt = null; rx = ry = tx = ty = 0; lastInput = 0;
+    dlg.showModal();
+    startLoop();
+    knob.focus();
+  };
+  const openAlbumDialog = () => {
+    opener = document.activeElement as HTMLElement | null;
+    openAlbum();
+    dlg.showModal();
+  };
+  dlg.addEventListener('click', (e) => {
+    if (e.target === dlg || (e.target as HTMLElement).closest('[data-snack-close]')) dlg.close();
+  });
+  dlg.addEventListener('close', () => { cancelAnimationFrame(raf); opener?.focus(); });
+
+  $('[data-snack-share]').addEventListener('click', async () => {
+    const c = got[pos];
+    const url = absUrl('/');
+    const text = `我在《決策智慧》拆到一張成就卡「${c.name}」：${c.line}`;
+    try {
+      if (navigator.share) { await navigator.share({ title: '決策智慧 2026', text, url }); return; }
+    } catch (e) { if ((e as DOMException).name === 'AbortError') return; }
+    msg.textContent = (await copyText(`${text}\n${url}`)) ? '文字和連結已複製，可以直接貼上。' : url;
+  });
+
+  // ── 和全書地圖、已讀紀錄連動 ──
+  // 入口：右上角（data-snack-album="top"）、首頁底部（"home"）、全書地圖（無值）
+  const btns = Array.from(document.querySelectorAll<HTMLButtonElement>('[data-snack-album]'));
+  const valid = new Set(cards.flatMap((c) => (c.kind === 'chapter' ? c.slugs! : [])));
+  const total = Math.max(...cards.filter((c) => c.kind === 'count').map((c) => c.n!));
+  const home = document.querySelector<HTMLElement>('[data-progress-home]');
+  const updateBtn = () => {
+    const list = readList();
+    const readN = new Set(list.filter((s) => valid.has(s))).size;
+    const n = unlocked(list).length;
+    btns.forEach((b) => {
+      const kind = b.dataset.snackAlbum;
+      if (kind === 'top') {
+        b.hidden = readN === 0;
+        // 只有圖示；數字放在提示與讀屏文字
+        const label = `已讀 ${readN}／${total} 篇｜成就卡 ${n}／${cards.length}，打開收藏`;
+        b.title = label;
+        b.setAttribute('aria-label', label);
+      } else if (kind === 'home') {
+        b.textContent = n ? `打開成就卡收藏（${n}／${cards.length}）` : '先看看有哪些成就卡';
+      } else {
+        b.hidden = n === 0;
+        b.textContent = `成就卡 ${n}／${cards.length}`;
+      }
+    });
+    if (home) {
+      const line = home.querySelector<HTMLElement>('[data-ph-line]');
+      const bar = home.querySelector<HTMLElement>('[data-ph-bar]');
+      const sub = home.querySelector<HTMLElement>('[data-ph-sub]');
+      if (line) line.textContent = readN === 0 ? '讀完第一篇，就能打開第一份知識補給包。'
+        : readN >= total ? `${total} 篇全部讀完了。` : `你讀了 ${readN} 篇，還有 ${total - readN} 篇。`;
+      if (bar) bar.style.width = `${(readN / total) * 100}%`;
+      if (sub) sub.textContent = `已收集 ${n}／${cards.length} 張成就卡。已讀紀錄只存在這台裝置的瀏覽器裡。`;
+    }
+  };
+  updateBtn();
+  btns.forEach((b) => b.addEventListener('click', openAlbumDialog));
+  document.addEventListener('dw:read', (e) => {
+    const { before, after } = (e as CustomEvent<{ before: string[]; after: string[] }>).detail;
+    const had = new Set(unlocked(before).map((c) => c.id));
+    const fresh = unlocked(after).filter((c) => !had.has(c.id));
+    updateBtn();
+    if (fresh.length) setTimeout(() => openPack(fresh), 500);
+  });
+}

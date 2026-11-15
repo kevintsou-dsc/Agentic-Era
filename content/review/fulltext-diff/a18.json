@@ -1,0 +1,84 @@
+{
+ "id": "a18",
+ "site_chars": 6302,
+ "pdf_chars": 6316,
+ "ratio": 0.9989,
+ "hunks": 8,
+ "hunks_to_review": 8,
+ "site_only_chars": 0,
+ "pdf_only_chars": 14,
+ "items": [
+  {
+   "id": "a18-001",
+   "kind": "pdf_only",
+   "page": 162,
+   "site": "",
+   "pdf": "1",
+   "before": "iasBiilmann提出了一個概念",
+   "after": ":AgentExperience的邏"
+  },
+  {
+   "id": "a18-002",
+   "kind": "pdf_only",
+   "page": 162,
+   "site": "",
+   "pdf": "2",
+   "before": "股趨勢的規模,麥肯錫的2025年報告",
+   "after": "給出了輪廓:88%的受訪企業已在至少"
+  },
+  {
+   "id": "a18-003",
+   "kind": "pdf_only",
+   "page": 163,
+   "site": "",
+   "pdf": "3",
+   "before": "在2026年的StateofUX報告",
+   "after": "說得更直接:2026年,信任將是AI"
+  },
+  {
+   "id": "a18-004",
+   "kind": "pdf_only",
+   "page": 165,
+   "site": "",
+   "pdf": "4",
+   "before": "式建立。世界經濟論壇2026年的分析",
+   "after": "點出同樣的道理:要讓人信任一套AI系"
+  },
+  {
+   "id": "a18-005",
+   "kind": "pdf_only",
+   "page": 166,
+   "site": "",
+   "pdf": "1",
+   "before": "裡,真正需要被照顧到的全部主體。註解",
+   "after": "MathiasBiilmann(Ne"
+  },
+  {
+   "id": "a18-006",
+   "kind": "pdf_only",
+   "page": 166,
+   "site": "",
+   "pdf": "註解2",
+   "before": "es/introducing-ax/",
+   "after": "McKinsey-TheStateo"
+  },
+  {
+   "id": "a18-007",
+   "kind": "pdf_only",
+   "page": 166,
+   "site": "",
+   "pdf": "註解3",
+   "before": "ts/the-state-of-ai",
+   "after": "NielsenNormanGroup"
+  },
+  {
+   "id": "a18-008",
+   "kind": "pdf_only",
+   "page": 166,
+   "site": "",
+   "pdf": "註解4",
+   "before": "/state-of-ux-2026/",
+   "after": "WorldEconomicForum"
+  }
+ ]
+}

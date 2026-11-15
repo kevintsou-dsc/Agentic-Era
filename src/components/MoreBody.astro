@@ -15,6 +15,7 @@ const kindLabel: Record<string, string> = { video: '看影片', web: '看網站'
   </figure>
 )}
 {m.text && <p class="more-text" set:html={rich(m.text)} />}
+{m.editorial && <p class="more-editorial">編註是為了幫助理解補充的說明，不一定來自原文。</p>}
 {m.quote && <Quote q={m.quote} />}
 {m.links?.length && (
   <p class="more-links">

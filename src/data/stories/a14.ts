@@ -75,15 +75,16 @@ export const story: Story = {
           ],
         },
         {
-          text: '第二個階段是 2009 到 2020 年的「精準世代」：數位媒體與 Cookies 讓品牌第一次看見消費者行為，競爭關鍵變成誰能用數據預測需求，並在需求發生時精準出現。',
+          text: '第二個階段是 2009 到 2020 年的「精準世代」：數位媒體與 Cookies 等追蹤技術，讓品牌第一次看見消費者行為、能依興趣與購買意圖精準鎖定；競爭關鍵變成誰能用數據預測需求，並在需求發生時精準出現。',
           src: [
             { article: 'a14', page: 129, text: '第二個階段是 2009 年至 2020 年的「精準世代 Precision Era」' },
             { article: 'a14', page: 129, text: '品牌第一次有能力看見消費者行為' },
             { article: 'a14', page: 129, text: '在於誰能更有效地運用數據預測需求 (Demand)，並在需求發生時精準出現' },
           ],
+          notes: [{ term: 'Cookies', text: '網站存放在使用者瀏覽器裡的小型資料檔，可記住登入狀態與偏好，也常被廣告平台用來追蹤瀏覽行為、投放廣告。' }],
         },
         {
-          text: '後疫情時代進入「演算法世代」：消費者看到的內容由平台演算法主導，品牌除了理解消費者，更必須理解演算法如何理解消費者。原圖也顯示，品牌與成效投資的比重漸趨平衡。',
+          text: '後疫情時代進入「演算法世代」：短影音、社群與搜尋平台都用推薦機制決定內容曝光，消費者看到什麼由演算法主導；品牌除了理解消費者，更必須理解演算法如何理解消費者。如上圖所示，品牌與成效投資的比重也漸趨平衡。',
           src: [
             { article: 'a14', page: 129, text: '而後疫情時代，行銷產業逐漸進入第三個階段「演算法世代 Algorithmic Era」' },
             { article: 'a14', page: 129, text: '品牌除了理解消費者，更必須理解演算法如何理解消費者' },
@@ -109,7 +110,7 @@ export const story: Story = {
       ],
       beats: [
         {
-          text: '把 Agentic AI 想成一群能力極強的員工：能快速蒐集資訊、生成文案、製作簡報。但它的任務是生成而非核實，能生成最合理的答案，卻無法保證答案一定正確。',
+          text: '把 Agentic AI（能自主執行任務的 AI）想成一群能力極強的員工：能快速蒐集資訊、生成文案、製作簡報。但它的任務是生成而非核實，能生成最合理的答案，卻無法保證答案一定正確。',
           src: [
             { article: 'a14', page: 130, text: '讓我們把 Agentic AI 比喻成一群能力極強的員工' },
             { article: 'a14', page: 130, text: '它主要的任務是生成 (Generate) 而非核實 (Verify)' },
@@ -123,7 +124,7 @@ export const story: Story = {
           },
         },
         {
-          text: '使用者缺乏專業知識時，容易把 AI 生成的內容誤認為事實。People Intelligence 代表人類的專業決斷：如果 AI 是高效率的執行者，PI 就是負責指揮與決策的領導者。',
+          text: '因此，使用者若缺乏專業知識，往往容易把 AI 生成的內容誤認為事實。相較之下，People Intelligence（PI）代表人類的專業決斷能力：如果 AI 是高效率的執行者，PI 就是負責指揮與決策的領導者。',
           src: [
             { article: 'a14', page: 130, text: '當使用者缺乏專業知識時，往往容易把 AI 生成的內容誤認為事實' },
             { article: 'a14', page: 130, text: '如果 AI 是一群高效率的執行者，那麼 PI 就是負責指揮與決策的領導者' },
@@ -142,7 +143,7 @@ export const story: Story = {
           src: [{ article: 'a14', page: 131, text: '第二是 Connect 創造與聯結：能夠整合跨領域專業，將策略、創意、媒體、數據與技術串聯起來，讓想法真正落地' }],
         },
         {
-          text: '第三是 Judge 判斷與決策。Sense 看見問題、Connect 解決問題，Judge 則決定方向；一旦人放棄思考，就容易淪為 AI 答案的接收端，而不是問題的定義者。',
+          text: '第三是 Judge 判斷與決策：判斷資訊真偽、辨識優先順序，在有限資源下做出最適切的決策。當 Sense 看見問題、Connect 解決問題，Judge 便是決定方向的能力；因此一旦人放棄思考，就容易淪為 AI 答案的接收端，而不是問題的定義者。',
           src: [
             { article: 'a14', page: 131, text: '第三是 Judge 判斷與決策' },
             { article: 'a14', page: 131, text: 'Sense 負責看見問題，Connect 負責解決問題時，Judge 便是決定方向、做出正確決策的核心能力' },
@@ -155,7 +156,7 @@ export const story: Story = {
       kind: 'hscroll',
       title: '科技領袖怎麼看：人的判斷不能外包',
       intro: {
-        text: '全球產業巨頭、甚至 AI 大語言模型的創辦人，都提出了人類核心價值的倡議。結論是：讓 AI 處理可被規格化的執行，人保留不可取代的價值判斷。',
+        text: '從商業思維看，AI 應用得當能降低成本、提升效率，但決定成敗的仍是人的價值判斷。微軟、IBM、OpenAI 的執行長都提出人類核心價值的倡議；作者據此歸納：讓 AI 協助可被規格化的執行，人保留不可取代的價值判斷。',
         src: [
           { article: 'a14', page: 131, text: '全球各大產業巨頭, 甚至AI大語言模型的創辦人都有提出人類核心價值的倡議' },
           { article: 'a14', page: 132, text: '讓 AI 協助可被規格化的執行項目，而讓 PI 真正不可取代的價值判斷，就是「衡斷力 (Judgment)」' },
@@ -165,7 +166,7 @@ export const story: Story = {
         {
           kicker: '微軟執行長', title: 'Satya Nadella',
           portrait: { src: '/fig/a14/people/nadella.webp', alt: 'Satya Nadella 的肖像照', credit: 'Brian Smale and Microsoft', license: 'CC BY-SA 4.0', licenseUrl: 'https://creativecommons.org/licenses/by-sa/4.0/', sourceUrl: 'https://commons.wikimedia.org/wiki/File:MS-Exec-Nadella-Satya-2017-08-31-22_(cropped).jpg', cropped: true },
-          text: '過度外包給 AI，會讓企業能力「空洞化」。企業不應只是部署 AI，而要重新設計工作流程，讓人的獨特經驗、行業脈絡判斷與組織知識發揮核心價值。',
+          text: 'Nadella 認為，過度外包給 AI，會讓企業能力「空洞化」；因此企業不應只是部署 AI，而要重新設計工作流程，讓人的獨特經驗、行業脈絡判斷與組織知識發揮核心價值。',
           src: [
             { article: 'a14', page: 131, text: '過度外包給 AI，將導致企業能力「空洞化」' },
             { article: 'a14', page: 132, text: '而是要重新設計工作流程，讓人類的獨特經驗、行業脈絡判斷與組織知識發揮核心價值' },
@@ -175,7 +176,7 @@ export const story: Story = {
         {
           kicker: 'IBM 執行長', title: 'Arvind Krishna',
           portrait: { src: '/fig/a14/people/krishna.webp', alt: 'Arvind Krishna 在 SXSW 2025 座談中發言', credit: 'Bea Phi', license: 'CC BY-SA 4.0', licenseUrl: 'https://creativecommons.org/licenses/by-sa/4.0/', sourceUrl: 'https://commons.wikimedia.org/wiki/File:Arvind_Krishna_at_SXSW_2025.jpg', cropped: true },
-          text: 'AI 沒有偷走工作，是過度依賴讓人盲目。重點不在通用的操作工具，而是提升數據素養與批判性思考。',
+          text: 'Krishna 認為，AI 沒有偷走工作，是過度依賴讓人盲目。因此重點不在學會通用的 AI 操作工具，而是提升數據素養（讀懂並質疑數據的能力）與批判性思考。',
           src: [
             { article: 'a14', page: 132, text: 'AI 沒偷走工作，是過度依賴讓人盲目' },
             { article: 'a14', page: 132, text: '而是提升數據素養 (Data Literacy) 與批判性思考 (Critical Thinking)' },
@@ -185,7 +186,7 @@ export const story: Story = {
         {
           kicker: 'OpenAI 執行長', title: 'Sam Altman',
           portrait: { src: '/fig/a14/people/altman.webp', alt: 'Sam Altman 在 TechCrunch Disrupt 2019 座談中', credit: 'TechCrunch', license: 'CC BY 2.0', licenseUrl: 'https://creativecommons.org/licenses/by/2.0/', sourceUrl: 'https://commons.wikimedia.org/wiki/File:Sam_Altman_CropEdit_James_Tamim.jpg', cropped: true },
-          text: '他對 AI「不自覺轉移決策」感到危險：AI 只是提高工作速率的工具，集體決策與價值判斷的責任，絕對不能從人類手中移開。',
+          text: 'Altman 對 AI 帶來的「不自覺轉移決策」感到危險，也就是決策在不知不覺中交給了 AI。AI 只是提高工作速率的工具，集體決策與價值判斷的責任，絕對不能從人類手中移開。',
           src: [
             { article: 'a14', page: 132, text: '對 AI 的「不自覺轉移決策」感到危險' },
             { article: 'a14', page: 132, text: '但集體決策與價值判斷的責任，絕對不能從人類手中移開' },
@@ -201,7 +202,7 @@ export const story: Story = {
       heading: 'Apple × Gemini：用 AI，但不交出最終判斷權',
       beats: [
         {
-          text: '2026 年初，Apple 宣布深化與 Google Gemini 的合作，把部分大型語言模型能力導入生態系統。但產品方向、隱私規範與使用者體驗的最終判斷權，Apple 並沒有交出去。',
+          text: '前沿企業也是這樣做。2026 年初，Apple 宣布深化與 Google Gemini 的合作，把部分大型語言模型能力導入自家產品生態系統，讓 AI 協助理解使用者需求與生成內容；但產品方向、隱私規範與使用者體驗的最終判斷權，Apple 並沒有交出去。',
           src: [
             { article: 'a14', page: 132, text: '2026 年初，Apple 宣布進一步深化與 Google Gemini 的合作' },
             { article: 'a14', page: 132, text: '但產品方向、隱私規範與使用者體驗的最終判斷權，Apple 並沒有交出去' },
@@ -232,7 +233,7 @@ export const story: Story = {
       ],
       beats: [
         {
-          text: '即使 AI 能協助完成 Sense 與 Connect 的部分工作，衡斷力仍是企業最不該交出的能力。AI 能彙整大量資訊，難的是判斷哪些訊號值得相信、哪些機會值得投入，並為結果負責。',
+          text: '回到前面三項能力：即使 AI 能協助完成 Sense 與 Connect 的部分工作，衡斷力仍是企業最不該交出的能力。AI 已能彙整大量數據與市場資訊，答案不缺；難的是判斷哪些訊號值得相信、哪些機會值得投入，並為結果負責。',
           src: [
             { article: 'a14', page: 132, text: '即使 AI 能協助完成 Sense 與 Connect 的部分工作，「衡斷力 (Judgment)」仍然是企業最不應該交出的能力' },
             { article: 'a14', page: 132, text: '難的是判斷哪些訊號值得相信、哪些機會值得投入，並對決策結果負責' },
@@ -240,7 +241,7 @@ export const story: Story = {
           quote: { article: 'a14', page: 132, text: '「企業真正面對的問題，從來不是答案不夠，而是解法太多」' },
         },
         {
-          text: '衡斷力可以從五個面向累積：生而為人的感受與感知、長期可驗證的數據基礎、觀察市場與產業趨勢的能力、跨產業與專案的經驗判斷，以及在有限資源下完成協作的組織能力。',
+          text: '衡斷力有五個能力來源：一是生而為人的感受與感知；二是長期累積且可驗證的數據基礎；三是觀察市場與產業趨勢的能力；四是經歷不同產業與專案後形成的經驗判斷；五是在有限資源下抓住重點、完成協作的組織能力。',
           src: [
             { article: 'a14', page: 132, text: '生而為人的感受與感知能力' },
             { article: 'a14', page: 132, text: '長期累積且可驗證的數據基礎' },
@@ -250,7 +251,7 @@ export const story: Story = {
           ],
         },
         {
-          text: '這些能力無法透過一次 Prompt 生成，也無法透過單一工具取得，必須經過長時間累積與磨練。',
+          text: '這五種能力無法透過一次 Prompt 生成，也無法透過單一工具取得，必須經過長時間累積與磨練。',
           src: [{ article: 'a14', page: 132, text: '這些能力無法透過一次 Prompt 生成，也無法透過單一工具取得，而是必須經過長時間累積與磨練' }],
           quote: { article: 'a14', page: 133, text: 'Judgment 無法被生成，只能透過長期累積與磨練，為決策與結果負責。' },
         },
@@ -272,7 +273,7 @@ export const story: Story = {
       ],
       beats: [
         {
-          text: '電通媒體以 Media++ 方法論培養能駕馭技術與人性的「媒體工匠」，由六大模組組成。Business 聚焦於品牌成長策略，透過效率優化、交易捕捉與品牌成長三大槓桿創造價值；Audience 透過數據資產辨識與活化真正具潛力的消費者。',
+          text: '在演算法世代，媒體企劃不再只是媒體操作或廣告採購。作者所屬的電通媒體以 Media++ 方法論培養能駕馭技術與人性的「媒體工匠」，六大模組分三階段。首先是成長策略：Business 以效率優化、交易捕捉與品牌成長三大槓桿創造價值；Audience 用數據資產辨識具潛力的消費者。',
           src: [
             { article: 'a14', page: 133, text: '電通媒體以 Media++ 方法論培養演算法世代擁有 Judgment 的媒體工匠' },
             { article: 'a14', page: 133, text: '如同一位能夠駕馭技術與人性的媒體工匠' },
@@ -281,9 +282,10 @@ export const story: Story = {
             { article: 'a14', page: 134, text: '辨識與活化真正具潛力的消費者' },
             { article: 'a14', page: 134, text: 'GROWTH STRATEGY 成長策略' },
           ],
+          notes: [{ term: 'Media++', text: '全名 Media++ Process，是電通媒體培育專業人才、推動品牌成長的方法論。「++」象徵媒體是連結品牌、內容、演算法與消費者的樞紐，目的是培養能運用 Sense、Judge 與 Connect 能力的人才（p.133、p.135）。' }],
         },
         {
-          text: '接著是體驗轉型：Insight 用洞察金字塔把資料轉成資訊、知識與洞察；Experience 從 People as Themselves、Browser、Buyer 與 User 四個維度管理消費者體驗。',
+          text: '接著是體驗轉型：Insight 用洞察金字塔，把資料轉為資訊、累積成知識、再提煉為洞察；Experience 從一般人、瀏覽者、購買者與使用者（People as Themselves、Browser、Buyer、User）四個角色管理消費者體驗。',
           src: [
             { article: 'a14', page: 134, text: '將資料轉化為資訊、資訊累積成知識、知識提煉為洞察' },
             { article: 'a14', page: 134, text: '從People as Themselves、People as Browser、People as Buyer以及People as User四個維度管理消費者體驗' },
@@ -291,7 +293,7 @@ export const story: Story = {
           ],
         },
         {
-          text: '最後是成效敏捷：Activation 把策略轉化為有效的市場行動，Optimization 依品牌成熟度與數據能力，用品牌金字塔、3×3 與 Layer Cake 等框架持續優化。',
+          text: '最後是成效敏捷：Activation 透過一系列企劃思維與檢核方法，把策略轉化為具體的市場行動；Optimization 則依品牌成熟度與數據能力，選用品牌金字塔、3×3 與 Layer Cake 等優化框架，持續提升行銷效能與品牌價值。',
           src: [
             { article: 'a14', page: 134, text: '協助團隊將策略轉化為具體且有效的市場行動' },
             { article: 'a14', page: 134, text: '運用品牌金字塔、3×3以及Layer Cake等優化框架' },

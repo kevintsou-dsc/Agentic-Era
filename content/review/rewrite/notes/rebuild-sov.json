@@ -1,0 +1,95 @@
+{
+ "slug": "rebuild-sov",
+ "id": "a13",
+ "notes": [
+  {
+   "id": "M06",
+   "term": "CPC",
+   "text": "Cost Per Click，按點擊次數計費的廣告計價方式，也常用來指每次點擊平均花了多少錢。",
+   "readers": "engineer",
+   "why": "工程師在 M06 標 S4，說四個縮寫都沒解釋；CPC 要到 M13 前的圖表說明才出現解釋，太晚",
+   "review": "ok"
+  },
+  {
+   "id": "M06",
+   "term": "CTR",
+   "text": "Click-Through Rate，點擊率，指看到廣告的人當中有多少比例點了進去，用來看廣告吸不吸引人。",
+   "readers": "engineer",
+   "why": "同上，工程師特別指出 CTR 全文找不到說明",
+   "review": "ok"
+  },
+  {
+   "id": "M06",
+   "term": "CPA",
+   "text": "Cost Per Action，每完成一次購買、註冊等轉換所花的廣告費，也可指按轉換計費的方式。",
+   "readers": "engineer",
+   "why": "同上，CPA 要到 M13 前的圖表說明才解釋，太晚",
+   "review": "ok"
+  },
+  {
+   "id": "M06",
+   "term": "ROAS",
+   "text": "Return on Ad Spend，廣告投資報酬率，用廣告帶來的營收除以廣告花費，看每花一元換回多少營收。",
+   "readers": "engineer",
+   "why": "同上，工程師特別指出 ROAS 全文找不到說明",
+   "review": "ok"
+  },
+  {
+   "id": "M16",
+   "term": "Share of Search",
+   "text": "品牌被搜尋的次數，佔同品類所有品牌搜尋總次數的比例，常用來觀察品牌在消費者心中的熱度。",
+   "readers": "newbie",
+   "why": "新手在 M18 標 S4，說不清楚新指標和 Share of Search 有何不同；M16 只說它是品牌健康指標，沒說怎麼算",
+   "review": "ok"
+  },
+  {
+   "id": "M22",
+   "term": "Share of Choice Context",
+   "text": "作者認為 SOV 不應只理解為媒體曝光佔比，而是品牌在消費者選擇情境中的佔位能力，並把這份能力拆成三個層次（p.122–123），大致是看不看得到、有沒有人提起、想不想得起；接下來三則泡泡各講一層。",
+   "kind": "coined",
+   "review": "coined-c2 草稿 A，使用者 2026-11-15 同意照建議"
+  }
+ ],
+ "skipped": [
+  {
+   "term": "Share of Choice Context",
+   "id": "M22",
+   "reason": "作者提出的概念，編註不能替作者下定義；原文 p.122–123 有說明，可改用原文引言做延伸"
+  },
+  {
+   "term": "System Share",
+   "id": "M23",
+   "reason": "作者拆出的第一個層次，泡泡裡已說明；原文 p.123 有說明"
+  },
+  {
+   "term": "Consumer & Community Share",
+   "id": "M24",
+   "reason": "作者拆出的第二個層次，泡泡裡已說明；原文 p.123 有說明"
+  },
+  {
+   "term": "Attention & Memory Share",
+   "id": "M25",
+   "reason": "作者拆出的第三個層次，泡泡裡已說明；原文 p.124 有說明"
+  },
+  {
+   "term": "Share of Choice",
+   "id": "M18",
+   "reason": "泡泡裡已附「被選擇」的中文意思，Discovery、Recommendation 也一樣；讀者卡的是它們和 Share of Search 的關係，不是詞本身；原文 p.121 列出完整清單"
+  },
+  {
+   "term": "場域",
+   "id": "ONE",
+   "reason": "作者的用法，不是有公認定義的術語；M02 與後面的圖表已用搜尋結果、電商站內、門市等例子說明"
+  },
+  {
+   "term": "增量轉換",
+   "id": "M07",
+   "reason": "M07 下方的［延伸］已解釋歸因轉換與增量轉換"
+  },
+  {
+   "term": "Jeremy",
+   "id": "M08",
+   "reason": "讀者卡的是作者身分，不是術語；原文 p.116 署名吳宗霖 Jeremy Wu"
+  }
+ ]
+}

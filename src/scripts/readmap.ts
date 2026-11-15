@@ -1,5 +1,5 @@
 // 結尾全書地圖（components/ReadMap.astro）：已讀紀錄只存在讀者瀏覽器（localStorage['dw-read']，短名陣列），不傳出。
-// 「已讀」＝帶走的問題（.asks）在視窗內連續停留 2 秒（docs/design-review/p1-02-ruling.md L5）。
+// 「已讀」＝帶走的問題（.asks）在視窗內連續停留 2 秒（docs/design-review/p1-02-ruling.md L5）；2026-11-15 起，捲到分享區或「接下來」停留 1 秒也算。
 // 儲存無法使用或內容壞掉時：只標示目前這篇，不顯示任何數字。
 const KEY = 'dw-read';
 const DWELL = 2000;
@@ -37,20 +37,31 @@ export function initReadMap() {
     d.addEventListener('blur', () => show(null));
   });
 
+  // 「已讀」：帶走的問題在視窗中段停留 2 秒；或捲過問題、到了分享區或「接下來」停留 1 秒（快速捲動的讀者也算讀完）
   const asks = document.querySelector('.asks');
+  const ends = Array.from(document.querySelectorAll('[data-share], nav.next'));
   if (!asks || !read || read.has(current)) return;
-  let timer = 0;
-  const io = new IntersectionObserver(([e]) => {
-    clearTimeout(timer);
-    if (!e.isIntersecting) return;
-    timer = window.setTimeout(() => {
-      const now = load();
-      if (!now) return;
-      now.add(current);
-      try { localStorage.setItem(KEY, JSON.stringify([...now])); } catch { return; }
-      render(now);
-      io.disconnect();
-    }, DWELL);
-  }, { rootMargin: '-30% 0px -30% 0px' }); // 進入視窗中段才算（問題清單在手機上可能比一屏高，不用比例門檻）
+  let done = false;
+  const mark = () => {
+    if (done) return;
+    const now = load();
+    if (!now) return;
+    done = true;
+    const before = [...now];
+    now.add(current);
+    try { localStorage.setItem(KEY, JSON.stringify([...now])); } catch { return; }
+    render(now);
+    document.dispatchEvent(new CustomEvent('dw:read', { detail: { before, after: [...now] } })); // 成就卡（scripts/snack.ts）
+    io.disconnect();
+    io2.disconnect();
+  };
+  const timers = new Map<Element, number>();
+  const watch = (ms: number) => (es: IntersectionObserverEntry[]) => es.forEach((e) => {
+    clearTimeout(timers.get(e.target));
+    if (e.isIntersecting) timers.set(e.target, window.setTimeout(mark, ms));
+  });
+  const io = new IntersectionObserver(watch(DWELL), { rootMargin: '-30% 0px -30% 0px' }); // 進入視窗中段才算（問題清單在手機上可能比一屏高，不用比例門檻）
+  const io2 = new IntersectionObserver(watch(1000));
   io.observe(asks);
+  ends.forEach((el) => io2.observe(el));
 }

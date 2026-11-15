@@ -5,6 +5,7 @@ import type { Scene } from '../lib/story';
 import { rich } from '../lib/rich';
 import SourceRef from './SourceRef.astro';
 import MoreRef from './MoreRef.astro';
+import Notes from './Notes.astro';
 import MoreBody from './MoreBody.astro';
 import type { More } from '../lib/story';type S = Extract<Scene, { kind: 'hscroll' }>;
 interface Props { s: S }
@@ -27,7 +28,7 @@ if (view.some((v) => v.fold) || (someInline && !allInline)) view.forEach((v) => 
   <div class="hs-pin">
     <div class="hs-head wrap">
       <p class="eyebrow">{s.title}</p>
-      <p class="hs-intro"><span set:html={rich(s.intro.text)} /><SourceRef src={s.intro.src} /></p>
+      <p class="hs-intro"><span set:html={rich(s.intro.text)} /><SourceRef src={s.intro.src} /><Notes notes={s.intro.notes} /></p>
     </div>
     <div class="hs-viewport">
       <ol class="hs-track" data-hs-track>
@@ -51,6 +52,7 @@ if (view.some((v) => v.fold) || (someInline && !allInline)) view.forEach((v) => 
             )}
             {p.figure && <p class="hs-fig"><b>{p.figure.value}</b><span>{p.figure.label}</span></p>}
             <p class="hs-text"><span set:html={rich(p.text)} /><SourceRef src={p.src} /></p>
+            <Notes notes={p.notes} />
             {p.portrait && (
               <p class="hs-credit">
                 照片：<a href={p.portrait.sourceUrl} target="_blank" rel="noopener noreferrer">{p.portrait.credit}</a>，

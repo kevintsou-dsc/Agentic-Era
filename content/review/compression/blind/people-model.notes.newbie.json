@@ -1,0 +1,347 @@
+{
+ "persona": "newbie",
+ "takeaway": [
+  "People Model 用十多年的消費者調查資料訓練 AI 虛擬消費者，讓品牌能隨時對它們追問。",
+  "作者用相關係數和五個行銷案例展示它能先模擬、再決定創意、口味、受眾和賣點。",
+  "同時強調它有界限，高風險或缺資料時仍要搭配真人研究。"
+ ],
+ "overall_fluency": 7,
+ "bubbles": [
+  {
+   "id": "ONE",
+   "score": 4,
+   "stuck": false
+  },
+  {
+   "id": "M01",
+   "score": 4,
+   "stuck": false
+  },
+  {
+   "id": "M02",
+   "score": 5,
+   "stuck": false
+  },
+  {
+   "id": "M03",
+   "score": 5,
+   "stuck": false
+  },
+  {
+   "id": "M04",
+   "score": 4,
+   "stuck": false
+  },
+  {
+   "id": "M05",
+   "score": 5,
+   "stuck": false
+  },
+  {
+   "id": "M06",
+   "score": 3,
+   "stuck": true
+  },
+  {
+   "id": "M07",
+   "score": 4,
+   "stuck": false
+  },
+  {
+   "id": "M08",
+   "score": 4,
+   "stuck": false
+  },
+  {
+   "id": "M09",
+   "score": 3,
+   "stuck": true
+  },
+  {
+   "id": "M10",
+   "score": 5,
+   "stuck": false
+  },
+  {
+   "id": "M11",
+   "score": 4,
+   "stuck": false
+  },
+  {
+   "id": "M12",
+   "score": 3,
+   "stuck": true
+  },
+  {
+   "id": "M13",
+   "score": 3,
+   "stuck": true
+  },
+  {
+   "id": "M14",
+   "score": 4,
+   "stuck": false
+  },
+  {
+   "id": "M15",
+   "score": 4,
+   "stuck": false
+  },
+  {
+   "id": "M16",
+   "score": 4,
+   "stuck": false
+  },
+  {
+   "id": "M17",
+   "score": 5,
+   "stuck": false
+  },
+  {
+   "id": "M18",
+   "score": 5,
+   "stuck": false
+  },
+  {
+   "id": "M19",
+   "score": 4,
+   "stuck": false
+  },
+  {
+   "id": "M20",
+   "score": 3,
+   "stuck": true
+  },
+  {
+   "id": "M21",
+   "score": 5,
+   "stuck": false
+  },
+  {
+   "id": "M22",
+   "score": 4,
+   "stuck": false
+  },
+  {
+   "id": "M23",
+   "score": 4,
+   "stuck": false
+  },
+  {
+   "id": "M24",
+   "score": 5,
+   "stuck": false
+  },
+  {
+   "id": "M25",
+   "score": 4,
+   "stuck": false
+  },
+  {
+   "id": "M26",
+   "score": 3,
+   "stuck": true
+  },
+  {
+   "id": "M27",
+   "score": 3,
+   "stuck": true
+  },
+  {
+   "id": "M28",
+   "score": 5,
+   "stuck": false
+  },
+  {
+   "id": "M29",
+   "score": 4,
+   "stuck": false
+  },
+  {
+   "id": "M30",
+   "score": 3,
+   "stuck": true
+  },
+  {
+   "id": "M31",
+   "score": 4,
+   "stuck": false
+  },
+  {
+   "id": "M32",
+   "score": 4,
+   "stuck": false
+  },
+  {
+   "id": "M33",
+   "score": 4,
+   "stuck": false
+  },
+  {
+   "id": "M34",
+   "score": 3,
+   "stuck": true
+  },
+  {
+   "id": "M35",
+   "score": 4,
+   "stuck": false
+  },
+  {
+   "id": "M36",
+   "score": 5,
+   "stuck": false
+  },
+  {
+   "id": "M37",
+   "score": 3,
+   "stuck": true
+  },
+  {
+   "id": "M38",
+   "score": 3,
+   "stuck": true
+  },
+  {
+   "id": "M39",
+   "score": 4,
+   "stuck": false
+  },
+  {
+   "id": "M40",
+   "score": 4,
+   "stuck": false
+  },
+  {
+   "id": "M41",
+   "score": 4,
+   "stuck": false
+  },
+  {
+   "id": "M42",
+   "score": 4,
+   "stuck": false
+  },
+  {
+   "id": "M43",
+   "score": 4,
+   "stuck": false
+  },
+  {
+   "id": "M44",
+   "score": 3,
+   "stuck": false
+  }
+ ],
+ "stuck": [
+  {
+   "id": "M06",
+   "types": [
+    "S2",
+    "S4"
+   ],
+   "quote": "展開成約 6,900 個資料點，一比一捏",
+   "why": "數百題怎麼變 6,900 點、為何能微調語言模型，中間少一步；AI Persona 才在句尾定義",
+   "paraphrase": "我以為是把每個人的答案拆細，餵給 AI 讓它學會像這個人回答。"
+  },
+  {
+   "id": "M09",
+   "types": [
+    "S4",
+    "S5"
+   ],
+   "quote": "平均絕對誤差 MAE 9.4% 與均方根",
+   "why": "MAE/RMSE 對新手太專業，且說相關係數不是誤差率但沒講那到底準不準",
+   "paraphrase": "我以為是說誤差大約一成，但又不能這樣算，所以不太確定到底準不準。"
+  },
+  {
+   "id": "M12",
+   "types": [
+    "S2",
+    "S4"
+   ],
+   "quote": "模擬出所謂的「信任門檻」",
+   "why": "信任門檻突然出現，從兩人購買偏好到防禦機制跳太快",
+   "paraphrase": "我以為是不同的人要看到不同證據才會信任一個品牌。"
+  },
+  {
+   "id": "M13",
+   "types": [
+    "S4",
+    "S1"
+   ],
+   "quote": "由 Super Agent 擔任專案負責",
+   "why": "Agent、Super Agent 對 AE 陌生，誰分派給誰不直覺",
+   "paraphrase": "我以為是有一個主 AI 管幾個小 AI，各自負責一塊再回報。"
+  },
+  {
+   "id": "M20",
+   "types": [
+    "S2",
+    "S7"
+   ],
+   "quote": "溫潤自然感以 98% 的第一眼吸引力勝出",
+   "why": "98%、68%、100% 各是什麼比例不清楚，100% 為何代表不互相競爭跳太快",
+   "paraphrase": "我以為兩版各在不同階段贏，所以要接成一條溝通順序。"
+  },
+  {
+   "id": "M26",
+   "types": [
+    "S2",
+    "S5"
+   ],
+   "quote": "首選率達 71%–83%",
+   "why": "首購率 58% 與首選率 71–83% 差別不明，數字密集",
+   "paraphrase": "我以為荔枝烏龍在年輕女性很受歡迎、中年女性就改喜歡黑糖桂圓。"
+  },
+  {
+   "id": "M27",
+   "types": [
+    "S2",
+    "S7"
+   ],
+   "quote": "其中 58% 可接受高出約 17% 以上",
+   "why": "74% 與 58% 的包含關係與淘汰油柑的依據銜接不足",
+   "paraphrase": "我以為多數人願意多付一點錢，所以可以定價高於市場價。"
+  },
+  {
+   "id": "M30",
+   "types": [
+    "S3",
+    "S6"
+   ],
+   "quote": "避險導向升至 71%",
+   "why": "與 M29 的名詞接續，數字沒有說清是誰的比例",
+   "paraphrase": "我以為年紀大的男性更傾向買耐用可靠的。"
+  },
+  {
+   "id": "M34",
+   "types": [
+    "S2"
+   ],
+   "quote": "無人列為第一優先",
+   "why": "比例合計與前面圖表的對應不清，賣點名稱與前文不完全一致",
+   "paraphrase": "我以為售後保固最重要，其他賣點都被比下去。"
+  },
+  {
+   "id": "M37",
+   "types": [
+    "S5",
+    "S6"
+   ],
+   "quote": "改變的不只是決策的方法，更是競爭的規則",
+   "why": "由五案例跳到競爭規則與組織習慣，論述偏口號",
+   "paraphrase": "我以為是說大家都用模擬後，優勢來自把它變成習慣。"
+  },
+  {
+   "id": "M38",
+   "types": [
+    "S2",
+    "S3"
+   ],
+   "quote": "測量本身就已受污染",
+   "why": "為何先介紹再問是否聽過會受污染，推論略跳",
+   "paraphrase": "我以為是先告訴模型有這品牌，它就一定說聽過，所以不準。"
+  }
+ ]
+}

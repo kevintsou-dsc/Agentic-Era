@@ -1,0 +1,69 @@
+---
+// 分享卡片：讀者從「一句話」或「帶走的問題」挑一句，做成卡片圖分享或下載（scripts/share.ts）。
+// 只用選的，不提供自由輸入；圖在瀏覽器裡用 canvas 畫，不傳到任何伺服器。
+import { CHAPTERS, fullTitle, type Article } from '../lib/articles';
+import type { Story } from '../lib/story';
+interface Props { a: Article; story: Story }
+const { a, story } = Astro.props;
+const authors = a.authors.map((x) => x.name).join('、');
+const picks = [
+  { text: story.oneLiner, src: '一句話｜策展者整理', serif: false },
+  ...story.asks.map((q) => ({ text: q.text, src: `${authors}〈${a.title}〉紙本 p.${q.page}`, serif: true })),
+];
+---
+<section class={`section share c-${a.chapter}`} data-share data-ch={a.chapter} data-path={`/story/${a.slug}/`} data-title={fullTitle(a)} data-chapter={`${CHAPTERS[a.chapter].name}｜${CHAPTERS[a.chapter].zh}`}>
+  <p class="eyebrow reveal">分享這篇</p>
+  <p class="share-lead reveal">挑一句想帶走的話，做成卡片傳給同事。</p>
+  <div class="share-grid reveal">
+    <fieldset class="share-picks">
+      <legend class="sr-only">選一句做成卡片</legend>
+      {picks.map((p, i) => (
+        <label class="share-pick">
+          <input type="radio" name="share-pick" value={i} checked={i === 0} data-text={p.text} data-src={p.src} data-serif={p.serif ? '1' : undefined} />
+          <span>{p.text}</span>
+        </label>
+      ))}
+    </fieldset>
+    <div class="share-right">
+      <fieldset class="share-styles">
+        <legend class="sr-only">卡片樣式</legend>
+        {[['bold', '色塊'], ['paper', '紙本'], ['night', '夜色']].map(([v, l], i) => (
+          <label class="share-style"><input type="radio" name="share-style" value={v} checked={i === 0} /><span>{l}</span></label>
+        ))}
+      </fieldset>
+      <figure class="share-card">
+        <img data-sc-img alt="分享卡片預覽" width="1080" height="1350" />
+        <figcaption class="sr-only" data-sc-cap>{picks[0].text}</figcaption>
+      </figure>
+    </div>
+  </div>
+  <div class="share-actions reveal">
+    <button type="button" class="btn flow" data-share-go>分享卡片</button>
+    <button type="button" class="btn ghost" data-share-dl>下載圖片</button>
+    <button type="button" class="btn ghost" data-share-copy>複製連結</button>
+    <span class="share-msg" data-share-msg role="status"></span>
+  </div>
+</section>
+<style>
+  .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+  .share { display: grid; gap: 14px; padding-top: 6svh; }
+  .share-lead { margin: 0; color: var(--ink-2); }
+  .share-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 22rem); gap: 20px; align-items: start; }
+  @media (max-width: 760px) { .share-grid { grid-template-columns: 1fr; } .share-right { max-width: 22rem; } }
+  .share-picks { border: 0; margin: 0; padding: 0; display: grid; gap: 8px; }
+  .share-pick { display: flex; gap: 10px; align-items: flex-start; padding: 10px 14px; border: 1px solid var(--line); border-radius: var(--r-m); background: var(--paper); cursor: pointer; font-size: var(--fs-small, 15px); line-height: 1.6; transition: border-color .15s, background .15s; }
+  .share-pick:hover { border-color: var(--ink-3); }
+  .share-pick:has(input:checked) { border-color: var(--ink); background: var(--paper-2); }
+  .share-pick input { margin-top: .35em; accent-color: var(--ink); flex: none; }
+  .share-right { display: grid; gap: 10px; }
+  .share-styles { border: 0; margin: 0; padding: 0; display: flex; gap: 6px; }
+  .share-style { cursor: pointer; }
+  .share-style input { position: absolute; opacity: 0; pointer-events: none; }
+  .share-style span { display: inline-block; padding: 4px 14px; border-radius: var(--r-pill); border: 1px solid var(--line); font-size: 13px; font-weight: 600; }
+  .share-style input:checked + span { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+  .share-style input:focus-visible + span { outline: 2px solid var(--accent-ink); outline-offset: 2px; }
+  .share-card { margin: 0; aspect-ratio: 4 / 5; border-radius: var(--r-l); overflow: hidden; background: var(--paper-2); box-shadow: 0 14px 36px rgba(31, 29, 26, .18); }
+  .share-card img { display: block; width: 100%; height: 100%; object-fit: cover; }
+  .share-actions { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+  .share-msg { font-size: 13px; color: var(--ink-2); }
+</style>

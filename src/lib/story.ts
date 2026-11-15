@@ -26,6 +26,14 @@ export interface More {
   quote?: Src;
   image?: Img;
   links?: Link[];
+  /** 編註：本站補充的一般說明，不是原文（MoreBody 會加上說明） */
+  editorial?: boolean;
+}
+
+/** 編註：主文用到、原文沒有解釋的術語，本站補一句一般性的白話說明。不是作者的說法，畫面上標明「編註」。 */
+export interface Note {
+  term: string;
+  text: string;
 }
 
 /** 主文段落：完整的句子；讀者只讀主文也能讀懂整篇 */
@@ -37,6 +45,7 @@ export interface Beat {
   /** 這段之後接一則原文引言 */
   quote?: Src;
   more?: More;
+  notes?: Note[];
 }
 
 /** at = 第幾段主文時出現（1 起算）。圖表元素不標出處，只能掛 more（細節） */
@@ -222,6 +231,7 @@ export interface Panel {
   title: string;
   text: string;
   src: Src[];
+  notes?: Note[];
   figure?: { value: string; label: string };
   image?: Img;
   /** 人物頭像（公眾人物）：只用 CC 等開放授權照片，存成站內檔案，卡片上標攝影者與授權並連回原始頁 */

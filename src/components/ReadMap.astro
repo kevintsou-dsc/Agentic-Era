@@ -10,6 +10,7 @@ const where = `你在這裡：${CHAPTERS[a.chapter].name} 章第 ${inChapter.fin
 ---
 <nav class="section readmap" aria-label="全書地圖" data-readmap data-current={a.slug}>
   <p class="rm-line"><span data-rm-tip data-default={where}>{where}</span><span class="rm-count" data-rm-count></span></p>
+  <p class="rm-cards"><button type="button" data-snack-album hidden></button></p>
   <ol class="rm-chapters">
     {CHAPTER_ORDER.map((ch) => (
       <li class={`rm-ch c-${ch}`}>
@@ -30,6 +31,10 @@ const where = `你在這裡：${CHAPTERS[a.chapter].name} 章第 ${inChapter.fin
   .readmap { padding-top: 2svh; display: grid; gap: 10px; }
   .rm-line { margin: 0; font-size: 13px; color: var(--ink-2); min-height: 1.75em; }
   .rm-count:not(:empty)::before { content: "｜"; color: var(--ink-3); }
+  .rm-cards { margin: 0; display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--ink-2); }
+  .rm-cards:has(button[hidden]), .rm-cards button[hidden] { display: none; }
+  .rm-cards button { padding: 3px 12px; border-radius: var(--r-pill); border: 1px solid var(--ink); background: var(--paper); font: inherit; font-weight: 600; color: var(--ink); cursor: pointer; }
+  .rm-cards button:hover { background: var(--accent); }
   .rm-chapters { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 6px 18px; }
   .rm-ch { display: flex; align-items: center; gap: 4px; }
   .rm-ch-name { font-family: var(--font-mono); font-size: 11px; letter-spacing: .06em; color: var(--ink-3); margin-right: 2px; }

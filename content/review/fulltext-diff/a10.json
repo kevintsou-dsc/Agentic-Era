@@ -1,0 +1,450 @@
+{
+ "id": "a10",
+ "site_chars": 4825,
+ "pdf_chars": 5485,
+ "ratio": 0.8807,
+ "hunks": 47,
+ "hunks_to_review": 32,
+ "site_only_chars": 132,
+ "pdf_only_chars": 837,
+ "items": [
+  {
+   "id": "a10-001",
+   "kind": "pdf_only",
+   "page": 72,
+   "site": "",
+   "pdf": "安布思沛副總監徐莉媛|AmyHsu",
+   "before": "別買曝光了開始買注意力吧",
+   "after": "把媒體做成體驗幫品牌累積「滑不走」的",
+   "moved": true
+  },
+  {
+   "id": "a10-002",
+   "kind": "site_only",
+   "page": 72,
+   "site": "安布思沛副總監徐莉媛|AmyHsu",
+   "pdf": "",
+   "before": "成體驗幫品牌累積「滑不走」的記憶資產",
+   "after": "曝光不再稀缺,品牌應從買聲量轉向經營",
+   "moved": true
+  },
+  {
+   "id": "a10-003",
+   "kind": "pdf_only",
+   "page": 73,
+   "site": "",
+   "pdf": "把預算轉移到「成效型」格式圖1:廣告惡性循環TheDoomLoop指得是品牌投廣一再要求成效優化,品牌卻陷入萎縮的惡性循環資料來源:WARC《TheMultiplierEffect》(2025)",
+   "before": "滑,消費者描述你的品牌時,用的全是別",
+   "after": "人家的形容詞。預算沒少、聲量沒小,品"
+  },
+  {
+   "id": "a10-004",
+   "kind": "pdf_only",
+   "page": 73,
+   "site": "",
+   "pdf": "1",
+   "before": "的惡性循環「TheDoomLoop」",
+   "after": "。真正的問題不在於執行,而是遊戲規則"
+  },
+  {
+   "id": "a10-005",
+   "kind": "site_only",
+   "page": 73,
+   "site": "圖1:廣告惡性循環",
+   "pdf": "",
+   "before": "有被看進去的曝光,只是報表上的庫存。",
+   "after": "TheDoomLoop指得是品牌投廣",
+   "moved": true
+  },
+  {
+   "id": "a10-006",
+   "kind": "pdf_only",
+   "page": 73,
+   "site": "",
+   "pdf": "Advertising",
+   "before": "表上的庫存。圖1:廣告惡性循環The",
+   "after": "DoomLoop指得是品牌投廣一再要",
+   "fig": true
+  },
+  {
+   "id": "a10-007",
+   "kind": "site_only",
+   "page": 73,
+   "site": "指得是品牌投",
+   "pdf": "",
+   "before": ":廣告惡性循環TheDoomLoop",
+   "after": "廣一再要求成效優化,品牌卻陷入萎縮的",
+   "moved": true
+  },
+  {
+   "id": "a10-008",
+   "kind": "replace",
+   "page": 73,
+   "site": "一再要求成效優化,品牌卻陷入萎縮的惡性",
+   "pdf": "告末日",
+   "before": "TheDoomLoop指得是品牌投廣",
+   "after": "循環|資料來源:WARC《TheMu",
+   "moved": true
+  },
+  {
+   "id": "a10-009",
+   "kind": "site_only",
+   "page": 73,
+   "site": "|資料來源:W",
+   "pdf": "",
+   "before": "求成效優化,品牌卻陷入萎縮的惡性循環",
+   "after": "ARC《TheMultiplierE"
+  },
+  {
+   "id": "a10-010",
+   "kind": "replace",
+   "page": 73,
+   "site": "RC《T",
+   "pdf": "dvertisingplaybackplateaus廣告效果進入高原期/停滯S",
+   "before": "卻陷入萎縮的惡性循環|資料來源:WA",
+   "after": "heMultiplierEffect"
+  },
+  {
+   "id": "a10-011",
+   "kind": "pdf_only",
+   "page": 73,
+   "site": "",
+   "pdf": "iftbudg",
+   "before": "的惡性循環|資料來源:WARC《Th",
+   "after": "eMultiplierEffect》",
+   "fig": true
+  },
+  {
+   "id": "a10-012",
+   "kind": "replace",
+   "page": 73,
+   "site": "M",
+   "pdf": "tsto「performance」formatsOptimizeagainstfa",
+   "before": "惡性循環|資料來源:WARC《The",
+   "after": "ultiplierEffect》(2"
+  },
+  {
+   "id": "a10-013",
+   "kind": "pdf_only",
+   "page": 73,
+   "site": "",
+   "pdf": "ymetr",
+   "before": "|資料來源:WARC《TheMult",
+   "after": "iplierEffect》(2025",
+   "fig": true
+  },
+  {
+   "id": "a10-014",
+   "kind": "site_only",
+   "page": 73,
+   "site": "plierEffe",
+   "pdf": "",
+   "before": "資料來源:WARC《TheMulti",
+   "after": "ct》(2025)Viewabili",
+   "moved": true
+  },
+  {
+   "id": "a10-015",
+   "kind": "replace",
+   "page": 73,
+   "site": "t》(2025)",
+   "pdf": "s依據有缺陷的指標進行優化",
+   "before": "TheMultiplierEffec",
+   "after": "Viewability是門票Atte",
+   "moved": true
+  },
+  {
+   "id": "a10-016",
+   "kind": "pdf_only",
+   "page": 74,
+   "site": "",
+   "pdf": "2",
+   "before": "ionEconomy注意力經濟研究》",
+   "after": "中,就透過眼動追蹤探討曝光下的每一秒"
+  },
+  {
+   "id": "a10-017",
+   "kind": "pdf_only",
+   "page": 74,
+   "site": "",
+   "pdf": "3",
+   "before": "。dentsu與Lumen的眼動研究",
+   "after": "發現,可視率(Viewability"
+  },
+  {
+   "id": "a10-018",
+   "kind": "pdf_only",
+   "page": 74,
+   "site": "",
+   "pdf": "4",
+   "before": "Mille,每千次曝光的注意力秒數)",
+   "after": "把「有沒有看到」與「看了多久」放在同"
+  },
+  {
+   "id": "a10-019",
+   "kind": "pdf_only",
+   "page": 74,
+   "site": "",
+   "pdf": "5",
+   "before": "銷售,同時還有2%~15%的短期銷售",
+   "after": "。不過,這組數字有個前提:當曝光發生"
+  },
+  {
+   "id": "a10-020",
+   "kind": "pdf_only",
+   "page": 75,
+   "site": "",
+   "pdf": "電商以前的時代AIDMA注意興趣AttentionInterest電商時代AISAS注意興趣AttentionInterest生成式AI時代AICAS諮問興趣AskInterest圖2:從AIDMA到AISAS,再到AICAS,其特點是以「諮問(諮詢/提問)」為出發點資料來源:日經xTREND",
+   "before": "不只要問「我的廣告有沒有被看到」,還",
+   "after": "要問「當消費者開始詢問時,AI與社群"
+  },
+  {
+   "id": "a10-021",
+   "kind": "pdf_only",
+   "page": 75,
+   "site": "",
+   "pdf": "6",
+   "before": "者旅程正從AISAS往AICAS移動",
+   "after": "。AICAS的起點不再是被動接收的A"
+  },
+  {
+   "id": "a10-022",
+   "kind": "replace",
+   "page": 75,
+   "site": "圖2:從",
+   "pdf": "消費行為模型的三個時代演進慾望記憶購買DesireMemory",
+   "before": "沒進入比較,就已經被排除在答案之外。",
+   "after": "AIDMA到AISAS,再到AICA"
+  },
+  {
+   "id": "a10-023",
+   "kind": "replace",
+   "page": 75,
+   "site": "IDM",
+   "pdf": "ction搜尋購買分享Search",
+   "before": ",就已經被排除在答案之外。圖2:從A",
+   "after": "A到AISAS,再到AICAS,其特"
+  },
+  {
+   "id": "a10-024",
+   "kind": "replace",
+   "page": 75,
+   "site": "到",
+   "pdf": "ctionShare確認購買分享Confirm,Check",
+   "before": "被排除在答案之外。圖2:從AIDMA",
+   "after": "AISAS,再到AICAS,其特點是"
+  },
+  {
+   "id": "a10-025",
+   "kind": "replace",
+   "page": 75,
+   "site": "I",
+   "pdf": "ction",
+   "before": "除在答案之外。圖2:從AIDMA到A",
+   "after": "SAS,再到AICAS,其特點是以「",
+   "moved": true
+  },
+  {
+   "id": "a10-026",
+   "kind": "replace",
+   "page": 75,
+   "site": "AS,再到AICAS,其特點是以「諮問(諮詢/提問)」為出發點|資料來源:日經xTREND",
+   "pdf": "hare",
+   "before": "答案之外。圖2:從AIDMA到AIS",
+   "after": "先判斷決策情境再決定主攻引擎那麼品牌"
+  },
+  {
+   "id": "a10-027",
+   "kind": "pdf_only",
+   "page": 76,
+   "site": "",
+   "pdf": "高需求分歧-主張難證明◆先建立品牌主敘事◆再分眾補證據◆避免品牌理解破碎主張驗證門檻◆拆解需求情境◆優先攻高商機場景◆測出最有效的轉換切角低消費者問題一致性分歧一致圖3:AI影響消費者決策下的媒體布局矩陣資料來源:筆者/整理、製圖",
+   "before": "題一致性,指的是大家是不是都在問同一",
+   "after": "個問題。例如都在問「哪個品牌最適合親"
+  },
+  {
+   "id": "a10-028",
+   "kind": "site_only",
+   "page": 76,
+   "site": "圖3:",
+   "pdf": "",
+   "before": "主攻品牌記憶、內容證據,或分眾收割。",
+   "after": "AI影響消費者決策下的媒體布局矩陣|"
+  },
+  {
+   "id": "a10-029",
+   "kind": "replace",
+   "page": 76,
+   "site": "|資料來源",
+   "pdf": "先判斷決策情境,再決定主攻",
+   "before": ":AI影響消費者決策下的媒體布局矩陣",
+   "after": ":筆者/整理、製圖使用這個矩陣的第一"
+  },
+  {
+   "id": "a10-030",
+   "kind": "replace",
+   "page": 76,
+   "site": "筆者",
+   "pdf": "品牌記憶、內容證據,或分眾收割需求一致-主張難證明TOM先行雙管齊下◆廣告創造注意◆內容完成驗證◆USP與體驗證據同步推進需求分歧-主張易證明需求一致-主張易證明各個擊破CEPs先行◆先讓內容成為答案◆再用媒體放大收割◆FAQ",
+   "before": "費者決策下的媒體布局矩陣|資料來源:",
+   "after": "/整理、製圖使用這個矩陣的第一步,是"
+  },
+  {
+   "id": "a10-031",
+   "kind": "replace",
+   "page": 76,
+   "site": "整理、製圖",
+   "pdf": "比較/實測先鋪",
+   "before": "策下的媒體布局矩陣|資料來源:筆者/",
+   "after": "使用這個矩陣的第一步,是先判斷消費者",
+   "moved": true
+  },
+  {
+   "id": "a10-032",
+   "kind": "pdf_only",
+   "page": 77,
+   "site": "",
+   "pdf": "同樣的秒數「自己選擇看」比「被迫看」值錢得多+79%自願性注意力相較強迫性注意力的品牌回想增幅(%)+18%注視5~10秒注視>10秒圖4:自願觀看vs.被迫觀看的品牌回想差異資料來源:dentsuJapanInternationalBrands《IntroducingtheAttentionEconomy》眼動研究",
+   "before": "伸手拿、拍照分享、真的記住,買不到。",
+   "after": "把媒體做成體驗讓記憶自己留下來自願的"
+  },
+  {
+   "id": "a10-033",
+   "kind": "pdf_only",
+   "page": 77,
+   "site": "",
+   "pdf": "7",
+   "before": "到,品牌回想甚至贏過高掛的大型看板。",
+   "after": "OOH從來不只是都市裡的雜訊--它不"
+  },
+  {
+   "id": "a10-034",
+   "kind": "pdf_only",
+   "page": 77,
+   "site": "",
+   "pdf": "5:CeraVe適樂膚單日引爆2.",
+   "before": "事,反而常被當成城市風景的一部分。圖",
+   "after": "4:自願觀看vs.被迫觀看的品牌回想",
+   "moved": true
+  },
+  {
+   "id": "a10-035",
+   "kind": "replace",
+   "page": 77,
+   "site": ":自願觀看vs.被迫觀看的",
+   "pdf": "萬篇社群討論,以破圈體驗創造有機聲量與",
+   "before": ",反而常被當成城市風景的一部分。圖4",
+   "after": "品牌回想差異|資料來源:dentsu",
+   "moved": true
+  },
+  {
+   "id": "a10-036",
+   "kind": "replace",
+   "page": 77,
+   "site": "回想差異|",
+   "pdf": "好感",
+   "before": "。圖4:自願觀看vs.被迫觀看的品牌",
+   "after": "資料來源:dentsuJapanIn"
+  },
+  {
+   "id": "a10-037",
+   "kind": "replace",
+   "page": 77,
+   "site": "dentsuJapanInternationalBrands《IntroducingtheAttentionEconomy》眼動研究",
+   "pdf": "電通台灣",
+   "before": ".被迫觀看的品牌回想差異|資料來源:",
+   "after": "但更聰明的玩法,是再往前一步:別只讓",
+   "moved": true
+  },
+  {
+   "id": "a10-038",
+   "kind": "pdf_only",
+   "page": 78,
+   "site": "",
+   "pdf": "8",
+   "before": "累積的信任,在沒有視覺干擾的伴聽時光",
+   "after": "裡,好好把話講完。這幾個案例講的其實"
+  },
+  {
+   "id": "a10-039",
+   "kind": "site_only",
+   "page": 78,
+   "site": "圖5:CeraVe適樂膚單日引爆2.4萬篇社群討論,以破圈體驗創造有機聲量與品牌好感|資料來源:電通台灣",
+   "pdf": "",
+   "before": "被看到的版位」變成「被經歷的時刻」。",
+   "after": "別再數曝光開始累積記憶說到底,在資訊"
+  },
+  {
+   "id": "a10-040",
+   "kind": "pdf_only",
+   "page": 79,
+   "site": "",
+   "pdf": "1",
+   "before": "--在不被打斷的情況下,被記住。註解",
+   "after": "WARC2025study《TheM"
+  },
+  {
+   "id": "a10-041",
+   "kind": "pdf_only",
+   "page": 79,
+   "site": "",
+   "pdf": "註解2",
+   "before": "thePerformanceEra》",
+   "after": "《AttentionEconomy:"
+  },
+  {
+   "id": "a10-042",
+   "kind": "pdf_only",
+   "page": 79,
+   "site": "",
+   "pdf": "註解3",
+   "before": "ityvsViewingTime章節",
+   "after": "《AttentionEconomy:"
+  },
+  {
+   "id": "a10-043",
+   "kind": "pdf_only",
+   "page": 79,
+   "site": "",
+   "pdf": "註解4",
+   "before": "ityvsViewingTime章節",
+   "after": "APM(AttentionperMi"
+  },
+  {
+   "id": "a10-044",
+   "kind": "pdf_only",
+   "page": 79,
+   "site": "",
+   "pdf": "註解5",
+   "before": "以量化廣告素材的品質與受眾的專注度。",
+   "after": "Dentsu《TheBrandRes"
+  },
+  {
+   "id": "a10-045",
+   "kind": "pdf_only",
+   "page": 79,
+   "site": "",
+   "pdf": "註解6",
+   "before": "omAttention》(2026)",
+   "after": "日經xTRENDhttps://xt"
+  },
+  {
+   "id": "a10-046",
+   "kind": "pdf_only",
+   "page": 79,
+   "site": "",
+   "pdf": "註解7",
+   "before": "ts/18/01354/00006/",
+   "after": "《CaptivatingtheStr"
+  },
+  {
+   "id": "a10-047",
+   "kind": "pdf_only",
+   "page": 79,
+   "site": "",
+   "pdf": "註解8",
+   "before": "tdoor,2026),眼動追蹤研究",
+   "after": "《ThePowerofSound20"
+  }
+ ]
+}

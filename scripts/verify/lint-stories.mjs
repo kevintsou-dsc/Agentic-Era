@@ -11,6 +11,7 @@ const dir = fileURLToPath(new URL('../../src/data/stories/', import.meta.url));
 const articlesJson = JSON.parse(readFileSync(fileURLToPath(new URL('../../content/articles.json', import.meta.url)), 'utf8'));
 const AUTHOR_NAMES = [...new Set((Array.isArray(articlesJson) ? articlesJson : articlesJson.articles).flatMap((x) => x.authors.map((au) => au.name)))];
 const END = /[。！？」）]$/;
+const MAX_BUBBLE = 140; // 主文每則上限
 const problems = [];
 const summary = [];
 
@@ -29,7 +30,7 @@ for (const f of readdirSync(dir).filter((x) => /^a\d\d\.ts$/.test(x))) {
     if (/[：:]$/.test(plain)) problems.push(`${id}：以冒號結尾（半句）「${plain.slice(-20)}」`);
     const min = isDetail ? 12 : 30;
     if (plain.length < min) problems.push(`${id}：太短（${plain.length} 字）「${plain}」`);
-    if (plain.length > 140) problems.push(`${id}：太長（${plain.length} 字），請拆成兩段「${plain.slice(0, 20)}…」`);
+    if (plain.length > MAX_BUBBLE) problems.push(`${id}：太長（${plain.length} 字，上限 ${MAX_BUBBLE}），請拆成兩段「${plain.slice(0, 20)}…」`);
     if (!isDetail) total += plain.length;
   }
   // 沒有 src 的 beat：text 後面不是 src

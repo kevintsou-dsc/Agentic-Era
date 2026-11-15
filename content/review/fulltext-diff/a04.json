@@ -1,0 +1,120 @@
+{
+ "id": "a04",
+ "site_chars": 5805,
+ "pdf_chars": 6698,
+ "ratio": 0.9073,
+ "hunks": 12,
+ "hunks_to_review": 12,
+ "site_only_chars": 133,
+ "pdf_only_chars": 1026,
+ "items": [
+  {
+   "id": "a04-001",
+   "kind": "pdf_only",
+   "page": 30,
+   "site": "",
+   "pdf": "AI智能應用接觸點◆AI搜尋引擎最佳化◆AI個人化頁面◆AI生成個人化動態廣告◆AI分群與預測旅程◆跨平台精準推薦觸及◆對話式導購/◆品牌虛擬門市體驗語音助理整合◆自動化AB測試與優化需求生成產生購買意向◆AI訂閱平台/搜尋引擎首次購買◆社群論壇/◆官網首頁/商品頁、官方社群服務頁◆意見領袖/◆App、電商平台創作者內容◆互動活動、導購測驗◆電視、戶外、◆社群廣告再行銷活動、口碑宣傳圖1:AI驅動新時代並重塑顧客旅程與行銷策略資料來源:dentsuCreative",
+   "before": "I)的崛起,從觸發需求、啟發探索、比",
+   "after": "較評估、轉換購買,到最終的品牌擁護,"
+  },
+  {
+   "id": "a04-002",
+   "kind": "replace",
+   "page": 30,
+   "site": "程。圖1:",
+   "pdf": "觸及Activate探索與連結Inspire行動與轉換Convert擁護與擴散Advocate",
+   "before": "統行銷漏斗將不再足以解釋完整的決策歷",
+   "after": "AI驅動新時代並重塑顧客旅程與行銷策"
+  },
+  {
+   "id": "a04-003",
+   "kind": "replace",
+   "page": 30,
+   "site": "新時代並重塑",
+   "pdf": "全渠道觸及AI賦能",
+   "before": "以解釋完整的決策歷程。圖1:AI驅動",
+   "after": "顧客旅程與行銷策略|資料來源:den"
+  },
+  {
+   "id": "a04-004",
+   "kind": "replace",
+   "page": 30,
+   "site": "旅程",
+   "pdf": "體驗AI培育顧客價值",
+   "before": "歷程。圖1:AI驅動新時代並重塑顧客",
+   "after": "與行銷策略|資料來源:dentsuC"
+  },
+  {
+   "id": "a04-005",
+   "kind": "pdf_only",
+   "page": 30,
+   "site": "",
+   "pdf": "忠誠AI建構品牌服務生態◆AI自動化",
+   "before": "圖1:AI驅動新時代並重塑顧客旅程與",
+   "after": "行銷策略|資料來源:dentsuCr"
+  },
+  {
+   "id": "a04-006",
+   "kind": "replace",
+   "page": 30,
+   "site": "策略|資料來源:d",
+   "pdf": "◆Ag",
+   "before": ":AI驅動新時代並重塑顧客旅程與行銷",
+   "after": "entsuCreative品牌如果無"
+  },
+  {
+   "id": "a04-007",
+   "kind": "pdf_only",
+   "page": 30,
+   "site": "",
+   "pdf": "toAgent協(MA/CDP)作服務◆客製化推薦/◆品牌/會員社群共創◆AI輿情洞察/回饋計畫◆服務追蹤與需求預測培養品牌倡議者◆動態定價或即時優◆AI全通路體驗設計惠配置忠誠/擁護顧客持續再購◆品牌代理人Brand◆會員中心Agent◆會員社團◆Email/App推播/(Di",
+   "before": "客旅程與行銷策略|資料來源:dent",
+   "after": "suCreative品牌如果無法讓自"
+  },
+  {
+   "id": "a04-008",
+   "kind": "replace",
+   "page": 30,
+   "site": "uC",
+   "pdf": "co",
+   "before": "旅程與行銷策略|資料來源:dents",
+   "after": "reative品牌如果無法讓自身的產"
+  },
+  {
+   "id": "a04-009",
+   "kind": "replace",
+   "page": 30,
+   "site": "eative",
+   "pdf": "d、LINELINE官方帳號◆忠誠計畫(點數、任務、等級)社群..)◆實體活動、體驗營◆全通路服務(OMO)程。",
+   "before": "行銷策略|資料來源:dentsuCr",
+   "after": "品牌如果無法讓自身的產品資訊、內容結"
+  },
+  {
+   "id": "a04-010",
+   "kind": "pdf_only",
+   "page": 34,
+   "site": "",
+   "pdf": "dentsuconsultdentsuStudioStrategy&ConsultDentsuXiProspectCARATCreative&productionIntegratedClientServicesMedia++&Entertainment&PRInfluenceDentsugroup/EntertainmentExperienceDesignDentsulabSocialCommerce&MarTechSolutioncenterMERKLE圖2:電通CreativePractice提出具體且可落地的CreativeE2E服務矩陣及AI-PoweredIMC方案,協助企業同時兼顧短期營收變現與長期AI轉型資料來源:dentsuCreative",
+   "before": "能依據不同消費情境動態回應的整合行銷",
+   "after": "系統。因此,我們將推動以AI為核心驅"
+  },
+  {
+   "id": "a04-011",
+   "kind": "pdf_only",
+   "page": 34,
+   "site": "",
+   "pdf": "InnovatingtoImpact成果導向的端到端解決方案Result-drivenend-to-endSolutionsdentsuAIplatforms+datasystemsthroughtransformativecreativity結合AI整合解決方案與獨家數據生態系,創造跨產業、跨文化的影響力--只因我們相信,客戶值得更好的行銷成果。",
+   "before": "踐、白皮書、高階論壇與thought",
+   "after": "leadership內容,建立專業影"
+  },
+  {
+   "id": "a04-012",
+   "kind": "site_only",
+   "page": 34,
+   "site": "圖2:電通CreativePractice提出具體且可落地的CreativeE2E服務矩陣及AI-PoweredIMC方案,協助企業同時兼顧短期營收變現與長期AI轉型|資料來源:dentsuCreative",
+   "pdf": "",
+   "before": "創造具品質的商機名單與後續轉換機會。",
+   "after": "透過AI-PoweredIMC,我們"
+  }
+ ]
+}

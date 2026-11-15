@@ -32,6 +32,6 @@ export function loadFulltext(id: string): Block[] {
   return blocks;
 }
 
-/** 全文人工校正完成的文章。未列入者原文頁仍會產生，但頁首標示「未校正」；
- *  繳交前由 scripts/verify/verify-release.mjs 要求 22 篇全部列入。 */
-export const FULLTEXT_REVIEWED = new Set<string>([]);
+/** 全文校稿完成的文章：與印刷版逐字比對、多代理校稿與覆核、隨機抽查通過（見 docs/review/fulltext-proofread.md）。
+ *  未列入者原文頁仍會產生，但頁首標示「尚未校稿」；繳交前由 scripts/verify/verify-release.mjs 要求 22 篇全部列入。 */
+export const FULLTEXT_REVIEWED = new Set<string>(['a01', 'a02', 'a03', 'a04', 'a05', 'a06', 'a07', 'a08', 'a09', 'a10', 'a11', 'a12', 'a13', 'a14', 'a15', 'a16', 'a17', 'a18', 'a19', 'a20', 'a21', 'a22']);

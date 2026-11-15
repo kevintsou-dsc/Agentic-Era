@@ -1,0 +1,410 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>零食包設計提案</title>
+<style>
+  :root {
+    --paper: #f3eee4; --paper-2: #e9e1d2; --ink: #1f1d1a; --ink-2: #5a544b; --ink-3: #8a8277;
+    --people: #cbdd7a; --people-ink: #2f5e35; --model: #ebc1c1; --model-ink: #a8423e;
+    --ai: #8ccfdd; --ai-ink: #24636e; --intro: #e3cfa9; --intro-ink: #6e4f24;
+    --sans: "Noto Sans TC Variable", "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", system-ui, sans-serif;
+    --serif: "Noto Serif TC", "Songti TC", "PMingLiU", serif;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--sans); line-height: 1.6; }
+  header { max-width: 1180px; margin: 0 auto; padding: 48px 20px 8px; }
+  header p { margin: 0; color: var(--ink-2); }
+  header .eyebrow { font-size: 13px; letter-spacing: .12em; font-weight: 700; color: var(--ink-3); }
+  h1 { font-family: var(--serif); font-size: clamp(28px, 4vw, 44px); margin: 6px 0 10px; line-height: 1.25; }
+  .why { max-width: 46rem; }
+  main { max-width: 1180px; margin: 0 auto; padding: 24px 20px 80px; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 520px), 1fr)); gap: 28px; }
+  .concept { background: #fffdf8; border: 2px solid var(--ink); border-radius: 22px; overflow: hidden; display: grid; }
+  .stage { position: relative; height: 420px; perspective: 950px; overflow: hidden; touch-action: none; cursor: grab; user-select: none;
+    background: radial-gradient(70% 60% at 50% 38%, #46413a 0%, #23211d 62%, #171613 100%); }
+  .stage:active { cursor: grabbing; }
+  .float { position: absolute; inset: 0; transform-style: preserve-3d; animation: bob 4.8s ease-in-out infinite; }
+  @keyframes bob { 0%, 100% { transform: translateY(-8px); } 50% { transform: translateY(8px); } }
+  .floor { position: absolute; left: 50%; bottom: 38px; width: 210px; height: 26px; margin-left: -105px; border-radius: 50%;
+    background: radial-gradient(closest-side, rgba(0,0,0,.55), transparent); animation: floor 4.8s ease-in-out infinite; }
+  @keyframes floor { 0%, 100% { transform: scale(.82); opacity: .6; } 50% { transform: scale(1); opacity: .9; } }
+  .obj { position: absolute; left: 50%; top: 47%; width: 0; height: 0; transform-style: preserve-3d; }
+  .obj * { position: absolute; }
+  .hint { position: absolute; left: 16px; top: 14px; margin: 0; font-size: 12px; color: rgba(255,255,255,.5); letter-spacing: .06em; }
+  .ctrl { position: absolute; right: 14px; bottom: 14px; display: flex; gap: 8px; }
+  .ctrl button { font: inherit; font-size: 14px; font-weight: 700; padding: 7px 16px; border-radius: 999px; border: 1.5px solid rgba(255,255,255,.7); background: rgba(255,255,255,.08); color: #fff; cursor: pointer; backdrop-filter: blur(4px); }
+  .ctrl button[data-open] { background: #fff; color: var(--ink); border-color: #fff; }
+  .meta { padding: 20px 24px 24px; display: grid; gap: 10px; }
+  .meta h2 { margin: 0; font-family: var(--serif); font-size: 26px; line-height: 1.3; display: flex; align-items: baseline; gap: 12px; }
+  .meta h2 span { font-family: var(--sans); font-size: 13px; font-weight: 800; padding: 2px 10px; border-radius: 999px; background: var(--ink); color: var(--paper); }
+  .meta > p { margin: 0; color: var(--ink-2); }
+  .meta dl { margin: 4px 0 0; display: grid; grid-template-columns: 5.5em 1fr; gap: 6px 12px; font-size: 14px; }
+  .meta dt { font-weight: 700; color: var(--ink-3); }
+  .meta dd { margin: 0; }
+  .pick { margin-top: 4px; font-size: 13px; font-weight: 700; color: var(--people-ink); }
+  footer { max-width: 1180px; margin: 0 auto; padding: 0 20px 60px; color: var(--ink-2); font-size: 14px; }
+
+  /* ── 共用：成就卡 ── */
+  .mc { width: 96px; height: 134px; margin: -67px 0 0 -48px; border: 2px solid var(--ink); border-radius: 11px; padding: 8px 9px; display: grid; grid-template-rows: auto 1fr auto; color: var(--ink); backface-visibility: hidden; box-shadow: 0 10px 24px rgba(0,0,0,.35); }
+  .mc * { position: static; }
+  .mc-top { font-size: 9px; font-weight: 800; letter-spacing: .06em; }
+  .mc-name { font-family: var(--serif); font-size: 21px; line-height: 1.15; align-self: center; }
+  .mc-foot { font-size: 7px; letter-spacing: .12em; font-weight: 700; opacity: .7; }
+  .c-intro { background: var(--intro); } .c-people { background: var(--people); } .c-model { background: var(--model); } .c-ai { background: var(--ai); }
+  .lit { inset: 0; pointer-events: none; }
+  .sh { background: #000; opacity: 0; }
+  .sp { background: linear-gradient(90deg, transparent 0 20%, rgba(255,255,255,.9) 50%, transparent 80%); opacity: 0; mix-blend-mode: screen; }
+
+  /* ── A 鋁箔枕頭袋 ── */
+  .a-strip { left: 0; top: 0; transform-style: preserve-3d; }
+  .a-face { inset: 0; overflow: hidden; backface-visibility: hidden; }
+  .a-art { top: 0; }
+  .a-art.front { background:
+      radial-gradient(90% 60% at 30% 18%, rgba(255,255,255,.65), transparent 55%),
+      conic-gradient(from 210deg at 62% 46%, #d5e48f, #9dd8e4, #f0c9c9, #ead8b5, #c9dcf0, #d5e48f); }
+  .a-art.back { background: linear-gradient(160deg, #eef0ea, #cfd6d2); }
+  .a-art.front::after { content: ""; position: absolute; inset: 0; background: repeating-linear-gradient(115deg, rgba(255,255,255,.18) 0 2px, transparent 2px 7px); mix-blend-mode: overlay; }
+  .fa-kick { left: 22px; top: 22px; margin: 0; font-size: 9px; font-weight: 800; letter-spacing: .2em; }
+  .fa-title { left: 20px; top: 42px; margin: 0; font-family: var(--serif); font-size: 40px; font-weight: 900; line-height: 1.02; letter-spacing: -.02em; }
+  .fa-sub { left: 22px; bottom: 22px; margin: 0; font-size: 11px; font-weight: 700; padding: 3px 10px; border-radius: 999px; background: var(--ink); color: #fff; }
+  .fa-stk { right: 14px; bottom: 46px; width: 58px; height: 58px; border-radius: 50%; background: var(--model-ink); color: #fff; display: grid; place-items: center; text-align: center; font-size: 11px; font-weight: 800; line-height: 1.1; transform: rotate(-12deg); box-shadow: 0 0 0 3px rgba(255,255,255,.6); }
+  .fa-stk span, .fa-stk b, .ba-l em { position: static; font-style: normal; }
+  .fa-stk b { display: block; font-family: var(--serif); font-size: 22px; }
+  .fa-stk > span:first-child { display: grid; }
+  .ba-t { left: 26px; top: 28px; margin: 0; font-size: 12px; font-weight: 800; letter-spacing: .16em; }
+  .ba-l { left: 26px; right: 26px; top: 56px; margin: 0; font-size: 11px; line-height: 2; color: var(--ink-2); border-top: 1.5px solid var(--ink); }
+  .ba-l span { position: static; display: flex; justify-content: space-between; border-bottom: 1px dashed rgba(0,0,0,.25); }
+  .a-cap { left: 0; right: 0; overflow: hidden; backface-visibility: hidden; background: linear-gradient(#c9ced0, #eef0f0 70%, #d9dddd); }
+  .a-cap.top { bottom: 100%; transform-origin: 50% 100%; }
+  .a-cap.bot { top: 100%; transform-origin: 50% 0; }
+  .a-cap::before { content: ""; position: absolute; inset: 0; background: repeating-linear-gradient(90deg, rgba(0,0,0,.08) 0 1px, transparent 1px 5px); }
+  .a-seal { background: linear-gradient(#e7e9e8, #b9bfbf 50%, #e1e4e3); }
+  .a-seal::before { content: ""; position: absolute; inset: 0; background: repeating-linear-gradient(90deg, rgba(0,0,0,.22) 0 1.5px, transparent 1.5px 5px); }
+  .a-seal .notch { width: 9px; height: 9px; border-radius: 50%; background: #23211d; top: 50%; margin-top: -4.5px; }
+  .a-seal.top { transition: transform .75s cubic-bezier(.3,.6,.3,1), opacity .5s .35s; }
+  .open .a-seal.top { transform: translate3d(60px, -120px, 40px) rotateZ(-24deg) rotateX(30deg); opacity: 0; }
+  .a-cards .mc { transform: translateY(20px); transition: transform .8s cubic-bezier(.2,1.3,.4,1); }
+  .open .a-cards .mc:nth-child(1) { transform: translate3d(-60px, -146px, 4px) rotateZ(-14deg); transition-delay: .45s; }
+  .open .a-cards .mc:nth-child(2) { transform: translate3d(0, -164px, 8px); transition-delay: .55s; }
+  .open .a-cards .mc:nth-child(3) { transform: translate3d(60px, -146px, 12px) rotateZ(14deg); transition-delay: .65s; }
+
+  /* ── B 糖果紙 ── */
+  .b-pt { left: 0; top: 50%; transform-origin: 0 50%; overflow: hidden; }
+  .b-body { backface-visibility: hidden; }
+  .b-art { left: 0; width: 100%;
+    background: repeating-linear-gradient(62deg, var(--people) 0 14px, #fbf7ee 14px 22px, var(--ai) 22px 36px, #fbf7ee 36px 44px, var(--model) 44px 58px, #fbf7ee 58px 66px); }
+  .b-label { left: 50%; top: 50%; width: 134px; height: 72px; margin: -36px 0 0 -67px; background: #fbf7ee; border: 2px solid var(--ink); border-radius: 12px; display: grid; place-items: center; text-align: center; }
+  .b-label b { position: static; font-family: var(--serif); font-size: 21px; line-height: 1.1; }
+  .b-label i { position: static; font-style: normal; font-size: 8px; font-weight: 800; letter-spacing: .18em; display: block; }
+  .b-cello { background: linear-gradient(90deg, rgba(255,255,255,.55), rgba(220,240,245,.32) 40%, rgba(255,235,240,.4) 70%, rgba(255,255,255,.6)); }
+  .b-cello.alt { background: linear-gradient(90deg, rgba(255,255,255,.4), rgba(235,248,210,.3) 50%, rgba(255,255,255,.5)); }
+  .b-end { left: 0; top: 0; transform-style: preserve-3d; transition: transform 1s cubic-bezier(.4,0,.2,1); }
+  .b-end.r { transform: scaleX(-1); }
+  .open .b-end.l { transform: translateX(-60px) rotateX(620deg) scale(1.4); }
+  .open .b-end.r { transform: scaleX(-1) translateX(-60px) rotateX(620deg) scale(1.4); }
+  .b-end .b-pt { transition: opacity .5s .5s; }
+  .open .b-end .b-pt { opacity: 0; }
+  .b-half { left: 0; top: 0; transform-style: preserve-3d; transition: transform .8s .55s cubic-bezier(.4,0,.2,1); }
+  .b-half .b-pt { transition: opacity .5s .85s; }
+  .open .b-half.t { transform: translateY(-80px) rotateX(-50deg); }
+  .open .b-half.b { transform: translateY(80px) rotateX(50deg); }
+  .open .b-half .b-pt { opacity: 0; }
+  .b-cards .mc { transform: scale(.3); opacity: 0; transition: transform .8s cubic-bezier(.2,1.3,.4,1), opacity .3s; }
+  .open .b-cards .mc { opacity: 1; }
+  .open .b-cards .mc:nth-child(1) { transform: translate3d(-70px, -12px, -6px) rotateZ(-12deg); transition-delay: .95s; }
+  .open .b-cards .mc:nth-child(2) { transform: translate3d(0, -30px, 0); transition-delay: 1.05s; }
+  .open .b-cards .mc:nth-child(3) { transform: translate3d(70px, -12px, 6px) rotateZ(12deg); transition-delay: 1.15s; }
+
+  /* ── C 摺紙信封 ── */
+  .c-base { transform-style: preserve-3d; }
+  .c-face { inset: 0; backface-visibility: hidden; }
+  .c-base .in { background: #fbf8f1; box-shadow: inset 0 0 0 1px rgba(0,0,0,.12); }
+  .c-base .in::before { content: ""; position: absolute; inset: 18px; border: 1.5px dashed rgba(0,0,0,.2); border-radius: 10px; }
+  .c-base .out { transform: rotateY(180deg); background: var(--model);
+    background-image: repeating-linear-gradient(0deg, rgba(0,0,0,.06) 0 1px, transparent 1px 14px); }
+  .c-base .out b { inset: 0; display: grid; place-items: center; font-family: var(--serif); font-size: 26px; letter-spacing: .1em; }
+  .c-flap { transform-style: preserve-3d; transition: transform .7s cubic-bezier(.5,0,.2,1); }
+  .c-flap .c-face { background: #fbf8f1; }
+  .c-flap .c-face.out { background: linear-gradient(var(--fc, var(--model)), var(--fc, var(--model))), #fff; }
+  .c-flap .c-face.out::after { content: ""; position: absolute; inset: 0; background: repeating-linear-gradient(0deg, rgba(0,0,0,.07) 0 1px, transparent 1px 13px), linear-gradient(var(--fs, 0deg), rgba(0,0,0,.18), transparent 45%); }
+  .c-flap .c-face.in { background: #fbf8f1; }
+  .c-flap .c-face.in i { font-style: normal; font-family: var(--serif); font-size: 13px; color: var(--ink-3); }
+  .c-flap.t { transform-origin: 50% 100%; transform: translateZ(2px) rotateX(-179.6deg); }
+  .c-flap.b { transform-origin: 50% 0; transform: translateZ(.5px) rotateX(179.6deg); transition-delay: .55s; }
+  .c-flap.l { transform-origin: 100% 50%; transform: translateZ(1px) rotateY(179.6deg); transition-delay: .4s; }
+  .c-flap.r { transform-origin: 0 50%; transform: translateZ(1.5px) rotateY(-179.6deg); transition-delay: .25s; }
+  .open .c-flap.t { transform: translateZ(2px) rotateX(-8deg); transition-delay: .7s; }
+  .open .c-flap.b { transform: translateZ(.5px) rotateX(8deg); transition-delay: .25s; }
+  .open .c-flap.l { transform: translateZ(1px) rotateY(8deg); transition-delay: .4s; }
+  .open .c-flap.r { transform: translateZ(1.5px) rotateY(-8deg); transition-delay: .55s; }
+  .c-seal { width: 62px; height: 60px; margin: -30px 0 0 -31px; border-radius: 48% 52% 46% 54% / 55% 45% 55% 45%; background: radial-gradient(circle at 38% 32%, #c8615b, var(--model-ink) 55%, #7d2c29); color: #f6dcd8; display: grid; place-items: center; font-family: var(--serif); font-size: 26px; font-weight: 900; transform: translateZ(4px); box-shadow: inset 0 0 0 5px rgba(0,0,0,.12), 0 3px 6px rgba(0,0,0,.3); transition: transform .6s cubic-bezier(.4,0,.2,1), opacity .4s .2s; }
+  .open .c-seal { transform: translate3d(40px, -110px, 80px) rotateZ(40deg); opacity: 0; }
+  .c-cards .mc { transform: translateZ(.2px) scale(.9); transition: transform .8s cubic-bezier(.2,1.3,.4,1); }
+  .open .c-cards .mc:nth-child(1) { transform: translate3d(-62px, -40px, 30px) rotateZ(-12deg); transition-delay: 1.15s; }
+  .open .c-cards .mc:nth-child(2) { transform: translate3d(0, -60px, 50px); transition-delay: 1.25s; }
+  .open .c-cards .mc:nth-child(3) { transform: translate3d(62px, -40px, 70px) rotateZ(12deg); transition-delay: 1.35s; }
+
+  /* ── D 扭蛋 ── */
+  .d-grp { left: 0; top: 0; transform-style: preserve-3d; }
+  .d-m { left: 0; top: 0; transform-style: preserve-3d; }
+  .d-h { width: 176px; height: 88px; left: -88px; }
+  .d-h.up { top: -88px; border-radius: 88px 88px 0 0; background: rgba(255,255,255,.035); border: 1px solid rgba(255,255,255,.14); border-bottom: 0; }
+  .d-h.dn { top: 0; border-radius: 0 0 88px 88px; background: rgba(140,207,221,.17); border: 1px solid rgba(255,255,255,.06); border-top: 0; }
+  .d-ring { width: 182px; height: 182px; margin: -91px 0 0 -91px; border-radius: 50%; border: 6px solid #4d9fae; transform: rotateX(90deg); }
+  .d-ring.lip { width: 178px; height: 178px; margin: -89px 0 0 -89px; border: 3px solid rgba(255,255,255,.55); transform: rotateX(90deg) translateZ(-4px); }
+  .d-knob { width: 34px; height: 34px; margin: -17px 0 0 -17px; border-radius: 50%; background: rgba(255,255,255,.18); border: 1px solid rgba(255,255,255,.35); transform: rotateX(90deg) translateZ(86px); }
+  .d-label { width: 92px; height: 34px; margin: -17px 0 0 -46px; border-radius: 8px; background: #fbf7ee; border: 2px solid var(--ink); display: grid; place-items: center; font-family: var(--serif); font-weight: 900; font-size: 14px; transform: rotateX(-34deg) translateZ(84px); backface-visibility: hidden; }
+  .d-gloss { left: 50%; top: 47%; width: 176px; height: 176px; margin: -88px 0 0 -88px; border-radius: 50%; pointer-events: none; transform: translateZ(100px);
+    background: radial-gradient(circle at 34% 26%, rgba(255,255,255,.85) 0 5%, rgba(255,255,255,.22) 14%, transparent 36%), radial-gradient(circle at 50% 50%, transparent 62%, rgba(0,0,0,.28) 100%); transition: opacity .4s; }
+  .open .d-gloss { opacity: 0; }
+  .d-top { transition: transform 1.1s cubic-bezier(.5,0,.2,1); }
+  .d-top .d-h, .d-top .d-knob, .d-top .d-ring { transition: opacity .5s .6s; }
+  .open .d-top { transform: translateY(-150px) rotateY(-260deg) rotateZ(-18deg); }
+  .open .d-top .d-h, .open .d-top .d-knob, .open .d-top .d-ring { opacity: 0; }
+  .d-cards .mc { transform: scale(.62) rotateZ(-8deg); transition: transform .8s cubic-bezier(.2,1.3,.4,1); }
+  .open .d-cards .mc:nth-child(1) { transform: translate3d(-64px, -96px, 4px) rotateZ(-13deg); transition-delay: .7s; }
+  .open .d-cards .mc:nth-child(2) { transform: translate3d(0, -120px, 8px); transition-delay: .8s; }
+  .open .d-cards .mc:nth-child(3) { transform: translate3d(64px, -96px, 12px) rotateZ(13deg); transition-delay: .9s; }
+
+  @media (prefers-reduced-motion: reduce) { .float, .floor { animation: none; } }
+</style>
+</head>
+<body>
+<header>
+  <p class="eyebrow">設計提案｜知識零食包</p>
+  <h1>四種不再「方正」的零食包</h1>
+  <p class="why">現在的包是一個長方盒，轉起來像一本書。下面四種都改用曲面或摺面，讓輪廓在轉動時一直變化。每一個都可以拖曳旋轉、放著會自己飄，按右下角看打開的動畫。卡片都是同一套成就卡，只換外包裝。</p>
+</header>
+<main>
+  <article class="concept" data-concept="A">
+    <div class="stage"><p class="hint">拖曳旋轉</p><div class="float"><div class="obj"></div></div><i class="floor"></i>
+      <div class="ctrl"><button type="button" data-reset>重來</button><button type="button" data-open>撕開</button></div></div>
+    <div class="meta">
+      <h2><span>A</span>鋁箔枕頭袋</h2>
+      <p>最像真的零食包。中間鼓起、兩端壓扁成鋸齒封口，表面是會隨角度變色的鐳射鋁箔。轉到側面能看到它是扁圓的枕頭形，不是盒子。</p>
+      <dl><dt>打開方式</dt><dd>沿上方封口往右撕，封口飛走，三張卡從袋口冒出來扇形展開</dd>
+        <dt>質感</dt><dd>鐳射光澤跟著轉動角度滑動；封口有壓紋</dd>
+        <dt>和網站的關係</dt><dd>直接對應「零食包」這個名字，最好懂</dd>
+        <dt>製作量</dt><dd>中。沿用現在的撕開手勢，只換包體</dd></dl>
+      <p class="pick">推薦：最直接解決「太方正」，也最像零食</p>
+    </div>
+  </article>
+
+  <article class="concept" data-concept="B">
+    <div class="stage"><p class="hint">拖曳旋轉</p><div class="float"><div class="obj"></div></div><i class="floor"></i>
+      <div class="ctrl"><button type="button" data-reset>重來</button><button type="button" data-open>扭開</button></div></div>
+    <div class="meta">
+      <h2><span>B</span>糖果紙</h2>
+      <p>一顆躺著的糖：圓柱糖身印四章顏色的斜條紋，兩端是半透明玻璃紙扭成的花。輪廓完全是圓的，從哪個角度看都不像盒子。</p>
+      <dl><dt>打開方式</dt><dd>兩端玻璃紙旋轉鬆開，糖紙上下分開，卡片從中間浮出</dd>
+        <dt>質感</dt><dd>玻璃紙半透明、帶一點彩虹色；糖身有圓柱光影</dd>
+        <dt>和網站的關係</dt><dd>「零食」感最強、最輕鬆；四章顏色做成條紋</dd>
+        <dt>製作量</dt><dd>中。手勢要改成左右拉兩端</dd></dl>
+    </div>
+  </article>
+
+  <article class="concept" data-concept="C">
+    <div class="stage"><p class="hint">拖曳旋轉</p><div class="float"><div class="obj"></div></div><i class="floor"></i>
+      <div class="ctrl"><button type="button" data-reset>重來</button><button type="button" data-open>拆封</button></div></div>
+    <div class="meta">
+      <h2><span>C</span>摺紙信封</h2>
+      <p>四片三角紙摺到中心，用一枚刻著「決」的封蠟封住。拆封後四片依序攤開，內面印著紙本頁碼，卡片從中間升起。</p>
+      <dl><dt>打開方式</dt><dd>按住封蠟往外拉，封蠟彈開，紙片一片片翻開</dd>
+        <dt>質感</dt><dd>紙張、橫線、封蠟；翻開時看得到紙的正反面</dd>
+        <dt>和網站的關係</dt><dd>呼應「紙本 p.N」與全站的紙感，最有品牌個性</dd>
+        <dt>製作量</dt><dd>中。名字可改叫「知識信封」</dd></dl>
+      <p class="pick">次推：品牌感最好，但離「零食包」字面最遠</p>
+    </div>
+  </article>
+
+  <article class="concept" data-concept="D">
+    <div class="stage"><p class="hint">拖曳旋轉</p><div class="float"><div class="obj"></div></div><i class="floor"></i>
+      <div class="ctrl"><button type="button" data-reset>重來</button><button type="button" data-open>轉開</button></div></div>
+    <div class="meta">
+      <h2><span>D</span>扭蛋</h2>
+      <p>透明上蓋、彩色下殼的圓形扭蛋，看得到卡片摺在裡面。轉動時赤道的接縫會傾斜，看得出是一顆真的球。</p>
+      <dl><dt>打開方式</dt><dd>用手指畫圈轉開上蓋，上蓋旋轉飛走，卡片彈出</dd>
+        <dt>質感</dt><dd>透明塑膠的反光與厚度；裡面的卡片若隱若現</dd>
+        <dt>和網站的關係</dt><dd>「收集」感最強；名字可改叫「知識扭蛋」</dd>
+        <dt>製作量</dt><dd>中偏高。畫圈手勢在手機上要多測</dd></dl>
+    </div>
+  </article>
+</main>
+<footer>這頁只是比較用的草稿，不會放進網站。選定之後，會把該方向做進現在的零食包（撕開、卡片、收藏流程不變）。</footer>
+
+<script>
+const DEG = Math.PI / 180;
+const CARDS = [['開讀', 'intro', 1], ['上手', 'people', 3], ['五篇在手', 'model', 5]];
+const el = (cls, parent, css) => { const e = document.createElement('div'); e.className = cls; if (css) e.style.cssText = css; if (parent) parent.appendChild(e); return e; };
+const lit = (parent) => ({ sh: el('lit sh', parent), sp: el('lit sp', parent) });
+const cardsInto = (parent) => { parent.innerHTML = CARDS.map(([n, c, k]) => `<div class="mc c-${c}"><span class="mc-top">No.0${k}／13</span><b class="mc-name">${n}</b><span class="mc-foot">DECISION WISDOM 2026</span></div>`).join(''); };
+const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
+
+// 拖曳、慣性、閒置時自己晃
+function rig(stage, obj, light, base = { x: -10, y: -24 }) {
+  let rx = base.x, ry = base.y, tx = rx, ty = ry, drag = false, px = 0, py = 0, bx = 0, by = 0, last = -9999;
+  stage.addEventListener('pointerdown', (e) => {
+    if (e.target.closest('button')) return;
+    drag = true; px = e.clientX; py = e.clientY; bx = tx; by = ty; stage.setPointerCapture(e.pointerId);
+  });
+  stage.addEventListener('pointermove', (e) => {
+    if (!drag) return;
+    last = performance.now();
+    ty = by + (e.clientX - px) * 0.6;
+    tx = clamp(bx - (e.clientY - py) * 0.45, -70, 70);
+  });
+  const up = () => {
+    if (!drag) return;
+    drag = false; last = performance.now();
+    const k = Math.round(ty / 360) * 360; ty -= k; ry -= k; // 轉很多圈後，閒置時就近回正
+  };
+  stage.addEventListener('pointerup', up);
+  stage.addEventListener('pointercancel', up);
+  const frame = (t) => {
+    if (!drag && performance.now() - last > 1800) {
+      tx = base.x + Math.sin(t / 1700) * 9;
+      ty = base.y + Math.sin(t / 2500) * 30;
+    }
+    rx += (tx - rx) * 0.1; ry += (ty - ry) * 0.1;
+    obj.style.transform = `rotateX(${rx.toFixed(2)}deg) rotateY(${ry.toFixed(2)}deg)`;
+    light(rx, ry);
+    requestAnimationFrame(frame);
+  };
+  requestAnimationFrame(frame);
+}
+const setLit = (p, d, s) => { p.sh.style.opacity = (0.62 * (1 - clamp(d, 0, 1))).toFixed(3); p.sp.style.opacity = s.toFixed(3); };
+
+// ── A 鋁箔枕頭袋：前後各 16 條曲面，上下各接一段斜面收到平的封口 ──
+function buildA(obj) {
+  const N = 16, W = 196, TH = 84 * DEG, R = W / 2 / Math.sin(TH / 2), ARC = R * TH, w = ARC / N, H = 196, h0 = 20, SEAL = 24, C = R * Math.cos(TH / 2);
+  const FRONT = `<p class="fa-kick">DECISION WISDOM 2026</p><p class="fa-title">知識<br>零食包</p><span class="fa-stk"><span>內含</span><b>3</b><span>張</span></span><p class="fa-sub">成就卡｜隨機 1–3 張</p>`;
+  const BACK = `<p class="ba-t">成分表</p><p class="ba-l"><span><em>成就卡</em><em>3 張</em></span><span><em>觀點</em><em>100%</em></span><span><em>作者</em><em>105 位</em></span><span><em>保存期限</em><em>讀過就有</em></span></p>`;
+  const parts = [];
+  for (const side of [0, 1]) {
+    for (let i = 0; i < N; i++) {
+      const a = -TH / 2 + (i + 0.5) * TH / N;
+      const depth = R * Math.cos(a) - C;
+      const s = el('a-strip', obj, `width:${w + 0.8}px;height:${H}px;margin:${-H / 2}px 0 0 ${-w / 2}px;transform:rotateY(${side * 180}deg) translateZ(${-C}px) rotateY(${a / DEG}deg) translateZ(${R}px)`);
+      const face = el('a-face', s);
+      const art = el('a-art ' + (side ? 'back' : 'front'), face, `width:${ARC}px;height:${H}px;left:${-i * w}px`);
+      art.innerHTML = side ? BACK : FRONT;
+      const t = depth / Math.cos(a), L = Math.hypot(h0, t), phi = Math.atan2(t, h0) / DEG;
+      const top = el('a-cap top', s, `height:${L}px;transform:rotateX(${phi}deg)`);
+      const bot = el('a-cap bot', s, `height:${L}px;transform:rotateX(${-phi}deg)`);
+      parts.push({ a: a + side * Math.PI, f: lit(face), t: lit(top), b: lit(bot), phi: phi * DEG });
+    }
+  }
+  const zig = (n, top) => { const p = []; for (let k = 0; k <= n; k++) p.push(`${(k / n) * 100}% ${top ? (k % 2 ? 0 : 22) : (k % 2 ? 100 : 78)}%`); return top ? `polygon(${p.join(',')},100% 100%,0 100%)` : `polygon(0 0,100% 0,${p.reverse().join(',')})`; };
+  const sw = W + 6;
+  const st = el('a-seal top', obj, `width:${sw}px;height:${SEAL}px;margin-left:${-sw / 2}px;top:${-H / 2 - h0 - SEAL + 1}px;clip-path:${zig(28, true)}`);
+  el('notch', st, 'right:10px');
+  el('a-seal bot', obj, `width:${sw}px;height:${SEAL}px;margin-left:${-sw / 2}px;top:${H / 2 + h0 - 1}px;clip-path:${zig(28, false)}`);
+  const cards = el('a-cards', obj, 'left:0;top:0;transform-style:preserve-3d'); cardsInto(cards);
+  return (rx, ry) => {
+    for (const p of parts) {
+      const yaw = p.a + ry * DEG;
+      const d = Math.cos(yaw + 0.35) * (0.8 + 0.2 * Math.cos(rx * DEG));
+      const s = Math.pow(Math.max(0, Math.cos(yaw - 0.3)), 26) * 0.85;
+      setLit(p.f, d, s);
+      setLit(p.t, d * 0.85 + 0.2 * Math.sin(p.phi) * Math.cos(rx * DEG + 0.5), s * 0.5);
+      setLit(p.b, d * 0.6, s * 0.3);
+    }
+  };
+}
+
+// ── 環形表面：沿 X 軸的圓錐／圓柱段（B 用） ──
+function ring(parent, { x0, r0, x1, r1, N, cls, frill, decorate }) {
+  const len = Math.hypot(x1 - x0, r1 - r0), beta = Math.atan2(r1 - r0, x1 - x0), rmax = Math.max(r0, r1), h = 2 * Math.PI * rmax / N + 0.9;
+  const k0 = r0 / rmax, k1 = r1 / rmax, out = [];
+  for (let i = 0; i < N; i++) {
+    const a = i * 2 * Math.PI / N;
+    const host = typeof parent === 'function' ? parent(a) : parent;
+    const e = el('b-pt ' + cls + (i % 2 ? ' alt' : ''), host, `width:${len}px;height:${h}px;margin-top:${-h / 2}px;transform:rotateX(${a}rad) translate3d(${x0}px,0,${r0}px) rotateY(${-beta}rad)`);
+    if (r0 !== r1) {
+      const right = frill ? `100% ${50 - 50 * k1}%,92% 35%,100% 50%,92% 65%,100% ${50 + 50 * k1}%` : `100% ${50 - 50 * k1}%,100% ${50 + 50 * k1}%`;
+      e.style.clipPath = `polygon(0 ${50 - 50 * k0}%,${right},0 ${50 + 50 * k0}%)`;
+    }
+    if (decorate) decorate(e, i, h);
+    out.push({ a, ...lit(e) });
+  }
+  return out;
+}
+
+// ── B 糖果紙 ──
+function buildB(obj) {
+  const R = 56, L = 184, N = 26;
+  const halfT = el('b-half t', obj), halfB = el('b-half b', obj);
+  const parts = ring((a) => (Math.sin(a) > 0 ? halfT : halfB), { x0: -L / 2, r0: R, x1: L / 2, r1: R, N, cls: 'b-body', decorate: (e, i, h) => {
+    const row = (N / 2 - i + N) % N;
+    const art = el('b-art', e, `height:${N * h}px;top:${-row * h + h / 2}px`);
+    art.innerHTML = '<div class="b-label"><span><i>DECISION WISDOM</i><b>知識零食包</b></span></div>';
+  } });
+  for (const side of ['l', 'r']) {
+    const g = el('b-end ' + side, obj);
+    parts.push(...ring(g, { x0: L / 2 - 1, r0: R, x1: L / 2 + 22, r1: 9, N, cls: 'b-cello' }));
+    parts.push(...ring(g, { x0: L / 2 + 21, r0: 9, x1: L / 2 + 66, r1: 52, N: 14, cls: 'b-cello', frill: true }));
+  }
+  const cards = el('b-cards', obj, 'left:0;top:0;transform-style:preserve-3d'); cardsInto(cards);
+  return (rx) => {
+    for (const p of parts) {
+      const d = Math.cos(p.a - rx * DEG - 0.55);
+      setLit(p, 0.35 + 0.65 * d, Math.pow(Math.max(0, Math.cos(p.a - rx * DEG - 0.35)), 30) * 0.8);
+    }
+  };
+}
+
+// ── C 摺紙信封 ──
+function buildC(obj) {
+  const S = 200, hS = S / 2;
+  const base = el('c-base', obj, `width:${S}px;height:${S}px;left:${-hS}px;top:${-hS}px`);
+  el('c-face in', base);
+  el('c-face out', base).innerHTML = '<b>決策智慧</b>';
+  const cards = el('c-cards', obj, 'left:0;top:0;transform-style:preserve-3d'); cardsInto(cards);
+  const flaps = [
+    ['t', `left:${-hS}px;top:${-S}px;width:${S}px;height:${hS}px`, 'polygon(0 100%,50% 0,100% 100%)', 'polygon(0 0,50% 100%,100% 0)', 'var(--model)', '180deg', 'p.6'],
+    ['b', `left:${-hS}px;top:${hS}px;width:${S}px;height:${hS}px`, 'polygon(0 0,50% 100%,100% 0)', 'polygon(0 100%,50% 0,100% 100%)', '#e2a9a9', '0deg', 'p.212'],
+    ['l', `left:${-S}px;top:${-hS}px;width:${hS}px;height:${S}px`, 'polygon(100% 0,0 50%,100% 100%)', 'polygon(0 0,100% 50%,0 100%)', '#e6b6b6', '90deg', 'p.88'],
+    ['r', `left:${hS}px;top:${-hS}px;width:${hS}px;height:${S}px`, 'polygon(0 0,100% 50%,0 100%)', 'polygon(100% 0,0 50%,100% 100%)', '#efcaca', '270deg', 'p.144'],
+  ];
+  for (const [k, pos, cin, cout, col, sh, pg] of flaps) {
+    const f = el('c-flap ' + k, obj, pos);
+    const fin = el('c-face in', f, `clip-path:${cin};display:grid;place-items:center`);
+    fin.innerHTML = `<i>${pg}</i>`;
+    const flip = k === 't' || k === 'b' ? 'rotateX(180deg)' : 'rotateY(180deg)';
+    el('c-face out', f, `clip-path:${cout};transform:${flip};--fc:${col};--fs:${sh}`);
+  }
+  el('c-seal', obj).textContent = '決';
+  return () => {};
+}
+
+// ── D 扭蛋：9 片經線半圓疊出球殼，光澤層永遠面向觀者 ──
+function buildD(obj, stage) {
+  const M = 9;
+  const top = el('d-grp d-top', obj), bot = el('d-grp', obj);
+  const cards = el('d-cards', obj, 'left:0;top:0;transform-style:preserve-3d'); cardsInto(cards);
+  for (let i = 0; i < M; i++) {
+    el('d-h up', el('d-m', top, `transform:rotateY(${i * 180 / M}deg)`));
+    el('d-h dn', el('d-m', bot, `transform:rotateY(${i * 180 / M}deg)`));
+  }
+  el('d-ring', bot);
+  el('d-ring lip', top);
+  el('d-knob', top);
+  el('d-label', bot).textContent = '知識扭蛋';
+  const g = document.createElement('div'); g.className = 'd-gloss'; stage.querySelector('.float').appendChild(g);
+  g.style.position = 'absolute';
+  return () => {};
+}
+
+const builders = { A: buildA, B: buildB, C: buildC, D: buildD };
+const bases = { A: { x: -8, y: -26 }, B: { x: -14, y: -30 }, C: { x: -16, y: -22 }, D: { x: -12, y: -20 } };
+document.querySelectorAll('.concept').forEach((c) => {
+  const k = c.dataset.concept, stage = c.querySelector('.stage'), obj = c.querySelector('.obj');
+  const light = builders[k](obj, stage);
+  rig(stage, obj, light, bases[k]);
+  c.querySelector('[data-open]').addEventListener('click', () => stage.classList.add('open'));
+  c.querySelector('[data-reset]').addEventListener('click', () => stage.classList.remove('open'));
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,3712 @@
+{
+ "date": "2026-11-08",
+ "rounds": {
+  "r0_judged": 341,
+  "r1_proposals": 86,
+  "lead_proposals": 8,
+  "lead_pass2": 23,
+  "page_regress_fixes": 13
+ },
+ "judged": [
+  {
+   "hunk": "a11-002",
+   "class": "site_error",
+   "note": "PDF 標題是「從金曲獎到甄嬛傳／共同記憶帶來的品牌價值」兩行；網站把上行放成導言後的段落（A-01、A-02）"
+  },
+  {
+   "hunk": "a11-004",
+   "class": "noise",
+   "note": "註腳編號（註解 N／上標數字），依設計不收"
+  },
+  {
+   "hunk": "a11-005",
+   "class": "noise",
+   "note": "註腳編號（註解 N／上標數字），依設計不收"
+  },
+  {
+   "hunk": "a11-006",
+   "class": "noise",
+   "note": "註腳編號（註解 N／上標數字），依設計不收"
+  },
+  {
+   "hunk": "a11-007",
+   "class": "noise",
+   "note": "註腳編號（註解 N／上標數字），依設計不收"
+  },
+  {
+   "hunk": "a11-008",
+   "class": "noise",
+   "note": "註腳編號（註解 N／上標數字），依設計不收"
+  },
+  {
+   "hunk": "a11-009",
+   "class": "noise",
+   "note": "註腳編號（註解 N／上標數字），依設計不收"
+  },
+  {
+   "hunk": "a11-010",
+   "class": "noise",
+   "note": "註腳編號（註解 N／上標數字），依設計不收"
+  },
+  {
+   "hunk": "a11-011",
+   "class": "noise",
+   "note": "註腳編號（註解 N／上標數字），依設計不收"
+  },
+  {
+   "hunk": "a11-012",
+   "class": "noise",
+   "note": "圖1 圖表標籤加圖說；圖說網站有（第 61 行），標籤刻意不收"
+  },
+  {
+   "hunk": "a11-013",
+   "class": "noise",
+   "note": "註腳編號（註解 N／上標數字），依設計不收"
+  },
+  {
+   "hunk": "a11-014",
+   "class": "noise",
+   "note": "圖1 圖表標籤（10多歲／30多歲百分比等），刻意不收"
+  },
+  {
+   "hunk": "a11-016",
+   "class": "noise",
+   "note": "註腳編號（註解 N／上標數字），依設計不收"
+  },
+  {
+   "hunk": "a11-023",
+   "class": "noise",
+   "note": "圖2 長條圖標籤與圖說；圖說網站有，只是位置不同"
+  },
+  {
+   "hunk": "a11-024",
+   "class": "noise",
+   "note": "註腳編號（註解 N／上標數字），依設計不收"
+  },
+  {
+   "hunk": "a11-025",
+   "class": "noise",
+   "note": "註腳編號（註解 N／上標數字），依設計不收"
+  },
+  {
+   "hunk": "a11-026",
+   "class": "noise",
+   "note": "圖2 圖說網站有，PDF 在別處，只是位置不同"
+  },
+  {
+   "hunk": "a11-028",
+   "class": "noise",
+   "note": "註腳編號（註解 N／上標數字），依設計不收"
+  },
+  {
+   "hunk": "a11-029",
+   "class": "noise",
+   "note": "圖3 圖說位置不同，兩邊都有"
+  },
+  {
+   "hunk": "a11-030",
+   "class": "noise",
+   "note": "註腳編號（註解 N／上標數字），依設計不收"
+  },
+  {
+   "hunk": "a11-031",
+   "class": "noise",
+   "note": "「舊內容沒有增加新集數…」是 p.86 的引言框（pull quote），已收在 figtext，依設計不入全文"
+  },
+  {
+   "hunk": "a11-032",
+   "class": "noise",
+   "note": "註腳編號（註解 N／上標數字），依設計不收"
+  },
+  {
+   "hunk": "a11-033",
+   "class": "noise",
+   "note": "註腳編號（註解 N／上標數字），依設計不收"
+  },
+  {
+   "hunk": "a11-034",
+   "class": "noise",
+   "note": "圖3 圖說位置不同，兩邊都有"
+  },
+  {
+   "hunk": "a11-036",
+   "class": "noise",
+   "note": "註腳編號（註解 N／上標數字），依設計不收"
+  },
+  {
+   "hunk": "a11-038",
+   "class": "noise",
+   "note": "圖5 圖說位置不同，PDF 多出的 20 是上標註腳號"
+  },
+  {
+   "hunk": "a11-039",
+   "class": "noise",
+   "note": "圖5 圖說位置不同，兩邊都有"
+  },
+  {
+   "hunk": "a11-040",
+   "class": "noise",
+   "note": "註腳編號（註解 N／上標數字），依設計不收"
+  },
+  {
+   "hunk": "a11-041",
+   "class": "noise",
+   "note": "註腳編號（註解 N／上標數字），依設計不收"
+  },
+  {
+   "hunk": "a11-042",
+   "class": "noise",
+   "note": "圖7 圖說位置與頁界前後字序不同，內容兩邊都有"
+  },
+  {
+   "hunk": "a11-043",
+   "class": "noise",
+   "note": "圖7 圖說位置與頁界前後字序不同，內容兩邊都有"
+  },
+  {
+   "hunk": "a11-044",
+   "class": "noise",
+   "note": "註腳編號（註解 N／上標數字），依設計不收"
+  },
+  {
+   "hunk": "a11-046",
+   "class": "noise",
+   "note": "圖8 圖說位置不同，兩邊都有"
+  },
+  {
+   "hunk": "a11-050",
+   "class": "noise",
+   "note": "圖8 圖說位置不同，兩邊都有"
+  },
+  {
+   "hunk": "a11-056",
+   "class": "noise",
+   "note": "註腳編號（註解 N／上標數字），依設計不收"
+  },
+  {
+   "hunk": "a11-057",
+   "class": "noise",
+   "note": "PDF 在此夾了 p.92 引言框「共同記憶真正的價值…」（figtext 有）與註解 5 網址片段，造成整段錯位；正文兩邊相同"
+  },
+  {
+   "hunk": "a11-058",
+   "class": "noise",
+   "note": "註腳編號（註解 N／上標數字），依設計不收"
+  },
+  {
+   "hunk": "a11-059",
+   "class": "noise",
+   "note": "註腳編號（註解 N／上標數字），依設計不收"
+  },
+  {
+   "hunk": "a11-060",
+   "class": "noise",
+   "note": "註腳編號（註解 N／上標數字），依設計不收"
+  },
+  {
+   "hunk": "a11-061",
+   "class": "noise",
+   "note": "註腳編號（註解 N／上標數字），依設計不收"
+  },
+  {
+   "hunk": "a11-062",
+   "class": "noise",
+   "note": "註腳編號（註解 N／上標數字），依設計不收"
+  },
+  {
+   "hunk": "a11-064",
+   "class": "noise",
+   "note": "註腳編號（註解 N／上標數字），依設計不收"
+  },
+  {
+   "hunk": "a11-065",
+   "class": "noise",
+   "note": "同上：引言框（figtext 有）與註解網址片段插入造成的假差異"
+  },
+  {
+   "hunk": "a11-066",
+   "class": "noise",
+   "note": "註腳編號（註解 N／上標數字），依設計不收"
+  },
+  {
+   "hunk": "a11-067",
+   "class": "noise",
+   "note": "註腳編號（註解 N／上標數字），依設計不收"
+  },
+  {
+   "hunk": "a11-068",
+   "class": "noise",
+   "note": "註腳編號（註解 N／上標數字），依設計不收"
+  },
+  {
+   "hunk": "a11-069",
+   "class": "noise",
+   "note": "註腳編號（註解 N／上標數字），依設計不收"
+  },
+  {
+   "hunk": "a11-070",
+   "class": "noise",
+   "note": "註腳編號（註解 N／上標數字），依設計不收"
+  },
+  {
+   "hunk": "a11-071",
+   "class": "noise",
+   "note": "註腳編號（註解 N／上標數字），依設計不收"
+  },
+  {
+   "hunk": "a11-072",
+   "class": "noise",
+   "note": "註腳編號（註解 N／上標數字），依設計不收"
+  },
+  {
+   "hunk": "a11-075",
+   "class": "noise",
+   "note": "註解 14 網址串在 PDF 文字層順序不同；印刷頁 p.93 與網站內容一致"
+  },
+  {
+   "hunk": "a11-076",
+   "class": "noise",
+   "note": "註腳編號（註解 N／上標數字），依設計不收"
+  },
+  {
+   "hunk": "a11-077",
+   "class": "noise",
+   "note": "註腳編號（註解 N／上標數字），依設計不收"
+  },
+  {
+   "hunk": "a11-078",
+   "class": "noise",
+   "note": "註腳編號（註解 N／上標數字），依設計不收"
+  },
+  {
+   "hunk": "a11-080",
+   "class": "noise",
+   "note": "註腳編號（註解 N／上標數字），依設計不收"
+  },
+  {
+   "hunk": "a11-081",
+   "class": "noise",
+   "note": "註腳編號（註解 N／上標數字），依設計不收"
+  },
+  {
+   "hunk": "a11-082",
+   "class": "noise",
+   "note": "註腳編號（註解 N／上標數字），依設計不收"
+  },
+  {
+   "hunk": "a11-083",
+   "class": "noise",
+   "note": "註腳編號（註解 N／上標數字），依設計不收"
+  },
+  {
+   "hunk": "a11-085",
+   "class": "noise",
+   "note": "註腳編號（註解 N／上標數字），依設計不收"
+  },
+  {
+   "hunk": "a11-086",
+   "class": "noise",
+   "note": "註解 24 網址在印刷版換行處的連字號「%E7%B-」，不是網址的一部分"
+  },
+  {
+   "hunk": "a11-087",
+   "class": "noise",
+   "note": "註腳編號（註解 N／上標數字），依設計不收"
+  },
+  {
+   "hunk": "a11-088",
+   "class": "noise",
+   "note": "註解 25 網址在 PDF 文字層被排到別處，內容一致"
+  },
+  {
+   "hunk": "a11-090",
+   "class": "noise",
+   "note": "註腳編號（註解 N／上標數字），依設計不收"
+  },
+  {
+   "hunk": "a11-091",
+   "class": "site_error",
+   "note": "p.93 的註解文字在網站全文沒有對應頁界（只有 p.92）；建議補 p.93 頁界（A-08）。字串本身是 PDF 順序雜訊"
+  },
+  {
+   "hunk": "a01-004",
+   "class": "site_error",
+   "note": "p.9 小標「第一個挑戰／效率 vs 價值 (Business Growth)」網站漏掉（A-09）；「不知不覺 不做選擇」是 p.8 引言標籤，屬雜訊"
+  },
+  {
+   "hunk": "a01-005",
+   "class": "site_error",
+   "note": "p.9 小標「第二個挑戰／創意 vs 創新 (People Growth)」網站漏掉（A-10）"
+  },
+  {
+   "hunk": "a01-006",
+   "class": "site_error",
+   "note": "p.10 小標「第三個挑戰／人 vs AI (Organization Growth)」網站漏掉（A-11）"
+  },
+  {
+   "hunk": "a01-007",
+   "class": "noise",
+   "note": "頁碼 11、10"
+  },
+  {
+   "hunk": "a02-003",
+   "class": "noise",
+   "note": "p.14 圖表標籤加頁碼 15、14"
+  },
+  {
+   "hunk": "a02-005",
+   "class": "noise",
+   "note": "註腳編號（註解 N／上標數字），依設計不收"
+  },
+  {
+   "hunk": "a02-006",
+   "class": "noise",
+   "note": "p.16 側欄文字網站有（第 79 行），只是位置不同；1716 是頁碼"
+  },
+  {
+   "hunk": "a02-008",
+   "class": "noise",
+   "note": "註腳編號（註解 N／上標數字），依設計不收"
+  },
+  {
+   "hunk": "a05-003",
+   "class": "noise",
+   "note": "註腳編號（註解 N／上標數字），依設計不收"
+  },
+  {
+   "hunk": "a05-004",
+   "class": "noise",
+   "note": "圖1 圖說位置不同，兩邊都有"
+  },
+  {
+   "hunk": "a05-005",
+   "class": "noise",
+   "note": "圖1 圖說位置不同，兩邊都有"
+  },
+  {
+   "hunk": "a05-008",
+   "class": "site_error",
+   "note": "側欄標題「電通創意未來學 2030s 台灣近未來生活預測」網站側欄沒有（A-17）；其餘是側欄位置不同"
+  },
+  {
+   "hunk": "a05-010",
+   "class": "noise",
+   "note": "註腳編號（註解 N／上標數字），依設計不收"
+  },
+  {
+   "hunk": "a09-001",
+   "class": "site_error",
+   "note": "p.68 三股力量框網站有，但被放到 p.69 服飾品類段落之後，離開了「同時在動：」（A-20、A-21）"
+  },
+  {
+   "hunk": "a09-004",
+   "class": "site_error",
+   "note": "p.69 大標「因類制宜…」與「然而，這個課題…也不該一樣：」網站漏掉；「那，」錯放（A-18、A-19）。「幻滅的煙火」等是 PDF 字序雜訊"
+  },
+  {
+   "hunk": "a09-005",
+   "class": "site_error",
+   "note": "同 a09-001：側欄位置錯，屬結構問題（A-20、A-21）"
+  },
+  {
+   "hunk": "a12-002",
+   "class": "noise",
+   "note": "p.97 PDF 文字層混入的標題與 WHY 大標，WHY 標在 figtext，刻意不收"
+  },
+  {
+   "hunk": "a12-003",
+   "class": "noise",
+   "note": "CCS 八大構面圖內標籤與頁眉頁碼"
+  },
+  {
+   "hunk": "a12-004",
+   "class": "noise",
+   "note": "圖內標籤；圖說「圖：電通 CCS 消費者調查八大構面」兩邊都有，只是位置不同"
+  },
+  {
+   "hunk": "a12-008",
+   "class": "noise",
+   "note": "p.99 訓練方法表格內文字（表格標籤）"
+  },
+  {
+   "hunk": "a12-009",
+   "class": "noise",
+   "note": "表格標籤與表說位置不同，表說兩邊都有"
+  },
+  {
+   "hunk": "a12-010",
+   "class": "noise",
+   "note": "「專家看法／蔡明順／AIA 台灣人工智慧學校校務長」標籤在 figtext；專家內文兩邊都有"
+  },
+  {
+   "hunk": "a12-011",
+   "class": "noise",
+   "note": "專家看法首句在 PDF 順序位置不同；看過 p.99 圖片，網站內容一致"
+  },
+  {
+   "hunk": "a12-012",
+   "class": "noise",
+   "note": "楊立偉專家標籤（在 figtext）與 PDF 順序造成的假差異"
+  },
+  {
+   "hunk": "a12-015",
+   "class": "noise",
+   "note": "頁碼 100 混入；網站文字與 p.100 圖片一致"
+  },
+  {
+   "hunk": "a12-020",
+   "class": "noise",
+   "note": "p.100/101 PDF 順序與散佈圖標籤造成的假差異，內容兩邊都有"
+  },
+  {
+   "hunk": "a12-021",
+   "class": "noise",
+   "note": "散佈圖圖說位置不同，兩邊都有"
+  },
+  {
+   "hunk": "a12-022",
+   "class": "noise",
+   "note": "散佈圖內標籤（RMSE/MAE/軸標）"
+  },
+  {
+   "hunk": "a12-023",
+   "class": "noise",
+   "note": "圖說位置不同，p.101 圖片確認內容一致"
+  },
+  {
+   "hunk": "a12-024",
+   "class": "noise",
+   "note": "p.102 表格內容在 PDF 的拆字順序，加頁碼"
+  },
+  {
+   "hunk": "a12-025",
+   "class": "noise",
+   "note": "表格欄位文字斷行交錯"
+  },
+  {
+   "hunk": "a12-026",
+   "class": "site_error",
+   "note": "表格內容兩邊都有，但網站把 p.102 表格放在 p.103 文字之後並倒回 <!-- p.102 -->，且 p.103 頁界放錯（見 B-02）"
+  },
+  {
+   "hunk": "a12-027",
+   "class": "noise",
+   "note": "Ella Liu 專家標籤在 figtext"
+  },
+  {
+   "hunk": "a12-030",
+   "class": "noise",
+   "note": "「問、驗證、修正方向」實印在 p.104 首行，網站以句讀對齊頁界（全文一貫做法），內容無缺"
+  },
+  {
+   "hunk": "a12-031",
+   "class": "noise",
+   "note": "三欄框標題（figtext）與欄位斷行交錯，加頁碼"
+  },
+  {
+   "hunk": "a12-032",
+   "class": "site_error",
+   "note": "三欄框插在「它讓消費者觀點更早進場，」句中（見 B-03）"
+  },
+  {
+   "hunk": "a12-034",
+   "class": "noise",
+   "note": "WHAT 大標在 figtext；其餘為順序差"
+  },
+  {
+   "hunk": "a12-036",
+   "class": "noise",
+   "note": "頁碼頁眉"
+  },
+  {
+   "hunk": "a12-037",
+   "class": "noise",
+   "note": "駱健正專家標籤在 figtext"
+  },
+  {
+   "hunk": "a12-038",
+   "class": "site_error",
+   "note": "「買上皆低，」本身是頁界取整的假差異，但同處駱健正專家看法插在句中（見 B-04）"
+  },
+  {
+   "hunk": "a12-040",
+   "class": "noise",
+   "note": "與 a12-038 同一處的頁界取整差異"
+  },
+  {
+   "hunk": "a12-041",
+   "class": "noise",
+   "note": "頁碼頁眉"
+  },
+  {
+   "hunk": "a12-042",
+   "class": "noise",
+   "note": "刪節號字形（⋯⋯ vs ……）屬標點樣式差異"
+  },
+  {
+   "hunk": "a12-043",
+   "class": "noise",
+   "note": "HOW 大標在 figtext；其餘為順序差"
+  },
+  {
+   "hunk": "a12-045",
+   "class": "noise",
+   "note": "頁碼頁眉"
+  },
+  {
+   "hunk": "a12-046",
+   "class": "noise",
+   "note": "註腳上標 1"
+  },
+  {
+   "hunk": "a12-047",
+   "class": "noise",
+   "note": "Multi-Agent 流程圖標籤與圖說，圖說兩邊都有"
+  },
+  {
+   "hunk": "a12-048",
+   "class": "site_error",
+   "note": "「People Model 系統會明確提出…警告，」印在 p.112，網站放在 p.110，使 p.111 圖說與專家看法插在句中（見 B-05）"
+  },
+  {
+   "hunk": "a12-049",
+   "class": "site_error",
+   "note": "同 a12-048"
+  },
+  {
+   "hunk": "a12-050",
+   "class": "noise",
+   "note": "流程圖標籤"
+  },
+  {
+   "hunk": "a12-052",
+   "class": "noise",
+   "note": "p.111 圖說與專家看法的先後順序差異，內容兩邊都有"
+  },
+  {
+   "hunk": "a12-054",
+   "class": "noise",
+   "note": "圖說後半段位置差異"
+  },
+  {
+   "hunk": "a12-056",
+   "class": "noise",
+   "note": "ASK 大標在 figtext；網站 Q&A 文字與 p.112 圖片一致"
+  },
+  {
+   "hunk": "a12-057",
+   "class": "noise",
+   "note": "頁碼頁眉"
+  },
+  {
+   "hunk": "a12-058",
+   "class": "noise",
+   "note": "頁碼頁眉"
+  },
+  {
+   "hunk": "a12-059",
+   "class": "noise",
+   "note": "註解編號"
+  },
+  {
+   "hunk": "a10-003",
+   "class": "noise",
+   "note": "Doom Loop 圖內英文標籤與圖說，圖說兩邊都有"
+  },
+  {
+   "hunk": "a10-004",
+   "class": "noise",
+   "note": "註腳上標數字"
+  },
+  {
+   "hunk": "a10-009",
+   "class": "noise",
+   "note": "圖1 圖內英文標籤與圖說分隔符造成的假差異"
+  },
+  {
+   "hunk": "a10-010",
+   "class": "noise",
+   "note": "圖1 圖內英文標籤與圖說分隔符造成的假差異"
+  },
+  {
+   "hunk": "a10-012",
+   "class": "noise",
+   "note": "圖1 圖內英文標籤與圖說分隔符造成的假差異"
+  },
+  {
+   "hunk": "a10-016",
+   "class": "noise",
+   "note": "註腳上標數字"
+  },
+  {
+   "hunk": "a10-017",
+   "class": "noise",
+   "note": "註腳上標數字"
+  },
+  {
+   "hunk": "a10-018",
+   "class": "noise",
+   "note": "註腳上標數字"
+  },
+  {
+   "hunk": "a10-019",
+   "class": "noise",
+   "note": "註腳上標數字"
+  },
+  {
+   "hunk": "a10-020",
+   "class": "noise",
+   "note": "圖2 消費行為模型圖標籤"
+  },
+  {
+   "hunk": "a10-021",
+   "class": "noise",
+   "note": "註腳上標數字"
+  },
+  {
+   "hunk": "a10-022",
+   "class": "noise",
+   "note": "圖2 標籤混入圖說"
+  },
+  {
+   "hunk": "a10-023",
+   "class": "noise",
+   "note": "圖2 標籤混入圖說"
+  },
+  {
+   "hunk": "a10-024",
+   "class": "noise",
+   "note": "圖2 標籤混入圖說"
+  },
+  {
+   "hunk": "a10-026",
+   "class": "noise",
+   "note": "圖2 標籤混入圖說"
+  },
+  {
+   "hunk": "a10-027",
+   "class": "noise",
+   "note": "圖3 矩陣標籤"
+  },
+  {
+   "hunk": "a10-028",
+   "class": "noise",
+   "note": "圖3 矩陣標籤與圖說"
+  },
+  {
+   "hunk": "a10-029",
+   "class": "noise",
+   "note": "圖3 矩陣標籤與圖說"
+  },
+  {
+   "hunk": "a10-030",
+   "class": "noise",
+   "note": "圖3 矩陣標籤與圖說"
+  },
+  {
+   "hunk": "a10-032",
+   "class": "noise",
+   "note": "圖4 長條圖標籤"
+  },
+  {
+   "hunk": "a10-033",
+   "class": "noise",
+   "note": "註腳上標數字"
+  },
+  {
+   "hunk": "a10-036",
+   "class": "noise",
+   "note": "圖4 圖內「好感」等標籤與圖說分隔符的對齊差異"
+  },
+  {
+   "hunk": "a10-038",
+   "class": "noise",
+   "note": "註腳上標數字"
+  },
+  {
+   "hunk": "a10-039",
+   "class": "site_error",
+   "note": "p.79 標題與首段被插到 p.78「三件事：」與三問框之間（見 B-08）"
+  },
+  {
+   "hunk": "a10-041",
+   "class": "noise",
+   "note": "註解編號「註解N」"
+  },
+  {
+   "hunk": "a10-042",
+   "class": "noise",
+   "note": "註解編號「註解N」"
+  },
+  {
+   "hunk": "a10-043",
+   "class": "noise",
+   "note": "註解編號「註解N」"
+  },
+  {
+   "hunk": "a10-044",
+   "class": "noise",
+   "note": "註解編號「註解N」"
+  },
+  {
+   "hunk": "a10-045",
+   "class": "noise",
+   "note": "註解編號「註解N」"
+  },
+  {
+   "hunk": "a10-046",
+   "class": "noise",
+   "note": "註解編號「註解N」"
+  },
+  {
+   "hunk": "a10-047",
+   "class": "noise",
+   "note": "註解編號「註解N」"
+  },
+  {
+   "hunk": "a10-048",
+   "class": "noise",
+   "note": "註解編號「註解N」"
+  },
+  {
+   "hunk": "a19-001",
+   "class": "noise",
+   "note": "CEPs 側欄標題「品類進入點 CEPs」在 figtext"
+  },
+  {
+   "hunk": "a19-002",
+   "class": "noise",
+   "note": "CEPs 七個 W 圖與 i-Proof 圖標籤"
+  },
+  {
+   "hunk": "a19-003",
+   "class": "noise",
+   "note": "i-Proof 圖標籤"
+  },
+  {
+   "hunk": "a19-005",
+   "class": "noise",
+   "note": "圖1 圖說位置不同，兩邊都有"
+  },
+  {
+   "hunk": "a03-001",
+   "class": "site_error",
+   "note": "PDF 多出的開頭引言「在 AI 真假難辨的時代，品牌需以真實感、人性與情感認同，重建不可複製的信任價值。」網站全文沒有（只在 figtext）；a01/a02/a05/a14/a15 的開頭引言都收在全文；其餘為圖1圖說的註腳編號與順序差異"
+  },
+  {
+   "hunk": "a03-006",
+   "class": "noise",
+   "note": "圖1圖說「資料來源：sipa5402 tiktok、threads」與 PDF 只差註腳上標 1、2 與文字層順序"
+  },
+  {
+   "hunk": "a03-007",
+   "class": "noise",
+   "note": "圖1圖說「資料來源：sipa5402 tiktok、threads」與 PDF 只差註腳上標 1、2 與文字層順序"
+  },
+  {
+   "hunk": "a03-008",
+   "class": "noise",
+   "note": "圖1圖說「資料來源：sipa5402 tiktok、threads」與 PDF 只差註腳上標 1、2 與文字層順序"
+  },
+  {
+   "hunk": "a03-009",
+   "class": "noise",
+   "note": "圖1圖說「資料來源：sipa5402 tiktok、threads」與 PDF 只差註腳上標 1、2 與文字層順序"
+  },
+  {
+   "hunk": "a03-011",
+   "class": "noise",
+   "note": "p.22 圖3與圖2圖說的先後順序不同，內容兩邊都有"
+  },
+  {
+   "hunk": "a03-012",
+   "class": "noise",
+   "note": "圖2圖說位置不同（PDF 在頁首），內容兩邊都有，PDF 多的 4 是註腳編號"
+  },
+  {
+   "hunk": "a03-013",
+   "class": "noise",
+   "note": "圖4圖說被 PDF 斷在內文中間＋註腳編號 5，網站在別處有完整圖說"
+  },
+  {
+   "hunk": "a03-015",
+   "class": "noise",
+   "note": "圖4圖說位置不同，內容兩邊都有"
+  },
+  {
+   "hunk": "a03-016",
+   "class": "noise",
+   "note": "圖5圖說尾巴與 p.24 下半『人真正購買的…』小節的文字層順序差異，網站內容都有"
+  },
+  {
+   "hunk": "a03-022",
+   "class": "noise",
+   "note": "圖5圖說位置不同，內容兩邊都有"
+  },
+  {
+   "hunk": "a03-023",
+   "class": "noise",
+   "note": "圖6圖說位置不同，內容兩邊都有"
+  },
+  {
+   "hunk": "a03-024",
+   "class": "site_error",
+   "note": "圖6圖說位置差異本身是雜訊，但網站圖說留著註腳編號「7」（『廣告影片7』），其他圖說都已依設計去掉上標"
+  },
+  {
+   "hunk": "a03-025",
+   "class": "noise",
+   "note": "圖7圖說位置不同＋註腳編號 8"
+  },
+  {
+   "hunk": "a03-026",
+   "class": "noise",
+   "note": "圖7圖說位置不同，內容兩邊都有"
+  },
+  {
+   "hunk": "a03-027",
+   "class": "noise",
+   "note": "註解區的「註解1」編號，網站以 [註] 表示"
+  },
+  {
+   "hunk": "a03-028",
+   "class": "noise",
+   "note": "註解區的「註解2」編號，網站以 [註] 表示"
+  },
+  {
+   "hunk": "a03-029",
+   "class": "noise",
+   "note": "註解區的「註解3」編號，網站以 [註] 表示"
+  },
+  {
+   "hunk": "a03-030",
+   "class": "noise",
+   "note": "註解區的「註解4」編號，網站以 [註] 表示"
+  },
+  {
+   "hunk": "a03-031",
+   "class": "noise",
+   "note": "註解區的「註解5」編號，網站以 [註] 表示"
+  },
+  {
+   "hunk": "a03-032",
+   "class": "noise",
+   "note": "註解區的「註解6」編號，網站以 [註] 表示"
+  },
+  {
+   "hunk": "a03-033",
+   "class": "noise",
+   "note": "註解區的「註解7」編號，網站以 [註] 表示"
+  },
+  {
+   "hunk": "a03-034",
+   "class": "noise",
+   "note": "註解區的「註解8」編號，網站以 [註] 表示"
+  },
+  {
+   "hunk": "a14-001",
+   "class": "noise",
+   "note": "PDF 文字層把作者與開頭引言尾、眉題順序打亂；網站都有（見 moved a14-002/003）"
+  },
+  {
+   "hunk": "a14-004",
+   "class": "noise",
+   "note": "圖1圖表標籤（以大眾媒體為核心…）與圖說"
+  },
+  {
+   "hunk": "a14-005",
+   "class": "noise",
+   "note": "圖1圖表標籤（BROADCAST ERA…）與頁眉頁碼"
+  },
+  {
+   "hunk": "a14-006",
+   "class": "site_error",
+   "note": "網站在圖1圖說前多一行獨立的「> 資料來源：凱絡媒體／製圖」，印刷 p.130 圖1下方只有一組『圖1：…／資料來源：凱絡媒體／製圖』"
+  },
+  {
+   "hunk": "a14-007",
+   "class": "noise",
+   "note": "圖2圖表標籤與圖說"
+  },
+  {
+   "hunk": "a14-008",
+   "class": "noise",
+   "note": "圖2右欄『PI 的三項核心能力』圖表標籤"
+  },
+  {
+   "hunk": "a14-009",
+   "class": "noise",
+   "note": "圖2圖說位置不同；PDF 多的 1 是註腳編號"
+  },
+  {
+   "hunk": "a14-010",
+   "class": "noise",
+   "note": "註腳編號 2"
+  },
+  {
+   "hunk": "a14-011",
+   "class": "noise",
+   "note": "註腳編號 3"
+  },
+  {
+   "hunk": "a14-015",
+   "class": "site_error",
+   "note": "印刷 p.132 五項清單有編號 1.–5.，網站全沒有（1.–3. 被比對歸為 fig，實為同一清單）"
+  },
+  {
+   "hunk": "a14-016",
+   "class": "site_error",
+   "note": "同上，清單編號 5."
+  },
+  {
+   "hunk": "a14-017",
+   "class": "site_error",
+   "note": "大多是圖3標籤與頁眉；但印刷圖3圖說有第二行『資料來源：凱絡媒體／製圖』，網站圖3圖說只有『圖3：衡斷力的五大能力來源』"
+  },
+  {
+   "hunk": "a14-018",
+   "class": "noise",
+   "note": "圖3圖表標籤（AI vs. Judgment、五大能力來源）"
+  },
+  {
+   "hunk": "a14-023",
+   "class": "noise",
+   "note": "圖4圖表標籤（MEDIA++ PROCESS…）、圖說與頁眉頁碼"
+  },
+  {
+   "hunk": "a14-024",
+   "class": "site_error",
+   "note": "印刷 p.134 六大模組清單有編號 1.–6.，網站沒有；此為 4."
+  },
+  {
+   "hunk": "a14-025",
+   "class": "site_error",
+   "note": "同上，清單編號 5."
+  },
+  {
+   "hunk": "a14-026",
+   "class": "site_error",
+   "note": "同上，清單編號 6."
+  },
+  {
+   "hunk": "a14-027",
+   "class": "noise",
+   "note": "圖4圖表標籤被 PDF 插進圖說中間；網站圖4圖說完整"
+  },
+  {
+   "hunk": "a14-028",
+   "class": "noise",
+   "note": "圖4圖表標籤被 PDF 插進圖說中間；網站圖4圖說完整"
+  },
+  {
+   "hunk": "a14-029",
+   "class": "noise",
+   "note": "圖4圖表標籤被 PDF 插進圖說中間；網站圖4圖說完整"
+  },
+  {
+   "hunk": "a14-030",
+   "class": "noise",
+   "note": "圖4圖表標籤被 PDF 插進圖說中間；網站圖4圖說完整"
+  },
+  {
+   "hunk": "a14-031",
+   "class": "noise",
+   "note": "圖4圖表標籤被 PDF 插進圖說中間；網站圖4圖說完整"
+  },
+  {
+   "hunk": "a14-032",
+   "class": "noise",
+   "note": "圖4圖表標籤被 PDF 插進圖說中間；網站圖4圖說完整"
+  },
+  {
+   "hunk": "a14-033",
+   "class": "noise",
+   "note": "圖4圖表標籤被 PDF 插進圖說中間；網站圖4圖說完整"
+  },
+  {
+   "hunk": "a14-034",
+   "class": "noise",
+   "note": "註解區的「註解1」編號"
+  },
+  {
+   "hunk": "a14-035",
+   "class": "noise",
+   "note": "註解區的「註解2」編號"
+  },
+  {
+   "hunk": "a14-036",
+   "class": "noise",
+   "note": "註解區的「註解3」編號"
+  },
+  {
+   "hunk": "a15-004",
+   "class": "noise",
+   "note": "註腳編號 1"
+  },
+  {
+   "hunk": "a15-005",
+   "class": "noise",
+   "note": "註腳編號 2"
+  },
+  {
+   "hunk": "a15-006",
+   "class": "noise",
+   "note": "決策斷點二整段＋圖1圖說的位置差異；PDF 對應內容在 a15-007，文字一致"
+  },
+  {
+   "hunk": "a15-007",
+   "class": "noise",
+   "note": "同段落的 PDF 順序差異＋註腳編號 3/4/5＋拉引句『不只是讓搜尋變聰明。更重要的是，商品資料的角色正在改變。』（已收在 figtext，依慣例不入全文）"
+  },
+  {
+   "hunk": "a15-008",
+   "class": "noise",
+   "note": "註腳編號 6"
+  },
+  {
+   "hunk": "a15-009",
+   "class": "noise",
+   "note": "註腳編號 7"
+  },
+  {
+   "hunk": "a15-010",
+   "class": "noise",
+   "note": "表1表格文字被 PDF 插進內文；網站表1以側欄收錄"
+  },
+  {
+   "hunk": "a15-014",
+   "class": "noise",
+   "note": "表1內容與頁眉頁碼的文字層順序差異；網站內容都有"
+  },
+  {
+   "hunk": "a15-015",
+   "class": "noise",
+   "note": "網站表1圖說與表格側欄，PDF 在別處（順序不同）"
+  },
+  {
+   "hunk": "a15-016",
+   "class": "noise",
+   "note": "圖2圖表標籤（渠道、Stage1…）與圖說"
+  },
+  {
+   "hunk": "a15-017",
+   "class": "noise",
+   "note": "圖2圖表標籤插進圖說"
+  },
+  {
+   "hunk": "a15-018",
+   "class": "noise",
+   "note": "圖2圖表標籤插進圖說"
+  },
+  {
+   "hunk": "a15-019",
+   "class": "noise",
+   "note": "圖3五大防禦支柱圖表文字（透明度、控制權…）與頁眉頁碼"
+  },
+  {
+   "hunk": "a15-020",
+   "class": "noise",
+   "note": "圖3五大防禦支柱圖表文字（安全網、隱私力、治理力）"
+  },
+  {
+   "hunk": "a15-021",
+   "class": "noise",
+   "note": "圖3圖說位置不同，內容兩邊都有"
+  },
+  {
+   "hunk": "a15-022",
+   "class": "noise",
+   "note": "註解區的「註解1」編號"
+  },
+  {
+   "hunk": "a15-023",
+   "class": "noise",
+   "note": "註解區的「註解2」編號"
+  },
+  {
+   "hunk": "a15-024",
+   "class": "noise",
+   "note": "註解區的「註解3」編號"
+  },
+  {
+   "hunk": "a15-025",
+   "class": "noise",
+   "note": "註解區的「註解4」編號"
+  },
+  {
+   "hunk": "a15-026",
+   "class": "noise",
+   "note": "註解區的「註解5」編號"
+  },
+  {
+   "hunk": "a15-027",
+   "class": "noise",
+   "note": "註解區的「註解6」編號"
+  },
+  {
+   "hunk": "a15-028",
+   "class": "noise",
+   "note": "註解區的「註解7」編號"
+  },
+  {
+   "hunk": "a15-029",
+   "class": "noise",
+   "note": "註解區的「註解8」編號"
+  },
+  {
+   "hunk": "a15-030",
+   "class": "noise",
+   "note": "註解區的「註解9」編號"
+  },
+  {
+   "hunk": "a04-001",
+   "class": "noise",
+   "note": "PDF 文字層混入圖1顧客旅程圖的標籤與圖說，網站圖說在同頁另列"
+  },
+  {
+   "hunk": "a04-002",
+   "class": "noise",
+   "note": "圖1 圖表標籤與網站圖說對齊錯位造成的假差異；頁面圖說「圖1：AI 驅動新時代並重塑顧客旅程與行銷策略／資料來源：dentsu Creative」與網站一致"
+  },
+  {
+   "hunk": "a04-003",
+   "class": "noise",
+   "note": "圖1 圖表標籤與網站圖說對齊錯位造成的假差異；頁面圖說「圖1：AI 驅動新時代並重塑顧客旅程與行銷策略／資料來源：dentsu Creative」與網站一致"
+  },
+  {
+   "hunk": "a04-004",
+   "class": "noise",
+   "note": "圖1 圖表標籤與網站圖說對齊錯位造成的假差異；頁面圖說「圖1：AI 驅動新時代並重塑顧客旅程與行銷策略／資料來源：dentsu Creative」與網站一致"
+  },
+  {
+   "hunk": "a04-005",
+   "class": "noise",
+   "note": "PDF 文字層混入圖1顧客旅程圖的標籤與圖說，網站圖說在同頁另列"
+  },
+  {
+   "hunk": "a04-006",
+   "class": "noise",
+   "note": "圖1 圖表標籤與網站圖說對齊錯位造成的假差異；頁面圖說「圖1：AI 驅動新時代並重塑顧客旅程與行銷策略／資料來源：dentsu Creative」與網站一致"
+  },
+  {
+   "hunk": "a04-007",
+   "class": "noise",
+   "note": "PDF 文字層混入圖1顧客旅程圖的標籤與圖說，網站圖說在同頁另列"
+  },
+  {
+   "hunk": "a04-008",
+   "class": "noise",
+   "note": "圖1 圖表標籤與網站圖說對齊錯位造成的假差異；頁面圖說「圖1：AI 驅動新時代並重塑顧客旅程與行銷策略／資料來源：dentsu Creative」與網站一致"
+  },
+  {
+   "hunk": "a04-009",
+   "class": "noise",
+   "note": "圖1 圖表標籤與網站圖說對齊錯位造成的假差異；頁面圖說「圖1：AI 驅動新時代並重塑顧客旅程與行銷策略／資料來源：dentsu Creative」與網站一致"
+  },
+  {
+   "hunk": "a04-010",
+   "class": "noise",
+   "note": "圖2 服務矩陣圖的標籤（含圖說），網站圖說已另列"
+  },
+  {
+   "hunk": "a04-011",
+   "class": "noise",
+   "note": "圖2 服務矩陣圖的標籤（含圖說），網站圖說已另列"
+  },
+  {
+   "hunk": "a04-012",
+   "class": "noise",
+   "note": "網站圖2圖說內容與印刷頁一致，PDF 端被歸入圖表文字，只是位置不同"
+  },
+  {
+   "hunk": "a07-002",
+   "class": "noise",
+   "note": "註腳上標數字，依設計不收"
+  },
+  {
+   "hunk": "a07-004",
+   "class": "noise",
+   "note": "註腳上標數字，依設計不收"
+  },
+  {
+   "hunk": "a07-005",
+   "class": "noise",
+   "note": "圖1 圖說在 PDF 與網站的位置不同（網站放在 p.54 段落後並標 p.53），兩邊都有，replace 是對齊錯位"
+  },
+  {
+   "hunk": "a07-009",
+   "class": "noise",
+   "note": "圖1 圖說在 PDF 與網站的位置不同（網站放在 p.54 段落後並標 p.53），兩邊都有，replace 是對齊錯位"
+  },
+  {
+   "hunk": "a07-012",
+   "class": "noise",
+   "note": "圖1 圖說在 PDF 與網站的位置不同（網站放在 p.54 段落後並標 p.53），兩邊都有，replace 是對齊錯位"
+  },
+  {
+   "hunk": "a07-014",
+   "class": "noise",
+   "note": "圖2 圖說位置不同造成的對齊錯位，兩邊內容一致"
+  },
+  {
+   "hunk": "a07-020",
+   "class": "noise",
+   "note": "圖2 圖說位置不同造成的對齊錯位，兩邊內容一致"
+  },
+  {
+   "hunk": "a07-021",
+   "class": "noise",
+   "note": "註腳上標數字，依設計不收"
+  },
+  {
+   "hunk": "a07-022",
+   "class": "noise",
+   "note": "註解區的「註解N」標號，網站以 [註] 表示，內容一致"
+  },
+  {
+   "hunk": "a08-002",
+   "class": "site_error",
+   "note": "標題上方的引題「當注意力成為稀缺資源」在網站被放成封面頁導言後的孤立內文段落，應為標題第一行"
+  },
+  {
+   "hunk": "a08-005",
+   "class": "noise",
+   "note": "圖1、圖2 圖說兩邊都有，只是位置不同（順序問題另提結構提案）"
+  },
+  {
+   "hunk": "a08-006",
+   "class": "noise",
+   "note": "圖1、圖2 圖說兩邊都有，只是位置不同（順序問題另提結構提案）"
+  },
+  {
+   "hunk": "a08-007",
+   "class": "noise",
+   "note": "圖1、圖2 圖說兩邊都有，只是位置不同（順序問題另提結構提案）"
+  },
+  {
+   "hunk": "a08-008",
+   "class": "noise",
+   "note": "圖3 圖說位置不同，兩邊內容一致"
+  },
+  {
+   "hunk": "a08-009",
+   "class": "noise",
+   "note": "圖3 圖說位置不同，兩邊內容一致"
+  },
+  {
+   "hunk": "a08-010",
+   "class": "noise",
+   "note": "網站圖說用「｜」連接資料來源，正規化殘留"
+  },
+  {
+   "hunk": "a08-011",
+   "class": "noise",
+   "note": "圖5、圖6 圖說兩邊都有，位置不同"
+  },
+  {
+   "hunk": "a08-012",
+   "class": "noise",
+   "note": "圖6 IP 生態系圖的圖表標籤（含圖說），刻意不收"
+  },
+  {
+   "hunk": "a08-013",
+   "class": "noise",
+   "note": "圖5、圖6 圖說兩邊都有，位置不同"
+  },
+  {
+   "hunk": "a08-014",
+   "class": "noise",
+   "note": "註腳上標數字／註解1 標號，依設計不收"
+  },
+  {
+   "hunk": "a08-015",
+   "class": "noise",
+   "note": "註解區的「註解N」標號，網站以 [註] 表示，內容一致"
+  },
+  {
+   "hunk": "a08-016",
+   "class": "noise",
+   "note": "註解區的「註解N」標號，網站以 [註] 表示，內容一致"
+  },
+  {
+   "hunk": "a08-017",
+   "class": "noise",
+   "note": "註解區的「註解N」標號，網站以 [註] 表示，內容一致"
+  },
+  {
+   "hunk": "a08-018",
+   "class": "noise",
+   "note": "註解區的「註解N」標號，網站以 [註] 表示，內容一致"
+  },
+  {
+   "hunk": "a08-019",
+   "class": "noise",
+   "note": "註解區的「註解N」標號，網站以 [註] 表示，內容一致"
+  },
+  {
+   "hunk": "a08-020",
+   "class": "noise",
+   "note": "圖6 IP 生態系圖的圖表標籤（含圖說），刻意不收"
+  },
+  {
+   "hunk": "a13-001",
+   "class": "site_error",
+   "note": "標題上方的引題「重建 SOV」在網站被放成導言後的孤立內文段落，應為標題第一行"
+  },
+  {
+   "hunk": "a13-003",
+   "class": "site_error",
+   "note": "標題上方的引題「重建 SOV」在網站被放成導言後的孤立內文段落，應為標題第一行"
+  },
+  {
+   "hunk": "a13-006",
+   "class": "noise",
+   "note": "頁眉頁碼「NNN:Model」"
+  },
+  {
+   "hunk": "a13-007",
+   "class": "noise",
+   "note": "頁眉頁碼「NNN:Model」"
+  },
+  {
+   "hunk": "a13-008",
+   "class": "noise",
+   "note": "頁眉頁碼「NNN:Model」"
+  },
+  {
+   "hunk": "a13-009",
+   "class": "noise",
+   "note": "頁眉頁碼「NNN:Model」"
+  },
+  {
+   "hunk": "a13-010",
+   "class": "noise",
+   "note": "頁眉頁碼「NNN:Model」"
+  },
+  {
+   "hunk": "a16-002",
+   "class": "noise",
+   "note": "PDF 文字層把導言排在標題前，順序造成的假差異；網站導言與標題文字與印刷頁一致"
+  },
+  {
+   "hunk": "a16-004",
+   "class": "noise",
+   "note": "註腳上標數字／註解1 標號，依設計不收"
+  },
+  {
+   "hunk": "a16-005",
+   "class": "noise",
+   "note": "註腳上標數字／註解1 標號，依設計不收"
+  },
+  {
+   "hunk": "a16-006",
+   "class": "noise",
+   "note": "圖1 雷達圖的標籤與數值（含頁碼）；圖說缺標題另見 a16-013"
+  },
+  {
+   "hunk": "a16-007",
+   "class": "noise",
+   "note": "註腳上標數字／註解1 標號，依設計不收"
+  },
+  {
+   "hunk": "a16-008",
+   "class": "noise",
+   "note": "圖1 雷達圖的標籤與數值（含頁碼）；圖說缺標題另見 a16-013"
+  },
+  {
+   "hunk": "a16-009",
+   "class": "noise",
+   "note": "註腳上標數字／註解1 標號，依設計不收"
+  },
+  {
+   "hunk": "a16-010",
+   "class": "noise",
+   "note": "註腳上標數字／註解1 標號，依設計不收"
+  },
+  {
+   "hunk": "a16-011",
+   "class": "noise",
+   "note": "頁眉頁碼「NNN:Model」"
+  },
+  {
+   "hunk": "a16-012",
+   "class": "noise",
+   "note": "註腳上標數字／註解1 標號，依設計不收"
+  },
+  {
+   "hunk": "a16-013",
+   "class": "site_error",
+   "note": "網站圖1圖說「圖1：｜資料來源」漏了圖名，且放在 p.149 文末；印刷版圖1在 p.146"
+  },
+  {
+   "hunk": "a16-014",
+   "class": "noise",
+   "note": "註腳上標數字／註解1 標號，依設計不收"
+  },
+  {
+   "hunk": "a16-016",
+   "class": "noise",
+   "note": "註解區的「註解N」標號，網站以 [註] 表示，內容一致"
+  },
+  {
+   "hunk": "a16-017",
+   "class": "noise",
+   "note": "註解區的「註解N」標號，網站以 [註] 表示，內容一致"
+  },
+  {
+   "hunk": "a16-018",
+   "class": "noise",
+   "note": "註解區的「註解N」標號，網站以 [註] 表示，內容一致"
+  },
+  {
+   "hunk": "a16-019",
+   "class": "noise",
+   "note": "註解區的「註解N」標號，網站以 [註] 表示，內容一致"
+  },
+  {
+   "hunk": "a16-020",
+   "class": "noise",
+   "note": "註解區的「註解N」標號，網站以 [註] 表示，內容一致"
+  },
+  {
+   "hunk": "a17-004",
+   "class": "noise",
+   "note": "圖1 流程圖內的標籤與圖說（PDF 文字層混入），圖說網站已收"
+  },
+  {
+   "hunk": "a17-005",
+   "class": "noise",
+   "note": "圖1 圖表標籤（摩擦類型、根因、優化行動），刻意不收"
+  },
+  {
+   "hunk": "a17-006",
+   "class": "noise",
+   "note": "圖1 圖說網站放在 p.155 段末，印刷版在同頁圖下，兩邊都有"
+  },
+  {
+   "hunk": "a17-008",
+   "class": "noise",
+   "note": "圖2 閉環圖標籤與圖說混入 PDF 文字層"
+  },
+  {
+   "hunk": "a17-010",
+   "class": "noise",
+   "note": "圖2 圖表標籤（全週期風險控制等），刻意不收"
+  },
+  {
+   "hunk": "a17-011",
+   "class": "noise",
+   "note": "圖2 圖說與圖內標籤『不只看轉換率，也關心後續成本與客戶信任』錯位比對，圖說兩邊都有"
+  },
+  {
+   "hunk": "a17-012",
+   "class": "noise",
+   "note": "同上，圖內標籤『輸出：驗證結果與風險評估』錯位比對"
+  },
+  {
+   "hunk": "a18-001",
+   "class": "noise",
+   "note": "註腳上標 1，依設計去掉"
+  },
+  {
+   "hunk": "a18-002",
+   "class": "noise",
+   "note": "註腳上標 2，依設計去掉"
+  },
+  {
+   "hunk": "a18-003",
+   "class": "noise",
+   "note": "註腳上標 3，依設計去掉"
+  },
+  {
+   "hunk": "a18-004",
+   "class": "noise",
+   "note": "註解區『註解1』編號，網站以 [註] 表示"
+  },
+  {
+   "hunk": "a18-005",
+   "class": "noise",
+   "note": "註解區『註解2』編號"
+  },
+  {
+   "hunk": "a18-006",
+   "class": "noise",
+   "note": "註解區『註解3』編號"
+  },
+  {
+   "hunk": "a18-007",
+   "class": "noise",
+   "note": "註解區『註解4』編號"
+  },
+  {
+   "hunk": "a20-002",
+   "class": "site_error",
+   "note": "『當生成能力逐漸普及…』在印刷版是 p.178 開頭段落、排在 p.177 三階段框之後；網站把它放在框之前，閱讀順序顛倒、頁碼標記 178→177→178"
+  },
+  {
+   "hunk": "a20-005",
+   "class": "site_error",
+   "note": "印刷版模組化品牌資產庫是 1.–4. 編號清單，網站缺編號"
+  },
+  {
+   "hunk": "a20-006",
+   "class": "site_error",
+   "note": "同上，缺『2.』"
+  },
+  {
+   "hunk": "a20-007",
+   "class": "site_error",
+   "note": "同上，缺『3.』"
+  },
+  {
+   "hunk": "a20-008",
+   "class": "site_error",
+   "note": "同上，缺『4.』"
+  },
+  {
+   "hunk": "a20-009",
+   "class": "site_error",
+   "note": "印刷版三道檢驗關卡是 1.–3. 編號清單，網站缺編號"
+  },
+  {
+   "hunk": "a20-010",
+   "class": "site_error",
+   "note": "同上，缺『2.』"
+  },
+  {
+   "hunk": "a20-011",
+   "class": "site_error",
+   "note": "同上，缺『3.』"
+  },
+  {
+   "hunk": "a20-014",
+   "class": "noise",
+   "note": "註解區『註解N』編號，網站以 [註] 表示，內容一致"
+  },
+  {
+   "hunk": "a20-015",
+   "class": "noise",
+   "note": "同 a20-014 的另一側"
+  },
+  {
+   "hunk": "a21-001",
+   "class": "site_error",
+   "note": "印刷版『超越效率』是標題上方的引題（p.182），網站把它當成導言後的散段落"
+  },
+  {
+   "hunk": "a21-002",
+   "class": "site_error",
+   "note": "同 a21-001 的另一側：網站『超越效率』位置錯誤"
+  },
+  {
+   "hunk": "a21-003",
+   "class": "noise",
+   "note": "註腳上標 1，依設計去掉"
+  },
+  {
+   "hunk": "a21-004",
+   "class": "noise",
+   "note": "圖1&2 圖說在 PDF 文字層被放到 p.184 句中；實際在 p.185 頁頂，文字一致（位置問題見 a21-007）"
+  },
+  {
+   "hunk": "a21-005",
+   "class": "noise",
+   "note": "註腳上標 2"
+  },
+  {
+   "hunk": "a21-006",
+   "class": "noise",
+   "note": "註腳上標 3"
+  },
+  {
+   "hunk": "a21-007",
+   "class": "site_error",
+   "note": "圖1&2 圖說印刷版在 p.185 頁頂，網站把它插在 p.186 兩段之間並標 p.185，頁碼標記 186→185→186"
+  },
+  {
+   "hunk": "a21-008",
+   "class": "noise",
+   "note": "圖3&4 圖說 PDF 文字層插在句中；印刷版在 p.186 右欄，網站放 p.186 段末，同頁"
+  },
+  {
+   "hunk": "a21-009",
+   "class": "noise",
+   "note": "同 a21-008 的另一側"
+  },
+  {
+   "hunk": "a21-010",
+   "class": "noise",
+   "note": "註解區『註解N』編號"
+  },
+  {
+   "hunk": "a21-011",
+   "class": "noise",
+   "note": "同 a21-010 的另一側"
+  },
+  {
+   "hunk": "a22-002",
+   "class": "site_error",
+   "note": "印刷版主標題上方有『AI Agent 走進消費旅程：』引題，網站把它放成導言後的散段落"
+  },
+  {
+   "hunk": "a22-004",
+   "class": "noise",
+   "note": "註腳上標 1"
+  },
+  {
+   "hunk": "a22-006",
+   "class": "noise",
+   "note": "註腳上標 2"
+  },
+  {
+   "hunk": "a22-008",
+   "class": "noise",
+   "note": "註腳上標 3"
+  },
+  {
+   "hunk": "a22-009",
+   "class": "noise",
+   "note": "圖2 圖說含註腳上標 4（網站已去掉）；位置在 p.192 同頁"
+  },
+  {
+   "hunk": "a22-010",
+   "class": "noise",
+   "note": "註腳上標 5"
+  },
+  {
+   "hunk": "a22-011",
+   "class": "noise",
+   "note": "註腳上標 6"
+  },
+  {
+   "hunk": "a22-013",
+   "class": "noise",
+   "note": "圖2 圖說網站放 p.192 段末，印刷版在同頁左上，文字一致"
+  },
+  {
+   "hunk": "a22-015",
+   "class": "noise",
+   "note": "表格 PDF 文字層欄位交錯（『推薦』『行動』列標插入句中），印刷版表格文字與網站一致"
+  },
+  {
+   "hunk": "a22-016",
+   "class": "noise",
+   "note": "同上，表格第三欄文字被 PDF 排到 p.195"
+  },
+  {
+   "hunk": "a22-017",
+   "class": "site_error",
+   "note": "表格整個在印刷版 p.194 頁底；網站放在 p.195 第一段之後，頁碼標記 195→194→195，閱讀順序錯"
+  },
+  {
+   "hunk": "a22-018",
+   "class": "noise",
+   "note": "PDF 文字層把 p.195 文末段落排在註解網址中間，兩邊文字都有"
+  },
+  {
+   "hunk": "a22-019",
+   "class": "noise",
+   "note": "同上，註解網址被 PDF 斷開"
+  },
+  {
+   "hunk": "a22-020",
+   "class": "noise",
+   "note": "同上"
+  }
+ ],
+ "proposals": [
+  {
+   "pid": "A-01",
+   "aid": "a11",
+   "hunks": [
+    "a11-002"
+   ],
+   "type": "structure",
+   "page": 80,
+   "old": "## 共同記憶帶來的品牌價值\n\n電通集團媒體事業群",
+   "new": "## 從金曲獎到甄嬛傳\n\n## 共同記憶帶來的品牌價值\n\n電通集團媒體事業群",
+   "evidence": "p.80 標題區兩行：上行細字「從金曲獎到甄嬛傳」，下行粗體「共同記憶帶來的品牌價值」；作者欄與導言在標題之下。",
+   "confidence": "medium",
+   "batch": "A",
+   "verdict": "accept",
+   "verify_reason": "p.80 標題區上行細字「從金曲獎到甄嬛傳」、下行粗體主標，屬 R2 引題，改成主標前的 ##。",
+   "applied": true
+  },
+  {
+   "pid": "A-02",
+   "aid": "a11",
+   "hunks": [
+    "a11-002"
+   ],
+   "type": "structure",
+   "page": 80,
+   "old": "延續長期關係。\n\n從金曲獎到甄嬛傳\n\n",
+   "new": "延續長期關係。\n\n",
+   "evidence": "p.80 導言框之後沒有任何內文；「從金曲獎到甄嬛傳」是標題上行，不是導言後的段落（與前一筆一起套用）。",
+   "confidence": "medium",
+   "batch": "A",
+   "verdict": "accept",
+   "verify_reason": "p.80 導言框「…延續長期關係。」之後無任何內文，孤立段「從金曲獎到甄嬛傳」應刪（與 A-01 配套，R2）。",
+   "applied": true
+  },
+  {
+   "pid": "A-03",
+   "aid": "a11",
+   "hunks": [],
+   "type": "extra",
+   "page": 85,
+   "old": "收視高點16看見",
+   "new": "收視高點看見",
+   "evidence": "p.85「這個邏輯也能從 2026 年的收視高點¹⁶看見」，16 是上標註腳號，依設計應去掉。",
+   "confidence": "medium",
+   "batch": "A",
+   "verdict": "accept",
+   "verify_reason": "p.85「收視高點¹⁶看見」，16 為上標註腳號，R1 刪除。",
+   "applied": true
+  },
+  {
+   "pid": "A-04",
+   "aid": "a11",
+   "hunks": [],
+   "type": "extra",
+   "page": 85,
+   "old": "尼爾森資料15來看",
+   "new": "尼爾森資料來看",
+   "evidence": "p.85「從尼爾森資料¹⁵來看」，15 是上標註腳號。",
+   "confidence": "medium",
+   "batch": "A",
+   "verdict": "accept",
+   "verify_reason": "p.85「尼爾森資料¹⁵來看」，15 為上標註腳號，R1 刪除。",
+   "applied": true
+  },
+  {
+   "pid": "A-05",
+   "aid": "a11",
+   "hunks": [],
+   "type": "extra",
+   "page": 85,
+   "old": "最後的結果16。",
+   "new": "最後的結果。",
+   "evidence": "p.85「都可能共同影響最後的結果¹⁶。」，16 是上標註腳號（換行到下一行）。",
+   "confidence": "medium",
+   "batch": "A",
+   "verdict": "accept",
+   "verify_reason": "p.85「最後的結果¹⁶。」（上標換行），R1 刪除。",
+   "applied": true
+  },
+  {
+   "pid": "A-06",
+   "aid": "a11",
+   "hunks": [],
+   "type": "extra",
+   "page": 86,
+   "old": "也加入合作17。",
+   "new": "也加入合作。",
+   "evidence": "p.86「2026 年包括遊戲與家電品牌等也加入合作¹⁷。」，17 是上標註腳號。",
+   "confidence": "medium",
+   "batch": "A",
+   "verdict": "accept",
+   "verify_reason": "p.86「也加入合作¹⁷。」，17 為上標註腳號，R1 刪除。",
+   "applied": true
+  },
+  {
+   "pid": "A-07",
+   "aid": "a11",
+   "hunks": [],
+   "type": "missing",
+   "page": 91,
+   "old": "橋接 如何讓熟悉成為新內容入口？ 新記憶",
+   "new": "橋接 如何讓熟悉成為新內容入口？ ● 已知連結未知 ● 舊的連結新的 ● 舊代言人 × 新世代 ● 經典 × 新科技 新記憶",
+   "evidence": "p.91 表格「橋接」列的品牌行動欄印有四個項目：●已知連結未知 ●舊的連結新的 ●舊代言人 × 新世代 ●經典 × 新科技；網站這一欄空白（文字目前只在 figtext）。",
+   "confidence": "medium",
+   "batch": "A",
+   "verdict": "accept",
+   "verify_reason": "p.91 表格「橋接」列品牌行動欄印有 ●已知連結未知 ●舊的連結新的 ●舊代言人 × 新世代 ●經典 × 新科技（依列序），網站漏收，逐字相符。",
+   "applied": true
+  },
+  {
+   "pid": "A-08",
+   "aid": "a11",
+   "hunks": [
+    "a11-091"
+   ],
+   "type": "page",
+   "page": 93,
+   "old": "\n\n[註] DENTSU DESIRE DESIGN",
+   "new": "\n\n<!-- p.93 -->\n\n[註] DENTSU DESIRE DESIGN",
+   "evidence": "p.92 只排到註解 7 的書目名稱；p.93 從註解 7 的網址 https://www.n-info.co.jp/report/report-0093/ 起，接著註解 8 DENTSU DESIRE DESIGN 到註解 27。網站全文沒有 p.93 頁界。",
+   "confidence": "medium",
+   "batch": "A",
+   "verdict": "accept",
+   "verify_reason": "p.92 註解止於註7 書目名、p.93 首行為註7 網址再接「註解 8 DENTSU DESIRE DESIGN」；網站無 p.93 頁界，在註8 前補（網址被切屬 R7 慣例）。",
+   "applied": true
+  },
+  {
+   "pid": "A-09",
+   "aid": "a01",
+   "hunks": [
+    "a01-004"
+   ],
+   "type": "missing",
+   "page": 9,
+   "old": "<!-- p.9 -->\n\nAI 讓一切變快了。",
+   "new": "<!-- p.9 -->\n\n## 第一個挑戰\n\n## 效率 vs 價值 (Business Growth)\n\nAI 讓一切變快了。",
+   "evidence": "p.9 左欄插圖下：綠底標籤「第一個挑戰」，下行「效率 vs 價值 (Business Growth)」，接著才是「AI 讓一切變快了。」",
+   "confidence": "high",
+   "batch": "A",
+   "verdict": "accept",
+   "verify_reason": "p.9 左欄綠底標「第一個挑戰」＋「效率 vs 價值 (Business Growth)」，網站全漏，R6 補回；拆成兩個 ## 符合 R3 慣例。",
+   "applied": true
+  },
+  {
+   "pid": "A-10",
+   "aid": "a01",
+   "hunks": [
+    "a01-005"
+   ],
+   "type": "missing",
+   "page": 9,
+   "old": "創造新的商業價值。\n\n企業面對的很多課題",
+   "new": "創造新的商業價值。\n\n## 第二個挑戰\n\n## 創意 vs 創新 (People Growth)\n\n企業面對的很多課題",
+   "evidence": "p.9 右欄頂端：「第二個挑戰」，下行「創意 vs 創新 (People Growth)」，接「企業面對的很多課題…」",
+   "confidence": "high",
+   "batch": "A",
+   "verdict": "accept",
+   "verify_reason": "p.9 右欄頂端「第二個挑戰」＋「創意 vs 創新 (People Growth)」，網站全漏，R6 補回。",
+   "applied": true
+  },
+  {
+   "pid": "A-11",
+   "aid": "a01",
+   "hunks": [
+    "a01-006"
+   ],
+   "type": "missing",
+   "page": 10,
+   "old": "<!-- p.10 -->\n\nAI 在改變企業的決策方式。",
+   "new": "<!-- p.10 -->\n\n## 第三個挑戰\n\n## 人 vs AI (Organization Growth)\n\nAI 在改變企業的決策方式。",
+   "evidence": "p.10 左欄綠底區：「第三個挑戰」，下行「人 vs AI (Organization Growth)」，接「AI 在改變企業的決策方式。」",
+   "confidence": "high",
+   "batch": "A",
+   "verdict": "accept",
+   "verify_reason": "p.10 左欄「第三個挑戰」＋「人 vs AI (Organization Growth)」，網站全漏，R6 補回。",
+   "applied": true
+  },
+  {
+   "pid": "A-12",
+   "aid": "a02",
+   "hunks": [],
+   "type": "structure",
+   "page": 12,
+   "old": "## 品牌與人的真實距離\n\n電通集團策略創新長",
+   "new": "## Agentic 時代\n\n## 品牌與人的真實距離\n\n電通集團策略創新長",
+   "evidence": "p.12 標題區兩行：上行細字「Agentic 時代」，下行粗體「品牌與人的真實距離」。",
+   "confidence": "medium",
+   "batch": "A",
+   "verdict": "accept",
+   "verify_reason": "p.12 標題區上行細字「Agentic 時代」、下行粗體「品牌與人的真實距離」，R2。",
+   "applied": true
+  },
+  {
+   "pid": "A-13",
+   "aid": "a02",
+   "hunks": [],
+   "type": "structure",
+   "page": 12,
+   "old": "真實的靠近。\n\nAgentic 時代\n\n<!-- p.13 -->",
+   "new": "真實的靠近。\n\n<!-- p.13 -->",
+   "evidence": "p.12 導言框之後沒有其他文字；「Agentic 時代」是標題上行（與前一筆一起套用）。",
+   "confidence": "medium",
+   "batch": "A",
+   "verdict": "accept",
+   "verify_reason": "p.12 導言框後無其他文字，刪孤立段「Agentic 時代」（與 A-12 配套，R2）。",
+   "applied": true
+  },
+  {
+   "pid": "A-14",
+   "aid": "a02",
+   "hunks": [],
+   "type": "structure",
+   "page": 16,
+   "old": "\n\n然而，速度從來不是目的\n\n",
+   "new": "\n\n## 然而，速度從來不是目的\n\n",
+   "evidence": "p.16 右欄「然而，速度從來不是目的」單獨一行粗體，是小標而不是內文段落。",
+   "confidence": "low",
+   "batch": "A",
+   "verdict": "reject",
+   "verify_reason": "p.16「然而，速度從來不是目的」確為內文字級粗體單獨一行，但文字已完整且獨立成段，不屬判讀規則所列錯誤；同類內文字級粗體行（a12 p.104 四個粗體提問、三欄框小標）全站皆不標 ##，改成 ## 會與大標同級。若主導者要統一處理小標層級，另案決定。"
+  },
+  {
+   "pid": "A-15",
+   "aid": "a02",
+   "hunks": [],
+   "type": "structure",
+   "page": 17,
+   "old": "\n\n人，仍然是最後的答案\n\n",
+   "new": "\n\n## 人，仍然是最後的答案\n\n",
+   "evidence": "p.17「人，仍然是最後的答案」單獨一行粗體，是小標而不是內文段落。",
+   "confidence": "low",
+   "batch": "A",
+   "verdict": "reject",
+   "verify_reason": "p.17「人，仍然是最後的答案」同 A-14：內文字級粗體行，文字完整獨立成段，非錯誤；不改標題層級。"
+  },
+  {
+   "pid": "A-16",
+   "aid": "a05",
+   "hunks": [],
+   "type": "structure",
+   "page": 41,
+   "old": "口碑擁護，\n\n<!-- p.41 -->\n\n## 從現在走向近未來：策略不只解決當下也要預見下一個商機\n\n好的增長架構師不能只回應今天的市場，也必須協助客戶預見明天的機會。\n\nAI 很擅長根據過去資料推測下一個可能發生的答案，但企業新的成長機會，往往來自那些還沒有被完整定義、還沒有足夠歷史數據、甚至目前看起來還只是微弱訊號的未來需求。\n\n這也是我們現在推動近未來研究的原因。\n\n在面對 VUCA 環境、人口結構改變、 AI 普及、氣候風險、網路文化深化與產業重組的時代，品牌如果只依賴過去的市場資料，很容易只能看見已經發生的競爭。更重要的問題是：若品牌要在十年後仍具競爭力，我們現在必須先理解什麼？\n\n因此，\n\n每個階段都需要不同角色的內容與體驗。策略的責任，是定義這些內容各自要解決什麼問題，而不是讓品牌只是大量生產更多素材。\n\n## 把社群與文化視為成長資產\n\nAI 可以讓轉換更有效率，但品牌偏好往往來自更長期的文化參與。品牌要經營的是社群而不只是受眾，讓消費者願意反覆回來、願意參與、願意分享，靠的是關係，而不是單次曝光。這也是品牌在演算法世界裡，避免被替換的重要防線。\n\n## 讓策略成為持續驅動成長的營運機制\n\n市場變動太快，消費者旅程也太動態，策略不能只在年初被制定一次。未來的策略需要持續接收數據、觀察文化訊號、檢視成效、修正內容與觸點配置，讓品牌能在快速變化中保持學習能力。\n\n這五個方向，正是策略從傳播企劃走向增長架構的具體落地方式。\n\n<!-- p.42 -->\n\n電通集團創意事業群策略團隊",
+   "new": "口碑擁護，\n\n<!-- p.41 -->\n\n每個階段都需要不同角色的內容與體驗。策略的責任，是定義這些內容各自要解決什麼問題，而不是讓品牌只是大量生產更多素材。\n\n## 把社群與文化視為成長資產\n\nAI 可以讓轉換更有效率，但品牌偏好往往來自更長期的文化參與。品牌要經營的是社群而不只是受眾，讓消費者願意反覆回來、願意參與、願意分享，靠的是關係，而不是單次曝光。這也是品牌在演算法世界裡，避免被替換的重要防線。\n\n## 讓策略成為持續驅動成長的營運機制\n\n市場變動太快，消費者旅程也太動態，策略不能只在年初被制定一次。未來的策略需要持續接收數據、觀察文化訊號、檢視成效、修正內容與觸點配置，讓品牌能在快速變化中保持學習能力。\n\n這五個方向，正是策略從傳播企劃走向增長架構的具體落地方式。\n\n## 從現在走向近未來：策略不只解決當下也要預見下一個商機\n\n好的增長架構師不能只回應今天的市場，也必須協助客戶預見明天的機會。\n\nAI 很擅長根據過去資料推測下一個可能發生的答案，但企業新的成長機會，往往來自那些還沒有被完整定義、還沒有足夠歷史數據、甚至目前看起來還只是微弱訊號的未來需求。\n\n這也是我們現在推動近未來研究的原因。\n\n在面對 VUCA 環境、人口結構改變、 AI 普及、氣候風險、網路文化深化與產業重組的時代，品牌如果只依賴過去的市場資料，很容易只能看見已經發生的競爭。更重要的問題是：若品牌要在十年後仍具競爭力，我們現在必須先理解什麼？\n\n<!-- p.42 -->\n\n因此，電通集團創意事業群策略團隊",
+   "evidence": "p.41 左欄：「搜尋比較…每個階段都需要不同角色的內容與體驗…」、4 把社群與文化視為成長資產、5 讓策略成為持續驅動成長的營運機制、「這五個方向…落地方式。」；右欄才是「從現在走向近未來：策略不只解決當下也要預見下一個商機」整節，結尾「…先理解什麼？」；p.42 開頭「因此，電通集團創意事業群策略團隊…」。網站把右欄整節插進第 3 點句子中間，且「因此，」與下文斷開。",
+   "confidence": "high",
+   "batch": "A",
+   "verdict": "accept",
+   "verify_reason": "p.41 左欄依序為「…每個階段都需要不同角色的內容與體驗…」、4 把社群與文化…、5 讓策略成為…、「這五個方向…」，右欄才是「從現在走向近未來…」整節至「…先理解什麼？」，p.42 首行「因此，電通集團創意事業群策略團隊…」；new 只重排段落、文字逐字不變，「因此，」併回 p.42（R5、R7）。",
+   "applied": true
+  },
+  {
+   "pid": "A-17",
+   "aid": "a05",
+   "hunks": [
+    "a05-008"
+   ],
+   "type": "missing",
+   "page": 42,
+   "old": "| 如果說 AI 代理正在改寫",
+   "new": "| 電通創意未來學 2030s 台灣近未來生活預測 如果說 AI 代理正在改寫",
+   "evidence": "p.42 側欄黑底框標題三行：「電通創意未來學／2030s／台灣近未來生活預測」，下接「如果說 AI 代理正在改寫品牌增長的方法論…」。網站側欄缺這個標題（目前只在 figtext）。",
+   "confidence": "medium",
+   "batch": "A",
+   "verdict": "accept",
+   "verify_reason": "p.42 側欄黑底框標題三行「電通創意未來學／2030s／台灣近未來生活預測」，R6 補回側欄標題，空白分隔符合側欄格式。",
+   "applied": true
+  },
+  {
+   "pid": "A-18",
+   "aid": "a09",
+   "hunks": [
+    "a09-004"
+   ],
+   "type": "structure",
+   "page": 69,
+   "old": "決定了誰是贏家。\n\n那，\n\n<!-- p.69 -->\n\n## 服飾與快時尚品類",
+   "new": "決定了誰是贏家。\n\n<!-- p.69 -->\n\n## 因類制宜：同一道真實課題 三種品類三種解方\n\n然而，這個課題對不同的產業、不同的客戶，面臨的生意痛點並不一樣，我們的整合解方自然也不該一樣：\n\n## 服飾與快時尚品類",
+   "evidence": "p.68 右欄以「…決定了誰是贏家。」結束，沒有「那，」。p.69 頂端大標「因類制宜：同一道真實課題 三種品類三種解方」，下接一句「然而，這個課題對不同的產業、不同的客戶，面臨的生意痛點並不一樣，我們的整合解方自然也不該一樣：」，之後才是「服飾與快時尚品類」。",
+   "confidence": "high",
+   "batch": "A",
+   "verdict": "accept",
+   "verify_reason": "p.68 右欄以「…決定了誰是贏家。」結束、無「那，」；p.69 頂端大標「因類制宜：同一道真實課題 三種品類三種解方」與引言「然而，這個課題對不同的產業、不同的客戶，面臨的生意痛點並不一樣，我們的整合解方自然也不該一樣：」網站漏收，逐字相符（R6）。",
+   "applied": true
+  },
+  {
+   "pid": "A-19",
+   "aid": "a09",
+   "hunks": [],
+   "type": "structure",
+   "page": 70,
+   "old": "<!-- p.70 -->\n\n具體該怎麼重新衡量與執行？",
+   "new": "<!-- p.70 -->\n\n那，具體該怎麼重新衡量與執行？",
+   "evidence": "p.70 左欄第一行「那，具體該怎麼重新衡量與執行？」——「那，」屬於這一句，網站把它錯放到 p.68 結尾（與前一筆一起套用）。",
+   "confidence": "high",
+   "batch": "A",
+   "verdict": "accept",
+   "verify_reason": "p.70 左欄首行「那，具體該怎麼重新衡量與執行？」，「那，」歸位（與 A-18 配套）。",
+   "applied": true
+  },
+  {
+   "pid": "A-20",
+   "aid": "a09",
+   "hunks": [
+    "a09-001",
+    "a09-005"
+   ],
+   "type": "structure",
+   "page": 68,
+   "old": "\n\n<!-- p.68 -->\n\n| 第一，製作成本正在崩跌：AI 讓任何人都能在幾分鐘內量產大量看起來像樣的貼文、評論、開箱。產出，已經不再是門檻。 第二，技術同時在變精： 平台與 AI 愈來愈會分辨「真實經歷」與「業配腔」，愈來愈能辨識哪些是一群真人自然的討論、哪些是被操作出來的聲量。 第三，閱聽眾自己也在進化：今天的消費者，對生成感、對業配感、對「太完美所以很假」的內容，幾乎一眼識破，而且戒心愈來愈重。\n\n<!-- p.69 -->\n\n",
+   "new": "\n\n",
+   "evidence": "p.68 右欄：「這個拿捏之所以更難，是因為背後有三股力量同時在動：」下方緊接綠框三點（第一…第二…第三…），然後才是「這三股力量疊在一起…」。網站把這個框放到 p.69 服飾品類段落之後（與下一筆一起套用：先移除）。",
+   "confidence": "medium",
+   "batch": "A",
+   "verdict": "accept",
+   "verify_reason": "p.68 綠框三點（第一…第二…第三…）在「同時在動：」之下、「這三股力量疊在一起」之上；網站放在 p.69 服飾段後並倒回 p.68，先移除（R5）。",
+   "applied": true
+  },
+  {
+   "pid": "A-21",
+   "aid": "a09",
+   "hunks": [
+    "a09-001",
+    "a09-005"
+   ],
+   "type": "structure",
+   "page": 68,
+   "old": "同時在動：\n\n這三股力量疊在一起",
+   "new": "同時在動：\n\n| 第一，製作成本正在崩跌：AI 讓任何人都能在幾分鐘內量產大量看起來像樣的貼文、評論、開箱。產出，已經不再是門檻。 第二，技術同時在變精： 平台與 AI 愈來愈會分辨「真實經歷」與「業配腔」，愈來愈能辨識哪些是一群真人自然的討論、哪些是被操作出來的聲量。 第三，閱聽眾自己也在進化：今天的消費者，對生成感、對業配感、對「太完美所以很假」的內容，幾乎一眼識破，而且戒心愈來愈重。\n\n這三股力量疊在一起",
+   "evidence": "同上：側欄緊接在「同時在動：」之後（與前一筆一起套用：插回原位）。",
+   "confidence": "medium",
+   "batch": "A",
+   "verdict": "accept",
+   "verify_reason": "同上，三點框插回「同時在動：」之後，頁碼不倒退（R5，與 A-20 配套）。",
+   "applied": true
+  },
+  {
+   "pid": "A-22",
+   "aid": "a09",
+   "hunks": [],
+   "type": "structure",
+   "page": 70,
+   "old": "\n\n你被怎麼談？是正面、負面，還是被誤解？\n\n被談到的，是不是你真正想被記住的商業賣點？\n\n當消費者問 AI， AI 的答案裡有沒有你、把你描述成什麼樣子？\n\n以及一個很少被放上儀表板、卻決定前三題答案可不可信的指標：\n\n你社群裡的聲音，有多少是真實自發的，有多少是操作出來的？\n\n<!-- p.71 -->",
+   "new": "\n\n<!-- p.71 -->",
+   "evidence": "p.70 左欄：「…換成幾個真正反映「被選擇」的問題：」下方緊接灰框四問（你被怎麼談？…有多少是操作出來的？）；右欄才是「把這件事跟客戶講清楚…五大關鍵舉措」與 1–5 點。網站把四問放在第 5 點之後（與下一筆一起套用：先移除）。",
+   "confidence": "medium",
+   "batch": "A",
+   "verdict": "accept",
+   "verify_reason": "p.70 左欄灰框四問（你被怎麼談？…有多少是操作出來的？）緊接「…「被選擇」的問題：」，右欄才是「把這件事跟客戶講清楚」與 1–5 點；先移除錯置的四問（R5）。",
+   "applied": true
+  },
+  {
+   "pid": "A-23",
+   "aid": "a09",
+   "hunks": [],
+   "type": "structure",
+   "page": 70,
+   "old": "「被選擇」的問題：\n\n把這件事跟客戶講清楚",
+   "new": "「被選擇」的問題：\n\n你被怎麼談？是正面、負面，還是被誤解？\n\n被談到的，是不是你真正想被記住的商業賣點？\n\n當消費者問 AI， AI 的答案裡有沒有你、把你描述成什麼樣子？\n\n以及一個很少被放上儀表板、卻決定前三題答案可不可信的指標：\n\n你社群裡的聲音，有多少是真實自發的，有多少是操作出來的？\n\n把這件事跟客戶講清楚",
+   "evidence": "同上：四問緊接在「的問題：」之後（與前一筆一起套用：插回原位）。",
+   "confidence": "medium",
+   "batch": "A",
+   "verdict": "accept",
+   "verify_reason": "同上，四問插回「「被選擇」的問題：」之後（與 A-22 配套）。",
+   "applied": true
+  },
+  {
+   "pid": "B-01",
+   "aid": "a12",
+   "hunks": [],
+   "type": "structure",
+   "page": 96,
+   "old": "## People Model 讓消費者研究\n\n## 變成一場隨時能開口的對話",
+   "new": "## People Model 讓消費者研究變成一場隨時能開口的對話",
+   "evidence": "p.96 標題為單一標題「People Model 讓消費者研究 變成一場隨時能開口的對話」（三行排版），網站拆成兩個 h2。注意：a03/a06/a07/a09/a13/a15 等多篇首頁標題也是同樣拆法，建議主導者統一決定。",
+   "confidence": "medium",
+   "batch": "B",
+   "verdict": "reject",
+   "verify_reason": "依 R3：多行標題拆成多個 ## 為全站慣例，維持。"
+  },
+  {
+   "pid": "B-02",
+   "aid": "a12",
+   "hunks": [
+    "a12-026"
+   ],
+   "type": "page",
+   "page": 102,
+   "old": "判斷需要哪些資料與分析，再把子任務分派給各領域專家—由 People Model 生成的 AI Persona 負責模擬消費者觀點，\n\n<!-- p.103 -->\n\nDeep Research Agent 負責搜索網路資料補充脈絡，CCS Agent 會回頭檢索原始調查做進一步驗證。各自分析評估後，再交回給 Super Agent 彙整成一份完整回答。\n\n<!-- p.102 -->\n\n> 表：設定完兩個 AI Persona 後，可以透過 People Model 模擬他們的購買考量因素、心聲，進而協助行銷人獲得消費者洞察\n\n| 買了什麼 考量排序 心裡真正的聲音 消費決策洞察 Lisa(25–34歲) 藍芽耳機 價格 → 續航 → 使用者評價 這 CP 值高不高？可別花這筆錢還買到斷線爛音質 偏向體驗探索，關注 CP 值與社群風向 Cindy (35–44歲) 換手機 續航 → 規格效能 → 價格 這電池到底撐不撐得了一整天？很怕出門在外沒電很麻煩 避險導向，高度看重安全感與品質信任度\n\n<!-- p.103 -->\n\n這樣的設計",
+   "new": "判斷需要哪些資料與分析，\n\n> 表：設定完兩個 AI Persona 後，可以透過 People Model 模擬他們的購買考量因素、心聲，進而協助行銷人獲得消費者洞察\n\n| 買了什麼 考量排序 心裡真正的聲音 消費決策洞察 Lisa(25–34歲) 藍芽耳機 價格 → 續航 → 使用者評價 這 CP 值高不高？可別花這筆錢還買到斷線爛音質 偏向體驗探索，關注 CP 值與社群風向 Cindy (35–44歲) 換手機 續航 → 規格效能 → 價格 這電池到底撐不撐得了一整天？很怕出門在外沒電很麻煩 避險導向，高度看重安全感與品質信任度\n\n<!-- p.103 -->\n\n再把子任務分派給各領域專家—由 People Model 生成的 AI Persona 負責模擬消費者觀點，Deep Research Agent 負責搜索網路資料補充脈絡，CCS Agent 會回頭檢索原始調查做進一步驗證。各自分析評估後，再交回給 Super Agent 彙整成一份完整回答。\n\n這樣的設計",
+   "evidence": "p.102 右欄末行止於「人，他會拆解問題、判斷需要哪些資料與分析，再」，Lisa/Cindy 表格與表說在 p.102 底部；p.103 左欄首行「把子任務分派給各領域專家一由 People Model 生成的 AI Persona 負責模擬消費者觀點，Deep Research Agent…彙整成一份完整回答。」與前文同段。網站把 p.103 頁界放在「觀點，」之後、同段拆成兩段，且表格排在 p.103 文字之後再倒回 <!-- p.102 -->。提案依全文慣例以句讀對齊頁界（p.102 止於「分析，」）。",
+   "confidence": "high",
+   "batch": "B",
+   "verdict": "revise",
+   "verify_reason": "問題屬實：p.102 右欄末行止於「…判斷需要哪些資料與分析，再」，表格與表說在 p.102 底部，p.103 首行「把子任務分派給各領域專家…彙整成一份完整回答。」同段。但原提案把表格留在「分析，」與「再把子任務」之間，仍是表格插在句中（R5），且與 B-03/B-04 的處理不一致；改成把表說＋表格移到同頁該段之前（p.102 內、頁碼不倒退），句子只被 p.103 頁界分開。文字逐字不變。",
+   "revised_old": "我們建立了一支分工明確的研究團隊，在使用者提出問題後，先由一位 Super Agent 擔任專案負責人，他會拆解問題、判斷需要哪些資料與分析，再把子任務分派給各領域專家—由 People Model 生成的 AI Persona 負責模擬消費者觀點，\n\n<!-- p.103 -->\n\nDeep Research Agent 負責搜索網路資料補充脈絡，CCS Agent 會回頭檢索原始調查做進一步驗證。各自分析評估後，再交回給 Super Agent 彙整成一份完整回答。\n\n<!-- p.102 -->\n\n> 表：設定完兩個 AI Persona 後，可以透過 People Model 模擬他們的購買考量因素、心聲，進而協助行銷人獲得消費者洞察\n\n| 買了什麼 考量排序 心裡真正的聲音 消費決策洞察 Lisa(25–34歲) 藍芽耳機 價格 → 續航 → 使用者評價 這 CP 值高不高？可別花這筆錢還買到斷線爛音質 偏向體驗探索，關注 CP 值與社群風向 Cindy (35–44歲) 換手機 續航 → 規格效能 → 價格 這電池到底撐不撐得了一整天？很怕出門在外沒電很麻煩 避險導向，高度看重安全感與品質信任度\n\n<!-- p.103 -->\n\n這樣的設計",
+   "revised_new": "> 表：設定完兩個 AI Persona 後，可以透過 People Model 模擬他們的購買考量因素、心聲，進而協助行銷人獲得消費者洞察\n\n| 買了什麼 考量排序 心裡真正的聲音 消費決策洞察 Lisa(25–34歲) 藍芽耳機 價格 → 續航 → 使用者評價 這 CP 值高不高？可別花這筆錢還買到斷線爛音質 偏向體驗探索，關注 CP 值與社群風向 Cindy (35–44歲) 換手機 續航 → 規格效能 → 價格 這電池到底撐不撐得了一整天？很怕出門在外沒電很麻煩 避險導向，高度看重安全感與品質信任度\n\n我們建立了一支分工明確的研究團隊，在使用者提出問題後，先由一位 Super Agent 擔任專案負責人，他會拆解問題、判斷需要哪些資料與分析，\n\n<!-- p.103 -->\n\n再把子任務分派給各領域專家—由 People Model 生成的 AI Persona 負責模擬消費者觀點，Deep Research Agent 負責搜索網路資料補充脈絡，CCS Agent 會回頭檢索原始調查做進一步驗證。各自分析評估後，再交回給 Super Agent 彙整成一份完整回答。\n\n這樣的設計",
+   "applied": true
+  },
+  {
+   "pid": "B-03",
+   "aid": "a12",
+   "hunks": [
+    "a12-032"
+   ],
+   "type": "structure",
+   "page": 104,
+   "old": "People Model 最擅長的是前期探索、快速測試與假設生成，能將市場調查與發想時間縮短至極致，但 AI Persona 無法完全複製人類在非理性抉擇、情感共鳴與文化脈絡下的微妙反應。當決策涉及重大投資、產品上市或全新市場，團隊應以 People Model 的初步發現為起點，結合真人情感訪談與實體市場驗證，建立完整的決策依據。它讓消費者觀點更早進場，\n\n消費洞察\n\n策略團隊可以依年齡、地區、生活型態設定目標族群，分析產品偏好與決策考量；再透過 AI 虛擬深訪，進一步找出可能的受眾族群、溝通維度與品牌在消費者生活中的角色，讓品牌傳播策略更貼近不同族群的真實脈絡 。\n\n產品創新\n\n研發團隊可以在產品概念、口味測試、包裝視覺乃至於定價階段，利用 Probe 工具 (一個基於 People Model 的 Product Planning 工具) 進行多重分眾測試，在開發與量產前就淘汰低勝率方案，大幅提高新品的成功率。\n\n行銷溝通\n\n行銷與創意團隊能在媒體預算上線前，透過 AI 虛擬深訪與量化調查，先測試廣告創意多版本與核心訊息的接受度，精準描繪消費者旅程。\n\n<!-- p.105 -->\n\n作為策略",
+   "new": "消費洞察\n\n策略團隊可以依年齡、地區、生活型態設定目標族群，分析產品偏好與決策考量；再透過 AI 虛擬深訪，進一步找出可能的受眾族群、溝通維度與品牌在消費者生活中的角色，讓品牌傳播策略更貼近不同族群的真實脈絡 。\n\n產品創新\n\n研發團隊可以在產品概念、口味測試、包裝視覺乃至於定價階段，利用 Probe 工具 (一個基於 People Model 的 Product Planning 工具) 進行多重分眾測試，在開發與量產前就淘汰低勝率方案，大幅提高新品的成功率。\n\n行銷溝通\n\n行銷與創意團隊能在媒體預算上線前，透過 AI 虛擬深訪與量化調查，先測試廣告創意多版本與核心訊息的接受度，精準描繪消費者旅程。\n\nPeople Model 最擅長的是前期探索、快速測試與假設生成，能將市場調查與發想時間縮短至極致，但 AI Persona 無法完全複製人類在非理性抉擇、情感共鳴與文化脈絡下的微妙反應。當決策涉及重大投資、產品上市或全新市場，團隊應以 People Model 的初步發現為起點，結合真人情感訪談與實體市場驗證，建立完整的決策依據。它讓消費者觀點更早進場，\n\n<!-- p.105 -->\n\n作為策略",
+   "evidence": "p.104 右欄末句「…建立完整的決策依據。它讓消費者」接 p.105 首行「觀點更早進場，作為策略與創意的強力加速器…」；「策略、研發、行銷：模擬能先回答什麼」三欄框（消費洞察／產品創新／行銷溝通）是 p.104 底部獨立色塊。網站把三欄框插在「它讓消費者觀點更早進場，」與「作為策略與創意…」之間。提案把三欄框移到同頁該段之前，句子只被頁界分開（與網站其他跨頁句相同）。",
+   "confidence": "medium",
+   "batch": "B",
+   "verdict": "accept",
+   "verify_reason": "p.104 右欄末句「…建立完整的決策依據。它讓消費者」接 p.105「觀點更早進場，作為策略…」，三欄框（消費洞察／產品創新／行銷溝通）為 p.104 底部色塊；移到同頁該段之前，句子只被頁界分開，文字不變（R5）。附註：框標題「策略、研發、行銷：模擬能先回答什麼」網站未收，見回報。",
+   "applied": true
+  },
+  {
+   "pid": "B-04",
+   "aid": "a12",
+   "hunks": [
+    "a12-038"
+   ],
+   "type": "structure",
+   "page": 107,
+   "old": "客群偏好隨年齡轉變，荔枝烏龍在 25 至 34 歲女性中的首選率達 71%–83%，到了 40至 44 歲降至 36%，黑糖桂圓則在該年齡層升至 64%，適合鎖定成熟職場女性，結合疲憊補償與秋冬療癒情境進行分眾行銷。油柑氣泡在吸引力、需求契合與首次購買上皆低，\n\n我們從傳統的問卷調查中，得到了一些支持者群體的資訊，但一次問卷只能得到一次反饋，要繼續往下深究就要重做問卷，有點曠日廢時，需要一套新的方式可以更快速提供我們答案 (就算答案可能正確率不高)，讓我們可以去修正並且驗證的工具。\n\n我希望有更快速的方式可以讓石安重複的使用跟修正。我想石安期待的關鍵字應該是「速度」、「重複使用 (變換不同問題)」、「有進化性」吧！",
+   "new": "我們從傳統的問卷調查中，得到了一些支持者群體的資訊，但一次問卷只能得到一次反饋，要繼續往下深究就要重做問卷，有點曠日廢時，需要一套新的方式可以更快速提供我們答案 (就算答案可能正確率不高)，讓我們可以去修正並且驗證的工具。\n\n我希望有更快速的方式可以讓石安重複的使用跟修正。我想石安期待的關鍵字應該是「速度」、「重複使用 (變換不同問題)」、「有進化性」吧！\n\n客群偏好隨年齡轉變，荔枝烏龍在 25 至 34 歲女性中的首選率達 71%–83%，到了 40至 44 歲降至 36%，黑糖桂圓則在該年齡層升至 64%，適合鎖定成熟職場女性，結合疲憊補償與秋冬療癒情境進行分眾行銷。油柑氣泡在吸引力、需求契合與首次購買上皆低，",
+   "evidence": "p.107 右欄末行「分眾行銷。油柑氣泡在吸引力、需求契合與首次購」，p.108 首行「買上皆低，新奇感不足以支持量產上市，最多保留為小規模限定測試。」；駱健正「專家看法」色塊在 p.107 底部。網站把專家看法兩段插在「首次購買上皆低，」與 p.108「新奇感不足以…」之間。提案把專家看法移到同頁「客群偏好隨年齡轉變」段之前。",
+   "confidence": "medium",
+   "batch": "B",
+   "verdict": "accept",
+   "verify_reason": "p.107 右欄末行「…分眾行銷。油柑氣泡在吸引力、需求契合與首次購」接 p.108「買上皆低，新奇感不足…」，駱健正「專家看法」色塊在 p.107 底部；移到同頁該段之前，文字不變（R5；署名依 R8 由主導者補）。",
+   "applied": true
+  },
+  {
+   "pid": "B-05",
+   "aid": "a12",
+   "hunks": [
+    "a12-048",
+    "a12-049"
+   ],
+   "type": "page",
+   "page": 110,
+   "old": "因此，沒有外部調查或同品類資料作為參考時，People Model 系統會明確提出「目前證據不足」警告，\n\n<!-- p.111 -->\n\n以 CCS 這類大型統計調查資料微調 People Model，其價值不只是讓模型「更像某一群人說話」，而是將群體的態度結構、需求差異與行為傾向，轉化為可重複模擬、試驗的決策模型。然而，模擬回答與真人回答之間的高相關係數，只能表示兩者變動趨勢相近，不能單獨證明模型已理解人的心理機制，更不等同於個體層級的預測正確。\n\n可信度的驗證應同時檢查平均差異、題項誤差、不同族群與情境下的穩定性、重複生成的一致性，以及模型是否保留少數或矛盾意見，而非只追求單一相關係數。從我們過去的 AI Persona 研究，到目前進行的 Agentic AI 國科會計畫，核心精神都是讓每項人格判斷能回溯至資料證據，並在新資料或新情境出現時持續校準。People Model 最適合被定位為協助市場研究提出假設、探索情境與加速決策的「數位實驗場」，而不是取代真人調查的答案機器。\n\n> 圖: 一個問題進來，Super Agent 拆解並分派給 People Model、CCS Agent 與 Deep Research Agent，再把三方結果檢核彙整成一份可追問的回答。｜資料來源：電通智能中心\n\n<!-- p.112 -->\n\n而不是逕自生成",
+   "new": "<!-- p.111 -->\n\n以 CCS 這類大型統計調查資料微調 People Model，其價值不只是讓模型「更像某一群人說話」，而是將群體的態度結構、需求差異與行為傾向，轉化為可重複模擬、試驗的決策模型。然而，模擬回答與真人回答之間的高相關係數，只能表示兩者變動趨勢相近，不能單獨證明模型已理解人的心理機制，更不等同於個體層級的預測正確。\n\n可信度的驗證應同時檢查平均差異、題項誤差、不同族群與情境下的穩定性、重複生成的一致性，以及模型是否保留少數或矛盾意見，而非只追求單一相關係數。從我們過去的 AI Persona 研究，到目前進行的 Agentic AI 國科會計畫，核心精神都是讓每項人格判斷能回溯至資料證據，並在新資料或新情境出現時持續校準。People Model 最適合被定位為協助市場研究提出假設、探索情境與加速決策的「數位實驗場」，而不是取代真人調查的答案機器。\n\n> 圖: 一個問題進來，Super Agent 拆解並分派給 People Model、CCS Agent 與 Deep Research Agent，再把三方結果檢核彙整成一份可追問的回答。｜資料來源：電通智能中心\n\n<!-- p.112 -->\n\n因此，沒有外部調查或同品類資料作為參考時，People Model 系統會明確提出「目前證據不足」警告，而不是逕自生成",
+   "evidence": "p.110 右欄末行為「因此，沒有外部調查或同品類資料作為參考時，」；p.111 整頁是 Multi-Agent 流程圖、圖說與藍俊宏「專家看法」；p.112 首行「People Model 系統會明確提出「目前證據不足」警告，而不是逕自生成一組看似精確的百分比。」網站把「People Model 系統會明確提出…警告，」放在 p.110，使 p.111 圖說與專家看法插在句中。提案讓整句移到 p.112 段首、不被 p.111 打斷（代價：「因此…作為參考時，」21 字其實印在 p.110）。替代做法：只把「People Model 系統會明確提出…警告，」移到 p.112 段首、「因此…參考時，」留在 p.110（頁碼精確，但句子仍被 p.111 隔開，與印刷版翻頁一致）。",
+   "confidence": "medium",
+   "batch": "B",
+   "verdict": "revise",
+   "verify_reason": "問題屬實：p.110 右欄末行只到「因此，沒有外部調查或同品類資料作為參考時，」，p.112 首行「People Model 系統會明確提出「目前證據不足」警告，而不是逕自生成…」。原提案把印在 p.110 的整個子句也搬到 p.112，等於製造新的頁碼錯位（R7 所指整個短語在錯頁）；採提案者列的替代做法：只把「People Model 系統會明確提出…警告，」移到 p.112 段首，「因此…參考時，」留在 p.110。p.111 為整頁圖與專家看法，無法移到句後，照印刷翻頁順序。",
+   "revised_new": "因此，沒有外部調查或同品類資料作為參考時，\n\n<!-- p.111 -->\n\n以 CCS 這類大型統計調查資料微調 People Model，其價值不只是讓模型「更像某一群人說話」，而是將群體的態度結構、需求差異與行為傾向，轉化為可重複模擬、試驗的決策模型。然而，模擬回答與真人回答之間的高相關係數，只能表示兩者變動趨勢相近，不能單獨證明模型已理解人的心理機制，更不等同於個體層級的預測正確。\n\n可信度的驗證應同時檢查平均差異、題項誤差、不同族群與情境下的穩定性、重複生成的一致性，以及模型是否保留少數或矛盾意見，而非只追求單一相關係數。從我們過去的 AI Persona 研究，到目前進行的 Agentic AI 國科會計畫，核心精神都是讓每項人格判斷能回溯至資料證據，並在新資料或新情境出現時持續校準。People Model 最適合被定位為協助市場研究提出假設、探索情境與加速決策的「數位實驗場」，而不是取代真人調查的答案機器。\n\n> 圖: 一個問題進來，Super Agent 拆解並分派給 People Model、CCS Agent 與 Deep Research Agent，再把三方結果檢核彙整成一份可追問的回答。｜資料來源：電通智能中心\n\n<!-- p.112 -->\n\nPeople Model 系統會明確提出「目前證據不足」警告，而不是逕自生成",
+   "applied": true
+  },
+  {
+   "pid": "B-06",
+   "aid": "a12",
+   "hunks": [],
+   "type": "structure",
+   "page": 109,
+   "old": "## 市場研究的難處集中在三件事",
+   "new": "市場研究的難處集中在三件事",
+   "evidence": "p.109「HOW do we create People Model？」大標下，「市場研究的難處集中在三件事：該查哪一份資料…業 Agent 的決策支援架構。」是一般內文字級段落（左欄 7 行），不是標題；網站整段標成 ## 標題。",
+   "confidence": "high",
+   "batch": "B",
+   "verdict": "accept",
+   "verify_reason": "p.109「HOW do we create People Model？」下「市場研究的難處集中在三件事：…決策支援架構。」為一般內文字級 7 行段落，不是標題，去掉 ##。",
+   "applied": true
+  },
+  {
+   "pid": "B-07",
+   "aid": "a12",
+   "hunks": [],
+   "type": "structure",
+   "page": 115,
+   "old": "Q：\n\n<!-- p.115 -->\n\n我提供的產品機密資料",
+   "new": "<!-- p.115 -->\n\nQ：我提供的產品機密資料",
+   "evidence": "p.114 右欄止於「…也無法被反推回原始受訪者。」，p.115 首行粗體「Q：我提供的產品機密資料會不會被拿去訓練模型，或被其他客戶用到？」。網站把「Q：」孤立成 p.114 最後一段，問題本文在 p.115。",
+   "confidence": "high",
+   "batch": "B",
+   "verdict": "accept",
+   "verify_reason": "p.115 首行粗體「Q：我提供的產品機密資料會不會被拿去訓練模型，或被其他客戶用到？」；p.114 右欄止於「…也無法被反推回原始受訪者。」，「Q：」不應孤立在 p.114。",
+   "applied": true
+  },
+  {
+   "pid": "B-08",
+   "aid": "a10",
+   "hunks": [
+    "a10-039"
+   ],
+   "type": "structure",
+   "page": 78,
+   "old": "不妨先問自己三件事：\n\n<!-- p.79 -->\n\n## 別再數曝光開始累積記憶\n\n說到底，在資訊爆炸的年代，與其在零碎注意力裡多撿幾片碎片，品牌不如找到消費者真正專注的那個當下，在對的場景遞上對的邀請，讓品牌自然走進去。\n\n<!-- p.78 -->\n\n> 圖5：CeraVe 適樂膚單日引爆 2.4 萬篇社群討論，以破圈體驗創造有機聲量與品牌好感｜資料來源：電通台灣\n\n| 你的儀表板上，有「記憶」這一欄嗎？ 如果成效還停在曝光與點擊，把品牌回想也放進來。讓「曝光 → 注意力 → 記憶 → 業績」變成品牌、媒體與生意團隊都能共用的語言。 你的 SOV，是聲量，還是注意力？ 從注意力出發重新審視媒體組合，依據 Campaign 目標、品牌體質與消費者決策情境，選擇真正能創造高注意力品質的場域。 你的媒體，有讓消費者願意參與嗎？ 在夠專注的場域裡放進情境與互動，讓人主動參與訊息傳遞，把媒體從「被看到的版位」變成「被經歷的時刻」。\n\n<!-- p.79 -->\n\n當人們",
+   "new": "不妨先問自己三件事：\n\n| 你的儀表板上，有「記憶」這一欄嗎？ 如果成效還停在曝光與點擊，把品牌回想也放進來。讓「曝光 → 注意力 → 記憶 → 業績」變成品牌、媒體與生意團隊都能共用的語言。 你的 SOV，是聲量，還是注意力？ 從注意力出發重新審視媒體組合，依據 Campaign 目標、品牌體質與消費者決策情境，選擇真正能創造高注意力品質的場域。 你的媒體，有讓消費者願意參與嗎？ 在夠專注的場域裡放進情境與互動，讓人主動參與訊息傳遞，把媒體從「被看到的版位」變成「被經歷的時刻」。\n\n> 圖5：CeraVe 適樂膚單日引爆 2.4 萬篇社群討論，以破圈體驗創造有機聲量與品牌好感｜資料來源：電通台灣\n\n<!-- p.79 -->\n\n## 別再數曝光開始累積記憶\n\n說到底，在資訊爆炸的年代，與其在零碎注意力裡多撿幾片碎片，品牌不如找到消費者真正專注的那個當下，在對的場景遞上對的邀請，讓品牌自然走進去。\n\n當人們",
+   "evidence": "p.78 右欄「與其多買碎片不如守住時刻」節末「下次在做媒體規劃時，不妨先問自己三件事：」緊接 1/2/3 三問色塊（你的儀表板上，有「記憶」這一欄嗎？…）；p.79 才是「別再數曝光 開始累積記憶」標題與「說到底…」。網站把 p.79 標題與首段插在「三件事：」與三問之間，再倒回 <!-- p.78 -->。",
+   "confidence": "high",
+   "batch": "B",
+   "verdict": "accept",
+   "verify_reason": "p.78 右欄「…不妨先問自己三件事：」緊接 1/2/3 三問色塊，圖5 圖說在 p.78 左上；p.79 才是「別再數曝光 開始累積記憶」與「說到底…」。new 移除倒退的 p.78 標記，文字不變（R5）。",
+   "applied": true
+  },
+  {
+   "pid": "C-01",
+   "aid": "a03",
+   "hunks": [
+    "a03-001"
+   ],
+   "type": "missing",
+   "page": 20,
+   "old": "首席創意長周麗君｜Alice Chou\n\n<!-- p.21 -->",
+   "new": "首席創意長周麗君｜Alice Chou\n\n在 AI 真假難辨的時代，品牌需以真實感、人性與情感認同，重建不可複製的信任價值。\n\n<!-- p.21 -->",
+   "evidence": "p.20 右下引言框：「在 AI 真假難辨的時代，品牌需以真實感、人性與情感認同，重建不可複製的信任價值。」（其他篇的開頭引言都收在全文）",
+   "confidence": "medium",
+   "batch": "C",
+   "verdict": "accept",
+   "verify_reason": "p.20 右下引言框「在 AI 真假難辨的時代，品牌需以真實感、人性與情感認同，重建不可複製的信任價值。」網站漏收，R6 開頭引言補回，逐字相符。",
+   "applied": true
+  },
+  {
+   "pid": "C-02",
+   "aid": "a03",
+   "hunks": [],
+   "type": "page",
+   "page": 24,
+   "old": "因此，\n\n<!-- p.24 -->\n\n品牌未來",
+   "new": "<!-- p.24 -->\n\n因此，品牌未來",
+   "evidence": "p.23 左右欄最後一段結束於「什麼是真的？什麼是假的？」；p.24 第一行是「因此，品牌未來最珍貴的資產，可能不是「完美」。」",
+   "confidence": "high",
+   "batch": "C",
+   "verdict": "accept",
+   "verify_reason": "p.23 結束於「什麼是真的？什麼是假的？」，p.24 首行「因此，品牌未來最珍貴的資產…」，「因此，」切到錯頁，依 R7 改。",
+   "applied": true
+  },
+  {
+   "pid": "C-03",
+   "aid": "a03",
+   "hunks": [
+    "a03-024"
+   ],
+   "type": "extra",
+   "page": 25,
+   "old": "截自南山人壽廣告影片7",
+   "new": "截自南山人壽廣告影片",
+   "evidence": "p.25 圖6圖說「資料來源：截自南山人壽廣告影片⁷」，7 是註腳上標，依設計應去掉",
+   "confidence": "high",
+   "batch": "C",
+   "verdict": "accept",
+   "verify_reason": "p.25 圖6「資料來源：截自南山人壽廣告影片⁷」，7 為上標註腳號，R1 刪除。",
+   "applied": true
+  },
+  {
+   "pid": "C-04",
+   "aid": "a14",
+   "hunks": [
+    "a14-006"
+   ],
+   "type": "extra",
+   "page": 130,
+   "old": "> 資料來源：凱絡媒體／製圖\n\n> 圖1：",
+   "new": "> 圖1：",
+   "evidence": "p.130 圖1下方只有「圖1：媒體三世代演進…漸趨平衡／資料來源：凱絡媒體／製圖」一組，沒有另一行獨立的資料來源",
+   "confidence": "high",
+   "batch": "C",
+   "verdict": "accept",
+   "verify_reason": "p.130 圖1 下只有「圖1：媒體三世代演進…漸趨平衡／資料來源：凱絡媒體／製圖」一組，多出的獨立「> 資料來源：凱絡媒體／製圖」為重複，刪除。",
+   "applied": true
+  },
+  {
+   "pid": "C-05",
+   "aid": "a14",
+   "hunks": [
+    "a14-015",
+    "a14-016"
+   ],
+   "type": "missing",
+   "page": 132,
+   "old": "生而為人的感受與感知能力\n\n長期累積且可驗證的數據基礎\n\n觀察市場與產業趨勢的能力\n\n經歷不同產業與專案後形成的經驗判斷\n\n在有限資源下抓住重點並完成協作的組織能力",
+   "new": "1. 生而為人的感受與感知能力\n\n2. 長期累積且可驗證的數據基礎\n\n3. 觀察市場與產業趨勢的能力\n\n4. 經歷不同產業與專案後形成的經驗判斷\n\n5. 在有限資源下抓住重點並完成協作的組織能力",
+   "evidence": "p.132 右欄清單：「1. 生而為人的感受與感知能力」…「5. 在有限資源下抓住重點並完成協作的組織能力」",
+   "confidence": "medium",
+   "batch": "C",
+   "verdict": "accept",
+   "verify_reason": "p.132 右欄清單印有「1.」至「5.」編號，R4 補回「1. 」格式，文字逐字相符。",
+   "applied": true
+  },
+  {
+   "pid": "C-06",
+   "aid": "a14",
+   "hunks": [
+    "a14-017"
+   ],
+   "type": "missing",
+   "page": 133,
+   "old": "> 圖3：衡斷力的五大能力來源",
+   "new": "> 圖3：衡斷力的五大能力來源｜資料來源：凱絡媒體／製圖",
+   "evidence": "p.133 圖3圖說兩行：「圖3：衡斷力的五大能力來源／資料來源：凱絡媒體／製圖」",
+   "confidence": "high",
+   "batch": "C",
+   "verdict": "accept",
+   "verify_reason": "p.133 圖3 圖說兩行「圖3：衡斷力的五大能力來源／資料來源：凱絡媒體／製圖」，補資料來源，格式同其他圖說。",
+   "applied": true
+  },
+  {
+   "pid": "C-07",
+   "aid": "a14",
+   "hunks": [
+    "a14-024",
+    "a14-025",
+    "a14-026"
+   ],
+   "type": "missing",
+   "page": 134,
+   "old": "Business，聚焦於品牌成長策略，透過效率優化、交易捕捉與品牌成長三大槓桿創造商業價值。\n\nAudience，透過電通集團與資料夥伴所累積的數據資產，以所見即所得的方式辨識與活化真正具潛力的消費者。\n\nInsight，利用洞察金字塔架構，將資料轉化為資訊、資訊累積成知識、知識提煉為洞察，最終形成能驅動成長的大智慧。\n\nExperience，從People as Themselves、People as Browser、People as Buyer以及People as User四個維度管理消費者體驗，建立更完整的顧客視角。\n\nActivation，透過一系列企劃思維與檢核方法，協助團隊將策略轉化為具體且有效的市場行動。\n\nOptimization，則根據不同品牌成熟度與數據能力，運用品牌金字塔、3×3以及Layer Cake等優化框架，持續提升行銷效能與品牌價值。",
+   "new": "1. Business，聚焦於品牌成長策略，透過效率優化、交易捕捉與品牌成長三大槓桿創造商業價值。\n\n2. Audience，透過電通集團與資料夥伴所累積的數據資產，以所見即所得的方式辨識與活化真正具潛力的消費者。\n\n3. Insight，利用洞察金字塔架構，將資料轉化為資訊、資訊累積成知識、知識提煉為洞察，最終形成能驅動成長的大智慧。\n\n4. Experience，從People as Themselves、People as Browser、People as Buyer以及People as User四個維度管理消費者體驗，建立更完整的顧客視角。\n\n5. Activation，透過一系列企劃思維與檢核方法，協助團隊將策略轉化為具體且有效的市場行動。\n\n6. Optimization，則根據不同品牌成熟度與數據能力，運用品牌金字塔、3×3以及Layer Cake等優化框架，持續提升行銷效能與品牌價值。",
+   "evidence": "p.134 六大模組清單有編號：「1. Business，…」「2. Audience，…」「3. Insight，…」「4. Experience，…」「5. Activation，…」「6. Optimization，…」",
+   "confidence": "medium",
+   "batch": "C",
+   "verdict": "accept",
+   "verify_reason": "p.134 六大模組清單印有「1.」至「6.」編號（Business…Optimization），R4 補回。",
+   "applied": true
+  },
+  {
+   "pid": "C-08",
+   "aid": "a15",
+   "hunks": [],
+   "type": "structure",
+   "page": 136,
+   "old": "安索帕顧客體驗策略諮詢副總經理\n\n鄭怡櫛｜Vera Cheng 安索帕顧客體驗策略總監\n\n張家誠｜Jason Chang",
+   "new": "安索帕顧客體驗策略諮詢副總經理鄭怡櫛｜Vera Cheng\n\n安索帕顧客體驗策略總監張家誠｜Jason Chang",
+   "evidence": "p.136 作者欄四行：「安索帕顧客體驗策略諮詢副總經理／鄭怡櫛｜Vera Cheng／安索帕顧客體驗策略總監／張家誠｜Jason Chang」；網站把第二位作者的職稱黏在第一位作者姓名後",
+   "confidence": "high",
+   "batch": "C",
+   "verdict": "accept",
+   "verify_reason": "p.136 作者欄四行「安索帕顧客體驗策略諮詢副總經理／鄭怡櫛｜Vera Cheng／安索帕顧客體驗策略總監／張家誠｜Jason Chang」，網站把第二位職稱黏在第一位姓名後，new 改成職稱＋姓名各一段，同 a03 作者行格式。",
+   "applied": true
+  },
+  {
+   "pid": "C-09",
+   "aid": "a15",
+   "hunks": [],
+   "type": "extra",
+   "page": 141,
+   "old": "Jakob Nielsen８ 曾指出",
+   "new": "Jakob Nielsen 曾指出",
+   "evidence": "p.141「Nielsen Norman Group 的 Jakob Nielsen⁸ 曾指出」，8 是註腳上標，依設計應去掉",
+   "confidence": "high",
+   "batch": "C",
+   "verdict": "accept",
+   "verify_reason": "p.141「Jakob Nielsen⁸ 曾指出」，８ 為上標註腳號，R1 刪除。",
+   "applied": true
+  },
+  {
+   "pid": "C-10",
+   "aid": "a15",
+   "hunks": [],
+   "type": "extra",
+   "page": 142,
+   "old": "消費者調查９指出",
+   "new": "消費者調查指出",
+   "evidence": "p.142「Gartner 2025 年消費者調查⁹指出」，9 是註腳上標，依設計應去掉",
+   "confidence": "high",
+   "batch": "C",
+   "verdict": "accept",
+   "verify_reason": "p.142「消費者調查⁹指出」，９ 為上標註腳號，R1 刪除。",
+   "applied": true
+  },
+  {
+   "pid": "D-01",
+   "aid": "a04",
+   "hunks": [],
+   "type": "structure",
+   "page": 32,
+   "old": "同時，\n\n<!-- p.32 -->\n\n在高度碎片化",
+   "new": "<!-- p.32 -->\n\n同時，在高度碎片化",
+   "evidence": "p.32 左欄開頭：「並存。」空行後「同時，在高度碎片化的媒體環境中，盲目投放已經難以創造真正的成效。」——「同時，」與後文同一段，且在 p.32；網站把它拆成 p.31 的獨立段落",
+   "confidence": "high",
+   "batch": "D",
+   "verdict": "accept",
+   "verify_reason": "p.31 右欄以「讓效率與質感能夠」結束，p.32 左欄「並存。」後新段「同時，在高度碎片化的媒體環境中…」；「同時，」整個短語被切到 p.31 並拆成獨立段（R7 例外），改正後段落與頁碼正確",
+   "applied": true
+  },
+  {
+   "pid": "D-02",
+   "aid": "a08",
+   "hunks": [
+    "a08-002"
+   ],
+   "type": "structure",
+   "page": 58,
+   "old": "## 娛樂與運動如何累積品牌心智資產？\n\ndentsu sports & entertainment Entertainment Marketing Senior Director 何華軒｜Louis Ho\n\n品牌可以購買曝光，卻無法購買記憶。娛樂與運動透過真實情緒與體驗創造共同記憶，是累積品牌心智資產的關鍵。\n\n當注意力成為稀缺資源\n\n",
+   "new": "## 當注意力成為稀缺資源\n\n## 娛樂與運動如何累積品牌心智資產？\n\ndentsu sports & entertainment Entertainment Marketing Senior Director 何華軒｜Louis Ho\n\n品牌可以購買曝光，卻無法購買記憶。娛樂與運動透過真實情緒與體驗創造共同記憶，是累積品牌心智資產的關鍵。\n\n",
+   "evidence": "p.58 封面：標題區第一行細體「當注意力成為稀缺資源」，下接粗體「娛樂與運動／如何累積品牌心智資產？」；網站把引題放到導言後當內文（比照 a13「## 在注意力被 AI 稀釋的時代」多行標題的寫法）",
+   "confidence": "high",
+   "batch": "D",
+   "verdict": "accept",
+   "verify_reason": "p.58 標題區首行細體「當注意力成為稀缺資源」，下接粗體主標「娛樂與運動／如何累積品牌心智資產？」；依 R2 改成主標前第一行 ##，導言與署名不變",
+   "applied": true
+  },
+  {
+   "pid": "D-03",
+   "aid": "a08",
+   "hunks": [],
+   "type": "structure",
+   "page": 65,
+   "old": "因此，\n\n<!-- p.65 -->\n\n娛樂與運動之所以重要",
+   "new": "<!-- p.65 -->\n\n因此，娛樂與運動之所以重要",
+   "evidence": "p.64 右欄以「…創造無法被複製的共同記憶。」結束；p.65 圖6下方內文開頭「因此，娛樂與運動之所以重要，正是因為它們能夠將 Attention 轉化為 Memory。」",
+   "confidence": "high",
+   "batch": "D",
+   "verdict": "accept",
+   "verify_reason": "p.64 右欄以「…創造無法被複製的共同記憶。」結束，p.65 圖6下方內文開頭「因此，娛樂與運動之所以重要…」；「因此，」被切到 p.64 且拆段（R7 例外）",
+   "applied": true
+  },
+  {
+   "pid": "D-04",
+   "aid": "a08",
+   "hunks": [
+    "a08-005",
+    "a08-006",
+    "a08-007"
+   ],
+   "type": "structure",
+   "page": 61,
+   "old": "> 圖2：遊戲 IP《憤怒鳥》電影版出到第三套，對新一代觀眾來說，憤怒鳥已經是電影明星大於遊戲明星的概念｜資料來源：派拉蒙影業\n\n> 圖1：經典動畫《魔女宅急便》改編為音樂劇，延伸至展演消費與體驗經濟，再次以新面目吸引大人小孩的注意｜資料來源：牛耳藝術 MNA 售票網6",
+   "new": "> 圖1：經典動畫《魔女宅急便》改編為音樂劇，延伸至展演消費與體驗經濟，再次以新面目吸引大人小孩的注意｜資料來源：牛耳藝術 MNA 售票網6\n\n> 圖2：遊戲 IP《憤怒鳥》電影版出到第三套，對新一代觀眾來說，憤怒鳥已經是電影明星大於遊戲明星的概念｜資料來源：派拉蒙影業",
+   "evidence": "p.61：圖1（魔女宅急便橫幅）在頁面最上方，圖2（憤怒鳥3海報）在右欄下方；網站兩則圖說都標 p.61 但順序顛倒成 圖2→圖1",
+   "confidence": "medium",
+   "batch": "D",
+   "verdict": "revise",
+   "verify_reason": "p.61 圖1（魔女宅急便）圖說在頁頂、圖2（憤怒鳥3）在右欄底，順序應為圖1→圖2；因與 D-10 old 重疊，改寫為同時去掉圖1圖說末尾的上標註腳號「⁶」（p.61 圖說「MNA 售票網⁶」），D-10 併入本筆",
+   "revised_new": "> 圖1：經典動畫《魔女宅急便》改編為音樂劇，延伸至展演消費與體驗經濟，再次以新面目吸引大人小孩的注意｜資料來源：牛耳藝術 MNA 售票網\n\n> 圖2：遊戲 IP《憤怒鳥》電影版出到第三套，對新一代觀眾來說，憤怒鳥已經是電影明星大於遊戲明星的概念｜資料來源：派拉蒙影業",
+   "applied": true
+  },
+  {
+   "pid": "D-05",
+   "aid": "a08",
+   "hunks": [],
+   "type": "extra",
+   "page": 60,
+   "old": "2.5 億元商機1，",
+   "new": "2.5 億元商機，",
+   "evidence": "p.60 右欄「創造約 2.5 億元商機¹，再創歷史新高」，1 為上標註腳號；依設計註腳上標數字不收（a07、a16 網站皆已去掉），a08 留成內文數字會讀成「商機1」",
+   "confidence": "medium",
+   "batch": "D",
+   "verdict": "accept",
+   "verify_reason": "p.60 右欄「創造約 2.5 億元商機¹，再創歷史新高」，1 為上標註腳號（註解1 見 p.65），依 R1 刪除",
+   "applied": true
+  },
+  {
+   "pid": "D-06",
+   "aid": "a08",
+   "hunks": [],
+   "type": "extra",
+   "page": 60,
+   "old": "萬人次參與2，",
+   "new": "萬人次參與，",
+   "evidence": "p.60 右欄「更吸引超過 2.8 萬人次參與²，也顯示」，2 為上標註腳號；依設計註腳上標數字不收（a07、a16 網站皆已去掉），a08 留成內文數字會讀成「商機1」",
+   "confidence": "medium",
+   "batch": "D",
+   "verdict": "accept",
+   "verify_reason": "p.60 右欄「更吸引超過 2.8 萬人次參與²，也顯示」，2 為上標註腳號，依 R1 刪除",
+   "applied": true
+  },
+  {
+   "pid": "D-07",
+   "aid": "a08",
+   "hunks": [],
+   "type": "extra",
+   "page": 61,
+   "old": "《憤怒鳥》3正式",
+   "new": "《憤怒鳥》正式",
+   "evidence": "p.61 右欄「《憤怒鳥》³ 正式宣布回歸」，3 為上標註腳號（註解3 為憤怒鳥3連結）；依設計註腳上標數字不收（a07、a16 網站皆已去掉），a08 留成內文數字會讀成「商機1」",
+   "confidence": "medium",
+   "batch": "D",
+   "verdict": "accept",
+   "verify_reason": "p.61 右欄「《憤怒鳥》³ 正式宣布回歸」，3 為上標註腳號（註解3 為 angry-birds-movie-3 連結），依 R1 刪除",
+   "applied": true
+  },
+  {
+   "pid": "D-08",
+   "aid": "a08",
+   "hunks": [],
+   "type": "extra",
+   "page": 62,
+   "old": "台灣網路報告》4，",
+   "new": "台灣網路報告》，",
+   "evidence": "p.62 左欄「TWNIC《2025 台灣網路報告》⁴，短影音」，4 為上標註腳號；依設計註腳上標數字不收（a07、a16 網站皆已去掉），a08 留成內文數字會讀成「商機1」",
+   "confidence": "medium",
+   "batch": "D",
+   "verdict": "accept",
+   "verify_reason": "p.62 左欄「TWNIC《2025 台灣網路報告》⁴，短影音」，4 為上標註腳號，依 R1 刪除",
+   "applied": true
+  },
+  {
+   "pid": "D-09",
+   "aid": "a08",
+   "hunks": [],
+   "type": "extra",
+   "page": 63,
+   "old": "奧拉娛樂5打造",
+   "new": "奧拉娛樂打造",
+   "evidence": "p.63 圖4圖說「電通娛樂攜手奧拉娛樂⁵ 打造」，5 為上標註腳號；依設計註腳上標數字不收（a07、a16 網站皆已去掉），a08 留成內文數字會讀成「商機1」",
+   "confidence": "medium",
+   "batch": "D",
+   "verdict": "accept",
+   "verify_reason": "p.63 圖4圖說「電通娛樂攜手奧拉娛樂⁵ 打造全新啦啦隊經紀模式」，5 為上標註腳號，依 R1 刪除",
+   "applied": true
+  },
+  {
+   "pid": "D-10",
+   "aid": "a08",
+   "hunks": [],
+   "type": "extra",
+   "page": 61,
+   "old": "MNA 售票網6",
+   "new": "MNA 售票網",
+   "evidence": "p.61 圖1圖說「資料來源：牛耳藝術 MNA 售票網⁶」，6 為上標註腳號；依設計註腳上標數字不收（a07、a16 網站皆已去掉），a08 留成內文數字會讀成「商機1」",
+   "confidence": "medium",
+   "batch": "D",
+   "verdict": "reject",
+   "verify_reason": "問題屬實（p.61 圖1圖說「MNA 售票網⁶」，6 為上標），但 old 與 D-04 重疊；已併入 D-04 的改寫（D-04 new 已去掉「6」），本筆不單獨套用以免衝突"
+  },
+  {
+   "pid": "D-11",
+   "aid": "a13",
+   "hunks": [
+    "a13-001",
+    "a13-003"
+   ],
+   "type": "structure",
+   "page": 116,
+   "old": "## 在注意力被 AI 稀釋的時代\n\n## 如何守住\n\n## 品牌被選擇的關鍵場域\n\n電通集團媒體事業群洞察與媒體效能領導人\n\n貝立德營運長 & 媒體實驗室所長吳宗霖｜ Jeremy Wu\n\nAI 投放與演算法讓廣告更精準，卻也讓品牌的選擇被稀釋。Share of Voice 應該要升級為 Share of Choice Context，透過系統可見度、社群信任與注意力記憶三個層次，重新建立品牌在關鍵選擇場域的占位，守住被選擇的理由。\n\n重建 SOV\n\n",
+   "new": "## 重建 SOV\n\n## 在注意力被 AI 稀釋的時代\n\n## 如何守住\n\n## 品牌被選擇的關鍵場域\n\n電通集團媒體事業群洞察與媒體效能領導人\n\n貝立德營運長 & 媒體實驗室所長吳宗霖｜ Jeremy Wu\n\nAI 投放與演算法讓廣告更精準，卻也讓品牌的選擇被稀釋。Share of Voice 應該要升級為 Share of Choice Context，透過系統可見度、社群信任與注意力記憶三個層次，重新建立品牌在關鍵選擇場域的占位，守住被選擇的理由。\n\n",
+   "evidence": "p.116 封面：標題區第一行細體「重建 SOV」，下接粗體「在注意力被 AI 稀釋的時代／如何守住／品牌被選擇的關鍵場域」；網站把引題放在導言後當內文",
+   "confidence": "high",
+   "batch": "D",
+   "verdict": "accept",
+   "verify_reason": "p.116 標題區首行細體「重建 SOV」，下接粗體「在注意力被 AI 稀釋的時代／如何守住／品牌被選擇的關鍵場域」；依 R2 移到主標前第一行 ##，R3 多行 ## 維持",
+   "applied": true
+  },
+  {
+   "pid": "D-12",
+   "aid": "a13",
+   "hunks": [],
+   "type": "structure",
+   "page": 122,
+   "old": "接著，\n\n<!-- p.122 -->\n\n再來思考",
+   "new": "<!-- p.122 -->\n\n接著，再來思考",
+   "evidence": "p.121 以「…是否能讓品牌累積長期偏好？」結束；p.122 左欄開頭「接著，再來思考跨媒體綜效。理想狀態不是每一個場域都平均做滿」",
+   "confidence": "high",
+   "batch": "D",
+   "verdict": "accept",
+   "verify_reason": "p.121 右欄以「…是否能讓品牌累積長期偏好？」結束，p.122 左欄開頭「接著，再來思考跨媒體綜效」；「接著，」被切到 p.121 且拆段（R7 例外）",
+   "applied": true
+  },
+  {
+   "pid": "D-13",
+   "aid": "a16",
+   "hunks": [
+    "a16-013"
+   ],
+   "type": "structure",
+   "page": 149,
+   "old": "一起努力吧！\n\n> 圖1：｜資料來源：電通商業顧問\n\n",
+   "new": "一起努力吧！\n\n",
+   "evidence": "p.149 只有內文結尾與註解，沒有圖1；圖1 雷達圖在 p.146 下半（與 D 下一筆搭配：移到 p.146）",
+   "confidence": "high",
+   "batch": "D",
+   "verdict": "accept",
+   "verify_reason": "p.149 只有結尾段「…一起努力吧！」與註解 1–6，沒有圖1；圖1 雷達圖在 p.146 下半，須與 D-14 同進同出",
+   "applied": true
+  },
+  {
+   "pid": "D-14",
+   "aid": "a16",
+   "hunks": [
+    "a16-013"
+   ],
+   "type": "structure",
+   "page": 146,
+   "old": "給予可落地的策略處方。\n\n",
+   "new": "給予可落地的策略處方。\n\n<!-- p.146 -->\n\n> 圖1：AI 轉型暗流雷達圖示意圖（0-100 指數｜數值越高，潛在風險越大）｜資料來源：電通商業顧問\n\n<!-- p.147 -->\n\n",
+   "evidence": "p.146 圖框左上「圖1：AI 轉型暗流雷達圖示意圖」，右上「(0-100 指數｜數值越高，潛在風險越大)」，圖下「資料來源：電通商業顧問」；網站圖說漏圖名。放在跨頁段落之後，比照 a07／a08 圖說回標頁碼的寫法",
+   "confidence": "medium",
+   "batch": "D",
+   "verdict": "revise",
+   "verify_reason": "p.146 下半圖框「圖1：AI 轉型暗流雷達圖示意圖」「(0-100 指數｜數值越高，潛在風險越大)」，圖下「資料來源：電通商業顧問」，網站漏圖名屬實；但原提案放在 p.147 段末再回標 p.146 會造成頁碼標記 147→146→147 倒退（違反 R5）。改放在 p.146 內、引用圖1 的段落之前（前一段「…以確保組織行駛在正確的轉型路徑。」之後），同頁、不倒退、不插句中",
+   "revised_old": "以確保組織行駛在正確的轉型路徑。\n\n",
+   "revised_new": "以確保組織行駛在正確的轉型路徑。\n\n> 圖1：AI 轉型暗流雷達圖示意圖（0-100 指數｜數值越高，潛在風險越大）｜資料來源：電通商業顧問\n\n",
+   "applied": true
+  },
+  {
+   "pid": "E-01",
+   "aid": "a17",
+   "hunks": [],
+   "type": "missing",
+   "page": 153,
+   "old": "Peter Drucker 曾提醒：\n\n放到今天",
+   "new": "Peter Drucker 曾提醒：\n\n行銷的目的，在於深刻理解客戶，使產品或服務契合需求。\n\n放到今天",
+   "evidence": "p.153 右欄『管理學大師 Peter Drucker 曾提醒：』下方黑底引言框：『行銷的目的，在於深刻理解客戶，使產品或服務契合需求。』屬正文流程（第 0 輪被歸為 fig 而排除，a17-003）",
+   "confidence": "high",
+   "batch": "E",
+   "verdict": "accept",
+   "verify_reason": "p.153 右欄「管理學大師 Peter Drucker 曾提醒：」下方黑底引言框「行銷的目的，在於深刻理解客戶，使產品或服務契合需求。」為冒號引出的正文，依 R6 補回",
+   "applied": true
+  },
+  {
+   "pid": "E-02",
+   "aid": "a17",
+   "hunks": [],
+   "type": "missing",
+   "page": 156,
+   "old": "Theodore Levitt 曾用一個比喻提醒：\n\n換句話說",
+   "new": "Theodore Levitt 曾用一個比喻提醒：\n\n顧客要的不是 1/4 吋的鑽頭，而是 1/4 吋的洞。\n\n換句話說",
+   "evidence": "p.156 左欄『哈佛教授 Theodore Levitt 曾用一個比喻提醒：』下方黑底引言框：『顧客要的不是 1/4 吋的鑽頭，而是 1/4 吋的洞。』（第 0 輪歸為 fig 排除，a17-007）",
+   "confidence": "high",
+   "batch": "E",
+   "verdict": "accept",
+   "verify_reason": "p.156 左欄「哈佛教授 Theodore Levitt 曾用一個比喻提醒：」下方黑底引言框「顧客要的不是 1/4 吋的鑽頭，而是 1/4 吋的洞。」，依 R6 補回；與「換句話說」同在 p.156",
+   "applied": true
+  },
+  {
+   "pid": "E-03",
+   "aid": "a18",
+   "hunks": [],
+   "type": "extra",
+   "page": 165,
+   "old": "的分析4點出",
+   "new": "的分析點出",
+   "evidence": "p.165 右欄『世界經濟論壇 2026 年的分析⁴點出同樣的道理』，4 是上標註腳號，依設計應去掉",
+   "confidence": "high",
+   "batch": "E",
+   "verdict": "accept",
+   "verify_reason": "p.165 右欄「世界經濟論壇 2026 年的分析⁴點出同樣的道理」，4 為上標註腳號，依 R1 刪除",
+   "applied": true
+  },
+  {
+   "pid": "E-04",
+   "aid": "a20",
+   "hunks": [
+    "a20-002"
+   ],
+   "type": "structure",
+   "page": 177,
+   "old": "轉移：\n\n<!-- p.178 -->\n\n當生成能力逐漸普及，內容本身將快速商品化，未來的競爭焦點不再是誰能生產內容，而是誰能穩定且持續地交付品牌辨識度。換言之，競爭力正在從 Generation Capability (生成能力) 轉向 Delivery Capability (交付能力)——AI 讓生成力變成商品 (Commodity)，而交付力將成為新的競爭力。\n\n<!-- p.177 -->\n\n| 第一階段｜創意競爭 Creative Competition 品牌比拼的是精準的消費者洞察、引人入勝的核心概念與創意表現。 第二階段｜內容供應鏈競爭 Content Supply Chain Competition 在數位媒體與社群平台興起後，品牌開始比拼速度、比拼產量、以及回應市場的能力。 第三階段｜品牌交付系統競爭 Brand Delivery System Competition 這正是我們當前邁入的全新時代。\n\n<!-- p.178 -->",
+   "new": "轉移：\n\n| 第一階段｜創意競爭 Creative Competition 品牌比拼的是精準的消費者洞察、引人入勝的核心概念與創意表現。 第二階段｜內容供應鏈競爭 Content Supply Chain Competition 在數位媒體與社群平台興起後，品牌開始比拼速度、比拼產量、以及回應市場的能力。 第三階段｜品牌交付系統競爭 Brand Delivery System Competition 這正是我們當前邁入的全新時代。\n\n<!-- p.178 -->\n\n當生成能力逐漸普及，內容本身將快速商品化，未來的競爭焦點不再是誰能生產內容，而是誰能穩定且持續地交付品牌辨識度。換言之，競爭力正在從 Generation Capability (生成能力) 轉向 Delivery Capability (交付能力)——AI 讓生成力變成商品 (Commodity)，而交付力將成為新的競爭力。",
+   "evidence": "p.177 右欄：『…三次重大的戰略轉移：』之後緊接三階段框（結尾『這正是我們當前邁入的全新時代。』），p.178 左欄頁首才是『當生成能力逐漸普及…新的競爭力。』，再接『長期以來…』",
+   "confidence": "high",
+   "batch": "E",
+   "verdict": "accept",
+   "verify_reason": "p.177 右欄「…三次重大的戰略轉移：」之後即三階段框（末句「這正是我們當前邁入的全新時代。」），p.178 左欄頁首才是「當生成能力逐漸普及…新的競爭力。」；改後頁碼 177→178 不倒退，字串原封搬移",
+   "applied": true
+  },
+  {
+   "pid": "E-05",
+   "aid": "a20",
+   "hunks": [
+    "a20-005"
+   ],
+   "type": "missing",
+   "page": 179,
+   "old": "\n\nHook Library (吸睛鉤子庫)",
+   "new": "\n\n1. Hook Library (吸睛鉤子庫)",
+   "evidence": "p.179 編號清單：『1.  Hook Library (吸睛鉤子庫)…』",
+   "confidence": "high",
+   "batch": "E",
+   "verdict": "accept",
+   "verify_reason": "p.179 右欄編號清單「1. Hook Library (吸睛鉤子庫)」，依 R4 補回「1. 」",
+   "applied": true
+  },
+  {
+   "pid": "E-06",
+   "aid": "a20",
+   "hunks": [
+    "a20-006"
+   ],
+   "type": "missing",
+   "page": 179,
+   "old": "\n\nCTA Library (行動呼籲庫)",
+   "new": "\n\n2. CTA Library (行動呼籲庫)",
+   "evidence": "p.179 編號清單：『2.  CTA Library (行動呼籲庫)…』",
+   "confidence": "high",
+   "batch": "E",
+   "verdict": "accept",
+   "verify_reason": "p.179 右欄「2. CTA Library (行動呼籲庫)」，依 R4 補回",
+   "applied": true
+  },
+  {
+   "pid": "E-07",
+   "aid": "a20",
+   "hunks": [
+    "a20-007"
+   ],
+   "type": "missing",
+   "page": 179,
+   "old": "\n\nVisual Component Library (視覺組件庫)",
+   "new": "\n\n3. Visual Component Library (視覺組件庫)",
+   "evidence": "p.179 編號清單：『3.  Visual Component Library (視覺組件庫)…』",
+   "confidence": "high",
+   "batch": "E",
+   "verdict": "accept",
+   "verify_reason": "p.179 右欄「3. Visual Component Library (視覺組件庫)」，依 R4 補回",
+   "applied": true
+  },
+  {
+   "pid": "E-08",
+   "aid": "a20",
+   "hunks": [
+    "a20-008"
+   ],
+   "type": "missing",
+   "page": 179,
+   "old": "\n\nBrand Narrative Assets (品牌敘事資產)",
+   "new": "\n\n4. Brand Narrative Assets (品牌敘事資產)",
+   "evidence": "p.179 編號清單：『4.  Brand Narrative Assets (品牌敘事資產)…』",
+   "confidence": "high",
+   "batch": "E",
+   "verdict": "accept",
+   "verify_reason": "p.179 右欄「4. Brand Narrative Assets (品牌敘事資產)」，依 R4 補回",
+   "applied": true
+  },
+  {
+   "pid": "E-09",
+   "aid": "a20",
+   "hunks": [
+    "a20-009"
+   ],
+   "type": "missing",
+   "page": 180,
+   "old": "\n\nConsistency (品牌一致性)",
+   "new": "\n\n1. Consistency (品牌一致性)",
+   "evidence": "p.180 編號清單：『1.  Consistency (品牌一致性)…』",
+   "confidence": "high",
+   "batch": "E",
+   "verdict": "accept",
+   "verify_reason": "p.180 左欄「1. Consistency (品牌一致性)」，依 R4 補回",
+   "applied": true
+  },
+  {
+   "pid": "E-10",
+   "aid": "a20",
+   "hunks": [
+    "a20-010"
+   ],
+   "type": "missing",
+   "page": 180,
+   "old": "\n\nCompliance (授權與法規)",
+   "new": "\n\n2. Compliance (授權與法規)",
+   "evidence": "p.180 編號清單：『2.  Compliance (授權與法規)…』",
+   "confidence": "high",
+   "batch": "E",
+   "verdict": "accept",
+   "verify_reason": "p.180 左欄「2. Compliance (授權與法規)」，依 R4 補回",
+   "applied": true
+  },
+  {
+   "pid": "E-11",
+   "aid": "a20",
+   "hunks": [
+    "a20-011"
+   ],
+   "type": "missing",
+   "page": 180,
+   "old": "\n\nReadiness (媒體就緒度)",
+   "new": "\n\n3. Readiness (媒體就緒度)",
+   "evidence": "p.180 編號清單：『3.  Readiness (媒體就緒度)…』",
+   "confidence": "high",
+   "batch": "E",
+   "verdict": "accept",
+   "verify_reason": "p.180 左欄「3. Readiness (媒體就緒度)」，依 R4 補回",
+   "applied": true
+  },
+  {
+   "pid": "E-12",
+   "aid": "a20",
+   "hunks": [],
+   "type": "extra",
+   "page": 177,
+   "old": "管理的嚴峻考驗。¹",
+   "new": "管理的嚴峻考驗。",
+   "evidence": "p.177 左欄『…管理的嚴峻考驗。¹』，數字是上標註腳號；依判讀規則 2 應去掉（其他 21 篇都沒有留上標）",
+   "confidence": "medium",
+   "batch": "E",
+   "verdict": "accept",
+   "verify_reason": "p.177 左欄「…管理的嚴峻考驗。¹」，上標註腳號，依 R1 刪除",
+   "applied": true
+  },
+  {
+   "pid": "E-13",
+   "aid": "a20",
+   "hunks": [],
+   "type": "extra",
+   "page": 177,
+   "old": "同質化內容洪流。²",
+   "new": "同質化內容洪流。",
+   "evidence": "p.177 左欄『…所堆疊出的同質化內容洪流。²』，數字是上標註腳號；依判讀規則 2 應去掉（其他 21 篇都沒有留上標）",
+   "confidence": "medium",
+   "batch": "E",
+   "verdict": "accept",
+   "verify_reason": "p.177 左欄「…所堆疊出的同質化內容洪流。²」，上標註腳號，依 R1 刪除",
+   "applied": true
+  },
+  {
+   "pid": "E-14",
+   "aid": "a20",
+   "hunks": [],
+   "type": "extra",
+   "page": 178,
+   "old": "(Content Governance) 上。³",
+   "new": "(Content Governance) 上。",
+   "evidence": "p.178『…內容治理 (Content Governance) 上。³』，數字是上標註腳號；依判讀規則 2 應去掉（其他 21 篇都沒有留上標）",
+   "confidence": "medium",
+   "batch": "E",
+   "verdict": "accept",
+   "verify_reason": "p.178 左欄「…內容治理 (Content Governance) 上。³」，上標註腳號，依 R1 刪除",
+   "applied": true
+  },
+  {
+   "pid": "E-15",
+   "aid": "a20",
+   "hunks": [],
+   "type": "extra",
+   "page": 178,
+   "old": "的內容堆積。²",
+   "new": "的內容堆積。",
+   "evidence": "p.178 右欄『…內容堆積。²』，數字是上標註腳號；依判讀規則 2 應去掉（其他 21 篇都沒有留上標）",
+   "confidence": "medium",
+   "batch": "E",
+   "verdict": "accept",
+   "verify_reason": "p.178 右欄頂「…實質價值的內容堆積。² 數據顯示」，上標註腳號，依 R1 刪除",
+   "applied": true
+  },
+  {
+   "pid": "E-16",
+   "aid": "a20",
+   "hunks": [],
+   "type": "extra",
+   "page": 178,
+   "old": "專業信任感。²",
+   "new": "專業信任感。",
+   "evidence": "p.178 右欄『…專業信任感。²』，數字是上標註腳號；依判讀規則 2 應去掉（其他 21 篇都沒有留上標）",
+   "confidence": "medium",
+   "batch": "E",
+   "verdict": "accept",
+   "verify_reason": "p.178 右欄「…品牌的專業信任感。² 這對品牌而言」，上標註腳號，依 R1 刪除",
+   "applied": true
+  },
+  {
+   "pid": "E-17",
+   "aid": "a20",
+   "hunks": [],
+   "type": "extra",
+   "page": 178,
+   "old": "的重要觀點。⁴",
+   "new": "的重要觀點。",
+   "evidence": "p.178 右欄『…重要觀點。⁴』，數字是上標註腳號；依判讀規則 2 應去掉（其他 21 篇都沒有留上標）",
+   "confidence": "medium",
+   "batch": "E",
+   "verdict": "accept",
+   "verify_reason": "p.178 右欄「…持續提出的重要觀點。⁴」，上標註腳號，依 R1 刪除",
+   "applied": true
+  },
+  {
+   "pid": "E-18",
+   "aid": "a20",
+   "hunks": [],
+   "type": "extra",
+   "page": 178,
+   "old": "」移動。⁴",
+   "new": "」移動。",
+   "evidence": "p.178 右欄『「手前 (前置作業)」移動。⁴』，數字是上標註腳號；依判讀規則 2 應去掉（其他 21 篇都沒有留上標）",
+   "confidence": "medium",
+   "batch": "E",
+   "verdict": "accept",
+   "verify_reason": "p.178 右欄「「手前 (前置作業)」移動。⁴ 過去創意人」，上標註腳號，依 R1 刪除",
+   "applied": true
+  },
+  {
+   "pid": "E-19",
+   "aid": "a20",
+   "hunks": [],
+   "type": "extra",
+   "page": 179,
+   "old": "電通提出５ 「",
+   "new": "電通提出「",
+   "evidence": "p.179 左欄『這正是電通提出⁵「Creator-in-the-Loop…』，數字是上標註腳號；依判讀規則 2 應去掉（其他 21 篇都沒有留上標）",
+   "confidence": "medium",
+   "batch": "E",
+   "verdict": "accept",
+   "verify_reason": "p.179 左欄「這正是電通提出⁵「Creator-in-the-Loop(創意人在迴路)」」，5 為上標註腳號，依 R1 刪除",
+   "applied": true
+  },
+  {
+   "pid": "E-20",
+   "aid": "a20",
+   "hunks": [],
+   "type": "extra",
+   "page": 180,
+   "old": "4.3 倍6。",
+   "new": "4.3 倍。",
+   "evidence": "p.180 左欄『…降低了 4.3 倍⁶。』，數字是上標註腳號；依判讀規則 2 應去掉（其他 21 篇都沒有留上標）",
+   "confidence": "medium",
+   "batch": "E",
+   "verdict": "accept",
+   "verify_reason": "p.180 左欄「…顯著降低了 4.3 倍⁶。」，上標註腳號，依 R1 刪除",
+   "applied": true
+  },
+  {
+   "pid": "E-21",
+   "aid": "a20",
+   "hunks": [],
+   "type": "extra",
+   "page": 180,
+   "old": "教科書級的答案7。",
+   "new": "教科書級的答案。",
+   "evidence": "p.180 右欄底『…教科書級的答案⁷。』，數字是上標註腳號；依判讀規則 2 應去掉（其他 21 篇都沒有留上標）",
+   "confidence": "medium",
+   "batch": "E",
+   "verdict": "accept",
+   "verify_reason": "p.180 右欄底「…提供了一個教科書級的答案⁷。」，上標註腳號，依 R1 刪除",
+   "applied": true
+  },
+  {
+   "pid": "E-22",
+   "aid": "a20",
+   "hunks": [],
+   "type": "extra",
+   "page": 181,
+   "old": "(約 6 小時)7。",
+   "new": "(約 6 小時)。",
+   "evidence": "p.181 左欄『…0.25 天 (約 6 小時)⁷。』，數字是上標註腳號；依判讀規則 2 應去掉（其他 21 篇都沒有留上標）",
+   "confidence": "medium",
+   "batch": "E",
+   "verdict": "accept",
+   "verify_reason": "p.181 左欄「…縮短至 0.25 天 (約 6 小時)⁷。」，上標註腳號，依 R1 刪除",
+   "applied": true
+  },
+  {
+   "pid": "E-23",
+   "aid": "a20",
+   "hunks": [],
+   "type": "extra",
+   "page": 181,
+   "old": "法規合規率7。",
+   "new": "法規合規率。",
+   "evidence": "p.181 左欄『…高度品牌與法規合規率⁷。』，數字是上標註腳號；依判讀規則 2 應去掉（其他 21 篇都沒有留上標）",
+   "confidence": "medium",
+   "batch": "E",
+   "verdict": "accept",
+   "verify_reason": "p.181 左欄「…高度品牌與法規合規率⁷。」，上標註腳號，依 R1 刪除",
+   "applied": true
+  },
+  {
+   "pid": "E-24",
+   "aid": "a21",
+   "hunks": [
+    "a21-001",
+    "a21-002"
+   ],
+   "type": "structure",
+   "page": 182,
+   "old": "<!-- p.182 -->\n\n## 解碼",
+   "new": "<!-- p.182 -->\n\n## 超越效率\n\n## 解碼",
+   "evidence": "p.182 藍底標題區：細字引題『超越效率』在主標『解碼 AI 製作驅動的創意代理商』正上方；比照 a04、a16、a20 多行標題拆成多個 ## 的慣例（須與 E-25 一起套用）",
+   "confidence": "medium",
+   "batch": "E",
+   "verdict": "accept",
+   "verify_reason": "p.182 藍底標題區首行細體「超越效率」，下接主標「解碼 AI 製作驅動的／創意代理商」；依 R2 補為主標前 ##，與 E-25 同進同出",
+   "applied": true
+  },
+  {
+   "pid": "E-25",
+   "aid": "a21",
+   "hunks": [
+    "a21-001",
+    "a21-002"
+   ],
+   "type": "structure",
+   "page": 182,
+   "old": "行銷成效。\n\n超越效率\n\n",
+   "new": "行銷成效。\n\n",
+   "evidence": "p.182 導言引言框之後沒有『超越效率』這一段（須與 E-24 一起套用）",
+   "confidence": "medium",
+   "batch": "E",
+   "verdict": "accept",
+   "verify_reason": "p.182 導言引言框「…兼顧規模化、創意品質與行銷成效。」之後沒有「超越效率」段，刪除孤立段，與 E-24 同進同出",
+   "applied": true
+  },
+  {
+   "pid": "E-26",
+   "aid": "a21",
+   "hunks": [
+    "a21-007"
+   ],
+   "type": "page",
+   "page": 185,
+   "old": "<!-- p.185 -->\n\n從光影",
+   "new": "<!-- p.185 -->\n\n> 圖1&2: 圖片為數位行銷廣告影片的拍攝現場，整體視覺概念從足球延伸。即使沒有真正踏上球場，仍能透過場景、動作與影像設計，營造出身歷其境的足球臨場感。｜資料來源: Tag\n\n從光影",
+   "evidence": "p.185 頁頂兩張足球拍攝照片下方即『圖 1&2: 圖片為數位行銷廣告影片的拍攝現場…資料來源 : Tag』，在『詞 (master prompt)」。從光影…』之前（須與 E-27 一起套用）",
+   "confidence": "high",
+   "batch": "E",
+   "verdict": "accept",
+   "verify_reason": "p.185 頁頂兩張足球拍攝照片，下方圖說「圖 1&2: 圖片為數位行銷廣告影片的拍攝現場…資料來源 : Tag」，其後才是「詞 (master prompt)」。從光影…」；放在 p.185 頁首、句界處（非句中），與 E-27 同進同出",
+   "applied": true
+  },
+  {
+   "pid": "E-27",
+   "aid": "a21",
+   "hunks": [
+    "a21-007"
+   ],
+   "type": "page",
+   "page": 186,
+   "old": "再培訓計畫。\n\n<!-- p.185 -->\n\n> 圖1&2: 圖片為數位行銷廣告影片的拍攝現場，整體視覺概念從足球延伸。即使沒有真正踏上球場，仍能透過場景、動作與影像設計，營造出身歷其境的足球臨場感。｜資料來源: Tag\n\n<!-- p.186 -->\n\n生成式",
+   "new": "再培訓計畫。\n\n生成式",
+   "evidence": "p.186 左欄『…再培訓計畫。』之後直接接『生成式 AI 系統固然複雜…』，中間沒有圖說（須與 E-26 一起套用）",
+   "confidence": "high",
+   "batch": "E",
+   "verdict": "accept",
+   "verify_reason": "p.186 左欄「…提供符合該職位要求的再培訓計畫。」後直接接「生成式 AI 系統固然複雜…」，無圖說；刪除後頁碼不再 186→185→186 倒退，與 E-26 同進同出",
+   "applied": true
+  },
+  {
+   "pid": "E-28",
+   "aid": "a22",
+   "hunks": [
+    "a22-002"
+   ],
+   "type": "structure",
+   "page": 188,
+   "old": "<!-- p.188 -->\n\n## 保健",
+   "new": "<!-- p.188 -->\n\n## AI Agent 走進消費旅程：\n\n## 保健",
+   "evidence": "p.188 藍底標題區：細字『AI Agent 走進消費旅程：』在主標『保健、美妝與零售如何把 AI 變成行動能力』正上方；比照多行標題拆 ## 慣例（須與 E-29 一起套用）",
+   "confidence": "high",
+   "batch": "E",
+   "verdict": "accept",
+   "verify_reason": "p.188 藍底標題區首行細體「AI Agent 走進消費旅程：」，下接主標「保健、美妝與零售／如何把 AI 變成行動能力」；依 R2 補為主標前 ##，與 E-29 同進同出",
+   "applied": true
+  },
+  {
+   "pid": "E-29",
+   "aid": "a22",
+   "hunks": [
+    "a22-002"
+   ],
+   "type": "structure",
+   "page": 188,
+   "old": "權限框架。\n\nAI Agent 走進消費旅程：\n\n",
+   "new": "權限框架。\n\n",
+   "evidence": "p.188 導言引言框之後沒有這一段（須與 E-28 一起套用）",
+   "confidence": "high",
+   "batch": "E",
+   "verdict": "accept",
+   "verify_reason": "p.188 導言引言框末「…一套決定自主程度的權限框架。」之後沒有「AI Agent 走進消費旅程：」段，刪除孤立段，與 E-28 同進同出",
+   "applied": true
+  },
+  {
+   "pid": "E-30",
+   "aid": "a22",
+   "hunks": [
+    "a22-017"
+   ],
+   "type": "page",
+   "page": 194,
+   "old": "分成四層：\n\n<!-- p.195 -->",
+   "new": "分成四層：\n\n| 權限層級 Agent 能做什麼 企業需確認 觀察／理解 讀取、整理資料，辨識需求與情境。 資料來源是否可靠？是否取得必要同意？ 推薦 比較與排序選項，提出商品、內容或服務建議。 推薦規則、知識來源與錯誤容忍度是否清楚？ 決策 依既定條件替使用者選擇下一步。 決策是否可撤回？何時需要人工確認？ 行動 寫入系統、建立購物車、觸發 CRM、預約、下單或啟動履約。 可執行範圍、金額限制、稽核與回復機制是否明確？\n\n<!-- p.195 -->",
+   "evidence": "p.194 右欄『…Agent 的權限可以分成四層：』之後，頁底即整張『權限層級／Agent 能做什麼／企業需確認』表格，全表都在 p.194（須與 E-31 一起套用）",
+   "confidence": "high",
+   "batch": "E",
+   "verdict": "accept",
+   "verify_reason": "p.194 右欄「…Agent 的權限可以分成四層：」之後頁底即整張「權限層級／Agent 能做什麼／企業需確認」四列表（觀察／理解、推薦、決策、行動），全表在 p.194；表格字串原封搬移，與 E-31 同進同出",
+   "applied": true
+  },
+  {
+   "pid": "E-31",
+   "aid": "a22",
+   "hunks": [
+    "a22-017"
+   ],
+   "type": "page",
+   "page": 195,
+   "old": "越高越好。\n\n<!-- p.194 -->\n\n| 權限層級 Agent 能做什麼 企業需確認 觀察／理解 讀取、整理資料，辨識需求與情境。 資料來源是否可靠？是否取得必要同意？ 推薦 比較與排序選項，提出商品、內容或服務建議。 推薦規則、知識來源與錯誤容忍度是否清楚？ 決策 依既定條件替使用者選擇下一步。 決策是否可撤回？何時需要人工確認？ 行動 寫入系統、建立購物車、觸發 CRM、預約、下單或啟動履約。 可執行範圍、金額限制、稽核與回復機制是否明確？\n\n<!-- p.195 -->\n\n## 電通",
+   "new": "越高越好。\n\n## 電通",
+   "evidence": "p.195 左欄『…Agent 的成熟度不等於自主權越高越好。』之後直接是標題『電通思維行動建議』，沒有表格（須與 E-30 一起套用）",
+   "confidence": "high",
+   "batch": "E",
+   "verdict": "accept",
+   "verify_reason": "p.195 左欄「…Agent 的成熟度不等於自主權越高越好。」之後直接是標題「電通思維行動建議」，無表格；刪除後頁碼不再 195→194→195 倒退，與 E-30 同進同出",
+   "applied": true
+  },
+  {
+   "pid": "X-01",
+   "aid": "a14",
+   "type": "structure",
+   "page": 128,
+   "rule": "R2",
+   "old": "<!-- p.128 -->\n\n## 「衡斷力",
+   "new": "<!-- p.128 -->\n\n## AI普及下的演算法世代\n\n## 「衡斷力",
+   "evidence": "p.128 印刷版主標上方的引題「AI普及下的演算法世代」",
+   "reason": "引題放回主標前",
+   "verdict": "accept",
+   "verifier": "lead（主導者依仲裁規則 R2/R8 直接處理，頁面圖片在 scratchpad/lead）",
+   "applied": true
+  },
+  {
+   "pid": "X-01b",
+   "aid": "a14",
+   "type": "extra",
+   "page": 128,
+   "rule": "R2",
+   "old": "\n\nAI普及下的演算法世代\n\n<!-- p.129 -->",
+   "new": "\n\n<!-- p.129 -->",
+   "evidence": "同上，移除導言後的孤立段落",
+   "reason": "與 X-01 成對",
+   "verdict": "accept",
+   "verifier": "lead（主導者依仲裁規則 R2/R8 直接處理，頁面圖片在 scratchpad/lead）",
+   "applied": true
+  },
+  {
+   "pid": "X-02",
+   "aid": "a12",
+   "type": "structure",
+   "page": 96,
+   "rule": "R2",
+   "old": "<!-- p.96 -->\n\n## People Model 讓消費者研究",
+   "new": "<!-- p.96 -->\n\n## <特別企劃>\n\n## People Model 讓消費者研究",
+   "evidence": "p.96 印刷版主標上方「< 特別企劃>」",
+   "reason": "引題放回主標前",
+   "verdict": "accept",
+   "verifier": "lead（主導者依仲裁規則 R2/R8 直接處理，頁面圖片在 scratchpad/lead）",
+   "applied": true
+  },
+  {
+   "pid": "X-02b",
+   "aid": "a12",
+   "type": "extra",
+   "page": 96,
+   "rule": "R2",
+   "old": "\n\n<特別企劃>\n\n<!-- p.97 -->",
+   "new": "\n\n<!-- p.97 -->",
+   "evidence": "同上",
+   "reason": "與 X-02 成對",
+   "verdict": "accept",
+   "verifier": "lead（主導者依仲裁規則 R2/R8 直接處理，頁面圖片在 scratchpad/lead）",
+   "applied": true
+  },
+  {
+   "pid": "X-03",
+   "aid": "a12",
+   "type": "missing",
+   "page": 100,
+   "rule": "R8",
+   "old": "## People Model 是通過真人驗證的 AI 模擬",
+   "new": "專家看法｜楊立偉 博士　國立臺灣大學資訊管理學系教授、意藍資訊股份有限公司創辦人及總經理\n\n## People Model 是通過真人驗證的 AI 模擬",
+   "evidence": "p.100 側欄「專家看法　楊立偉 博士」",
+   "reason": "補署名",
+   "verdict": "accept",
+   "verifier": "lead（主導者依仲裁規則 R2/R8 直接處理，頁面圖片在 scratchpad/lead）",
+   "applied": true
+  },
+  {
+   "pid": "X-04",
+   "aid": "a12",
+   "type": "missing",
+   "page": 103,
+   "rule": "R8",
+   "old": "過去 Product Innovation 的流程最大的挑戰",
+   "new": "專家看法｜Ella Liu 劉羽芸　Ex- VP of Marketing, Coca-Cola Greater China & Mongolia\n\n過去 Product Innovation 的流程最大的挑戰",
+   "evidence": "p.103 側欄「專家看法　Ella Liu 劉羽芸」",
+   "reason": "補署名",
+   "verdict": "accept",
+   "verifier": "lead（主導者依仲裁規則 R2/R8 直接處理，頁面圖片在 scratchpad/lead）",
+   "applied": true
+  },
+  {
+   "pid": "X-05",
+   "aid": "a12",
+   "type": "missing",
+   "page": 107,
+   "rule": "R8",
+   "old": "我們從傳統的問卷調查中，得到了一些支持者",
+   "new": "專家看法｜駱健正 執行長　石安牧場／上品王食品執行長\n\n我們從傳統的問卷調查中，得到了一些支持者",
+   "evidence": "p.107 側欄「專家看法　駱健正 執行長」",
+   "reason": "補署名",
+   "verdict": "accept",
+   "verifier": "lead（主導者依仲裁規則 R2/R8 直接處理，頁面圖片在 scratchpad/lead）",
+   "applied": true
+  },
+  {
+   "pid": "X-06",
+   "aid": "a12",
+   "type": "missing",
+   "page": 111,
+   "rule": "R8",
+   "old": "以 CCS 這類大型統計調查資料微調 People Model",
+   "new": "專家看法｜藍俊宏 博士　國立臺灣大學工業工程學研究所副教授\n\n以 CCS 這類大型統計調查資料微調 People Model",
+   "evidence": "p.111 側欄「專家看法　藍俊宏 博士」",
+   "reason": "補署名",
+   "verdict": "accept",
+   "verifier": "lead（主導者依仲裁規則 R2/R8 直接處理，頁面圖片在 scratchpad/lead）",
+   "applied": true
+  },
+  {
+   "pid": "Y-01",
+   "aid": "a16",
+   "page": 147,
+   "rule": "R7",
+   "type": "structure",
+   "old": "從企業文化與組織配套角度出發，\n\n<!-- p.147 -->\n\n",
+   "new": "從企業文化與\n\n<!-- p.147 -->\n\n組織配套角度出發，\n\n",
+   "evidence": "p.147 首行「組織配套角度出發，電通顧問以全員線上問卷方」",
+   "verdict": "accept",
+   "verifier": "lead（第二輪，覆核員回報、主導者對照頁面圖片）",
+   "applied": true
+  },
+  {
+   "pid": "Y-02",
+   "aid": "a21",
+   "page": 186,
+   "rule": "R7",
+   "type": "structure",
+   "old": "市場對 AI 製作人與 AI 提示詞工程師的需求也持續增加，\n\n<!-- p.186 -->\n\n",
+   "new": "市場對\n\n<!-- p.186 -->\n\nAI 製作人與 AI 提示詞工程師的需求也持續增加，\n\n",
+   "evidence": "p.186 首行「AI 製作人與 AI 提示詞工程師的需求也持續增加，」；p.185 末行止於「市場對」",
+   "verdict": "accept",
+   "verifier": "lead（第二輪，覆核員回報、主導者對照頁面圖片）",
+   "applied": true
+  },
+  {
+   "pid": "Y-03",
+   "aid": "a04",
+   "page": 34,
+   "rule": "R5",
+   "type": "structure",
+   "old": "\n\n<!-- p.34 -->\n\n> 圖2：電通 Creative Practice提出具體且可落地的 Creative E2E 服務矩陣及AI-Powered IMC 方案，協助企業同時兼顧短期營收變現與長期AI 轉型｜資料來源：dentsu Creative\n\n<!-- p.35 -->",
+   "new": "",
+   "evidence": "圖2 圖說在 p.34；原本放在 p.35 內文之後，頁碼標記倒退",
+   "verdict": "accept",
+   "verifier": "lead（第二輪，覆核員回報、主導者對照頁面圖片）",
+   "applied": true
+  },
+  {
+   "pid": "Y-04",
+   "aid": "a04",
+   "page": 34,
+   "rule": "R5",
+   "type": "structure",
+   "old": "動態顧客旅程。\n\n同時，我們也將協助 B2B",
+   "new": "動態顧客旅程。\n\n> 圖2：電通 Creative Practice提出具體且可落地的 Creative E2E 服務矩陣及AI-Powered IMC 方案，協助企業同時兼顧短期營收變現與長期AI 轉型｜資料來源：dentsu Creative\n\n同時，我們也將協助 B2B",
+   "evidence": "同上，移到 p.34 的段落之間（與 Y-03 成對）",
+   "verdict": "accept",
+   "verifier": "lead（第二輪，覆核員回報、主導者對照頁面圖片）",
+   "applied": true
+  },
+  {
+   "pid": "Y-05",
+   "aid": "a08",
+   "page": 61,
+   "rule": "R5",
+   "type": "structure",
+   "old": "\n\n<!-- p.61 -->\n\n> 圖1：經典動畫《魔女宅急便》改編為音樂劇，延伸至展演消費與體驗經濟，再次以新面目吸引大人小孩的注意｜資料來源：牛耳藝術 MNA 售票網\n\n> 圖2：遊戲 IP《憤怒鳥》電影版出到第三套，對新一代觀眾來說，憤怒鳥已經是電影明星大於遊戲明星的概念｜資料來源：派拉蒙影業\n\n<!-- p.62 -->",
+   "new": "",
+   "evidence": "圖1、圖2 圖說在 p.61；原本放在 p.62 內文之後，頁碼標記倒退",
+   "verdict": "accept",
+   "verifier": "lead（第二輪，覆核員回報、主導者對照頁面圖片）",
+   "applied": true
+  },
+  {
+   "pid": "Y-06",
+   "aid": "a08",
+   "page": 61,
+   "rule": "R5",
+   "type": "structure",
+   "old": "\n\n## 情懷比流量更長久",
+   "new": "\n\n> 圖1：經典動畫《魔女宅急便》改編為音樂劇，延伸至展演消費與體驗經濟，再次以新面目吸引大人小孩的注意｜資料來源：牛耳藝術 MNA 售票網\n\n> 圖2：遊戲 IP《憤怒鳥》電影版出到第三套，對新一代觀眾來說，憤怒鳥已經是電影明星大於遊戲明星的概念｜資料來源：派拉蒙影業\n\n## 情懷比流量更長久",
+   "evidence": "同上，移到 p.61 段落之間（與 Y-05 成對）",
+   "verdict": "accept",
+   "verifier": "lead（第二輪，覆核員回報、主導者對照頁面圖片）",
+   "applied": true
+  },
+  {
+   "pid": "Y-07",
+   "aid": "a08",
+   "page": 64,
+   "rule": "R5",
+   "type": "structure",
+   "old": "\n\n<!-- p.64 -->\n\n> 圖5：透過原創娛樂 IP《鑑定師 The Inspector Global》，電通娛樂示範如何把線上粉絲熱情轉化為線下體驗與可衡量的商業成長｜資料來源：截自鑑定師 FB 粉專 & YT 頻道\n\n<!-- p.65 -->",
+   "new": "",
+   "evidence": "圖5 圖說在 p.64；原本放在 p.65 內文之後",
+   "verdict": "accept",
+   "verifier": "lead（第二輪，覆核員回報、主導者對照頁面圖片）",
+   "applied": true
+  },
+  {
+   "pid": "Y-08",
+   "aid": "a08",
+   "page": 64,
+   "rule": "R5",
+   "type": "structure",
+   "old": "\n\n<!-- p.65 -->",
+   "new": "\n\n> 圖5：透過原創娛樂 IP《鑑定師 The Inspector Global》，電通娛樂示範如何把線上粉絲熱情轉化為線下體驗與可衡量的商業成長｜資料來源：截自鑑定師 FB 粉專 & YT 頻道\n\n<!-- p.65 -->",
+   "evidence": "同上，移到 p.64 結尾（與 Y-07 成對）",
+   "verdict": "accept",
+   "verifier": "lead（第二輪，覆核員回報、主導者對照頁面圖片）",
+   "applied": true
+  },
+  {
+   "pid": "Y-10",
+   "aid": "a05",
+   "page": 40,
+   "rule": "R4",
+   "type": "structure",
+   "old": "## 讓品牌進入 AI 代理的決策語境\n",
+   "new": "## 1. 讓品牌進入 AI 代理的決策語境\n",
+   "evidence": "p.40–41 五個小標前有編號 1",
+   "verdict": "accept",
+   "verifier": "lead（第二輪，覆核員回報、主導者對照頁面圖片）",
+   "applied": true
+  },
+  {
+   "pid": "Y-11",
+   "aid": "a05",
+   "page": 40,
+   "rule": "R4",
+   "type": "structure",
+   "old": "## 重新投資真實的人性洞察\n",
+   "new": "## 2. 重新投資真實的人性洞察\n",
+   "evidence": "p.40–41 五個小標前有編號 2",
+   "verdict": "accept",
+   "verifier": "lead（第二輪，覆核員回報、主導者對照頁面圖片）",
+   "applied": true
+  },
+  {
+   "pid": "Y-12",
+   "aid": "a05",
+   "page": 40,
+   "rule": "R4",
+   "type": "structure",
+   "old": "## 建立全旅程內容與體驗策略\n",
+   "new": "## 3. 建立全旅程內容與體驗策略\n",
+   "evidence": "p.40–41 五個小標前有編號 3",
+   "verdict": "accept",
+   "verifier": "lead（第二輪，覆核員回報、主導者對照頁面圖片）",
+   "applied": true
+  },
+  {
+   "pid": "Y-13",
+   "aid": "a05",
+   "page": 41,
+   "rule": "R4",
+   "type": "structure",
+   "old": "## 把社群與文化視為成長資產\n",
+   "new": "## 4. 把社群與文化視為成長資產\n",
+   "evidence": "p.40–41 五個小標前有編號 4",
+   "verdict": "accept",
+   "verifier": "lead（第二輪，覆核員回報、主導者對照頁面圖片）",
+   "applied": true
+  },
+  {
+   "pid": "Y-14",
+   "aid": "a05",
+   "page": 41,
+   "rule": "R4",
+   "type": "structure",
+   "old": "## 讓策略成為持續驅動成長的營運機制\n",
+   "new": "## 5. 讓策略成為持續驅動成長的營運機制\n",
+   "evidence": "p.40–41 五個小標前有編號 5",
+   "verdict": "accept",
+   "verifier": "lead（第二輪，覆核員回報、主導者對照頁面圖片）",
+   "applied": true
+  },
+  {
+   "pid": "Y-20",
+   "aid": "a09",
+   "page": 70,
+   "rule": "R4",
+   "type": "structure",
+   "old": "\n\n鋪在對的地方",
+   "new": "\n\n1. 鋪在對的地方",
+   "evidence": "p.70 五大關鍵舉措前有編號 1",
+   "verdict": "accept",
+   "verifier": "lead（第二輪，覆核員回報、主導者對照頁面圖片）",
+   "applied": true
+  },
+  {
+   "pid": "Y-21",
+   "aid": "a09",
+   "page": 70,
+   "rule": "R4",
+   "type": "structure",
+   "old": "\n\n內容要「具體」",
+   "new": "\n\n2. 內容要「具體」",
+   "evidence": "p.70 五大關鍵舉措前有編號 2",
+   "verdict": "accept",
+   "verifier": "lead（第二輪，覆核員回報、主導者對照頁面圖片）",
+   "applied": true
+  },
+  {
+   "pid": "Y-22",
+   "aid": "a09",
+   "page": 70,
+   "rule": "R4",
+   "type": "structure",
+   "old": "\n\n讓對的賣點「反覆",
+   "new": "\n\n3. 讓對的賣點「反覆",
+   "evidence": "p.70 五大關鍵舉措前有編號 3",
+   "verdict": "accept",
+   "verifier": "lead（第二輪，覆核員回報、主導者對照頁面圖片）",
+   "applied": true
+  },
+  {
+   "pid": "Y-23",
+   "aid": "a09",
+   "page": 70,
+   "rule": "R4",
+   "type": "structure",
+   "old": "\n\n用在地、自然的語言",
+   "new": "\n\n4. 用在地、自然的語言",
+   "evidence": "p.70 五大關鍵舉措前有編號 4",
+   "verdict": "accept",
+   "verifier": "lead（第二輪，覆核員回報、主導者對照頁面圖片）",
+   "applied": true
+  },
+  {
+   "pid": "Y-24",
+   "aid": "a09",
+   "page": 70,
+   "rule": "R4",
+   "type": "structure",
+   "old": "\n\n管理的是「語意」",
+   "new": "\n\n5. 管理的是「語意」",
+   "evidence": "p.70 五大關鍵舉措前有編號 5",
+   "verdict": "accept",
+   "verifier": "lead（第二輪，覆核員回報、主導者對照頁面圖片）",
+   "applied": true
+  },
+  {
+   "pid": "Y-30",
+   "aid": "a12",
+   "page": 97,
+   "rule": "R6",
+   "type": "structure",
+   "old": "<!-- p.97 -->\n\n25 歲的 Lisa",
+   "new": "<!-- p.97 -->\n\n## WHY do we need People Model？\n\n25 歲的 Lisa",
+   "evidence": "p.97 頁首大標",
+   "verdict": "accept",
+   "verifier": "lead（第二輪，覆核員回報、主導者對照頁面圖片）",
+   "applied": true
+  },
+  {
+   "pid": "Y-31",
+   "aid": "a12",
+   "page": 104,
+   "rule": "R6",
+   "type": "structure",
+   "old": "\n\n消費洞察\n\n",
+   "new": "\n\n## 策略、研發、行銷：模擬能先回答什麼\n\n消費洞察\n\n",
+   "evidence": "p.104 底部三欄框標題",
+   "verdict": "accept",
+   "verifier": "lead（第二輪，覆核員回報、主導者對照頁面圖片）",
+   "applied": true
+  },
+  {
+   "pid": "Y-32",
+   "aid": "a12",
+   "page": 105,
+   "rule": "R6",
+   "type": "structure",
+   "old": "\n\nPeople Model 能派上用場的場景",
+   "new": "\n\n## WHAT People Model can do？\n\nPeople Model 能派上用場的場景",
+   "evidence": "p.105 大標",
+   "verdict": "accept",
+   "verifier": "lead（第二輪，覆核員回報、主導者對照頁面圖片）",
+   "applied": true
+  },
+  {
+   "pid": "Y-33",
+   "aid": "a12",
+   "page": 109,
+   "rule": "R6",
+   "type": "structure",
+   "old": "\n\n市場研究的難處集中在三件事",
+   "new": "\n\n## HOW do we create People Model？\n\n市場研究的難處集中在三件事",
+   "evidence": "p.109 大標",
+   "verdict": "accept",
+   "verifier": "lead（第二輪，覆核員回報、主導者對照頁面圖片）",
+   "applied": true
+  },
+  {
+   "pid": "Y-34",
+   "aid": "a12",
+   "page": 112,
+   "rule": "R6",
+   "type": "structure",
+   "old": "\n\n## 準確度與可信度",
+   "new": "\n\n## ASK More About People Model\n\n## 準確度與可信度",
+   "evidence": "p.112 大標",
+   "verdict": "accept",
+   "verifier": "lead（第二輪，覆核員回報、主導者對照頁面圖片）",
+   "applied": true
+  },
+  {
+   "pid": "Z-01",
+   "aid": "a02",
+   "page": 16,
+   "rule": "R5",
+   "type": "structure",
+   "old": "今天，企業能更快生成一支短影音、更快完成一份企劃、更快推出一項產品；然而 Agentic AI 真正改變的，\n\n<!-- p.17 -->\n\n不只是工作的效率，而是企業驗證假設、修正方向與做出決策的方式。\n\n<!-- p.16 -->\n\n| 研發部門想知道：新口味會不會被接受？設計部門想知道：新包裝夠不夠吸引人？業務部門想知道：價格提高五元，還買不買？ 行銷部門想知道：廣告訴求怎麼說，消費者才聽得懂？\n\n<!-- p.17 -->",
+   "new": "| 研發部門想知道：新口味會不會被接受？設計部門想知道：新包裝夠不夠吸引人？業務部門想知道：價格提高五元，還買不買？ 行銷部門想知道：廣告訴求怎麼說，消費者才聽得懂？\n\n今天，企業能更快生成一支短影音、更快完成一份企劃、更快推出一項產品；然而 Agentic AI 真正改變的，\n\n<!-- p.17 -->\n\n不只是工作的效率，而是企業驗證假設、修正方向與做出決策的方式。",
+   "evidence": "p.16 的圖說／側欄被放在 p.17 內文之後；移回 p.16跨頁段落之前",
+   "verdict": "accept",
+   "verifier": "lead（第三輪，規則化處理頁碼倒退）",
+   "applied": true
+  },
+  {
+   "pid": "Z-02",
+   "aid": "a03",
+   "page": 23,
+   "rule": "R5",
+   "type": "structure",
+   "old": "<!-- p.24 -->\n\n因此，品牌未來最珍貴的資產，可能不是「完美」。而是真實感。不完美、人性、缺陷、溫度、偶然、脆弱 ……那才是人類存在過的證據。\n\n<!-- p.23 -->\n\n> 圖 4：加密貨幣平台 Coinbase 的廣告背景讓人以為是 AI 生成的奇異世界，但細看會發現由大量臨時演員打造一個不完美的遊戲世界｜資料來源：Coinbase YouTube 頻道\n\n<!-- p.24 -->",
+   "new": "> 圖 4：加密貨幣平台 Coinbase 的廣告背景讓人以為是 AI 生成的奇異世界，但細看會發現由大量臨時演員打造一個不完美的遊戲世界｜資料來源：Coinbase YouTube 頻道\n\n<!-- p.24 -->\n\n因此，品牌未來最珍貴的資產，可能不是「完美」。而是真實感。不完美、人性、缺陷、溫度、偶然、脆弱 ……那才是人類存在過的證據。",
+   "evidence": "p.23 的圖說／側欄被放在 p.24 內文之後；移回 p.23結尾",
+   "verdict": "accept",
+   "verifier": "lead（第三輪，規則化處理頁碼倒退）",
+   "applied": true
+  },
+  {
+   "pid": "Z-03",
+   "aid": "a03",
+   "page": 24,
+   "rule": "R5",
+   "type": "structure",
+   "old": "AI 很擅長模仿、重組、預測、最佳化，但它缺少一件最重要的東西：「真正活過的生命經驗」。它知道悲傷的語言，\n\n<!-- p.25 -->\n\n但沒有真正失去過誰。它知道愛情的結構，但從沒真正愛過人。它可以生成情緒，但沒有情感重量。\n\n<!-- p.24 -->\n\n> 圖5：銷售二手商品的信譽來自於產品為真。The RealReal 嘗試用 AI 生成的大量場景，凸顯最後一幕出現，那個最珍貴的實品｜資料來源：The RealReal YouTube 頻道\n\n<!-- p.25 -->",
+   "new": "> 圖5：銷售二手商品的信譽來自於產品為真。The RealReal 嘗試用 AI 生成的大量場景，凸顯最後一幕出現，那個最珍貴的實品｜資料來源：The RealReal YouTube 頻道\n\nAI 很擅長模仿、重組、預測、最佳化，但它缺少一件最重要的東西：「真正活過的生命經驗」。它知道悲傷的語言，\n\n<!-- p.25 -->\n\n但沒有真正失去過誰。它知道愛情的結構，但從沒真正愛過人。它可以生成情緒，但沒有情感重量。",
+   "evidence": "p.24 的圖說／側欄被放在 p.25 內文之後；移回 p.24跨頁段落之前",
+   "verdict": "accept",
+   "verifier": "lead（第三輪，規則化處理頁碼倒退）",
+   "applied": true
+  },
+  {
+   "pid": "Z-04",
+   "aid": "a05",
+   "page": 39,
+   "rule": "R5",
+   "type": "structure",
+   "old": "從「我會很帥 coming son…」搭配錯誤英文的納豆，到三天後切換成「敢講最帥」的鳳小岳，我們把「敢講」這件事轉化為一種新的自信與吸引力。這不是單純的戶外廣告換稿，而是在最合適的地點，\n\n<!-- p.40 -->\n\n完成一次對消費者心理狀態的精準回應。\n\n<!-- p.39 -->\n\n> 圖1：Speak app 受到注目與使用，始於品牌讀懂台灣人語言學習歷程中最痛的那個心情｜資料來源：安索帕台灣\n\n<!-- p.40 -->",
+   "new": "> 圖1：Speak app 受到注目與使用，始於品牌讀懂台灣人語言學習歷程中最痛的那個心情｜資料來源：安索帕台灣\n\n從「我會很帥 coming son…」搭配錯誤英文的納豆，到三天後切換成「敢講最帥」的鳳小岳，我們把「敢講」這件事轉化為一種新的自信與吸引力。這不是單純的戶外廣告換稿，而是在最合適的地點，\n\n<!-- p.40 -->\n\n完成一次對消費者心理狀態的精準回應。",
+   "evidence": "p.39 的圖說／側欄被放在 p.40 內文之後；移回 p.39跨頁段落之前",
+   "verdict": "accept",
+   "verifier": "lead（第三輪，規則化處理頁碼倒退）",
+   "applied": true
+  },
+  {
+   "pid": "Z-05",
+   "aid": "a05",
+   "page": 42,
+   "rule": "R5",
+   "type": "structure",
+   "old": "在 AI 時代，策略從未如此重要。因為當工具變得更快，判斷就更重要；當內容變得更多，意義就更稀缺；當旅程變得更自動化，信任就更珍貴。AI 會持續改變行銷工作的方式，但策略人的角色不會因此消失，\n\n<!-- p.43 -->\n\n而是必須從單點的傳播規劃者，進化為整合商業、品牌、行銷、體驗與科技的增長架構師。\n\n<!-- p.42 -->\n\n| 電通創意未來學 2030s 台灣近未來生活預測 如果說 AI 代理正在改寫品牌增長的方法論，那麼下一個十年的生活樣貌，就是增長架構師必須提前看見的戰場。 電通台灣導入日本電通長年運用的「未來學」方法論，並攜手淡江大學策略遠見研究中心，以 2025 年為觀測起點向前推進十年。從 AI 革命、高齡、永續、數位娛樂到新孤獨生活型態，梳理出十大未來主題，具象化地走進十年後的街頭巷弄與消費場景。 未來不確定，但可以預演。邀請你帶著三種視角閱讀:把它當作未來的生活預演、把每個故事視為品牌的介入機會點、把所有不確定都轉化為行銷創意的題目。\n\n<!-- p.43 -->",
+   "new": "| 電通創意未來學 2030s 台灣近未來生活預測 如果說 AI 代理正在改寫品牌增長的方法論，那麼下一個十年的生活樣貌，就是增長架構師必須提前看見的戰場。 電通台灣導入日本電通長年運用的「未來學」方法論，並攜手淡江大學策略遠見研究中心，以 2025 年為觀測起點向前推進十年。從 AI 革命、高齡、永續、數位娛樂到新孤獨生活型態，梳理出十大未來主題，具象化地走進十年後的街頭巷弄與消費場景。 未來不確定，但可以預演。邀請你帶著三種視角閱讀:把它當作未來的生活預演、把每個故事視為品牌的介入機會點、把所有不確定都轉化為行銷創意的題目。\n\n在 AI 時代，策略從未如此重要。因為當工具變得更快，判斷就更重要；當內容變得更多，意義就更稀缺；當旅程變得更自動化，信任就更珍貴。AI 會持續改變行銷工作的方式，但策略人的角色不會因此消失，\n\n<!-- p.43 -->\n\n而是必須從單點的傳播規劃者，進化為整合商業、品牌、行銷、體驗與科技的增長架構師。",
+   "evidence": "p.42 的圖說／側欄被放在 p.43 內文之後；移回 p.42跨頁段落之前",
+   "verdict": "accept",
+   "verifier": "lead（第三輪，規則化處理頁碼倒退）",
+   "applied": true
+  },
+  {
+   "pid": "Z-06",
+   "aid": "a07",
+   "page": 53,
+   "rule": "R5",
+   "type": "structure",
+   "old": "<!-- p.54 -->\n\n並不是華麗拍攝，甚至在預熱的前期，車子都只是出現一個很朦朧的影子，把主角的光環著重放在一幕又一幕單純小編與玩具彼此逼瘋對方，與真的如童年時看到的「人與玩具」玩在一起，新車就是家裡到來的「新玩具」，除卻玩具總動員的魅力外，很真實進入把「大家的童年回憶」中復活成現實版本，配上最簡單的文字就足以打動觀眾，創造出超標 152% 的好成績，也順利的用銷售數據證明：這台車真的是打入家庭客受眾的心裡了。但這個成功不僅是因為在這個檔期 Gogoro 做了這件事，更是長期在社群上耕耘車友、共鳴內容所打下的基礎，讓 Gogoro 「非常的有資格」去做這樣的內容——車友願意受到號召，人們也覺得 Gogoro 有這樣的 DNA 去做這樣的內容。「You are what you eat」，放在 Gogoro 身上，「You are what you post」這件事得到很好的證明。\n\n<!-- p.53 -->\n\n> 圖1：Gogoro New Toy Is Coming! 讓電影經典角色躍然社群媒體，成為品牌社群小編，破格操作，讓 FB & IG 觸及超標 102%、互動超標 152%｜資料來源：Gogoro Facebook & Instagram 專頁\n\n<!-- p.54 -->",
+   "new": "> 圖1：Gogoro New Toy Is Coming! 讓電影經典角色躍然社群媒體，成為品牌社群小編，破格操作，讓 FB & IG 觸及超標 102%、互動超標 152%｜資料來源：Gogoro Facebook & Instagram 專頁\n\n<!-- p.54 -->\n\n並不是華麗拍攝，甚至在預熱的前期，車子都只是出現一個很朦朧的影子，把主角的光環著重放在一幕又一幕單純小編與玩具彼此逼瘋對方，與真的如童年時看到的「人與玩具」玩在一起，新車就是家裡到來的「新玩具」，除卻玩具總動員的魅力外，很真實進入把「大家的童年回憶」中復活成現實版本，配上最簡單的文字就足以打動觀眾，創造出超標 152% 的好成績，也順利的用銷售數據證明：這台車真的是打入家庭客受眾的心裡了。但這個成功不僅是因為在這個檔期 Gogoro 做了這件事，更是長期在社群上耕耘車友、共鳴內容所打下的基礎，讓 Gogoro 「非常的有資格」去做這樣的內容——車友願意受到號召，人們也覺得 Gogoro 有這樣的 DNA 去做這樣的內容。「You are what you eat」，放在 Gogoro 身上，「You are what you post」這件事得到很好的證明。",
+   "evidence": "p.53 的圖說／側欄被放在 p.54 內文之後；移回 p.53結尾",
+   "verdict": "accept",
+   "verifier": "lead（第三輪，規則化處理頁碼倒退）",
+   "applied": true
+  },
+  {
+   "pid": "Z-07",
+   "aid": "a11",
+   "page": 87,
+   "rule": "R5",
+   "type": "structure",
+   "old": "電通報《月刊CX》也把這個專案背後的角色與思考說得很清楚。受訪的核心成員包括：有資料科學背景的文案澤田悠太、在電通顧客體驗創意中心擔任企劃與文案的秋山玄樹、以及分別身兼藝術指導、設計師、插畫家小森香乃與齋藤李。這個組合本身就很有代表性：\n\n<!-- p.88 -->\n\n從資料與策略、顧客體驗與社群，到視覺與設計一起工作，使「懷舊」不是只停在美術風格，而是從目標族群、內容設計到即時擴散都被完整規劃。\n\n<!-- p.87 -->\n\n> 圖4：〈イケナイ太陽 令和ver.〉在書包及鞋履上塗鴉，讓平成生活細節做成可被辨認、尋找與分享的記憶符碼。資料來源：電通報《月刊CX》\n\n<!-- p.88 -->",
+   "new": "> 圖4：〈イケナイ太陽 令和ver.〉在書包及鞋履上塗鴉，讓平成生活細節做成可被辨認、尋找與分享的記憶符碼。資料來源：電通報《月刊CX》\n\n電通報《月刊CX》也把這個專案背後的角色與思考說得很清楚。受訪的核心成員包括：有資料科學背景的文案澤田悠太、在電通顧客體驗創意中心擔任企劃與文案的秋山玄樹、以及分別身兼藝術指導、設計師、插畫家小森香乃與齋藤李。這個組合本身就很有代表性：\n\n<!-- p.88 -->\n\n從資料與策略、顧客體驗與社群，到視覺與設計一起工作，使「懷舊」不是只停在美術風格，而是從目標族群、內容設計到即時擴散都被完整規劃。",
+   "evidence": "p.87 的圖說／側欄被放在 p.88 內文之後；移回 p.87跨頁段落之前",
+   "verdict": "accept",
+   "verifier": "lead（第三輪，規則化處理頁碼倒退）",
+   "applied": true
+  },
+  {
+   "pid": "Z-08",
+   "aid": "a11",
+   "page": 89,
+   "rule": "R5",
+   "type": "structure",
+   "old": "日本芬達則把 2000 年代的「ファンタ学園」重新帶回來，但今天的版本加入 網路電影、遊戲、Coke ON 與新的參與機制；同時，產品本身也在 2026 年運用 AI 分析與改良。 最有趣的不是原封不動回到以前，\n\n<!-- p.90 -->\n\n而是把最舊的記憶與最新的科技放在一起。\n\n<!-- p.89 -->\n\n> 圖7：Fanta「3年L組 バブル先生」把經典「ファンタ学園」重新放進 2026 的產品與數位互動。｜資料來源：日本 Coca-Cola\n\n> 圖6：日清「どん兵衛 Classic」以 50 年前配方為基礎，重現 1976 年上市時的味道與包裝記憶。資料來源：日清食品\n\n<!-- p.90 -->",
+   "new": "> 圖7：Fanta「3年L組 バブル先生」把經典「ファンタ学園」重新放進 2026 的產品與數位互動。｜資料來源：日本 Coca-Cola\n\n> 圖6：日清「どん兵衛 Classic」以 50 年前配方為基礎，重現 1976 年上市時的味道與包裝記憶。資料來源：日清食品\n\n日本芬達則把 2000 年代的「ファンタ学園」重新帶回來，但今天的版本加入 網路電影、遊戲、Coke ON 與新的參與機制；同時，產品本身也在 2026 年運用 AI 分析與改良。 最有趣的不是原封不動回到以前，\n\n<!-- p.90 -->\n\n而是把最舊的記憶與最新的科技放在一起。",
+   "evidence": "p.89 的圖說／側欄被放在 p.90 內文之後；移回 p.89跨頁段落之前",
+   "verdict": "accept",
+   "verifier": "lead（第三輪，規則化處理頁碼倒退）",
+   "applied": true
+  },
+  {
+   "pid": "Z-09",
+   "aid": "a11",
+   "page": 90,
+   "rule": "R5",
+   "type": "structure",
+   "old": "因此，\n\n<!-- p.91 -->\n\nAI 創意治理不應只管理 Logo 有沒有放對、字體有沒有違反規範，更應該管理「記憶架構」 (Memory Architecture)：哪些視覺、聲音、人物、產品形狀、語氣、敘事與文化儀式必須被持續累積；哪些地方才可以交給 AI 自由變化。\n\n<!-- p.90 -->\n\n> 圖8：香港麥當勞 50 周年展把首店、經典角色與商品記憶重新組成消費者可進入、可體驗的品牌歷史。｜資料來源：McDonald's Hong Kong\n\n<!-- p.91 -->",
+   "new": "> 圖8：香港麥當勞 50 周年展把首店、經典角色與商品記憶重新組成消費者可進入、可體驗的品牌歷史。｜資料來源：McDonald's Hong Kong\n\n因此，\n\n<!-- p.91 -->\n\nAI 創意治理不應只管理 Logo 有沒有放對、字體有沒有違反規範，更應該管理「記憶架構」 (Memory Architecture)：哪些視覺、聲音、人物、產品形狀、語氣、敘事與文化儀式必須被持續累積；哪些地方才可以交給 AI 自由變化。",
+   "evidence": "p.90 的圖說／側欄被放在 p.91 內文之後；移回 p.90跨頁段落之前",
+   "verdict": "accept",
+   "verifier": "lead（第三輪，規則化處理頁碼倒退）",
+   "applied": true
+  },
+  {
+   "pid": "Z-10",
+   "aid": "a14",
+   "page": 131,
+   "rule": "R5",
+   "type": "structure",
+   "old": "「微軟執行長 Satya Nadella：過度外包給 AI，將導致企業能力「空洞化」，人的價值：企業不應只是「部署 AI」，\n\n<!-- p.132 -->\n\n而是要重新設計工作流程，讓人類的獨特經驗、行業脈絡判斷與組織知識發揮核心價值。」\n\n<!-- p.131 -->\n\n> 圖2：AI 是強大的執行者，尤其在 PI 三大核心能力的引導下，能實際創造兩者平衡又合一的綜效｜資料來源：凱絡媒體／製圖\n\n<!-- p.132 -->",
+   "new": "> 圖2：AI 是強大的執行者，尤其在 PI 三大核心能力的引導下，能實際創造兩者平衡又合一的綜效｜資料來源：凱絡媒體／製圖\n\n「微軟執行長 Satya Nadella：過度外包給 AI，將導致企業能力「空洞化」，人的價值：企業不應只是「部署 AI」，\n\n<!-- p.132 -->\n\n而是要重新設計工作流程，讓人類的獨特經驗、行業脈絡判斷與組織知識發揮核心價值。」",
+   "evidence": "p.131 的圖說／側欄被放在 p.132 內文之後；移回 p.131跨頁段落之前",
+   "verdict": "accept",
+   "verifier": "lead（第三輪，規則化處理頁碼倒退）",
+   "applied": true
+  },
+  {
+   "pid": "Z-11",
+   "aid": "a15",
+   "page": 138,
+   "rule": "R5",
+   "type": "structure",
+   "old": "過去，商品資料主要讓顧客看懂規格；SEO 興起後，企業也開始讓搜尋引擎更容易判讀商品內容。當 AI 代理介入購物決策，商品資料還必須能回答顧客真正關心的問題：\n\n<!-- p.139 -->\n\n適合什麼情境、解決什麼問題、和其他選項差在哪、購買後有哪些限制與服務。否則，即使 AI 能整理資訊，也很難替顧客做出有用比較。\n\n<!-- p.138 -->\n\n> 圖1：實踐決策地圖的關鍵節點｜資料來源：安索帕台灣／製圖\n\n| 消除不確定感(資訊層) 顧客在哪裡開始迷惘? 提供即時、透明的現況摘要,取代讓顧客跨平台搜尋。 輔助決策比較(評估層) 顧客在哪裡陷入糾結? 主動重組複雜方案,提供客觀的下一個最佳選項。 建立信任保證(信任層) 顧客在哪裡需要安全感? 在交易或變更的關鍵點,給予明確的承諾或風險說明。 無縫人機協同(服務層) 顧客何時需要有感溫度? 當AI無法應對異常場景時,自動派發狀況說明給真人服務。\n\n<!-- p.139 -->",
+   "new": "> 圖1：實踐決策地圖的關鍵節點｜資料來源：安索帕台灣／製圖\n\n| 消除不確定感(資訊層) 顧客在哪裡開始迷惘? 提供即時、透明的現況摘要,取代讓顧客跨平台搜尋。 輔助決策比較(評估層) 顧客在哪裡陷入糾結? 主動重組複雜方案,提供客觀的下一個最佳選項。 建立信任保證(信任層) 顧客在哪裡需要安全感? 在交易或變更的關鍵點,給予明確的承諾或風險說明。 無縫人機協同(服務層) 顧客何時需要有感溫度? 當AI無法應對異常場景時,自動派發狀況說明給真人服務。\n\n過去，商品資料主要讓顧客看懂規格；SEO 興起後，企業也開始讓搜尋引擎更容易判讀商品內容。當 AI 代理介入購物決策，商品資料還必須能回答顧客真正關心的問題：\n\n<!-- p.139 -->\n\n適合什麼情境、解決什麼問題、和其他選項差在哪、購買後有哪些限制與服務。否則，即使 AI 能整理資訊，也很難替顧客做出有用比較。",
+   "evidence": "p.138 的圖說／側欄被放在 p.139 內文之後；移回 p.138跨頁段落之前",
+   "verdict": "accept",
+   "verifier": "lead（第三輪，規則化處理頁碼倒退）",
+   "applied": true
+  },
+  {
+   "pid": "Z-12",
+   "aid": "a15",
+   "page": 140,
+   "rule": "R5",
+   "type": "structure",
+   "old": "適應式顧客體驗 (Adaptive CX) 根據顧客當下行為、情境、歷史資料、風險狀態與通路脈絡，調整內容、服務流程與下一步建議。例如顧客在 App 查過某個方案，進線客服時不必重頭說明；航空旅客遇到延誤時，\n\n<!-- p.141 -->\n\n系統主動提供可行改票選項；餐飲顧客在尖峰時段點餐，系統能根據門市狀態調整預估時間與替代選項。\n\n<!-- p.140 -->\n\n> 表1：欲啟動生成式體驗轉型，企業應從以上三個核心問題開始評估｜資料來源：安索帕台灣／製表\n\n| 診斷核心問題 企業要直面的盲點 可採取的第一步 體驗阻力診斷 顧客為什麼猶豫？ 資訊不清、比較困難、信任不足、責任邊界模糊、流程太麻煩 盤點 Net Promoter Score 淨推薦值開放式問題、客服客訴記錄、結帳放棄與退單原因 底層架構檢視 為何無法延續服務？ 數據孤島（資料分散）、前後台流程無法銜接、權限不清、責任無法追蹤 繪製跨通路服務藍圖、標出顧客猶豫斷線節點 決策輔助設計 該提供的下一步？ 即時說明/比較、替代方案、人工確認、授權提醒、後續行動 針對前三個流失率最高的猶豫節點，各設計小範圍 POC 概念試行方案\n\n<!-- p.141 -->",
+   "new": "> 表1：欲啟動生成式體驗轉型，企業應從以上三個核心問題開始評估｜資料來源：安索帕台灣／製表\n\n| 診斷核心問題 企業要直面的盲點 可採取的第一步 體驗阻力診斷 顧客為什麼猶豫？ 資訊不清、比較困難、信任不足、責任邊界模糊、流程太麻煩 盤點 Net Promoter Score 淨推薦值開放式問題、客服客訴記錄、結帳放棄與退單原因 底層架構檢視 為何無法延續服務？ 數據孤島（資料分散）、前後台流程無法銜接、權限不清、責任無法追蹤 繪製跨通路服務藍圖、標出顧客猶豫斷線節點 決策輔助設計 該提供的下一步？ 即時說明/比較、替代方案、人工確認、授權提醒、後續行動 針對前三個流失率最高的猶豫節點，各設計小範圍 POC 概念試行方案\n\n適應式顧客體驗 (Adaptive CX) 根據顧客當下行為、情境、歷史資料、風險狀態與通路脈絡，調整內容、服務流程與下一步建議。例如顧客在 App 查過某個方案，進線客服時不必重頭說明；航空旅客遇到延誤時，\n\n<!-- p.141 -->\n\n系統主動提供可行改票選項；餐飲顧客在尖峰時段點餐，系統能根據門市狀態調整預估時間與替代選項。",
+   "evidence": "p.140 的圖說／側欄被放在 p.141 內文之後；移回 p.140跨頁段落之前",
+   "verdict": "accept",
+   "verifier": "lead（第三輪，規則化處理頁碼倒退）",
+   "applied": true
+  },
+  {
+   "pid": "Z-13",
+   "aid": "a15",
+   "page": 142,
+   "rule": "R5",
+   "type": "structure",
+   "old": "當服務越趨向自動化，企業越需要透過「看得懂、能確認、可選擇」的三大原則建立數位信任。具體實踐可解構為以下五大防禦支柱：\n\n<!-- p.143 -->\n\n## 結語：真正的生成式體驗是提供可信任的下一步引導\n\nAI 時代的顧客體驗，真正改變的是顧客尋找答案、比較選項、確認服務與完成交易的方式正在重新組合。顧客可能更少照著企業設計好的流程走，卻更期待企業能在當下理解他的需求，提供往前的下一步。\n\n<!-- p.142 -->\n\n> 圖3：信任與安全感設計的五大防禦支柱｜資料來源：安索帕台灣／製圖\n\n<!-- p.143 -->",
+   "new": "> 圖3：信任與安全感設計的五大防禦支柱｜資料來源：安索帕台灣／製圖\n\n當服務越趨向自動化，企業越需要透過「看得懂、能確認、可選擇」的三大原則建立數位信任。具體實踐可解構為以下五大防禦支柱：\n\n<!-- p.143 -->\n\n## 結語：真正的生成式體驗是提供可信任的下一步引導\n\nAI 時代的顧客體驗，真正改變的是顧客尋找答案、比較選項、確認服務與完成交易的方式正在重新組合。顧客可能更少照著企業設計好的流程走，卻更期待企業能在當下理解他的需求，提供往前的下一步。",
+   "evidence": "p.142 的圖說／側欄被放在 p.143 內文之後；移回 p.142跨頁段落之前",
+   "verdict": "accept",
+   "verifier": "lead（第三輪，規則化處理頁碼倒退）",
+   "applied": true
+  },
+  {
+   "pid": "Z-14",
+   "aid": "a02",
+   "page": 16,
+   "rule": "R5",
+   "type": "structure",
+   "old": "然而，速度從來不是目的\n\n| 研發部門想知道：新口味會不會被接受？設計部門想知道：新包裝夠不夠吸引人？業務部門想知道：價格提高五元，還買不買？ 行銷部門想知道：廣告訴求怎麼說，消費者才聽得懂？\n\n",
+   "new": "| 研發部門想知道：新口味會不會被接受？設計部門想知道：新包裝夠不夠吸引人？業務部門想知道：價格提高五元，還買不買？ 行銷部門想知道：廣告訴求怎麼說，消費者才聽得懂？\n\n然而，速度從來不是目的\n\n",
+   "evidence": "Z-01 規則化移位後側欄落在粗體小標與其內文之間；改放在小標之前（仍在 p.16）",
+   "verdict": "accept",
+   "verifier": "lead（第三輪手動調整）",
+   "applied": true
+  },
+  {
+   "pid": "S-01",
+   "aid": "a19",
+   "page": 171,
+   "rule": "R6",
+   "type": "missing",
+   "old": "| 品類進入點 (Category Entry Points, CEPs) 是",
+   "new": "| 品類進入點 CEPs｜品類進入點 (Category Entry Points, CEPs) 是",
+   "evidence": "第 4 輪隨機抽查發現：p.171 側欄框標題「品類進入點 CEPs」漏收",
+   "verdict": "accept",
+   "verifier": "第 4 輪抽查員",
+   "applied": true
+  }
+ ]
+}

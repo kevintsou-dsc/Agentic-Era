@@ -1,0 +1,855 @@
+{
+ "id": "a11",
+ "site_chars": 14262,
+ "pdf_chars": 14907,
+ "ratio": 0.8654,
+ "hunks": 91,
+ "hunks_to_review": 67,
+ "site_only_chars": 834,
+ "pdf_only_chars": 2053,
+ "items": [
+  {
+   "id": "a11-001",
+   "kind": "site_only",
+   "page": 80,
+   "site": "從金曲獎到甄嬛傳共同記憶帶來的品牌價值",
+   "pdf": "",
+   "before": "",
+   "after": "電通集團媒體事業群洞察與媒體效能領導",
+   "moved": true
+  },
+  {
+   "id": "a11-002",
+   "kind": "pdf_only",
+   "page": 80,
+   "site": "",
+   "pdf": "從金曲獎到甄嬛傳共同記憶帶來的品牌價值",
+   "before": "媒體企劃經理陳炯文|ElmoChen",
+   "after": "在分眾與AI時代,品牌需要打造Com",
+   "moved": true
+  },
+  {
+   "id": "a11-003",
+   "kind": "pdf_only",
+   "page": 81,
+   "site": "",
+   "pdf": "1",
+   "before": "u《2026MediaTrends》",
+   "after": "把「共同記憶更有感」(SharedM"
+  },
+  {
+   "id": "a11-004",
+   "kind": "pdf_only",
+   "page": 81,
+   "site": "",
+   "pdf": "2",
+   "before": ",持續強化消費者腦中對品牌的記憶結構",
+   "after": "。因此,當品牌可以愈來愈快速地生產大"
+  },
+  {
+   "id": "a11-005",
+   "kind": "pdf_only",
+   "page": 82,
+   "site": "",
+   "pdf": "3",
+   "before": "文化等,重新成為熱門內容。Vogue",
+   "after": "指出,大家想念的可能不只是某件衣服或"
+  },
+  {
+   "id": "a11-006",
+   "kind": "pdf_only",
+   "page": 82,
+   "site": "",
+   "pdf": "4",
+   "before": "vo2026年《ThenIsNow》",
+   "after": "研究則進一步發現,65%的Z世代會對"
+  },
+  {
+   "id": "a11-007",
+   "kind": "pdf_only",
+   "page": 82,
+   "site": "",
+   "pdf": "5",
+   "before": "thetics)是另一種表現。路透社",
+   "after": "報導,年輕使用者重新分享2000年代"
+  },
+  {
+   "id": "a11-008",
+   "kind": "pdf_only",
+   "page": 82,
+   "site": "",
+   "pdf": "6",
+   "before": "當下脈絡中不斷被選擇、重組與重新賦義",
+   "after": "。因此,一瓶飲料、一支手機、一包泡麵"
+  },
+  {
+   "id": "a11-009",
+   "kind": "pdf_only",
+   "page": 82,
+   "site": "",
+   "pdf": "7",
+   "before": "裡的整段生活的回憶。日本市調公司NI",
+   "after": "也觀察到「平成Retro」(平成レト"
+  },
+  {
+   "id": "a11-010",
+   "kind": "pdf_only",
+   "page": 82,
+   "site": "",
+   "pdf": "8",
+   "before": "5~74歲共3,000人為樣本的調查",
+   "after": "則看到,67.8%受訪者認為童年喜歡"
+  },
+  {
+   "id": "a11-011",
+   "kind": "pdf_only",
+   "page": 83,
+   "site": "",
+   "pdf": "懷舊復古感性emo沉浸回憶35.7%61.9%46.7%感性emo成為世代的橋梁背景不同的兩個世代,透過「感性emo」感性emo|適合拍照打卡覺得時髦圖1:「平成Retro」對不同世代的意義並不相同。30代在懷念,而10代則投射自己的emo時刻。資料來源:NihonInformationCo.,Ltd.(2026)",
+   "before": "年喜歡的東西即使長大後仍會持續喜歡;",
+   "after": "76.8%女性「不認為成年後購買小時"
+  },
+  {
+   "id": "a11-012",
+   "kind": "pdf_only",
+   "page": 83,
+   "site": "",
+   "pdf": "9",
+   "before": "kides與Wildschut的研究",
+   "after": "指出,懷舊是高度自我相關的情緒,會把"
+  },
+  {
+   "id": "a11-013",
+   "kind": "pdf_only",
+   "page": 83,
+   "site": "",
+   "pdf": "整體對平成復古的共同印象這一共同情感連結,進而產生共鳴。10多歲|感性與潮流感30多歲|情感與真實體驗懷舊復古58.0%72.1%沉浸回憶38.9%46.4%感性emo33.8%38.7%",
+   "before": "強化了懷舊在人與人、人與群體之間建立",
+   "after": "連結的力量。再往群體層次看,Wild"
+  },
+  {
+   "id": "a11-014",
+   "kind": "pdf_only",
+   "page": 83,
+   "site": "",
+   "pdf": "10",
+   "before": "Wildschut等人的集體懷舊研究",
+   "after": "發現,當人們回想的是「我和這個群體共",
+   "fig": true
+  },
+  {
+   "id": "a11-015",
+   "kind": "pdf_only",
+   "page": 83,
+   "site": "",
+   "pdf": "11",
+   "before": "hby、Clark與Bargh的實驗",
+   "after": "又補上另一塊拼圖:即使兩個人沒有交談"
+  },
+  {
+   "id": "a11-016",
+   "kind": "replace",
+   "page": 83,
+   "site": "圖1:「平成Retro」對不同世代的意義並不相同",
+   "pdf": "我記得→原來你也記得→我們現在又一起經歷",
+   "before": "記得」、「我們以前真的一起經歷過」。",
+   "after": "。30代在懷念,而10代則投射自己的",
+   "moved": true
+  },
+  {
+   "id": "a11-017",
+   "kind": "replace",
+   "page": 83,
+   "site": "30代在懷念",
+   "pdf": "這時候",
+   "before": "etro」對不同世代的意義並不相同。",
+   "after": ",而10代則投射自己的emo時刻。資",
+   "moved": true
+  },
+  {
+   "id": "a11-018",
+   "kind": "replace",
+   "page": 83,
+   "site": "而10代則投射自己的",
+   "pdf": "M",
+   "before": "同世代的意義並不相同。30代在懷念,",
+   "after": "emo時刻。資料來源:NihonIn",
+   "moved": true
+  },
+  {
+   "id": "a11-019",
+   "kind": "pdf_only",
+   "page": 83,
+   "site": "",
+   "pdf": "ry(記憶)就重新變成了共同",
+   "before": "代在懷念,而10代則投射自己的emo",
+   "after": "時刻。資料來源:NihonInfor",
+   "fig": true
+  },
+  {
+   "id": "a11-020",
+   "kind": "replace",
+   "page": 83,
+   "site": "資料來源:NihonInformationCo.,Ltd.(2026)",
+   "pdf": "」",
+   "before": "念,而10代則投射自己的emo時刻。",
+   "after": "金曲獎:在分眾時代,重新創造「共同記",
+   "moved": true
+  },
+  {
+   "id": "a11-021",
+   "kind": "pdf_only",
+   "page": 84,
+   "site": "",
+   "pdf": "12",
+   "before": "很多入圍者、得獎作品沒有聽過」的討論",
+   "after": "。這不代表新世代創作者失去影響力,而",
+   "fig": true
+  },
+  {
+   "id": "a11-022",
+   "kind": "pdf_only",
+   "page": 84,
+   "site": "",
+   "pdf": "近三屆金曲獎電視平均收視3.372.782.31202420252026第35屆第36屆第37屆分眾更加明顯,典禮後出現「不熟悉2025入圍者與作品」的討論較前一年+1.06收視點(約+46%),2026跨世代內容擴大共同參與圖2:近三屆金曲獎全體平均收視資料來源:NielsenArianna/dentsuX分析",
+   "before": ",圈層之外的人仍可能完全沒有接觸過。",
+   "after": "從2.31到3.372026金曲獎重"
+  },
+  {
+   "id": "a11-023",
+   "kind": "pdf_only",
+   "page": 84,
+   "site": "",
+   "pdf": "13",
+   "before": "NielsenArianna收視資料",
+   "after": "來看,2026年第37屆金曲獎頒獎典"
+  },
+  {
+   "id": "a11-024",
+   "kind": "pdf_only",
+   "page": 84,
+   "site": "",
+   "pdf": "14",
+   "before": "過1,190萬次,也雙雙創下近年新高",
+   "after": "。這組數字真正值得分析的,不只是「經"
+  },
+  {
+   "id": "a11-025",
+   "kind": "site_only",
+   "page": 84,
+   "site": "圖2:近三屆金曲獎全體平均收視|資料來源:NielsenArianna/dentsuX分析",
+   "pdf": "",
+   "before": "而是降低進入一個陌生內容世界的門檻。",
+   "after": "當觀眾先看到「我認識的人」、「我聽過"
+  },
+  {
+   "id": "a11-026",
+   "kind": "pdf_only",
+   "page": 85,
+   "site": "",
+   "pdf": "16",
+   "before": "。這個邏輯也能從2026年的收視高點",
+   "after": "看見。表演最高收視為孫淑媚4.36;"
+  },
+  {
+   "id": "a11-027",
+   "kind": "pdf_only",
+   "page": 85,
+   "site": "",
+   "pdf": "15",
+   "before": "受眾輪廓更能說明這件事。從尼爾森資料",
+   "after": "來看,2026年相較2025年,55"
+  },
+  {
+   "id": "a11-028",
+   "kind": "pdf_only",
+   "page": 85,
+   "site": "",
+   "pdf": "先用「我認識」讓人進來,再讓他遇見「我還不認識」。多元性增加之後,CommonGround反而變得更加重要。",
+   "before": "去,大型媒體比較像是在決定「什麼是主",
+   "after": "流」;今天,它更重要的功能,也許是重",
+   "fig": true
+  },
+  {
+   "id": "a11-029",
+   "kind": "pdf_only",
+   "page": 85,
+   "site": "",
+   "pdf": "16",
+   "before": "與社群討論,都可能共同影響最後的結果",
+   "after": "。但把電視平均收視、YouTube觀"
+  },
+  {
+   "id": "a11-030",
+   "kind": "pdf_only",
+   "page": 86,
+   "site": "",
+   "pdf": "15",
+   "before": "26天直播累積超過2,030萬次觀看",
+   "after": ",「皇上駕崩」最高一度約8.3萬人同"
+  },
+  {
+   "id": "a11-031",
+   "kind": "pdf_only",
+   "page": 86,
+   "site": "",
+   "pdf": "圖3:2026《甄嬛傳》馬拉松在「皇上駕崩」橋段吸引約7.2萬人同時在線,聊天室本身成為共同參與的一部分。資料來源:八大電視",
+   "before": "6天直播累積超過2,030萬次觀看,",
+   "after": "「皇上駕崩」最高一度約8.3萬人同時"
+  },
+  {
+   "id": "a11-032",
+   "kind": "pdf_only",
+   "page": 86,
+   "site": "",
+   "pdf": "16",
+   "before": "年截至前十天累積觀看已達1,026萬",
+   "after": ",最高同時在線72,475人,平均在"
+  },
+  {
+   "id": "a11-033",
+   "kind": "pdf_only",
+   "page": 86,
+   "site": "",
+   "pdf": "17。舊內容沒有增加新集數,但Community社群每一年都替它增加新的記憶",
+   "before": "26年包括遊戲與家電品牌等也加入合作",
+   "after": "。這也說明贊助合作(Sponsors"
+  },
+  {
+   "id": "a11-034",
+   "kind": "pdf_only",
+   "page": 86,
+   "site": "",
+   "pdf": "17",
+   "before": "藝、戲劇與經典節目帶到YouTube",
+   "after": "與Facebook,不只是讓舊內容重"
+  },
+  {
+   "id": "a11-035",
+   "kind": "pdf_only",
+   "page": 86,
+   "site": "",
+   "pdf": "18",
+   "before": "帶到YouTube與Facebook",
+   "after": ",不只是讓舊內容重新上架,也讓這些片"
+  },
+  {
+   "id": "a11-036",
+   "kind": "site_only",
+   "page": 86,
+   "site": "圖3:2026《甄嬛傳》馬拉松在「皇上駕崩」橋段吸引約7.2萬人同時在線,聊天室本身成為共同參與的一部分。|資料來源:八大電視",
+   "pdf": "",
+   "before": "母的故事或短影音第一次進入這些內容。",
+   "after": "過去這些東西叫「片庫」,主要是一種A"
+  },
+  {
+   "id": "a11-037",
+   "kind": "pdf_only",
+   "page": 87,
+   "site": "",
+   "pdf": "圖4:〈イケナイ太陽令和ver.〉在書包及鞋履上塗鴉,讓平成生活細節做成可被辨認、尋找與分享的記憶符碼。資料來源:電通報《月刊CX》",
+   "before": "RANGE品牌重塑專案。ORANGE",
+   "after": "RANGE在2025年睽違約15年回",
+   "moved": true
+  },
+  {
+   "id": "a11-038",
+   "kind": "pdf_only",
+   "page": 87,
+   "site": "",
+   "pdf": "19",
+   "before": "與擴散的文化事件。電通報《月刊CX》",
+   "after": "也把這個專案背後的角色與思考說得很清"
+  },
+  {
+   "id": "a11-039",
+   "kind": "site_only",
+   "page": 87,
+   "site": "圖4:〈イケナイ太陽令和ver.〉在書包及鞋履上塗鴉,讓平成生活細節做成可被辨認、尋找與分享的記憶符碼。資料來源:電通報《月刊CX》",
+   "pdf": "",
+   "before": "群、內容設計到即時擴散都被完整規劃。",
+   "after": "團隊刻意沒有把平成做成「漂亮的Y2K",
+   "moved": true
+  },
+  {
+   "id": "a11-040",
+   "kind": "pdf_only",
+   "page": 88,
+   "site": "",
+   "pdf": "圖5:「イケナイ太陽(令和ver.MusicVideo)」メイキング映像公開に(ORANGERANGE幕後製作畫面)。圖片來源:ORICONNEWS20(2025/10/23)",
+   "before": "做法,反而讓內容具有更高的記憶密度。",
+   "after": "因此,MV裡的72個「平成梗」(平成"
+  },
+  {
+   "id": "a11-041",
+   "kind": "site_only",
+   "page": 88,
+   "site": "圖5:「イケナイ太陽(令和ver.MusicVideo)」メイキング映像公開に(ORANGERANGE幕後製作畫面)。|圖片來源:ORICONNEWS(2025/10/23)",
+   "pdf": "",
+   "before": ",團隊隔天就把這個需求轉成新的內容。",
+   "after": "整體企劃還延伸到居酒屋與卡拉OK合作"
+  },
+  {
+   "id": "a11-042",
+   "kind": "pdf_only",
+   "page": 89,
+   "site": "",
+   "pdf": "21",
+   "before": "「どん兵衛」50周年推出經典復刻系列",
+   "after": ",不只是做復古包裝,而是真的重新找到"
+  },
+  {
+   "id": "a11-043",
+   "kind": "pdf_only",
+   "page": 89,
+   "site": "",
+   "pdf": "22",
+   "before": "被看見,也可以被重新吃一次。日本芬達",
+   "after": "則把2000年代的「ファンタ学園」重"
+  },
+  {
+   "id": "a11-044",
+   "kind": "site_only",
+   "page": 89,
+   "site": "不動回到以前,而是把最舊的記憶與最新的科技放在一起。圖7:Fanta「3年L組バブル先生」把經典「ファンタ学園」重新放進2026的產品與數位互動。|資料來源:日本Coca-Cola",
+   "pdf": "",
+   "before": "運用AI分析與改良。最有趣的不是原封",
+   "after": "圖6:日清「どん兵衛Classic」"
+  },
+  {
+   "id": "a11-045",
+   "kind": "pdf_only",
+   "page": 90,
+   "site": "",
+   "pdf": "圖7:Fanta「3年L組バブル先生」把經典「ファンタ学園」重新放進2026的產品與數位互動。資料來源:日本Coca-Cola不動回到以前,而是把最舊的記憶與最新的科技放在一起。",
+   "before": "的味道與包裝記憶。資料來源:日清食品",
+   "after": "香港麥當勞:讓上一代的記憶成為下一代"
+  },
+  {
+   "id": "a11-046",
+   "kind": "pdf_only",
+   "page": 90,
+   "site": "",
+   "pdf": "23",
+   "before": "50周年推出《重回1975年的起點》",
+   "after": ",重建第一間香港麥當勞的店舖、制服、"
+  },
+  {
+   "id": "a11-047",
+   "kind": "pdf_only",
+   "page": 90,
+   "site": "",
+   "pdf": "24",
+   "before": "表人物共同演繹新版〈沒有翅膀的天使〉",
+   "after": "。好的懷舊,不是讓上一代再看一次,而",
+   "fig": true
+  },
+  {
+   "id": "a11-048",
+   "kind": "pdf_only",
+   "page": 90,
+   "site": "",
+   "pdf": "圖8:香港麥當勞50周年展把首店、經典角色與商品記憶重新組成消費者可進入、可體驗的品牌歷史。資料來源:McDonald'sHongKong",
+   "before": ",而是讓下一代也在今天第一次走進來。",
+   "after": "AI時代品牌需要的不只是Conten"
+  },
+  {
+   "id": "a11-049",
+   "kind": "pdf_only",
+   "page": 90,
+   "site": "",
+   "pdf": "25",
+   "before": "iveBrandAssets)的研究",
+   "after": "長期強調:顏色、Logo、角色、包裝",
+   "fig": true
+  },
+  {
+   "id": "a11-050",
+   "kind": "pdf_only",
+   "page": 90,
+   "site": "",
+   "pdf": "26",
+   "before": "sey2026年對AI優先行銷的觀察",
+   "after": "也隨之呼應,品牌即便能大量生產因人、",
+   "fig": true
+  },
+  {
+   "id": "a11-051",
+   "kind": "pdf_only",
+   "page": 90,
+   "site": "",
+   "pdf": "AI可以幫品牌增加變化,但品牌必須自己管理一致性。否則累積的是內容曝光,而不是品牌記憶",
+   "before": "續累積同一份BrandMemory。",
+   "after": "因此,AI創意治理不應只管理Logo",
+   "fig": true
+  },
+  {
+   "id": "a11-052",
+   "kind": "site_only",
+   "page": 90,
+   "site": "圖8:香港麥當勞50周年展把首店、經典角色與商品記憶重新組成消費者可進入、可體驗的品牌歷史。|資料來源:McDonald'sHongKong",
+   "pdf": "",
+   "before": "積;哪些地方才可以交給AI自由變化。",
+   "after": "從記憶符碼到新記憶對有歷史的品牌而言"
+  },
+  {
+   "id": "a11-053",
+   "kind": "pdf_only",
+   "page": 91,
+   "site": "",
+   "pdf": "階段核心問題品牌行動記憶大家已經共同記得什麼?盤點記憶符碼、獨特品牌資產、經典內容與生活場景共同時刻如何讓記憶重新同時發生?直播、節慶、復刻、同步共看、限定體驗、儀式(Ritual)參與如何讓人重新使用這段記憶?UGC、創作者、迷因、找彩蛋、再創作、社群共創橋接如何讓熟悉成為新內容入口?新記憶今天要留下什麼給十年後?建立可持續的角色、聲音、視覺、產品符號與文化事件",
+   "before": "、顏色、產品符號與年度Ritual。",
+   "after": "第一年,它也許只是一個Campaig"
+  },
+  {
+   "id": "a11-054",
+   "kind": "site_only",
+   "page": 91,
+   "site": "階段核心問題品牌行動記憶大家已經共同記得什麼?盤點記憶符碼、獨特品牌資產、經典內容與生活場景共同時刻如何讓記憶重新同時發生?直播、節慶、復刻、同步共看、限定體驗、儀式(Ritual)參與如何讓人重新使用這段記憶?UGC、創作者、迷因、找彩蛋、再創作、社群共創橋接如何讓熟悉成為新內容入口?",
+   "pdf": "",
+   "before": "時,品牌是否會自然出現在那段記憶裡?",
+   "after": "●已知連結未知●舊的連結新的●舊代言",
+   "moved": true
+  },
+  {
+   "id": "a11-055",
+   "kind": "site_only",
+   "page": 91,
+   "site": "新記憶今天要留下什麼給十年後?建立可持續的角色、聲音、視覺、產品符號與文化事件",
+   "pdf": "",
+   "before": "新的●舊代言人×新世代●經典×新科技",
+   "after": "這個思考不只是一個文字上的比喻。Am",
+   "moved": true
+  },
+  {
+   "id": "a11-056",
+   "kind": "pdf_only",
+   "page": 92,
+   "site": "",
+   "pdf": "27",
+   "before": "searchNow曾進行一項長期研究",
+   "after": ",觀察廣告究竟能在消費者腦中留下多久"
+  },
+  {
+   "id": "a11-057",
+   "kind": "site_only",
+   "page": 92,
+   "site": "地屬於我」。2025年金曲獎後的市場討論提醒我們,文化愈多元,也會愈分眾;2026年金曲獎則提供另一種可能:多元不一定要犧牲共同性。共同記憶也不是要把大家拉回只有一種主流的年代,它真正有價值的功能,是創造一個讓不同的人願意一起進來的入口。同樣地,品牌最好的懷舊策略也不是一直回頭,而是利用大家共同記得的以前,創造下一件大家都會記得的事。當AI與UGC讓內容供給持續增加,「我們都知道」、「我們都看過」、「我們那時候都在」反而會變得更稀缺。當所有品牌都還在競爭下一個曝光時,也許真正值得問的是:下一次大家共同記住一件事時,我的品牌能不能也在裡面?",
+   "pdf": "",
+   "before": "最後留下什麼,而且這份記憶是不是正確",
+   "after": "註解dentsu(2025).Hum"
+  },
+  {
+   "id": "a11-058",
+   "kind": "pdf_only",
+   "page": 92,
+   "site": "",
+   "pdf": "1",
+   "before": "件事時,我的品牌能不能也在裡面?註解",
+   "after": "dentsu(2025).Human"
+  },
+  {
+   "id": "a11-059",
+   "kind": "pdf_only",
+   "page": 92,
+   "site": "",
+   "pdf": "註解2",
+   "before": "explore-the-trends",
+   "after": "O'Brien,A.(2026).H"
+  },
+  {
+   "id": "a11-060",
+   "kind": "pdf_only",
+   "page": 92,
+   "site": "",
+   "pdf": "註解3",
+   "before": "g-in-the-age-of-ai",
+   "after": "Vogue(2026).It's20"
+  },
+  {
+   "id": "a11-061",
+   "kind": "pdf_only",
+   "page": 92,
+   "site": "",
+   "pdf": "註解4",
+   "before": "y-is-2016-trending",
+   "after": "Vevo(2026).ThenIsN"
+  },
+  {
+   "id": "a11-062",
+   "kind": "pdf_only",
+   "page": 92,
+   "site": "",
+   "pdf": "註解5",
+   "before": "-buying-capability",
+   "after": "Reuters(2025).Chin"
+  },
+  {
+   "id": "a11-063",
+   "kind": "site_only",
+   "page": 92,
+   "site": "com/sustainability/sustainable-finance-reporting/chinas-weak-job-market-stirs-boom-era-nostalgia-social-",
+   "pdf": "",
+   "before": "tps://www.reuters.",
+   "after": "media-2025-08-01/H",
+   "moved": true
+  },
+  {
+   "id": "a11-064",
+   "kind": "pdf_only",
+   "page": 92,
+   "site": "",
+   "pdf": "註解6",
+   "before": "-media-2025-08-01/",
+   "after": "Halbwachs,M.(1992)"
+  },
+  {
+   "id": "a11-065",
+   "kind": "pdf_only",
+   "page": 92,
+   "site": "",
+   "pdf": "地屬於我」。2025年金曲獎後的市場討論提醒我們,文化愈多元,也會愈分眾;2026年金曲獎則提供另一種可能:多元不一定要犧牲共同性。共同記憶也不是要把大家拉回只有一種主流的年代,它真正有價值的功能,是創造一個讓不同的人願意一起進來的入口。共同記憶真正的價值,不是把所有人帶回過去,而是讓不同世代,在今天重新碰面。同樣地,品牌最好的懷舊策略也不是一直回頭,而是利用大家共同記得的以前,創造下一件大家都會記得的事。當AI與UGC讓內容供給持續增加,「我們都知道」、「我們都看過」、「我們那時候都在」反而會變得更稀缺。當所有品牌都還在競爭下一個曝光時,也許真正值得問的是:下一次大家共同記住一件事時,我的品牌能不能也在裡面?com/sustainability/sustainable-finance-reporting/chinas-weak-job-market-stirs-boom-era-nostalgia-social-註解7",
+   "before": "o/O/bo3619875.html",
+   "after": "日本インフォメーション株式会社(20"
+  },
+  {
+   "id": "a11-066",
+   "kind": "pdf_only",
+   "page": 93,
+   "site": "",
+   "pdf": "註解8",
+   "before": "eport/report-0093/",
+   "after": "DENTSUDESIREDESIGN"
+  },
+  {
+   "id": "a11-067",
+   "kind": "pdf_only",
+   "page": 93,
+   "site": "",
+   "pdf": "9註解",
+   "before": "om/en/articles/975",
+   "after": "9Sedikides,C.&Wild"
+  },
+  {
+   "id": "a11-068",
+   "kind": "pdf_only",
+   "page": 93,
+   "site": "",
+   "pdf": "註解10",
+   "before": "10.1037/gpr0000109",
+   "after": "Wildschut,T.etal.("
+  },
+  {
+   "id": "a11-069",
+   "kind": "pdf_only",
+   "page": 93,
+   "site": "",
+   "pdf": "註解11",
+   "before": ".nih.gov/25243415/",
+   "after": "Boothby,E.J.,Clark"
+  },
+  {
+   "id": "a11-070",
+   "kind": "pdf_only",
+   "page": 93,
+   "site": "",
+   "pdf": "註解12",
+   "before": ".nih.gov/25274583/",
+   "after": "MirrorMedia(2025)。"
+  },
+  {
+   "id": "a11-071",
+   "kind": "pdf_only",
+   "page": 93,
+   "site": "",
+   "pdf": "註解13",
+   "before": "amp/20250702edi056",
+   "after": "NielsenArianna(202"
+  },
+  {
+   "id": "a11-072",
+   "kind": "pdf_only",
+   "page": 93,
+   "site": "",
+   "pdf": "註解14",
+   "before": "fo/ttvinfo7711.htm",
+   "after": "台灣電視公司(2026)。第37屆金"
+  },
+  {
+   "id": "a11-073",
+   "kind": "site_only",
+   "page": 93,
+   "site": "核對:第35屆(2024)|第36屆(2025)|第37屆(2026)https://www.",
+   "pdf": "",
+   "before": "文蔚等收視高點。金曲獎公開總收視交叉",
+   "after": "ttv.com.tw/taiwan/",
+   "moved": true
+  },
+  {
+   "id": "a11-074",
+   "kind": "replace",
+   "page": 93,
+   "site": "https://www.ttv.com.tw/taiwan/ttvinfo/ttvinfo77",
+   "pdf": "註解",
+   "before": "info/view/7873/733",
+   "after": "11.htmhttps://www.",
+   "moved": true
+  },
+  {
+   "id": "a11-075",
+   "kind": "replace",
+   "page": 93,
+   "site": "1.htmhttps://www.ttv.com.tw/taiwan/ttvinfo/ttvinfo7776.htmhttps://www.ttv.com.tw/taiwan/ttvinfo/view/7873/733",
+   "pdf": "5",
+   "before": "ttvinfo/ttvinfo771",
+   "after": "八大電視(2026)。《後宮甄嬛傳》"
+  },
+  {
+   "id": "a11-076",
+   "kind": "pdf_only",
+   "page": 93,
+   "site": "",
+   "pdf": "註解16",
+   "before": "-846A-1886921B4172",
+   "after": "八大電視(2026)。《後宮甄嬛傳》"
+  },
+  {
+   "id": "a11-077",
+   "kind": "pdf_only",
+   "page": 93,
+   "site": "",
+   "pdf": "註解17",
+   "before": "-6A76-090C1565E74A",
+   "after": "台灣電視公司。「台視時光機」官方Yo"
+  },
+  {
+   "id": "a11-078",
+   "kind": "pdf_only",
+   "page": 93,
+   "site": "",
+   "pdf": "註解18",
+   "before": "be.com/@TTVClassic",
+   "after": "台灣電視公司。「台視時光機」台視社群"
+  },
+  {
+   "id": "a11-079",
+   "kind": "site_only",
+   "page": 93,
+   "site": "電通報/月刊CX(2026/05/29)。〈平成あるあるが懐かしすぎる!「イケナイ太陽令和ver」の制作裏話〉。受訪:澤田悠太、",
+   "pdf": "",
+   "before": "ok.com/TTVClassic/",
+   "after": "秋山玄樹、小森香乃、齋藤李。http",
+   "moved": true
+  },
+  {
+   "id": "a11-080",
+   "kind": "pdf_only",
+   "page": 93,
+   "site": "",
+   "pdf": "註解20",
+   "before": ".com/articles/9684",
+   "after": "ORICONNEWS(2025/10"
+  },
+  {
+   "id": "a11-081",
+   "kind": "pdf_only",
+   "page": 93,
+   "site": "",
+   "pdf": "註解21",
+   "before": "s/2414252/photo/1/",
+   "after": "日清食品(2026)。「日清のどん兵"
+  },
+  {
+   "id": "a11-082",
+   "kind": "pdf_only",
+   "page": 93,
+   "site": "",
+   "pdf": "註解22",
+   "before": "ompany/news/13685/",
+   "after": "日本Coca-Cola(2026)。"
+  },
+  {
+   "id": "a11-083",
+   "kind": "pdf_only",
+   "page": 93,
+   "site": "",
+   "pdf": "註解23",
+   "before": "r/news-20260413-10",
+   "after": "McDonald'sHongKong"
+  },
+  {
+   "id": "a11-084",
+   "kind": "site_only",
+   "page": 93,
+   "site": "news/the-ultimate-reveal-mcdonalds-hong-kong-celebrates-50th-anniversary-with-back-to-the-beginning-in-",
+   "pdf": "",
+   "before": "donalds.com.hk/en/",
+   "after": "1975-microfilms-te",
+   "moved": true
+  },
+  {
+   "id": "a11-085",
+   "kind": "pdf_only",
+   "page": 93,
+   "site": "",
+   "pdf": "註解24",
+   "before": "ssable-highlights/",
+   "after": "McDonald'sHongKong"
+  },
+  {
+   "id": "a11-086",
+   "kind": "pdf_only",
+   "page": 93,
+   "site": "",
+   "pdf": "-",
+   "before": "F%A4%E4%B8%96%E7%B",
+   "after": "4%80%E5%90%88%E4%B"
+  },
+  {
+   "id": "a11-087",
+   "kind": "pdf_only",
+   "page": 93,
+   "site": "",
+   "pdf": "註解25",
+   "before": "E6%8E%A8%E5%87%BA/",
+   "after": "Romaniuk,J.(2018)."
+  },
+  {
+   "id": "a11-088",
+   "kind": "replace",
+   "page": 93,
+   "site": "books.google.com.tw/books/about/Building_Distinctive_Brand_Assets.html?id=SynMtAEACAAJ&redir_esc=y",
+   "pdf": "註解26",
+   "before": "Institute.https://",
+   "after": "McKinsey&Company(2"
+  },
+  {
+   "id": "a11-089",
+   "kind": "site_only",
+   "page": 93,
+   "site": "www.mckinsey.com/capabilities/growth-marketing-and-sales/our-insights/from-campaigns-to-continuous-",
+   "pdf": "",
+   "before": "marketing.https://",
+   "after": "growth-ai-capabili",
+   "moved": true
+  },
+  {
+   "id": "a11-090",
+   "kind": "pdf_only",
+   "page": 93,
+   "site": "",
+   "pdf": "註解27",
+   "before": "shaping-marketing?",
+   "after": "Shea,A.,Young,C.&D"
+  },
+  {
+   "id": "a11-091",
+   "kind": "pdf_only",
+   "page": 93,
+   "site": "",
+   "pdf": "核對:第35屆(2024)|第36屆(2025)|第37屆(2026)https://www.ttv.com.tw/taiwan/ttvinfo/view/7873/733https://www.ttv.com.tw/taiwan/ttvinfo/ttvinfo7711.htmhttps://www.ttv.com.tw/taiwan/ttvinfo/ttvinfo7776.htmhttps://www.註解19電通報/月刊CX(2026/05/29)。〈平成あるあるが懐かしすぎる!「イケナイ太陽令和ver」の制作裏話〉。受訪:澤田悠太、news/the-ultimate-reveal-mcdonalds-hong-kong-celebrates-50th-anniversary-with-back-to-the-beginning-in-books.google.com.tw/books/about/Building_Distinctive_Brand_Assets.html?id=SynMtAEACAAJ&redir_esc=ywww.mckinsey.com/capabilities/growth-marketing-and-sales/our-insights/from-campaigns-to-continuous-",
+   "before": "e-future-of-brands",
+   "after": ""
+  }
+ ]
+}

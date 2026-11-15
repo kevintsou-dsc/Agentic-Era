@@ -1,0 +1,223 @@
+{
+ "id": "a07",
+ "site_chars": 6196,
+ "pdf_chars": 6455,
+ "ratio": 0.9487,
+ "hunks": 22,
+ "hunks_to_review": 9,
+ "site_only_chars": 110,
+ "pdf_only_chars": 225,
+ "items": [
+  {
+   "id": "a07-001",
+   "kind": "pdf_only",
+   "page": 52,
+   "site": "",
+   "pdf": "需求可以被回答,渴望卻需要被種下:對話式商務解決的是需求,但不一定創造渴望",
+   "before": "前,就已經被消費者想起、偏心與指定。",
+   "after": "對話式商務目前在台雖然還未進化到全民",
+   "fig": true
+  },
+  {
+   "id": "a07-002",
+   "kind": "pdf_only",
+   "page": 52,
+   "site": "",
+   "pdf": "1",
+   "before": "的年代。根據DHL的社群商務趨勢報告",
+   "after": ":70%的消費者曾透過社群媒體直接完"
+  },
+  {
+   "id": "a07-003",
+   "kind": "pdf_only",
+   "page": 52,
+   "site": "",
+   "pdf": "當AI讓產出變的更簡單快速,真正重要的是品牌的品味與充滿真實聲音的觀點。給對了情緒價值,才能在未來社群商務上坐穩位子",
+   "before": "有日常的灌溉,才能真的順利開花結果。",
+   "after": "未來的社群商務不會只獎勵產量,而會更",
+   "fig": true
+  },
+  {
+   "id": "a07-004",
+   "kind": "pdf_only",
+   "page": 53,
+   "site": "",
+   "pdf": "2",
+   "before": "ors’ToolkitReport》",
+   "after": "所預告的趨勢,也呼應了這個變化:當創"
+  },
+  {
+   "id": "a07-005",
+   "kind": "pdf_only",
+   "page": 53,
+   "site": "",
+   "pdf": "圖1:GogoroNewToyIsComing!讓電影經典角色躍然社群媒體,成為品牌社群小編,破格操作,讓FB&IG觸及超標102%、互動超標152%資料來源:GogoroFacebook&Instagram專頁",
+   "before": "替品牌決定什麼叫做有感;AI可以生成",
+   "after": "更多內容,但不能自動生成品牌在人心中"
+  },
+  {
+   "id": "a07-006",
+   "kind": "pdf_only",
+   "page": 53,
+   "site": "",
+   "pdf": "「比起跟你賣車,我寧願跟你一起好好回憶童年與玩在一起」",
+   "before": "位置,而且你更應該日常就要做這件事。",
+   "after": "2026年的2月23日,Gogoro",
+   "fig": true
+  },
+  {
+   "id": "a07-007",
+   "kind": "replace",
+   "page": 53,
+   "site": "圖1:GogoroNewToy",
+   "pdf": "A",
+   "before": "oupost」這件事得到很好的證明。",
+   "after": "IsComing!讓電影經典角色躍然",
+   "moved": true
+  },
+  {
+   "id": "a07-008",
+   "kind": "replace",
+   "page": 53,
+   "site": "sComing!讓電影經典角色躍然",
+   "pdf": "時代的",
+   "before": "明。圖1:GogoroNewToyI",
+   "after": "社群媒體,成為品牌社群小編,破格操作",
+   "moved": true
+  },
+  {
+   "id": "a07-009",
+   "kind": "replace",
+   "page": 53,
+   "site": "媒體",
+   "pdf": "商務",
+   "before": "Coming!讓電影經典角色躍然社群",
+   "after": ",成為品牌社群小編,破格操作,讓FB"
+  },
+  {
+   "id": "a07-010",
+   "kind": "replace",
+   "page": 53,
+   "site": "成",
+   "pdf": "不能只被理解",
+   "before": "ing!讓電影經典角色躍然社群媒體,",
+   "after": "為品牌社群小編,破格操作,讓FB&I",
+   "moved": true
+  },
+  {
+   "id": "a07-011",
+   "kind": "replace",
+   "page": 53,
+   "site": "品牌",
+   "pdf": "更有效率的內容工廠,而要升級為真正「懂消費者」的",
+   "before": "g!讓電影經典角色躍然社群媒體,成為",
+   "after": "社群小編,破格操作,讓FB&IG觸及",
+   "moved": true
+  },
+  {
+   "id": "a07-012",
+   "kind": "replace",
+   "page": 53,
+   "site": "小編,破格操作,讓FB&IG觸及超標102%、互動超標152%|資料來源:GogoroFacebook&Instagram專頁",
+   "pdf": "商務生態",
+   "before": "影經典角色躍然社群媒體,成為品牌社群",
+   "after": "我們預測:這個新的社群商務生態會變得"
+  },
+  {
+   "id": "a07-013",
+   "kind": "pdf_only",
+   "page": 56,
+   "site": "",
+   "pdf": "「與其跟消費者苦口婆心解釋早餐加奇異果的必要性,我們直接讓你看到早餐有奇異果時的好狀態!」",
+   "before": "進社群河道裡,被下一波內容浪潮沖走。",
+   "after": "擁有「帶給全民健康」使命的水果品牌Z",
+   "fig": true
+  },
+  {
+   "id": "a07-014",
+   "kind": "pdf_only",
+   "page": 56,
+   "site": "",
+   "pdf": "就是贏家。圖2:Zespri以AI早餐營養辨識技術,加上虛擬AI替身早餐養成機制,在早餐這個場景提醒消費者千萬不要忘記營養,最終超過8,800人以上線上參與,PO出10,080則細心搭配的貼文照片資料來源:安索帕",
+   "before": "終究是過往的經營,與發現人性的痛點。",
+   "after": "需求可以被回答,渴望卻需要被長期累積"
+  },
+  {
+   "id": "a07-015",
+   "kind": "replace",
+   "page": 56,
+   "site": "圖2:Zespri以AI早餐營養辨識技術",
+   "pdf": "未來的世代",
+   "before": "費者先產生「這東西與我有關」的想要。",
+   "after": ",加上虛擬AI替身早餐養成機制,在早",
+   "moved": true
+  },
+  {
+   "id": "a07-016",
+   "kind": "replace",
+   "page": 56,
+   "site": "加上虛擬AI替身早餐養成機制,在早餐",
+   "pdf": "誰能讓",
+   "before": "Zespri以AI早餐營養辨識技術,",
+   "after": "這個場景提醒消費者千萬不要忘記營養,",
+   "moved": true
+  },
+  {
+   "id": "a07-017",
+   "kind": "replace",
+   "page": 56,
+   "site": "個場景提醒",
+   "pdf": "些",
+   "before": "上虛擬AI替身早餐養成機制,在早餐這",
+   "after": "消費者千萬不要忘記營養,最終超過8,",
+   "moved": true
+  },
+  {
+   "id": "a07-018",
+   "kind": "replace",
+   "page": 56,
+   "site": "千萬",
+   "pdf": "從社群平台上看到能夠喚起他還",
+   "before": "餐養成機制,在早餐這個場景提醒消費者",
+   "after": "不要忘記營養,最終超過8,800人以",
+   "moved": true
+  },
+  {
+   "id": "a07-019",
+   "kind": "replace",
+   "page": 56,
+   "site": "要忘記營養",
+   "pdf": "存在的欲望",
+   "before": "機制,在早餐這個場景提醒消費者千萬不",
+   "after": ",最終超過8,800人以上線上參與,",
+   "moved": true
+  },
+  {
+   "id": "a07-020",
+   "kind": "replace",
+   "page": 56,
+   "site": "最終超過8,800人以上線上參與,PO出10,080則細心搭配的貼文照片|資料來源:安索帕",
+   "pdf": "誰",
+   "before": "這個場景提醒消費者千萬不要忘記營養,",
+   "after": "AI可以幫消費者買東西,但品牌要讓消"
+  },
+  {
+   "id": "a07-021",
+   "kind": "pdf_only",
+   "page": 57,
+   "site": "",
+   "pdf": "1",
+   "before": "牌成為他心裡已經想要的那個選擇。註解",
+   "after": "2025SOCIALCOMMERCE"
+  },
+  {
+   "id": "a07-022",
+   "kind": "pdf_only",
+   "page": 57,
+   "site": "",
+   "pdf": "註解2",
+   "before": "mmerce-trends.html",
+   "after": "Adobe’s2026Creator"
+  }
+ ]
+}

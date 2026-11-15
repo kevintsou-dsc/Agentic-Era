@@ -1,0 +1,104 @@
+{
+ "id": "a21",
+ "site_chars": 4699,
+ "pdf_chars": 4707,
+ "ratio": 0.9283,
+ "hunks": 10,
+ "hunks_to_review": 8,
+ "site_only_chars": 316,
+ "pdf_only_chars": 324,
+ "items": [
+  {
+   "id": "a21-001",
+   "kind": "pdf_only",
+   "page": 183,
+   "site": "",
+   "pdf": "1",
+   "before": "多規模更龐大的市場並駕齊驅。數據顯示",
+   "after": ",台灣有31.8%的員工已在工作中使"
+  },
+  {
+   "id": "a21-002",
+   "kind": "site_only",
+   "page": 184,
+   "site": "詞(masterprompt)」。",
+   "pdf": "",
+   "before": "所有變數、具備詳細視覺指示的「母提示",
+   "after": "圖1&2:圖片為數位行銷廣告影片的拍",
+   "moved": true
+  },
+  {
+   "id": "a21-003",
+   "kind": "site_only",
+   "page": 185,
+   "site": "|",
+   "pdf": "",
+   "before": "像設計,營造出身歷其境的足球臨場感。",
+   "after": "資料來源:Tag從光影、場景、色調到"
+  },
+  {
+   "id": "a21-004",
+   "kind": "pdf_only",
+   "page": 185,
+   "site": "",
+   "pdf": "詞(masterprompt)」。",
+   "before": "其境的足球臨場感。|資料來源:Tag",
+   "after": "從光影、場景、色調到人物特徵,整張圖",
+   "moved": true
+  },
+  {
+   "id": "a21-005",
+   "kind": "pdf_only",
+   "page": 186,
+   "site": "",
+   "pdf": "2",
+   "before": "已有56%的企業開始招募提示詞工程師",
+   "after": "等AI專職人才。然而,需求增加並不代"
+  },
+  {
+   "id": "a21-006",
+   "kind": "pdf_only",
+   "page": 186,
+   "site": "",
+   "pdf": "3",
+   "before": "平均每個月有19.3萬個職缺無人填補",
+   "after": "。Tag的經驗顯示,要填補這個人才缺"
+  },
+  {
+   "id": "a21-007",
+   "kind": "pdf_only",
+   "page": 186,
+   "site": "",
+   "pdf": "圖3&4:從實際製作現場可以看到,AI並沒有降低專業製作的門檻。要讓一張影像真正成為可上線的行銷主視覺,背後仍需要技術、審美與視覺想像力的共同支撐。資料來源:Tag",
+   "before": "可或缺的一環。相關技術應能根據品牌規",
+   "after": "範、通路特性、關鍵消費行為及設計相容"
+  },
+  {
+   "id": "a21-008",
+   "kind": "site_only",
+   "page": 186,
+   "site": "圖3&4:從實際製作現場可以看到,AI並沒有降低專業製作的門檻。要讓一張影像真正成為可上線的行銷主視覺,背後仍需要技術、審美與視覺想像力的共同支撐。|資料來源:Tag",
+   "pdf": "",
+   "before": "「工具」與「如何運用工具」的基本功。",
+   "after": "在地內容引擎若要真正做到內容規模化,"
+  },
+  {
+   "id": "a21-009",
+   "kind": "pdf_only",
+   "page": 187,
+   "site": "",
+   "pdf": "註解1https://www.taipeitimes.com/News/front/archives/2026/05/10/2003857058註解2https://kpmg.com/xx/en/our-insights/ai-and-technology/asia-pacific-ai-adoption-advantage.html註解3https://www.taipeitimes.com/News/feat/archives/2026/06/26/2003859752",
+   "before": "應只在迫不得已、需要提升效率時才使用",
+   "after": "AI。它可以,也應該成為內容製作的重"
+  },
+  {
+   "id": "a21-010",
+   "kind": "site_only",
+   "page": 187,
+   "site": "註解https://www.taipeitimes.com/News/front/archives/2026/05/10/2003857058https://kpmg.com/xx/en/our-insights/ai-and-technology/asia-pacific-ai-adoption-advantage.htmlhttps://www.taipeitimes.com/News/feat/archives/2026/06/26/2003859752",
+   "pdf": "",
+   "before": "灣消費者創造真正具有在地共鳴的體驗。",
+   "after": ""
+  }
+ ]
+}

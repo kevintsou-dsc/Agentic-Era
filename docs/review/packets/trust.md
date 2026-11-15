@@ -2,7 +2,7 @@
 
 - 原文作者：安索帕副總經理 楊欣怡（Cynthia Yang）；紙本 p.44–49
 - 站上頁面：/story/trust/　原文全文：/story/trust/original/
-- 產生時間：2026-11-01（scripts/review/packet.mjs）；Jev 初評：pilot-curator-a06
+- 產生時間：2026-11-08（scripts/review/packet.mjs）；Jev 初評：pilot-curator-a06
 
 ## 給審查者的指示
 

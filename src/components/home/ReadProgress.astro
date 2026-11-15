@@ -1,0 +1,29 @@
+---
+// 首頁最底部：讀者自己的閱讀進度與成就卡入口（scripts/snack.ts 依 localStorage 已讀紀錄填數字）。
+// 還沒讀過任何一篇時顯示預告；儲存不能用時整塊隱藏。
+import { achievements } from '../../lib/achievements';
+const cards = achievements();
+const total = Math.max(...cards.filter((c) => c.kind === 'count').map((c) => c.n!));
+const cardCount = cards.length;
+---
+<section class="section progress-home" data-progress-home aria-label="你的閱讀進度">
+  <div class="ph-box">
+    <div class="ph-text">
+      <p class="eyebrow">你的閱讀進度</p>
+      <p class="ph-line" data-ph-line>讀完第一篇，就能打開第一份知識補給包。</p>
+      <div class="ph-bar" aria-hidden="true"><span data-ph-bar></span></div>
+      <p class="ph-sub" data-ph-sub>全書 {total} 篇，共 {cardCount} 張成就卡可以收集。</p>
+    </div>
+    <button type="button" class="btn flow" data-snack-album="home">打開成就卡收藏</button>
+  </div>
+</section>
+<style>
+  .progress-home { padding-block: 4svh 8svh; }
+  .ph-box { display: flex; flex-wrap: wrap; gap: 18px 28px; align-items: center; justify-content: space-between; padding: 24px 26px; border-radius: var(--r-l); border: 2px solid var(--ink); background: var(--paper); }
+  .ph-text { display: grid; gap: 8px; flex: 1 1 18rem; }
+  .ph-text p { margin: 0; }
+  .ph-line { font-size: var(--fs-h3, 22px); font-weight: var(--fw-bold, 700); line-height: 1.4; }
+  .ph-bar { height: 10px; border-radius: 5px; background: var(--paper-2); overflow: hidden; }
+  .ph-bar span { display: block; height: 100%; width: 0; background: linear-gradient(90deg, var(--intro), var(--people), var(--model), var(--ai)); transition: width .6s var(--ease-out); }
+  .ph-sub { font-size: var(--fs-meta); color: var(--ink-2); }
+</style>

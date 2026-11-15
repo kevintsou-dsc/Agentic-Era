@@ -1,0 +1,205 @@
+{
+ "id": "a16",
+ "site_chars": 4965,
+ "pdf_chars": 5061,
+ "ratio": 0.9543,
+ "hunks": 21,
+ "hunks_to_review": 17,
+ "site_only_chars": 48,
+ "pdf_only_chars": 174,
+ "items": [
+  {
+   "id": "a16-001",
+   "kind": "site_only",
+   "page": 144,
+   "site": "贏在AI時代的隱形戰場:",
+   "pdf": "",
+   "before": "",
+   "after": "看見「文化暗流」啟動企業真實的轉型動",
+   "moved": true
+  },
+  {
+   "id": "a16-002",
+   "kind": "pdf_only",
+   "page": 144,
+   "site": "",
+   "pdf": "層精準移除阻力,釋放真實的轉型動能。贏在AI時代的隱形戰場:",
+   "before": "顧問合夥人周允玉|EdithChou",
+   "after": "別讓19%的認知落差,吃掉企業AI投"
+  },
+  {
+   "id": "a16-003",
+   "kind": "site_only",
+   "page": 144,
+   "site": "層精準移除阻力,釋放真實的轉型動能。",
+   "pdf": "",
+   "before": "斷」,協助企業破除認知落差,從文化底",
+   "after": "貴公司AI轉型了嗎?現今企業CEO正",
+   "moved": true
+  },
+  {
+   "id": "a16-004",
+   "kind": "pdf_only",
+   "page": 145,
+   "site": "",
+   "pdf": "1",
+   "before": "數位轉型專案,最終無法達到預期目標。",
+   "after": "若進一步剖析失敗的真正原因,其實無關"
+  },
+  {
+   "id": "a16-005",
+   "kind": "pdf_only",
+   "page": 145,
+   "site": "",
+   "pdf": "2",
+   "before": ",不知道省下來的這一天該拿來做什麼。",
+   "after": "再度驗證企業AI轉型過程中,「工具層"
+  },
+  {
+   "id": "a16-006",
+   "kind": "pdf_only",
+   "page": 146,
+   "site": "",
+   "pdf": "圖1:AI轉型暗流雷達圖示意圖(0-100指數|數值越高,潛在風險越大)經驗依賴774310080604020創新落差資料來源:電通商業顧問147146:Model:Model",
+   "before": "、Connect、Cultivate",
+   "after": "三大策略行動,以更全面宏觀角度,協助"
+  },
+  {
+   "id": "a16-007",
+   "kind": "pdf_only",
+   "page": 146,
+   "site": "",
+   "pdf": "3",
+   "before": "策模式與組織文化的企業僅有6.6%。",
+   "after": "此一數字凸顯重大警訊:台灣企業正進入"
+  },
+  {
+   "id": "a16-008",
+   "kind": "site_only",
+   "page": 146,
+   "site": "圖1:AI轉型暗流雷達圖示意圖(0-100指數|數值越高,潛在風險越大)|資料來源:電通商業顧問",
+   "pdf": "",
+   "before": "差,以確保組織行駛在正確的轉型路徑。",
+   "after": "由電通商業顧問團隊獨家發展的「AI轉"
+  },
+  {
+   "id": "a16-009",
+   "kind": "pdf_only",
+   "page": 146,
+   "site": "",
+   "pdf": "願景幻覺中層阻塞工具孤兒沉默抗拒",
+   "before": "如圖1),正是為此而生。從企業文化與",
+   "after": "組織配套角度出發,電通顧問以全員線上"
+  },
+  {
+   "id": "a16-010",
+   "kind": "pdf_only",
+   "page": 147,
+   "site": "",
+   "pdf": "4",
+   "before": ",而是各部門解決問題的「預設行為」。",
+   "after": "唯有透過有意識、系統性且具體地將「文"
+  },
+  {
+   "id": "a16-011",
+   "kind": "pdf_only",
+   "page": 148,
+   "site": "",
+   "pdf": "5",
+   "before": "企業價值觀與AI轉型高度整合的做法。",
+   "after": "從創立之初,莫德納即自我定位為「科技"
+  },
+  {
+   "id": "a16-012",
+   "kind": "pdf_only",
+   "page": 148,
+   "site": "",
+   "pdf": "149148:Model:Model",
+   "before": "題,不需打字,直接用語音詢問AI。例",
+   "after": "如:「洗手液在哪個貨架?」、「無發票"
+  },
+  {
+   "id": "a16-013",
+   "kind": "pdf_only",
+   "page": 148,
+   "site": "",
+   "pdf": "6",
+   "before": "工使用,每天處理超過300萬個問題。",
+   "after": "沃爾瑪案例充分證明,即便是世界上勞動"
+  },
+  {
+   "id": "a16-014",
+   "kind": "pdf_only",
+   "page": 149,
+   "site": "",
+   "pdf": "1",
+   "before": "我們從健檢現況開始,一起努力吧!註解",
+   "after": "McKinsey,「Superage"
+  },
+  {
+   "id": "a16-015",
+   "kind": "site_only",
+   "page": 149,
+   "site": "https://www.mckinsey.com/capabilities/tech-and-ai/our-insights/superagency-in-the-workplace-empowering-",
+   "pdf": "",
+   "before": "tialatWork「(2025),",
+   "after": "people-to-unlock-a",
+   "moved": true
+  },
+  {
+   "id": "a16-016",
+   "kind": "pdf_only",
+   "page": 149,
+   "site": "",
+   "pdf": "註解2",
+   "before": "-potential-at-work",
+   "after": "BCG,「AIatWork2026:"
+  },
+  {
+   "id": "a16-017",
+   "kind": "pdf_only",
+   "page": 149,
+   "site": "",
+   "pdf": "註解3",
+   "before": "rs-more-than-tools",
+   "after": "人工智慧科技基金會「台灣產業AI化大"
+  },
+  {
+   "id": "a16-018",
+   "kind": "pdf_only",
+   "page": 149,
+   "site": "",
+   "pdf": "註解4",
+   "before": "event/ai-research/",
+   "after": "McKinsey,《AreYourP"
+  },
+  {
+   "id": "a16-019",
+   "kind": "pdf_only",
+   "page": 149,
+   "site": "",
+   "pdf": "註解5",
+   "before": "dy-for-ai-at-scale",
+   "after": "Moderna官方部落格《OurJo"
+  },
+  {
+   "id": "a16-020",
+   "kind": "pdf_only",
+   "page": 149,
+   "site": "",
+   "pdf": "註解6",
+   "before": "moderna-powered-AI",
+   "after": "HarvardBusinessRev"
+  },
+  {
+   "id": "a16-021",
+   "kind": "pdf_only",
+   "page": 149,
+   "site": "",
+   "pdf": "https://www.mckinsey.com/capabilities/tech-and-ai/our-insights/superagency-in-the-workplace-empowering-",
+   "before": "-ceo-doug-mcmillon",
+   "after": "",
+   "moved": true
+  }
+ ]
+}

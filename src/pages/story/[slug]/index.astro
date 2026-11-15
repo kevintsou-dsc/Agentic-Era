@@ -9,6 +9,7 @@ import type { Story } from '../../../lib/story';
 import { storyMinutes } from '../../../lib/stats';
 import { RELEASE } from '../../../lib/release';
 import ReadMap from '../../../components/ReadMap.astro';
+import SharePanel from '../../../components/SharePanel.astro';
 
 export function getStaticPaths() {
   return ARTICLES.filter((a) => STORIES[a.id]).map((a) => ({ params: { slug: a.slug }, props: { a, story: STORIES[a.id] } }));
@@ -46,6 +47,8 @@ const threadNext = THREADS.filter((t) => a.threads.includes(t.key))
     </ol>
     <p class="source reveal">原文｜{cite(a)}</p>
   </section>
+
+  <SharePanel a={a} story={story} />
 
   <nav class="section next" aria-label="接下來">
     <a class="btn flow" href={`/story/${a.slug}/original/`}>讀原文（約 {a.minutes} 分鐘{fullReviewed ? '' : '，校正中'}）→</a>

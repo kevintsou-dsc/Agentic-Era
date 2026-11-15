@@ -1,0 +1,98 @@
+{
+ "id": "a19",
+ "site_chars": 4171,
+ "pdf_chars": 4686,
+ "ratio": 0.9315,
+ "hunks": 9,
+ "hunks_to_review": 4,
+ "site_only_chars": 46,
+ "pdf_only_chars": 546,
+ "items": [
+  {
+   "id": "a19-001",
+   "kind": "pdf_only",
+   "page": 171,
+   "site": "",
+   "pdf": "CEPs品類進入點",
+   "before": "在對的情境下第一個想起你?品類進入點",
+   "after": "(CategoryEntryPoin"
+  },
+  {
+   "id": "a19-002",
+   "kind": "pdf_only",
+   "page": 172,
+   "site": "",
+   "pdf": "CEPs七個W的聯想架構Why動機想放鬆、想省時間When時機Whatwith搭配早晨、換季、發薪日配咖啡、搭正餐Where地點Forwhom對象品在家、辦公室、車上家庭聚會、買給長輩類進入點CEPsWhile同時情境Howfeeling情緒看劇時、運動後疲累、想犒賞自己i-ProofModel:5StepsFromTrusttoPerformance可抓取&可拆解(Crawlability&Chunkability)可教化的答案內容(LLM-TeachableContent)12345讓搜尋引擎抓得到、LLM抽得出重點內容能被壓成1~2句,且有可信來源圖1:i-Proof模型:從信任到成效的五個步驟資料來源:安布思沛iProspect/製圖",
+   "before": "ntalAvailability)。",
+   "after": "i-ProofFramework:重"
+  },
+  {
+   "id": "a19-003",
+   "kind": "pdf_only",
+   "page": 172,
+   "site": "",
+   "pdf": "HOWWEBUILDAITRUSTFORBRAND我們如何為品牌建立AI信任-五步驟流程AI答案能見度(AIAnswerVisibility)持續量測(Always-onMeasurement)實體與信任圖譜(Entity&TrustGraph)ONGOINGOPTIMIZATION:MEASURINGAIVISIBILITY持續優化:量測AI能見度在主要答案引擎中被點名或引用模型記得你、信任你把「被引用」做成常態化經營",
+   "before": "安布思沛以長期客戶服務經驗,加上參考",
+   "after": "國內外權威的文章,開發i-Proof"
+  },
+  {
+   "id": "a19-004",
+   "kind": "pdf_only",
+   "page": 172,
+   "site": "",
+   "pdf": "層級1",
+   "before": "讓搜尋引擎抓得到、讓LLM抽得出重點",
+   "after": "底層技術門檻,藉由卓越的網頁架構,確",
+   "fig": true
+  },
+  {
+   "id": "a19-005",
+   "kind": "site_only",
+   "page": 172,
+   "site": "圖1:i-Proof模型:從信任到成效的五個步驟|資料來源:安布思沛iProspect/製圖",
+   "pdf": "",
+   "before": "由卓越的網頁架構,確保爬蟲暢行無阻。",
+   "after": "讓內容能被濃縮成答案並具備可信依據A"
+  },
+  {
+   "id": "a19-006",
+   "kind": "pdf_only",
+   "page": 173,
+   "site": "",
+   "pdf": "層級2",
+   "before": "圖讓內容能被濃縮成答案並具備可信依據",
+   "after": "AI不會完整閱讀每篇文章,而是傾向核",
+   "fig": true
+  },
+  {
+   "id": "a19-007",
+   "kind": "pdf_only",
+   "page": 173,
+   "site": "",
+   "pdf": "層級3",
+   "before": "在主要AI引擎中被看見被點名、被引用",
+   "after": "當內容具備可引用條件後,下一步便是進",
+   "fig": true
+  },
+  {
+   "id": "a19-008",
+   "kind": "pdf_only",
+   "page": 173,
+   "site": "",
+   "pdf": "層級4",
+   "before": "牌聲量優勢。讓AI模型記得你、信任你",
+   "after": "AI不只是引用內容,更會評估品牌本身",
+   "fig": true
+  },
+  {
+   "id": "a19-009",
+   "kind": "pdf_only",
+   "page": 173,
+   "site": "",
+   "pdf": "層級5",
+   "before": "。將「被引用」轉化為可持續經營的能力",
+   "after": "AI能見度並非一次性成果,而是一項需",
+   "fig": true
+  }
+ ]
+}

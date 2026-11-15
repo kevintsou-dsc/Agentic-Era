@@ -1,0 +1,313 @@
+{
+ "persona": "engineer",
+ "takeaway": [
+  "內容暴增使人們共同看過的東西變少，共同記憶因而稀缺並成為連結不同世代的入口",
+  "研究與金曲獎、甄嬛傳、ORANGE RANGE 等案例顯示，熟悉的舊元素配上新編排與參與空間，能帶來跨世代共鳴",
+  "品牌用 AI 擴量時須固定自己的記憶符碼，並分階段把記憶變成新的共同記憶，用記憶佔比衡量"
+ ],
+ "overall_fluency": 7,
+ "bubbles": [
+  {
+   "id": "ONE",
+   "score": 4,
+   "stuck": false
+  },
+  {
+   "id": "M01",
+   "score": 5,
+   "stuck": false
+  },
+  {
+   "id": "M02",
+   "score": 5,
+   "stuck": false
+  },
+  {
+   "id": "M03",
+   "score": 4,
+   "stuck": false
+  },
+  {
+   "id": "M04",
+   "score": 3,
+   "stuck": true
+  },
+  {
+   "id": "M05",
+   "score": 4,
+   "stuck": false
+  },
+  {
+   "id": "M06",
+   "score": 3,
+   "stuck": true
+  },
+  {
+   "id": "M07",
+   "score": 4,
+   "stuck": false
+  },
+  {
+   "id": "M08",
+   "score": 4,
+   "stuck": false
+  },
+  {
+   "id": "M09",
+   "score": 4,
+   "stuck": false
+  },
+  {
+   "id": "M10",
+   "score": 4,
+   "stuck": false
+  },
+  {
+   "id": "M11",
+   "score": 4,
+   "stuck": false
+  },
+  {
+   "id": "M12",
+   "score": 4,
+   "stuck": false
+  },
+  {
+   "id": "M13",
+   "score": 4,
+   "stuck": false
+  },
+  {
+   "id": "M14",
+   "score": 5,
+   "stuck": false
+  },
+  {
+   "id": "M15",
+   "score": 3,
+   "stuck": true
+  },
+  {
+   "id": "M16",
+   "score": 5,
+   "stuck": false
+  },
+  {
+   "id": "M17",
+   "score": 4,
+   "stuck": false
+  },
+  {
+   "id": "M18",
+   "score": 3,
+   "stuck": true
+  },
+  {
+   "id": "M19",
+   "score": 4,
+   "stuck": false
+  },
+  {
+   "id": "M20",
+   "score": 4,
+   "stuck": false
+  },
+  {
+   "id": "M21",
+   "score": 4,
+   "stuck": false
+  },
+  {
+   "id": "M22",
+   "score": 3,
+   "stuck": true
+  },
+  {
+   "id": "M23",
+   "score": 4,
+   "stuck": false
+  },
+  {
+   "id": "M24",
+   "score": 4,
+   "stuck": false
+  },
+  {
+   "id": "M25",
+   "score": 4,
+   "stuck": false
+  },
+  {
+   "id": "M26",
+   "score": 4,
+   "stuck": false
+  },
+  {
+   "id": "M27",
+   "score": 4,
+   "stuck": false
+  },
+  {
+   "id": "M28",
+   "score": 5,
+   "stuck": false
+  },
+  {
+   "id": "M29",
+   "score": 4,
+   "stuck": false
+  },
+  {
+   "id": "M30",
+   "score": 4,
+   "stuck": false
+  },
+  {
+   "id": "M31",
+   "score": 4,
+   "stuck": false
+  },
+  {
+   "id": "M32",
+   "score": 5,
+   "stuck": false
+  },
+  {
+   "id": "M33",
+   "score": 3,
+   "stuck": true
+  },
+  {
+   "id": "M34",
+   "score": 4,
+   "stuck": false
+  },
+  {
+   "id": "M35",
+   "score": 4,
+   "stuck": false
+  },
+  {
+   "id": "M36",
+   "score": 4,
+   "stuck": false
+  },
+  {
+   "id": "M37",
+   "score": 3,
+   "stuck": true
+  },
+  {
+   "id": "M38",
+   "score": 4,
+   "stuck": false
+  },
+  {
+   "id": "M39",
+   "score": 5,
+   "stuck": false
+  },
+  {
+   "id": "M40",
+   "score": 4,
+   "stuck": false
+  },
+  {
+   "id": "M41",
+   "score": 4,
+   "stuck": false
+  },
+  {
+   "id": "M42",
+   "score": 3,
+   "stuck": true
+  },
+  {
+   "id": "M43",
+   "score": 4,
+   "stuck": false
+  }
+ ],
+ "stuck": [
+  {
+   "id": "M04",
+   "types": [
+    "S4",
+    "S5"
+   ],
+   "quote": "獨特且穩定的記憶結構反而更重要",
+   "why": "「記憶結構」沒定義，像是口號",
+   "paraphrase": "我以為是指品牌要先固定一套一致的視覺與聲音元素，讓人長期記住"
+  },
+  {
+   "id": "M06",
+   "types": [
+    "S2",
+    "S4"
+   ],
+   "quote": "同一份文化記憶能同時對兩個世代產生不同意義",
+   "why": "平成 Retro 與 NI 未先解釋，61.9% 與後文差異的關係不清",
+   "paraphrase": "我以為是同樣的平成風格，經歷過的人覺得懷舊，沒經歷過的人覺得新潮"
+  },
+  {
+   "id": "M15",
+   "types": [
+    "S5",
+    "S2"
+   ],
+   "quote": "這就是「熟悉 × 新鮮」的內容設計",
+   "why": "「這」與口號式收尾，推論跳過",
+   "paraphrase": "我以為是金曲獎同時放舊人舊歌和新人新歌，所以各年齡層都看"
+  },
+  {
+   "id": "M18",
+   "types": [
+    "S2",
+    "S4"
+   ],
+   "quote": "這更接近「受眾橋接」",
+   "why": "推論不直接，受眾橋接未定義",
+   "paraphrase": "我以為是年輕人與老年人都增加，代表共同記憶把不同族群連到同一個節目"
+  },
+  {
+   "id": "M22",
+   "types": [
+    "S4",
+    "S5"
+   ],
+   "quote": "普通贊助與「記憶型合作」的差別",
+   "why": "記憶型合作語意抽象，前面未鋪陳",
+   "paraphrase": "我以為是品牌要懂社群的梗並參與，而不只是掛名贊助"
+  },
+  {
+   "id": "M33",
+   "types": [
+    "S7",
+    "S2"
+   ],
+   "quote": "同時在 2026 年運用 AI 分析改良產品本身",
+   "why": "多項並列，AI 分析與前文關係不明",
+   "paraphrase": "我以為是芬達復刻舊廣告，同時用 AI 改良產品"
+  },
+  {
+   "id": "M37",
+   "types": [
+    "S4",
+    "S5"
+   ],
+   "quote": "整體「記憶架構」",
+   "why": "AI 創意治理與記憶架構抽象，與前段銜接弱",
+   "paraphrase": "我以為是規定哪些品牌元素固定不變，其餘讓 AI 變化"
+  },
+  {
+   "id": "M42",
+   "types": [
+    "S4",
+    "S6"
+   ],
+   "quote": "Share of Memory（記憶佔比）",
+   "why": "與上一節接不起來，指標如何衡量不清楚",
+   "paraphrase": "我以為是衡量人想到某場景時會不會想到品牌的比例"
+  }
+ ]
+}

@@ -1,0 +1,177 @@
+{
+ "id": "a20",
+ "site_chars": 5211,
+ "pdf_chars": 5242,
+ "ratio": 0.8885,
+ "hunks": 18,
+ "hunks_to_review": 15,
+ "site_only_chars": 407,
+ "pdf_only_chars": 560,
+ "items": [
+  {
+   "id": "a20-001",
+   "kind": "pdf_only",
+   "page": 177,
+   "site": "",
+   "pdf": "1",
+   "before": "挑戰,而是規模化內容管理的嚴峻考驗。",
+   "after": "生成式AI的全面進場,表面上為這個「"
+  },
+  {
+   "id": "a20-002",
+   "kind": "pdf_only",
+   "page": 177,
+   "site": "",
+   "pdf": "2",
+   "before": "生成式AI所堆疊出的同質化內容洪流。",
+   "after": "如果說現代食品工業帶來的是「超加工食"
+  },
+  {
+   "id": "a20-003",
+   "kind": "pdf_only",
+   "page": 178,
+   "site": "",
+   "pdf": "3",
+   "before": "ntentGovernance)上。",
+   "after": "AI並沒有消除成本,它只是改變了成本"
+  },
+  {
+   "id": "a20-004",
+   "kind": "pdf_only",
+   "page": 178,
+   "site": "",
+   "pdf": "2",
+   "before": "看似專業、卻缺乏實質價值的內容堆積。",
+   "after": "數據顯示,在缺乏標準的流程中,每一次"
+  },
+  {
+   "id": "a20-005",
+   "kind": "pdf_only",
+   "page": 178,
+   "site": "",
+   "pdf": "2",
+   "before": "直接降低對發送者與品牌的專業信任感。",
+   "after": "這對品牌而言,不只是營運效率的侵蝕,"
+  },
+  {
+   "id": "a20-006",
+   "kind": "pdf_only",
+   "page": 178,
+   "site": "",
+   "pdf": "4",
+   "before": "Digital)持續提出的重要觀點。",
+   "after": "當成果的生產變得廉價且容易時,創意價"
+  },
+  {
+   "id": "a20-007",
+   "kind": "pdf_only",
+   "page": 178,
+   "site": "",
+   "pdf": "4",
+   "before": "不可逆地往「手前(前置作業)」移動。",
+   "after": "過去創意人的工作是「產出」,未來創意"
+  },
+  {
+   "id": "a20-008",
+   "kind": "site_only",
+   "page": 179,
+   "site": "如果AISlop的根本問題是品牌逐漸被平均化,那麼企業需要的就不是AI工具,而是一套能夠守護品牌獨特性的交付系統。為此,我們結合電通集團的核心思維,提出SLIPFramework,旨在將AI真正放進嚴謹的工業化產線中,而不是只放進個人的靈感裡。",
+   "pdf": "",
+   "before": "mework:從生成管理走向交付管理",
+   "after": "1.S-Spec(規格化)Creat",
+   "moved": true
+  },
+  {
+   "id": "a20-009",
+   "kind": "pdf_only",
+   "page": 179,
+   "site": "",
+   "pdf": "5",
+   "before": "制,以及品牌的價值觀。這正是電通提出",
+   "after": "「Creator-in-the-Lo"
+  },
+  {
+   "id": "a20-010",
+   "kind": "pdf_only",
+   "page": 179,
+   "site": "",
+   "pdf": "。如果AISlop的根本問題是品牌逐漸被平均化,那麼企業需要的就不是AI工具,而是一套能夠守護品牌獨特性的交付系統。為此,我們結合電通集團的核心思維,提出SLIPFramework,旨在將AI真正放進嚴謹的工業化產線中,而不是只放進個人的靈感裡",
+   "before": "量轉變為品牌資產沉澱率與內容治理效率",
+   "after": "。2.L-Line(產線化)用結構守"
+  },
+  {
+   "id": "a20-011",
+   "kind": "pdf_only",
+   "page": 180,
+   "site": "",
+   "pdf": "6",
+   "before": ";重大錯誤發生率則顯著降低了4.3倍",
+   "after": "。這組數據透露了一個重要事實:AI的"
+  },
+  {
+   "id": "a20-012",
+   "kind": "pdf_only",
+   "page": 180,
+   "site": "",
+   "pdf": "AI時代的競爭優勢已經開始出現如果SLIP框架只是一套抽象的流程描述,其商業",
+   "before": "遮罩下,關鍵訊息清晰可見、完美投放。",
+   "after": "如果說Creator-in-the-",
+   "moved": true
+  },
+  {
+   "id": "a20-013",
+   "kind": "site_only",
+   "page": 180,
+   "site": "AI時代的競爭優勢已經開始出現如果SLIP框架只是一套抽象的流程描述,其商業",
+   "pdf": "",
+   "before": ")」,成為企業最堅固的數位資產底座。",
+   "after": "價值將十分有限;它之所以能成為對抗A",
+   "moved": true
+  },
+  {
+   "id": "a20-014",
+   "kind": "pdf_only",
+   "page": 180,
+   "site": "",
+   "pdf": "7",
+   "before": "d)的案例便提供了一個教科書級的答案",
+   "after": "。透過AIAgent、模組化內容資產"
+  },
+  {
+   "id": "a20-015",
+   "kind": "pdf_only",
+   "page": 181,
+   "site": "",
+   "pdf": "7",
+   "before": "5天極限縮短至0.25天(約6小時)",
+   "after": "。更關鍵的是,在產能與速度呈倍數暴增"
+  },
+  {
+   "id": "a20-016",
+   "kind": "pdf_only",
+   "page": 181,
+   "site": "",
+   "pdf": "7",
+   "before": "了接近100%的高度品牌與法規合規率",
+   "after": "。這絕非單純的效率提升,而是內容供應"
+  },
+  {
+   "id": "a20-017",
+   "kind": "pdf_only",
+   "page": 181,
+   "site": "",
+   "pdf": "註解1Adobe,「AIEnabledContentSupplyChain.「註解2TaipeiTimes,「AIPromisesProductivity,butDelivers'Workslop'.「註解3AdobeforBusiness,「HumansandAgents:RethinkingtheModernContentSupplyChain.「註解4DentsuDigital,《AI×クリエイティビティの本質を探る。アウトプットから「世界観の設計」へ》。註解5dentsuJapan,「AIForGrowth「相關服務與組織論述。註解6DenisAtlan,「AIROIAnalysis:Evidencefrom200B2BDeployments.「註解7AdobeforBusiness,「HumansandAgents:RethinkingtheModernContentSupplyChain「(VanguardCaseStudy).",
+   "before": "-the-Loop在前端守護品牌的獨",
+   "after": "特性,讓Human-in-the-L"
+  },
+  {
+   "id": "a20-018",
+   "kind": "site_only",
+   "page": 181,
+   "site": "註解Adobe,「AIEnabledContentSupplyChain.「TaipeiTimes,「AIPromisesProductivity,butDelivers'Workslop'.「AdobeforBusiness,「HumansandAgents:RethinkingtheModernContentSupplyChain.「DentsuDigital,《AI×クリエイティビティの本質を探る。アウトプットから「世界観の設計」へ》。dentsuJapan,「AIForGrowth「相關服務與組織論述。DenisAtlan,「AIROIAnalysis:Evidencefrom200B2BDeployments.「AdobeforBusiness,「HumansandAgents:RethinkingtheModernContentSupplyChain「(VanguardCaseStudy).",
+   "pdf": "",
+   "before": "力,將成為新時代最強大的競爭護城河。",
+   "after": ""
+  }
+ ]
+}

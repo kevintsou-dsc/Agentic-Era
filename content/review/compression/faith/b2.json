@@ -1,0 +1,23 @@
+{"items":[
+ {"article":"a01","id":"M01","verdict":"ok","added":"電通集團台灣執行長的身分；看到消費者與市場變化；身為企業經營者","evidence":"全文署名「電通集團大北亞區暨台灣執行長唐心慧」；p.7「我看到消費者在快速變化……而我作為一個企業經營者，意識到人和 AI 協作共同決策的時代已經來了」","fix":""},
+ {"article":"a01","id":"M02","verdict":"ok","added":"AI 和市場反應都變快了，等待成本因此最貴","evidence":"p.7「AI 變化太快了，市場反應也變快了，等待的成本變得最貴」","fix":""},
+ {"article":"a01","id":"M06","verdict":"ok","added":"主詞改為先知先覺的企業；先動起來的心態也用在行銷投資","evidence":"p.7「第一類：先知先覺」；p.8「這種不等標準答案先動起來的心態，不只用在產品上，也用在行銷投資上」","fix":""},
+ {"article":"a01","id":"M07","verdict":"ok","added":"主詞後知後覺的企業；很多時候是資源問題；先驗證再逐步擴大","evidence":"p.8「後知後覺有時不完全是意願問題，很多時候是資源問題……先做出第一個能驗證的學習循環，再逐步擴大」","fix":""},
+ {"article":"a01","id":"M09","verdict":"ok","added":"企業成長的三個維度；Business、People、Organization 的中文譯名","evidence":"p.8「這三個挑戰，正好對應企業成長的三個維度」；p.9-10 小標 Business/People/Organization Growth，中文為一般譯名","fix":""},
+ {"article":"a01","id":"M11","verdict":"ok","added":"創意與創新的定義","evidence":"p.9「創意是看見別人看不見的可能。創新，是把想法變成能規模化、能真正改變結果的行動」","fix":""},
+ {"article":"a01","id":"M12","verdict":"ok","added":"作者的答案；去做 AI 做不到的事","evidence":"p.10「我的答案是：AI 改變的是分工；沒改變的是判斷……去做 AI 做不到的事」","fix":""},
+ {"article":"a01","id":"M13","verdict":"ok","added":"AI 正在變成每家公司都要有的一層能力；在三個維度上分別學會","evidence":"p.10「AI 正在變成每家公司都要有的一層能力」；「他們在 Business Growth 中……在 People Growth 中……在 Organization Growth 中」","fix":""},
+ {"article":"a01","id":"M14","verdict":"ok","added":"消費者資料與企業機密都被大量餵給 AI","evidence":"p.10「消費者的資料、企業的機密、決策的邏輯，都在被大量餵給系統學習」","fix":""},
+ {"article":"a01","id":"M15","verdict":"ok","added":"組織裡；兩個隱憂是追求學習速度時的防護網","evidence":"p.10「組織裡如果每個人都習慣把思考外包給 AI」；「這是我們在追求學習速度時，必須時刻提醒自己的界線」；「這兩個隱憂，是防護網的提醒」","fix":""},
+ {"article":"a01","id":"M16","verdict":"ok","added":"三詞中譯；放大的不是機器的速度，而是人的創意和敢於行動的速度","evidence":"p.10-11「它放大的，不是機器的速度，是人類思考的 Creativity，和敢於行動的速度」","fix":""},
+ {"article":"a02","id":"M04","verdict":"ok","added":"沒有任何大型語言模型能憑空生成；真實的資料","evidence":"p.13「沒有任何一個大型語言模型能憑空生成答案……建立在真實的人、真實的資料，以及長期累積的消費者洞察之上」","fix":""},
+ {"article":"a02","id":"M05","verdict":"ok","added":"企業做研究是為了降低決策不確定性；企業花錢買的是能支持決策的信心","evidence":"p.13「企業投入大量預算做市場研究……是希望降低決策的不確定性」；「企業花錢買的不只是研究，更是一份能支持決策的信心」","fix":""},
+ {"article":"a02","id":"M08","verdict":"ok","added":"People Model 括注為電通的消費者模擬能力；品牌與消費者的對話","evidence":"全文小標「People Model 本質上是一套 Simulation (消費者模擬) 能力」；p.14 對話拉近品牌與消費者兩種視角","fix":""},
+ {"article":"a02","id":"M10","verdict":"ok","added":"這套系統；理解人這一塊","evidence":"p.15「在電通台灣的系統裡，負責理解人這一塊的模型是 People Model」","fix":""},
+ {"article":"a02","id":"M11","verdict":"ok","added":"建模；AI Persona；過去是猜，現在模擬結果已具可信度","evidence":"p.15「由它建模而成的每一位 AI 消費者數位分身 (AI Persona)……過去是猜，現在證明模擬結果已經具備支持商業決策的可信度」","fix":""},
+ {"article":"a02","id":"M13","verdict":"ok","added":"市場研究機構","evidence":"p.15「根據市場研究機構 Future Market Insights的預估」","fix":""},
+ {"article":"a02","id":"M14","verdict":"general","added":"括注合成受測者與虛擬樣本群為用模擬取代部分真人樣本；不是又一項新技術","evidence":"p.16「這代表的不是又一項新技術冒出頭，是一場關於決策效率與決策品質的競爭」；括注原文未寫，屬該詞一般意義","fix":""},
+ {"article":"a02","id":"M15","verdict":"ok","added":"此外，模擬對企業內部還有另一個意義","evidence":"p.16「此外，這對企業內部還有另一個意義，解決了巨大的隱形成本」","fix":""},
+ {"article":"a02","id":"M16","verdict":"ok","added":"這套能力；驗證的成本過去只有大企業付得起","evidence":"p.16「這套能力的門檻……這筆成本過去只有大企業付得起，現在正在被重新定義」","fix":""},
+ {"article":"a02","id":"M17","verdict":"ok","added":"企業能更快生成短影音、完成企劃","evidence":"p.17「今天，企業能更快生成一支短影音、更快完成一份企劃、更快推出一項產品」","fix":""}
+]}

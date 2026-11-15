@@ -53,6 +53,7 @@ export function flatten(story) {
     }
     if (typeof o !== 'object') return;
     if (Array.isArray(o)) { o.forEach((v, i) => walk(v, `${path}[${i}]`, key, ctx)); return; }
+    if (key === 'notes' && typeof o.term === 'string') { push('curator', 'note', `${path}.text`, `${o.term}：${o.text}`, ctx); return; } // 編註
     if (isSrc(o)) { if (key === 'quote') push('quote', 'quote', path, o.text, ctx, [o]); return; }
     // 主文：text 旁邊帶 src 陣列
     // 依欄位在資料裡的順序走（與頁面上的順序一致：眉標、標題 → 內文 → 延伸）

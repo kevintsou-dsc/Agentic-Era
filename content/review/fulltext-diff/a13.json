@@ -1,0 +1,77 @@
+{
+ "id": "a13",
+ "site_chars": 9054,
+ "pdf_chars": 9144,
+ "ratio": 0.9905,
+ "hunks": 7,
+ "hunks_to_review": 5,
+ "site_only_chars": 0,
+ "pdf_only_chars": 90,
+ "items": [
+  {
+   "id": "a13-001",
+   "kind": "site_only",
+   "page": 116,
+   "site": "ShareofVoice應該要升級為ShareofChoiceContext,透過",
+   "pdf": "",
+   "before": "廣告更精準,卻也讓品牌的選擇被稀釋。",
+   "after": "系統可見度、社群信任與注意力記憶三個",
+   "moved": true
+  },
+  {
+   "id": "a13-002",
+   "kind": "pdf_only",
+   "page": 117,
+   "site": "",
+   "pdf": "ShareofVoice應該要升級為ShareofChoiceContext,透過",
+   "before": "鍵選擇場域的占位,守住被選擇的理由。",
+   "after": "開場:SOV不是過時而是需要被重新定",
+   "moved": true
+  },
+  {
+   "id": "a13-003",
+   "kind": "pdf_only",
+   "page": 118,
+   "site": "",
+   "pdf": "119118:Model:Model",
+   "before": "廣告包圍,同一個賣點被不同品牌重複宣",
+   "after": "稱,同一個品類被演算法不斷推播。最後"
+  },
+  {
+   "id": "a13-004",
+   "kind": "pdf_only",
+   "page": 120,
+   "site": "",
+   "pdf": "121120:Model:Model",
+   "before": "況可能更複雜。有些消費者可能是看到廣",
+   "after": "告後,過幾天經過熟悉商圈時直接進店;"
+  },
+  {
+   "id": "a13-005",
+   "kind": "pdf_only",
+   "page": 122,
+   "site": "",
+   "pdf": "123122:Model:Model",
+   "before": "在哪些場域中被看見?在哪些情境中被理",
+   "after": "解?在哪些比較中不被取代?在哪些記憶"
+  },
+  {
+   "id": "a13-006",
+   "kind": "pdf_only",
+   "page": 124,
+   "site": "",
+   "pdf": "125124:Model:Model",
+   "before": "關節的保健食品,品牌不一定只是在消費",
+   "after": "者搜尋「關節保健」時才有機會被選擇。"
+  },
+  {
+   "id": "a13-007",
+   "kind": "pdf_only",
+   "page": 126,
+   "site": "",
+   "pdf": "127126:Model:Model",
+   "before": "要在消費者面對過多選項時,提供一個可",
+   "after": "以被信任的判斷捷徑。在AI與演算法投"
+  }
+ ]
+}

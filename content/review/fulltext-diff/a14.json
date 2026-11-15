@@ -1,0 +1,238 @@
+{
+ "id": "a14",
+ "site_chars": 4139,
+ "pdf_chars": 5462,
+ "ratio": 0.823,
+ "hunks": 25,
+ "hunks_to_review": 24,
+ "site_only_chars": 163,
+ "pdf_only_chars": 1511,
+ "items": [
+  {
+   "id": "a14-001",
+   "kind": "pdf_only",
+   "page": 128,
+   "site": "",
+   "pdf": "凱絡媒體數位運營總統籌強義明|NickChiang向。",
+   "before": "",
+   "after": "AI普及下的演算法世代「衡斷力(Ju"
+  },
+  {
+   "id": "a14-002",
+   "kind": "site_only",
+   "page": 128,
+   "site": "凱絡媒體數位運營總統籌強義明|NickChiang",
+   "pdf": "",
+   "before": "dgment)」將成為最稀缺的競爭力",
+   "after": "當生成式AI讓內容生成、數據分析與媒",
+   "moved": true
+  },
+  {
+   "id": "a14-003",
+   "kind": "site_only",
+   "page": 128,
+   "site": "向。",
+   "pdf": "",
+   "before": "e的三大核心能力與衡斷力累積的五個面",
+   "after": "近兩年來,生成式AI幾乎成為所有產業"
+  },
+  {
+   "id": "a14-004",
+   "kind": "pdf_only",
+   "page": 129,
+   "site": "",
+   "pdf": "以大眾媒體為核心,快速建追求個人化、績效行銷和投立共享規模並轉換為生意報,但品牌傳播較為碎片化圖1:媒體三世代演進,品牌在BRANDING與成效投資上的比重變化,漸趨平衡資料來源:凱絡媒體/製圖",
+   "before": "成,甚至看似有道理的策略規劃都變得容",
+   "after": "易。而當工具的門檻消失,差距就回到使"
+  },
+  {
+   "id": "a14-005",
+   "kind": "pdf_only",
+   "page": 130,
+   "site": "",
+   "pdf": "131130:Model:ModelBROADCASTERAPRECISIONERAALGORITHMICERA放送世代精準世代演算法世代透過品牌自己的演算法規劃,即時創造內容與TA間的價值交換BRAND品牌DEMAND需求",
+   "before": "生成),而非決斷(核實→產生決定)。",
+   "after": "首先,讓我們把AgenticAI比喻"
+  },
+  {
+   "id": "a14-006",
+   "kind": "site_only",
+   "page": 130,
+   "site": "圖1:媒體三世代演進,品牌在BRANDING與成效投資上的比重變化,漸趨平衡|資料來源:凱絡媒體/製圖",
+   "pdf": "",
+   "before": "PI,到底應該要具備哪些核心能力呢?",
+   "after": "第一是Sense感知與洞察:能夠理解"
+  },
+  {
+   "id": "a14-007",
+   "kind": "pdf_only",
+   "page": 131,
+   "site": "",
+   "pdf": "AIPIArtificialIntelligencePeopleIntelligence強大的執行者,但缺乏判斷力專業的決策者,具備判斷力與責任感輸入資料AI生成內容輸出結果Sense只能「生成」,不能「查核」AI根據訓練資料生成內容,而非真實經驗;缺乏根本專業者容易被判斷真偽的侷限「AI幻覺」(Hallucination)誤導做出決策AI是效率工具,但容易出現偏誤與錯誤PI補足AI的盲點,做出正確且有價值的決策圖2:AI是強大的執行者,尤其在PI三大核心能力的引導下,能實際創造兩者平衡又合一的綜效資料來源:凱絡媒體/製圖",
+   "before": "類放棄思考,失去Judge能力,便容",
+   "after": "易淪為AI答案的接收端,而非問題的定"
+  },
+  {
+   "id": "a14-008",
+   "kind": "pdf_only",
+   "page": 131,
+   "site": "",
+   "pdf": "PI的三項核心能力1.Sense理解脈絡與洞察理解脈絡能夠理解市場脈絡、品牌現況與消費者需求洞察需求從大量資訊中察覺變化與機會2.Judge判斷真偽與決策三項核心能力缺一不可能夠判斷資訊真偽、辨識優先順序JudgeConnect並在有限資源下做出最適切的決策整合資源3.Connect整合與創造價值創造價值能夠整合跨領域專業(策略、創意、媒體、數據與技術)讓想法真正落地,創造最大價值",
+   "before": "能力「空洞化」,人的價值:企業不應只",
+   "after": "是「部署AI」,而是要重新設計工作流"
+  },
+  {
+   "id": "a14-009",
+   "kind": "replace",
+   "page": 131,
+   "site": "圖2:AI是強大的執行者,尤其在PI三大核心能力的引導下,能實際創造兩者平衡又合一的綜效|資料來源:凱絡媒體/製圖",
+   "pdf": "1",
+   "before": "業脈絡判斷與組織知識發揮核心價值。」",
+   "after": "「IBM執行長ArvindKrish"
+  },
+  {
+   "id": "a14-010",
+   "kind": "pdf_only",
+   "page": 132,
+   "site": "",
+   "pdf": "2",
+   "before": "riticalThinking)。」",
+   "after": "「OpenAI執行長SamAltma"
+  },
+  {
+   "id": "a14-011",
+   "kind": "pdf_only",
+   "page": 132,
+   "site": "",
+   "pdf": "3",
+   "before": "斷的責任,絕對不能從人類手中移開。」",
+   "after": "所以,讓AI協助可被規格化的執行項目"
+  },
+  {
+   "id": "a14-012",
+   "kind": "pdf_only",
+   "page": 133,
+   "site": "",
+   "pdf": "133132:Model:Modelvs.感受與感知數據基礎理解人性與需求以數據建立洞察圖3:衡斷力的五大能力來源資料來源:凱絡媒體/製圖",
+   "before": "取得,而是必須經過長時間累積與磨練。",
+   "after": "電通媒體以Media++方法論培養演"
+  },
+  {
+   "id": "a14-013",
+   "kind": "pdf_only",
+   "page": 133,
+   "site": "",
+   "pdf": "JudgmentAI彙整大量數據與資訊判斷哪些訊號值得相信決定哪些機會值得投入關鍵在於:判斷與責任」答案多Judgment的五大能力來源12345組織協作經驗判斷趨勢洞察在有限資源下聚焦執行跨產業與專案的實戰經驗掌握市場與產業趨勢Judgment無法被生成,只能透過長期累積與磨練,為決策與結果負責。",
+   "before": "法世代擁有Judgment的媒體工匠",
+   "after": "在演算法世代中,媒體企劃已不再只是媒"
+  },
+  {
+   "id": "a14-014",
+   "kind": "site_only",
+   "page": 133,
+   "site": "圖3:衡斷力的五大能力來源|資料來源:凱絡媒體/製圖",
+   "pdf": "",
+   "before": "牌、內容、演算法與消費者的核心樞紐。",
+   "after": "這套方法論由Business、Aud"
+  },
+  {
+   "id": "a14-015",
+   "kind": "pdf_only",
+   "page": 134,
+   "site": "",
+   "pdf": "MEDIA++PROCESSISOURDEVELOPMENTDIRECTION&DIFFERENTIATIONROADMAPGROWTHSTRATEGY成長策略ThebusinessgrowthopportunitywecandeliverBUSINESSPredictivegrowthanalytics預測性成長分析AUDIENCES'now&next'audiences現在與未來的受眾圖4:Media++發展方向與差異化路線圖資料來源:凱絡媒體/製圖135134:Model:Model",
+   "before": "、資訊累積成知識、知識提煉為洞察,最",
+   "after": "終形成能驅動成長的大智慧。4.Exp"
+  },
+  {
+   "id": "a14-016",
+   "kind": "replace",
+   "page": 134,
+   "site": "圖4:",
+   "pdf": "DENTSUINTELLIGENCE|三大階段串聯EXPERIENCETRANSFOR",
+   "before": "化框架,持續提升行銷效能與品牌價值。",
+   "after": "Media++發展方向與差異化路線圖"
+  },
+  {
+   "id": "a14-017",
+   "kind": "pdf_only",
+   "page": 134,
+   "site": "",
+   "pdf": "ATION體驗轉型PERFORMANCEAGILITY成效敏捷Th",
+   "before": "持續提升行銷效能與品牌價值。圖4:M",
+   "after": "edia++發展方向與差異化路線圖|"
+  },
+  {
+   "id": "a14-018",
+   "kind": "pdf_only",
+   "page": 134,
+   "site": "",
+   "pdf": "outcomesthatTheinnovativeconsumermarketingdeliversexperiencethatstandsapartINSIGHTSACTIVATIONBrand,Culture,Au",
+   "before": "續提升行銷效能與品牌價值。圖4:Me",
+   "after": "dia++發展方向與差異化路線圖|資"
+  },
+  {
+   "id": "a14-019",
+   "kind": "pdf_only",
+   "page": 134,
+   "site": "",
+   "pdf": "ence,Ecosystempl",
+   "before": "升行銷效能與品牌價值。圖4:Medi",
+   "after": "a++發展方向與差異化路線圖|資料來"
+  },
+  {
+   "id": "a14-020",
+   "kind": "replace",
+   "page": 134,
+   "site": "++發展方向",
+   "pdf": "nning&Signalsexperimentation品牌、文化、受眾、訊號生態系規劃",
+   "before": "行銷效能與品牌價值。圖4:Media",
+   "after": "與差異化路線圖|資料來源:凱絡媒體/"
+  },
+  {
+   "id": "a14-021",
+   "kind": "replace",
+   "page": 134,
+   "site": "差異",
+   "pdf": "實驗EXPERIENCEOPTIMIZATIONEcosystemplusCrossecosystemoutcomes&experiencesoptimization生態系加乘體驗跨生態系成果與優",
+   "before": "價值。圖4:Media++發展方向與",
+   "after": "化路線圖|資料來源:凱絡媒體/製圖這"
+  },
+  {
+   "id": "a14-022",
+   "kind": "site_only",
+   "page": 134,
+   "site": "路線圖|資料來源:凱絡媒體/製圖",
+   "pdf": "",
+   "before": "圖4:Media++發展方向與差異化",
+   "after": "這套方法論的目的並不只是培養媒體專家"
+  },
+  {
+   "id": "a14-023",
+   "kind": "pdf_only",
+   "page": 135,
+   "site": "",
+   "pdf": "1",
+   "before": "lligence締造成長的根本。註解",
+   "after": "https://www.ithome"
+  },
+  {
+   "id": "a14-024",
+   "kind": "pdf_only",
+   "page": 135,
+   "site": "",
+   "pdf": "註解2",
+   "before": "com.tw/news/176693",
+   "after": "https://www.linked"
+  },
+  {
+   "id": "a14-025",
+   "kind": "pdf_only",
+   "page": 135,
+   "site": "",
+   "pdf": "註解3",
+   "before": "983623168-xyTT%20/",
+   "after": "https://www.linked"
+  }
+ ]
+}

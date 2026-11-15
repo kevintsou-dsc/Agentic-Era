@@ -1,0 +1,61 @@
+{
+ "id": "a01",
+ "site_chars": 3110,
+ "pdf_chars": 3147,
+ "ratio": 0.9941,
+ "hunks": 5,
+ "hunks_to_review": 1,
+ "site_only_chars": 0,
+ "pdf_only_chars": 4,
+ "items": [
+  {
+   "id": "a01-001",
+   "kind": "pdf_only",
+   "page": 6,
+   "site": "",
+   "pdf": "看懂世界,加速成長",
+   "before": "AIforGrowth",
+   "after": "電通集團大北亞區暨台灣執行長唐心慧|",
+   "fig": true
+  },
+  {
+   "id": "a01-002",
+   "kind": "pdf_only",
+   "page": 7,
+   "site": "",
+   "pdf": "先知先覺快速學習",
+   "before": "做出改變。其實面對AI企業有三種選擇",
+   "after": "第一類:先知先覺--選擇快速學習。他",
+   "fig": true
+  },
+  {
+   "id": "a01-003",
+   "kind": "pdf_only",
+   "page": 8,
+   "site": "",
+   "pdf": "後知後覺謹慎等待",
+   "before": "、更強的市場佔有率、更深的品牌信任。",
+   "after": "第二類:後知後覺--謹慎等待,注重風",
+   "fig": true
+  },
+  {
+   "id": "a01-004",
+   "kind": "pdf_only",
+   "page": 9,
+   "site": "",
+   "pdf": "不知不覺不做選擇",
+   "before": "價值(BusinessGrowth)",
+   "after": "AI讓一切變快了。幾分鐘內生成一份分",
+   "fig": true
+  },
+  {
+   "id": "a01-005",
+   "kind": "pdf_only",
+   "page": 10,
+   "site": "",
+   "pdf": "1110",
+   "before": "中學會讓人與AI找到新的分工與信任。",
+   "after": "Learningbydoing.沒有"
+  }
+ ]
+}

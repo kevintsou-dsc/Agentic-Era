@@ -1,6 +1,7 @@
 ---
 import Base from '../layouts/Base.astro';
 import Hero from '../components/home/Hero.astro';
+import ReadProgress from '../components/home/ReadProgress.astro';
 import BookDots from '../components/graphics/BookDots.astro';
 import { ARTICLES, CHAPTERS, CHAPTER_ORDER, THREADS, totalMinutes, totalAuthors } from '../lib/articles';
 import { STORIES } from '../data/stories';
@@ -66,6 +67,7 @@ const firstOf = (key: string) => ARTICLES.find((a) => a.threads.includes(key as 
     })}
     <p class="source">標題、作者與職稱以文章內頁為準；每篇精華的每一句都附紙本頁碼，可逐句對照原文。</p>
   </section>
+  <ReadProgress />
   <script>
     import { initHero } from '../scripts/hero';
     initHero();

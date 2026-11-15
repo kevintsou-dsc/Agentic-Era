@@ -4,6 +4,7 @@ import { rich } from '../lib/rich';
 import Quote from './Quote.astro';
 import SourceRef from './SourceRef.astro';
 import MoreRef from './MoreRef.astro';
+import Notes from './Notes.astro';
 import HScroll from './HScroll.astro';
 import Graphic from './graphics/Graphic.astro';
 interface Props { scenes: Scene[]; chapter?: 'intro' | 'people' | 'model' | 'ai'; seed?: number }
@@ -34,6 +35,7 @@ let proseK = 0, quoteK = 0;
                 <p class="beat"><span set:html={rich(b.text)} /><SourceRef src={b.src} /></p>
                 {b.quote && <Quote q={b.quote} />}
                 <MoreRef m={b.more} />
+                <Notes notes={b.notes} />
               </div>
             </div>
           ))}
@@ -51,10 +53,11 @@ let proseK = 0, quoteK = 0;
           {s.eyebrow && <p class="eyebrow reveal">{s.eyebrow}</p>}
           {s.heading && <h2 class="prose-h reveal" set:html={rich(s.heading)} />}
           {s.beats.map((b) => (
-            <div class:list={['reveal', { 'has-more': !!b.more }]}>
+            <div class:list={['reveal', { 'has-more': !!b.more || !!b.notes?.length }]}>
               <p class="beat"><span set:html={rich(b.text)} /><SourceRef src={b.src} /></p>
               {b.quote && <Quote q={b.quote} />}
               <MoreRef m={b.more} />
+              <Notes notes={b.notes} />
             </div>
           ))}
         </div>
@@ -76,7 +79,7 @@ let proseK = 0, quoteK = 0;
     return (
       <section class:list={['section', { finale: si === scenes.length - 1 }]}>
         <div class="spot reveal" aria-hidden="true" style={`--ar:${sw}/${sh};--fill:url(/art/spots/${sp}-fill.webp);--line:url(/art/spots/${sp}-line.webp)`}><span class="spot-fill"></span><span class="spot-line"></span></div>
-        {s.lead && <div class:list={['reveal q-lead', { 'has-more': !!s.lead.more }]}><p class="lede"><span set:html={rich(s.lead.text)} /><SourceRef src={s.lead.src} /></p><MoreRef m={s.lead.more} /></div>}
+        {s.lead && <div class:list={['reveal q-lead', { 'has-more': !!s.lead.more }]}><p class="lede"><span set:html={rich(s.lead.text)} /><SourceRef src={s.lead.src} /></p><MoreRef m={s.lead.more} /><Notes notes={s.lead.notes} /></div>}
         <div class="reveal"><Quote q={s.quote} size="lg" /></div>
       </section>
     );
@@ -105,6 +108,7 @@ let proseK = 0, quoteK = 0;
           </div>
         )}
         <p class="lede reveal"><span set:html={rich(s.caption.text)} /><SourceRef src={s.caption.src} /></p>
+        {!!s.caption.notes?.length && <p class="reveal note-row"><Notes notes={s.caption.notes} /></p>}
         <p class="source reveal">{s.source}</p>
       </section>
     );
@@ -115,7 +119,7 @@ let proseK = 0, quoteK = 0;
       <section class="section center">
         {s.eyebrow && <p class="eyebrow reveal">{s.eyebrow}</p>}
         <h2 class="display reveal statement" set:html={rich(s.text)} />
-        {s.lede && <p class="lede reveal"><span set:html={rich(s.lede.text)} /><SourceRef src={s.lede.src} /></p>}
+        {s.lede && <p class="lede reveal"><span set:html={rich(s.lede.text)} /><SourceRef src={s.lede.src} /><Notes notes={s.lede.notes} /></p>}
       </section>
     </div>
   );
