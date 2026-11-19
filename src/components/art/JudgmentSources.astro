@@ -107,8 +107,14 @@ const sources = [
   @media (max-width: 560px) {
     .js-vs { grid-template-columns: 1fr; gap: 26px; }
     .js-vs::after { display: none; }
-    .js-vs-dot { top: 50%; }
+    /* 讀到前的縮小狀態只縮到 0.85：13px 的字縮完仍 ≥ 11px */
+    .js-vs-dot { top: 50%; transform: translate(-50%, -50%) scale(calc(.85 + .15 * var(--on))); }
+    .js-bar-jd { transform: scaleX(calc(.85 + .15 * var(--on))); }
     .js-five ol { grid-template-columns: repeat(3, minmax(0, 1fr)); row-gap: 14px; }
+    /* 手機：對照區與五大能力來源疊在同一格，第 2 段起五大能力來源蓋上對照區，收束句接在下方 */
+    .js-vs, .js-five { grid-area: 1 / 1; }
+    .js-five { position: relative; z-index: 2; align-content: start; background: color-mix(in srgb, var(--accent) 32%, var(--paper)); visibility: hidden; }
+    :global(.graphic.is-2) .js-five { visibility: visible; }
   }
   @media (prefers-reduced-motion: reduce) {
     .js *, .js { transition: none !important; }

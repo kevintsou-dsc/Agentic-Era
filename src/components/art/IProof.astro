@@ -79,7 +79,8 @@ const wave = 'M8 104 C 40 70, 70 60, 100 120 S 150 214, 190 196 S 250 60, 290 90
     opacity: calc(.3 + .7 * var(--on)); transition: opacity .5s, background .3s; }
   .ip-cols b { font-size: 26px; line-height: 1; color: color-mix(in srgb, var(--teal) calc(60% + var(--focus) * 40%), var(--ink)); }
   @media (max-width: 560px) {
-    .ip-zh { font-size: 16px; } .ip-en { display: none; }
+    /* 波浪圖約縮成 0.54 倍：21 單位實際約 11.3px */
+    .ip-zh { font-size: 21px; } .ip-en { display: none; }
     .ip-link { display: none; }
     .ip-wave { margin-bottom: 0; }
     .ip-cols { min-height: 0; display: grid; gap: 4px; }

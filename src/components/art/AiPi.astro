@@ -108,6 +108,10 @@ const pos: Record<string, [number, number]> = { Sense: [110, 40], Judge: [42, 15
   @media (max-width: 560px) {
     .ap-pi-body { grid-template-columns: 1fr; }
     .ap-tri { max-width: 240px; justify-self: center; }
+    /* 手機：兩塊面板疊在同一格，第 2 段起 PI 面板蓋上 AI 面板，整張圖才放得進一個畫面 */
+    .ap-panel { grid-area: 1 / 1; }
+    .ap-pi { position: relative; z-index: 2; visibility: hidden; }
+    :global(.graphic.is-2) .ap-pi { visibility: visible; }
   }
   @media (prefers-reduced-motion: reduce) { .ap-panel, .ap-flow li { transition: none; } }
 </style>

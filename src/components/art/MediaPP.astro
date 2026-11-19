@@ -77,8 +77,15 @@ const wave = (sign: number) => {
   @media (max-width: 560px) {
     .mp-chain { grid-template-columns: 1fr; }
     .mp-loops { display: none; }
-    .mp-stage { border-bottom: 2px dashed color-mix(in srgb, var(--red) 35%, var(--paper)); }
-    .mp-stage::before { inset: 4% 10%; }
+    /* 手機：每個階段排成一列（圖示＋名稱、定位句、兩個模組並排），三個階段放得進一個畫面 */
+    .mp-stage { grid-template-columns: repeat(2, minmax(0, 1fr)); justify-items: start; gap: 2px 12px; padding: 10px 14px 12px; text-align: left;
+      border-bottom: 2px dashed color-mix(in srgb, var(--red) 35%, var(--paper)); }
+    .mp-stage::before { inset: 0; border-radius: 0; }
+    .mp-ic { position: absolute; left: 12px; top: 10px; width: 30px; height: 30px; }
+    .mp-en, .mp-tagline { grid-column: 1 / -1; }
+    .mp-en { min-height: 30px; padding-left: 40px; }
+    .mp-tagline { width: 100%; padding-bottom: 4px; }
+    .mp-mod { margin-top: 4px; }
   }
   @media (prefers-reduced-motion: reduce) { .mp-stage { transition: none; } }
 </style>

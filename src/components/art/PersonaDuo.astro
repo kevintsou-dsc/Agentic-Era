@@ -194,8 +194,26 @@ const people = [
   @keyframes pd-blink { to { opacity: .2; } }
 
   @media (max-width: 560px) {
+    /* 單欄時不做 0.98 的縮小強調（11px 小字縮完會低於 11px），只靠外框與陰影區分當段的卡片 */
+    .pd-card { transform: translateY(calc((1 - var(--on)) * 14px)); }
+    /* 手機：兩張卡疊在同一格，第 2 段 Cindy 蓋上 Lisa；卡片內容收緊，連同信任門檻一起放得進一個畫面 */
     .pd-cards { grid-template-columns: 1fr; }
-    .pd-order li { width: 100%; }
+    .pd-card { grid-area: 1 / 1; gap: 8px; padding: 12px; }
+    .pd-cindy { opacity: var(--on); visibility: hidden; }
+    :global(.graphic.is-2) .pd-cindy { visibility: visible; }
+    .pd-head { grid-template-columns: 56px 1fr; }
+    .pd-face svg { width: 56px; height: 56px; }
+    .pd-badge { display: none; }
+    .pd-name { font-size: 19px; }
+    .pd-voice { margin-top: 2px; padding: 8px 10px; font-size: 13px; line-height: 1.5; }
+    .pd-label { margin-bottom: 4px; }
+    .pd-order ol { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px; }
+    .pd-order li { width: auto; min-width: 0; grid-template-columns: 18px 1fr; gap: 5px; padding: 5px 6px; font-size: 12.5px; line-height: 1.3; }
+    .pd-order .pd-ic { display: none; }
+    .pd-rank { width: 18px; height: 18px; }
+    .pd-insight { padding-top: 6px; font-size: 12.5px; }
+    .pd-gate { padding: 10px 12px; gap: 6px; }
+    .pd-gate-h { font-size: 13px; }
   }
   @media (prefers-reduced-motion: reduce) {
     .pd-scan, .pd-wave path, .pd-batt-lv { animation: none; }

@@ -285,4 +285,50 @@ const hintTarget = c.kind === 'flowloop' ? '圓圈' : c.kind === 'stages' ? '方
   .d3 :global(.st-en) { font: 700 11px var(--font-mono); fill: var(--ink-2); }
   .d3 :global(.st-zh) { font: 800 14px var(--font-sans); fill: var(--ink); }
   .d3 :global(.st-dot) { fill: var(--accent-ink); }
+
+  /* 窄版（d3charts.ts 的 NARROW，容器 < 560px）：viewBox 360 寬，畫進 343px 約 0.95 倍，
+     所以這裡的字級都 ≥ 12 單位，手機上實際顯示才 ≥ 11px（--fs-micro）。版面位置在 d3charts.ts 裡調整。 */
+  .d3 :global(.nw .fl-label) { font-size: 13px; }
+  .d3 :global(.nw .fl-sub) { font-size: 12px; letter-spacing: .02em; }
+  .d3 :global(.nw .fl-center text) { font-size: 15px; }
+  .d3 :global(.nw .fl-arc) { stroke-width: 7; }
+  .d3 :global(.nw .fl-node circle) { stroke-width: 2.5; }
+  .d3 :global(.nw .fl-node.cur circle), .d3 :global(.nw .fl-node.has-tip:hover circle) { stroke-width: 4.5; }
+  .d3 :global(.nw .gr-name) { font-size: 14px; }
+  .d3 :global(.nw .gr-label), .d3 :global(.nw .gr-val) { font-size: 12.5px; }
+  .d3 :global(.nw .lr-label) { font-size: 15px; }
+  .d3 :global(.nw .lr-sub), .d3 :global(.nw .lr-tick text) { font-size: 12px; }
+  .d3 :global(.nw .lr-open) { font-size: 16px; }
+  .d3 :global(.nw .es-formula), .d3 :global(.nw .es-label) { font-size: 14px; }
+  .d3 :global(.nw .es-sub), .d3 :global(.nw .es-note), .d3 :global(.nw .es-tile .es-one), .d3 :global(.nw .es-check .es-check-no) { font-size: 12px; }
+  .d3 :global(.nw .es-val), .d3 :global(.nw .es-brace text) { font-size: 16px; }
+  .d3 :global(.nw .es-h) { font-size: 13px; }
+  .d3 :global(.nw .es-tile text), .d3 :global(.nw .es-check text) { font-size: 12.5px; }
+  .d3 :global(.nw .sp-lab) { font-size: 13px; }
+  .d3 :global(.nw .sp-desc), .d3 :global(.nw .sp-axis), .d3 :global(.nw .sp-mk text) { font-size: 12px; }
+  .d3 :global(.nw .ib-zone), .d3 :global(.nw .ib-chip text) { font-size: 12.5px; }
+  .d3 :global(.nw .vn-label) { font-size: 14px; }
+  .d3 :global(.nw .vn-item) { font-size: 12.5px; }
+  .d3 :global(.nw .vn-both-label) { font-size: 15px; }
+  .d3 :global(.nw .vn-both-desc) { font-size: 12px; }
+  .d3 :global(.nw .vn-fail) { font-size: 13px; }
+  .d3 :global(.nw .vn-c) { stroke-width: 2.5; }
+  .d3 :global(.nw .vn-c.focus) { stroke-width: 4; }
+  .d3 :global(.nw .bl-era) { font-size: 20px; }
+  .d3 :global(.nw .bl-desc) { font-size: 12.5px; }
+  .d3 :global(.nw .bl-egg), .d3 :global(.nw .bl-node .bl-years) { font-size: 12px; }
+  .d3 :global(.nw .bl-label), .d3 :global(.nw .bl-node text) { font-size: 13px; }
+  .d3 :global(.nw .al-h) { font-size: 14px; }
+  .d3 :global(.nw .al-tag) { font-size: 12px; }
+  .d3 :global(.nw .al-label), .d3 :global(.nw .al-emit) { font-size: 12.5px; }
+  .d3 :global(.nw .al-row.main .al-label) { font-size: 14px; }
+  .d3 :global(.nw .al-zone-t) { font-size: 13px; }
+  .d3 :global(.nw .rg-label) { font-size: 13px; }
+  .d3 :global(.nw .rg-sub) { font-size: 12px; }
+  .d3 :global(.nw.rg-grow .rg-ring.cur .rg-label) { font-size: 15px; }
+  .d3 :global(.nw .rg-core text) { font-size: 14px; }
+  .d3 :global(.nw .rg-token text), .d3 :global(.nw .rg-pull-note) { font-size: 12.5px; }
+  .d3 :global(.nw .st-model) { font-size: 15px; }
+  .d3 :global(.nw .st-era) { font-size: 12px; }
+  .d3 :global(.nw .st-zh) { font-size: 14px; }
 </style>
