@@ -260,6 +260,6 @@ export const story: Story = {
   ],
   asksTitle: '帶走一個問題',
   asks: [
-    { article: 'a20', page: 177, text: '「如何將 AI 的生成力，轉化為品牌可持續的交付力？」' },
+    { article: 'a20', page: 177, text: '如何將 AI 的生成力，轉化為品牌可持續的交付力？' },
   ],
 };

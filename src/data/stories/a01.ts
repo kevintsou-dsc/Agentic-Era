@@ -214,9 +214,9 @@ export const story: Story = {
       quote: { article: 'a01', page: 11, text: '真正的競爭優勢，永遠來自企業如何善用科技，結合人的智慧與價值，為客戶與社會創造更大的影響。' },
     },
   ],
-  asksTitle: '帶走兩個問題',
+  asksTitle: '帶走一道難題，和一個問題',
   asks: [
+    { article: 'a01', page: 7, text: '難的是，大多數企業還沒想清楚，AI 時代要怎麼守住這些不變的東西，同時做出改變。' },
     { article: 'a01', page: 9, text: '在自己的工作裡，我到底是執行動作的人，還是定義任務，能給出判斷的人？' },
-    { article: 'a01', page: 7, text: '大多數企業還沒想清楚，AI 時代要怎麼守住這些不變的東西，同時做出改變' },
   ],
 };

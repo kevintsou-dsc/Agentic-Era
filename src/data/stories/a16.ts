@@ -216,6 +216,6 @@ export const story: Story = {
   ],
   asksTitle: '帶走一個問題',
   asks: [
-    { article: 'a16', page: 148, text: '貴公司真的在進行 AI 轉型了嗎？' },
+    { article: 'a16', page: 148, text: '貴公司真的在進行 AI 轉型了嗎？還是，其實只是買了一堆 AI 工具，丟進了波濤洶湧的文化暗流之中？' },
   ],
 };

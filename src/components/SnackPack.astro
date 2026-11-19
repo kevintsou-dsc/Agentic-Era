@@ -107,7 +107,10 @@ const cards = achievements();
   /* 糖果紙 */
   .p3-pt { left: 0; top: 50%; transform-origin: 0 50%; overflow: hidden; }
   .p3-body { backface-visibility: hidden; -webkit-backface-visibility: hidden; }
-  .p3-cart { left: 0; width: 100%; background: repeating-linear-gradient(62deg, var(--people) 0 14px, #fbf7ee 14px 22px, var(--ai) 22px 36px, #fbf7ee 36px 44px, var(--model) 44px 58px, #fbf7ee 58px 66px, var(--intro) 66px 80px, #fbf7ee 80px 88px); }
+  .p3-body, .p3-cart { background: repeating-linear-gradient(62deg, var(--people) 0 14px, #fbf7ee 14px 22px, var(--ai) 22px 36px, #fbf7ee 36px 44px, var(--model) 44px 58px, #fbf7ee 58px 66px, var(--intro) 66px 80px, #fbf7ee 80px 88px); background-repeat: repeat-y; }
+  .p3-cart { left: 0; width: 100%; background-size: 100% 100%; background-position: 0 0; }
+  /* 糖果的高光不用 mix-blend-mode：3D 圖層上的混合模式要整組重新合成，代價很高 */
+  .p3-candy .p3-sp { mix-blend-mode: normal; background: linear-gradient(90deg, transparent 0 25%, rgba(255, 255, 255, .55) 50%, transparent 75%); }
   .p3-clabel { left: 50%; top: 50%; width: 134px; height: 72px; margin: -36px 0 0 -67px; background: #fbf7ee; border: 2px solid var(--ink); border-radius: 12px; display: grid; place-content: center; text-align: center; }
   .p3-clabel i { font-style: normal; font-family: var(--font-mono); font-size: 8px; font-weight: 700; letter-spacing: .16em; }
   .p3-clabel b { font-family: var(--font-serif); font-size: 21px; line-height: 1.15; }
@@ -218,13 +221,43 @@ const cards = achievements();
   .album .acard { width: 100%; padding: 8px 8px 6px; gap: 3px; border-radius: 10px; border-width: 1.5px; box-shadow: 0 6px 12px rgba(0, 0, 0, .25); transform: none; }
   .album .acard::before { width: 4rem; height: 4rem; right: -1.2rem; bottom: -1.2rem; border-width: 7px; }
   .album .ac-top, .album .ac-foot { display: none; }
-  .album .ac-kind { font-size: 9px; padding: 1px 6px; }
+  .album .ac-kind { font-size: 11px; padding: 1px 6px; }
   .album .ac-name { font-size: 14px; }
-  .album .ac-line { font-size: 10px; line-height: 1.45; }
+  .album .ac-line { font-size: 11px; line-height: 1.45; }
   .album .acard.locked { background: rgba(243, 238, 228, .08); border: 1.5px dashed rgba(243, 238, 228, .5); color: var(--paper); box-shadow: none; }
   .album .acard.locked::before { display: none; }
   .album .acard.locked .ac-name { color: var(--paper); opacity: .6; }
   .album .acard.locked .ac-kind { background: rgba(243, 238, 228, .25); }
+
+  /* 矮螢幕：補給包舞台固定 25rem 高，在 568px 高的小手機上會把拉條下方的提示擠出畫面；橫放的手機更放不下。
+     舞台依螢幕高度縮小，補給包用獨立的 scale 屬性等比縮小（不動 transform，飄浮與旋轉照常）。 */
+  @media (max-height: 640px) {
+    .sn-stage { gap: 10px; padding-top: 16px; }
+    .sn-scene { height: 19rem; }
+    .sn-float { scale: .78; }
+    .deck { min-height: 0; }
+    .acard { width: 12.5rem; padding: 14px 14px 10px; }
+    .ac-name { font-size: 25px; }
+    .album { max-height: 58svh; }
+  }
+  @media (max-height: 480px) {
+    .sn-stage { gap: 6px; padding-top: 8px; }
+    .sn-scene { height: 11.5rem; }
+    .sn-float { scale: .46; }
+    .sn-scene::after { display: none; }
+    .sn-hint { display: none; }
+    /* 橫放：卡片在左、文字與按鈕在右，一個畫面放得下 */
+    .sn-stage[data-stage="cards"] { grid-template-columns: auto auto; justify-content: center; align-items: center; column-gap: 20px; }
+    .sn-stage[data-stage="cards"] .deck { grid-row: 1 / span 4; }
+    .acard { width: 10.5rem; }
+    .ac-name { font-size: 21px; }
+    .ac-line { font-size: 12px; line-height: 1.5; }
+    .album { grid-template-columns: repeat(5, 1fr); max-height: 52svh; }
+  }
+  /* 窄手機：收藏一列三張太擠，改成一列兩張 */
+  @media (max-width: 400px) {
+    .album { grid-template-columns: repeat(2, 1fr); }
+  }
 
   @media (prefers-reduced-motion: reduce) {
     .sn-float, .sn-scene::after { animation: none; }

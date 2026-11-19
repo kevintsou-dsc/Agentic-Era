@@ -1,109 +1,20 @@
 ---
 import Base from '../layouts/Base.astro';
 import Hero from '../components/home/Hero.astro';
+import FaceMap from '../components/home/FaceMap.astro';
 import ReadProgress from '../components/home/ReadProgress.astro';
-import BookDots from '../components/graphics/BookDots.astro';
-import { ARTICLES, CHAPTERS, CHAPTER_ORDER, THREADS, totalMinutes, totalAuthors } from '../lib/articles';
-import { STORIES } from '../data/stories';
-import { CORE_QUESTION, THREAD_LINES } from '../data/home';
-import { rich } from '../lib/rich';
-import { storyMinutes } from '../lib/stats';
+import { totalMinutes, totalAuthors } from '../lib/articles';
+import { CORE_QUESTION } from '../data/home';
 const hours = Math.floor(totalMinutes / 60);
 const mins = totalMinutes % 60;
-const firstOf = (key: string) => ARTICLES.find((a) => a.threads.includes(key as never) && STORIES[a.id]);
 ---
 <Base title="決策智慧 2026｜一個故事讀完整本" description="電通《決策智慧 2026》22 篇觀點的捲動閱讀版：1 分鐘看懂全書，幾分鐘讀完一篇精華，想深讀再看原文。" chapter="intro">
   <Hero quote={CORE_QUESTION} hours={hours} mins={mins} authors={totalAuthors} />
 
-  <section class="scrolly">
-    <div class="graphic"><BookDots /></div>
-    <div class="steps">
-      <div class="step"><div class="card"><p class="curated">整理：策展者</p><p>全書分四章：序章定調，<b>People</b> 談人，<b>Model</b> 談模型，<b>A.I</b> 談行動。每個點是一篇文章。</p></div></div>
-      {THREADS.map((t, i) => {
-        const first = firstOf(t.key);
-        return (
-          <div class="step"><div class="card">
-            <p class="eyebrow">主線 {i + 1}｜{t.name}</p>
-            <p set:html={rich(THREAD_LINES[t.key])} />
-            {first && <p><a class="btn small" href={`/story/${first.slug}/`}>讀這條線：{first.title} →</a></p>}
-          </div></div>
-        );
-      })}
-    </div>
-  </section>
-
-  <section class="section" id="chapters">
-    <p class="eyebrow">依章節找文章</p>
-    <h2 class="h2 serif">22 篇觀點</h2>
-    {CHAPTER_ORDER.map((ch) => {
-      const list = ARTICLES.filter((a) => a.chapter === ch);
-      const mins = list.reduce((s, a) => s + (STORIES[a.id] ? storyMinutes(STORIES[a.id]) : a.minutes), 0);
-      // 章節磚跨的格數＝補滿最後一列的空格；剛好排滿時改為獨佔一整列（當章首橫幅）
-      const fill = (cols: number) => (cols - (list.length % cols)) % cols || cols;
-      return (
-      <div class={`chgroup ch-${ch}`} style={`--t2:${fill(2)};--t3:${fill(3)}`}>
-        <div class="ch-tile"><div class="ch-in">
-          <h3><span class="ch-en">{CHAPTERS[ch].name}</span> <span class="serif">{CHAPTERS[ch].zh}</span></h3>
-          <p>{list.length} 篇｜約 {mins} 分鐘</p>
-        </div></div>
-        <ul role="list">
-          {list.map((a) => {
-            const has = Boolean(STORIES[a.id]);
-            return (
-              <li>
-                <a href={has ? `/story/${a.slug}/` : `/story/${a.slug}/original/`} class:list={{ has }}>
-                  {a.kicker && <span class="kick">〈{a.kicker}〉</span>}
-                  <b>{a.title}</b>
-                  {a.subtitle && <span class="sub">{a.subtitle}</span>}
-                  <span class="by">{a.authors.map((x) => x.name).join('、')}｜紙本 p.{a.pages[0]}</span>
-                  <em>{has ? `精華 ${storyMinutes(STORIES[a.id])} 分鐘` : `原文約 ${a.minutes} 分鐘`}</em>
-                </a>
-              </li>
-            );
-          })}
-        </ul>
-      </div>
-      );
-    })}
-    <p class="source">標題、作者與職稱以文章內頁為準；每篇精華的每一句都附紙本頁碼，可逐句對照原文。</p>
-  </section>
+  <FaceMap />
   <ReadProgress />
   <script>
     import { initHero } from '../scripts/hero';
     initHero();
   </script>
 </Base>
-<style>
-  .h2 { font-size: var(--fs-h2); margin: 4px 0 8px; }
-  .btn.small { padding: 8px 14px; font-size: 14px; }
-  /* 章節區：每章一個網格，章節磚與卡片同網格；欄數依區塊寬度（與原本 260px 最小卡寬的換欄點相同） */
-  #chapters { container: chapters / inline-size; }
-  .chgroup { margin: 28px 0; display: grid; grid-template-columns: 1fr; gap: 10px; --span: 1; }
-  .chgroup ul { display: contents; list-style: none; }
-  @container (min-width: 530px) { .chgroup { grid-template-columns: repeat(2, 1fr); --span: var(--t2); } }
-  @container (min-width: 800px) { .chgroup { grid-template-columns: repeat(3, 1fr); --span: var(--t3); } }
-  .ch-tile { grid-column: span var(--span); container: tile / inline-size; padding: 14px 16px; border-radius: var(--r-m); background: var(--accent); }
-  .ch-in { height: 100%; display: flex; flex-direction: column; justify-content: space-between; gap: var(--sp-2); }
-  .ch-tile h3 { margin: 0; display: flex; flex-direction: column; gap: 2px; font-size: var(--fs-h3); line-height: 1.2; }
-  .ch-tile .ch-en { font-size: var(--fs-caption); font-weight: var(--fw-bold); letter-spacing: .08em; text-transform: uppercase; color: var(--accent-ink); }
-  .ch-tile p { margin: 0; font-size: var(--fs-meta); color: var(--ink-2); }
-  /* 獨佔整列時（磚夠寬，或手機單欄）改成一行橫幅，不要把版面撐高 */
-  @container tile (min-width: 480px) {
-    .ch-in { flex-direction: row; align-items: baseline; }
-    .ch-tile h3 { flex-direction: row; align-items: baseline; gap: var(--sp-3); }
-  }
-  @container chapters (max-width: 529.98px) {
-    .ch-tile { padding-block: 10px; }
-    .ch-in { flex-direction: row; align-items: baseline; }
-    .ch-tile h3 { flex-direction: row; align-items: baseline; gap: var(--sp-3); }
-  }
-  .chgroup a { display: flex; flex-direction: column; gap: 3px; padding: 14px 16px; border-radius: var(--r-m); border: 1px solid var(--line); background: var(--paper); text-decoration: none; height: 100%; }
-  .chgroup em { margin-top: auto; }
-  .chgroup a.has { border: 2px solid var(--accent-ink); }
-  .chgroup a:hover { background: var(--accent); }
-  .chgroup b { font-size: 16px; line-height: 1.45; }
-  .kick { font-size: var(--fs-caption); font-weight: var(--fw-bold); color: var(--accent-ink); }
-  .sub { font-size: var(--fs-meta); color: var(--ink-2); line-height: 1.45; }
-  .by { font-size: var(--fs-caption); color: var(--ink-3); margin-top: 4px; }
-  .chgroup em { font-style: normal; font-size: var(--fs-caption); font-weight: var(--fw-bold); color: var(--accent-ink); }
-</style>

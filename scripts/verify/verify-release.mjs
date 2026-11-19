@@ -20,8 +20,7 @@ for (const a of articles) {
 if (!process.env.SITE_URL) problems.push('沒有設定 SITE_URL：分享預覽圖與 canonical 會退用部署網址或相對路徑');
 // 襯線顯示字子集要涵蓋所有顯示文字（修稿期間只提示，繳交前擋下）
 const fonts = spawnSync('node scripts/verify/check-fonts.mjs --strict', { shell: true, encoding: 'utf8', cwd: root });
-if (fonts.status !== 0) problems.push(...fonts.stdout.trim().split('
-'));
+if (fonts.status !== 0) problems.push(...fonts.stdout.trim().split(/\r?\n/));
 if (problems.length) {
   console.error(`✗ 尚不能繳交，還有 ${problems.length} 項：`);
   problems.forEach((p) => console.error('  ' + p));

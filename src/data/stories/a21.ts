@@ -196,8 +196,8 @@ export const story: Story = {
       quote: { article: 'a21', page: 187, text: '人才、創意工藝與科技，都必須以成效為基礎。' },
     },
   ],
-  asksTitle: '帶走一個問題',
+  asksTitle: '帶走一句話',
   asks: [
-    { article: 'a21', page: 183, text: '核心問題始終是能否以正確的方式運用 AI' },
+    { article: 'a21', page: 187, text: '品牌不應只在迫不得已、需要提升效率時才使用 AI。它可以，也應該成為內容製作的重要差異化能力。' },
   ],
 };

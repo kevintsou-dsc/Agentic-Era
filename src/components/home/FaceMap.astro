@@ -1,0 +1,146 @@
+---
+// 首頁全書地圖「替這張臉上色」（docs/design-review/home-brainstorm.md，提案 D）。
+// 開場的兩張臉留在左邊（手機在上方）當地圖：鉛筆人臉＝People 9 篇，像素 AI 臉＝A.I 6 篇，
+// 兩張臉之間五道碎片流＝Model 5 篇，兩隻眼睛＝序章 2 篇。
+// 捲動為主：右邊清單捲到哪一篇（或哪一條主線），臉上那一塊就亮起、鏡頭推近；讀過的篇章永久上色。
+// 清單是一般連結，沒有 JS 也能用；畫面由 scripts/facemap.ts 繪製，減少動態時不移動。
+import { ARTICLES, CHAPTERS, CHAPTER_ORDER, THREADS } from '../../lib/articles';
+import { STORIES } from '../../data/stories';
+import { THREAD_LINES } from '../../data/home';
+import { rich } from '../../lib/rich';
+import { storyMinutes } from '../../lib/stats';
+
+const WHERE = { intro: '兩隻眼睛', people: '鉛筆的臉', model: '兩張臉之間的碎片流', ai: '像素的臉' } as const;
+const data = ARTICLES.map((a, i) => ({ i, slug: a.slug, ch: a.chapter, t: a.title, th: a.threads }));
+const no = (i: number) => String(i + 1).padStart(2, '0');
+const firstOf = (key: string) => ARTICLES.find((a) => a.threads.includes(key as never) && STORIES[a.id]);
+---
+<section class="fm" id="chapters" data-fm data-fm-data={JSON.stringify(data)} aria-labelledby="fm-h">
+  <div class="fm-stage" data-fm-stage aria-hidden="true">
+    <canvas data-fm-canvas></canvas>
+    <div class="fm-hud"><span class="eyebrow">你的這張臉</span><span class="n" data-fm-n></span><span class="c" data-fm-c></span></div>
+    <div class="fm-legend"><span><i style="--k:#c08a3e"></i>序章｜兩隻眼睛</span><span><i style="--k:#6fa83a"></i>人｜鉛筆的臉</span><span><i style="--k:#d0544c"></i>模型｜之間的碎片流</span><span><i style="--k:#2a9db5"></i>行動｜像素的臉</span></div>
+    <div class="fm-toast" data-fm-toast></div>
+  </div>
+  <div class="fm-list" data-fm-list>
+    <header class="fm-head">
+      <p class="eyebrow">全書地圖｜22 篇觀點</p>
+      <h2 id="fm-h" class="h2 serif">22 篇觀點，畫在兩張臉上</h2>
+      <p>全書分四章：序章定調，<b>People</b> 談人，<b>Model</b> 談模型，<b>A.I</b> 談行動。人這章在鉛筆的臉上，行動這章在像素的臉上，模型這章是兩張臉之間流動的碎片。每讀完一篇，就替這張臉添一塊顏色。</p>
+    </header>
+    <div class="fm-threads">
+      {THREADS.map((t, i) => {
+        const first = firstOf(t.key);
+        return (
+          <div class="fm-thread" data-fm-step data-thread={t.key}>
+            <p class="eyebrow">主線 {i + 1}｜{t.name}</p>
+            <p set:html={rich(THREAD_LINES[t.key])} />
+            {first && <a class="btn small" href={`/story/${first.slug}/`}>讀這條線：{first.title} →</a>}
+          </div>
+        );
+      })}
+    </div>
+    {CHAPTER_ORDER.map((ch) => {
+      const list = ARTICLES.filter((a) => a.chapter === ch);
+      return (
+        <div class="fm-group" role="group" aria-labelledby={`fm-${ch}`}>
+          <h3 class="fm-ch" id={`fm-${ch}`}><span class="serif">{CHAPTERS[ch].zh}</span><span class="en">{CHAPTERS[ch].name}</span><em>{WHERE[ch]}｜{list.length} 篇</em></h3>
+          <ul role="list">
+            {list.map((a) => {
+              const i = ARTICLES.indexOf(a), s = STORIES[a.id];
+              return (
+                <li>
+                  <a class={`fm-row ch-${ch}`} data-fm-step data-i={i} data-slug={a.slug} href={s ? `/story/${a.slug}/` : `/story/${a.slug}/original/`}>
+                    <span class="no">{no(i)}</span>
+                    <span class="t">{a.title}{a.subtitle && <span class="sub">{a.subtitle}</span>}</span>
+                    <span class="s">{a.authors.map((x) => x.name).join('、')}<span class="r">已上色</span></span>
+                    {s && <span class="o">{s.oneLiner}</span>}
+                    <span class="m">{s ? `精華 ${storyMinutes(s)} 分鐘` : `原文約 ${a.minutes} 分鐘`}｜紙本 p.{a.pages[0]}</span>
+                  </a>
+                </li>
+              );
+            })}
+          </ul>
+        </div>
+      );
+    })}
+    <div class="fm-share" data-fm-share hidden>
+      <p class="eyebrow">你的這張臉</p>
+      <p>已上色 <b data-fm-share-n></b>。把它存成一張圖，分享給也在想這些問題的人。</p>
+      <button type="button" class="btn" data-fm-share-go>分享你的這張臉</button>
+      <p class="msg" data-fm-share-msg aria-live="polite"></p>
+    </div>
+    <p class="source">標題、作者與職稱以文章內頁為準；每篇精華的每一句都附紙本頁碼，可逐句對照原文。</p>
+  </div>
+</section>
+<script>
+  import { initFaceMap } from '../../scripts/facemap';
+  initFaceMap();
+</script>
+<style>
+  .fm { --top: 58px; position: relative; display: grid; grid-template-columns: minmax(0, 1.55fr) minmax(0, 1fr); max-width: 88rem; margin: 0 auto; }
+  .fm-stage { position: sticky; top: var(--top); height: calc(100svh - var(--top)); min-height: 420px; }
+  .fm-stage canvas { position: absolute; inset: 0; width: 100%; height: 100%; touch-action: pan-y; }
+  .fm-hud { position: absolute; left: var(--gutter); top: 18px; display: grid; gap: 2px; pointer-events: none; }
+  .fm-hud .n { font-family: var(--font-serif); font-weight: 900; font-size: clamp(26px, 2.6vw, 38px); line-height: 1.1; }
+  .fm-hud .n :global(small) { font-size: .5em; color: var(--ink-3); margin-left: 4px; }
+  .fm-hud .c { font-size: var(--fs-meta); color: var(--ink-2); min-height: 1.6em; }
+  .fm-legend { position: absolute; left: 0; right: 0; bottom: 16px; display: flex; flex-wrap: wrap; justify-content: center; gap: 6px 18px; font-size: var(--fs-caption); color: var(--ink-3); pointer-events: none; }
+  .fm-legend i { display: inline-block; width: 10px; height: 10px; border-radius: 2px; margin-right: 5px; vertical-align: -1px; background: var(--k); }
+  .fm-toast { position: absolute; left: 50%; bottom: 52px; translate: -50% 12px; max-width: calc(100% - 24px); padding: 10px 16px; border-radius: var(--r-pill); background: var(--ink); color: var(--paper); font-size: 14px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; opacity: 0; transition: opacity .35s, translate .35s var(--ease-out); pointer-events: none; }
+  .fm-toast:global(.on) { opacity: 1; translate: -50% 0; }
+
+  .fm-list { padding: 22svh var(--gutter) 30svh 8px; }
+  .fm-head { margin-bottom: 14svh; }
+  .fm-head p:not(.eyebrow) { color: var(--ink-2); }
+  .fm-threads { display: grid; gap: 10svh; margin-bottom: 12svh; }
+  .fm-thread { padding: 18px 20px; border-radius: var(--r-l); border: 1px solid var(--line); background: var(--paper); opacity: .5; transition: opacity .35s, border-color .35s; }
+  .fm-thread p { margin: 0 0 10px; }
+  .fm-thread:global(.on) { opacity: 1; border-color: var(--ink); }
+  .btn.small { padding: 8px 14px; font-size: 14px; }
+  .fm-group ul { list-style: none; margin: 0; padding: 0; }
+  .fm-group + .fm-group { margin-top: 9svh; }
+  .fm-ch { display: flex; align-items: baseline; gap: 10px; margin: 0 0 8px; font-size: inherit; }
+  .fm-ch .serif { font-size: var(--fs-h2); font-weight: 900; line-height: 1; }
+  .fm-ch .en { font-family: var(--font-mono); font-size: var(--fs-caption); letter-spacing: .16em; text-transform: uppercase; color: var(--ink-3); }
+  .fm-ch em { margin-left: auto; font-style: normal; font-size: var(--fs-caption); color: var(--ink-3); }
+  .fm-row { position: relative; display: grid; grid-template-columns: 3.2rem 1fr; gap: 0 12px; padding: 16px 0 18px 14px; border-top: 1px solid var(--line); color: var(--ink); text-decoration: none; opacity: .45; transition: opacity .35s; }
+  .fm-row::before { content: ""; position: absolute; left: 0; top: 16px; bottom: 18px; width: 4px; border-radius: 2px; background: var(--accent-ink); scale: 1 0; transform-origin: top; transition: scale .4s var(--ease-out); }
+  .fm-row:global(.on), .fm-row:hover, .fm-row:focus-visible { opacity: 1; }
+  .fm-row:global(.on)::before { scale: 1 1; }
+  .fm-row > :not(.no) { grid-column: 2; }
+  .fm-row .no { grid-row: span 5; font-family: var(--font-serif); font-weight: 900; font-size: 32px; line-height: 1; color: var(--ink-3); transition: color .35s; }
+  .fm-row:global(.on) .no, .fm-row:global(.read) .no { color: var(--accent-ink); }
+  .fm-row .t { font-family: var(--font-serif); font-weight: 900; font-size: clamp(19px, 1.1vw + 8px, 23px); line-height: 1.35; }
+  .fm-row .sub { display: block; font-family: var(--font-sans); font-weight: var(--fw-regular); font-size: var(--fs-small); color: var(--ink-2); margin-top: 2px; }
+  .fm-row .s { font-size: var(--fs-meta); color: var(--ink-3); margin-top: 4px; }
+  .fm-row .r { display: none; margin-left: 8px; padding: 0 7px; border-radius: var(--r-pill); background: var(--accent-ink); color: var(--paper); font-size: 11px; font-weight: var(--fw-bold); }
+  .fm-row:global(.read) .r { display: inline-block; }
+  .fm-row .o { margin-top: 6px; font-size: var(--fs-small); line-height: 1.65; color: var(--ink-2); }
+  .fm-row .m { margin-top: 6px; font-size: var(--fs-caption); font-weight: var(--fw-bold); color: var(--accent-ink); }
+  .fm-share { margin-top: 9svh; padding: 20px 22px; border-radius: var(--r-l); border: 1px solid var(--ink); background: var(--paper); }
+  .fm-share[hidden] { display: none; }
+  .fm-share p { margin: 0 0 12px; }
+  .fm-share .msg { margin: 10px 0 0; min-height: 1.5em; font-size: var(--fs-meta); color: var(--ink-2); }
+  .source { margin-top: 6svh; font-size: var(--fs-meta); color: var(--ink-3); }
+
+  @media (max-width: 860px) {
+    .fm { grid-template-columns: 1fr; }
+    .fm-stage { z-index: 2; height: 42svh; min-height: 0; background: linear-gradient(var(--paper) 88%, transparent); }
+    .fm-hud { top: 8px; }
+    .fm-hud .n { font-size: 24px; }
+    .fm-legend { display: none; }
+    .fm-toast { bottom: 10px; font-size: 13px; }
+    .fm-list { padding: 4svh var(--gutter) 30svh; }
+    .fm-head { margin-bottom: 8svh; }
+    .fm-threads { gap: 6svh; margin-bottom: 8svh; }
+    .fm-row { grid-template-columns: 2.6rem 1fr; }
+    .fm-row .no { font-size: 26px; }
+  }
+  /* 沒有 JS 或減少動態以外的情況都由腳本畫圖；沒有 JS 時不留空白畫布，清單全亮 */
+  @media (scripting: none) {
+    .fm { grid-template-columns: 1fr; }
+    .fm-stage { display: none; }
+    .fm-row, .fm-thread { opacity: 1; }
+  }
+</style>

@@ -314,10 +314,9 @@ export const story: Story = {
       quote: { article: 'a14', page: 135, text: 'AI 可以生成答案、提供選項、加速執行；但為決策負責、為價值定錨的，始終是人。' },
     },
   ],
-  asksTitle: '帶走三句話',
+  asksTitle: '帶走兩句話',
   asks: [
-    { article: 'a14', page: 132, text: '讓 AI 協助可被規格化的執行項目，而讓 PI 真正不可取代的價值判斷，就是「衡斷力 (Judgment)」' },
-    { article: 'a14', page: 132, text: '「企業真正面對的問題，從來不是答案不夠，而是解法太多」' },
+    { article: 'a14', page: 132, text: '企業真正面對的問題，從來不是答案不夠，而是解法太多' },
     { article: 'a14', page: 133, text: 'Judgment 無法被生成，只能透過長期累積與磨練，為決策與結果負責。' },
   ],
 };

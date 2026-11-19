@@ -25,11 +25,13 @@ function txt(tag: string, cls: string, text: string, parent: Element) {
   return e;
 }
 
-interface Lit { sh: HTMLElement; sp: HTMLElement }
+interface Lit { sh: HTMLElement; sp: HTMLElement; d?: string; s?: string }
 const lit = (p: Element): Lit => ({ sh: el('p3-lit p3-sh', p), sp: el('p3-lit p3-sp', p) });
+// 只在數值真的變了才寫回樣式：每格上百條面片，沒變的不要讓瀏覽器重算
 const setLit = (p: Lit, d: number, s: number) => {
-  p.sh.style.opacity = (0.62 * (1 - clamp01(d))).toFixed(3);
-  p.sp.style.opacity = s.toFixed(3);
+  const a = (0.62 * (1 - clamp01(d))).toFixed(2), b = s.toFixed(2);
+  if (a !== p.d) { p.d = a; p.sh.style.opacity = a; }
+  if (b !== p.s) { p.s = b; p.sp.style.opacity = b; }
 };
 
 // 打開時從包裡冒出來的小卡（最多 3 張）
@@ -89,7 +91,7 @@ function foil(host: HTMLElement, n: number): Light {
 }
 
 // ── 沿 X 軸的圓柱／圓錐段（糖果用） ──
-interface RingOpt { x0: number; r0: number; x1: number; r1: number; N: number; cls: string; frill?: boolean; decorate?: (e: HTMLElement, i: number, h: number) => void }
+interface RingOpt { x0: number; r0: number; x1: number; r1: number; N: number; cls: string; frill?: boolean; unlit?: boolean; decorate?: (e: HTMLElement, i: number, h: number) => void }
 function ring(parent: Element | ((a: number) => Element), o: RingOpt) {
   const len = Math.hypot(o.x1 - o.x0, o.r1 - o.r0), beta = Math.atan2(o.r1 - o.r0, o.x1 - o.x0), rmax = Math.max(o.r0, o.r1), h = 2 * Math.PI * rmax / o.N + 0.9;
   const k0 = o.r0 / rmax, k1 = o.r1 / rmax, out: (Lit & { a: number })[] = [];
@@ -102,26 +104,39 @@ function ring(parent: Element | ((a: number) => Element), o: RingOpt) {
       e.style.clipPath = `polygon(0 ${50 - 50 * k0}%,${right},0 ${50 + 50 * k0}%)`;
     }
     o.decorate?.(e, i, h);
-    out.push({ a, ...lit(e) });
+    // 不算明暗的面片：依位置給一個固定的陰影，靠背光那側暗一點，看起來仍有立體感
+    if (o.unlit) e.style.backgroundColor = `rgba(40, 46, 46, ${(0.42 * (1 - Math.max(0, Math.cos(a - 0.55)))).toFixed(2)})`;
+    else out.push({ a, ...lit(e) });
   }
   return out;
 }
 
 // ── 糖果紙：圓柱糖身＋兩端玻璃紙扭花 ──
 function candy(host: HTMLElement): Light {
+  // 效能：原本 26＋2×(26＋14)＝106 條面片、每條兩層明暗，旋轉時每格重算上百個半透明 3D 圖層；
+  // 現在糖身仍 26 條（再少標籤會被面片接縫切到）、玻璃紙 2×(12＋8) 條且不加明暗層，條紋改畫在面片本身，標籤只放在會露出它的幾條上
   const R = 56, L = 184, N = 26;
   const halfT = el('p3-half t', host), halfB = el('p3-half b', host);
   const parts = ring((a) => (Math.sin(a) > 0 ? halfT : halfB), { x0: -L / 2, r0: R, x1: L / 2, r1: R, N, cls: 'p3-body', decorate: (e, i, h) => {
     const row = (N / 2 - i + N) % N; // 正面中央對到圖案中線
-    const art = el('p3-cart', e, `height:${N * h}px;top:${-row * h + h / 2}px`);
-    art.innerHTML = '<div class="p3-clabel"><i>DECISION WISDOM</i><b>知識補給包</b></div>';
+    const top = -row * h + h / 2, mid = (N * h) / 2;
+    e.style.backgroundSize = `100% ${N * h}px`;
+    e.style.backgroundPosition = `0 ${top}px`;
+    // 標籤高 72px：只有視窗（row*h±h/2）跟標籤範圍重疊的面片才放
+    if (Math.abs(row * h - mid) < 36 + h * 1.5) {
+      const art = el('p3-cart', e, `height:${N * h}px;top:${top}px`);
+      art.innerHTML = '<div class="p3-clabel"><i>DECISION WISDOM</i><b>知識補給包</b></div>';
+    }
   } });
   for (const side of ['l', 'r']) {
     const g = el('p3-end ' + side, host);
-    parts.push(...ring(g, { x0: L / 2 - 1, r0: R, x1: L / 2 + 22, r1: 9, N, cls: 'p3-cello' }));
-    parts.push(...ring(g, { x0: L / 2 + 21, r0: 9, x1: L / 2 + 66, r1: 52, N: 14, cls: 'p3-cello', frill: true }));
+    ring(g, { x0: L / 2 - 1, r0: R, x1: L / 2 + 22, r1: 9, N: 12, cls: 'p3-cello', unlit: true });
+    ring(g, { x0: L / 2 + 21, r0: 9, x1: L / 2 + 66, r1: 52, N: 8, cls: 'p3-cello', frill: true, unlit: true });
   }
+  let last = NaN;
   return (rx) => {
+    if (Math.abs(rx - last) < 0.25) return; // 糖果的明暗只跟上下翻轉有關，角度沒怎麼變就不重算
+    last = rx;
     for (const p of parts) {
       const d = Math.cos(p.a - rx * DEG - 0.55);
       setLit(p, 0.35 + 0.65 * d, Math.pow(Math.max(0, Math.cos(p.a - rx * DEG - 0.35)), 30) * 0.8);

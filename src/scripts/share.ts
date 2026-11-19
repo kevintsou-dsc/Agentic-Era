@@ -153,6 +153,54 @@ export async function drawCard(spec: CardSpec): Promise<HTMLCanvasElement | null
   return c;
 }
 
+export interface FaceSpec { face: HTMLCanvasElement; n: number; url: string; parts: readonly (readonly [string, number, number, number[]])[] }
+
+/** 首頁「分享你的這張臉」：紙色底，上方「已上色 n／22」，中間是讀者自己上色的兩張臉，下方四章進度。 */
+export async function drawFaceCard(spec: FaceSpec): Promise<HTMLCanvasElement | null> {
+  const css = getComputedStyle(document.documentElement);
+  const v = (n: string, d: string) => css.getPropertyValue(n).trim() || d;
+  const sans = v('--font-sans', 'sans-serif');
+  const serif = v('--font-serif', 'serif').replace('var(--font-sans)', sans);
+  const mono = v('--font-mono', 'monospace');
+  const paper = v('--paper', '#f3eee4'), ink = v('--ink', '#1f1d1a'), accent = v('--accent-ink', '#2f5e35');
+  const big = `已上色 ${spec.n}／22`;
+  try { await Promise.all([document.fonts.load(`900 104px ${serif}`, big), document.fonts.load(`700 30px ${sans}`)]); } catch { /* 用系統字 */ }
+  const c = document.createElement('canvas');
+  c.width = W; c.height = H;
+  const ctx = c.getContext('2d');
+  if (!ctx) return null;
+  ctx.textBaseline = 'top';
+  ctx.fillStyle = paper; ctx.fillRect(0, 0, W, H);
+  const r = rng(11);
+  for (let i = 0; i < 5000; i++) { ctx.fillStyle = alpha(ink, r() * 0.05); ctx.fillRect(r() * W, r() * H, 2, 2); }
+  ctx.font = `700 28px ${sans}`; ctx.fillStyle = accent;
+  ctx.fillText('決策智慧 2026｜我的這張臉', PAD, 110);
+  ctx.fillRect(PAD, 156, 64, 6);
+  ctx.font = `900 104px ${serif}`; ctx.fillStyle = ink;
+  ctx.fillText(big, PAD, 190);
+  // 兩張臉（離屏畫好、透明底）放在中段
+  const fy = 320, fh = Math.round(spec.face.height * (W / spec.face.width));
+  ctx.drawImage(spec.face, 0, fy, W, fh);
+  // 四章進度：色塊＋「人 3／9」
+  let x = PAD; const py = fy + fh + 24;
+  ctx.font = `700 30px ${sans}`;
+  for (const [name, got, all, col] of spec.parts) {
+    ctx.fillStyle = `rgb(${col.join(',')})`; rr(ctx, x, py + 4, 26, 26, 5); ctx.fill();
+    ctx.fillStyle = ink; const t = `${name} ${got}／${all}`; ctx.fillText(t, x + 38, py);
+    x += 38 + ctx.measureText(t).width + 40;
+  }
+  const ft = H - FOOT;
+  ctx.fillStyle = alpha(ink, 0.85); ctx.fillRect(PAD, ft, W - PAD * 2, 3);
+  ctx.font = `700 36px ${sans}`; ctx.fillStyle = ink;
+  ctx.fillText('22 篇觀點，每讀完一篇就替這張臉添一塊顏色', PAD, ft + 44);
+  ctx.fillStyle = alpha(ink, 0.55); ctx.font = `500 26px ${sans}`;
+  ctx.fillText(spec.url.replace(/^https?:\/\//, ''), PAD, H - 70);
+  ctx.font = `700 22px ${mono}`;
+  const brand = 'DECISION WISDOM 2026';
+  ctx.fillText(brand, W - PAD - ctx.measureText(brand).width, H - 68);
+  return c;
+}
+
 const toBlob = (c: HTMLCanvasElement) => new Promise<Blob | null>((r) => c.toBlob(r, 'image/png'));
 
 export function download(blob: Blob, name: string) {
@@ -163,6 +211,21 @@ export function download(blob: Blob, name: string) {
   a.click();
   a.remove();
   setTimeout(() => URL.revokeObjectURL(a.href), 4000);
+}
+
+/** 能分享檔案就連圖分享；只能分享連結就分享連結；都不行就下載圖並複製文字。回傳給讀者看的一句話。 */
+export async function shareCanvas(c: HTMLCanvasElement, name: string, title: string, text: string, url: string): Promise<string> {
+  const blob = await toBlob(c);
+  const f = blob ? new File([blob], name, { type: 'image/png' }) : null;
+  try {
+    if (f && navigator.canShare?.({ files: [f] })) { await navigator.share({ files: [f], title, text: `${text}\n${url}` }); return ''; }
+    if (navigator.share) { await navigator.share({ title, text, url }); return ''; }
+  } catch (e) {
+    if ((e as DOMException).name === 'AbortError') return '';
+  }
+  if (!blob) return '這個瀏覽器不能產生圖片。';
+  download(blob, name);
+  return (await copyText(`${text}\n${url}`)) ? '已下載卡片，文字和連結也複製好了，可以直接貼上。' : '已下載卡片。';
 }
 
 export function initShare() {
@@ -203,19 +266,7 @@ export function initShare() {
   root.querySelector('[data-share-go]')?.addEventListener('click', async () => {
     say('製作卡片中…');
     const c = await drawCard(spec());
-    const blob = c ? await toBlob(c) : null;
-    const f = blob ? new File([blob], file, { type: 'image/png' }) : null;
-    try {
-      if (f && navigator.canShare?.({ files: [f] })) {
-        await navigator.share({ files: [f], title: root.dataset.title, text: `${shareText()}\n${url}` });
-        say(''); return;
-      }
-      if (navigator.share) { await navigator.share({ title: root.dataset.title, text: shareText(), url }); say(''); return; }
-    } catch (e) {
-      if ((e as DOMException).name === 'AbortError') { say(''); return; }
-    }
-    if (blob) download(blob, file);
-    say((await copyText(`${shareText()}\n${url}`)) ? '已下載卡片，文字和連結也複製好了，可以直接貼上。' : '已下載卡片。');
+    say(c ? await shareCanvas(c, file, root.dataset.title!, shareText(), url) : '這個瀏覽器不能產生圖片。');
   });
   root.querySelector('[data-share-dl]')?.addEventListener('click', async () => {
     const c = await drawCard(spec());

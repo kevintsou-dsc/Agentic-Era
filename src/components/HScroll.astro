@@ -72,6 +72,7 @@ if (view.some((v) => v.fold) || (someInline && !allInline)) view.forEach((v) => 
     </div>
     <div class="hs-foot wrap">
       <span class="hs-bar" aria-hidden="true"><span data-hs-progress></span></span>
+      <span class="hs-swipe" aria-hidden="true">← 左右滑動，共 {s.panels.length} 張 →</span>
       <span class="source">{s.source}</span>
     </div>
   </div>
@@ -87,8 +88,9 @@ if (view.some((v) => v.fold) || (someInline && !allInline)) view.forEach((v) => 
   .hs-viewport { overflow: hidden; display: flex; align-items: safe center; min-height: 0; padding: 10px 0; }
   .hs-track { list-style: none; margin: 0; padding: 0 var(--gutter); display: flex; align-items: stretch; gap: clamp(14px, 2vw, 24px); will-change: transform; }
   /* 寬螢幕也只露出約 2.3 格，讓橫向移動明顯 */
-  /* 最後手段：仍然放不下時，卡片本身可上下捲動（細捲軸） */
-  .hs-panel { flex: none; width: clamp(16rem, 42vw, 34rem); min-height: min(36svh, 16rem); max-height: var(--hs-room, 100%); overflow-y: auto; scrollbar-width: thin; overscroll-behavior: contain; display: grid; align-content: start; gap: 8px; padding: 22px 22px 18px; border-radius: 16px; background: var(--paper); border: 2px solid var(--ink); box-shadow: 6px 6px 0 var(--accent); }
+  /* 最後手段：仍然放不下時，卡片本身可上下捲動（細捲軸）；捲到底後照常交還給頁面，不鎖住捲動。
+     實際上放不下時 scrolly.ts 會先把整段改成左右滑動（.hs-free），這裡只是保險 */
+  .hs-panel { flex: none; width: clamp(16rem, 42vw, 34rem); min-height: min(36svh, 16rem); max-height: var(--hs-room, 100%); overflow-y: auto; scrollbar-width: thin; display: grid; align-content: start; gap: 8px; padding: 22px 22px 18px; border-radius: 16px; background: var(--paper); border: 2px solid var(--ink); box-shadow: 6px 6px 0 var(--accent); }
   .hs-no { font-family: var(--font-mono); font-size: 12px; color: var(--ink-3); }
   .hs-img { width: 100%; height: min(24svh, 12rem); object-fit: cover; border-radius: 10px; border: 1px solid var(--line); background: var(--paper-2); }
   /* 橫幅型圖片（例如寬 4:1 的海報）若用 cover 會被裁成一小塊再放大而變糊，改為完整顯示 */
@@ -124,13 +126,29 @@ if (view.some((v) => v.fold) || (someInline && !allInline)) view.forEach((v) => 
   .hs-bar { flex: 0 0 8rem; height: 4px; border-radius: 2px; background: var(--paper-2); overflow: hidden; }
   .hs-bar span { display: block; height: 100%; background: var(--accent-ink); transform-origin: left; transform: scaleX(0); }
 
+  /* 手機：卡片加寬到接近整個畫面（仍露出下一張的邊），同樣的字數行數較少，比較不會超過可用高度 */
+  @media (max-width: 560px) {
+    .hs-panel { width: min(82vw, 22rem); padding: 18px 18px 16px; }
+  }
+
+  .hs-swipe { display: none; font-size: var(--fs-meta); color: var(--ink-2); }
+
   /* 退回原生左右滑動：很矮的視窗、偏好減少動態 */
   @media (max-height: 560px), (prefers-reduced-motion: reduce) {
     .hscroll { height: auto; }
     .hs-pin { position: relative; height: auto; padding: 48px 0 24px; }
-    .hs-viewport { overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 12px; }
-    .hs-panel { scroll-snap-align: start; }
+    .hs-viewport { overflow-x: auto; scroll-snap-type: x mandatory; scroll-padding-inline: var(--gutter); padding-bottom: 12px; }
+    .hs-panel { scroll-snap-align: start; max-height: none; overflow: visible; }
     .hs-track { transform: none !important; }
     .hs-bar { display: none; }
+    .hs-swipe { display: inline; }
   }
+  /* 同一套退回版面，由 scrolly.ts 在卡片放不進畫面時加上 .hs-free（規則與上面一致，兩處要一起改） */
+  .hscroll.hs-free { height: auto; }
+  .hscroll.hs-free .hs-pin { position: relative; height: auto; padding: 48px 0 24px; }
+  .hscroll.hs-free .hs-viewport { overflow-x: auto; scroll-snap-type: x mandatory; scroll-padding-inline: var(--gutter); padding-bottom: 12px; }
+  .hscroll.hs-free .hs-panel { scroll-snap-align: start; max-height: none; overflow: visible; }
+  .hscroll.hs-free .hs-track { transform: none !important; }
+  .hscroll.hs-free .hs-bar { display: none; }
+  .hscroll.hs-free .hs-swipe { display: inline; }
 </style>

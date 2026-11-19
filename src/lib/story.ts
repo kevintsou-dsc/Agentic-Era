@@ -259,6 +259,8 @@ export interface Story {
   /** 帶走的問題或做法：原文 */
   asks: Src[];
   asksTitle?: string;
+  /** 每一句前的小標（選用，與 asks 同序）：原文表格的列名，短問句單看不知道在問什麼時才加 */
+  asksLabels?: string[];
   /** 審稿狀態：draft → judged（Jev 初評通過）→ reviewed（人工校閱完成） */
   status: 'draft' | 'judged' | 'reviewed';
   /** 主文字數上限（預設 3,000）。重點長文可放寬到 4,500，須在檔頭註明原因 */

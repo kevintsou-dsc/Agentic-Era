@@ -13,9 +13,10 @@ const BASE = [...Array(95)].map((_, i) => String.fromCharCode(32 + i)).join('') 
 const HERO = readFileSync(join(ROOT, 'src/components/home/Hero.astro'), 'utf8').match(/<h1 class="[^"]*serif[^"]*">([\s\S]*?)<\/h1>/)?.[1].replace(/<[^>]+>/g, '') ?? '';
 if (!HERO) throw new Error('display-chars：在 Hero.astro 找不到襯線大標');
 // 首頁區塊標題（.h2）與章節中文名（章節標題）也用襯線 900（layout-token-audit 第 2 步）
-const HOME = readFileSync(join(ROOT, 'src/pages/index.astro'), 'utf8');
-const H2 = [...HOME.matchAll(/<h2 class="h2[^"]*">([\s\S]*?)<\/h2>/g)].map((m) => m[1].replace(/<[^>]+>/g, '')).join('');
-if (!H2) throw new Error('display-chars：在 index.astro 找不到 .h2 區塊標題');
+// 首頁全書地圖（FaceMap.astro）的區塊標題，以及畫面左上角的「已上色 n／22」（scripts/facemap.ts）
+const HOME = ['src/pages/index.astro', 'src/components/home/FaceMap.astro'].map((f) => readFileSync(join(ROOT, f), 'utf8')).join(' ');
+const H2 = [...HOME.matchAll(/<h2 [^>]*class="h2[^"]*">([\s\S]*?)<\/h2>/g)].map((m) => m[1].replace(/<[^>]+>/g, '')).join('') + '已上色／';
+if (H2.length <= 4) throw new Error('display-chars：在首頁找不到 .h2 區塊標題');
 
 export async function collect() {
   const display = new Set(BASE + HERO + H2), text = new Set(BASE);

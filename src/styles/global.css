@@ -85,7 +85,9 @@
 @font-face { font-family: "DW Serif Display"; src: url(/fonts/serif-700.woff2) format("woff2"); font-weight: 700; font-display: swap; }
 
 *, *::before, *::after { box-sizing: border-box; }
-html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+/* overflow-x: clip（html 與 body 都設）：旋轉的印章、卡片等裝飾超出畫面邊緣時直接裁掉，不讓整頁在手機上能左右晃動。
+   用 clip 不用 hidden：clip 不會產生捲動容器，position: sticky 的捲動演出不受影響 */
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; overflow-x: clip; }
 body {
   margin: 0;
   background: var(--paper);
@@ -94,7 +96,7 @@ body {
   font-size: var(--fs-body);
   line-height: 1.75;
   letter-spacing: 0.01em;
-  overflow-x: hidden;
+  overflow-x: clip;
 }
 img, svg { max-width: 100%; display: block; }
 /* 網頁底圖：封面的牛皮紙纖維，淡淡疊一層（multiply），只增加紙本質感、不影響閱讀 */
@@ -218,6 +220,13 @@ a { color: inherit; }
   font-size: var(--fs-meta); font-weight: var(--fw-bold); line-height: 1.5;
 }
 .more-link { text-decoration: none; color: inherit; }
+/* 觸控裝置：出處與細節按鈕加高到手指好按的尺寸（原本 21px 與 28px，低於 WCAG 2.2 的 24px 目標尺寸） */
+@media (pointer: coarse) {
+  .src-ref { min-height: 28px; padding-inline: 10px; }
+  .more-ref:not(.overlay) { min-height: 36px; }
+  .lnk, .foot-brand a, details.hs-more > summary { min-height: 32px; display: inline-flex; align-items: center; }
+  details.hs-more > summary { display: flex; }
+}
 /* 編註：本站補充的術語說明，比「細節」淡，虛線框表示不是原文 */
 .more-ref.note-ref { background: transparent; border: 1px dashed var(--ink-2); color: var(--ink-2); font-weight: var(--fw-regular); padding: 3px 10px; }
 .more-ref.note-ref:hover { box-shadow: none; border-style: solid; color: var(--ink); }
@@ -353,14 +362,14 @@ details.more[open] summary::before { content: "－ "; }
 
 /* 互動元件的上浮／下壓：用獨立的 translate、scale 屬性，兩者可以疊加，也不會蓋掉元件自己的 transform。
    只點名套用在「自己沒有 transform 職責」的元件；圖表元素、捲動卡片、翻牌卡、圖上的透明覆蓋鈕都不套用。 */
-.btn, .more-ref:not(.overlay), .nextcard, .chgroup li > a {
+.btn, .more-ref:not(.overlay), .nextcard {
   transition: translate var(--dur-ui) var(--ease-ui), scale var(--dur-ui) var(--ease-ui),
     background-color var(--dur-ui) var(--ease-ui), box-shadow var(--dur-ui) var(--ease-ui);
 }
 @media (hover: hover) {
-  :is(.btn, .more-ref:not(.overlay), .nextcard, .chgroup li > a):hover { translate: 0 -2px; }
+  :is(.btn, .more-ref:not(.overlay), .nextcard):hover { translate: 0 -2px; }
 }
-:is(.btn, .more-ref:not(.overlay), .nextcard, .chgroup li > a):active { scale: .98; }
+:is(.btn, .more-ref:not(.overlay), .nextcard):active { scale: .98; }
 
 /* 主行動按鈕的流光邊框：旋轉的錐形漸層墊在底層，內層實心底色遮住中間，只露出一圈流動光邊。
    光邊 1.5px＝原本 .btn 的邊框粗細，按鈕尺寸不變；1px 在淺色章節色上實測幾乎看不見。
@@ -435,8 +444,14 @@ html.is-entered main { animation: page-rise .9s var(--ease-out) .1s backwards; }
   [data-at] { --on: 1; }
   *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
   .reveal, .scrolly .card { opacity: 1; transform: none; }
-  :is(.btn, .more-ref:not(.overlay), .nextcard, .chgroup li > a):is(:hover, :active) { translate: none; scale: none; }
+  :is(.btn, .more-ref:not(.overlay), .nextcard):is(:hover, :active) { translate: none; scale: none; }
   .scrolly .card > * { opacity: 1; }
+}
+
+/* 瀏覽器關閉 JavaScript 時：進場動畫靠腳本加 .is-in 才顯示，沒有腳本就直接顯示內容，不留一片空白 */
+@media (scripting: none) {
+  .reveal, .scrolly .card, .scrolly .card > * { opacity: 1; transform: none; }
+  [data-at] { --on: 1; }
 }
 
 /* 彩蛋（scripts/egg.ts）：鍵盤打 dentsu 時飄起手繪小插圖＋手寫感紙條 */

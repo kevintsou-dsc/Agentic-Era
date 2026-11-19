@@ -247,8 +247,10 @@ export const story: Story = {
       quote: { article: 'a06', page: 49, text: 'AI 可以生成內容，但無法生成信任。因為信任從來不是演算法的產物，而是一次次真實互動累積而成的結果。' },
     },
   ],
-  asksTitle: '帶走一個問題',
+  asksTitle: '帶走三個 AI 答不了的問題',
   asks: [
-    { article: 'a06', page: 45, text: '當媒體不再是唯一的權威，當創作者也不再是真實的保證，品牌究竟該如何被相信？' },
+    { article: 'a06', page: 47, text: '這個故事是否真的發生？' },
+    { article: 'a06', page: 47, text: '這個數據是否真的存在？' },
+    { article: 'a06', page: 47, text: '這個人是否真的說過這句話？' },
   ],
 };

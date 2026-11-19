@@ -1,0 +1,962 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>首頁設計提案</title>
+<style>
+  @font-face { font-family: "DW Serif Display"; src: url(/fonts/serif-900.woff2) format("woff2"); font-weight: 900; }
+  @font-face { font-family: "DW Serif Display"; src: url(/fonts/serif-700.woff2) format("woff2"); font-weight: 700; }
+  :root {
+    --paper: #f3eee4; --paper-2: #e9e1d2; --kraft: #d8c3a2; --ink: #1f1d1a; --ink-2: #5a544b; --ink-3: #8a8277; --line: #d6ccb9;
+    --intro: #e3cfa9; --intro-ink: #6e4f24; --people: #cbdd7a; --people-ink: #2f5e35;
+    --model: #ebc1c1; --model-ink: #a8423e; --ai: #8ccfdd; --ai-ink: #24636e;
+    --sans: "Noto Sans TC Variable", "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", system-ui, sans-serif;
+    --serif: "DW Serif Display", "Noto Serif TC", "Songti TC", serif;
+    --mono: ui-monospace, "Cascadia Mono", Consolas, monospace;
+    --ease: cubic-bezier(.2, .7, .2, 1);
+    --g: clamp(16px, 4vw, 48px);
+  }
+  * { box-sizing: border-box; }
+  html { overflow-x: clip; }
+  body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--sans); line-height: 1.7; overflow-x: clip; }
+  body::before { content: ""; position: fixed; inset: 0; z-index: -1; background: url(/art/cover/kraft.webp) 0 0 / 640px; opacity: .3; mix-blend-mode: multiply; pointer-events: none; }
+  h1, h2, h3, p { margin: 0; }
+  button { font: inherit; color: inherit; }
+  .wrap { width: min(1200px, 100%); margin: 0 auto; padding: 0 var(--g); }
+  .eyebrow { font-family: var(--mono); font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--ink-3); }
+  .serif { font-family: var(--serif); font-weight: 900; }
+
+  /* ── 頁首：提案說明 ── */
+  .doc-head { padding: 56px 0 28px; display: grid; gap: 18px; }
+  .doc-head h1 { font-family: var(--serif); font-weight: 900; font-size: clamp(32px, 5vw, 56px); line-height: 1.15; }
+  .doc-head .lede { max-width: 48rem; font-size: clamp(16px, 1.2vw + 10px, 19px); color: var(--ink-2); }
+  .diag { display: grid; grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); gap: 12px; }
+  .diag div { padding: 14px 16px; border-radius: 12px; background: var(--paper); border: 1px solid var(--line); font-size: 14px; }
+  .diag b { display: block; font-size: 15px; margin-bottom: 2px; }
+  .diag .keep { border: 2px solid var(--people-ink); }
+  .tabs { position: sticky; top: 0; z-index: 20; display: flex; gap: 8px; flex-wrap: wrap; padding: 12px var(--g); margin: 0 calc(var(--g) * -1);
+    background: color-mix(in srgb, var(--paper) 85%, transparent); backdrop-filter: blur(16px); border-bottom: 1px solid var(--line); }
+  .tabs a { color: var(--ink); display: inline-flex; align-items: center; gap: 8px; min-height: 40px; padding: 6px 16px; border-radius: 999px; border: 1.5px solid var(--ink); text-decoration: none; font-weight: 700; font-size: 14px; background: var(--paper); }
+  .tabs a i { font-style: normal; font-family: var(--mono); font-size: 12px; color: var(--ink-3); }
+  .tabs a:hover { background: var(--ink); color: var(--paper); }
+  .tabs a:hover i { color: var(--paper); }
+
+  /* ── 每個提案 ── */
+  .concept { padding: 64px 0 24px; scroll-margin-top: 64px; }
+  .c-head { display: grid; gap: 8px; margin-bottom: 22px; }
+  .c-head h2 { font-family: var(--serif); font-weight: 900; font-size: clamp(28px, 3.4vw, 44px); line-height: 1.2; }
+  .c-head h2 small { font-family: var(--sans); font-size: .45em; font-weight: 700; color: var(--ink-3); margin-left: 8px; letter-spacing: .04em; }
+  .c-head p { max-width: 50rem; color: var(--ink-2); }
+  .tag { justify-self: start; padding: 2px 10px; border-radius: 999px; background: var(--ink); color: var(--paper); font-size: 12px; font-weight: 700; }
+  .notes { display: grid; grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr)); gap: 12px; margin-top: 20px; }
+  .notes div { padding: 14px 16px; border-radius: 12px; border: 1px solid var(--line); background: var(--paper); font-size: 14px; }
+  .notes b { display: block; margin-bottom: 4px; font-size: 13px; letter-spacing: .06em; color: var(--ink-3); }
+  .notes .risk { border-style: dashed; }
+
+  /* 舞台：每個原型的畫框 */
+  .stage { position: relative; border-radius: 22px; border: 2px solid var(--ink); background: var(--paper); overflow: hidden; box-shadow: 0 30px 60px -40px rgba(0, 0, 0, .5); }
+  .ctrl { display: flex; flex-wrap: wrap; gap: 8px 14px; align-items: center; padding: 14px 18px; border-bottom: 1px solid var(--line); background: color-mix(in srgb, var(--paper-2) 60%, var(--paper)); font-size: 13px; }
+  .chips { display: flex; flex-wrap: wrap; gap: 6px; }
+  .chip { min-height: 32px; padding: 4px 12px; border-radius: 999px; border: 1.5px solid var(--ink-2); background: transparent; cursor: pointer; font-size: 13px; font-weight: 700; color: var(--ink-2); transition: background .2s, color .2s, border-color .2s; }
+  .chip[aria-pressed="true"] { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+  .sim { display: inline-flex; align-items: center; gap: 8px; margin-left: auto; color: var(--ink-2); }
+  .sim input { width: 8rem; accent-color: var(--ink); }
+  .sim output { font-family: var(--mono); font-weight: 700; color: var(--ink); min-width: 3.4em; }
+
+  /* ── 共用：開場結尾的三扇門 ── */
+  .doors-stage { padding: clamp(28px, 5vw, 56px) clamp(16px, 4vw, 48px); background: var(--kraft) url(/art/cover/kraft.webp) 0 0 / 640px; background-blend-mode: multiply; }
+  .doors-q { text-align: center; font-family: var(--serif); font-weight: 900; font-size: clamp(26px, 4vw, 46px); line-height: 1.25; margin-bottom: 26px; }
+  .doors { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; max-width: 62rem; margin: 0 auto; }
+  .door { position: relative; text-align: left; font: inherit; display: grid; gap: 6px; align-content: start; min-height: 11rem; padding: 20px 20px 18px; border-radius: 18px; border: 2px solid var(--ink); background: var(--paper); text-decoration: none; color: var(--ink); overflow: hidden; cursor: pointer;
+    transition: translate .35s var(--ease), box-shadow .35s var(--ease); }
+  .door:hover, .door:focus-visible { translate: 0 -6px; box-shadow: 0 6px 0 var(--ink); }
+  .door .n { font-family: var(--mono); font-size: 12px; color: var(--ink-3); }
+  .door b { font-size: 20px; line-height: 1.35; }
+  .door span { font-size: 14px; color: var(--ink-2); }
+  .door em { margin-top: auto; font-style: normal; font-weight: 700; font-size: 14px; }
+  .door::after { content: ""; position: absolute; right: -40px; bottom: -40px; width: 120px; height: 120px; border-radius: 50%; border: 16px solid var(--c, var(--people)); opacity: .55; transition: scale .5s var(--ease); }
+  .door:hover::after { scale: 1.25; }
+  .door.d1 { --c: var(--intro); } .door.d2 { --c: var(--people); } .door.d3 { --c: var(--ai); }
+  .door-bar { height: 8px; border-radius: 4px; background: var(--paper-2); overflow: hidden; margin-top: 6px; }
+  .door-bar i { display: block; height: 100%; width: 23%; background: linear-gradient(90deg, var(--intro), var(--people), var(--model), var(--ai)); }
+
+  /* ── A 星圖 ── */
+  .sky { position: relative; height: clamp(520px, 70vh, 680px); background: radial-gradient(120% 90% at 50% 10%, #fbf8f1, var(--paper) 60%, var(--paper-2)); touch-action: pan-y; }
+  .sky svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+  .sky .ch-label { font-family: var(--serif); font-weight: 900; fill: var(--ink); opacity: .055; }
+  .sky .dust circle { animation: twinkle 4s ease-in-out infinite; }
+  .sky .dust circle:nth-child(3n) { animation-delay: -1.3s; } .sky .dust circle:nth-child(5n) { animation-delay: -2.6s; animation-duration: 5.5s; }
+  @keyframes twinkle { 50% { opacity: .02; } }
+  .sky .ch-en { font-family: var(--mono); font-size: 13px; letter-spacing: .18em; fill: var(--ink-3); }
+  .sky .thread { fill: none; stroke: var(--ink); stroke-width: 1.2; stroke-dasharray: 3 6; opacity: .22; transition: opacity .4s, stroke-width .4s; }
+  .sky .thread.on { stroke-dasharray: none; opacity: .9; stroke-width: 2.4; }
+  .sky .thread.draw { animation: draw 1.4s var(--ease) both; }
+  @keyframes draw { from { stroke-dashoffset: var(--len); } to { stroke-dashoffset: 0; } }
+  .sky .node { cursor: pointer; transition: opacity .4s; }
+  .sky .node circle.b { stroke: var(--ink); stroke-width: 2; fill: var(--paper); transition: fill .4s, r .3s; }
+  .sky .node.read circle.b { fill: var(--c); }
+  .sky .node .halo { fill: var(--c); opacity: 0; transition: opacity .4s; }
+  .sky .node.read .halo { opacity: .28; animation: pulse 3.2s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
+  @keyframes pulse { 50% { transform: scale(1.35); opacity: .1; } }
+  .sky .node .ck { fill: none; stroke: var(--ink); stroke-width: 2; opacity: 0; }
+  .sky .node.read .ck { opacity: 1; }
+  .sky .node:hover circle.b, .sky .node.is-hot circle.b { stroke-width: 3; }
+  .sky.filter .node.dim { opacity: .18; }
+  .sky .lbl { font-size: 13px; font-weight: 700; paint-order: stroke; stroke: var(--paper); stroke-width: 4px; fill: var(--ink-2); pointer-events: none; opacity: 0; transition: opacity .3s; }
+  .sky .node:hover .lbl, .sky .node.is-hot .lbl, .sky.filter .node:not(.dim) .lbl { opacity: 1; }
+  .tip { position: absolute; z-index: 5; width: min(19rem, calc(100% - 24px)); padding: 16px 18px; border-radius: 14px; border: 2px solid var(--ink); background: var(--paper); box-shadow: 0 18px 40px -20px rgba(0, 0, 0, .45);
+    pointer-events: none; opacity: 0; translate: 0 8px; transition: opacity .25s, translate .25s var(--ease); }
+  .tip.on { opacity: 1; translate: 0 0; pointer-events: auto; }
+  .tip .k { display: inline-block; padding: 1px 8px; border-radius: 999px; font-size: 11px; font-weight: 700; background: var(--c); }
+  .tip b { display: block; margin: 6px 0 2px; font-size: 18px; line-height: 1.35; }
+  .tip .s { font-size: 13px; color: var(--ink-2); }
+  .tip p { margin-top: 8px; font-size: 14px; line-height: 1.65; }
+  .tip a { display: inline-flex; margin-top: 10px; min-height: 36px; align-items: center; padding: 4px 14px; border-radius: 999px; background: var(--ink); color: var(--paper); text-decoration: none; font-size: 13px; font-weight: 700; }
+  .sky-hud { position: absolute; left: 18px; bottom: 16px; z-index: 4; display: grid; gap: 4px; padding: 12px 14px; border-radius: 12px; background: color-mix(in srgb, var(--paper) 86%, transparent); backdrop-filter: blur(8px); border: 1px solid var(--line); font-size: 13px; max-width: calc(100% - 36px); }
+  .sky-hud b { font-size: 15px; }
+  .sky-hud .t { font-family: var(--serif); font-weight: 900; font-size: 18px; line-height: 1.35; }
+
+  /* ── B 書架：一座真的書櫃 ── */
+  .shelf-wrap { position: relative; padding: clamp(18px, 3vw, 36px) clamp(10px, 3vw, 40px) 0; background: radial-gradient(90% 70% at 50% 0%, #faf6ee, var(--paper) 70%); }
+  .case-scroll { overflow-x: auto; scrollbar-width: thin; padding: 12px 0 28px; }
+  /* 櫃體：胡桃木框，直紋在側板、橫紋在頂板與底座 */
+  .case { --k: 1; position: relative; min-width: 920px; max-width: 1120px; margin: 0 auto; padding: 0 18px; border-radius: 4px;
+    background: repeating-linear-gradient(90deg, rgba(0,0,0,.06) 0 1px, transparent 1px 5px, rgba(255,255,255,.03) 5px 6px, transparent 6px 11px), linear-gradient(90deg, #5e3f26, #7a5434 12%, #6b4a2d 50%, #7a5434 88%, #5e3f26);
+    box-shadow: 0 50px 60px -40px rgba(40, 24, 10, .75), 0 4px 0 #4a3120; }
+  .case-top, .case-base { position: relative; margin: 0 -18px; background: repeating-linear-gradient(0deg, rgba(0,0,0,.07) 0 1px, transparent 1px 4px), linear-gradient(#8a6340, #6d4b2e); }
+  .case-top { height: 26px; border-radius: 4px 4px 0 0; box-shadow: inset 0 2px 0 rgba(255,255,255,.18), 0 3px 0 #4f3420; }
+  .case-top::after { content: ""; position: absolute; left: -8px; right: -8px; top: -10px; height: 12px; border-radius: 3px; background: linear-gradient(#9b7149, #7a5534); box-shadow: 0 2px 0 #4f3420; }
+  .case-base { height: 34px; border-radius: 0 0 4px 4px; box-shadow: inset 0 3px 0 rgba(255,255,255,.12); }
+  .case-base::after { content: ""; position: absolute; left: 14px; right: 14px; bottom: -10px; height: 10px; background: #3d2818; border-radius: 0 0 3px 3px; }
+  /* 隔間：深色背板、上方一盞暖光、四周內陰影做出深度 */
+  .cell { position: relative; height: calc(372px * var(--k) + 10px); display: flex; align-items: flex-end; padding: 0 22px;
+    background: radial-gradient(55% 75% at 50% -8%, rgba(255, 214, 150, .26), transparent 70%), repeating-linear-gradient(90deg, rgba(0,0,0,.08) 0 1px, transparent 1px 9px), linear-gradient(#2b1d12, #3a2819 55%, #2f2014);
+    box-shadow: inset 0 26px 26px -14px rgba(0,0,0,.75), inset 22px 0 22px -14px rgba(0,0,0,.6), inset -22px 0 22px -14px rgba(0,0,0,.6); }
+  /* 層板：淺色頂面＋正面木條，書的接觸陰影落在頂面 */
+  .board { position: relative; z-index: 3; height: 28px; margin: 0 -18px; background: linear-gradient(#b38a5c 0 7px, #8c6542 7px, #73512f 75%, #5f4127);
+    box-shadow: 0 6px 10px -4px rgba(0,0,0,.6); }
+  .board::before { content: ""; position: absolute; left: 18px; right: 18px; top: 0; height: 7px; background: linear-gradient(rgba(0,0,0,.45), transparent); }
+  .board::after { content: ""; position: absolute; inset: 7px 0 0; background: repeating-linear-gradient(0deg, rgba(0,0,0,.08) 0 1px, transparent 1px 4px); }
+  .plate { position: absolute; z-index: 2; top: 10px; transform: translateX(-50%); display: inline-flex; align-items: baseline; gap: 6px; padding: 1px 10px; border-radius: 2px; white-space: nowrap;
+    background: linear-gradient(#f0d996, #c39a50 55%, #e1c078); color: #3a2812; box-shadow: 0 1px 0 rgba(255,255,255,.35) inset, 0 1px 2px rgba(0,0,0,.5); font-size: 12px; font-weight: 800; line-height: 15px; }
+  .plate small { font-family: var(--mono); font-size: 10px; letter-spacing: .14em; font-weight: 700; opacity: .7; }
+  .grp { display: flex; align-items: flex-end; }
+  .grp + .grp { margin-left: 18px; }
+  /* 書脊 */
+  .spine { --h: 300px; --w: 50px; position: relative; flex: none; width: calc(var(--w) * var(--k)); height: calc(var(--h) * var(--k)); padding: 0; border: 0; border-radius: 2px 2px 0 0; cursor: pointer; color: var(--fg); background: var(--bg);
+    display: flex; flex-direction: column; align-items: center; transform-origin: 50% 100%; box-shadow: -1px 0 0 rgba(0,0,0,.45), inset 0 1px 0 rgba(255,255,255,.18);
+    transition: translate .45s var(--ease), filter .35s, rotate .45s var(--ease), box-shadow .35s; }
+  .spine::before { content: ""; position: absolute; inset: 0; pointer-events: none; z-index: 3; border-radius: inherit;
+    background: repeating-linear-gradient(0deg, rgba(255,255,255,.035) 0 1px, transparent 1px 3px), linear-gradient(90deg, rgba(0,0,0,.42), rgba(255,255,255,.16) 20%, rgba(255,255,255,.05) 42%, rgba(0,0,0,.06) 70%, rgba(0,0,0,.42)); }
+  /* 燙金細線：書頂與書底各兩道 */
+  .spine.bands::after { content: ""; position: absolute; left: 0; right: 0; top: 14px; bottom: 16px; pointer-events: none; z-index: 2;
+    background: linear-gradient(var(--fg), var(--fg)) 0 0 / 100% 1.5px no-repeat, linear-gradient(var(--fg), var(--fg)) 0 5px / 100% 1px no-repeat, linear-gradient(var(--fg), var(--fg)) 0 100% / 100% 1.5px no-repeat, linear-gradient(var(--fg), var(--fg)) 0 calc(100% - 5px) / 100% 1px no-repeat; opacity: .75; }
+  /* 雙色書衣：上方一段章節色 */
+  .spine.jacket { background: linear-gradient(var(--c) 0 var(--jk, 30%), var(--bg) var(--jk, 30%)); }
+  .spine.jacket .no { color: var(--ink); }
+  /* 書衣色塊只放編號，標題從色塊下方開始，才不會淺字壓在淺色上 */
+  .spine.jacket .ti { margin-top: calc(var(--h) * var(--k) * var(--jkf) - 26px * var(--k) - 4px); max-height: calc(var(--h) * var(--k) * (1 - var(--jkf)) - 70px * var(--k) - 14px); }
+  .spine .no { position: relative; z-index: 2; margin-top: calc(26px * var(--k)); font-family: var(--mono); font-size: 11px; font-weight: 700; letter-spacing: .04em; opacity: .85; }
+  .spine .ti { position: relative; z-index: 2; margin-top: 12px; writing-mode: vertical-rl; text-orientation: mixed; font-family: var(--serif); font-weight: 900; font-size: max(12.5px, calc(var(--fs, 16px) * var(--k))); line-height: 1.05; letter-spacing: .06em; max-height: calc(var(--h) * var(--k) - 112px * var(--k) - 14px); overflow: hidden; }
+  .spine.label .ti { padding: 8px 3px; background: #efe5cd; color: #2a2118; box-shadow: 0 0 0 1px rgba(0,0,0,.25); }
+  .spine .au { position: relative; z-index: 2; margin: auto 0 calc(26px * var(--k)); writing-mode: vertical-rl; font-size: 10.5px; letter-spacing: .04em; opacity: .8; max-height: 8.5em; overflow: hidden; white-space: nowrap; }
+  .spine.lean { margin-left: calc(var(--h) * var(--k) * .105); rotate: -6deg; transform-origin: 0 100%; }
+  /* 抽出：往上滑一截、亮一點，其餘不動 */
+  .spine:hover, .spine:focus-visible, .spine.sel { translate: 0 -30px; rotate: 0deg; filter: brightness(1.08); box-shadow: -1px 0 0 rgba(0,0,0,.45), 0 14px 24px -6px rgba(0,0,0,.7); z-index: 4; }
+  .spine:focus-visible, .flat:focus-visible { outline: 3px solid #f0d996; outline-offset: 2px; }
+  /* 已讀：書頂露出一截緞帶書籤 */
+  .spine .rb { position: absolute; z-index: 1; right: 22%; top: -14px; width: 7px; height: 0; background: var(--rb); clip-path: polygon(0 0, 100% 0, 100% 100%, 50% calc(100% - 4px), 0 100%); transition: height .5s var(--ease); }
+  .spine.read .rb { height: 22px; }
+  .shelf.filter .spine.dim, .shelf.filter .flat.dim { filter: brightness(.38) saturate(.35); }
+  /* 序章兩本平放成一疊 */
+  .stack { display: flex; flex-direction: column; align-items: flex-start; margin-right: 18px; }
+  .flat { --w: 50px; --len: 230px; position: relative; flex: none; width: calc(var(--len) * var(--k)); height: calc(var(--w) * var(--k)); padding: 0 14px; border: 0; border-radius: 0 2px 2px 0; cursor: pointer; color: var(--fg); background: var(--bg);
+    display: flex; align-items: center; gap: 10px; box-shadow: 0 -1px 0 rgba(0,0,0,.45); transition: translate .45s var(--ease), filter .35s; }
+  .flat::before { content: ""; position: absolute; inset: 0; pointer-events: none; z-index: 3; background: linear-gradient(rgba(255,255,255,.16), rgba(255,255,255,.04) 40%, rgba(0,0,0,.35)); }
+  .flat.jacket { background: linear-gradient(90deg, var(--c) 0 18%, var(--bg) 18%); }
+  .flat.jacket .no { color: var(--ink); }
+  .flat + .flat { margin-left: 10px; }
+  .flat .no { font-family: var(--mono); font-size: 11px; font-weight: 700; opacity: .85; }
+  .flat .ti { font-family: var(--serif); font-weight: 900; font-size: max(13px, calc(17px * var(--k))); letter-spacing: .04em; white-space: nowrap; }
+  .flat .au { margin-left: auto; font-size: 10.5px; opacity: .8; white-space: nowrap; }
+  .flat .rb { position: absolute; left: -10px; top: 30%; width: 0; height: 7px; background: var(--rb); clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%, 4px 50%); transition: width .5s var(--ease); }
+  .flat.read .rb { width: 18px; }
+  .flat:hover, .flat:focus-visible, .flat.sel { translate: 22px 0; filter: brightness(1.08); }
+  /* 封面朝外陳列：整本刊物 */
+  .cover { position: relative; flex: none; zoom: var(--k); width: 172px; height: 244px; margin-left: auto; margin-right: 6px; padding: 22px 18px; display: grid; align-content: space-between; color: var(--ink); rotate: -3deg; transform-origin: 50% 100%;
+    background: var(--kraft) url(/art/cover/kraft.webp) 0 0 / 420px; background-blend-mode: multiply; border-radius: 2px 4px 4px 2px; box-shadow: inset 6px 0 6px -4px rgba(0,0,0,.35), 10px 10px 18px -6px rgba(0,0,0,.65); }
+  .cover b { font-family: var(--serif); font-weight: 900; font-size: 27px; line-height: 1.1; }
+  .cover span { font-size: 11px; line-height: 1.5; color: var(--ink-2); }
+  .cover i { font-style: normal; font-family: var(--mono); font-size: 11px; letter-spacing: .16em; }
+  /* 借書卡：已讀幾篇就蓋幾個章 */
+  .card { position: relative; flex: none; zoom: var(--k); width: 188px; margin-left: auto; margin-right: 8px; padding: 14px 14px 12px; rotate: 4deg; transform-origin: 0 100%;
+    background: #f4ecd8; color: #2a2118; border-radius: 3px; box-shadow: 8px 10px 16px -6px rgba(0,0,0,.6); background-image: repeating-linear-gradient(transparent 0 21px, rgba(60, 90, 140, .22) 21px 22px); }
+  .card .eyebrow { font-size: 10px; color: #6a5d4c; }
+  .card b { display: block; margin: 2px 0 8px; font-size: 17px; line-height: 1.3; }
+  .stamps { display: grid; grid-template-columns: repeat(6, 1fr); gap: 4px; }
+  .stamps i { aspect-ratio: 1; border-radius: 50%; border: 1px dashed rgba(42, 33, 24, .3); display: grid; place-items: center; font-style: normal; font-size: 10px; font-weight: 800; color: transparent; transition: background .3s, color .3s, border-color .3s; }
+  .stamps i.on { background: color-mix(in srgb, var(--c) 70%, transparent); border: 1.5px solid var(--ci); color: var(--ci); rotate: -12deg; }
+  .card p { margin-top: 8px; font-size: 11px; line-height: 1.5; color: #6a5d4c; }
+  .slip { min-height: 9.5rem; display: grid; grid-template-columns: auto 1fr; gap: 6px 18px; align-items: start; padding: 22px var(--g) 26px; background: var(--paper); border-top: 1px solid var(--line); }
+  .slip .big { grid-row: span 3; font-family: var(--serif); font-weight: 900; font-size: 56px; line-height: 1; color: var(--ci, var(--ink-3)); }
+  .slip b { font-size: 20px; line-height: 1.35; }
+  .slip p { color: var(--ink-2); font-size: 15px; max-width: 46rem; }
+  .slip a { justify-self: start; display: inline-flex; min-height: 36px; align-items: center; padding: 4px 14px; border-radius: 999px; background: var(--ink); color: var(--paper); text-decoration: none; font-size: 13px; font-weight: 700; }
+
+  @media (max-width: 1060px) { .case { min-width: 0; } }
+  /* 手機：一章一層，書縮成七成；放不下的那層在格子裡左右滑 */
+  @media (max-width: 720px) {
+    .case { --k: .64; min-width: 0; padding: 0 12px; }
+    .cover, .card { zoom: .6; }
+    .case-top, .case-base, .board { margin: 0 -12px; }
+    .cell { padding: 0 12px; overflow-x: auto; overflow-y: hidden; scrollbar-width: none; height: calc(372px * var(--k) + 34px); }
+    .grp + .grp { margin-left: 10px; }
+    .stack { margin-right: 6px; }
+    .spine .au { display: none; }
+    .spine .ti { max-height: calc(var(--h) * var(--k) - 64px); }
+    .spine:hover, .spine:focus-visible, .spine.sel { translate: 0 -22px; }
+    .flat .au { display: none; }
+  }
+  /* ── C 問題牆 ── */
+  .wall { padding: 28px 0 30px; display: grid; gap: 14px; background: var(--ink); color: var(--paper); }
+  .lane { --dur: 60s; position: relative; display: grid; grid-template-columns: auto 1fr; align-items: center; }
+  .lane-k { position: relative; z-index: 2; align-self: stretch; display: grid; place-content: center; gap: 2px; width: clamp(64px, 9vw, 108px); padding: 0 10px; background: var(--ink); box-shadow: 18px 0 24px var(--ink); text-align: center; }
+  .lane-k b { font-family: var(--serif); font-weight: 900; font-size: clamp(20px, 2.2vw, 28px); color: var(--c); line-height: 1; }
+  .lane-k span { font-family: var(--mono); font-size: 11px; letter-spacing: .14em; color: rgba(243, 238, 228, .55); }
+  .lane-v { overflow: hidden; mask: linear-gradient(90deg, transparent, #000 4%, #000 92%, transparent); }
+  .lane-t { display: flex; gap: 14px; width: max-content; animation: marquee var(--dur) linear infinite; }
+  .lane.rev .lane-t { animation-direction: reverse; }
+  .lane:hover .lane-t, .lane:focus-within .lane-t, .wall.paused .lane-t { animation-play-state: paused; }
+  @keyframes marquee { to { transform: translateX(-50%); } }
+  .stmt { flex: none; display: grid; gap: 4px; align-content: start; width: clamp(17rem, 30vw, 26rem); min-height: 9.5rem; padding: 16px 20px; border-radius: 16px; border: 1.5px solid rgba(243, 238, 228, .22); color: var(--paper); text-decoration: none; cursor: pointer;
+    transition: background .3s, color .3s, opacity .3s, border-color .3s; }
+  .stmt .q { font-family: var(--serif); font-weight: 900; font-size: clamp(19px, 1.5vw + 8px, 25px); line-height: 1.4; }
+  .stmt .m { font-size: 12px; color: rgba(243, 238, 228, .6); }
+  .stmt .o { font-size: 14px; line-height: 1.6; color: rgba(243, 238, 228, .85); max-height: 0; overflow: hidden; transition: max-height .45s var(--ease); }
+  .stmt:hover, .stmt:focus-visible { background: var(--c); color: var(--ink); border-color: var(--c); }
+  .stmt:hover .m, .stmt:hover .o, .stmt:focus-visible .m, .stmt:focus-visible .o { color: var(--ink); }
+  .stmt:hover .o, .stmt:focus-visible .o { max-height: 8em; }
+  .stmt.read .m::before { content: "✓ 已讀　"; color: var(--c); font-weight: 700; }
+  .stmt.read:hover .m::before { color: var(--ink); }
+  .wall.filter .stmt.dim { opacity: .2; }
+  .wall.filter .stmt:not(.dim) { border-color: var(--c); }
+  .wall-foot { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px; padding: 6px var(--g) 0; font-size: 13px; color: rgba(243, 238, 228, .7); }
+  .wall-foot b { color: var(--paper); }
+
+  /* ── D 替這張臉上色 ── */
+  #d .stage { overflow: clip; } /* hidden 會讓 sticky 失效 */
+  .fm { --top: 64px; display: grid; grid-template-columns: minmax(0, 1.7fr) minmax(0, 1fr); background: radial-gradient(70% 60% at 30% 45%, #fbf8f1, var(--paper) 70%); }
+  .fm-stage { position: sticky; top: var(--top); height: calc(100vh - var(--top)); min-height: 420px; }
+  .fm-stage canvas { position: absolute; inset: 0; width: 100%; height: 100%; touch-action: pan-y; }
+  .fm-hud { position: absolute; left: clamp(16px, 3vw, 36px); top: 22px; display: grid; gap: 2px; pointer-events: none; }
+  .fm-hud .n { font-family: var(--serif); font-weight: 900; font-size: clamp(26px, 3vw, 40px); line-height: 1.1; }
+  .fm-hud .n small { font-size: .5em; color: var(--ink-3); margin-left: 4px; }
+  .fm-hud .c { font-size: 13px; color: var(--ink-2); min-height: 1.6em; transition: opacity .3s; }
+  .fm-legend { position: absolute; left: 0; right: 0; bottom: 16px; display: flex; justify-content: center; gap: 18px; font-size: 12px; color: var(--ink-3); pointer-events: none; }
+  .fm-legend i { display: inline-block; width: 10px; height: 10px; border-radius: 2px; margin-right: 5px; vertical-align: -1px; background: var(--k); }
+  .fm-toast { position: absolute; left: 50%; bottom: 52px; translate: -50% 12px; padding: 10px 16px; border-radius: 999px; background: var(--ink); color: var(--paper); font-size: 14px; white-space: nowrap; opacity: 0; transition: opacity .35s, translate .35s var(--ease); pointer-events: none; max-width: calc(100% - 24px); overflow: hidden; text-overflow: ellipsis; }
+  .fm-toast.on { opacity: 1; translate: -50% 0; }
+  .fm-list { padding: 32vh clamp(16px, 3vw, 40px) 46vh 8px; }
+  .fm-ch { padding: 56px 0 10px; display: flex; align-items: baseline; gap: 10px; }
+  .fm-ch:first-child { padding-top: 0; }
+  .fm-ch b { font-family: var(--serif); font-weight: 900; font-size: clamp(28px, 3vw, 40px); line-height: 1; }
+  .fm-ch span { font-family: var(--mono); font-size: 12px; letter-spacing: .16em; color: var(--ink-3); }
+  .fm-ch em { margin-left: auto; font-style: normal; font-size: 12px; color: var(--ink-3); }
+  .fm-row { position: relative; display: grid; grid-template-columns: 3.4rem 1fr; gap: 0 12px; width: 100%; padding: 16px 0 18px 14px; border: 0; border-top: 1px solid var(--line); background: none; text-align: left; cursor: pointer; color: var(--ink);
+    opacity: .42; transition: opacity .35s, background .35s; }
+  .fm-row::before { content: ""; position: absolute; left: 0; top: 16px; bottom: 18px; width: 4px; border-radius: 2px; background: var(--k); scale: 1 0; transform-origin: top; transition: scale .4s var(--ease); }
+  .fm-row.on { opacity: 1; }
+  .fm-row.on::before { scale: 1 1; }
+  .fm-list.pick .fm-row:not(.hit) { opacity: .16; }
+  .fm-list.pick .fm-row.hit { opacity: 1; }
+  .fm-row .no { grid-row: span 3; font-family: var(--serif); font-weight: 900; font-size: 34px; line-height: 1; color: var(--ink-3); transition: color .35s; }
+  .fm-row.on .no, .fm-row.read .no { color: var(--k); }
+  .fm-row .t { font-family: var(--serif); font-weight: 900; font-size: clamp(19px, 1.2vw + 8px, 23px); line-height: 1.35; }
+  .fm-row .s { font-size: 13px; color: var(--ink-3); margin-top: 2px; }
+  .fm-row .s .r { display: none; margin-left: 8px; padding: 0 7px; border-radius: 999px; background: var(--k); color: #fff; font-size: 11px; font-weight: 700; }
+  .fm-row.read .s .r { display: inline-block; }
+  .fm-row .o { margin-top: 6px; font-size: 14px; line-height: 1.65; color: var(--ink-2); }
+  .fm-row:hover { opacity: 1; }
+  .fm-row:focus-visible { outline: 3px solid var(--ink); outline-offset: 2px; opacity: 1; }
+  @media (max-width: 860px) {
+    .fm { grid-template-columns: 1fr; }
+    .fm-stage { z-index: 2; height: 42vh; min-height: 0; background: linear-gradient(var(--paper) 88%, transparent); }
+    .fm-hud { top: 10px; }
+    .fm-hud .n { font-size: 24px; }
+    .fm-legend { display: none; }
+    .fm-toast { bottom: 10px; font-size: 13px; }
+    .fm-list { padding: 4vh var(--g) 40vh; }
+    .fm-row { grid-template-columns: 2.6rem 1fr; }
+    .fm-row .no { font-size: 26px; }
+  }
+
+  /* 手機 */
+  @media (max-width: 720px) {
+    .doors { grid-template-columns: 1fr; }
+    .door { min-height: 0; }
+    .sim { margin-left: 0; }
+    .sky { height: 820px; }
+    .sky-hud { left: 10px; bottom: 10px; padding: 8px 12px; }
+    .slip { grid-template-columns: 1fr; }
+    .slip .big { grid-row: auto; font-size: 40px; }
+    .lane { grid-template-columns: 1fr; }
+    .lane-k { grid-row: 1; justify-self: start; display: flex; align-items: baseline; gap: 8px; width: auto; padding: 0 var(--g); box-shadow: none; background: none; }
+    .lane-v { overflow-x: auto; scroll-snap-type: x mandatory; mask: none; padding: 0 var(--g); scrollbar-width: none; }
+    .lane-t { animation: none; }
+    .lane-t .dup { display: none; }
+    .stmt { scroll-snap-align: start; width: 78vw; }
+    .stmt .o { max-height: 8em; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation: none !important; transition: none !important; }
+    .lane-v { overflow-x: auto; }
+    .lane-t .dup { display: none; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="doc-head">
+    <p class="eyebrow">決策智慧 2026｜首頁設計提案｜三選一</p>
+    <h1>首頁開場之後，<br>讓整本書「一眼看懂、想點進去」</h1>
+    <p class="lede">開場「兩張臉匯聚」是全站最有記憶點的畫面，三個提案都<b>保留</b>，只改它之後的兩段：現在的「全書地圖」與「22 篇觀點」。每個提案下方都能直接操作：點主線、拖「模擬已讀」看讀者讀了幾篇之後的樣子、滑鼠移上去或手機點一下看文章。</p>
+    <div class="diag">
+      <div class="keep"><b>保留｜開場雙像匯聚</b>牛皮紙、2026 細線字、鉛筆線與像素塊匯成兩張相望的臉，總編輯引言浮現。</div>
+      <div><b>問題 1｜全書地圖太空</b>桌機上 22 個小圓點擠在左下角，畫面七成是空白；主線只是一排淡灰字。</div>
+      <div><b>問題 2｜導引不夠清楚</b>開場只寫「往下捲動」，讀者不知道有三條路：1 分鐘看懂整本、依章節找、看自己的進度。</div>
+      <div><b>問題 3｜文章列表像目錄</b>22 張同樣的白卡片，沒有一句話告訴讀者「這篇在說什麼」，也看不出讀過哪些。</div>
+    </div>
+  </header>
+  <nav class="tabs" aria-label="提案">
+    <a href="#doors"><i>共用</i>開場結尾的三扇門</a>
+    <a href="#d"><i>D</i>替這張臉上色</a>
+    <a href="#a"><i>A</i>星圖</a>
+    <a href="#b"><i>B</i>書架</a>
+    <a href="#c"><i>C</i>觀點跑馬牆</a>
+  </nav>
+
+  <!-- 共用 -->
+  <section class="concept" id="doors">
+    <div class="c-head">
+      <span class="tag">三個提案共用</span>
+      <h2>開場結尾的三扇門<small>解決「導引不清楚」</small></h2>
+      <p>兩張臉匯聚、引言浮現之後，畫面停在三扇門。每扇門說清楚「要花多久、會得到什麼」，讀者一眼就能選自己的路。第三扇門讀者讀過任何一篇才出現進度條，沒讀過時是「從第一篇開始」。</p>
+    </div>
+    <div class="stage">
+      <div class="doors-stage">
+        <p class="doors-q">品牌離 AI 越近，<br>會離人越遠嗎？</p>
+        <div class="doors">
+          <a class="door d1" href="#a"><span class="n">01｜約 1 分鐘</span><b>看懂整本在說什麼</b><span>四條主線、22 篇怎麼串在一起。往下捲就好。</span><em>往下捲 ↓</em></a>
+          <a class="door d2" href="#b"><span class="n">02｜22 篇｜每篇 4–8 分鐘</span><b>挑一篇讀精華</b><span>依章節或主線找，每篇先讀一句話再決定。</span><em>找文章 →</em></a>
+          <button class="door d3" type="button"><span class="n">03｜你的進度</span><b>已讀 5／22 篇</b><span>再讀 1 篇，打開下一份知識補給包。</span><span class="door-bar"><i></i></span><em>繼續讀〈信任〉→</em></button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- D -->
+  <section class="concept" id="d">
+    <div class="c-head">
+      <span class="tag">新主案｜腦力激盪結論</span>
+      <h2>替這張臉上色<small>22 塊顏色，拼回人的溫度</small></h2>
+      <p>開場匯聚完成的兩張臉不離開，留在左邊變成全書地圖：鉛筆人臉上是「人」這章 9 篇，像素 AI 臉上是「行動」6 篇，兩張臉之間的五道橋是「模型」5 篇，兩隻眼睛是序章。往下捲，右邊目錄捲到哪一篇，臉上那一塊就亮起來；讀過的篇章永久上色。不用說明，捲就會懂。</p>
+    </div>
+    <div class="stage">
+      <div class="ctrl">
+        <div class="chips" data-chips="d"></div>
+        <label class="sim">模擬已讀 <input type="range" min="0" max="22" value="0" data-sim="d"><output>0 篇</output></label>
+      </div>
+      <div class="fm" data-fm>
+        <div class="fm-stage" data-fm-stage>
+          <canvas data-fm-canvas aria-hidden="true"></canvas>
+          <div class="fm-hud"><span class="eyebrow">你的這張臉</span><span class="n" data-fm-n></span><span class="c" data-fm-c></span></div>
+          <div class="fm-legend" aria-hidden="true"><span><i style="--k:#c08a3e"></i>序章｜兩隻眼睛</span><span><i style="--k:#6fa83a"></i>人｜鉛筆的臉</span><span><i style="--k:#d0544c"></i>模型｜之間的橋</span><span><i style="--k:#2a9db5"></i>行動｜像素的臉</span></div>
+          <div class="fm-toast" data-fm-toast role="status"></div>
+        </div>
+        <div class="fm-list" data-fm-list></div>
+      </div>
+    </div>
+    <div class="notes">
+      <div><b>為什麼評審會記得</b>開場的兩張臉沒有結束，而是變成整本書的地圖；模型這章正好是「人與 AI 之間的橋」，位置本身就在說書的論點。</div>
+      <div><b>導引</b>捲動為主：目錄捲到哪篇、臉上就亮哪塊，標題與一句話全部直接看得到，不靠滑鼠移入。點臉上的一塊，目錄捲到那篇。</div>
+      <div><b>遊戲化</b>讀完回到首頁，那一塊從灰色染開，浮出「替這張臉添了一塊顏色」。分享卡就是讀者自己的那張臉，每個人上色的位置都不同。</div>
+      <div><b>手機</b>臉固定在上方四成畫面，目錄在下方捲動；一樣捲到哪亮到哪，不需要點。</div>
+      <div class="risk"><b>成本與風險</b>約 2～2.5 天。沿用開場同一個 canvas 與取樣；22 塊的切法建置時算好。減少動態給靜態圖，無 JS 只顯示目錄。原型中點目錄列＝模擬「讀完這篇回來」。</div>
+    </div>
+  </section>
+
+  <!-- A -->
+  <section class="concept" id="a">
+    <div class="c-head">
+      <span class="tag">提案 A｜推薦</span>
+      <h2>星圖<small>整本書是一片會亮起來的星空</small></h2>
+      <p>22 篇是 22 顆星，依四章聚成四個星座，星的大小是原文長度。四條主線是連起星星的線：捲動時一條一條畫出來，讀者看見「同一個主題，被不同作者從不同角度談」。讀過的星會亮起來、帶一圈呼吸的光暈，讀越多，這片天越亮。</p>
+    </div>
+    <div class="stage">
+      <div class="ctrl">
+        <div class="chips" data-chips="a"></div>
+        <label class="sim">模擬已讀 <input type="range" min="0" max="22" value="5" data-sim="a"><output>5 篇</output></label>
+      </div>
+      <div class="sky" data-sky>
+        <svg data-sky-svg aria-label="全書星圖"></svg>
+        <div class="tip" data-tip></div>
+        <div class="sky-hud" data-hud></div>
+      </div>
+    </div>
+    <div class="notes">
+      <div><b>為什麼評審會記得</b>「整本書是一片星空，讀越多越亮」，一句話講得完，也和開場「碎片匯聚成臉」同一套視覺語言：碎片 → 星點 → 連線。</div>
+      <div><b>導引</b>主線不再是一排灰字，而是看得見的連線；點一條主線，只亮那幾顆星，旁邊浮出「從這篇開始讀」。</div>
+      <div><b>遊戲化</b>讀過的星亮起、主線讀完整條會變實線，和成就卡、補給包同一套已讀紀錄。</div>
+      <div><b>手機</b>星座改成上下排列，一個星座一個畫面寬；點星星彈出卡片，不靠滑鼠移入。</div>
+      <div class="risk"><b>成本與風險</b>約 1.5 天。取代現有「全書地圖」與章節卡片；章節卡片保留成星圖下方的精簡清單，給想直接找標題的人與螢幕報讀器。</div>
+    </div>
+  </section>
+
+  <!-- B -->
+  <section class="concept" id="b">
+    <div class="c-head">
+      <span class="tag">提案 B</span>
+      <h2>書架<small>把紙本的手感搬上螢幕</small></h2>
+      <p>一座胡桃木書櫃，上層序章＋人、下層模型＋行動，每層層板釘一塊銅牌標章名。書的厚度是原文頁數，書脊有燙金線、書衣、紙標籤幾種樣式；序章兩本平放成一疊、人這章最後一本斜靠著，空位擺著整本刊物封面朝外，和一張借書卡。滑過或點一下，書被抽出一截，下方紙條寫著這篇的一句話。讀過的書頂露出一截緞帶書籤，借書卡蓋一個章。</p>
+    </div>
+    <div class="stage">
+      <div class="ctrl">
+        <div class="chips" data-chips="b"></div>
+        <label class="sim">模擬已讀 <input type="range" min="0" max="22" value="5" data-sim="b"><output>5 篇</output></label>
+      </div>
+      <div class="shelf-wrap">
+        <div class="case-scroll"><div class="case shelf" data-shelf>
+          <div class="case-top"></div>
+          <div class="case-base"></div>
+        </div></div>
+        <div class="slip" data-slip></div>
+      </div>
+    </div>
+    <div class="notes">
+      <div><b>為什麼評審會記得</b>直接呼應「這本書原本是紙本刊物」，最有溫度、最好懂；書籤緞帶的已讀狀態一看就明白。</div>
+      <div><b>導引</b>書脊上直接是標題，掃一眼就找得到；點主線，其他書退後變灰。</div>
+      <div><b>遊戲化</b>書籤緞帶＋借書卡蓋章：22 格一眼看出還差幾篇，卡片下方直接寫「再讀 n 篇換下一份補給包」。</div>
+      <div><b>手機</b>改成一章一層的直立書櫃，書縮到約六成五；點一下抽出書，紙條在書櫃下方。不需要左右滑。</div>
+      <div class="risk"><b>成本與風險</b>約 1 天，風險最低。直書標題在英文篇名（AI for Growth、GEO 時代）上較不好讀；書架隱喻也比較「常見」。</div>
+    </div>
+  </section>
+
+  <!-- C -->
+  <section class="concept" id="c">
+    <div class="c-head">
+      <span class="tag">提案 C</span>
+      <h2>觀點跑馬牆<small>22 個主張同時在說話</small></h2>
+      <p>深色底上四條跑道，每章一條，22 篇的標題用大號襯線字緩緩流過，方向一左一右交錯，像一面不斷發言的觀點牆。滑鼠停上去，那條跑道停下、卡片翻成章節色並展開一句話。點主線，屬於這條線的卡片亮起邊框，其他退暗。</p>
+    </div>
+    <div class="stage">
+      <div class="ctrl">
+        <div class="chips" data-chips="c"></div>
+        <label class="sim">模擬已讀 <input type="range" min="0" max="22" value="5" data-sim="c"><output>5 篇</output></label>
+      </div>
+      <div class="wall" data-wall></div>
+    </div>
+    <div class="notes">
+      <div><b>為什麼評審會記得</b>畫面衝擊最強，和前面牛皮紙開場形成強烈明暗對比；文字本身就是視覺。</div>
+      <div><b>導引</b>每張卡片直接露出標題與作者，停下來就看到一句話；比白卡片列表資訊量更高。</div>
+      <div><b>遊戲化</b>最弱：只有「✓ 已讀」標記，看不出整體進度，要靠三扇門的進度條補。</div>
+      <div><b>手機</b>跑道改成手指左右滑，卡片吸附；不自動流動，避免手機上讀不到字。</div>
+      <div class="risk"><b>成本與風險</b>約 1 天。一直在動的文字對部分讀者有干擾，要提供暫停並尊重「減少動態」設定；深色區塊和全站紙感調性差異最大。</div>
+    </div>
+  </section>
+  <p style="padding: 24px 0 64px; font-size: 13px; color: var(--ink-3)">原型使用全站真實資料（22 篇標題、章節、主線、一句話與原文長度）。正式實作會沿用網站的已讀紀錄、色票、字體與「減少動態」設定。</p>
+</div>
+
+<script>
+const DATA = {"arts":[{"slug":"ai-for-growth","ch":"intro","t":"AI for Growth","sub":"看懂世界，加速成長","th":["judge"],"min":7,"by":"Jennifer Tang","one":"AI 改變的是技術和做法，不變的是經營的本質：為客戶創造價值、靠人才驅動成長、用信任贏得品牌。","pg":6},{"slug":"agentic-era","ch":"intro","t":"Agentic 時代","sub":"品牌與人的真實距離","th":[],"min":7,"by":"Freda Shao","one":"品牌離 AI 越近，不一定離人越遠；只要 AI 做的是幫品牌更懂人，距離就是真實的靠近。","pg":6},{"slug":"power-of-real","ch":"people","t":"真實的力量","sub":"重新定義中","th":["trust"],"min":10,"by":"Alice Chou","one":"在 AI 真假難辨的時代，品牌要用真實感、人性與情感認同，重建別人複製不了的信任。","pg":8},{"slug":"agents-of-growth","ch":"people","t":"Agents of Growth","sub":"AI 代理時代的增長推手","th":["agent"],"min":15,"by":"Gary Chi","one":"未來的競爭不是 Human versus AI，而是 Human plus AI；演算法決定效率，人性決定偏好。","pg":8},{"slug":"growth-architect","ch":"people","t":"AI 代理時代的增長架構師","sub":"","th":["judge"],"min":12,"by":"Julia Chu","one":"策略人在 AI 時代，從只決定品牌「說什麼」的傳播企劃，進化為串聯商業、人性洞察與未來商機的增長架構師。","pg":8},{"slug":"trust","ch":"people","t":"信任","sub":"為何成為 AI 時代最難複製的競爭力","th":["trust"],"min":9,"by":"Cynthia Yang","one":"當內容愈來愈容易被生成，真實成為稀缺資產；建立在真實之上的信任，是品牌最難複製的競爭力。","pg":6},{"slug":"make-them-want-to-buy","ch":"people","t":"AI 可以幫人買東西","sub":"但品牌要讓人想買東西","th":["agent"],"min":15,"by":"Rene Chen","one":"AI Agent 能替人搜尋、比較，未來甚至協助購買，但它接手的是交易流程；品牌要創造的是購買動機，在 AI 介入之前，先讓消費者心裡想起你。","pg":8},{"slug":"attention-is-scarce","ch":"people","t":"當注意力成為稀缺資源","sub":"娛樂與運動如何累積品牌心智資產？","th":["memory"],"min":13,"by":"Louis Ho","one":"品牌可以買到曝光，卻買不到記憶。娛樂與運動透過真實的情緒與體驗，創造粉絲共同經歷的記憶，是把注意力累積成品牌心智資產（消費者心中長期留下的品牌印象）的關鍵。","pg":8},{"slug":"algorithm-or-people","ch":"people","t":"討好演算法，還是打動人？","sub":"別讓效率邏輯把社群砍掉","th":["trust"],"min":8,"by":"Sunny Sun","one":"AI 讀的不是你怎麼說自己，而是別人怎麼說你。在內容可以量產的時代，讓真實的人自發、具體地談論你，買不到也假裝不來，成了品牌最貴的護城河。","pg":6},{"slug":"buy-attention","ch":"people","t":"別買曝光了，開始買注意力吧","sub":"把媒體做成體驗，幫品牌累積「滑不走」的記憶資產","th":["memory"],"min":12,"by":"Amy Hsu","one":"曝光正在通膨、注意力正在升值。被看進去、被想起來、被帶進決策的曝光，才算數。","pg":8},{"slug":"shared-memory","ch":"people","t":"從金曲獎到甄嬛傳","sub":"共同記憶帶來的品牌價值","th":["memory"],"min":34,"by":"Jeremy Wu & Elmo Chen","one":"內容越多，「大家一起看過」的時刻越少。共同記憶，是讓不同世代重新相遇的入口。","pg":14},{"slug":"people-model","ch":"model","t":"People Model","sub":"讓消費者研究變成一場隨時能開口的對話","th":["judge"],"min":37,"by":"Bass Chen & Chiao Sun & Chingping Kao","one":"用十餘年 CCS 調查一比一捏塑數位分身，讓消費者研究從一次性的調查，變成隨時能追問的對話。","pg":20},{"slug":"rebuild-sov","ch":"model","t":"重建 SOV","sub":"在注意力被 AI 稀釋的時代，如何守住品牌被選擇的關鍵場域","th":["agent","memory"],"min":21,"by":"Jeremy Wu","one":"AI 投放讓廣告更精準，也讓品牌被選擇的理由更容易被稀釋。因此 SOV（聲量佔比）不能只看聲量大小，而要看品牌在消費者做選擇的關鍵場域中，能不能被看見、被想起。","pg":12},{"slug":"judgment","ch":"model","t":"AI 普及下的演算法世代","sub":"「衡斷力 (Judgment)」將成為最稀缺的競爭力","th":["judge"],"min":12,"by":"Nick Chiang","one":"當工具的門檻消失，差距就回到使用工具的人身上；衡斷力，是演算法世代最稀缺的能力。","pg":8},{"slug":"generative-experience","ch":"model","t":"生成式體驗來臨","sub":"誰能掌握顧客的下一步？","th":["trust","agent"],"min":15,"by":"Vera Cheng & Jason Chang","one":"顧客的下一步不再只由企業的流程決定；企業需要一張決策地圖，看見顧客在哪裡猶豫、需要什麼支援，並提供可信任的下一步。","pg":8},{"slug":"cultural-undercurrents","ch":"model","t":"贏在 AI 時代的隱形戰場","sub":"看見「文化暗流」，啟動企業真實的轉型動能","th":["judge"],"min":11,"by":"Fupei Wang & Edith Chou","one":"AI 轉型不是技術軍備競賽，而是組織文化的重塑；先看見水面下的文化暗流，才能釋放真實的轉型動能。","pg":6},{"slug":"why-customers-stop","ch":"ai","t":"顧客為何停下來？","sub":"從洞察到治理的體驗優化","th":[],"min":14,"by":"Harvey Chen & Jason Kang","one":"數位體驗優化的核心，是看懂顧客為何猶豫，並用持續驗證把每一次優化累積成組織的決策能力。","pg":8},{"slug":"agent-experience","ch":"ai","t":"體驗這件事","sub":"我們一直只問了一半","th":["agent"],"min":14,"by":"Maureen Wang & Jennifer Chan & Daisy Huang","one":"AI Agent 正替顧客吸收搜尋與比較的步驟、壓縮顧客旅程，也改寫品牌被選擇的方式；從 UX 到 AX，能讓人與 AI 都信任的品牌才會勝出。","pg":8},{"slug":"geo","ch":"ai","t":"GEO 時代","sub":"被 AI 看見是技術，被消費者記住才是本事","th":["trust"],"min":11,"by":"Wen Chuang & Alice Lu","one":"被 AI 看見是技術，被消費者記住才是本事；當所有品牌都被 AI 引用，比的是溫度與情境。","pg":8},{"slug":"beyond-ai-slop","ch":"ai","t":"拒絕同質化 AI Slop","sub":"將 AI 的「生成力」升級為品牌的「交付力」","th":["trust","judge"],"min":12,"by":"Chiwei Pan","one":"AI 讓生成內容的能力變成人人都有的商品；品牌要靠規格、產線、檢驗與模式化這套交付系統，把生成力轉化為能持續交付品牌辨識度的交付力。","pg":6},{"slug":"beyond-efficiency","ch":"ai","t":"超越效率","sub":"解碼 AI 製作驅動的創意代理商","th":[],"min":11,"by":"Trent Agnew","one":"AI 不只讓內容做得更快，更能把人才、創意與技術串成一套完整的工作流程，讓台灣品牌在分散的通路裡大量產出貼近在地、又兼顧創意品質與成效的內容。","pg":6},{"slug":"ai-agent-journey","ch":"ai","t":"AI Agent 走進消費旅程","sub":"保健、美妝與零售如何把 AI 變成行動能力","th":["agent"],"min":15,"by":"Sibyl Chang & Stan Tsai & Joce Yang","one":"該問的不是要不要導入 AI Agent，而是哪些任務可以交給 AI、可以授權到哪一層級（觀察理解、推薦、決策或行動）。","pg":8}],"threads":[{"key":"trust","name":"真實與信任，是最貴的稀缺資產","short":"真實與信任"},{"key":"judge","name":"判斷力不能外包","short":"判斷力"},{"key":"agent","name":"Agent 經濟重寫「被選擇」的規則","short":"Agent 經濟"},{"key":"memory","name":"從注意力到記憶","short":"注意力到記憶"}]};
+const ARTS = DATA.arts.map((a, i) => ({ ...a, i }));
+const TH = DATA.threads;
+const CH = { intro: ['Intro', '序章'], people: ['People', '人'], model: ['Model', '模型'], ai: ['A.I', '行動'] };
+const ORDER = ['intro', 'people', 'model', 'ai'];
+const col = (ch) => `var(--${ch})`, ink = (ch) => `var(--${ch}-ink)`;
+// 模擬已讀：依「讀者常見的讀法」排序，不是照書序（開場兩篇＋各章第一篇先讀）
+const READ_ORDER = [1, 0, 2, 11, 18, 5, 3, 12, 19, 8, 4, 13, 20, 6, 9, 14, 21, 7, 10, 15, 16, 17];
+const readSet = (n) => new Set(READ_ORDER.slice(0, n));
+const svgEl = (tag, attrs = {}) => { const e = document.createElementNS('http://www.w3.org/2000/svg', tag); for (const k in attrs) e.setAttribute(k, attrs[k]); return e; };
+const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+function chips(key, onPick) {
+  const box = document.querySelector(`[data-chips="${key}"]`);
+  const mk = (label, val) => { const b = document.createElement('button'); b.className = 'chip'; b.type = 'button'; b.textContent = label; b.dataset.v = val; b.setAttribute('aria-pressed', val === '' ? 'true' : 'false'); box.append(b); return b; };
+  mk('全部', '');
+  TH.forEach((t, i) => mk(`主線 ${i + 1}｜${t.short}`, t.key));
+  box.addEventListener('click', (e) => { const b = e.target.closest('.chip'); if (!b) return; box.querySelectorAll('.chip').forEach((c) => c.setAttribute('aria-pressed', c === b ? 'true' : 'false')); onPick(b.dataset.v, true); });
+  return (v) => box.querySelectorAll('.chip').forEach((c) => c.setAttribute('aria-pressed', c.dataset.v === v ? 'true' : 'false'));
+}
+function sim(key, onChange) {
+  const r = document.querySelector(`[data-sim="${key}"]`), o = r.nextElementSibling;
+  const f = () => { o.textContent = `${r.value} 篇`; onChange(+r.value); };
+  r.addEventListener('input', f); f();
+}
+
+/* ── D 替這張臉上色 ── */
+(() => {
+  const root = document.querySelector('[data-fm]'), stage = root.querySelector('[data-fm-stage]'), cv = root.querySelector('[data-fm-canvas]'), list = root.querySelector('[data-fm-list]');
+  const hudN = root.querySelector('[data-fm-n]'), hudC = root.querySelector('[data-fm-c]'), toast = root.querySelector('[data-fm-toast]');
+  const ctx = cv.getContext('2d');
+  const COLS = { intro: [192, 138, 62], people: [111, 168, 58], model: [208, 84, 76], ai: [42, 157, 181] };
+  const HEX = (c) => `rgb(${COLS[c].join(',')})`;
+  let read = new Set(), readT = new Map(), pick = '', active = -1, hoverR = -1;
+  let W = 0, H = 0, dpr = 1, narrow = false, bits = [], imgs = [], modelArts = [], threads = [], ymid = 0, ratios = [0.9, 0.75], cent = [], ready = false;
+  // 鏡頭：捲到哪一篇就推近到那一塊，章節之間拉遠看全臉（減少動態時不移動）
+  const cam = { x: 0, y: 0, s: 1 };
+
+  // 目錄：四章依書序，每篇一列
+  ORDER.forEach((c) => {
+    const items = ARTS.filter((a) => a.ch === c);
+    const h = document.createElement('div'); h.className = 'fm-ch';
+    h.innerHTML = `<b>${CH[c][1]}</b><span>${CH[c][0].toUpperCase()}</span><em>${{ intro: '兩隻眼睛', people: '鉛筆的臉', model: '兩張臉之間的橋', ai: '像素的臉' }[c]}｜${items.length} 篇</em>`;
+    list.append(h);
+    items.forEach((a) => {
+      const r = document.createElement('button'); r.type = 'button'; r.className = 'fm-row'; r.dataset.i = a.i; r.style.setProperty('--k', HEX(a.ch));
+      r.innerHTML = `<span class="no">${String(a.i + 1).padStart(2, '0')}</span><span class="t">${a.t}</span><span class="s">${a.by}<span class="r">已上色</span></span><span class="o">${a.one}</span>`;
+      list.append(r);
+    });
+  });
+  const rows = [...list.querySelectorAll('.fm-row')];
+
+  // 取樣：和開場同一套做法（不透明的像素才放碎片）
+  const load = (src) => new Promise((ok, no) => { const i = new Image(); i.onload = () => ok(i); i.onerror = no; i.src = src; });
+  const sample = (img, target, h = 320) => {
+    const w = Math.round((img.width / img.height) * h), c = document.createElement('canvas'); c.width = w; c.height = h;
+    const x = c.getContext('2d', { willReadFrequently: true }); x.drawImage(img, 0, 0, w, h);
+    const d = x.getImageData(0, 0, w, h).data; let op = 0; for (let i = 3; i < d.length; i += 4) if (d[i] > 50) op++;
+    const step = Math.max(2, Math.round(Math.sqrt(op / target))), out = [];
+    for (let y = 0; y < h; y += step) for (let xx = 0; xx < w; xx += step) { const i = (y * w + xx) * 4; if (d[i + 3] > 50) out.push({ u: xx / w, v: y / h, g: (d[i] + d[i + 1] + d[i + 2]) / 3, a: d[i + 3] / 255 }); }
+    return { pts: out, ratio: w / h };
+  };
+  // 把一張臉的碎片分成 k 塊（固定初始點的 k-means，每次結果相同）
+  const cluster = (pts, k, ratio) => {
+    const sorted = [...pts].sort((p, q) => p.v - q.v || p.u - q.u);
+    let cs = Array.from({ length: k }, (_, j) => { const p = sorted[Math.floor(((j + 0.5) * sorted.length) / k)]; return { u: p.u, v: p.v }; });
+    const lab = new Array(pts.length).fill(0);
+    for (let it = 0; it < 10; it++) {
+      pts.forEach((p, n) => { let b = 0, bd = 1e9; cs.forEach((c, j) => { const d = ((p.u - c.u) * ratio) ** 2 + (p.v - c.v) ** 2; if (d < bd) { bd = d; b = j; } }); lab[n] = b; });
+      cs = cs.map((c, j) => { let su = 0, sv = 0, n = 0; pts.forEach((p, m) => { if (lab[m] === j) { su += p.u; sv += p.v; n++; } }); return n ? { u: su / n, v: sv / n } : c; });
+    }
+    return { lab, cs };
+  };
+  // 每一塊對應哪一篇：最靠近眼睛位置的那塊給序章，其餘由上到下依書序
+  const assign = (cs, eye, arts) => {
+    const idx = cs.map((c, j) => j);
+    const e = idx.reduce((b, j) => (Math.hypot(cs[j].u - eye[0], cs[j].v - eye[1]) < Math.hypot(cs[b].u - eye[0], cs[b].v - eye[1]) ? j : b), 0);
+    const rest = idx.filter((j) => j !== e).sort((p, q) => cs[p].v - cs[q].v || cs[p].u - cs[q].u);
+    const map = []; map[e] = arts[0]; rest.forEach((j, n) => (map[j] = arts[n + 1])); return map;
+  };
+
+  let seed = 23; const rnd = () => ((seed = (seed * 16807) % 2147483647) / 2147483647);
+  const build = async () => {
+    const [hu, ai] = await Promise.all([load('/art/cover/david-profile.webp'), load('/art/cover/ai-face-sample.png')]);
+    imgs = [hu, ai];
+    const per = innerWidth < 860 ? 1300 : 2600;
+    const hs = sample(hu, per), as = sample(ai, per); ratios = [hs.ratio, as.ratio];
+    const byCh = (c) => ARTS.filter((a) => a.ch === c).map((a) => a.i);
+    // 鉛筆畫的紙白不放碎片，臉的明暗（眼窩、鼻樑）才出得來
+    hs.pts = hs.pts.filter((p) => p.g < 236);
+    // 序章：兩張臉的眼睛（依原圖量好的位置）；邊緣帶一點不規則，像顏料暈開
+    const EYE = [[0.27, 0.36], [0.68, 0.45]];
+    const isEye = (p, k) => { const dx = (p.u - EYE[k][0]) * ratios[k], dy = p.v - EYE[k][1]; return Math.hypot(dx, dy) < 0.07 * (1 + 0.22 * Math.sin(Math.atan2(dy, dx) * 5 + k)); };
+    const hRest = hs.pts.filter((p) => !isEye(p, 0)), aRest = as.pts.filter((p) => !isEye(p, 1));
+    const hc = cluster(hRest, 9, hs.ratio), ac = cluster(aRest, 6, as.ratio);
+    // 區塊由上到下依書序；分界加上低頻擾動，邊緣是暈開的而不是拼布的直線
+    const order = (cs, arts) => { const m = []; cs.map((c, n) => n).sort((p, q) => cs[p].v - cs[q].v || cs[p].u - cs[q].u).forEach((n, k) => (m[n] = arts[k])); return m; };
+    const hm = order(hc.cs, byCh('people')), am = order(ac.cs, byCh('ai'));
+    const noisy = (p, cs, ratio) => { let b = 0, bd = 1e9; cs.forEach((c, n) => { const d = ((p.u - c.u) * ratio) ** 2 + (p.v - c.v) ** 2 + 0.004 * (Math.sin(p.u * 41 + n * 1.7) * Math.sin(p.v * 37 - n * 2.3) + 0.5 * Math.sin((p.u + p.v) * 83 + n)); if (d < bd) { bd = d; b = n; } }); return b; };
+    const region = (p, k) => (isEye(p, k) ? k : k === 0 ? hm[noisy(p, hc.cs, hs.ratio)] : am[noisy(p, ac.cs, as.ratio)]);
+    const mk = (k, p, r) => ({ k, ux: p.u, uy: p.v, r, g: Math.round(p.g * (k === 0 ? 0.72 : 0.85)), a: k === 0 ? Math.min(0.85, 0.15 + (1 - p.g / 255) * 0.8) : 0.8, s: 1.8 + rnd() * 1.8, ph: rnd() * 6.28, fq: 0.6 + rnd() * 1.2 });
+    bits = [...hs.pts.map((p) => mk(0, p, region(p, 0))), ...as.pts.map((p) => mk(1, p, region(p, 1)))];
+    modelArts = byCh('model'); seedStreams();
+    ready = true; layout();
+  };
+
+  let boxes = [];
+  const layout = () => {
+    dpr = Math.min(2, devicePixelRatio || 1); W = cv.clientWidth; H = cv.clientHeight; narrow = innerWidth < 860;
+    cv.width = W * dpr; cv.height = H * dpr; ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    root.style.setProperty('--top', `${document.querySelector('.tabs').offsetHeight}px`);
+    if (!ready) return;
+    // AI 臉右側是飄散的碎片尾巴，讓它超出畫面右緣約三成，兩張臉就能畫得更大
+    const gapK = 0.26, vis = ratios[0] + gapK + ratios[1] * 0.72, fh = Math.min(H * (narrow ? 0.8 : 0.82), (W * 0.98) / vis);
+    const x0 = (W - fh * vis) / 2, y0 = (H - fh) / 2 + (narrow ? 12 : 10);
+    boxes = [{ x: x0, y: y0, w: fh * ratios[0], h: fh }, { x: x0 + fh * (ratios[0] + gapK), y: y0, w: fh * ratios[1], h: fh }];
+    // 模型：五條訊號線，從人臉的額、眉、鼻、唇、下巴連到 AI 臉對應的位置（依原圖量好的座標，兩張都鏡像）
+    const HU = [[0.22, 0.27], [0.17, 0.4], [0.11, 0.53], [0.21, 0.61], [0.3, 0.72]], AU = [[0.7, 0.27], [0.75, 0.44], [0.79, 0.55], [0.73, 0.65], [0.68, 0.76]];
+    const at = (k, [u, v]) => ({ x: boxes[k].x + (1 - u) * boxes[k].w, y: boxes[k].y + v * boxes[k].h });
+    threads = modelArts.map((art, s) => ({ art, s, a: at(0, HU[s]), b: at(1, AU[s]) }));
+    ymid = threads.reduce((n, th) => n + th.a.y + th.b.y, 0) / (threads.length * 2);
+    const acc = {};
+    bits.forEach((b) => {
+      const bx = boxes[b.k]; b.x = bx.x + (1 - b.ux) * bx.w; b.y = bx.y + b.uy * bx.h;
+      const c = (acc[b.r] ||= { x: 0, y: 0, n: 0 }); c.x += b.x; c.y += b.y; c.n++;
+    });
+    threads.forEach((th) => (acc[th.art] = { ...curve(th, 0.5, 0), n: 1 }));
+    cent = ARTS.map((a) => { const c = acc[a.i]; return c ? { x: c.x / c.n, y: c.y / c.n } : { x: W / 2, y: H / 2 }; });
+    bits.forEach((b) => { b.dd = Math.hypot(b.x - cent[b.r].x, b.y - cent[b.r].y); });
+    if (!cam.x) { cam.x = W / 2; cam.y = H / 2; }
+  };
+  // 三次貝茲曲線：兩端先朝中線收攏，中段像神經束一樣靠在一起，再分開接到另一張臉；控制點隨時間微微呼吸
+  const curve = (th, u, t) => {
+    const { a, b, s } = th, dx = b.x - a.x, wob = reduce ? 0 : Math.sin(t * 0.0006 + s * 1.3) * boxes[0].h * 0.016;
+    const p1 = { x: a.x + dx * 0.42, y: a.y + (ymid - a.y) * 0.78 + wob }, p2 = { x: b.x - dx * 0.42, y: b.y + (ymid - b.y) * 0.78 - wob };
+    const v = 1 - u;
+    return { x: v * v * v * a.x + 3 * v * v * u * p1.x + 3 * v * u * u * p2.x + u * u * u * b.x, y: v * v * v * a.y + 3 * v * v * u * p1.y + 3 * v * u * u * p2.y + u * u * u * b.y };
+  };
+  // 模型：每條連線是一道碎片流，和兩張臉同一套碎片——人那端是鉛筆短線，流過中段後一顆顆變成像素方塊；
+  // 多數碎片從人流向 AI，少數反向，像兩張臉在對話。兩端散開、中段收攏，貼近臉時淡入臉裡。
+  const streams = [];
+  const seedStreams = () => {
+    streams.length = 0; let sd = 71; const r = () => ((sd = (sd * 16807) % 2147483647) / 2147483647);
+    modelArts.forEach((art, s) => {
+      for (let n = 0; n < (innerWidth < 860 ? 110 : 170); n++) streams.push({ s, art, u0: r(), off: (r() + r() - 1), sp: 0.000028 + r() * 0.00003, dir: r() < 0.72 ? 1 : -1, th: 0.25 + r() * 0.5, g: Math.round(55 + r() * 80), sz: 1.6 + r() * 1.7, ph: r() * 6.28, fq: 0.6 + r() * 1.2, tint: r() < 0.14 });
+    });
+  };
+  const drawThreads = (t, focusSet) => {
+    const RED = COLS.model, TEAL = [63, 167, 196], base = narrow ? 7 : 11;
+    for (const q of streams) {
+      const th = threads[q.s]; if (!th) continue;
+      const i = q.art, f = focusSet(i), rd = read.has(i), rt = readT.get(i);
+      const fill = rt === undefined ? 0 : reduce ? 1 : Math.min(1, (t - rt) / 1100);
+      let u = reduce ? q.u0 : (q.u0 + t * q.sp * (f ? 1.8 : 1) * q.dir) % 1; if (u < 0) u += 1;
+      const p = curve(th, u, t), p2 = curve(th, Math.min(1, u + 0.01), t);
+      let nx = -(p2.y - p.y), ny = p2.x - p.x; const nl = Math.hypot(nx, ny) || 1; nx /= nl; ny /= nl;
+      const spread = base * (0.35 + 2.6 * (u - 0.5) ** 2) * (f ? 1.15 : 1);
+      const amp = reduce ? 0 : 0.9;
+      const x = p.x + nx * q.off * spread + Math.sin(t * 0.0011 * q.fq + q.ph) * amp, y = p.y + ny * q.off * spread + Math.cos(t * 0.0009 * q.fq + q.ph * 1.3) * amp;
+      // 顏色：讀過的部分從人那端流成紅色；焦點但未讀先預覽六成；少數像素帶 AI 藍（和開場一樣）
+      let m = u < fill ? 1 : 0; if (f) m = Math.max(m, rd ? 1 : 0.6);
+      const pix = u > q.th;
+      const gc = pix && q.tint && !m ? null : q.g;
+      const edge = Math.min(1, u / 0.07, (1 - u) / 0.07);
+      ctx.globalAlpha = 0.85 * edge * (active >= 0 && !f && !rd ? 0.7 : 1);
+      const col = gc === null ? `rgb(${TEAL.join(',')})` : mix(gc, RED, m);
+      const s = q.sz * (f ? 1.2 : 1) * (narrow ? 0.75 : 0.85);
+      if (!pix) {
+        ctx.strokeStyle = col; ctx.lineWidth = s * 0.5;
+        const len = s * 1.6, ang = -0.75 + q.ph * 0.08;
+        ctx.beginPath(); ctx.moveTo(x - Math.cos(ang) * len, y - Math.sin(ang) * len); ctx.lineTo(x + Math.cos(ang) * len, y + Math.sin(ang) * len); ctx.stroke();
+      } else { ctx.fillStyle = col; ctx.fillRect(x - s / 2, y - s / 2, s, s); }
+    }
+    ctx.globalAlpha = 1;
+  };
+  const camTarget = () => {
+    const i = hoverR >= 0 && active < 0 ? -1 : active;
+    if (i < 0 || reduce) return { x: W / 2, y: H / 2 + (narrow ? 8 : 0), s: 1 };
+    const c = cent[i], br = ARTS[i].ch === 'model';
+    const s = narrow ? (br ? 1.3 : 1.45) : br ? 1.3 : 1.45;
+    return { x: c.x, y: c.y, s };
+  };
+
+  // 上色時保留原本的明暗：暗的筆觸變深色、亮的變淺色，五官才不會糊成一片
+  const mix = (g, c, m) => { const t = Math.min(1.18, 0.5 + g / 330); return `rgb(${[0, 1, 2].map((n) => Math.round(g + (Math.min(255, c[n] * t) - g) * m)).join(',')})`; };
+  const frame = (t) => {
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0); ctx.clearRect(0, 0, W, H);
+    if (!ready) return;
+    const tg = camTarget(), k = reduce ? 1 : 0.07;
+    cam.x += (tg.x - cam.x) * k; cam.y += (tg.y - cam.y) * k; cam.s += (tg.s - cam.s) * k;
+    ctx.setTransform(dpr * cam.s, 0, 0, dpr * cam.s, dpr * (W / 2 - cam.x * cam.s), dpr * (H / 2 + (narrow ? 8 : 0) - cam.y * cam.s));
+    const focusSet = (i) => i === active || i === hoverR || (pick && ARTS[i].th.includes(pick));
+    // 原圖淡淡墊在底下（和碎片同樣鏡像），五官的明暗靠它，碎片負責上色
+    imgs.forEach((im, k) => { const bx = boxes[k]; ctx.save(); ctx.globalAlpha = k === 0 ? 0.3 : 0.16; ctx.translate(bx.x + bx.w, bx.y); ctx.scale(-1, 1); ctx.drawImage(im, 0, 0, bx.w, bx.h); ctx.restore(); });
+    // 焦點那塊底下先鋪一圈柔光，讓「現在在這裡」一眼看得到
+    [active, hoverR].forEach((i) => {
+      if (i < 0) return; const c = cent[i], col = COLS[ARTS[i].ch];
+      const gr = ctx.createRadialGradient(c.x, c.y, 0, c.x, c.y, narrow ? 46 : 80); gr.addColorStop(0, `rgba(${col.join(',')},.28)`); gr.addColorStop(1, `rgba(${col.join(',')},0)`);
+      ctx.fillStyle = gr; ctx.fillRect(c.x - 90, c.y - 90, 180, 180);
+    });
+    for (const b of bits) {
+      const art = ARTS[b.r], col = COLS[art.ch];
+      let m = 0;
+      const rt = readT.get(b.r);
+      if (rt !== undefined) m = reduce ? 1 : Math.min(1, Math.max(0, (t - rt - b.dd * 9) / 520));
+      const f = focusSet(b.r);
+      if (f) m = Math.max(m, read.has(b.r) ? 1 : 0.6);
+      const amp = reduce ? 0 : f ? 1.6 : 0.9;
+      const x = b.x + Math.sin(t * 0.0011 * b.fq + b.ph) * amp, y = b.y + Math.cos(t * 0.0009 * b.fq + b.ph * 1.3) * amp;
+      const s = b.s * (f ? 1.2 : 1) * (narrow ? 0.75 : 0.85);
+      ctx.globalAlpha = b.a * (active >= 0 && !f && !read.has(b.r) ? 0.7 : 1);
+      if (b.k === 0) {
+        ctx.strokeStyle = mix(b.g, col, m); ctx.lineWidth = s * 0.5;
+        const len = s * 1.6, ang = -0.75 + b.ph * 0.08;
+        ctx.beginPath(); ctx.moveTo(x - Math.cos(ang) * len, y - Math.sin(ang) * len); ctx.lineTo(x + Math.cos(ang) * len, y + Math.sin(ang) * len); ctx.stroke();
+      } else { ctx.fillStyle = mix(b.g, col, m); ctx.fillRect(x - s / 2, y - s / 2, s, s); }
+    }
+    ctx.globalAlpha = 1;
+    drawThreads(t, focusSet);
+  };
+  let raf = 0, vis = false;
+  const loop = (t) => { frame(t); raf = vis ? requestAnimationFrame(loop) : 0; };
+  new IntersectionObserver(([e]) => { vis = e.isIntersecting; if (vis && !raf) raf = requestAnimationFrame(loop); }).observe(root);
+
+  // 捲動決定焦點：目錄裡跨過「閱讀線」的那一列（桌機在畫面中線；手機在臉下方的區域三成處）
+  const hud = () => {
+    hudN.innerHTML = `已上色 ${read.size}<small>／22</small>`;
+    const a = ARTS[active];
+    hudC.textContent = a ? `${CH[a.ch][1]}｜${String(a.i + 1).padStart(2, '0')}〈${a.t}〉${read.has(a.i) ? '・已上色' : ''}` : read.size ? '讀越多，這張臉越有溫度' : '往下捲，看 22 篇在臉上的哪裡';
+  };
+  const onScroll = () => {
+    const top = root.getBoundingClientRect().top;
+    const sh = narrow ? stage.offsetHeight : 0, tp = parseFloat(getComputedStyle(root).getPropertyValue('--top')) || 0;
+    const line = narrow ? tp + sh + (innerHeight - tp - sh) * 0.3 : innerHeight * 0.5;
+    let best = -1;
+    if (top < line) for (const r of rows) { const b = r.getBoundingClientRect(); if (b.top <= line && b.bottom > line) { best = +r.dataset.i; break; } }
+    if (best !== active) { active = best; rows.forEach((r) => r.classList.toggle('on', +r.dataset.i === active)); hud(); }
+  };
+  let tick = false;
+  addEventListener('scroll', () => { if (tick) return; tick = true; requestAnimationFrame(() => { tick = false; onScroll(); }); }, { passive: true });
+
+  const setRead = (set) => {
+    const now = performance.now();
+    set.forEach((i) => { if (!read.has(i)) readT.set(i, now); });
+    read.forEach((i) => { if (!set.has(i)) readT.delete(i); });
+    read = set;
+    rows.forEach((r) => r.classList.toggle('read', read.has(+r.dataset.i)));
+    hud();
+  };
+  let toastT = 0;
+  // 點目錄列：原型裡模擬「讀完這篇回到首頁」，那一塊染開並浮出一句回饋（正式版是進入文章）
+  list.addEventListener('click', (e) => {
+    const r = e.target.closest('.fm-row'); if (!r) return;
+    const i = +r.dataset.i; if (read.has(i)) return;
+    setRead(new Set([...read, i]));
+    toast.textContent = `你剛讀完〈${ARTS[i].t}〉，替這張臉添了一塊顏色`; toast.classList.add('on');
+    clearTimeout(toastT); toastT = setTimeout(() => toast.classList.remove('on'), 2600);
+    const s = root.querySelector('[data-sim="d"]'); s.value = read.size; s.nextElementSibling.textContent = `${read.size} 篇`;
+  });
+  // 點臉上的一塊：目錄捲到那一篇（輔助路徑）
+  const nearest = (e) => {
+    const r = cv.getBoundingClientRect(), x = (e.clientX - r.left - (W / 2 - cam.x * cam.s)) / cam.s, y = (e.clientY - r.top - (H / 2 + (narrow ? 8 : 0) - cam.y * cam.s)) / cam.s; let best = -1, bd = (narrow ? 26 : 34) ** 2;
+    cent.forEach((c, i) => { const d = (c.x - x) ** 2 + (c.y - y) ** 2; if (d < bd) { bd = d; best = i; } });
+    if (best < 0) for (const b of bits) { const d = (b.x - x) ** 2 + (b.y - y) ** 2; if (d < 64) { best = b.r; break; } }
+    return best;
+  };
+  cv.addEventListener('pointermove', (e) => { if (e.pointerType !== 'mouse') return; hoverR = nearest(e); cv.style.cursor = hoverR >= 0 ? 'pointer' : ''; });
+  cv.addEventListener('pointerleave', () => { hoverR = -1; });
+  cv.addEventListener('click', (e) => { const i = nearest(e); if (i >= 0) rows[rows.findIndex((r) => +r.dataset.i === i)].scrollIntoView({ block: 'center', behavior: reduce ? 'auto' : 'smooth' }); });
+
+  chips('d', (v) => { pick = v; list.classList.toggle('pick', !!pick); rows.forEach((r) => r.classList.toggle('hit', !!pick && ARTS[r.dataset.i].th.includes(pick))); });
+  sim('d', (n) => setRead(readSet(n)));
+  new ResizeObserver(layout).observe(cv);
+  build().then(onScroll);
+  hud();
+})();
+
+/* ── A 星圖 ── */
+(() => {
+  const sky = document.querySelector('[data-sky]'), svg = document.querySelector('[data-sky-svg]'), tip = document.querySelector('[data-tip]'), hud = document.querySelector('[data-hud]');
+  let read = readSet(5), pick = '', pos = [], auto = true, hot = null;
+  const layout = () => {
+    const W = sky.clientWidth, H = sky.clientHeight, narrow = W < 640;
+    svg.setAttribute('viewBox', `0 0 ${W} ${H}`);
+    const centers = narrow
+      ? ORDER.map((c, k) => [W * (k % 2 ? .64 : .36), H * (.13 + k * .2)])
+      : ORDER.map((c, k) => [W * (.12 + k * .255), H * (k % 2 ? .42 : .52)]);
+    pos = ARTS.map((a) => {
+      const group = ARTS.filter((x) => x.ch === a.ch), j = group.indexOf(a), [cx, cy] = centers[ORDER.indexOf(a.ch)];
+      const ang = j * 2.399 + ORDER.indexOf(a.ch), rad = (narrow ? 30 : Math.min(54, W * .036)) * Math.sqrt(j + .7);
+      return { x: cx + Math.cos(ang) * rad, y: cy + Math.sin(ang) * rad * (narrow ? .9 : 1.15), r: Math.max(11, Math.min(30, 5 + a.min * .75)) * (narrow ? .78 : 1), cx, cy };
+    });
+    draw(centers, narrow);
+  };
+  const draw = (centers, narrow) => {
+    const W = sky.clientWidth, H = sky.clientHeight;
+    svg.textContent = '';
+    // 星塵：固定種子的細點，讓星空有深度（不隨重繪亂跳）
+    let seed = 7; const rnd = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
+    const dust = svgEl('g', { class: 'dust' });
+    for (let k = 0; k < (narrow ? 70 : 160); k++) dust.append(svgEl('circle', { cx: rnd() * W, cy: rnd() * H, r: rnd() * 1.4 + .3, fill: '#1f1d1a', opacity: (rnd() * .25 + .05).toFixed(2) }));
+    svg.append(dust);
+    ORDER.forEach((c, k) => {
+      const [cx, cy] = centers[k];
+      const big = svgEl('text', { class: 'ch-label', x: cx, y: cy + (narrow ? 22 : 40), 'text-anchor': 'middle', 'font-size': narrow ? 88 : Math.min(120, W * .085) }); big.textContent = CH[c][1]; svg.append(big);
+      const en = svgEl('text', { class: 'ch-en', x: cx, y: cy - (narrow ? 64 : 120), 'text-anchor': 'middle' }); en.textContent = CH[c][0].toUpperCase(); svg.append(en);
+    });
+    // 主線：依書序把同一條線的星連起來（二次曲線，往上拱）
+    TH.forEach((t) => {
+      const pts = ARTS.filter((a) => a.th.includes(t.key)).map((a) => pos[a.i]);
+      let d = `M${pts[0].x},${pts[0].y}`;
+      for (let k = 1; k < pts.length; k++) { const p = pts[k - 1], q = pts[k]; d += ` Q${(p.x + q.x) / 2},${Math.min(p.y, q.y) - 40 - (k % 2) * 30} ${q.x},${q.y}`; }
+      const path = svgEl('path', { class: 'thread', d, 'data-t': t.key });
+      svg.append(path);
+    });
+    ARTS.forEach((a) => {
+      const p = pos[a.i], g = svgEl('g', { class: 'node', tabindex: 0, role: 'button', 'aria-label': a.t, 'data-i': a.i, style: `--c:${col(a.ch)}` });
+      g.append(svgEl('circle', { class: 'halo', cx: p.x, cy: p.y, r: p.r + 9 }));
+      g.append(svgEl('circle', { class: 'b', cx: p.x, cy: p.y, r: p.r }));
+      g.append(svgEl('path', { class: 'ck', d: `M${p.x - p.r * .38},${p.y} l${p.r * .28},${p.r * .3} l${p.r * .5},-${p.r * .56}` }));
+      const l = svgEl('text', { class: 'lbl', x: p.x, y: p.y + p.r + 16, 'text-anchor': 'middle' }); l.textContent = a.t.length > 12 ? a.t.slice(0, 11) + '…' : a.t; g.append(l);
+      svg.append(g);
+    });
+    paint();
+  };
+  const paint = () => {
+    sky.classList.toggle('filter', !!pick);
+    svg.querySelectorAll('.node').forEach((g) => { const a = ARTS[g.dataset.i]; g.classList.toggle('read', read.has(a.i)); g.classList.toggle('dim', !!pick && !a.th.includes(pick)); });
+    svg.querySelectorAll('.thread').forEach((p) => {
+      const on = p.dataset.t === pick; p.classList.toggle('on', on);
+      if (on && !reduce) { const len = p.getTotalLength(); p.style.setProperty('--len', len); p.style.strokeDasharray = len; p.classList.remove('draw'); void p.offsetWidth; p.classList.add('draw'); }
+      else { p.style.strokeDasharray = ''; p.classList.remove('draw'); }
+    });
+    const n = read.size;
+    if (pick) {
+      const t = TH.find((x) => x.key === pick), list = ARTS.filter((a) => a.th.includes(pick)), done = list.filter((a) => read.has(a.i)).length, next = list.find((a) => !read.has(a.i));
+      hud.innerHTML = `<span class="eyebrow">主線 ${TH.indexOf(t) + 1}｜${list.length} 篇｜已讀 ${done}</span><span class="t">${t.name}</span>${next ? `<span>下一篇：〈${next.t}〉</span>` : '<b>整條主線讀完了 ✦</b>'}`;
+    } else hud.innerHTML = `<span class="eyebrow">你的星空</span><b>已點亮 ${n}／22 顆星</b><span>${n < 22 ? '點一顆星，看這篇在說什麼' : '整片星空都亮了 ✦'}</span>`;
+  };
+  const show = (g) => {
+    if (!g) { tip.classList.remove('on'); hot?.classList.remove('is-hot'); hot = null; return; }
+    hot?.classList.remove('is-hot'); hot = g; g.classList.add('is-hot');
+    const a = ARTS[g.dataset.i], p = pos[a.i], W = sky.clientWidth;
+    tip.style.setProperty('--c', col(a.ch));
+    tip.innerHTML = `<span class="k">${CH[a.ch][0]}｜${CH[a.ch][1]}</span><b>${a.t}</b><span class="s">${a.sub ? a.sub + '｜' : ''}${a.by}</span><p>${a.one}</p><a href="#a">${read.has(a.i) ? '再讀一次' : '讀精華'}（約 ${Math.max(4, Math.round(a.min / 3))} 分鐘）→</a>`;
+    const tw = tip.offsetWidth, th = tip.offsetHeight;
+    let x = p.x + p.r + 14, y = p.y - th / 2;
+    if (x + tw > W - 12) x = p.x - p.r - 14 - tw;
+    if (x < 12) { x = Math.max(12, Math.min(W - tw - 12, p.x - tw / 2)); y = p.y + p.r + 14; if (y + th > sky.clientHeight - 12) y = p.y - p.r - 14 - th; }
+    tip.style.left = `${x}px`; tip.style.top = `${Math.max(12, y)}px`; tip.classList.add('on');
+  };
+  const setPick = chips('a', (v, user) => { pick = v; if (user) auto = false; paint(); });
+  sim('a', (n) => { read = readSet(n); paint(); });
+  svg.addEventListener('pointerover', (e) => { const g = e.target.closest('.node'); if (g && e.pointerType === 'mouse') show(g); });
+  svg.addEventListener('pointerleave', () => show(null));
+  svg.addEventListener('click', (e) => { const g = e.target.closest('.node'); show(g && g !== hot ? g : null); auto = false; });
+  svg.addEventListener('focusin', (e) => show(e.target.closest('.node')));
+  // 沒人操作時，四條主線輪流畫出來（模擬正式版「捲動時一條一條畫」）
+  let k = 0;
+  setInterval(() => { if (!auto || reduce) return; k = (k + 1) % (TH.length + 1); pick = k ? TH[k - 1].key : ''; setPick(pick); paint(); }, 3200);
+  // 星星輕微漂浮（整個畫面隨指標視差）
+  if (!reduce) sky.addEventListener('pointermove', (e) => { const r = sky.getBoundingClientRect(); svg.style.transform = `translate(${((e.clientX - r.left) / r.width - .5) * -10}px, ${((e.clientY - r.top) / r.height - .5) * -8}px)`; });
+  svg.style.transition = 'transform .6s var(--ease)';
+  new ResizeObserver(layout).observe(sky);
+})();
+
+/* ── B 書架 ── */
+(() => {
+  const shelf = document.querySelector('[data-shelf]'), slip = document.querySelector('[data-slip]');
+  let read = readSet(5), pick = '', sel = null;
+  // 固定種子：每本書的高度、書脊樣式每次都一樣
+  const rng = (s) => () => { s = (s + 0x6d2b79f5) | 0; let t = Math.imul(s ^ (s >>> 15), 1 | s); t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t; return ((t ^ (t >>> 14)) >>> 0) / 4294967296; };
+  const TONES = ['dark', 'light', 'paper', 'dark', 'jacket'];
+  let prevTone = '';
+  const look = (a) => {
+    const r = rng(a.i * 7919 + 13);
+    let tone; do tone = TONES[Math.floor(r() * TONES.length)]; while (tone === prevTone); prevTone = tone;
+    const ci = ink(a.ch), c = col(a.ch);
+    const pal = {
+      dark: [`color-mix(in srgb, ${ci} 78%, #120c06)`, '#e9cd8b'],
+      light: [c, ci],
+      paper: ['#ece2ca', ci],
+      jacket: [`color-mix(in srgb, ${ci} 70%, #120c06)`, '#f1e6cc'],
+    }[tone];
+    return { tone, bg: pal[0], fg: pal[1], h: Math.round(262 + r() * 70), w: Math.round(28 + a.pg * 2.4), bands: tone !== 'jacket' && r() < .62, label: tone === 'dark' && r() < .4, jk: Math.round(17 + r() * 7) };
+  };
+  const by = (a) => a.by.split(' & ')[0] + (a.by.includes(' & ') ? ' 等' : '');
+  const no = (a) => String(a.i + 1).padStart(2, '0');
+  const mkBook = (a, cls) => {
+    const L = look(a), b = document.createElement('button');
+    b.type = 'button'; b.dataset.i = a.i; b.setAttribute('aria-label', `${a.t}｜${a.by}`);
+    b.className = `${cls}${L.bands ? ' bands' : ''}${L.label ? ' label' : ''}${L.tone === 'jacket' ? ' jacket' : ''}`;
+    b.style.cssText = `--bg:${L.bg};--fg:${L.fg};--c:${col(a.ch)};--rb:${a.ch === 'model' ? '#c8463f' : ink(a.ch)};--h:${L.h}px;--w:${L.w}px;--len:${Math.round(236 + (L.h - 262) / 2)}px;--jk:${L.jk}%;--jkf:${L.jk / 100};--fs:${L.w > 60 ? 19 : L.w > 48 ? 17 : 15}px`;
+    b.innerHTML = `<span class="rb" aria-hidden="true"></span><span class="no">${no(a)}</span><span class="ti">${a.t}</span><span class="au">${by(a)}</span>`;
+    return b;
+  };
+  // 寬螢幕兩層（序章＋人｜模型＋行動），窄螢幕一章一層；空位放刊物封面與借書卡
+  const narrow = matchMedia('(max-width: 1060px)');
+  let rows = [];
+  const build = () => {
+    rows = narrow.matches ? [['intro', 'cover'], ['people'], ['model'], ['ai', 'card']] : [['intro', 'people', 'cover'], ['model', 'ai', 'card']];
+    shelf.querySelectorAll('.cell, .board').forEach((x) => x.remove());
+    const base = shelf.querySelector('.case-base');
+    rows.forEach((items, r) => {
+      const cell = document.createElement('div'), board = document.createElement('div');
+      cell.className = 'cell'; board.className = 'board'; board.dataset.board = r;
+      items.forEach((c) => {
+        if (c === 'cover' || c === 'card') {
+          const deco = document.createElement('div');
+          if (c === 'cover') { deco.className = 'cover'; deco.setAttribute('aria-hidden', 'true'); deco.innerHTML = `<i>DENTSU｜2026</i><b>決策智慧<br>2026</b><span>Agentic 時代，<br>重塑品牌與人的真實距離</span>`; }
+          else { deco.className = 'card'; deco.innerHTML = `<span class="eyebrow">借閱紀錄</span><b data-card-n></b><div class="stamps">${ARTS.map((a) => `<i style="--c:${col(a.ch)};--ci:${ink(a.ch)}" data-st="${a.i}">讀</i>`).join('')}</div><p data-card-p></p>`; }
+          cell.append(deco); return;
+        }
+        const list = ARTS.filter((a) => a.ch === c), grp = document.createElement('div');
+        grp.className = c === 'intro' ? 'stack' : 'grp'; grp.dataset.ch = c;
+        prevTone = '';
+        list.forEach((a, k) => {
+          const b = mkBook(a, c === 'intro' ? 'flat' : 'spine');
+          if (c === 'people' && k === list.length - 1) b.classList.add('lean');
+          grp.append(b);
+        });
+        cell.append(grp);
+      });
+      base.before(cell, board);
+    });
+    plates();
+  };
+  // 銅牌：釘在每章那一排書正下方的層板正面
+  const plates = () => rows.forEach((items, r) => {
+    const board = shelf.querySelector(`[data-board="${r}"]`), br = board.getBoundingClientRect();
+    board.querySelectorAll('.plate').forEach((p) => p.remove());
+    items.filter((c) => CH[c]).forEach((c) => {
+      const g = shelf.querySelector(`[data-ch="${c}"]`).getBoundingClientRect(), p = document.createElement('span');
+      p.className = 'plate'; p.innerHTML = `${CH[c][1]}<small>${CH[c][0].toUpperCase()}</small>`;
+      p.style.left = `${Math.max(br.left + 50, g.left + g.width / 2) - br.left}px`; board.append(p);
+    });
+  });
+  const showSlip = (a) => {
+    if (!a) { slip.style.removeProperty('--ci'); slip.innerHTML = `<span class="big">${read.size}</span><b>書櫃裡已讀 ${read.size}／22 本</b><p>滑過書脊（手機點一下）把書抽出來，看這篇在說什麼。讀過的書會露出一截書籤，借書卡跟著蓋章。</p>`; return; }
+    slip.style.setProperty('--ci', ink(a.ch));
+    slip.innerHTML = `<span class="big">${no(a)}</span><b>${a.t}${a.sub ? `<span style="font-weight:500;color:var(--ink-2)">｜${a.sub}</span>` : ''}</b><p>${a.one}</p><a href="#b">${read.has(a.i) ? '再讀一次' : '讀精華'} →</a>`;
+  };
+  const paint = () => {
+    shelf.classList.toggle('filter', !!pick);
+    shelf.querySelectorAll('.spine, .flat').forEach((s) => { const a = ARTS[s.dataset.i]; s.classList.toggle('read', read.has(a.i)); s.classList.toggle('dim', !!pick && !a.th.includes(pick)); });
+    shelf.querySelectorAll('[data-st]').forEach((s) => s.classList.toggle('on', read.has(+s.dataset.st)));
+    shelf.querySelector('[data-card-n]').textContent = `已讀 ${read.size}／22 篇`;
+    const left = 22 - read.size;
+    shelf.querySelector('[data-card-p]').textContent = left ? `再讀 ${left % 3 || 3} 篇，換下一份知識補給包` : '整櫃讀完了，蓋滿章 ✦';
+    showSlip(sel);
+  };
+  build();
+  chips('b', (v) => { pick = v; paint(); });
+  sim('b', (n) => { read = readSet(n); paint(); });
+  const book = (e) => e.target.closest('.spine, .flat');
+  shelf.addEventListener('pointerover', (e) => { const s = book(e); if (s && e.pointerType === 'mouse') showSlip(ARTS[s.dataset.i]); });
+  shelf.addEventListener('pointerleave', () => showSlip(sel));
+  shelf.addEventListener('click', (e) => { const s = book(e); if (!s) return; shelf.querySelectorAll('.sel').forEach((x) => x !== s && x.classList.remove('sel')); s.classList.toggle('sel'); sel = s.classList.contains('sel') ? ARTS[s.dataset.i] : null; showSlip(sel); });
+  shelf.addEventListener('focusin', (e) => { const s = book(e); if (s) showSlip(ARTS[s.dataset.i]); });
+  paint();
+  narrow.addEventListener('change', () => { build(); paint(); });
+  new ResizeObserver(plates).observe(shelf);
+  document.fonts.ready.then(plates);
+})();
+
+/* ── C 觀點跑馬牆 ── */
+(() => {
+  const wall = document.querySelector('[data-wall]');
+  let read = readSet(5), pick = '';
+  ORDER.forEach((c, k) => {
+    const list = ARTS.filter((a) => a.ch === c);
+    // 每條跑道至少放 6 張，不夠就重複，才不會在寬螢幕上露出空白；再整組複製一份做無縫循環
+    const fill = []; while (fill.length < 6) fill.push(...list);
+    const card = (a, dup) => `<a class="stmt${dup ? ' dup' : ''}" href="#c" data-i="${a.i}" style="--c:${col(a.ch)}" ${dup ? 'aria-hidden="true" tabindex="-1"' : ''}><span class="q">${a.t}${a.sub ? `：${a.sub}` : ''}</span><span class="m">${a.by}</span><span class="o">${a.one}</span></a>`;
+    const lane = document.createElement('div'); lane.className = `lane${k % 2 ? ' rev' : ''}`; lane.style.setProperty('--c', col(c)); lane.style.setProperty('--dur', `${70 + fill.length * 4 + k * 9}s`);
+    lane.innerHTML = `<div class="lane-k"><b>${CH[c][1]}</b><span>${CH[c][0].toUpperCase()}</span></div><div class="lane-v"><div class="lane-t">${fill.map((a, j) => card(a, j >= list.length)).join('')}${fill.map((a) => card(a, true)).join('')}</div></div>`;
+    wall.append(lane);
+  });
+  const foot = document.createElement('div'); foot.className = 'wall-foot'; wall.append(foot);
+  const paint = () => {
+    wall.classList.toggle('filter', !!pick);
+    wall.querySelectorAll('.stmt').forEach((s) => { const a = ARTS[s.dataset.i]; s.classList.toggle('read', read.has(a.i)); s.classList.toggle('dim', !!pick && !a.th.includes(pick)); });
+    const t = TH.find((x) => x.key === pick);
+    foot.innerHTML = `<span>${t ? `主線｜<b>${t.name}</b>，${ARTS.filter((a) => a.th.includes(pick)).length} 篇亮起` : '滑鼠停在跑道上會暫停；點卡片讀精華'}</span><span>已讀 <b>${read.size}／22</b></span>`;
+  };
+  chips('c', (v) => { pick = v; paint(); });
+  sim('c', (n) => { read = readSet(n); paint(); });
+  paint();
+})();
+</script>
+</body>
+</html>

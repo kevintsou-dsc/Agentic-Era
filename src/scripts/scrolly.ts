@@ -106,7 +106,7 @@ function initHScroll() {
   const update = () => {
     for (const b of blocks) {
       if (!b.track) continue;
-      if (fallback.matches) { b.track.style.transform = ''; continue; }
+      if (fallback.matches || b.el.classList.contains('hs-free')) { b.track.style.transform = ''; continue; }
       const rect = b.el.getBoundingClientRect();
       const span = rect.height - window.innerHeight;
       const p = span > 0 ? Math.min(1, Math.max(0, -rect.top / span)) : 0;
@@ -124,23 +124,53 @@ function initHScroll() {
   update();
 
   // 卡片展開後若比可用高度還高，收起上方引言（.hs-tight）；收合後恢復
-  const fit = (el: HTMLElement) => {
+  // 連引言收起都放不下最高的卡片時（小手機、長內容），整段改成一般的左右滑動（.hs-free），卡片照內容長高，
+  // 不讓讀者在固定的卡片裡再上下捲。from：讀者剛展開的那張卡片，版面切換後把它留在畫面上。
+  const fit = (el: HTMLElement, from?: HTMLElement) => {
     const pin = el.querySelector<HTMLElement>('.hs-pin');
     const vp = el.querySelector<HTMLElement>('.hs-viewport');
     if (!pin || !vp) return;
+    const panels = Array.from(el.querySelectorAll<HTMLElement>('.hs-panel'));
+    const natural = Math.max(...panels.map((p) => p.scrollHeight));
+    const wasFree = el.classList.contains('hs-free');
+    // 固定版面下卡片最多能用的高度：畫面高度（手機取網址列展開時的最小高度，與 100svh 一致）
+    // 扣掉固定區塊上下留白 72＋20、小標、頁尾列，以及軌道留白與緩衝 40
+    const fixed = (el.querySelector<HTMLElement>('.hs-head .eyebrow')?.offsetHeight ?? 0) + (el.querySelector<HTMLElement>('.hs-foot')?.offsetHeight ?? 0);
+    const most = document.documentElement.clientHeight - 92 - fixed - 40;
+    // 讀者收合卡片時不切回固定版面（版面跳動比多滑一下更干擾），只有視窗大小改變才重新判斷
+    const free = !fallback.matches && (natural > most || (wasFree && !!from));
+    const setFree = (on: boolean) => {
+      el.classList.toggle('hs-free', on);
+      if (on) pin.classList.remove('hs-tight');
+      update();
+      if (on && from) { el.scrollIntoView({ block: 'start' }); vp.scrollLeft = from.offsetLeft - 16; }
+    };
+    if (free !== wasFree) setFree(free);
+    if (free) return;
     // 以「引言展開時」的可用高度判斷：目前已收起的話，要扣掉引言本身的高度
     const room = vp.clientHeight - (pin.classList.contains('hs-tight') ? (el.querySelector<HTMLElement>('.hs-intro')?.scrollHeight ?? 0) : 0);
-    const tallest = Math.max(...Array.from(el.querySelectorAll<HTMLElement>('.hs-panel'), (p) => p.scrollHeight));
-    pin.classList.toggle('hs-tight', tallest > room - 20);
+    pin.classList.toggle('hs-tight', natural > room - 20);
     // 卡片最高只能到可用高度（等高拉齊後，最高那張決定整組高度）
-    requestAnimationFrame(() => el.style.setProperty('--hs-room', `${vp.clientHeight - 20}px`));
+    const setRoom = () => el.style.setProperty('--hs-room', `${vp.clientHeight - 20}px`);
+    setRoom();
+    // 引言收起或展開有 0.45 秒過場，結束後的可用高度才是最後的值；只量一次會把卡片卡在過場前的矮高度
+    // 上面的估算少算了頁尾折行這類細節時，這裡再實際量一次：卡片內容還是比卡片高，就改成左右滑動
+    // （讀 scrollHeight 會強制重新排版，不必等下一個畫格；分頁在背景時 requestAnimationFrame 不會跑）
+    setTimeout(() => {
+      setRoom();
+      if (!el.classList.contains('hs-free') && panels.some((p) => p.scrollHeight > p.clientHeight + 4)) setFree(true);
+    }, 520);
   };
   for (const b of blocks) {
     // 展開動畫結束後再量（expand.ts 的高度動畫約 0.35 秒）
-    b.el.addEventListener('toggle', () => setTimeout(() => fit(b.el), 380), true);
+    b.el.addEventListener('toggle', (e) => setTimeout(() => fit(b.el, (e.target as HTMLElement).closest<HTMLElement>('.hs-panel') ?? undefined), 380), true);
     fit(b.el);
   }
-  window.addEventListener('resize', () => blocks.forEach((b) => fit(b.el)));
+  const refit = () => blocks.forEach((b) => fit(b.el));
+  window.addEventListener('resize', refit);
+  // 網頁字體載入後行數會變、圖片載入後高度會變，卡片高度要重新量
+  window.addEventListener('load', refit);
+  document.fonts?.ready.then(refit);
 }
 
 export function initScrolly() {

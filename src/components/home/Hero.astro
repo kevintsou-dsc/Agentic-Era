@@ -74,6 +74,15 @@ const C = '/art/cover/';
     .hx-title .display { font-size: clamp(30px, 8vw, 40px); }
     .hx-quote { padding: 18px 18px; }
   }
+  /* 橫放的手機（畫面高度不到 480px）：標題區原本要 478px 高，會被舞台上下裁掉；縮小字級與間距讓它完整放進一個畫面 */
+  @media (max-height: 480px) {
+    .hx-title { max-width: min(46rem, 80vw); padding-top: 40px; }
+    .hx-title :global(.eyebrow) { margin: 0 0 4px; font-size: var(--fs-micro); }
+    .hx-title .display { font-size: clamp(22px, 7svh, 32px); margin: 0 0 6px; }
+    .hx-title .lede { font-size: 15px; line-height: 1.6; }
+    .hx-actions { margin-top: 10px; }
+    .hx-2026 { width: min(24vw, 980px); top: 52px; }
+  }
   /* 減少動態：不捲動演出，靜態兩張臉相望＋引言 */
   @media (prefers-reduced-motion: reduce) {
     .hx { --p: 1; height: auto; }

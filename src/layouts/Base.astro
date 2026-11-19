@@ -52,6 +52,8 @@ import SnackPack from '../components/SnackPack.astro';
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="決策智慧 2026" />
+    <meta property="og:locale" content="zh_TW" />
     {canonical && <link rel="canonical" href={canonical} />}
     {canonical && <meta property="og:url" content={canonical} />}
     <meta property="og:image" content={ogImage} />
@@ -60,6 +62,8 @@ import SnackPack from '../components/SnackPack.astro';
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="theme-color" content="#f3eee4" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <!-- iOS「加入主畫面」與部分通訊軟體的預覽不吃 SVG 圖示，另給一張 180px PNG（與 favicon.svg 同圖） -->
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <!-- 襯線顯示字：標題在首屏，先預載 900 那一檔（約 110 KB） -->
     <link rel="preload" href="/fonts/serif-900.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="author" href="/humans.txt" />
@@ -153,7 +157,12 @@ import SnackPack from '../components/SnackPack.astro';
   .top-progress[hidden] { display: none; }
   .top-progress:hover { background: var(--accent); }
   .crumb { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 60vw; }
-  .brand { display: inline-flex; align-items: center; gap: 10px; color: var(--ink); }
+  .brand { flex: none; display: inline-flex; align-items: center; gap: 10px; min-height: 32px; color: var(--ink); white-space: nowrap; }
+  /* 手機的文章頁：頂欄放不下「決策智慧 2026」和文章名稱兩段字（原本刊名會折成兩行、把頂欄撐高），只留標誌，把寬度讓給文章名稱 */
+  @media (max-width: 480px) {
+    .topbar:has(.crumb) .brand :is(.mono, .brand-sep) { display: none; }
+    .crumb { max-width: none; }
+  }
   .brand :global(.brand-logo) { width: 64px; height: auto; color: var(--ink); }
   .brand-sep { width: 1px; height: 14px; background: var(--ink-3); }
   .brand .mono { color: var(--ink-2); }

@@ -255,9 +255,9 @@ export const story: Story = {
       quote: { article: 'a17', page: 159, text: '高轉換，來自顧客做選擇時的篤定' },
     },
   ],
-  asksTitle: '導入 Agent 前，先確認兩件事',
+  asksTitle: '帶走兩件要確認的事',
   asks: [
-    { article: 'a17', page: 154, text: '顧客是否在更少摩擦、更低風險、更高信任的情況下完成' },
-    { article: 'a17', page: 159, text: '要自動化的決策流程有沒有經過驗證，以及風險控管指標是否跟得上' },
+    { article: 'a17', page: 159, text: '要自動化的決策流程有沒有經過驗證，以及風險控管指標是否跟得上。' },
+    { article: 'a17', page: 159, text: '能不能把顧客的猶豫看清楚，並持續累積成可驗證、可管理的決策依據。' },
   ],
 };
