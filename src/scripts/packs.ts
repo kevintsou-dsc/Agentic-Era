@@ -29,7 +29,9 @@ interface Lit { sh: HTMLElement; sp: HTMLElement; d?: string; s?: string }
 const lit = (p: Element): Lit => ({ sh: el('p3-lit p3-sh', p), sp: el('p3-lit p3-sp', p) });
 // 只在數值真的變了才寫回樣式：每格上百條面片，沒變的不要讓瀏覽器重算
 const setLit = (p: Lit, d: number, s: number) => {
-  const a = (0.62 * (1 - clamp01(d))).toFixed(2), b = s.toFixed(2);
+  // 量化成 0.04 一階：肉眼看不出差別，但每格真正要改的樣式少很多
+  const q = (v: number) => (Math.round(v * 25) / 25).toFixed(2);
+  const a = q(0.62 * (1 - clamp01(d))), b = q(s);
   if (a !== p.d) { p.d = a; p.sh.style.opacity = a; }
   if (b !== p.s) { p.s = b; p.sp.style.opacity = b; }
 };
@@ -47,12 +49,14 @@ function minis(parent: Element, cards: MiniCard[]) {
   });
 }
 
-// ── 鋁箔枕頭袋：前後各 16 條曲面，上下各接一段斜面收到平的鋸齒封口 ──
+// ── 鋁箔枕頭袋：前後各 11 條曲面，上下各接一段斜面收到平的鋸齒封口 ──
+// 效能：原本前後各 16 條、每條含曲面與上下斜面共 3 組明暗層（96 個混合模式圖層、728 個元素），中階手機只剩約 15 fps。
+// 現在 11 條；斜面不再逐格算明暗，依位置給固定陰影；高光不用混合模式；角度幾乎沒變就不重算
 function foil(host: HTMLElement, n: number): Light {
-  const N = 16, W = 196, TH = 84 * DEG, R = W / 2 / Math.sin(TH / 2), ARC = R * TH, w = ARC / N, H = 196, h0 = 20, SEAL = 24, C = R * Math.cos(TH / 2);
+  const N = 11, W = 196, TH = 84 * DEG, R = W / 2 / Math.sin(TH / 2), ARC = R * TH, w = ARC / N, H = 196, h0 = 20, SEAL = 24, C = R * Math.cos(TH / 2);
   const FRONT = `<p class="fa-kick">DECISION WISDOM 2026</p><p class="fa-title">知識<br>補給包</p><span class="fa-stk"><span>內含</span><b>${n}</b><span>張</span></span><p class="fa-sub">成就卡｜讀過就有</p>`;
   const BACK = `<p class="ba-t">成分表</p><p class="ba-l"><span><em>成就卡</em><em>${n} 張</em></span><span><em>原文逐字核對</em><em>100%</em></span><span><em>捲動劫持</em><em>0 g</em></span><span><em>保存期限</em><em>讀過就有</em></span></p><p class="ba-n">開封後請立即閱讀</p>`;
-  const parts: { a: number; f: Lit; t: Lit; b: Lit; phi: number }[] = [];
+  const parts: { a: number; f: Lit }[] = [];
   for (const side of [0, 1]) {
     for (let i = 0; i < N; i++) {
       const a = -TH / 2 + (i + 0.5) * TH / N;
@@ -63,9 +67,10 @@ function foil(host: HTMLElement, n: number): Light {
       art.innerHTML = side ? BACK : FRONT;
       // 斜面：從曲面邊緣收到 z=0 的封口，垂直投影固定 h0
       const t = depth / Math.cos(a), L = Math.hypot(h0, t), phi = Math.atan2(t, h0);
-      const top = el('p3-cap top', s, `height:${L}px;transform:rotateX(${phi / DEG}deg)`);
-      const bot = el('p3-cap bot', s, `height:${L}px;transform:rotateX(${-phi / DEG}deg)`);
-      parts.push({ a: a + side * Math.PI, f: lit(face), t: lit(top), b: lit(bot), phi });
+      const shade = (k: number) => `rgba(30, 34, 36, ${(k * (1 - Math.max(0, Math.cos(a + side * Math.PI + 0.35)))).toFixed(2)})`;
+      el('p3-cap top', s, `height:${L}px;transform:rotateX(${phi / DEG}deg)`).appendChild(document.createElement('i')).setAttribute('style', `background:${shade(0.35)}`);
+      el('p3-cap bot', s, `height:${L}px;transform:rotateX(${-phi / DEG}deg)`).appendChild(document.createElement('i')).setAttribute('style', `background:${shade(0.5)}`);
+      parts.push({ a: a + side * Math.PI, f: lit(face) });
     }
   }
   const zig = (k: number, top: boolean) => {
@@ -77,15 +82,16 @@ function foil(host: HTMLElement, n: number): Light {
   const st = el('p3-seal top', host, `width:${sw}px;height:${SEAL}px;margin-left:${-sw / 2}px;top:${-H / 2 - h0 - SEAL + 1}px;clip-path:${zig(28, true)}`);
   el('p3-notch', st, 'right:10px');
   el('p3-seal bot', host, `width:${sw}px;height:${SEAL}px;margin-left:${-sw / 2}px;top:${H / 2 + h0 - 1}px;clip-path:${zig(28, false)}`);
+  let lx = NaN, ly = NaN;
   return (rx, ry) => {
+    if (Math.abs(rx - lx) < 0.25 && Math.abs(ry - ly) < 0.25) return;
+    lx = rx; ly = ry;
     const cx = Math.cos(rx * DEG);
     for (const p of parts) {
       const yaw = p.a + ry * DEG;
       const d = Math.cos(yaw + 0.35) * (0.8 + 0.2 * cx);
       const s = Math.pow(Math.max(0, Math.cos(yaw - 0.3)), 26) * 0.85;
       setLit(p.f, d, s);
-      setLit(p.t, d * 0.85 + 0.2 * Math.sin(p.phi) * Math.cos(rx * DEG + 0.5), s * 0.5);
-      setLit(p.b, d * 0.6, s * 0.3);
     }
   };
 }

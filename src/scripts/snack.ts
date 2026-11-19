@@ -149,7 +149,8 @@ export function initSnack() {
   // ── 撕開 ──
   let tearing = false, kx0 = 0, moved = false;
   const setTear = (p: number) => {
-    const max = knob.parentElement!.clientWidth - knob.offsetWidth;
+    // p＝0（開包、重置）不用量寬度：剛插入整組 3D 面片時去讀 clientWidth，會逼整頁長文章當場重排一次
+    const max = p ? knob.parentElement!.clientWidth - knob.offsetWidth : 0;
     knob.style.setProperty('--kx', `${p * max}px`);
     fill.style.width = `${p * 100}%`;
     // 拉的時候封口、封蠟、上蓋先跟著動一點
@@ -268,4 +269,17 @@ export function initSnack() {
     updateBtn();
     if (fresh.length) setTimeout(() => openPack(fresh), 500);
   });
+
+  // 預先載入補給包裡會用到的字（中文字型依字分段下載）：第一次開包時不用當場等字、排字，
+  // 中階手機上開包那一下的卡頓約少一半。只在閒置時做，失敗就算了
+  const warm = () => {
+    const css = getComputedStyle(document.documentElement);
+    const text = `${dlg.textContent ?? ''}${cards.map((c) => c.name + c.line + c.hint).join('')}扭撕拆知識補給包成分表內含張保存期限開封後請立即閱讀決No.0123456789／`;
+    for (const v of ['--font-sans', '--font-serif', '--font-mono']) {
+      const fam = css.getPropertyValue(v).trim();
+      if (fam) for (const w of ['400', '700', '900']) document.fonts.load(`${w} 16px ${fam}`, text).catch(() => {});
+    }
+  };
+  if ('requestIdleCallback' in window) requestIdleCallback(warm, { timeout: 4000 });
+  else setTimeout(warm, 2500);
 }

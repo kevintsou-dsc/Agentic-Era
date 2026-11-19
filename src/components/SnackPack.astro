@@ -62,7 +62,8 @@ const cards = achievements();
   .p3 .p3-mc *, .p3 .fa-stk *, .p3 .ba-l *, .p3 .p3-clabel * { position: static; }
   .p3-lit { inset: 0; pointer-events: none; }
   .p3-sh { background: #000; opacity: 0; }
-  .p3-sp { background: linear-gradient(90deg, transparent 0 20%, rgba(255, 255, 255, .9) 50%, transparent 80%); opacity: 0; mix-blend-mode: screen; }
+  /* 高光不用 mix-blend-mode：3D 面片上的混合模式要整組重新合成，手機上代價很高 */
+  .p3-sp { background: linear-gradient(90deg, transparent 0 25%, rgba(255, 255, 255, .6) 50%, transparent 75%); opacity: 0; }
   /* 包裡冒出來的小卡 */
   .p3-minis { left: 0; top: 0; transform-style: preserve-3d; }
   .p3-mc { --d: .45s; width: 96px; height: 134px; margin: -67px 0 0 -48px; border: 2px solid var(--ink); border-radius: 11px; padding: 8px 9px; display: grid; grid-template-rows: auto 1fr auto; background: var(--paper); backface-visibility: hidden; box-shadow: 0 10px 24px rgba(0, 0, 0, .35); opacity: 0;
@@ -78,7 +79,7 @@ const cards = achievements();
   .p3-face { inset: 0; overflow: hidden; backface-visibility: hidden; -webkit-backface-visibility: hidden; }
   .p3-art { top: 0; }
   .p3-art.front { background: radial-gradient(90% 60% at 30% 18%, rgba(255, 255, 255, .65), transparent 55%), conic-gradient(from 210deg at 62% 46%, #d5e48f, #9dd8e4, #f0c9c9, #ead8b5, #c9dcf0, #d5e48f); }
-  .p3-art.front::after { content: ""; position: absolute; inset: 0; background: repeating-linear-gradient(115deg, rgba(255, 255, 255, .18) 0 2px, transparent 2px 7px); mix-blend-mode: overlay; }
+  .p3-art.front::after { content: ""; position: absolute; inset: 0; background: repeating-linear-gradient(115deg, rgba(255, 255, 255, .14) 0 2px, transparent 2px 7px); }
   .p3-art.back { background: linear-gradient(160deg, #eef0ea, #cfd6d2); }
   .fa-kick { left: 20px; top: 22px; margin: 0; font-family: var(--font-mono); font-size: 9px; font-weight: 700; letter-spacing: .2em; }
   .fa-title { left: 20px; top: 42px; margin: 0; font-family: var(--font-serif); font-size: 40px; font-weight: 900; line-height: 1.04; }
@@ -91,6 +92,7 @@ const cards = achievements();
   .ba-l em { font-style: normal; }
   .ba-n { left: 24px; bottom: 20px; margin: 0; font-size: 10px; color: var(--ink-3); }
   .p3-cap { left: 0; right: 0; overflow: hidden; backface-visibility: hidden; -webkit-backface-visibility: hidden; background: linear-gradient(#c9ced0, #eef0f0 70%, #d9dddd); }
+  .p3-cap > i { position: absolute; inset: 0; }
   .p3-cap.top { bottom: 100%; transform-origin: 50% 100%; }
   .p3-cap.bot { top: 100%; transform-origin: 50% 0; }
   .p3-cap::before, .p3-seal::before { content: ""; position: absolute; inset: 0; background: repeating-linear-gradient(90deg, rgba(0, 0, 0, .1) 0 1px, transparent 1px 5px); }
@@ -109,8 +111,6 @@ const cards = achievements();
   .p3-body { backface-visibility: hidden; -webkit-backface-visibility: hidden; }
   .p3-body, .p3-cart { background: repeating-linear-gradient(62deg, var(--people) 0 14px, #fbf7ee 14px 22px, var(--ai) 22px 36px, #fbf7ee 36px 44px, var(--model) 44px 58px, #fbf7ee 58px 66px, var(--intro) 66px 80px, #fbf7ee 80px 88px); background-repeat: repeat-y; }
   .p3-cart { left: 0; width: 100%; background-size: 100% 100%; background-position: 0 0; }
-  /* 糖果的高光不用 mix-blend-mode：3D 圖層上的混合模式要整組重新合成，代價很高 */
-  .p3-candy .p3-sp { mix-blend-mode: normal; background: linear-gradient(90deg, transparent 0 25%, rgba(255, 255, 255, .55) 50%, transparent 75%); }
   .p3-clabel { left: 50%; top: 50%; width: 134px; height: 72px; margin: -36px 0 0 -67px; background: #fbf7ee; border: 2px solid var(--ink); border-radius: 12px; display: grid; place-content: center; text-align: center; }
   .p3-clabel i { font-style: normal; font-family: var(--font-mono); font-size: 8px; font-weight: 700; letter-spacing: .16em; }
   .p3-clabel b { font-family: var(--font-serif); font-size: 21px; line-height: 1.15; }
