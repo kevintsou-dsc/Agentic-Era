@@ -46,9 +46,13 @@ const cx = Math.round(axes.reduce((s, p) => s + p.x, 0) / 3), cy = Math.round(ax
   .gt-name { text-anchor: middle; font: 800 18px var(--font-sans); fill: var(--ink); }
   .gt-q { font: 800 15px var(--font-sans); fill: var(--accent-ink); }
   .gt-cap { font: 500 11.5px var(--font-sans); fill: var(--ink-3); }
+  /* 手機：整張圖約縮成 0.61 倍，字級要 ≥ 18 單位實際才 ≥ 11px；英文副標與能力小字省略 */
   @media (max-width: 560px) {
     .gt-q { font-size: 19px; }
-    .gt-cap { display: none; }
+    .gt-cap, .gt-core-en { display: none; }
+    .gt-kicker { font-size: 18px; letter-spacing: .04em; }
+    /* 主軸二、主軸三的問句同在 y=428，放大後會撞在一起：主軸二（右下）往下移一行 */
+    .gt-axis:nth-of-type(3) .gt-q { transform: translateY(28px); }
   }
   @media (prefers-reduced-motion: reduce) { .gt-edge, .gt-core, .gt-axis, .gt-dot { transition: none; } }
 </style>

@@ -3,6 +3,7 @@
 // 捲到那一段時該格淡入；純 SVG＋CSS。
 const issues = ['商品瑕疵', '超過鑑賞期 2 天', '跨境退貨物流特例'];
 ---
+<div class="es-crop">
 <svg class="es-art" viewBox="0 0 480 400" role="img" aria-label="插畫：顧客同時遇到三個問題；退換貨 Agent 先後引用兩種政策、回覆前後矛盾；顧客不耐地問到底能不能退；加入門檻後，Agent 主動停下並把三個衝突點整理成摘要轉給真人同仁。">
   <!-- 共用：對話視窗 -->
   <rect class="win" x="60" y="40" width="360" height="330" rx="18" />
@@ -63,6 +64,7 @@ const issues = ['商品瑕疵', '超過鑑賞期 2 天', '跨境退貨物流特�
     </g>
   </g>
 </svg>
+</div>
 <style>
   .es-art { width: 100%; height: auto; max-height: 62svh; overflow: visible; font-family: var(--font-sans); }
   .pane { opacity: var(--focus); transition: opacity .5s; }
@@ -100,5 +102,12 @@ const issues = ['商品瑕疵', '超過鑑賞期 2 天', '跨境退貨物流特�
   .human circle, .human path { fill: var(--accent-ink); }
   .human text { font-size: 13px; font-weight: var(--fw-bold); fill: var(--ink); }
 
+  /* 手機：只顯示對話視窗所在的 x 56–424（縮放約 0.93），小字補到 ≥ 12 單位；
+     摘要框加寬、轉接箭頭與真人往右挪，讓放大後的衝突點文字放得下 */
+  @media (max-width: 560px) {
+    .es-crop { overflow-x: clip; }
+    .es-art { width: calc(100% * 480 / 368); max-width: none; max-height: none; margin-left: calc(-100% * 56 / 368); }
+    .sum-i { font-size: 12.5px; }
+  }
   @media (prefers-reduced-motion: reduce) { .steam { animation: none; } }
 </style>

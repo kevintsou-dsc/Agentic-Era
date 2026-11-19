@@ -36,7 +36,12 @@ const together = new Set(g.items.map((it, i) => it.at ?? i + 1)).size === 1;
   .vs-arrow path:last-child { opacity: var(--on); transition: opacity .3s calc(var(--d) + .6s); }
   @media (max-width: 560px) {
     .vs-head { display: none; }
-    .vs-rows li { grid-template-columns: 1fr; gap: 4px; }
-    .vs-arrow { transform: rotate(90deg); justify-self: center; height: 20px; }
+    /* 手機：左欄改成卡片上方的小標（後面接一個箭頭），省下直排箭頭與外框的高度 */
+    .vs-rows { gap: 8px; }
+    .vs-rows li { grid-template-columns: 1fr; gap: 3px; }
+    .vs-from { padding: 0 2px; border: 0; font-size: 13px; line-height: 1.4; }
+    .vs-from::after { content: ' →'; color: var(--accent-ink); }
+    .vs-arrow { display: none; }
+    .vs-to { padding: 7px 10px; font-size: 14px; line-height: 1.45; }
   }
 </style>

@@ -48,6 +48,9 @@ const sag = (i: number) => Math.sin((Math.PI * (i + 0.5)) / n) * 22;
     .po-line { display: none; }
     .po-row { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 16px; }
     .po-card { --y: 0px; }
+    /* 手機：相片改成橫幅，五張拍立得放得進一個畫面 */
+    .po-photo { aspect-ratio: auto; min-height: 52px; }
+    .po-cap { min-height: 0; }
   }
   @media (prefers-reduced-motion: reduce) { .po-card, .po-photo, .po-photo b { transition: none; } }
 </style>

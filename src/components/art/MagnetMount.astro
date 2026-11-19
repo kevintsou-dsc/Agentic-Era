@@ -4,6 +4,7 @@
 const ads = Array.from({ length: 20 }, (_, i) => ({ x: 22 + (i % 4) * 30, y: 70 + Math.floor(i / 4) * 52, i }));
 const words = ['磁吸', '穩固', '方便', '車用', '家用'];
 ---
+<div class="mm-crop">
 <svg class="mm" viewBox="0 0 480 400" role="img" aria-label="插畫：作者點了手機磁吸支架廣告，買到只能吸玻璃的產品；再搜尋時出現約二十則相似廣告；買了第二個很好用，但丟掉盒子後忘了品牌；成效報表很漂亮，消費者腦中卻沒有留下品牌。">
   <!-- ① 看到廣告，點進去 -->
   <g class="pane" data-focus="1">
@@ -99,6 +100,7 @@ const words = ['磁吸', '穩固', '方便', '車用', '家用'];
     <text class="lbl" x="340" y="346">Marketing：下次會想到誰？</text>
   </g>
 </svg>
+</div>
 <style>
   .mm { width: 100%; height: auto; max-height: 62svh; overflow: visible; font-family: var(--font-sans); }
   .pane { opacity: var(--focus); transition: opacity .5s; }
@@ -163,6 +165,13 @@ const words = ['磁吸', '穩固', '方便', '車用', '家用'];
   .mem-t { font-size: 12px; fill: var(--ink-3); }
   .mem-q { font-size: 24px; font-weight: var(--fw-bold); fill: var(--ink-3); }
 
+  /* 手機：只顯示 x 28–452（縮放約 0.81），小字補到 14 單位（約 11.3px）；廣告卡片跟著加寬 */
+  @media (max-width: 560px) {
+    .mm-crop { overflow-x: clip; }
+    .mm { width: calc(100% * 480 / 424); max-width: none; max-height: none; margin-left: calc(-100% * 28 / 424); }
+    .ad-s, .buy-t, .mem-t, .kpi-t { font-size: 14px; }
+    .card { x: 178px; width: 124px; }
+  }
   @media (prefers-reduced-motion: reduce) {
     .ripple { display: none; }
   }

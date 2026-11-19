@@ -13,6 +13,7 @@ const layers = [
 const top = 78, bottom = 396, h = (bottom - top) / layers.length;
 const glass = 'M68 58 L292 58 L266 404 Q264 414 254 414 L106 414 Q96 414 94 404 Z';
 ---
+<div class="cf-crop">
 <svg class="cf" viewBox="0 0 500 440" role="img" aria-label={'同樣是咖啡，每個人買的理由都不一樣：' + layers.map((l) => l.t).join('、') + '。'}>
   <defs>
     <clipPath id="cf-in"><path d="M74 64 L286 64 L260 400 Q259 408 251 408 L109 408 Q101 408 100 400 Z" /></clipPath>
@@ -40,6 +41,7 @@ const glass = 'M68 58 L292 58 L266 404 Q264 414 254 414 L106 414 Q96 414 94 404 
     <text x="400" y={(top + bottom) / 2 + 14}>→ 進入記憶</text>
   </g>
 </svg>
+</div>
 
 <style>
   .cf { display: block; width: 100%; height: auto; max-height: 62svh; overflow: visible; }
@@ -60,5 +62,10 @@ const glass = 'M68 58 L292 58 L266 404 Q264 414 254 414 L106 414 Q96 414 94 404 
   .cf-brace { opacity: var(--on); transition: opacity .5s; }
   .cf-brace path { fill: none; stroke: var(--accent-ink); stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
   .cf-brace text { font: 800 15px var(--font-sans); fill: var(--accent-ink); }
+  /* 手機：viewBox 左側 0–60 是空白，把圖放大到只顯示 60–490（縮放約 0.8，最小字 14.5 單位 → 約 11.6px） */
+  @media (max-width: 560px) {
+    .cf-crop { overflow-x: clip; }
+    .cf { width: calc(100% * 500 / 430); max-width: none; max-height: none; margin-left: calc(-100% * 60 / 430); }
+  }
   @media (prefers-reduced-motion: reduce) { .cf-steam path { animation: none; } .cf-layer, .cf-plain, .cf-brace { transition: none; } }
 </style>

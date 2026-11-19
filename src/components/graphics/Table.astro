@@ -65,5 +65,11 @@ const split = (t: string) => (t.includes('｜') ? t.split('｜') : [t, '']);
     .tb-row { grid-template-columns: 1fr; }
     .tb-row > span + span { border-left: 0; border-top: 1px dashed var(--line); }
     .tb-cell::before { content: attr(data-col); display: block; font-size: 11px; font-weight: var(--fw-bold); color: var(--ink-3); }
+    /* 手機：有指定段落的列疊在同一格，第 k 段的列蓋上前一列，整張表才放得進一個畫面 */
+    .tb-grid { grid-template-columns: minmax(0, 1fr); }
+    .tb-row[data-at] { grid-area: 1 / 1; position: relative; }
+    .tb-row[data-at]:not([data-at="1"]) { visibility: hidden; }
+    :global(.graphic.is-2) .tb-row[data-at="2"], :global(.graphic.is-3) .tb-row[data-at="3"], :global(.graphic.is-4) .tb-row[data-at="4"],
+    :global(.graphic.is-5) .tb-row[data-at="5"], :global(.graphic.is-6) .tb-row[data-at="6"] { visibility: visible; }
   }
 </style>
