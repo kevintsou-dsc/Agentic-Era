@@ -15,6 +15,8 @@ function siteFrom(raw) {
   if (!/^https?:\/\//i.test(v)) v = `https://${v}`;
   try {
     const u = new URL(v);
+    // 主機名稱至少要有一個點（例如 ttps://… 會被補成主機「ttps」，那不是網址）
+    if (!u.hostname.includes('.')) throw new Error('no dot in host');
     return `${u.protocol}//${u.host}`;
   } catch {
     console.warn(`[astro.config] SITE_URL 不是合法網址，已略過：${JSON.stringify(raw)}`);
