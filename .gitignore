@@ -4,6 +4,7 @@
 
 !.gitignore
 !.gitattributes
+!.node-version
 !README.md
 !package.json
 !package-lock.json
