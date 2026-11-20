@@ -242,9 +242,18 @@ a { color: inherit; }
 @media (hover: hover) {
   [data-tip]:hover::after, [data-tip]:focus-visible::after {
     content: attr(data-tip); position: absolute; z-index: 6; left: 50%; bottom: calc(100% + 8px); transform: translateX(-50%);
-    width: max-content; max-width: 18rem; padding: 8px 12px; border-radius: var(--r-s); background: var(--ink); color: var(--paper);
+    width: max-content; max-width: min(18rem, calc(100vw - 24px)); padding: 8px 12px; border-radius: var(--r-s); background: var(--ink); color: var(--paper);
     font-size: var(--fs-meta); font-weight: 400; line-height: 1.55; text-align: left; white-space: normal; pointer-events: none;
     box-shadow: 0 8px 20px -10px rgba(0,0,0,.5);
+  }
+  [data-tip][data-tip-align="left"]:hover::after, [data-tip][data-tip-align="left"]:focus-visible::after {
+    left: 0; right: auto; transform: none;
+  }
+  [data-tip][data-tip-align="right"]:hover::after, [data-tip][data-tip-align="right"]:focus-visible::after {
+    left: auto; right: 0; transform: none;
+  }
+  [data-tip][data-tip-pos="bottom"]:hover::after, [data-tip][data-tip-pos="bottom"]:focus-visible::after {
+    bottom: auto; top: calc(100% + 8px);
   }
 }
 [data-tip] { position: relative; }

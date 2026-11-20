@@ -20,5 +20,25 @@ export function initMore() {
   dialog.addEventListener('click', (e) => {
     if (e.target === dialog || (e.target as HTMLElement).closest('[data-more-close]')) dialog.close();
   });
+  const placeTip = (el: HTMLElement) => {
+    const r = el.getBoundingClientRect();
+    const vw = document.documentElement.clientWidth;
+    const half = 152;
+    const cx = r.left + r.width / 2;
+    if (cx - half < 12) el.dataset.tipAlign = 'left';
+    else if (cx + half > vw - 12) el.dataset.tipAlign = 'right';
+    else delete el.dataset.tipAlign;
+    if (r.top < 150) el.dataset.tipPos = 'bottom';
+    else delete el.dataset.tipPos;
+  };
+  document.addEventListener('pointerenter', (e) => {
+    const el = e.target instanceof Element ? e.target.closest<HTMLElement>('[data-tip]') : null;
+    if (el) placeTip(el);
+  }, true);
+  document.addEventListener('focusin', (e) => {
+    const el = e.target instanceof Element ? e.target.closest<HTMLElement>('[data-tip]') : null;
+    if (el) placeTip(el);
+  });
+
   dialog.addEventListener('close', () => opener?.focus());
 }
