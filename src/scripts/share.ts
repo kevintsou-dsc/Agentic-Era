@@ -197,10 +197,6 @@ export async function drawCard(spec: CardSpec): Promise<HTMLCanvasElement | null
   const brandW = ctx.measureText(brand).width;
   ctx.fillStyle = spec.style === 'paper' ? alpha(ink, 0.55) : alpha(paper, 0.65);
   ctx.fillText(brand, W - PAD - brandW, H - 68);
-  ctx.font = `500 24px ${sans}`;
-  const urlMaxW = W - PAD - x0 - brandW - 32;
-  const cleanUrl = spec.url.replace(/^https?:\/\//, '').replace(/\/$/, '');
-  ctx.fillText(fitLine(ctx, cleanUrl, urlMaxW), x0, H - 70);
   return c;
 }
 
@@ -326,9 +322,6 @@ export async function drawAchievementCard(spec: AchievementCardSpec): Promise<HT
   const brandW = ctx.measureText(brand).width;
   ctx.fillStyle = alpha(paper, 0.65);
   ctx.fillText(brand, W - PAD - brandW, H - 68);
-  ctx.font = `500 24px ${sans}`;
-  const cleanUrl = spec.url.replace(/^https?:\/\//, '').replace(/\/$/, '');
-  ctx.fillText(fitLine(ctx, cleanUrl, W - PAD * 2 - brandW - 32), PAD, H - 70);
   return c;
 }
 
@@ -387,9 +380,6 @@ export async function drawFaceCard(spec: FaceSpec): Promise<HTMLCanvasElement | 
   const brandW = ctx.measureText(brand).width;
   ctx.fillStyle = alpha(ink, 0.55);
   ctx.fillText(brand, W - PAD - brandW, H - 68);
-  ctx.font = `500 24px ${sans}`;
-  const cleanUrl = spec.url.replace(/^https?:\/\//, '').replace(/\/$/, '');
-  ctx.fillText(fitLine(ctx, cleanUrl, W - PAD * 2 - brandW - 32), PAD, H - 70);
   return c;
 }
 
