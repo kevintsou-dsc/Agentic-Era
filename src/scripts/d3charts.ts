@@ -14,7 +14,7 @@ interface Instance { update(step: number): void; tick?(t: number): void }
 // ---------- 窄版：容器比 NARROW 窄（手機）時，圖改用 360 單位寬的版面 ----------
 // 360 單位畫進 343px（375px 手機扣掉左右邊界）約縮成 0.95 倍，所以窄版字級一律 ≥ 12 單位，實際顯示才會 ≥ 11px。
 // 寬度跨過門檻時整張圖重畫（見 initD3）；桌機版面完全不變。
-const NARROW = 560;
+const NARROW = 420;
 const cjk = /[⺀-鿿豈-﫿＀-￯　-〿]/;
 // 估計字寬（不量 DOM：字型可能還沒載入）：中文 1em、大寫與數字 0.62em、其他半形 0.52em
 const estW = (s: string, fs: number) => [...s].reduce((w, ch) => w + (cjk.test(ch) ? 1 : ch === ' ' ? 0.3 : /[A-Z0-9]/.test(ch) ? 0.62 : 0.52) * fs, 0);
@@ -43,13 +43,16 @@ function lines(t: ReturnType<typeof select<SVGTextElement, unknown>>, ls: string
 interface Tip { title: string; body?: string; extra?: string }
 
 function tipLayer(el: HTMLElement) {
+  (el as HTMLElement & { __tipAC?: AbortController }).__tipAC?.abort();
+  const ac = new AbortController();
+  (el as HTMLElement & { __tipAC?: AbortController }).__tipAC = ac;
   const box = document.createElement('div');
   box.className = 'd3-tip';
   box.setAttribute('role', 'tooltip');
   box.hidden = true;
   el.appendChild(box);
   let pinned: Element | null = null;
-  const show = (t: Tip, target: Element, ev?: PointerEvent) => {
+  const show = (t: Tip, target: Element, ev?: MouseEvent | PointerEvent) => {
     box.replaceChildren();
     const h = document.createElement('b');
     h.textContent = t.title;
@@ -78,11 +81,14 @@ function tipLayer(el: HTMLElement) {
     box.style.left = `${Math.max(0, Math.min(host.width - w, x - w / 2))}px`;
     // 放在指標上方；上方空間不夠就放下方
     const above = y - box.offsetHeight - 14;
-    box.style.top = `${above > 0 ? above : y + (ev ? 18 : r.height + 8)}px`;
+    box.style.top = `${above > 0 ? above : y + (ev ? 18 : Math.min(r.height, 96) + 8)}px`;
   };
   const hide = () => { box.hidden = true; pinned = null; };
-  document.addEventListener('pointerdown', (e) => { if (pinned && !(e.target as Element).closest('.d3')) hide(); });
-  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') hide(); });
+  document.addEventListener('pointerdown', (e) => {
+    const n = e.target as Node | null;
+    if (pinned && n && !pinned.contains(n) && !box.contains(n)) hide();
+  }, { signal: ac.signal });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') hide(); }, { signal: ac.signal });
   return function bind(target: Element, t: Tip) {
     target.setAttribute('tabindex', '0');
     target.setAttribute('role', 'button');
@@ -93,10 +99,20 @@ function tipLayer(el: HTMLElement) {
     target.addEventListener('pointerleave', (e) => { if ((e as PointerEvent).pointerType === 'mouse' && !pinned) hide(); });
     target.addEventListener('focus', () => show(t, target));
     target.addEventListener('blur', () => { if (!pinned) hide(); });
-    // 觸控：點一下固定顯示，再點一次或點別處關閉
-    target.addEventListener('click', () => {
+    target.addEventListener('keydown', (e) => {
+      const ke = e as KeyboardEvent;
+      if (ke.key === 'Enter' || ke.key === ' ') {
+        ke.preventDefault();
+        if (pinned === target) { hide(); return; }
+        show(t, target);
+        pinned = target;
+      }
+    });
+    // 觸控：點一下固定顯示，再點一次或點空白處關閉
+    target.addEventListener('click', (e) => {
       if (pinned === target) { hide(); return; }
-      show(t, target);
+      const me = e as MouseEvent;
+      show(t, target, me.detail > 0 ? me : undefined);
       pinned = target;
     });
   };
@@ -176,7 +192,7 @@ function groups(el: HTMLElement, c: Extract<D3Chart, { kind: 'groups' }>, nw: bo
     rows.append('text').attr('class', 'gr-label').attr('x', left - 10).attr('y', rowH / 2 + 4).attr('text-anchor', 'end').text((d) => d.label);
     rows.append('rect').attr('class', 'gr-track').attr('x', left).attr('y', pad).attr('height', rowH - pad * 2).attr('width', W - left - right).attr('rx', 5);
     const bars = rows.append('rect').attr('class', (d) => `gr-bar${d.value === best ? ' best' : ''}`).attr('x', left).attr('y', pad).attr('height', rowH - pad * 2).attr('rx', 5).attr('width', 0);
-    const vals = rows.append('text').attr('class', 'gr-val').attr('y', rowH / 2 + 4).attr('x', left + 6).text((d) => `${d.value}%`);
+    const vals = rows.append('text').attr('class', 'gr-val').attr('y', rowH / 2 + 4).attr('x', W - right + 8).text((d) => `${d.value}%`);
     y += head + g.items.length * rowH + gap;
     return { g, gg, bars, vals, rows };
   });
@@ -186,11 +202,10 @@ function groups(el: HTMLElement, c: Extract<D3Chart, { kind: 'groups' }>, nw: bo
   }
   return {
     update(step) {
-      for (const { g, gg, bars, vals } of gs) {
+      for (const { g, gg, bars } of gs) {
         const on = reduce || step >= g.at;
         gg.classed('on', on);
         bars.attr('width', (d) => (on ? x(d.value) : 0));
-        vals.attr('x', (d) => left + (on ? x(d.value) : 0) + 8);
       }
     },
     tick(t) {
@@ -384,10 +399,10 @@ function esov(el: HTMLElement, c: Extract<D3Chart, { kind: 'esov' }>, nw: boolea
       cc.classed('on', reduce || s >= 3);
       note.style('opacity', reduce || s >= 3 ? 0 : 1);
       beam.style('opacity', !reduce && s >= 3 ? 1 : 0);
-      if (reduce) setA(0.7); else if (s < 1) setA(0);
+      if (reduce || s >= 2) setA(0.7); else if (s < 1) setA(0);
     },
     tick(t) {
-      if (step >= 1) setA((t % 5200) / 5200);
+      if (step === 1) setA((t % 5200) / 5200);
       if (step >= 3) {
         // 每個場域停 0.6 秒，依序掃過
         const i = Math.floor(t / 600) % n;
@@ -455,10 +470,12 @@ function allocate(el: HTMLElement, c: Extract<D3Chart, { kind: 'allocate' }>, nw
   const parts = g3.selectAll('circle.al-p').data([...Array(P).keys()]).join('circle').attr('class', 'al-p').attr('r', nw ? 4 : 5);
   const barH = (t: number) => ((t % 36000) / 36000) * barMax;
 
-  let step = 0;
+  let step = 0, t0 = -1;
   return {
     update(s) {
+      const prev = step;
       step = reduce ? 3 : s;
+      if (step >= 3 && prev < 3) t0 = -1;
       const st = Math.max(1, step);
       title.text(st >= 3 ? c.outcomeTitle : st === 2 ? c.splitTitle : c.layersTitle);
       g1.classed('on', st === 1);
@@ -470,7 +487,8 @@ function allocate(el: HTMLElement, c: Extract<D3Chart, { kind: 'allocate' }>, nw
     },
     tick(t) {
       if (step < 3) return;
-      const h = barH(t), top = floor - h;
+      if (t0 < 0) t0 = t;
+      const h = barH(t - t0), top = floor - h;
       bar.attr('y', top).attr('height', h);
       parts.each(function (i) {
         const p = ((t / 2600) + i / P) % 1;
@@ -625,12 +643,10 @@ function venn(el: HTMLElement, c: Extract<D3Chart, { kind: 'venn' }>, nw: boolea
     ls.forEach((t, i) => mid.append('text').attr('class', 'vn-both-desc').attr('x', W / 2).attr('y', my + 14 + i * 15 - (ls.length - 1) * 7.5).attr('text-anchor', 'middle').text(t));
   } else {
     mid.append('text').attr('class', 'vn-both-label').attr('x', W / 2).attr('y', cy - 6).attr('text-anchor', 'middle').text(c.both.label);
-    // 交集的說明：交集區最寬約 150px，每行最多 9 個字，置中排成數行
-    const per = 9, lines = Math.ceil(c.both.desc.length / per);
-    const each = Math.ceil(c.both.desc.length / lines);
-    for (let i = 0; i < lines; i++) {
-      mid.append('text').attr('class', 'vn-both-desc').attr('x', W / 2).attr('y', cy + 16 + i * 16 - (lines - 1) * 4).attr('text-anchor', 'middle').text(c.both.desc.slice(i * each, (i + 1) * each));
-    }
+    const ls = wrap(c.both.desc, 136, 11);
+    ls.forEach((t, i) => {
+      mid.append('text').attr('class', 'vn-both-desc').attr('x', W / 2).attr('y', cy + 16 + i * 16 - (ls.length - 1) * 4).attr('text-anchor', 'middle').text(t);
+    });
   }
   const fail = svg.append('text').attr('class', 'vn-fail').attr('x', W / 2).attr('y', H - 8).attr('text-anchor', 'middle').text(c.fail ?? '');
   bind(L.node()!, { title: c.left.label, body: c.left.items.join('、'), extra: c.left.extra });
@@ -670,11 +686,10 @@ function spectrum(el: HTMLElement, c: Extract<D3Chart, { kind: 'spectrum' }>, nw
     .attr('transform', (_, i) => `translate(${x0 + i * seg},${ty})`);
   lv.append('rect').attr('width', seg - 4).attr('height', 34).attr('rx', 8);
   lv.append('text').attr('class', 'sp-lab').attr('x', (seg - 4) / 2).attr('y', 22).attr('text-anchor', 'middle').text((d) => d.label);
-  // 等級說明拆兩行
+  // 等級說明依字寬智慧斷行（不切斷英文專有名詞）
   lv.each(function (d) {
     const g = select(this);
-    const half = Math.ceil(d.desc.length / 2);
-    [d.desc.slice(0, half), d.desc.slice(half)].forEach((t, i) =>
+    wrap(d.desc, seg - 16, 11).forEach((t, i) =>
       g.append('text').attr('class', 'sp-desc').attr('x', (seg - 4) / 2).attr('y', 56 + i * 16).attr('text-anchor', 'middle').text(t));
     bind(this, { title: d.label, body: d.desc, extra: d.extra });
   });
@@ -873,7 +888,7 @@ export function initD3() {
     const build = builders[c.kind];
     if (!build) continue;
     el.querySelector('.d3-fallback')?.remove();
-    const isNarrow = () => (el.clientWidth || el.parentElement?.clientWidth || innerWidth) < NARROW;
+    const isNarrow = () => innerWidth < 600 || (el.clientWidth || el.parentElement?.clientWidth || innerWidth) < NARROW;
     let nw = isNarrow();
     let cur = build(el, c as never, nw);
     // 對外固定一個 instance，內部的 cur 在寬度跨過門檻時換成重畫的那一張

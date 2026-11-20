@@ -16,6 +16,29 @@ export function initZoom() {
     opener = btn;
     const copy = src.cloneNode(true) as HTMLElement;
     copy.removeAttribute('data-zoom-src');
+    // 複製 SVG 內若含 <defs> ID（如 marker），加上 -zoom 後綴避免與原圖 ID 衝突
+    const ids = new Map<string, string>();
+    copy.querySelectorAll('[id]').forEach((el) => {
+      const oldId = el.id;
+      if (!oldId) return;
+      const newId = `${oldId}-zoom`;
+      ids.set(oldId, newId);
+      el.id = newId;
+    });
+    if (ids.size) {
+      copy.querySelectorAll('*').forEach((el) => {
+        for (const attr of Array.from(el.attributes)) {
+          let val = attr.value;
+          ids.forEach((n, o) => {
+            val = val.replaceAll(`url(#${o})`, `url(#${n})`);
+            if (attr.name === 'href' || attr.name === 'xlink:href') {
+              if (val === `#${o}`) val = `#${n}`;
+            }
+          });
+          if (val !== attr.value) el.setAttribute(attr.name, val);
+        }
+      });
+    }
     body.replaceChildren(copy);
     dialog.showModal();
     body.scrollLeft = 0;

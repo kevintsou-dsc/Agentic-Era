@@ -19,13 +19,15 @@ export function initPageExit() {
     if (!a || !a.href || a.hasAttribute('download') || (a.target && a.target !== '_self')) return;
     const to = new URL(a.href, location.href);
     if (to.origin !== location.origin) return;
-    if (to.pathname === location.pathname && to.search === location.search) return; // 同頁錨點
+    const norm = (p: string) => p.replace(/\/+$/, '') || '/';
+    if (norm(to.pathname) === norm(location.pathname) && to.search === location.search) return; // 同頁錨點
     if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
     e.preventDefault();
     try { sessionStorage.setItem(NAV, '1'); } catch { /* 存不了就只是新頁沒有收幕動畫 */ }
     root.classList.remove('is-entering', 'is-entered');
     root.classList.add('is-leaving');
     setTimeout(() => location.assign(to.href), COVER);
+    setTimeout(() => root.classList.remove('is-leaving'), 4000);
   });
   // 從上一頁快取回來時，頁面會停在紙幕蓋滿的樣子：還原
   addEventListener('pageshow', (e) => {

@@ -6,10 +6,66 @@ import type { Story } from '../lib/story';
 interface Props { a: Article; story: Story }
 const { a, story } = Astro.props;
 const authors = a.authors.map((x) => x.name).join('、');
-const picks = [
-  { text: story.oneLiner, src: '一句話｜策展者整理', serif: false },
-  ...story.asks.map((q) => ({ text: q.text, src: `${authors}〈${a.title}〉紙本 p.${q.page}`, serif: true })),
-];
+const clean = (t: string) => t.replace(/([，。、；：！？])\s+/g, '$1').replace(/^「([^「」]+)」$/, '$1').trim();
+const trimGlossary = (t: string) => (t.length > 52 ? t.replace(/（[^）]{4,}）/g, '') : t);
+
+interface Pick { text: string; src: string; serif: boolean }
+const picks: Pick[] = [];
+const seen = new Set<string>();
+const addPick = (text: string, src: string, serif: boolean) => {
+  const t = clean(text);
+  if (!t || seen.has(t)) return;
+  seen.add(t);
+  picks.push({ text: t, src, serif });
+};
+
+// 1. 核心一句話（超過 52 字時自動去掉括號內名詞解釋，讓海報版面精煉）
+addPick(trimGlossary(story.oneLiner), '一句話｜策展者整理', false);
+
+// 2. 優先挑選文章內最具張力的原文金句（先取文末結語大引言，再補其餘段落金句）
+const sceneQuotes: { text: string; page: number; priority: number }[] = [];
+story.scenes.forEach((sc, idx) => {
+  if (sc.kind === 'quote' && sc.quote?.text) {
+    sceneQuotes.push({ text: clean(sc.quote.text), page: sc.quote.page, priority: idx === story.scenes.length - 1 ? 0 : 1 });
+  } else if (sc.kind === 'graphic' || sc.kind === 'prose') {
+    for (const b of sc.beats) {
+      if (b.quote?.text) sceneQuotes.push({ text: clean(b.quote.text), page: b.quote.page, priority: 2 });
+    }
+  }
+});
+sceneQuotes
+  .filter((q) => q.text.length >= 14 && q.text.length <= 58)
+  .sort((x, y) => x.priority - y.priority)
+  .slice(0, 2)
+  .forEach((q) => addPick(q.text, `${authors}〈${a.title}〉紙本 p.${q.page}`, true));
+
+// 3. 嚴選「帶走的問題」：排除指代詞開頭與殘缺子句；短排比三問合併為一則完整金句
+const badStart = /^(難的是|這不是|對品牌來說，這意味著|面對這樣|這個品類|這個品牌|這次投放|要自動化的決策流程有沒有|能不能把顧客的猶豫|客戶真正要解決的是)/;
+if (story.asks.length >= 2 && story.asks.every((q) => clean(q.text).length <= 16)) {
+  if (!story.asksLabels?.length) {
+    const merged = story.asks.map((q) => clean(q.text)).join('');
+    if (merged.length <= 56) addPick(merged, `${authors}〈${a.title}〉紙本 p.${story.asks[0].page}`, true);
+  }
+} else {
+  for (const q of story.asks) {
+    const t = clean(q.text);
+    if (picks.length >= 4) break;
+    if (t.length >= 16 && t.length <= 54 && !badStart.test(t)) {
+      addPick(t, `${authors}〈${a.title}〉紙本 p.${q.page}`, true);
+    }
+  }
+}
+
+// 若仍不足 3 則，補入其餘合適長度的原文金句
+if (picks.length < 3) {
+  sceneQuotes
+    .filter((q) => q.text.length >= 14 && q.text.length <= 68)
+    .sort((x, y) => x.priority - y.priority)
+    .forEach((q) => {
+      if (picks.length < 4) addPick(q.text, `${authors}〈${a.title}〉紙本 p.${q.page}`, true);
+    });
+}
+const finalPicks = picks.slice(0, 4);
 ---
 <section class={`section share c-${a.chapter}`} data-share data-ch={a.chapter} data-path={`/story/${a.slug}/`} data-title={fullTitle(a)} data-chapter={`${CHAPTERS[a.chapter].name}｜${CHAPTERS[a.chapter].zh}`}>
   <p class="eyebrow reveal">分享這篇</p>
@@ -17,7 +73,7 @@ const picks = [
   <div class="share-grid reveal">
     <fieldset class="share-picks">
       <legend class="sr-only">選一句做成卡片</legend>
-      {picks.map((p, i) => (
+      {finalPicks.map((p, i) => (
         <label class="share-pick">
           <input type="radio" name="share-pick" value={i} checked={i === 0} data-text={p.text} data-src={p.src} data-serif={p.serif ? '1' : undefined} />
           <span>{p.text}</span>
@@ -33,7 +89,7 @@ const picks = [
       </fieldset>
       <figure class="share-card">
         <img data-sc-img alt="分享卡片預覽" width="1080" height="1350" />
-        <figcaption class="sr-only" data-sc-cap>{picks[0].text}</figcaption>
+        <figcaption class="sr-only" data-sc-cap>{finalPicks[0].text}</figcaption>
       </figure>
     </div>
   </div>

@@ -17,11 +17,13 @@ function initSteps() {
   const blocks = Array.from(document.querySelectorAll<HTMLElement>('.scrolly')).flatMap((block) => {
     const graphic = block.querySelector<HTMLElement>('.graphic');
     const steps = Array.from(block.querySelectorAll<HTMLElement>('.step'));
-    return graphic && steps.length ? [{ block, graphic, steps, current: -1 }] : [];
+    const cards = steps.map((s) => s.querySelector<HTMLElement>('.card') ?? s);
+    return graphic && steps.length ? [{ block, graphic, steps, cards, current: -1 }] : [];
   });
   const short = window.matchMedia('(max-height: 560px)');
+  const mobile = window.matchMedia('(max-width: 899px)');
   const update = () => {
-    const mid = window.innerHeight / 2;
+    const trigger = window.innerHeight * (mobile.matches ? 0.75 : 0.62);
     for (const b of blocks) {
       // 矮視窗沒有固定圖，直接顯示最後一步（與 global.css 的 max-height: 560px 對應）
       if (short.matches) {
@@ -30,8 +32,8 @@ function initSteps() {
       }
       const rect = b.block.getBoundingClientRect();
       if (rect.bottom < -window.innerHeight || rect.top > window.innerHeight * 2) continue;
-      let idx = 0;
-      b.steps.forEach((s, i) => { if (s.getBoundingClientRect().top <= mid) idx = i + 1; });
+      let idx = 1;
+      b.cards.forEach((c, i) => { if (c.getBoundingClientRect().top <= trigger) idx = i + 1; });
       if (idx === b.current) continue;
       b.current = idx;
       b.steps.forEach((s, i) => s.classList.toggle('is-active', i === idx - 1));
@@ -101,17 +103,26 @@ function initHScroll() {
     el,
     track: el.querySelector<HTMLElement>('[data-hs-track]'),
     bar: el.querySelector<HTMLElement>('[data-hs-progress]'),
+    overflow: 0,
+    lastP: -1,
   }));
   if (!blocks.length) return;
+  const measureOverflow = () => {
+    for (const b of blocks) {
+      b.overflow = b.track ? Math.max(0, b.track.scrollWidth - b.track.parentElement!.clientWidth) : 0;
+      b.lastP = -1;
+    }
+  };
   const update = () => {
     for (const b of blocks) {
       if (!b.track) continue;
-      if (fallback.matches || b.el.classList.contains('hs-free')) { b.track.style.transform = ''; continue; }
+      if (fallback.matches || b.el.classList.contains('hs-free')) { b.track.style.transform = ''; b.lastP = -1; continue; }
       const rect = b.el.getBoundingClientRect();
       const span = rect.height - window.innerHeight;
       const p = span > 0 ? Math.min(1, Math.max(0, -rect.top / span)) : 0;
-      const overflow = b.track.scrollWidth - b.track.parentElement!.clientWidth;
-      b.track.style.transform = `translate3d(${-p * Math.max(0, overflow)}px,0,0)`;
+      if (p === b.lastP) continue;
+      b.lastP = p;
+      b.track.style.transform = `translate3d(${-p * b.overflow}px,0,0)`;
       if (b.bar) b.bar.style.transform = `scaleX(${p})`;
     }
   };
@@ -120,7 +131,8 @@ function initHScroll() {
     if (!ticking) { ticking = true; requestAnimationFrame(() => { update(); ticking = false; }); }
   };
   window.addEventListener('scroll', onScroll, { passive: true });
-  window.addEventListener('resize', onScroll);
+  window.addEventListener('resize', () => { measureOverflow(); onScroll(); });
+  measureOverflow();
   update();
 
   // 卡片展開後若比可用高度還高，收起上方引言（.hs-tight）；收合後恢復
@@ -143,7 +155,7 @@ function initHScroll() {
       el.classList.toggle('hs-free', on);
       if (on) pin.classList.remove('hs-tight');
       update();
-      if (on && from) { el.scrollIntoView({ block: 'start' }); vp.scrollLeft = from.offsetLeft - 16; }
+      if (on && from) { el.scrollIntoView({ block: 'start', behavior: 'instant' }); vp.scrollLeft = from.offsetLeft - 16; }
     };
     if (free !== wasFree) setFree(free);
     if (free) return;
@@ -166,7 +178,7 @@ function initHScroll() {
     b.el.addEventListener('toggle', (e) => setTimeout(() => fit(b.el, (e.target as HTMLElement).closest<HTMLElement>('.hs-panel') ?? undefined), 380), true);
     fit(b.el);
   }
-  const refit = () => blocks.forEach((b) => fit(b.el));
+  const refit = () => { measureOverflow(); blocks.forEach((b) => fit(b.el)); update(); };
   window.addEventListener('resize', refit);
   // 網頁字體載入後行數會變、圖片載入後高度會變，卡片高度要重新量
   window.addEventListener('load', refit);

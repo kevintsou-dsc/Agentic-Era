@@ -12,10 +12,10 @@ import { storyMinutes } from '../../lib/stats';
 
 const WHERE = { intro: '兩隻眼睛', people: '鉛筆的臉', model: '兩張臉之間的碎片流', ai: '像素的臉' } as const;
 const SCENARIOS = [
-  { label: '社群與口碑提案', slug: 'algorithm-or-people' },
-  { label: '媒體預算與注意力', slug: 'buy-attention' },
-  { label: 'SEO／GEO 與轉換', slug: 'geo' },
-  { label: '組織與 AI 導入', slug: 'cultural-undercurrents' },
+  { label: '社群與口碑提案', slug: 'algorithm-or-people', title: '討好演算法，還是打動人？' },
+  { label: '媒體預算與注意力', slug: 'buy-attention', title: '花錢買曝光，為什麼消費者還是記不住你？' },
+  { label: 'SEO／GEO 與轉換', slug: 'geo', title: 'AI 搜尋時代的成長路徑' },
+  { label: '組織與 AI 導入', slug: 'cultural-undercurrents', title: 'AI 時代的行銷轉型，為何不只是工具升級？' },
 ] as const;
 const data = ARTICLES.map((a, i) => ({ i, slug: a.slug, ch: a.chapter, t: a.title, th: a.threads }));
 const no = (i: number) => String(i + 1).padStart(2, '0');
@@ -39,7 +39,7 @@ const firstOf = (key: string) => ARTICLES.find((a) => a.threads.includes(key as 
       </nav>
       <div class="fm-picks" aria-label="依行銷情境選讀">
         <span class="fm-jump-l">從手邊課題開始</span>
-        {SCENARIOS.map((sc) => <a class="fm-pick" href={`/story/${sc.slug}/`}>{sc.label} →</a>)}
+        {SCENARIOS.map((sc) => <a class="fm-pick" href={`/story/${sc.slug}/`} title={`推薦閱讀：〈${sc.title}〉`}>{sc.label} →</a>)}
       </div>
     </header>
     <div class="fm-threads">
@@ -81,7 +81,10 @@ const firstOf = (key: string) => ARTICLES.find((a) => a.threads.includes(key as 
     <div class="fm-share" data-fm-share hidden>
       <p class="eyebrow">你的這張臉</p>
       <p>已上色 <b data-fm-share-n></b>。把它存成一張圖，分享給也在想這些問題的人。</p>
-      <button type="button" class="btn" data-fm-share-go>分享你的這張臉</button>
+      <div class="fm-share-actions">
+        <button type="button" class="btn" data-fm-share-go>分享你的這張臉</button>
+        <button type="button" class="btn ghost" data-fm-share-dl>下載圖片</button>
+      </div>
       <p class="msg" data-fm-share-msg aria-live="polite"></p>
     </div>
     <p class="source">標題、作者與職稱以文章內頁為準；每篇精華的每一句都附紙本頁碼，可逐句對照原文。</p>
@@ -112,8 +115,9 @@ const firstOf = (key: string) => ARTICLES.find((a) => a.threads.includes(key as 
   .fm-pill { display: inline-flex; align-items: baseline; gap: 5px; padding: 5px 12px; border-radius: var(--r-pill); border: 1px solid var(--line); background: var(--paper); font-size: var(--fs-meta); font-weight: var(--fw-bold); text-decoration: none; color: var(--ink); transition: border-color .2s, background-color .2s; }
   .fm-pill span { font-family: var(--font-mono); font-size: var(--fs-micro); font-weight: var(--fw-regular); color: var(--ink-3); }
   .fm-pill:hover { border-color: var(--accent-ink); background: color-mix(in srgb, var(--accent) 45%, var(--paper)); }
-  .fm-pick { display: inline-flex; align-items: center; padding: 5px 11px; border-radius: var(--r-s); border: 1px dashed var(--line); background: transparent; font-size: var(--fs-caption); color: var(--ink-2); text-decoration: none; transition: border-color .2s, color .2s, background-color .2s; }
-  .fm-pick:hover { border-style: solid; border-color: var(--ink); color: var(--ink); background: var(--paper); }
+  .fm-pick { display: inline-flex; align-items: center; padding: 5px 12px; border-radius: var(--r-pill); border: 1px solid var(--line); background: var(--paper-2); font-size: var(--fs-caption); font-weight: var(--fw-medium); color: var(--ink-2); text-decoration: none; transition: border-color .2s, color .2s, background-color .2s; }
+  .fm-pick:hover { border-color: var(--ink); color: var(--ink); background: var(--paper); }
+  .fm-share-actions { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
   .fm-threads { display: grid; gap: 10svh; margin-bottom: 12svh; }
   .fm-thread { padding: 18px 20px; border-radius: var(--r-l); border: 1px solid var(--line); background: var(--paper); opacity: .82; transition: opacity .35s, border-color .35s; }
   .fm-thread p { margin: 0 0 10px; }

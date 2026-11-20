@@ -28,7 +28,7 @@ export function initMore() {
     if (cx - half < 12) el.dataset.tipAlign = 'left';
     else if (cx + half > vw - 12) el.dataset.tipAlign = 'right';
     else delete el.dataset.tipAlign;
-    if (r.top < 150) el.dataset.tipPos = 'bottom';
+    if (r.top < 200) el.dataset.tipPos = 'bottom';
     else delete el.dataset.tipPos;
   };
   document.addEventListener('pointerenter', (e) => {

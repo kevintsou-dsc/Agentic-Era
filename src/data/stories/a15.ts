@@ -93,7 +93,7 @@ export const story: Story = {
           notes: [{ term: 'AI Agent', text: '能接下一項任務後，自行規劃步驟、查資料或使用工具把事情做完的 AI 程式，不只是一問一答。' }],
           more: {
             title: 'Mastercard：交易可以自動化，信任不能', text: '交易流程可以交給 AI 自動完成，但信任不會自動產生，得由企業在每個觸點持續建立。',
-            quote: { article: 'a15', page: 139, text: '「You can automate commerce, but you can\'t automate trust.」' },
+            quote: { article: 'a15', page: 139, text: 'You can automate commerce, but you can\'t automate trust.' },
             links: [
               { url: 'https://www.mastercard.com/global/en/news-and-trends/stories/2025/2026-payment-trends.html', label: 'Mastercard 2026 Payment Trends', kind: 'report' },
               { url: 'https://www.jpmorgan.com/payments/newsroom/agentic-commerce-ai-future-shopping', label: 'J.P. Morgan Payments', kind: 'web' },

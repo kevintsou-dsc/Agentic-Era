@@ -22,7 +22,7 @@ type G = Extract<Graphic, { type: 'art' }>;
 interface Props { g: G }
 const { g } = Astro.props;
 // 寬版插畫在手機上太小：顯示「放大看全圖」按鈕（scripts/zoom.ts）
-const zoomable = g.art === 'e2e-rings';
+const zoomable = g.art === 'e2e-rings' || g.art === 'iproof' || g.art === 'growth-triangle';
 ---
 <figure class="stage art">
   {g.title && <p class="title">{g.title}</p>}
@@ -32,14 +32,14 @@ const zoomable = g.art === 'e2e-rings';
   {g.art === 'agent-team' && <AgentTeam />}
   {g.art === 'journey-compress' && <JourneyCompress />}
   {g.art === 'judgment-sources' && <JudgmentSources />}
-  {g.art === 'iproof' && <IProof />}
+  {g.art === 'iproof' && <div class="art-zoomable" data-zoom-src data-zoom><IProof /></div>}
   {g.art === 'media-pp' && <MediaPP />}
   {g.art === 'pillars' && <Pillars />}
   {g.art === 'ccs-model' && <CcsModel />}
   {g.art === 'ai-pi' && <AiPi />}
   {g.art === 'e2e-rings' && <div class="art-zoomable" data-zoom-src data-zoom><E2eRings /></div>}
   {g.art === 'foundation' && <Foundation />}
-  {g.art === 'growth-triangle' && <GrowthTriangle />}
+  {g.art === 'growth-triangle' && <div class="art-zoomable" data-zoom-src data-zoom><GrowthTriangle /></div>}
   {g.art === 'coffee-layers' && <CoffeeLayers />}
   {g.art === 'content-engine' && <ContentEngine />}
   {zoomable && <button type="button" class="zoom-btn" data-zoom aria-label="放大看全圖">⤢ 點此放大看全圖</button>}

@@ -21,8 +21,13 @@ if (H2.length <= 4) throw new Error('display-chars：在首頁找不到 .h2 區�
 export async function collect() {
   const display = new Set(BASE + HERO + H2), text = new Set(BASE);
   const add = (set, t) => { for (const c of (t ?? '').replace(/\*\*/g, '')) set.add(c); };
-  // articles.ts 會匯入 JSON，Node 直接載入需要 import 屬性：改從原始檔取章節中文名
-  for (const m of readFileSync(join(ROOT, 'src/lib/articles.ts'), 'utf8').matchAll(/\bzh: '([^']+)'/g)) add(display, m[1]);
+  // articles.ts 會匯入 JSON，Node 直接載入需要 import 屬性：改從原始檔取章節中文名、主線短名與成就卡名稱
+  const artSrc = readFileSync(join(ROOT, 'src/lib/articles.ts'), 'utf8');
+  for (const m of artSrc.matchAll(/\b(?:zh|short|name): '([^']+)'/g)) add(display, m[1]);
+  const achSrc = readFileSync(join(ROOT, 'src/lib/achievements.ts'), 'utf8');
+  for (const m of achSrc.matchAll(/'([^']+)'/g)) add(display, m[1]);
+  add(display, '知識補給包決內含張章通關主線｜／“”0123456789');
+  add(text, '“”');
   for (const a of articles()) add(display, a.title);
   const { CORE_QUESTION } = await import(pathToFileURL(join(ROOT, 'src/data/home.ts')).href);
   add(text, CORE_QUESTION.text);

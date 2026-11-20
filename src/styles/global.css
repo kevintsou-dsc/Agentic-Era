@@ -106,7 +106,8 @@ img, svg { max-width: 100%; display: block; }
 .stage svg :is(path, line, polyline, polygon, circle, ellipse, rect),
 .d3 svg :is(path, line, polyline, polygon, circle, ellipse, rect),
 .people svg :is(circle, path) { filter: url(#hand); }
-.d3 .fl-dots circle, .d3 .rg-ripple, .stage svg defs * { filter: none; }
+.d3 :is(.fl-dots circle, .rg-ripple, .rg-token rect, .st-dot, .es-cutter, .es-beam, .al-dots circle, .al-p, .al-bar, .ib-wave),
+.stage svg :is(defs *, .at-dots-down *, .at-dots-up *) { filter: none; }
 @media (max-width: 560px) { .d3 svg :is(rect, circle) { filter: none; } }
 /* 紙上筆跡（scripts/paper.ts）：滑鼠經過空白紙面留下的鉛筆線 */
 .paper-ink { position: fixed; inset: 0; width: 100vw; height: 100vh; z-index: 30; pointer-events: none; mix-blend-mode: multiply; }
@@ -195,10 +196,18 @@ a { color: inherit; }
   .scrolly.graphic-right .graphic > .stage { margin-right: 0; margin-left: auto; }
 }
 @media (max-width: 899px) {
-  .scrolly .graphic { align-content: start; padding-top: 64px; height: 100svh; }
+  .scrolly .graphic { align-content: start; padding-top: 58px; height: 100svh; }
   .scrolly .graphic > .stage { width: 100%; max-height: 52svh; }
-  .scrolly .step { align-items: flex-end; min-height: 90svh; padding-bottom: 6svh; }
-  .scrolly .card, .scrolly.graphic-right .card { margin: 0 auto; max-width: 34rem; }
+  .scrolly .step { align-items: flex-end; min-height: 85svh; padding-bottom: 6svh; }
+  .scrolly .card, .scrolly.graphic-right .card {
+    margin: 0 auto; max-width: 34rem;
+    opacity: 0.12; box-shadow: none;
+    transition: transform 0.45s ease, opacity 0.45s ease, box-shadow 0.45s ease;
+  }
+  .scrolly .step.is-active .card {
+    opacity: 1;
+    box-shadow: 0 10px 30px -18px rgba(31, 29, 26, 0.35);
+  }
 }
 
 /* ===== 全站統一的兩種互動 =====
@@ -257,8 +266,21 @@ a { color: inherit; }
   }
 }
 [data-tip] { position: relative; }
+[data-tip]:is(:hover, :focus-visible, :focus-within) { z-index: 25; }
+:is(
+  .bars .col, .bars .bar,
+  .hbars .row, .hbars .track,
+  .layers .layer,
+  .list li, .list .tl-card,
+  .cycle .labels li,
+  .prose-text > div, .scrolly .card > *
+):has([data-tip]:is(:hover, :focus-visible)) {
+  z-index: 25;
+}
 
 /* 兩種 dialog 共用 */
+html:has(dialog[open]) { overflow: hidden; }
+.reader-body, .more-sheet, .zoom-body, .album { overscroll-behavior: contain; }
 dialog { color: var(--ink); }
 dialog::backdrop { background: rgba(31, 29, 26, .5); backdrop-filter: blur(2px); }
 dialog[open] { animation: dlg-in .26s var(--ease-out); }

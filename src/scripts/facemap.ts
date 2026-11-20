@@ -8,8 +8,8 @@ const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
 type Ch = 'intro' | 'people' | 'model' | 'ai';
 type Art = { i: number; slug: string; ch: Ch; t: string; th: string[] };
 type Pt = { u: number; v: number; g: number; a: number };
-type Bit = { k: 0 | 1; ux: number; uy: number; r: number; g: number; a: number; s: number; ph: number; fq: number; x: number; y: number; dd: number };
-type Flow = { s: number; art: number; u0: number; off: number; sp: number; dir: number; th: number; g: number; sz: number; ph: number; fq: number; tint: boolean };
+type Bit = { k: 0 | 1; ux: number; uy: number; r: number; g: number; a: number; s: number; ph: number; fq: number; x: number; y: number; dd: number; ca: number; sa: number; c0: string; c6: string; c1: string };
+type Flow = { s: number; art: number; u0: number; off: number; sp: number; dir: number; th: number; g: number; sz: number; ph: number; fq: number; tint: boolean; ca: number; sa: number; c0: string; c6: string; c1: string };
 type P = { x: number; y: number };
 type Thread = { art: number; s: number; a: P; b: P };
 
@@ -22,7 +22,7 @@ const EYE: [number, number][] = [[0.27, 0.36], [0.68, 0.45]];
 const HU: [number, number][] = [[0.22, 0.27], [0.17, 0.4], [0.11, 0.53], [0.21, 0.61], [0.3, 0.72]];
 const AU: [number, number][] = [[0.7, 0.27], [0.75, 0.44], [0.79, 0.55], [0.73, 0.65], [0.68, 0.76]];
 
-import { drawFaceCard, shareCanvas } from './share';
+import { downloadCanvas, drawFaceCard, shareCanvas } from './share';
 
 const load = (src: string) => new Promise<HTMLImageElement>((ok, no) => { const i = new Image(); i.onload = () => ok(i); i.onerror = no; i.src = src; });
 // 取樣：和開場同一套做法（不透明的像素才放碎片）
@@ -68,7 +68,7 @@ export function initFaceMap() {
   read.forEach((i) => { if (seen.has(ARTS[i].slug)) readT.set(i, -Infinity); });
   rows.forEach((r) => r.classList.toggle('read', read.has(+r.dataset.i!)));
 
-  let active = -1, pick = '', hoverR = -1, W = 0, H = 0, dpr = 1, narrow = false, ready = false, ymid = 0;
+  let active = -1, pick = '', hoverR = -1, W = 0, H = 0, dpr = 1, narrow = false, ready = false, ymid = 0, topOffset = 58, stageH = 0;
   let bits: Bit[] = [], imgs: HTMLImageElement[] = [], ratios = [0.9, 0.8], cent: P[] = [], threads: Thread[] = [], boxes: { x: number; y: number; w: number; h: number }[] = [];
   const flows: Flow[] = [];
   const cam = { x: 0, y: 0, s: 1 };
@@ -97,11 +97,18 @@ export function initFaceMap() {
     const intro = byCh('intro');
     const region = (p: Pt, k: number) => (isEye(p, k) ? intro[k] : k === 0 ? hm[noisy(p, hc, hs.ratio)] : am[noisy(p, ac, as.ratio)]);
     let sd = 23; const rnd = () => ((sd = (sd * 16807) % 2147483647) / 2147483647);
-    const mk = (k: 0 | 1, p: Pt): Bit => ({ k, ux: p.u, uy: p.v, r: region(p, k), g: Math.round(p.g * (k === 0 ? 0.72 : 0.85)), a: k === 0 ? Math.min(0.85, 0.15 + (1 - p.g / 255) * 0.8) : 0.8, s: 1.8 + rnd() * 1.8, ph: rnd() * 6.28, fq: 0.6 + rnd() * 1.2, x: 0, y: 0, dd: 0 });
+    const mk = (k: 0 | 1, p: Pt): Bit => {
+      const r = region(p, k), g = Math.round(p.g * (k === 0 ? 0.72 : 0.85)), ph = rnd() * 6.28, ang = -0.75 + ph * 0.08, col = COLS[ARTS[r].ch];
+      return { k, ux: p.u, uy: p.v, r, g, a: k === 0 ? Math.min(0.85, 0.15 + (1 - p.g / 255) * 0.8) : 0.8, s: 1.8 + rnd() * 1.8, ph, fq: 0.6 + rnd() * 1.2, x: 0, y: 0, dd: 0, ca: Math.cos(ang) * 1.6, sa: Math.sin(ang) * 1.6, c0: `rgb(${g},${g},${g})`, c6: mix(g, col, 0.6), c1: mix(g, col, 1) };
+    };
     bits = [...hs.pts.map((p) => mk(0, p)), ...as.pts.map((p) => mk(1, p))];
     // Model：五道碎片流。人那端是鉛筆短線，流過中段後一顆顆變成像素方塊；七成從人流向 AI，其餘反向
+    const RED = COLS.model;
     byCh('model').forEach((art, s) => {
-      for (let n = 0; n < (innerWidth < 860 ? 110 : 170); n++) flows.push({ s, art, u0: rnd(), off: rnd() + rnd() - 1, sp: 0.000028 + rnd() * 0.00003, dir: rnd() < 0.72 ? 1 : -1, th: 0.25 + rnd() * 0.5, g: Math.round(55 + rnd() * 80), sz: 1.6 + rnd() * 1.7, ph: rnd() * 6.28, fq: 0.6 + rnd() * 1.2, tint: rnd() < 0.14 });
+      for (let n = 0; n < (innerWidth < 860 ? 110 : 170); n++) {
+        const g = Math.round(55 + rnd() * 80), ph = rnd() * 6.28, ang = -0.75 + ph * 0.08;
+        flows.push({ s, art, u0: rnd(), off: rnd() + rnd() - 1, sp: 0.000028 + rnd() * 0.00003, dir: rnd() < 0.72 ? 1 : -1, th: 0.25 + rnd() * 0.5, g, sz: 1.6 + rnd() * 1.7, ph, fq: 0.6 + rnd() * 1.2, tint: rnd() < 0.14, ca: Math.cos(ang) * 1.6, sa: Math.sin(ang) * 1.6, c0: `rgb(${g},${g},${g})`, c6: mix(g, RED, 0.6), c1: mix(g, RED, 1) });
+      }
     });
     ready = true; layout();
   };
@@ -118,7 +125,11 @@ export function initFaceMap() {
     dpr = Math.min(2, devicePixelRatio || 1); W = cv.clientWidth; H = cv.clientHeight; narrow = innerWidth < 860;
     cv.width = W * dpr; cv.height = H * dpr;
     const bar = document.querySelector<HTMLElement>('.topbar');
-    if (bar) root.style.setProperty('--top', `${bar.offsetTop + bar.offsetHeight}px`);
+    if (bar) {
+      topOffset = bar.offsetTop + bar.offsetHeight;
+      root.style.setProperty('--top', `${topOffset}px`);
+    }
+    stageH = stage.offsetHeight;
     geometry();
   };
   const geometry = (full = false) => {
@@ -150,11 +161,11 @@ export function initFaceMap() {
   // 上色時保留原本的明暗：暗的筆觸變深色、亮的變淺色，五官才不會糊成一片
   const mix = (g: number, c: number[], m: number) => { const t = Math.min(1.18, 0.5 + g / 330); return `rgb(${[0, 1, 2].map((n) => Math.round(g + (Math.min(255, c[n] * t) - g) * m)).join(',')})`; };
   const focusOn = (i: number) => i === active || i === hoverR || (!!pick && ARTS[i].th.includes(pick));
-  const frag = (k: number, x: number, y: number, s: number, col: string, ph: number) => {
+  const frag = (k: number, x: number, y: number, s: number, col: string, ca: number, sa: number) => {
     if (k === 0) {
       ctx.strokeStyle = col; ctx.lineWidth = s * 0.5;
-      const len = s * 1.6, ang = -0.75 + ph * 0.08;
-      ctx.beginPath(); ctx.moveTo(x - Math.cos(ang) * len, y - Math.sin(ang) * len); ctx.lineTo(x + Math.cos(ang) * len, y + Math.sin(ang) * len); ctx.stroke();
+      const dx = ca * s, dy = sa * s;
+      ctx.beginPath(); ctx.moveTo(x - dx, y - dy); ctx.lineTo(x + dx, y + dy); ctx.stroke();
     } else { ctx.fillStyle = col; ctx.fillRect(x - s / 2, y - s / 2, s, s); }
   };
 
@@ -180,9 +191,10 @@ export function initFaceMap() {
       const amp = reduce ? 0 : f ? 1.6 : 0.9;
       const x = b.x + Math.sin(t * 0.0011 * b.fq + b.ph) * amp, y = b.y + Math.cos(t * 0.0009 * b.fq + b.ph * 1.3) * amp;
       ctx.globalAlpha = b.a * (dimOthers && !f && !read.has(b.r) ? 0.7 : 1);
-      frag(b.k, x, y, b.s * (f ? 1.2 : 1) * (narrow ? 0.75 : 0.85), mix(b.g, col, m), b.ph);
+      const cStr = m === 0 ? b.c0 : m === 1 ? b.c1 : m === 0.6 ? b.c6 : mix(b.g, col, m);
+      frag(b.k, x, y, b.s * (f ? 1.2 : 1) * (narrow ? 0.75 : 0.85), cStr, b.ca, b.sa);
     }
-    const base = narrow ? 7 : 11, RED = COLS.model;
+    const base = narrow ? 7 : 11, RED = COLS.model, TEAL_STR = `rgb(${TEAL.join(',')})`;
     for (const q of flows) {
       const th = threads[q.s]; if (!th) continue;
       const f = focusOn(q.art), rd = read.has(q.art), rt = readT.get(q.art);
@@ -196,7 +208,8 @@ export function initFaceMap() {
       let m = u < fill ? 1 : 0; if (f) m = Math.max(m, rd ? 1 : 0.6);
       const pix = u > q.th;
       ctx.globalAlpha = 0.85 * Math.min(1, u / 0.07, (1 - u) / 0.07) * (dimOthers && !f && !rd ? 0.7 : 1);
-      frag(pix ? 1 : 0, x, y, q.sz * (f ? 1.2 : 1) * (narrow ? 0.75 : 0.85), pix && q.tint && !m ? `rgb(${TEAL.join(',')})` : mix(q.g, RED, m), q.ph);
+      const cStr = pix && q.tint && !m ? TEAL_STR : m === 0 ? q.c0 : m === 1 ? q.c1 : m === 0.6 ? q.c6 : mix(q.g, RED, m);
+      frag(pix ? 1 : 0, x, y, q.sz * (f ? 1.2 : 1) * (narrow ? 0.75 : 0.85), cStr, q.ca, q.sa);
     }
     ctx.globalAlpha = 1;
   };
@@ -235,8 +248,8 @@ export function initFaceMap() {
 
   // 捲動決定焦點：跨過「閱讀線」的那一步（桌機在畫面中線；手機在臉下方區域的三成處）
   const onScroll = () => {
-    const sh = narrow ? stage.offsetHeight : 0, tp = parseFloat(getComputedStyle(root).getPropertyValue('--top')) || 0;
-    const line = narrow ? tp + sh + (innerHeight - tp - sh) * 0.3 : innerHeight * 0.5;
+    const sh = narrow ? stageH : 0;
+    const line = narrow ? topOffset + sh + (innerHeight - topOffset - sh) * 0.3 : innerHeight * 0.5;
     let hit: HTMLElement | undefined;
     for (const s of steps) { const b = s.getBoundingClientRect(); if (b.top <= line && b.bottom > line) { hit = s; break; } }
     const na = hit?.dataset.i !== undefined ? +hit.dataset.i : -1, np = hit?.dataset.thread ?? '';
@@ -279,12 +292,19 @@ export function initFaceMap() {
       return face;
     };
     const per = (c: Ch) => { const all = byCh(c); return [CHZ[c], all.filter((i) => read.has(i)).length, all.length, COLS[c]] as const; };
+    const makeCard = () => drawFaceCard({ face: snapshot(), n: read.size, url: new URL('/', location.origin).href, parts: (['intro', 'people', 'model', 'ai'] as Ch[]).map(per) });
     share.querySelector('[data-fm-share-go]')?.addEventListener('click', async () => {
       if (!ready) return;
       msg.textContent = '製作卡片中…';
       const url = new URL('/', location.origin).href;
-      const card = await drawFaceCard({ face: snapshot(), n: read.size, url, parts: (['intro', 'people', 'model', 'ai'] as Ch[]).map(per) });
+      const card = await makeCard();
       msg.textContent = card ? await shareCanvas(card, 'decision-wisdom-my-face.png', '我的這張臉｜決策智慧 2026', `我替這張臉上色了 ${read.size}／22 篇——決策智慧 2026`, url) : '這個瀏覽器不能產生圖片。';
+    });
+    share.querySelector('[data-fm-share-dl]')?.addEventListener('click', async () => {
+      if (!ready) return;
+      msg.textContent = '製作卡片中…';
+      const card = await makeCard();
+      msg.textContent = card && (await downloadCanvas(card, 'decision-wisdom-my-face.png')) ? '已下載卡片。' : '這個瀏覽器不能產生圖片。';
     });
   }
 

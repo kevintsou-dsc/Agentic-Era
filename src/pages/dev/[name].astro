@@ -10,7 +10,7 @@ export function getStaticPaths() {
   return import.meta.env.DEV ? [{ params: { name: 'gallery' } }] : [];
 }
 const items = Object.values(STORIES).flatMap((s) =>
-  s.scenes.flatMap((sc, i) => (sc.kind === 'graphic' ? [{ id: s.id, i, g: sc.graphic, steps: sc.steps.length }] : [])),
+  s.scenes.flatMap((sc, i) => (sc.kind === 'graphic' ? [{ id: s.id, i, g: sc.graphic, steps: sc.beats.length }] : [])),
 );
 const all = Array.from({ length: 10 }, (_, k) => `is-${k + 1}`).join(' ');
 ---

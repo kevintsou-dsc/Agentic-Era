@@ -3,7 +3,7 @@
 // 包裝依這次解鎖的卡而定（scripts/packs.ts）：第一篇＝糖果紙、篇數＝鋁箔袋、讀完一章＝摺紙信封、讀完一條主線＝扭蛋；
 // 一次解鎖多種時取最稀有的。補給包飄在空中：拖曳旋轉；手機用陀螺儀跟著晃動轉（iOS 第一次觸碰時請求授權）。
 // 把拉條往右拉打開。右上角、首頁底部與全書地圖上的按鈕打開收藏。
-import { absUrl, copyText } from './share';
+import { absUrl, downloadCanvas, drawAchievementCard, shareCanvas } from './share';
 import { buildPack, type Light, type PackKind } from './packs';
 
 interface Card { id: string; kind: 'count' | 'chapter' | 'thread'; name: string; line: string; hint: string; color: string; n?: number; slugs?: string[] }
@@ -78,6 +78,7 @@ export function initSnack() {
   // ── 卡片 ──
   let got: Card[] = [];
   let pos = 0;
+  let fromUnlock = false;
   const renderDeck = () => {
     deck.replaceChildren(cardEl(got[pos]));
     $('[data-deck-pos]').textContent = `${pos + 1}／${got.length}`;
@@ -89,8 +90,33 @@ export function initSnack() {
 
   // ── 收藏 ──
   const openAlbum = () => {
-    const have = new Set(unlocked(readList()).map((c) => c.id));
-    $('[data-album]').replaceChildren(...cards.map((c) => { const li = document.createElement('li'); li.append(cardEl(c, !have.has(c.id))); return li; }));
+    const owned = unlocked(readList());
+    const have = new Set(owned.map((c) => c.id));
+    $('[data-album]').replaceChildren(...cards.map((c) => {
+      const li = document.createElement('li');
+      const locked = !have.has(c.id);
+      const el = cardEl(c, locked);
+      if (!locked) {
+        el.tabIndex = 0;
+        el.setAttribute('role', 'button');
+        el.setAttribute('aria-label', `檢視並分享成就卡：${c.name}`);
+        const inspect = () => {
+          fromUnlock = false;
+          got = owned;
+          pos = Math.max(0, owned.findIndex((x) => x.id === c.id));
+          $('[data-got]').textContent = `已收藏的成就卡（${owned.length}／${cards.length}）`;
+          show('cards');
+          renderDeck();
+          $('[data-snack-share]').focus();
+        };
+        el.addEventListener('click', inspect);
+        el.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); inspect(); }
+        });
+      }
+      li.append(el);
+      return li;
+    }));
     $('[data-album-count]').textContent = `${have.size}／${cards.length}`;
     show('album');
   };
@@ -165,8 +191,8 @@ export function initSnack() {
       cancelAnimationFrame(raf);
       show('cards');
       renderDeck();
-      dlg.querySelector<HTMLElement>('[data-next]:not([hidden])')?.focus();
-      $('[data-snack-share]').focus();
+      const nextBtn = !$('[data-deck-nav]').hidden ? dlg.querySelector<HTMLElement>('[data-next]') : null;
+      (nextBtn ?? $('[data-snack-share]')).focus();
     }, reduce ? 0 : PACK[kind].ms);
   };
   knob.addEventListener('pointerdown', (e) => { e.stopPropagation(); void askMotion(); tearing = true; moved = false; kx0 = e.clientX; knob.setPointerCapture(e.pointerId); });
@@ -188,6 +214,7 @@ export function initSnack() {
     cs.some((c) => c.kind === 'thread') ? 'capsule' : cs.some((c) => c.kind === 'chapter') ? 'envelope' : cs.some((c) => c.id === 'n1') ? 'candy' : 'foil';
   let opener: HTMLElement | null = null;
   const openPack = (cs: Card[]) => {
+    fromUnlock = true;
     got = cs; pos = 0;
     dlg.classList.remove('is-ripped');
     kind = packKind(cs);
@@ -205,11 +232,11 @@ export function initSnack() {
     startLoop();
     knob.focus();
   };
-  let pendingPack: Achievement[] | null = null;
+  let pendingPack: Card[] | null = null;
   const setHasPack = (on: boolean) => {
     btns.forEach((b) => { if (b.dataset.snackAlbum === 'top') b.classList.toggle('has-pack', on); });
   };
-  const openPackSafe = (cs: Achievement[]) => {
+  const openPackSafe = (cs: Card[]) => {
     const busy = Array.from(document.querySelectorAll<HTMLDialogElement>('dialog[open]')).find((d) => d !== dlg);
     if (busy) {
       pendingPack = cs;
@@ -251,14 +278,51 @@ export function initSnack() {
     opener?.focus();
   });
 
+  const currentStory = () => {
+    const shareRoot = document.querySelector<HTMLElement>('[data-share]');
+    if (!shareRoot?.dataset.path || !shareRoot.dataset.title) return null;
+    const shortTitle = shareRoot.dataset.title.split('：')[0].trim();
+    return { title: shortTitle, path: shareRoot.dataset.path };
+  };
+  const cardSharePayload = (c: Card) => {
+    const no = `No.${String(cards.indexOf(c) + 1).padStart(2, '0')}／${cards.length}`;
+    const readN = new Set(readList().filter((s) => valid.has(s))).size;
+    const progress = `已讀 ${readN}／${total} 篇`;
+    const pk = packKind([c]);
+    const story = fromUnlock ? currentStory() : null;
+    const url = story ? absUrl(story.path) : c.kind === 'chapter' ? absUrl(`/#fm-${c.color}`) : absUrl('/');
+    const text = story
+      ? `剛讀完《決策智慧 2026》〈${story.title}〉，解鎖成就卡「${c.name}」：${c.line}`
+      : `在《決策智慧 2026》解鎖成就卡「${c.name}」（${readN}／${total} 篇）：${c.line}`;
+    const spec = {
+      no,
+      kindLabel: KIND[c.kind],
+      packTag: PACK[pk].tag,
+      name: c.name,
+      line: c.line,
+      color: c.color,
+      articleTitle: story?.title,
+      progress,
+      url,
+    };
+    return { spec, text, url, file: `decision-wisdom-card-${c.id}.png` };
+  };
+
   $('[data-snack-share]').addEventListener('click', async () => {
     const c = got[pos];
-    const url = absUrl('/');
-    const text = `我在《決策智慧 2026》拆到一張成就卡「${c.name}」：${c.line}`;
-    try {
-      if (navigator.share) { await navigator.share({ title: '決策智慧 2026', text, url }); return; }
-    } catch (e) { if ((e as DOMException).name === 'AbortError') return; }
-    msg.textContent = (await copyText(`${text}\n${url}`)) ? '文字和連結已複製，可以直接貼上。' : url;
+    if (!c) return;
+    msg.textContent = '製作卡片中…';
+    const { spec, text, url, file } = cardSharePayload(c);
+    const canvas = await drawAchievementCard(spec);
+    msg.textContent = canvas ? await shareCanvas(canvas, file, `成就卡「${c.name}」｜決策智慧 2026`, text, url) : '這個瀏覽器不能產生圖片。';
+  });
+  $('[data-snack-dl]').addEventListener('click', async () => {
+    const c = got[pos];
+    if (!c) return;
+    msg.textContent = '製作卡片中…';
+    const { spec, file } = cardSharePayload(c);
+    const canvas = await drawAchievementCard(spec);
+    msg.textContent = canvas && (await downloadCanvas(canvas, file)) ? '已下載成就卡。' : '這個瀏覽器不能產生圖片。';
   });
 
   // ── 和全書地圖、已讀紀錄連動 ──

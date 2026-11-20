@@ -14,6 +14,7 @@ type Bit = {
   d: number; g: number; s: number; a: number; tint: boolean;
   ph: number; fq: number;               // 擾動相位、頻率
   ox: number; oy: number; vx: number; vy: number; // 受滑鼠推動的位移與速度
+  col: string; lx: number; ly: number;  // 預先算好的色彩與鉛筆線段半向量
 };
 type Ripple = { x: number; y: number; t: number };
 
@@ -133,16 +134,15 @@ export function initHero() {
       ctx.globalAlpha = alpha;
       if (b.k === 0) {
         // 人：鉛筆短線（排線方向一致，略帶隨機）
-        ctx.strokeStyle = `rgb(${b.g},${b.g - 4},${b.g - 10})`;
+        ctx.strokeStyle = b.col;
         ctx.lineWidth = b.s * 0.45;
-        const len = b.s * 1.6, ang = -0.75 + b.ph * 0.08;
         ctx.beginPath();
-        ctx.moveTo(x - Math.cos(ang) * len, y - Math.sin(ang) * len);
-        ctx.lineTo(x + Math.cos(ang) * len, y + Math.sin(ang) * len);
+        ctx.moveTo(x - b.lx, y - b.ly);
+        ctx.lineTo(x + b.lx, y + b.ly);
         ctx.stroke();
       } else {
         // AI：像素方塊，少數帶 AI 藍
-        ctx.fillStyle = b.tint ? '#3fa7c4' : `rgb(${b.g},${b.g},${b.g})`;
+        ctx.fillStyle = b.col;
         ctx.fillRect(x - b.s / 2, y - b.s / 2, b.s, b.s);
       }
     }
@@ -155,7 +155,7 @@ export function initHero() {
   new IntersectionObserver(([e]) => {
     visible = e.isIntersecting;
     if (visible && !raf && bits.length) raf = requestAnimationFrame(loop);
-  }).observe(stage);
+  }, { threshold: 0.08 }).observe(stage);
 
   // 滑鼠：推開碎片；移動夠快時每 140ms 放一道波紋
   stage.addEventListener('pointermove', (e) => {
@@ -189,15 +189,21 @@ export function initHero() {
     ratios = [hs.ratio, as.ratio];
     let seed = 11;
     const rnd = () => ((seed = (seed * 16807) % 2147483647) / 2147483647);
-    const make = (k: Kind, pt: { u: number; v: number; g: number; a: number }): Bit => ({
-      k, ux: pt.u, uy: pt.v, rx: rnd(), ry: rnd(), d: rnd(),
-      g: Math.round(k === 0 ? Math.min(90, pt.g + 30) : pt.g * 0.85),
-      s: (mobile ? 1.6 : 2.2) + rnd() * (mobile ? 1.2 : 2),
-      a: k === 0 ? Math.max(0.35, pt.a) : 0.9,
-      tint: k === 1 && rnd() < 0.1,
-      ph: rnd() * Math.PI * 2, fq: 0.6 + rnd() * 1.2,
-      ox: 0, oy: 0, vx: 0, vy: 0,
-    });
+    const make = (k: Kind, pt: { u: number; v: number; g: number; a: number }): Bit => {
+      const g = Math.round(k === 0 ? Math.min(90, pt.g + 30) : pt.g * 0.85);
+      const s = (mobile ? 1.6 : 2.2) + rnd() * (mobile ? 1.2 : 2);
+      const tint = k === 1 && rnd() < 0.1;
+      const ph = rnd() * Math.PI * 2;
+      const len = s * 1.6, ang = -0.75 + ph * 0.08;
+      return {
+        k, ux: pt.u, uy: pt.v, rx: rnd(), ry: rnd(), d: rnd(), g, s,
+        a: k === 0 ? Math.max(0.35, pt.a) : 0.9,
+        tint, ph, fq: 0.6 + rnd() * 1.2,
+        ox: 0, oy: 0, vx: 0, vy: 0,
+        col: k === 0 ? `rgb(${g},${g - 4},${g - 10})` : tint ? '#3fa7c4' : `rgb(${g},${g},${g})`,
+        lx: Math.cos(ang) * len, ly: Math.sin(ang) * len,
+      };
+    };
     bits = [...hs.pts.map((pt) => make(0, pt)), ...as.pts.map((pt) => make(1, pt))];
     if (!raf) raf = requestAnimationFrame(loop);
   }).catch(() => {});

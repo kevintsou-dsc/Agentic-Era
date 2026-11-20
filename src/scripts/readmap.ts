@@ -1,5 +1,5 @@
 // 結尾全書地圖（components/ReadMap.astro）：已讀紀錄只存在讀者瀏覽器（localStorage['dw-read']，短名陣列），不傳出。
-// 「已讀」＝帶走的問題（.asks）在視窗內連續停留 2 秒（docs/design-review/p1-02-ruling.md L5）；2026-11-15 起，捲到分享區或「接下來」停留 1 秒也算。
+// 「已讀」＝帶走的問題（.asks）在視窗內連續停留 3 秒；捲到分享區或「接下來」停留 0.9 秒也算。
 // 儲存無法使用或內容壞掉時：只標示目前這篇，不顯示任何數字。
 const KEY = 'dw-read';
 const DWELL = 3000;

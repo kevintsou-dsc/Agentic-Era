@@ -118,7 +118,7 @@ import SnackPack from '../components/SnackPack.astro';
             <button type="button" class="dlg-close" data-reader-close aria-label="關閉原文">×</button>
           </div>
         </header>
-        <div class="reader-body" data-reader-body></div>
+        <div class="reader-body" data-reader-body tabindex="0"></div>
       </div>
     </dialog>
     <dialog id="more" class="more" aria-label="細節">
@@ -129,7 +129,7 @@ import SnackPack from '../components/SnackPack.astro';
     </dialog>
     <dialog id="zoom" class="zoom" aria-label="放大圖表">
       <div class="zoom-head"><span>左右滑動、雙指縮放查看全圖</span><button type="button" class="dlg-close" data-zoom-close aria-label="關閉">×</button></div>
-      <div class="zoom-body" data-zoom-body></div>
+      <div class="zoom-body" data-zoom-body tabindex="0"></div>
     </dialog>
     <script>
       import { initScrolly } from '../scripts/scrolly';

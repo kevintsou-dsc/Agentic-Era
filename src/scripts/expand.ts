@@ -31,4 +31,21 @@ function animate(d: HTMLDetailsElement) {
 
 export function initExpand() {
   document.querySelectorAll<HTMLDetailsElement>('details[data-expand]').forEach(animate);
+  // 觸控與鍵盤支援：翻面卡、地基石、防禦支柱再點一下即可收合／翻回正面
+  document.querySelectorAll<HTMLElement>('.fc-set > li[tabindex], .fd-stone[tabindex], .pl li[tabindex]').forEach((el) => {
+    let justFocused = false;
+    el.addEventListener('pointerdown', () => { justFocused = document.activeElement !== el; });
+    el.addEventListener('click', () => {
+      if (!justFocused && document.activeElement === el) el.blur();
+      justFocused = false;
+    });
+    el.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') el.blur();
+      else if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        if (document.activeElement === el && !justFocused) el.blur();
+        justFocused = false;
+      }
+    });
+  });
 }
