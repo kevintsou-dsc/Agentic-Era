@@ -15,14 +15,23 @@ const repo = 'https://github.com/kevintsou-dsc/Agentic-Era';
       <li><b>圖表只畫原刊有的數據。</b>數字取自原刊圖表；原刊標示為示意圖的，這裡也標示為示意圖。不同來源的數字不放在同一個軸上比較。</li>
     </ul>
 
-    <h2>AI 與人的分工</h2>
-    <p>本作品以 Vibe Coding 製作：程式、PDF 全文抽取、摘要初稿由 AI（Claude Code）完成；閱讀形式的選擇、每篇故事的取捨與最後審定由人決定。製作過程中 AI 犯過的錯（例如憑印象寫錯頁碼、把觀點相近的兩篇文章寫成對立）都由比對程式或人工審查抓出，完整紀錄在<a href={`${repo}/blob/main/docs/process-log.md`} target="_blank" rel="noopener noreferrer">製作歷程</a>。</p>
+    <h2>AI 與人的分工與防幻覺工程閘門</h2>
+    <p>本作品以 Vibe Coding 製作：程式架構、XML 原文抽取與策展初稿由 AI 協作完成；閱讀結構、篇目取捨與最終文案由人審定。製作過程中 AI 犯過的錯（例如憑印象寫錯頁碼、把觀點相近的文章誤寫為對立）皆由自動化閘門或人工覆核攔截，完整紀錄在<a href={`${repo}/blob/main/docs/process-log.md`} target="_blank" rel="noopener noreferrer">製作歷程</a>。</p>
+    <ul>
+      <li><b>自動化建置閘門（`npm run verify`）：</b>每次建置自動比對 <b>1,537 條</b>引文與數字的跨頁位置、<b>105 筆</b>作者姓名與職稱、所有圖表步驟與數據比例，以及 <b>2,382 條</b>站內連結與圖檔路徑，任一項失敗即阻斷部署。</li>
+      <li><b>建置期字型子集化：</b>使用 Python `fonttools` 依實際顯示字元壓縮自架襯線顯示字（約 116 KB／215 KB），保留完整 SIL OFL 1.1 授權表，並於建置期嚴格檢查零缺字。</li>
+    </ul>
 
     <h2>出處與著作權</h2>
-    <p>內容出自電通行銷傳播集團《決策智慧 2026：Agentic 時代，重塑品牌與人的真實距離》。發行人 電通集團大北亞區暨台灣執行長 唐心慧；總編輯 電通集團策略創新長 邵懿文；副總編輯 電通智能中心智庫負責人 陳介立。所載編輯內容之著作權為原刊所有。</p>
+    <p>內容出自電通行銷傳播集團《決策智慧 2026：Agentic 時代，重塑品牌與人的真實距離》。發行人 電通集團大北亞區暨台灣執行長 唐心慧；總編輯 電通集團策略創新長 邵懿文；副總編輯 電通智能中心智庫負責人 陳介立。外部人物肖像與案例素材均依來源授權標註並轉存站內，所載編輯內容之著作權為原刊所有。</p>
 
-    <h2>隱私</h2>
-    <p>本站是靜態網站，沒有後端、沒有帳號、沒有表單，不蒐集任何個人資料。</p>
+    <h2>部署與資安自評</h2>
+    <ul>
+      <li><b>純靜態部署與零外部請求：</b>全站以 Astro 輸出純靜態 HTML／CSS／JS 託管於 Cloudflare 邊緣網路，無後端資料庫，不載入任何第三方字型、CDN 或追蹤腳本，執行期對外網域請求數為 <b>0</b>。</li>
+      <li><b>嚴格內容安全政策（CSP）與安全標頭：</b>停用 CSS 與 JS 內嵌並於 `public/_headers` 設定 `default-src 'self'`、關閉 `unsafe-inline` 腳本，唯一首屏載入腳本以 <b>SHA-256 雜湊白名單</b>鎖定（並於每次建置自動校驗）；同步啟用 HSTS、`X-Content-Type-Options: nosniff`、`X-Frame-Options: DENY` 與完整 `Permissions-Policy`。</li>
+      <li><b>隱私保護與純本地計算：</b>無帳號、無表單、不設自由輸入欄位，分享圖卡皆於瀏覽器離屏 Canvas 即時繪製，不傳送至任何伺服器；已讀紀錄與人機智慧臉譜進度僅存於本機 `localStorage`，在無痕或停用儲存環境會自動優雅降級。</li>
+      <li><b>Repo 衛生與機密隔離：</b>`.gitignore` 採白名單式控管，嚴格封鎖原始 PDF／InDesign／Excel 設計檔與任何金鑰／內部信箱樣式進入公開版本庫。</li>
+    </ul>
 
     <h2>原始碼</h2>
     <p><a href={repo} target="_blank" rel="noopener noreferrer">{repo}</a></p>

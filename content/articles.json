@@ -34,7 +34,9 @@
         17
       ],
       "minutes": 7,
-      "threads": [],
+      "threads": [
+        "judge"
+      ],
       "authors": [
         {
           "name": "邵懿文",

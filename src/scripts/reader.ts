@@ -7,6 +7,7 @@ interface Payload { slug: string; page: number; segs: Seg[] }
 const pages = new Map<string, Promise<{ title: string; meta: string; body: string }>>();
 
 function load(slug: string) {
+  if (!/^[a-z0-9-]+$/.test(slug)) return Promise.reject(new Error('Invalid slug'));
   let p = pages.get(slug);
   if (!p) {
     p = fetch(`/story/${slug}/original/`).then(async (r) => {

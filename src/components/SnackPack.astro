@@ -212,7 +212,7 @@ const cards = achievements();
   .ac-shine { position: absolute; inset: 0; pointer-events: none; mix-blend-mode: soft-light; background: radial-gradient(60% 50% at var(--gx, 50%) var(--gy, 30%), rgba(255, 255, 255, .9), transparent 70%); }
   .deck { position: relative; display: grid; place-items: center; min-height: 22rem; }
   .deck .acard { animation: card-in .7s var(--ease-out) both; }
-  @keyframes card-in { from { transform: perspective(700px) translateY(120px) rotateY(-180deg) scale(.7); opacity: 0; } to { opacity: 1; } }
+  @keyframes card-in { from { transform: perspective(700px) translateY(120px) rotateY(-180deg) scale(.7); opacity: 0; } to { transform: perspective(700px) rotateX(var(--tx, 0deg)) rotateY(var(--ty, 0deg)); opacity: 1; } }
   .sn-got { margin: 0; font-size: 15px; font-weight: 700; text-align: center; }
   .deck-nav { margin: 0; display: flex; align-items: center; gap: 12px; font-size: 13px; }
   .deck-nav[hidden] { display: none; }

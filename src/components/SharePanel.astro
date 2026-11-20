@@ -39,13 +39,13 @@ sceneQuotes
   .slice(0, 2)
   .forEach((q) => addPick(q.text, `${authors}〈${a.title}〉紙本 p.${q.page}`, true));
 
-// 3. 嚴選「帶走的問題」：排除指代詞開頭與殘缺子句；短排比三問合併為一則完整金句
+// 3. 嚴選「帶走的問題」：排除指代詞開頭與殘缺子句；短排比三問（或帶 asksLabels 的短問句）合併為一則完整金句
 const badStart = /^(難的是|這不是|對品牌來說，這意味著|面對這樣|這個品類|這個品牌|這次投放|要自動化的決策流程有沒有|能不能把顧客的猶豫|客戶真正要解決的是)/;
 if (story.asks.length >= 2 && story.asks.every((q) => clean(q.text).length <= 16)) {
-  if (!story.asksLabels?.length) {
-    const merged = story.asks.map((q) => clean(q.text)).join('');
-    if (merged.length <= 56) addPick(merged, `${authors}〈${a.title}〉紙本 p.${story.asks[0].page}`, true);
-  }
+  const merged = story.asks
+    .map((q, i) => `${story.asksLabels?.[i] ? `${story.asksLabels[i]}：` : ''}${clean(q.text)}`)
+    .join(story.asksLabels?.length ? '　' : '');
+  if (merged.length <= 64) addPick(merged, `${authors}〈${a.title}〉紙本 p.${story.asks[0].page}`, true);
 } else {
   for (const q of story.asks) {
     const t = clean(q.text);
@@ -59,7 +59,7 @@ if (story.asks.length >= 2 && story.asks.every((q) => clean(q.text).length <= 16
 // 若仍不足 3 則，補入其餘合適長度的原文金句
 if (picks.length < 3) {
   sceneQuotes
-    .filter((q) => q.text.length >= 14 && q.text.length <= 68)
+    .filter((q) => q.text.length >= 14 && q.text.length <= 85)
     .sort((x, y) => x.priority - y.priority)
     .forEach((q) => {
       if (picks.length < 4) addPick(q.text, `${authors}〈${a.title}〉紙本 p.${q.page}`, true);

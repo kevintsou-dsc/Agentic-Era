@@ -151,7 +151,7 @@ export const story: Story = {
         notes: [{ term: '吻合程度', text: '0.89 是模擬結果與真人回答的相關係數，滿分 1.0。可以想成兩人替同一批電影打分數，你給高分的對方也給高分，愈一致就愈接近 1.0；它不是誤差率。這個說明出自特別企劃〈People Model 讓消費者研究變成一場隨時能開口的對話〉（p.100、p.110）。' }],
       },
       figure: { article: 'a02', page: 15, text: '吻合程度達到 0.89' },
-      source: '資料來源 電通台灣 People Model，邵懿文〈Agentic 時代〉紙本 p.15。模型如何建立與驗證，見〈People Model 介紹和應用〉',
+      source: '資料來源 電通台灣 People Model，邵懿文〈Agentic 時代〉紙本 p.15。模型如何建立與驗證，見〈People Model 讓消費者研究變成一場隨時能開口的對話〉',
     },
     {
       kind: 'quote',

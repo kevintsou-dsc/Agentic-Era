@@ -126,8 +126,8 @@ img, svg { max-width: 100%; display: block; }
 .stage svg :is(path, line, polyline, polygon, circle, ellipse, rect),
 .d3 svg :is(path, line, polyline, polygon, circle, ellipse, rect),
 .people svg :is(circle, path) { filter: url(#hand); }
-.d3 :is(.fl-dots circle, .rg-ripple, .rg-token rect, .st-dot, .es-cutter, .es-beam, .al-dots circle, .al-p, .al-bar, .ib-wave),
-.stage svg :is(defs *, .at-dots-down *, .at-dots-up *) { filter: none; }
+.d3 :is(.fl-dots circle, .rg-ripple, .rg-token rect, .st-dot, .es-cutter, .es-beam, .al-dots circle, .al-p, .al-bar, .ib-wave, .bl-beam *, .ib-berg *),
+.stage svg :is(defs *, .at-dots-down *, .at-dots-up *, .cm-dot *, .cs-p *) { filter: none; }
 @media (max-width: 560px) { .d3 svg :is(rect, circle) { filter: none; } }
 /* 紙上筆跡（scripts/paper.ts）：滑鼠經過空白紙面留下的鉛筆線 */
 .paper-ink { position: fixed; inset: 0; width: 100vw; height: 100vh; z-index: 30; pointer-events: none; mix-blend-mode: multiply; }
@@ -316,6 +316,16 @@ dialog[open] { animation: dlg-in .26s var(--ease-out); }
 .zoom-body > * { width: 760px; max-width: none; }
 .zoom [data-at] { --on: 1; }
 .zoom [data-focus] { --focus: 0; }
+/* 手機點開 #zoom 的 760px 全圖時，還原英文副標、連線與 12 項專業能力細節 */
+.zoom :is(.ip-en, .ip-link, .gt-core-en, .gt-cap) { display: block !important; }
+.zoom .ip-zh { font-size: 14px !important; }
+.zoom .ip-wave { margin-bottom: -10px !important; }
+.zoom .ip-cols { display: block !important; min-height: 112px !important; }
+.zoom .ip-cols li { position: absolute !important; width: 17% !important; display: grid !important; padding: 6px 4px 8px !important; text-align: center !important; font-size: 12.5px !important; }
+.zoom .ip-cols b { font-size: 26px !important; }
+.zoom .gt-q { font-size: 15px !important; }
+.zoom .gt-kicker { font-size: 10.5px !important; letter-spacing: .12em !important; }
+.zoom .gt-axis:nth-of-type(3) .gt-q { transform: none !important; }
 .zoom-btn { display: none; }
 @media (max-width: 720px) { [data-zoom-src][data-zoom] { cursor: zoom-in; } }
 @media (max-width: 720px) {
