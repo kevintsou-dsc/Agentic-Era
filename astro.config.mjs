@@ -7,7 +7,21 @@ const redirects = Object.fromEntries(Object.entries(legacy).flatMap(([o, n]) => 
 
 // 正式網址：分享預覽（og:image、og:url）與 canonical 都要絕對網址。
 // 網域確定後在 Cloudflare Pages 的環境變數設 SITE_URL；沒設時退用 Cloudflare 自動給的部署網址，本機則不輸出絕對網址。
-const site = process.env.SITE_URL || process.env.CF_PAGES_URL || undefined;
+// 後台填的值常帶空白、引號或漏了 https://：先整理再驗證；整理後仍不是合法網址就不用它（建置照跑、只警告），
+// 不然 Astro 會在產生頁面時丟出 Invalid URL，整個部署失敗。
+function siteFrom(raw) {
+  let v = (raw ?? '').trim().replace(/^['"]|['"]$/g, '').trim();
+  if (!v) return undefined;
+  if (!/^https?:\/\//i.test(v)) v = `https://${v}`;
+  try {
+    const u = new URL(v);
+    return `${u.protocol}//${u.host}`;
+  } catch {
+    console.warn(`[astro.config] SITE_URL 不是合法網址，已略過：${JSON.stringify(raw)}`);
+    return undefined;
+  }
+}
+const site = siteFrom(process.env.SITE_URL) ?? siteFrom(process.env.CF_PAGES_URL);
 
 export default defineConfig({
   output: 'static',
