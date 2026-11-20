@@ -334,7 +334,7 @@ export async function drawAchievementCard(spec: AchievementCardSpec): Promise<HT
 
 export interface FaceSpec { face: HTMLCanvasElement; n: number; url: string; parts: readonly (readonly [string, number, number, number[]])[] }
 
-/** 首頁「分享你的這張臉」：紙色底，上方「已上色 n／22」，中間是讀者自己上色的兩張臉，下方四章進度。 */
+/** 首頁「分享人機智慧臉譜」：紙色底，上方「已點亮 n／22」，中間是讀者自己點亮的兩張臉，下方四章進度。 */
 export async function drawFaceCard(spec: FaceSpec): Promise<HTMLCanvasElement | null> {
   const css = getComputedStyle(document.documentElement);
   const v = (n: string, d: string) => css.getPropertyValue(n).trim() || d;
@@ -342,12 +342,12 @@ export async function drawFaceCard(spec: FaceSpec): Promise<HTMLCanvasElement | 
   const serif = v('--font-serif', 'serif').replace('var(--font-sans)', sans);
   const mono = v('--font-mono', 'monospace');
   const paper = v('--paper', '#f3eee4'), ink = v('--ink', '#1f1d1a'), accent = v('--accent-ink', '#2f5e35');
-  const big = `已上色 ${spec.n}／22`;
+  const big = `已點亮 ${spec.n}／22`;
   const partsText = spec.parts.map(([name]) => name).join('');
   try {
     await Promise.all([
       document.fonts.load(`900 104px ${serif}`, big),
-      document.fonts.load(`700 36px ${sans}`, `決策智慧 2026｜我的這張臉22篇觀點每讀完一篇就替這張臉添一塊顏色${partsText}`),
+      document.fonts.load(`700 36px ${sans}`, `決策智慧 2026｜人機智慧臉譜22篇觀點每讀完一篇就為這張臉譜點亮一塊色彩${partsText}`),
     ]);
   } catch { /* 用系統字 */ }
   const c = document.createElement('canvas');
@@ -359,7 +359,7 @@ export async function drawFaceCard(spec: FaceSpec): Promise<HTMLCanvasElement | 
   const r = rng(11);
   for (let i = 0; i < 5000; i++) { ctx.fillStyle = alpha(ink, r() * 0.05); ctx.fillRect(r() * W, r() * H, 2, 2); }
   ctx.font = `700 28px ${sans}`; ctx.fillStyle = accent;
-  ctx.fillText('決策智慧 2026｜我的這張臉', PAD, 110);
+  ctx.fillText('決策智慧 2026｜人機智慧臉譜', PAD, 110);
   ctx.fillRect(PAD, 156, 64, 6);
   ctx.font = `900 104px ${serif}`; ctx.fillStyle = ink;
   ctx.fillText(big, PAD, 190);
@@ -381,7 +381,7 @@ export async function drawFaceCard(spec: FaceSpec): Promise<HTMLCanvasElement | 
   const ft = H - FOOT;
   ctx.fillStyle = alpha(ink, 0.85); ctx.fillRect(PAD, ft, W - PAD * 2, 3);
   ctx.font = `700 36px ${sans}`; ctx.fillStyle = ink;
-  ctx.fillText('22 篇觀點，每讀完一篇就替這張臉添一塊顏色', PAD, ft + 44);
+  ctx.fillText('22 篇觀點，每讀完一篇就為這張臉譜點亮一塊色彩', PAD, ft + 44);
   ctx.font = `700 22px ${mono}`;
   const brand = 'DECISION WISDOM 2026';
   const brandW = ctx.measureText(brand).width;

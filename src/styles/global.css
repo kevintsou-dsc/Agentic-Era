@@ -87,6 +87,26 @@
 *, *::before, *::after { box-sizing: border-box; }
 /* overflow-x: clip（html 與 body 都設）：旋轉的印章、卡片等裝飾超出畫面邊緣時直接裁掉，不讓整頁在手機上能左右晃動。
    用 clip 不用 hidden：clip 不會產生捲動容器，position: sticky 的捲動演出不受影響 */
+/* 捲軸樣式：極簡細長、透明軌道與溫潤墨色圓角滑塊，融入紙張質感而不突兀 */
+::-webkit-scrollbar { width: 9px; height: 9px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+  background: color-mix(in srgb, var(--ink) 20%, transparent);
+  border-radius: 999px;
+  border: 2.5px solid transparent;
+  background-clip: content-box;
+  transition: background-color .2s;
+}
+::-webkit-scrollbar-thumb:hover { background: color-mix(in srgb, var(--ink) 40%, transparent); background-clip: content-box; }
+::-webkit-scrollbar-thumb:active { background: color-mix(in srgb, var(--accent-ink) 72%, transparent); background-clip: content-box; }
+::-webkit-scrollbar-corner { background: transparent; }
+.album::-webkit-scrollbar-thumb { background: color-mix(in srgb, var(--paper) 28%, transparent); background-clip: content-box; }
+.album::-webkit-scrollbar-thumb:hover { background: color-mix(in srgb, var(--paper) 48%, transparent); background-clip: content-box; }
+@supports not selector(::-webkit-scrollbar) {
+  * { scrollbar-width: thin; scrollbar-color: color-mix(in srgb, var(--ink) 24%, transparent) transparent; }
+  .album { scrollbar-color: color-mix(in srgb, var(--paper) 30%, transparent) transparent; }
+}
+
 html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; overflow-x: clip; }
 body {
   margin: 0;

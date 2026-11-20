@@ -24,7 +24,7 @@ const firstOf = (key: string) => ARTICLES.find((a) => a.threads.includes(key as 
 <section class="fm" id="chapters" data-fm data-fm-data={JSON.stringify(data)} aria-labelledby="fm-h">
   <div class="fm-stage" data-fm-stage aria-hidden="true">
     <canvas data-fm-canvas></canvas>
-    <div class="fm-hud"><span class="eyebrow">你的這張臉</span><span class="n" data-fm-n></span><span class="c" data-fm-c></span></div>
+    <div class="fm-hud"><span class="eyebrow">人機智慧臉譜</span><span class="n" data-fm-n></span><span class="c" data-fm-c></span></div>
     <div class="fm-legend"><span><i style="--k:#c08a3e"></i>序章｜兩隻眼睛</span><span><i style="--k:#6fa83a"></i>人｜鉛筆的臉</span><span><i style="--k:#d0544c"></i>模型｜之間的碎片流</span><span><i style="--k:#2a9db5"></i>行動｜像素的臉</span></div>
     <div class="fm-toast" data-fm-toast></div>
   </div>
@@ -32,7 +32,7 @@ const firstOf = (key: string) => ARTICLES.find((a) => a.threads.includes(key as 
     <header class="fm-head">
       <p class="eyebrow">全書地圖｜22 篇觀點</p>
       <h2 id="fm-h" class="h2 serif">22 篇觀點，畫在兩張臉上</h2>
-      <p>全書分四章：序章定調，<b>People</b> 談人，<b>Model</b> 談模型，<b>A.I</b>（Actionable Insights）談行動。人這章在鉛筆的臉上，行動這章在像素的臉上，模型這章是兩張臉之間流動的碎片。每讀完一篇，就替這張臉添一塊顏色。</p>
+      <p>全書分四章：序章定調，<b>People</b> 談人，<b>Model</b> 談模型，<b>A.I</b>（Actionable Insights）談行動。人這章在鉛筆的臉上，行動這章在像素的臉上，模型這章是兩張臉之間流動的碎片。每讀完一篇，就為這張臉譜點亮一塊色彩。</p>
       <nav class="fm-jump" aria-label="章節快速跳轉">
         <span class="fm-jump-l">跳到章節</span>
         {CHAPTER_ORDER.map((ch) => <a class={`fm-pill ch-${ch}`} href={`#fm-${ch}`}>{CHAPTERS[ch].zh}<span>{CHAPTERS[ch].name}</span></a>)}
@@ -67,7 +67,7 @@ const firstOf = (key: string) => ARTICLES.find((a) => a.threads.includes(key as 
                   <a class={`fm-row ch-${ch}`} data-fm-step data-i={i} data-slug={a.slug} href={s ? `/story/${a.slug}/` : `/story/${a.slug}/original/`}>
                     <span class="no">{no(i)}</span>
                     <span class="t">{a.title}{a.subtitle && <span class="sub">{a.subtitle}</span>}</span>
-                    <span class="s">{a.authors.map((x) => x.name).join('、')}<span class="r">已上色</span></span>
+                    <span class="s">{a.authors.map((x) => x.name).join('、')}<span class="r">已點亮</span></span>
                     {s && <span class="o">{s.oneLiner}</span>}
                     <span class="m">{s ? `精華 ${storyMinutes(s)} 分鐘` : `原文約 ${a.minutes} 分鐘`}｜紙本 p.{a.pages[0]}</span>
                   </a>
@@ -79,10 +79,10 @@ const firstOf = (key: string) => ARTICLES.find((a) => a.threads.includes(key as 
       );
     })}
     <div class="fm-share" data-fm-share hidden>
-      <p class="eyebrow">你的這張臉</p>
-      <p>已上色 <b data-fm-share-n></b>。把它存成一張圖，分享給也在想這些問題的人。</p>
+      <p class="eyebrow">人機智慧臉譜</p>
+      <p>已點亮 <b data-fm-share-n></b>。把它存成一張圖，分享給也在想這些問題的人。</p>
       <div class="fm-share-actions">
-        <button type="button" class="btn" data-fm-share-go>分享你的這張臉</button>
+        <button type="button" class="btn" data-fm-share-go>分享人機智慧臉譜</button>
         <button type="button" class="btn ghost" data-fm-share-dl>下載圖片</button>
       </div>
       <p class="msg" data-fm-share-msg aria-live="polite"></p>

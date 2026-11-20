@@ -75,11 +75,11 @@ export function initFaceMap() {
   const yOff = () => (narrow ? 8 : 0);
 
   const hud = () => {
-    hudN.innerHTML = `已上色 ${read.size}<small>／22</small>`;
+    hudN.innerHTML = `已點亮 ${read.size}<small>／22</small>`;
     const a = ARTS[active];
-    hudC.textContent = a ? `${CHZ[a.ch]}｜${String(a.i + 1).padStart(2, '0')}〈${a.t}〉${read.has(a.i) ? '・已上色' : ''}`
-      : pick ? `${steps.find((s) => s.dataset.thread === pick)?.querySelector('.eyebrow')?.textContent ?? ''}｜${ARTS.filter((x) => x.th.includes(pick)).length} 篇亮起`
-      : read.size ? '讀越多，這張臉越有溫度' : '往下捲，看 22 篇在臉上的哪裡';
+    hudC.textContent = a ? `${CHZ[a.ch]}｜${String(a.i + 1).padStart(2, '0')}〈${a.t}〉${read.has(a.i) ? '・已點亮' : ''}`
+      : pick ? `${steps.find((s) => s.dataset.thread === pick)?.querySelector('.eyebrow')?.textContent ?? ''}｜共 ${ARTS.filter((x) => x.th.includes(pick)).length} 篇`
+      : read.size ? '讀越多，這張臉譜越有溫度' : '往下捲，看 22 篇在臉譜上的哪裡';
   };
 
   const build = async () => {
@@ -239,7 +239,7 @@ export function initFaceMap() {
     fresh.forEach((s, n) => readT.set(bySlug.get(s)!, now + n * 260));
     if (fresh.length) {
       const last = ARTS[bySlug.get(fresh[fresh.length - 1])!];
-      toast.textContent = fresh.length > 1 ? `你${seen.size ? '又' : '已經'}讀完 ${fresh.length} 篇，替這張臉添了 ${fresh.length} 塊顏色` : `你剛讀完〈${last.t}〉，替這張臉添了一塊顏色`;
+      toast.textContent = fresh.length > 1 ? `你${seen.size ? '又' : '已經'}讀完 ${fresh.length} 篇，點亮了臉譜上的 ${fresh.length} 塊色彩` : `你剛讀完〈${last.t}〉，點亮了臉譜上的一塊色彩`;
       toast.classList.add('on'); clearTimeout(toastT); toastT = window.setTimeout(() => toast.classList.remove('on'), 3200);
     }
     try { localStorage.setItem(SEEN, JSON.stringify(readList)); } catch { /* 儲存不能用：下次再染一次也無妨 */ }
@@ -298,7 +298,7 @@ export function initFaceMap() {
       msg.textContent = '製作卡片中…';
       const url = new URL('/', location.origin).href;
       const card = await makeCard();
-      msg.textContent = card ? await shareCanvas(card, 'decision-wisdom-my-face.png', '我的這張臉｜決策智慧 2026', `我替這張臉上色了 ${read.size}／22 篇——決策智慧 2026`, url) : '這個瀏覽器不能產生圖片。';
+      msg.textContent = card ? await shareCanvas(card, 'decision-wisdom-my-face.png', '人機智慧臉譜｜決策智慧 2026', `我在《決策智慧 2026》點亮了 ${read.size}／22 篇人機智慧臉譜`, url) : '這個瀏覽器不能產生圖片。';
     });
     share.querySelector('[data-fm-share-dl]')?.addEventListener('click', async () => {
       if (!ready) return;
