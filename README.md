@@ -3,7 +3,7 @@
 《決策智慧》10 週年 Vibe Coding 競賽參賽作品。將電通行銷傳播集團《決策智慧 2026：Agentic 時代，重塑品牌與人的真實距離》（全書 22 篇、約 14.3 萬字、閱讀時間逾 5 小時）轉譯為零框架、高可讀、完全可查證的數位策展網站。
 
 - **線上正式站**：https://agentic-era.kevin-tsou.workers.dev/
-- **設計與實作紀錄**：[PRD.md](docs/PRD.md) ｜ [製作歷程](docs/process-log.md)
+- **設計與自評文件**：[PRD.md](docs/PRD.md) ｜ [製作歷程](docs/process-log.md) ｜ [部署與資安自評](docs/security-self-assessment.md)
 
 ---
 
