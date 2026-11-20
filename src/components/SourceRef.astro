@@ -12,10 +12,10 @@ const slug = locs[0]?.slug;
 // 同一篇的引文一起高亮；跨篇引用時只開第一篇（目前故事都只引自己那篇）
 const segs = locs.filter((l) => l.slug === slug).flatMap((l) => l.segs);
 const pages = [...new Set(src.map((s) => s.page))].sort((a, b) => a - b);
-const text = label ?? `原文 p.${pages.join('、')}`;
+const text = label ?? `p.${pages.join('、')}`;
 const a = src.length ? article(src[0].article) : undefined;
 ---
 {a && (
   <a class="src-ref" href={`/story/${slug}/original/#p${pages[0]}`} data-reader={JSON.stringify({ slug, page: pages[0], segs })}
-     aria-label={`開啟原文：${cite(a)} 紙本 p.${pages.join('、')}`}>{text}</a>
+     aria-label={`對照原文：${cite(a)} 紙本 p.${pages.join('、')}`}>{text}</a>
 )}

@@ -34,7 +34,7 @@ const threadNext = THREADS.filter((t) => a.threads.includes(t.key))
   <section class="hero">
     {!RELEASE && story.status !== 'reviewed' && <p class="draft">{story.status === 'judged' ? 'AI 初評通過・待人工校閱' : '草稿：待審定'}</p>}
     <ArticleHead a={a} mode="story" storyMinutes={`${storyMinutes(story)} 分鐘`} />
-    <p class="lede one"><span class="curated">一句話｜策展者整理</span><br />{story.oneLiner}</p>
+    <p class="lede one"><span class="curated">核心一句話</span><br />{story.oneLiner}</p>
     <p class="scroll-hint">往下捲動</p>
   </section>
 

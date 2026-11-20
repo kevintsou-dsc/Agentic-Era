@@ -4,7 +4,7 @@ import type { Story } from '../../lib/story';
 // 原刊圖表：圖1 媒體三世代（d3 蹺蹺板）、圖2 AI vs PI（art ai-pi）、圖3 衡斷力五大來源（art judgment-sources）、圖4 Media++（art media-pp），圖2–4 皆依原圖重製
 export const story: Story = {
   id: 'a14',
-  status: 'judged',
+  status: 'reviewed',
   oneLiner: '當工具的門檻消失，差距就回到使用工具的人身上；衡斷力，是演算法世代最稀缺的能力。',
   scenes: [
     {
@@ -81,7 +81,6 @@ export const story: Story = {
             { article: 'a14', page: 129, text: '品牌第一次有能力看見消費者行為' },
             { article: 'a14', page: 129, text: '在於誰能更有效地運用數據預測需求 (Demand)，並在需求發生時精準出現' },
           ],
-          notes: [{ term: 'Cookies', text: '網站存放在使用者瀏覽器裡的小型資料檔，可記住登入狀態與偏好，也常被廣告平台用來追蹤瀏覽行為、投放廣告。' }],
         },
         {
           text: '後疫情時代進入「演算法世代」：短影音、社群與搜尋平台都用推薦機制決定內容曝光，消費者看到什麼由演算法主導；品牌除了理解消費者，更必須理解演算法如何理解消費者。如上圖所示，品牌與成效投資的比重也漸趨平衡。',
@@ -181,7 +180,7 @@ export const story: Story = {
             { article: 'a14', page: 132, text: 'AI 沒偷走工作，是過度依賴讓人盲目' },
             { article: 'a14', page: 132, text: '而是提升數據素養 (Data Literacy) 與批判性思考 (Critical Thinking)' },
           ],
-          more: { title: 'LinkedIn：AI 沒偷走工作', text: '原文在這段附註的 LinkedIn 貼文，延伸這張卡片「問題不在 AI，而在過度依賴」的觀點：重點是數據素養與批判性思考。', links: [{ url: 'https://www.linkedin.com/posts/smsubham_plot-twist-ai-didnt-steal-your-job-it-activity-7332387217983623168-xyTT%20/', label: 'LinkedIn 貼文', kind: 'social' }] },
+          more: { title: 'LinkedIn：AI 沒偷走工作', text: '原文在這段附註的 LinkedIn 貼文，延伸這張卡片「問題不在 AI，而在過度依賴」的觀點：重點是數據素養與批判性思考。', links: [{ url: 'https://www.linkedin.com/posts/smsubham_plot-twist-ai-didnt-steal-your-job-it-activity-7332387217983623168-xyTT/', label: 'LinkedIn 貼文', kind: 'social' }] },
         },
         {
           kicker: 'OpenAI 執行長', title: 'Sam Altman',

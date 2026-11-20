@@ -205,7 +205,33 @@ export function initSnack() {
     startLoop();
     knob.focus();
   };
+  let pendingPack: Achievement[] | null = null;
+  const setHasPack = (on: boolean) => {
+    btns.forEach((b) => { if (b.dataset.snackAlbum === 'top') b.classList.toggle('has-pack', on); });
+  };
+  const openPackSafe = (cs: Achievement[]) => {
+    const busy = Array.from(document.querySelectorAll<HTMLDialogElement>('dialog[open]')).find((d) => d !== dlg);
+    if (busy) {
+      pendingPack = cs;
+      setHasPack(true);
+      busy.addEventListener('close', () => {
+        if (!pendingPack) return;
+        const next = pendingPack;
+        pendingPack = null;
+        setTimeout(() => openPack(next), 450);
+      }, { once: true });
+      return;
+    }
+    openPack(cs);
+  };
   const openAlbumDialog = () => {
+    if (pendingPack?.length) {
+      const next = pendingPack;
+      pendingPack = null;
+      setHasPack(false);
+      openPack(next);
+      return;
+    }
     opener = document.activeElement as HTMLElement | null;
     openAlbum();
     dlg.showModal();
@@ -213,12 +239,22 @@ export function initSnack() {
   dlg.addEventListener('click', (e) => {
     if (e.target === dlg || (e.target as HTMLElement).closest('[data-snack-close]')) dlg.close();
   });
-  dlg.addEventListener('close', () => { cancelAnimationFrame(raf); opener?.focus(); });
+  dlg.addEventListener('close', () => {
+    cancelAnimationFrame(raf);
+    // 若還沒撕開就先關掉，保留未拆紅點在右上角收藏鈕，方便讀者稍後再拆
+    if (!dlg.classList.contains('is-ripped') && !$('[data-stage="pack"]').hidden && got.length) {
+      pendingPack = got;
+      setHasPack(true);
+    } else {
+      setHasPack(false);
+    }
+    opener?.focus();
+  });
 
   $('[data-snack-share]').addEventListener('click', async () => {
     const c = got[pos];
     const url = absUrl('/');
-    const text = `我在《決策智慧》拆到一張成就卡「${c.name}」：${c.line}`;
+    const text = `我在《決策智慧 2026》拆到一張成就卡「${c.name}」：${c.line}`;
     try {
       if (navigator.share) { await navigator.share({ title: '決策智慧 2026', text, url }); return; }
     } catch (e) { if ((e as DOMException).name === 'AbortError') return; }
@@ -267,7 +303,7 @@ export function initSnack() {
     const had = new Set(unlocked(before).map((c) => c.id));
     const fresh = unlocked(after).filter((c) => !had.has(c.id));
     updateBtn();
-    if (fresh.length) setTimeout(() => openPack(fresh), 500);
+    if (fresh.length) setTimeout(() => openPackSafe(fresh), 550);
   });
 
   // 預先載入補給包裡會用到的字（中文字型依字分段下載）：第一次開包時不用當場等字、排字，

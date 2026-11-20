@@ -22,7 +22,7 @@ const C = '/art/cover/';
     </div>
 
     <div class="hx-title">
-      <p class="eyebrow">電通行銷傳播集團《決策智慧 2026》｜Agentic 時代：重塑品牌與人的真實距離</p>
+      <p class="eyebrow">電通行銷傳播集團《決策智慧 2026》｜Agentic 時代，重塑品牌與人的真實距離</p>
       <h1 class="display serif">品牌離 AI 越近，<br />會離人越遠嗎？</h1>
       <p class="lede">22 篇觀點、{authors} 位作者，原文讀完約 <b>{hours} 小時 {mins} 分</b>。這裡用 1 分鐘帶你看懂整本，每篇再用幾分鐘讀完精華。</p>
       <p class="hx-actions">
@@ -42,7 +42,7 @@ const C = '/art/cover/';
 
 <style>
   /* --p：整段捲動進度 0～1 */
-  .hx { --p: 0; position: relative; height: 340svh; }
+  .hx { --p: 0; position: relative; height: 240svh; }
   .hx-stage { position: sticky; top: 0; height: 100svh; overflow: hidden; display: grid; place-items: center; }
   /* 封面的牛皮紙色；結尾淡回網頁底色，接上後面的內容 */
   .hx-bg { position: absolute; inset: 0; background: #d8c3a2 url(/art/cover/kraft.webp) 0 0 / 640px; background-blend-mode: multiply;
@@ -70,7 +70,7 @@ const C = '/art/cover/';
   .hx-quote .curated { margin: 0 0 8px; }
 
   @media (max-width: 720px) {
-    .hx { height: 300svh; }
+    .hx { height: 210svh; }
     .hx-title .display { font-size: clamp(30px, 8vw, 40px); }
     .hx-quote { padding: 18px 18px; }
   }

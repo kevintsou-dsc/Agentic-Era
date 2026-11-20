@@ -11,6 +11,12 @@ import { rich } from '../../lib/rich';
 import { storyMinutes } from '../../lib/stats';
 
 const WHERE = { intro: '兩隻眼睛', people: '鉛筆的臉', model: '兩張臉之間的碎片流', ai: '像素的臉' } as const;
+const SCENARIOS = [
+  { label: '社群與口碑提案', slug: 'algorithm-or-people' },
+  { label: '媒體預算與注意力', slug: 'buy-attention' },
+  { label: 'SEO／GEO 與轉換', slug: 'geo' },
+  { label: '組織與 AI 導入', slug: 'cultural-undercurrents' },
+] as const;
 const data = ARTICLES.map((a, i) => ({ i, slug: a.slug, ch: a.chapter, t: a.title, th: a.threads }));
 const no = (i: number) => String(i + 1).padStart(2, '0');
 const firstOf = (key: string) => ARTICLES.find((a) => a.threads.includes(key as never) && STORIES[a.id]);
@@ -26,7 +32,15 @@ const firstOf = (key: string) => ARTICLES.find((a) => a.threads.includes(key as 
     <header class="fm-head">
       <p class="eyebrow">全書地圖｜22 篇觀點</p>
       <h2 id="fm-h" class="h2 serif">22 篇觀點，畫在兩張臉上</h2>
-      <p>全書分四章：序章定調，<b>People</b> 談人，<b>Model</b> 談模型，<b>A.I</b> 談行動。人這章在鉛筆的臉上，行動這章在像素的臉上，模型這章是兩張臉之間流動的碎片。每讀完一篇，就替這張臉添一塊顏色。</p>
+      <p>全書分四章：序章定調，<b>People</b> 談人，<b>Model</b> 談模型，<b>A.I</b>（Actionable Insights）談行動。人這章在鉛筆的臉上，行動這章在像素的臉上，模型這章是兩張臉之間流動的碎片。每讀完一篇，就替這張臉添一塊顏色。</p>
+      <nav class="fm-jump" aria-label="章節快速跳轉">
+        <span class="fm-jump-l">跳到章節</span>
+        {CHAPTER_ORDER.map((ch) => <a class={`fm-pill ch-${ch}`} href={`#fm-${ch}`}>{CHAPTERS[ch].zh}<span>{CHAPTERS[ch].name}</span></a>)}
+      </nav>
+      <div class="fm-picks" aria-label="依行銷情境選讀">
+        <span class="fm-jump-l">從手邊課題開始</span>
+        {SCENARIOS.map((sc) => <a class="fm-pick" href={`/story/${sc.slug}/`}>{sc.label} →</a>)}
+      </div>
     </header>
     <div class="fm-threads">
       {THREADS.map((t, i) => {
@@ -91,20 +105,27 @@ const firstOf = (key: string) => ARTICLES.find((a) => a.threads.includes(key as 
   .fm-toast:global(.on) { opacity: 1; translate: -50% 0; }
 
   .fm-list { padding: 22svh var(--gutter) 30svh 8px; }
-  .fm-head { margin-bottom: 14svh; }
+  .fm-head { margin-bottom: 12svh; }
   .fm-head p:not(.eyebrow) { color: var(--ink-2); }
+  .fm-jump, .fm-picks { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: 16px; }
+  .fm-jump-l { font-size: var(--fs-caption); color: var(--ink-3); margin-right: 4px; }
+  .fm-pill { display: inline-flex; align-items: baseline; gap: 5px; padding: 5px 12px; border-radius: var(--r-pill); border: 1px solid var(--line); background: var(--paper); font-size: var(--fs-meta); font-weight: var(--fw-bold); text-decoration: none; color: var(--ink); transition: border-color .2s, background-color .2s; }
+  .fm-pill span { font-family: var(--font-mono); font-size: var(--fs-micro); font-weight: var(--fw-regular); color: var(--ink-3); }
+  .fm-pill:hover { border-color: var(--accent-ink); background: color-mix(in srgb, var(--accent) 45%, var(--paper)); }
+  .fm-pick { display: inline-flex; align-items: center; padding: 5px 11px; border-radius: var(--r-s); border: 1px dashed var(--line); background: transparent; font-size: var(--fs-caption); color: var(--ink-2); text-decoration: none; transition: border-color .2s, color .2s, background-color .2s; }
+  .fm-pick:hover { border-style: solid; border-color: var(--ink); color: var(--ink); background: var(--paper); }
   .fm-threads { display: grid; gap: 10svh; margin-bottom: 12svh; }
-  .fm-thread { padding: 18px 20px; border-radius: var(--r-l); border: 1px solid var(--line); background: var(--paper); opacity: .5; transition: opacity .35s, border-color .35s; }
+  .fm-thread { padding: 18px 20px; border-radius: var(--r-l); border: 1px solid var(--line); background: var(--paper); opacity: .82; transition: opacity .35s, border-color .35s; }
   .fm-thread p { margin: 0 0 10px; }
   .fm-thread:global(.on) { opacity: 1; border-color: var(--ink); }
   .btn.small { padding: 8px 14px; font-size: 14px; }
   .fm-group ul { list-style: none; margin: 0; padding: 0; }
   .fm-group + .fm-group { margin-top: 9svh; }
-  .fm-ch { display: flex; align-items: baseline; gap: 10px; margin: 0 0 8px; font-size: inherit; }
+  .fm-ch { display: flex; align-items: baseline; gap: 10px; margin: 0 0 8px; font-size: inherit; scroll-margin-top: 84px; }
   .fm-ch .serif { font-size: var(--fs-h2); font-weight: 900; line-height: 1; }
   .fm-ch .en { font-family: var(--font-mono); font-size: var(--fs-caption); letter-spacing: .16em; text-transform: uppercase; color: var(--ink-3); }
   .fm-ch em { margin-left: auto; font-style: normal; font-size: var(--fs-caption); color: var(--ink-3); }
-  .fm-row { position: relative; display: grid; grid-template-columns: 3.2rem 1fr; gap: 0 12px; padding: 16px 0 18px 14px; border-top: 1px solid var(--line); color: var(--ink); text-decoration: none; opacity: .45; transition: opacity .35s; }
+  .fm-row { position: relative; display: grid; grid-template-columns: 3.2rem 1fr; gap: 0 12px; padding: 16px 0 18px 14px; border-top: 1px solid var(--line); color: var(--ink); text-decoration: none; opacity: .78; transition: opacity .35s; }
   .fm-row::before { content: ""; position: absolute; left: 0; top: 16px; bottom: 18px; width: 4px; border-radius: 2px; background: var(--accent-ink); scale: 1 0; transform-origin: top; transition: scale .4s var(--ease-out); }
   .fm-row:global(.on), .fm-row:hover, .fm-row:focus-visible { opacity: 1; }
   .fm-row:global(.on)::before { scale: 1 1; }
@@ -126,13 +147,15 @@ const firstOf = (key: string) => ARTICLES.find((a) => a.threads.includes(key as 
 
   @media (max-width: 860px) {
     .fm { grid-template-columns: 1fr; }
-    .fm-stage { z-index: 2; height: 42svh; min-height: 0; background: linear-gradient(var(--paper) 88%, transparent); }
-    .fm-hud { top: 8px; }
-    .fm-hud .n { font-size: 24px; }
-    .fm-legend { display: none; }
-    .fm-toast { bottom: 10px; font-size: 13px; }
+    .fm-stage { z-index: 2; height: 28svh; min-height: 190px; background: linear-gradient(var(--paper) 88%, transparent); }
+    .fm-hud { top: 6px; }
+    .fm-hud .n { font-size: 22px; }
+    .fm-legend { bottom: 4px; gap: 2px 10px; font-size: 10px; }
+    .fm-legend i { width: 8px; height: 8px; margin-right: 3px; }
+    .fm-toast { bottom: 26px; font-size: 12px; }
     .fm-list { padding: 4svh var(--gutter) 30svh; }
     .fm-head { margin-bottom: 8svh; }
+    .fm-ch { scroll-margin-top: calc(28svh + 72px); }
     .fm-threads { gap: 6svh; margin-bottom: 8svh; }
     .fm-row { grid-template-columns: 2.6rem 1fr; }
     .fm-row .no { font-size: 26px; }

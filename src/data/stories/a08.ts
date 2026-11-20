@@ -4,7 +4,7 @@ import type { Story } from '../../lib/story';
 // 原刊圖表：圖1 魔女宅急便、圖2 憤怒鳥、圖3 Catchplay+ 短劇、圖4 啦啦隊、圖5 鑑定師（照片）；圖6 IP 生態系（d3 循環）
 export const story: Story = {
   id: 'a08',
-  status: 'judged',
+  status: 'reviewed',
   oneLiner: '品牌可以買到曝光，卻買不到記憶。娛樂與運動透過真實的情緒與體驗，創造粉絲共同經歷的記憶，是把注意力累積成品牌心智資產（消費者心中長期留下的品牌印象）的關鍵。',
   scenes: [
     {
@@ -80,7 +80,6 @@ export const story: Story = {
       intro: {
         text: '那麼，這些文化討論在哪裡發生？從二次元、周邊商品、2.5 次元、經典 IP，到短劇與運動，這六個現場是文化佔比被重新分配的第一線，也是品牌累積共同記憶的入口。',
         src: [{ article: 'a08', page: 60, text: '以下六個現場是文化占比被重新分配的第一線，也是品牌累積共同記憶的六個入口' }],
-        notes: [{ term: '二次元', text: '源自日文，指動畫、漫畫、遊戲等以平面畫面呈現的作品與角色，也泛指喜愛這類作品的粉絲文化。' }, { term: 'IP', text: '原意是智慧財產，在娛樂與行銷領域泛指角色、作品等可授權延伸的內容資產，例如拍成影劇、做成周邊或辦成展覽。' }],
       },
       panels: [
         {
@@ -90,7 +89,6 @@ export const story: Story = {
             { article: 'a08', page: 60, text: '2026 年台北國際動漫節吸引超過 50.5 萬人次參與，創造約 2.5 億元商機' },
             { article: 'a08', page: 60, text: '被納入二創與應援的品牌，才真正進入了這個生態' },
           ],
-          notes: [{ term: '二創', text: '二次創作的簡稱，指粉絲以既有作品的角色或故事為基礎，自行創作圖畫、小說、影片等新內容。' }, { term: '應援物', text: '指粉絲為支持喜愛的偶像或角色而製作、使用的物品，例如手幅、燈牌、貼紙，常在活動現場展示或彼此交換。' }],
           more: { title: '動漫節的數字', text: '展區營收與大師、聲優活動的參與人數，顯示動漫節的熱度不只在入場人次。', quote: { article: 'a08', page: 60, text: '其中，臺灣漫畫館營收突破 200 萬元，大師與聲優活動更吸引超過 2.8 萬人次參與' }, links: [{ url: 'https://m.my-formosa.com.tw/DOC_223557.htm', label: '動漫節報導', kind: 'web' }, { url: 'https://reading.udn.com/read/story/124410/9324082', label: '臺灣漫畫館報導', kind: 'web' }] },
         },
         {
@@ -100,7 +98,6 @@ export const story: Story = {
             { article: 'a08', page: 60, text: '周邊商品正逐漸成為泛娛樂粉絲最共通的消費語言' },
             { article: 'a08', page: 60, text: '過去是買商品送周邊；如今則是為了周邊而購買商品' },
           ],
-          notes: [{ term: '泛娛樂', text: '泛指動漫、遊戲、影視、音樂、偶像等多種娛樂領域；泛娛樂粉絲就是喜愛這些內容的各類粉絲。' }],
           more: { title: '一天賣出人民幣 300 萬元', text: '周邊不再是贈品，而是消費動機本身：演唱會快閃店的單日業績就是例子。', quote: { article: 'a08', page: 60, text: '五月天北京演唱會期間的相關快閃店，單日銷售額突破人民幣 300 萬元' } },
         },
         {
@@ -141,7 +138,6 @@ export const story: Story = {
             { article: 'a08', page: 62, text: '過去三個月曾觀看短影音的 Z 世代高達97%' },
             { article: 'a08', page: 62, text: '短劇正快速成為下一個內容競爭的新戰場' },
           ],
-          notes: [{ term: '用戶教育', text: '產品與行銷用語，指讓使用者認識、學會並習慣某種新產品或新的使用方式。' }],
           more: {
             title: '短劇的五大發展方向',
             image: { src: '/fig/a08/p62-1.webp', alt: 'Catchplay+ 與 SLL 合作的直式短劇', w: 1270, h: 575, caption: '台韓跨國合作不一定走大螢幕或電視劇，Catchplay+ 與韓國知名製作單位 SLL 直攻觀眾近期最愛的直式輕短劇', credit: '資料來源：截自 Catchplay+ 網站' },
@@ -226,7 +222,6 @@ export const story: Story = {
         {
           text: '未來的機會是一張生態系：以 IP 為核心，娛樂、體驗、粉絲社群與商業四個面向相互驅動，形成閉環。',
           src: [{ article: 'a08', page: 65, text: '四大面向相互驅動，形成 IP 生態系閉環' }],
-          notes: [{ term: '閉環', text: '指流程首尾相接，最後一個環節的成果會回頭帶動起點、開啟下一輪，而不是做完一次就結束。' }],
         },
         {
           text: '娛樂內容（影視、音樂、遊戲、偶像與演唱會）先建立粉絲的情感連結；接著，線上互動、主題展覽與快閃活動等沉浸式體驗，再提升熱度與忠誠度。',
@@ -244,12 +239,12 @@ export const story: Story = {
             { article: 'a08', page: 65, text: '粉絲口碑傳播' },
             { article: 'a08', page: 65, text: '激發 UGC 與二次創作' },
           ],
+          notes: [{ term: 'UGC', text: 'User-Generated Content（使用者生成內容），指由一般消費者或粉絲自發創作並分享的開箱、心得、迷因與二次創作。' }],
         },
         {
           text: '商業端則透過周邊商品、授權合作、電商零售與 IP 聯名多元變現，讓情感價值與商業價值形成正向循環。',
           src: [
             { article: 'a08', page: 65, text: '多元變現模式擴大 IP 商業版圖' },
-            { article: 'a08', page: 65, text: '周邊商品、授權合作；電商零售、IP 聯名；實現商業價值' },
             { article: 'a08', page: 65, text: '周邊商品、授權合作；電商零售、IP 聯名；實現商業價值' },
             { article: 'a08', page: 65, text: '打造粉絲經濟新生態，創造情感價值與商業價值的正向循環' },
           ],

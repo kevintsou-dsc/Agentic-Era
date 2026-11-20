@@ -4,7 +4,7 @@ import type { Story } from '../../lib/story';
 // 原刊圖表：圖1 Doom Loop（d3 循環）、圖2 AIDMA→AICAS（d3 階段）、圖3 媒體布局矩陣、圖4 自願 vs 被迫觀看、圖5 CeraVe（照片）
 export const story: Story = {
   id: 'a10',
-  status: 'draft',
+  status: 'reviewed',
   oneLiner: '曝光正在通膨、注意力正在升值。被看進去、被想起來、被帶進決策的曝光，才算數。',
   scenes: [
     {
@@ -17,7 +17,7 @@ export const story: Story = {
           src: [
             { article: 'a10', page: 73, text: '報表上的數字越來越漂亮：曝光越買越多、單次成本越壓越低、效率年年進步' },
             { article: 'a10', page: 73, text: '可是一打開品牌市調，卻是另一個樣貌：知名度遇到瓶頸、指名度下滑' },
-            { article: 'a10', page: 73, text: '消費者描述你的品牌時，用的全是別' },
+            { article: 'a10', page: 73, text: '消費者描述你的品牌時，用的全是別人家的形容詞' },
           ],
           quote: { article: 'a10', page: 73, text: '昨天你一定滑過上百則內容，但如果我問你現在還記得幾支廣告，數得出來嗎？' },
         },
@@ -52,8 +52,8 @@ export const story: Story = {
             },
             {
               label: '效果停滯', sub: 'PLATEAUS',
-              desc: '廣告效果進入高原期／停滯（Advertising playback plateaus）',
-              extra: '高原期是指投入持續增加、邊際效果卻不再成長。原因通常是能被收割的既有需求已經被買完，新的潛在顧客又沒有被培養，於是成本越壓越低、成長卻停住。',
+              desc: '廣告效果進入高原期／停滯（Advertising payback plateaus）',
+              extra: '高原期是指投入持續增加、邊際效果卻不再成長。原因通常是能被收割的既有需求已經被買完，新的潛在顧客又沒有被培養，於是成本越壓越低、成長卻停住。（註：原刊紙本圖表誤植為 playback，對照 WARC 原報告應為 payback。）',
             },
             {
               label: '錯誤優化', sub: 'FAULTY METRICS',
@@ -62,7 +62,7 @@ export const story: Story = {
             },
           ],
         },
-        source: '圖：廣告末日循環 The Doom Loop｜資料來源 WARC《The Multiplier Effect》(2025)，徐莉媛〈別買曝光了〉紙本 p.73。滑過節點看完整標籤與補充說明。',
+        source: '圖：廣告末日循環 The Doom Loop｜資料來源 WARC《The Multiplier Effect》(2025)，徐莉媛〈別買曝光了〉紙本 p.73（註：原刊圖誤植 playback，依 WARC 原報告校為 payback）。滑過節點看完整標籤與補充說明。',
       },
       src: [{ article: 'a10', page: 73, text: '廣告惡性循環 The Doom Loop 指得是品牌投廣一再要求成效優化，品牌卻陷入萎縮的惡性循環' }],
       figures: [
@@ -89,6 +89,7 @@ export const story: Story = {
             { article: 'a10', page: 73, text: '陷入成效越優化、品牌越萎縮的惡性循環「The Doom Loop」' },
             { article: 'a10', page: 73, text: '資料來源：WARC《The Multiplier Effect》(2025)' },
           ],
+          notes: [{ term: 'WARC', text: 'World Advertising Research Center，全球具指標性的廣告與行銷實效研究機構，定期發布品牌與媒體成效報告。' }],
         },
         {
           text: '預算沒少、聲量沒小，品牌卻在競品的雜訊裡一點一點變淡。曝光不是不重要，而是必須被重新定義。',
@@ -266,7 +267,6 @@ export const story: Story = {
             { article: 'a10', page: 76, text: '內容完成驗證' },
             { article: 'a10', page: 76, text: 'USP與體驗證據同步推進' },
           ],
-          notes: [{ term: '矩陣', text: '指作者整理的「AI 影響消費者決策下的媒體布局矩陣」，也就是上方的四格圖：以消費者問題一致性與主張驗證門檻兩軸交叉，判斷品牌該主攻品牌記憶、內容證據或分眾收割。從前一則起，四則泡泡各講一格（p.76）。' }],
         },
         {
           text: '當需求分歧、主張易證明，矩陣給的做法是「各個擊破」：先拆解不同的需求情境，優先攻高商機的場景，再測出最有效的轉換切角，也就是最能促成購買的訴求。',

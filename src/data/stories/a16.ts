@@ -5,7 +5,7 @@ import type { Story } from '../../lib/story';
 // 文字結構：水面上 vs 水面下（d3 冰山）、BCG 調查（長條）、3C 策略行動與案例（hscroll）
 export const story: Story = {
   id: 'a16',
-  status: 'judged',
+  status: 'reviewed',
   oneLiner: 'AI 轉型不是技術軍備競賽，而是組織文化的重塑；先看見水面下的文化暗流，才能釋放真實的轉型動能。',
   scenes: [
     {
@@ -119,9 +119,9 @@ export const story: Story = {
             { article: 'a16', page: 146, text: '47.8% 已進行 AI 專案導入或進行規模化的業務應用。但是真正完全整合 AI 於核心營運流程、決策模式與組織文化的企業僅有 6.6%' },
             { article: 'a16', page: 147, text: '電通顧問以全員線上問卷方式，再輔以利害關係人訪談' },
           ],
-          notes: [{ term: '規模化應用', text: '指 AI 從少數團隊的試用或試點，擴大到更多部門與業務流程中正式使用。' }, { term: '利害關係人', text: '指會受到某項決策影響、或能影響決策結果的人，例如員工、主管、股東與合作夥伴。' }],
+          notes: [{ term: '規模化應用', text: '指 AI 從少數團隊的試用或試點，擴大到更多部門與業務流程中正式使用。' }],
           more: {
-            title: '典型病灶：經驗倚賴指數過高', text: '「經驗倚賴」是常見的文化暗流：導入了 AI，關鍵時刻卻仍回到憑直覺拍板。',
+            title: '典型病灶：經驗依賴指數過高', text: '「經驗依賴」是常見的文化暗流：導入了 AI，關鍵時刻卻仍回到憑直覺拍板。',
             quote: { article: 'a16', page: 147, text: '但是面對關鍵決策時，高層又回復以往仰賴直覺，忽略 AI 分析與預測的客觀數據，白白浪費了 AI 真正可以驅動的文化效益。' },
             links: [{ url: 'https://aif.tw/event/ai-research/', label: '台灣產業 AI 化大調查', kind: 'report' }],
           },
@@ -197,7 +197,6 @@ export const story: Story = {
             { article: 'a16', page: 147, text: '讓組織易陷入「願景幻覺」與「創新落差」' },
             { article: 'a16', page: 147, text: '人人都在談 AI，卻沒有人敢真正拿它來改動流程' },
           ],
-          notes: [{ term: '損益表', text: '企業的財務報表之一，列出一段期間的營收、成本與費用，最後算出賺錢還是虧損。' }],
         },
       ],
     },

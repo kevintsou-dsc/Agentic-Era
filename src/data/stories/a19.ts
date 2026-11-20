@@ -5,7 +5,7 @@ import type { Story } from '../../lib/story';
 // 跨國美妝集團案例的四個轉變（hscroll）
 export const story: Story = {
   id: 'a19',
-  status: 'judged',
+  status: 'reviewed',
   oneLiner: '被 AI 看見是技術，被消費者記住才是本事；當所有品牌都被 AI 引用，比的是溫度與情境。',
   scenes: [
     {
@@ -19,6 +19,7 @@ export const story: Story = {
             { article: 'a19', page: 169, text: '過去二十年，品牌在數位世界裡砸下重金，只為了追逐同一個獎項：被看見(Visibility)' },
             { article: 'a19', page: 169, text: '使得許多企業開始積極投入 GEO (生成式引擎優化)，瘋狂追求被 AI 引用、被 AI 推薦' },
           ],
+          notes: [{ term: 'GEO', text: 'Generative Engine Optimization（生成式引擎優化），相對於傳統爭取搜尋排名的 SEO，GEO 著重讓品牌內容能被 ChatGPT、Perplexity、Google AI Overview 等生成式搜尋引擎正確理解與引用。' }],
         },
         {
           text: '但消費者看完 AI 給的推薦與比較，不僅沒有立刻行動，反而轉向 Dcard、Threads、PTT 搜尋「真實評價」或「缺點」。',
@@ -114,7 +115,6 @@ export const story: Story = {
             { article: 'a19', page: 171, text: '在 GEO，我們必須研究「消費者是在什麼情境下產生需求」' },
             { article: 'a19', page: 171, text: '關鍵字只是需求被壓縮後的樣子' },
           ],
-          notes: [{ term: 'SEO', text: '指搜尋引擎優化，調整網站內容與結構，讓網頁在 Google 等搜尋結果中排得更前面、被更多人點進來。' }],
           more: {
             title: '什麼是品類進入點（CEPs）？',
             quote: { article: 'a19', page: 171, text: '指的是任何會讓消費者進入某個品類思考的情境、需求或線索，例如朋友來訪、小孩出生、下午想提神，或家電突然故障。' },

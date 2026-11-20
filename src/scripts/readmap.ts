@@ -2,7 +2,7 @@
 // 「已讀」＝帶走的問題（.asks）在視窗內連續停留 2 秒（docs/design-review/p1-02-ruling.md L5）；2026-11-15 起，捲到分享區或「接下來」停留 1 秒也算。
 // 儲存無法使用或內容壞掉時：只標示目前這篇，不顯示任何數字。
 const KEY = 'dw-read';
-const DWELL = 2000;
+const DWELL = 3000;
 
 export function initReadMap() {
   const map = document.querySelector<HTMLElement>('[data-readmap]');
@@ -60,8 +60,8 @@ export function initReadMap() {
     clearTimeout(timers.get(e.target));
     if (e.isIntersecting) timers.set(e.target, window.setTimeout(mark, ms));
   });
-  const io = new IntersectionObserver(watch(DWELL), { rootMargin: '-30% 0px -30% 0px' }); // 進入視窗中段才算（問題清單在手機上可能比一屏高，不用比例門檻）
-  const io2 = new IntersectionObserver(watch(1000));
+  const io = new IntersectionObserver(watch(DWELL), { rootMargin: '-30% 0px -30% 0px' }); // 進入視窗中段停留 3 秒才算，讓讀者先看完帶走的問題
+  const io2 = new IntersectionObserver(watch(900));
   io.observe(asks);
   ends.forEach((el) => io2.observe(el));
 }

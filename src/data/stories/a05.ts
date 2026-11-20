@@ -5,7 +5,7 @@ import type { Story } from '../../lib/story';
 // 文字結構：看似 vs 背後（清單）、黃仁勳三能力（逐段清單）、智能 vs 人性（清單）、五個方向（hscroll）
 export const story: Story = {
   id: 'a05',
-  status: 'judged',
+  status: 'reviewed',
   oneLiner: '策略人在 AI 時代，從只決定品牌「說什麼」的傳播企劃，進化為串聯商業、人性洞察與未來商機的增長架構師。',
   scenes: [
     {
@@ -160,7 +160,6 @@ export const story: Story = {
             { article: 'a05', page: 39, text: '從「我會很帥 coming son…」搭配錯誤英文的納豆，到三天後切換成「敢講最帥」的鳳小岳' },
             { article: 'a05', page: 40, text: '數據決定我們如何精準抵達，人性洞察決定我們為何能真正打動' },
           ],
-          notes: [{ term: '納豆', text: '台灣的綜藝節目主持人，是大眾熟悉的藝人。' }, { term: '鳳小岳', text: '台灣演員，演出電影與電視劇，是大眾熟悉的藝人。' }],
         },
       ],
       src: [{ article: 'a05', page: 39, text: 'AI 英文口說 App Speak 的案例，正好說明了 AI 與數據時代中，策略如何同時結合精準與人性' }],

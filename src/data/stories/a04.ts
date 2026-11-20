@@ -5,7 +5,7 @@ import type { Story } from '../../lib/story';
 // 文字數據：89% CMO（大數字＋人形圖）；增長三角 12 項專業（hscroll）
 export const story: Story = {
   id: 'a04',
-  status: 'judged',
+  status: 'reviewed',
   oneLiner: '未來的競爭不是 Human versus AI，而是 Human plus AI；演算法決定效率，人性決定偏好。',
   scenes: [
     {
@@ -31,7 +31,6 @@ export const story: Story = {
             { article: 'a04', page: 29, text: '而是能夠同時整合聲量、體驗、流量與轉單的端到端夥伴' },
             { article: 'a04', page: 29, text: 'AI 仍無法取代人類對文化的理解、對人性的洞察、對品味的判斷' },
           ],
-          notes: [{ term: '聲量', text: '指品牌、產品或話題在社群、新聞、論壇等管道被提及與討論的總量，常用來看品牌受關注的熱度。' }, { term: '轉單', text: '指把消費者的興趣、詢問或瀏覽，實際轉成下單購買，也就是完成交易。' }],
         },
       ],
     },
@@ -179,7 +178,6 @@ export const story: Story = {
             { article: 'a04', page: 33, text: '品牌偏好不是一次廣告活動能創造的結果，而是長期在文化中累積的信任、記憶與情感資產' },
             { article: 'a04', page: 33, text: '當品牌能夠擁有自己的世界觀、角色、內容資產與粉絲參與機制' },
           ],
-          notes: [{ term: 'IP', text: '原意是智慧財產，在娛樂與行銷領域常指角色、故事、作品等有版權的內容，可授權延伸成周邊商品、聯名或其他內容。' }],
           more: {
             title: '真實的線下連結更珍貴', text: '數位訊息越多、內容越疲勞，能面對面的真實連結就越稀缺，也越珍貴。',
             quote: { article: 'a04', page: 33, text: '同時，當消費者面對越來越多數位訊息與內容疲勞，真實的線下連結將變得更加珍貴。' },
@@ -213,7 +211,6 @@ export const story: Story = {
             { article: 'a04', page: 34, text: '品牌需要的是一套能夠持續學習、即時優化' },
             { article: 'a04', page: 34, text: '這讓整合行銷不再只是事前規劃好的 campaign，而是一套能夠持續調整、即時回應市場變化的動態顧客旅程' },
           ],
-          notes: [{ term: 'campaign', text: '指一檔行銷活動，品牌在一段期間內圍繞同一個目標與主題，通常跨多個管道執行的一整套宣傳與溝通。' }],
         },
       ],
     },

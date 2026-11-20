@@ -5,7 +5,7 @@ import type { Story } from '../../lib/story';
 // 圖3 五大防禦支柱（清單）；文字數據：Gartner 消費者調查（長條）。p.137 插畫為裝飾，不使用
 export const story: Story = {
   id: 'a15',
-  status: 'judged',
+  status: 'reviewed',
   oneLiner: '顧客的下一步不再只由企業的流程決定；企業需要一張決策地圖，看見顧客在哪裡猶豫、需要什麼支援，並提供可信任的下一步。',
   scenes: [
     {
@@ -346,6 +346,7 @@ export const story: Story = {
             { article: 'a15', page: 142, text: '必須在設計初期將個資法、GDPR 規範架構化' },
             { article: 'a15', page: 142, text: '建立完整的互動日誌（Log），所有軌跡皆須可追溯、可回溯，作為異常發生時釐清責任的商務依據' },
           ],
+          notes: [{ term: 'GDPR', text: '歐盟《一般資料保護規則》（General Data Protection Regulation），全球最嚴格的個資與隱私保護法規之一，跨國品牌與數據系統皆須遵循。' }],
         },
       ],
     },

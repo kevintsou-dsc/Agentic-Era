@@ -18,4 +18,4 @@
   著作權歸原刊所有。
 
 /* 技術 */
-  Astro、D3、手寫 SVG 與 Canvas；部署於 Cloudflare Workers。
+  Astro、D3、手寫 SVG 與 Canvas；部署於 Cloudflare Pages。

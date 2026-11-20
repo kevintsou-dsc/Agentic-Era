@@ -11,8 +11,9 @@ interface Props {
   crumb?: string;
   /** 分享預覽圖（public/og/，由 npm run og 產生）；沒給就用首頁那張 */
   og?: string;
+  ogType?: 'website' | 'article';
 }
-const { title, description, chapter = 'people', crumb, og = '/og/home.png' } = Astro.props;
+const { title, description, chapter = 'people', crumb, og = '/og/home.png', ogType = 'article' } = Astro.props;
 // og:image 多數平台要絕對網址：astro.config 設了 site（正式網域）就用絕對網址，否則先用站內路徑
 const ogImage = Astro.site ? new URL(og, Astro.site).href : og;
 const canonical = Astro.site ? new URL(Astro.url.pathname, Astro.site).href : null;
@@ -51,7 +52,7 @@ import SnackPack from '../components/SnackPack.astro';
     <meta name="description" content={description} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:type" content="article" />
+    <meta property="og:type" content={ogType} />
     <meta property="og:site_name" content="決策智慧 2026" />
     <meta property="og:locale" content="zh_TW" />
     {canonical && <link rel="canonical" href={canonical} />}
@@ -84,16 +85,23 @@ import SnackPack from '../components/SnackPack.astro';
     <div class="progress" aria-hidden="true"><span data-progress></span></div>
     <header class="topbar">
       <a href="/" class="brand" aria-label="決策智慧 2026 首頁（dentsu）"><DentsuLogo class="brand-logo" /><span class="brand-sep" aria-hidden="true"></span><span class="mono">決策智慧 2026</span></a>
-      <span class="top-r">{crumb && <span class="crumb">{crumb}</span>}<button type="button" class="top-progress" data-snack-album="top" aria-label="成就卡收藏" title="成就卡收藏" hidden><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><rect x="7" y="3.5" width="12" height="16" rx="2" transform="rotate(8 13 11.5)"/><rect x="4.5" y="5" width="12" height="16" rx="2" fill="var(--paper)"/><path d="M10.5 9.6l1.1 2.2 2.4.35-1.75 1.7.4 2.4-2.15-1.13-2.15 1.13.4-2.4L7 12.15l2.4-.35z" fill="currentColor" stroke="none"/></svg></button></span>
+      <span class="top-r">
+        {crumb && <span class="crumb">{crumb}</span>}
+        <nav class="top-nav" aria-label="全站導覽">
+          <a href="/#chapters">目錄</a>
+          <a href="/about/">關於</a>
+        </nav>
+        <button type="button" class="top-progress" data-snack-album="top" aria-label="成就卡收藏" title="成就卡收藏" hidden><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><rect x="7" y="3.5" width="12" height="16" rx="2" transform="rotate(8 13 11.5)"/><rect x="4.5" y="5" width="12" height="16" rx="2" fill="var(--paper)"/><path d="M10.5 9.6l1.1 2.2 2.4.35-1.75 1.7.4 2.4-2.15-1.13-2.15 1.13.4-2.4L7 12.15l2.4-.35z" fill="currentColor" stroke="none"/></svg></button>
+      </span>
     </header>
     <main id="main">
       <slot />
     </main>
     <footer class="footer">
       <div class="wrap">
-        <p class="foot-brand"><a href="https://www.dentsu.com/" target="_blank" rel="noopener noreferrer" aria-label="dentsu 台灣官網"><DentsuLogo class="foot-logo" /></a><span>電通行銷傳播集團｜決策智慧 2026</span></p>
+        <p class="foot-brand"><a href="https://www.dentsu.com/tw/zh" target="_blank" rel="noopener noreferrer" aria-label="dentsu 台灣官網"><DentsuLogo class="foot-logo" /></a><span>電通行銷傳播集團｜決策智慧 2026</span></p>
         <p>內容出自 電通行銷傳播集團《決策智慧 2026：Agentic 時代，重塑品牌與人的真實距離》。所載編輯內容之著作權為原刊所有。</p>
-        <p><a href="/#chapters">依章節找文章</a>　<a href="/about/">關於本作品</a>　<a href={repo}>原始碼</a></p>
+        <p><a href="/#chapters">依章節找文章</a>　<a href="/about/">關於本作品</a>　<a href={repo} target="_blank" rel="noopener noreferrer">原始碼</a></p>
       </div>
     </footer>
     <SnackPack />
@@ -152,16 +160,22 @@ import SnackPack from '../components/SnackPack.astro';
 <style>
   .skip { position: absolute; left: -999px; top: 8px; z-index: 60; background: var(--ink); color: var(--paper); padding: 8px 14px; border-radius: var(--r-s); }
   .skip:focus { left: 8px; }
-  .top-r { display: flex; align-items: center; gap: 10px; min-width: 0; }
-  .top-progress { flex: none; display: grid; place-items: center; width: 32px; height: 32px; padding: 0; border-radius: 50%; border: 1px solid var(--ink); background: var(--paper); color: var(--ink); cursor: pointer; }
+  .top-r { display: flex; align-items: center; gap: 12px; min-width: 0; }
+  .top-nav { flex: none; display: inline-flex; align-items: center; gap: 12px; font-size: var(--fs-meta); color: var(--ink-2); }
+  .top-nav a { padding: 4px 2px; transition: color .2s; white-space: nowrap; }
+  .top-nav a:hover { color: var(--ink); }
+  .top-progress { position: relative; flex: none; display: grid; place-items: center; width: 32px; height: 32px; padding: 0; border-radius: 50%; border: 1px solid var(--ink); background: var(--paper); color: var(--ink); cursor: pointer; }
   .top-progress[hidden] { display: none; }
   .top-progress:hover { background: var(--accent); }
-  .crumb { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 60vw; }
+  .top-progress:global(.has-pack)::after { content: ""; position: absolute; top: -2px; right: -2px; width: 9px; height: 9px; border-radius: 50%; background: var(--signal); box-shadow: 0 0 0 2px var(--paper); animation: pack-dot 1.8s ease-in-out infinite; }
+  @keyframes pack-dot { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.28); } }
+  .crumb { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 46vw; }
   .brand { flex: none; display: inline-flex; align-items: center; gap: 10px; min-height: 32px; color: var(--ink); white-space: nowrap; }
-  /* 手機的文章頁：頂欄放不下「決策智慧 2026」和文章名稱兩段字（原本刊名會折成兩行、把頂欄撐高），只留標誌，把寬度讓給文章名稱 */
-  @media (max-width: 480px) {
+  /* 手機的文章頁：頂欄放不下刊名與文章名稱，只留標誌，把寬度讓給文章名稱與精簡導覽 */
+  @media (max-width: 560px) {
     .topbar:has(.crumb) .brand :is(.mono, .brand-sep) { display: none; }
-    .crumb { max-width: none; }
+    .crumb { max-width: 38vw; }
+    .top-nav { gap: 8px; font-size: var(--fs-caption); }
   }
   .brand :global(.brand-logo) { width: 64px; height: auto; color: var(--ink); }
   .brand-sep { width: 1px; height: 14px; background: var(--ink-3); }

@@ -28,7 +28,7 @@ export function achievements(): Achievement[] {
     [3, '上手', '三篇了，開始看得出全書在談什麼。', 'people'],
     [5, '五篇在手', '五個觀點，已經夠開一場讀書會。', 'model'],
     [half, '讀過一半', `${half} 篇，全書過半。`, 'ai'],
-    [total, '全書讀完', `《決策智慧》${total} 篇，全部讀過一遍。`, 'people'],
+    [total, '全書讀完', `《決策智慧 2026》${total} 篇，全部讀過一遍。`, 'people'],
   ];
   const threadColor: Record<string, Chapter> = { trust: 'model', judge: 'people', agent: 'ai', memory: 'intro' };
   return [

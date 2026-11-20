@@ -5,7 +5,7 @@ import type { Story } from '../../lib/story';
 // 文字數據：DHL 70% 透過社群購買（大數字＋人形圖）；社群內容分工（d3 循環）；情境分眾、文化語言（清單）
 export const story: Story = {
   id: 'a07',
-  status: 'judged',
+  status: 'reviewed',
   oneLiner: 'AI Agent 能替人搜尋、比較，未來甚至協助購買，但它接手的是交易流程；品牌要創造的是購買動機，在 AI 介入之前，先讓消費者心裡想起你。',
   scenes: [
     {
@@ -115,7 +115,6 @@ export const story: Story = {
             { article: 'a07', page: 53, text: 'Gogoro 毫無預警發出了一張玩具總動員中暴龍玩具' },
             { article: 'a07', page: 53, text: '每一句回的都是玩具總動員中玩具們的經典台詞、越已讀亂回人們越想回' },
           ],
-          notes: [{ term: 'Gogoro', text: '台灣的電動機車品牌，文中案例是它在 Facebook 與 Instagram 專頁上替新車預熱的社群操作。' }, { term: '死亡角度', text: '網路流行語，指拍起來特別不討喜的角度，例如由下往上拍，容易拍出雙下巴、臉顯得比較大。' }, { term: '小編', text: '指負責經營品牌社群帳號的人員，平常發文、回覆網友留言，對外代表品牌在社群上說話。' }],
         },
         {
           text: '預熱期車子只是一個朦朧的影子，主角是被玩具逼瘋的小編，把大家「人與玩具玩在一起」的童年回憶復活成現實版本，新車就是家裡到來的「新玩具」。互動最終超標 152%，銷售數據也證明這台車打進了家庭客群的心。',
@@ -198,7 +197,6 @@ export const story: Story = {
             { article: 'a07', page: 55, text: '商品才會從「被理解」進一步變成「被感覺到」' },
             { article: 'a07', page: 55, text: '絕對不是一年一個 Campaign、找 100 個 KOC 來實證、用 AI 做一支影片能讓消費者感受到的' },
           ],
-          notes: [{ term: 'KOC', text: 'Key Opinion Consumer 的縮寫，指在社群分享開箱與使用心得的一般消費者或小型創作者。' }],
         },
       ],
     },

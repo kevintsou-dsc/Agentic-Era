@@ -4,7 +4,7 @@ import type { Story } from '../../lib/story';
 // 原刊圖片：圖1 彩虹雲、圖2 Prada、圖3 樂高、圖4 Coinbase、圖5 The RealReal、圖6 南山人壽、圖7 Speak（全部使用）
 export const story: Story = {
   id: 'a03',
-  status: 'judged',
+  status: 'reviewed',
   oneLiner: '在 AI 真假難辨的時代，品牌要用真實感、人性與情感認同，重建別人複製不了的信任。',
   scenes: [
     {
@@ -53,7 +53,10 @@ export const story: Story = {
             { article: 'a03', page: 21, text: '底下留言卻是：「這是 AI slop 吧？」' },
             { article: 'a03', page: 21, text: '近五十人的團隊在攝影棚實景拍攝，藝術家 Jordan Wolfson 手繪設計，特效由二十多人的 CGI 團隊後製完成' },
           ],
-          notes: [{ term: 'CGI', text: '電腦生成影像的英文縮寫，指用電腦軟體製作的畫面與特效，也就是常說的電腦特效，常用在電影和廣告。' }],
+          notes: [
+            { term: 'AI slop', text: '指用 AI 大量生成的低品質、缺乏靈魂與原創性的同質化內容，常被用來形容充斥社群版面的廉價 AI 產物。' },
+            { term: 'CGI', text: '電腦生成影像的英文縮寫，指用電腦軟體製作的畫面與特效，也就是常說的電腦特效，常用在電影和廣告。' },
+          ],
           more: {
             title: '案例：Prada × Jordan Wolfson',
             image: { src: '/fig/a03/p22-2.webp', alt: 'Prada 2026 春夏形象廣告中明星與人偶合影', w: 765, h: 526, caption: '大明星們與看似荒謬的人偶合影，實際上是背後 50 人團隊精心雕琢的成果', credit: '資料來源：Prada YouTube 頻道' },
@@ -250,7 +253,6 @@ export const story: Story = {
             { article: 'a03', page: 26, text: '我們用真實的勇敢，瓦解了社會集體的完美主義' },
             { article: 'a03', page: 26, text: '是 AI 的演算法永遠無法最佳化的創意核心' },
           ],
-          notes: [{ term: '納豆與鳳小岳', text: '納豆是台灣的綜藝節目主持人，鳳小岳是台灣演員，演出電影與電視劇，兩人都是大眾熟悉的藝人。' }],
         },
       ],
       src: [{ article: 'a03', page: 25, text: '創意的力量，從不來自「正確」，而來自「真實」' }],

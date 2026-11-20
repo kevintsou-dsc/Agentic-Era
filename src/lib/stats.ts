@@ -1,4 +1,4 @@
-// 故事的閱讀時間：主文、引言與橫向捲動卡片的字數合計，以每分鐘 400 字估算。
+// 故事的閱讀時間：主文、引言與橫向捲動卡片的字數合計，以每分鐘 450 字估算（與 content/articles.json 原文基準一致）。
 import type { Story, Src } from './story';
 
 export function storyChars(s: Story): number {
@@ -14,4 +14,4 @@ export function storyChars(s: Story): number {
   return n + s.asks.reduce((t, a) => t + a.text.length, 0);
 }
 
-export const storyMinutes = (s: Story) => Math.max(1, Math.round(storyChars(s) / 400));
+export const storyMinutes = (s: Story) => Math.max(1, Math.round(storyChars(s) / 450));

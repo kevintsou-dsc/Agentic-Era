@@ -5,7 +5,7 @@ import type { Story } from '../../lib/story';
 // 圖4–5 ORANGE RANGE（照片）、圖6 日清、圖7 芬達、圖8 香港麥當勞（照片）、p.91 行動表（清單）
 export const story: Story = {
   id: 'a11',
-  status: 'judged',
+  status: 'reviewed',
   // 44 則主文；過度濃縮修正（docs/review/compression-fullsite.md）補回原文環節後超過 3,000 字，上限放寬到 3,500 字
   budget: 3500,
   oneLiner: '內容越多，「大家一起看過」的時刻越少。共同記憶，是讓不同世代重新相遇的入口。',
@@ -28,6 +28,7 @@ export const story: Story = {
             { article: 'a11', page: 81, text: 'UGC (使用者生成內容)、Creator Economy (創作者經濟) 與生成式 AI 讓內容生產進入近乎無限的狀態' },
             { article: 'a11', page: 81, text: '每天看的東西愈來愈多，但我們一起看過的東西，反而可能愈來愈少' },
           ],
+          notes: [{ term: 'UGC', text: 'User-Generated Content（使用者生成內容），指由一般消費者或觀眾自發創作並分享的心得、貼文與迷因。' }],
         },
         {
           text: 'dentsu《2026 Media Trends》把「共同記憶更有感」列為重要趨勢：在演算法時代，人仍會追求共同體驗、歸屬感與社群。',
@@ -316,7 +317,6 @@ export const story: Story = {
             { article: 'a11', page: 86, text: '如果金曲獎代表的是受眾橋接，《後宮甄嬛傳》的 YouTube 春節馬拉松則示範了另一種力量：Ritual 儀式' },
             { article: 'a11', page: 86, text: '觀眾甚至知道皇上大概什麼時候會「駕崩」，但大家每年仍然回來' },
           ],
-          notes: [{ term: '《後宮甄嬛傳》', text: '2011 年播出的中國古裝宮廷劇，講甄嬛入宮後在後宮爭鬥中步步求生，劇末「皇上駕崩」是觀眾熟知的橋段。' }],
         },
         {
           text: '2025 年的 26 天直播累積超過 2,030 萬次觀看；2026 年前十天就達 1,026 萬，平均在線人數從約 1.7 萬增加到約 2.4 萬。',
@@ -340,7 +340,6 @@ export const story: Story = {
             { article: 'a11', page: 86, text: '普通贊助合作是品牌「出現在內容裡」' },
             { article: 'a11', page: 86, text: '是品牌理解社群已經共同建立的梗、語言與儀式，並成為其中一部分' },
           ],
-          notes: [{ term: '冠名', text: '指品牌出錢贊助節目或活動，換取把品牌名稱放進節目或活動名稱裡，讓觀眾一看到名稱就看到品牌。' }],
         },
       ],
     },
@@ -348,7 +347,7 @@ export const story: Story = {
       kind: 'prose',
       eyebrow: '電通日本案例',
       heading: 'ORANGE RANGE：把世代記憶變成 Community',
-      image: { src: '/fig/a11/p87-1.webp', alt: '〈イケナイ太陽 令和ver.〉MV 中畫滿塗鴉的書包與室內鞋', w: 933, h: 1158, caption: '〈イケナイ太陽 令和ver.〉在書包及鞋履上塗鴉，讓平成生活細節做成可被辨認、尋找與分享的記憶符碼', credit: '資料來源：電通報《月刊CX》' },
+      image: { src: '/fig/a11/p87-1.webp', alt: '〈イケナイ太陽 令和ver.〉MV 中畫滿塗鴉的書包與室內鞋', w: 933, h: 1158, caption: '〈イケナイ太陽 令和ver.〉在書包及鞋履上塗鴉，把平成生活細節做成可被辨認、尋找與分享的記憶符碼', credit: '資料來源：電通報《月刊CX》' },
       links: [
         { url: 'https://dentsu-ho.com/articles/9684', label: '電通報《月刊CX》製作幕後', kind: 'web' },
         { url: 'https://www.oricon.co.jp/news/2414252/photo/1/', label: 'ORICON NEWS MV 幕後照片', kind: 'web' },
@@ -361,7 +360,6 @@ export const story: Story = {
             { article: 'a11', page: 87, text: '這不是單純把 2007 年的名曲重新拍一次' },
             { article: 'a11', page: 87, text: '重新設計成 2025 年可以再次被參與、討論與擴散的文化事件' },
           ],
-          notes: [{ term: '品牌重塑', text: '指重新調整品牌的形象、定位或對外呈現方式，讓品牌在新的階段被重新認識，常見於轉型或重新出發時。' }],
         },
         {
           text: '團隊刻意不做時尚化的「漂亮的 Y2K」（千禧年風格），而是保留一點親切、甚至不精緻的真實感；MV 裡的 72 個「平成梗」，都是扶桑花、改裝車把的腳踏車、教室裡的紙盒奶茶這類生活細節。',
@@ -389,7 +387,6 @@ export const story: Story = {
             { article: 'a11', page: 89, text: '把留言區形容成 ORANGE RANGE 世代的「同學會」' },
             { article: 'a11', page: 89, text: '「世代本身也可以成為一種 Community」' },
           ],
-          notes: [{ term: 'Community', text: '社群，在行銷裡指因共同興趣、身份或經歷聚在一起、彼此持續互動的一群人，不只是同一個平台上的使用者。' }],
         },
       ],
     },

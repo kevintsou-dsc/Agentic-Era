@@ -70,9 +70,9 @@
   --ease-move: cubic-bezier(.6, 0, .2, 1);
   --ease-std: cubic-bezier(.4, 0, .2, 1);
   --ease-spring: cubic-bezier(.3, 1.4, .5, 1);
-  /* 換頁翻紙：蓋上時先慢後快再慢（像把紙拉上來），收走時起步快、尾段長（像紙被輕輕帶走） */
-  --ease-sheet: cubic-bezier(.7, 0, .3, 1);
-  --ease-lift: cubic-bezier(.65, 0, .15, 1);
+  /* 換頁翻紙：蓋上時乾脆俐落，收走時起步柔順、長尾緩停，讓兩頁銜接像一氣呵成翻過一頁紙 */
+  --ease-sheet: cubic-bezier(.55, 0, .2, 1);
+  --ease-lift: cubic-bezier(.22, 1, .36, 1);
   /* 互動元件（按鈕、卡片）的回饋：快速起步、長尾減速 */
   --ease-ui: cubic-bezier(.22, 1, .36, 1);
   --dur-ui: .3s;
@@ -205,13 +205,13 @@ a { color: inherit; }
    出處（.src-ref）：「原文 p.xx」，以段落或整張圖表為單位，點擊開啟原文視窗並定位。外觀：細框、等寬字、↗。
    細節（.more-ref）：「＋ 看更多」，原文詳細說明、案例圖片、影片與連結，點擊開啟細節卡。外觀：章節色底、粗體。 */
 .src-ref {
-  display: inline-flex; align-items: center; gap: 3px; margin-left: 6px; padding: 0 8px; border-radius: var(--r-pill);
-  border: 1px solid var(--line); background: var(--paper); color: var(--ink-2); text-decoration: none;
-  font-family: var(--font-mono); font-size: var(--fs-micro); line-height: 1.75; vertical-align: 2px; white-space: nowrap;
+  display: inline-flex; align-items: center; gap: 2px; margin-left: 5px; padding: 0 7px; border-radius: var(--r-pill);
+  border: 1px solid color-mix(in srgb, var(--line) 85%, transparent); background: transparent; color: var(--ink-3); text-decoration: none;
+  font-family: var(--font-mono); font-size: var(--fs-micro); line-height: 1.65; vertical-align: 1px; white-space: nowrap;
   transition: background .2s, border-color .2s, color .2s;
 }
-.src-ref::after { content: "↗"; font-size: 10px; }
-.src-ref:hover { border-color: var(--ink); color: var(--ink); }
+.src-ref::after { content: "↗"; font-size: 9px; opacity: .75; }
+.src-ref:hover { background: var(--paper); border-color: var(--ink); color: var(--ink); }
 .src-ref:focus-visible, .more-ref:focus-visible { outline: 3px solid var(--accent-ink); outline-offset: 2px; }
 
 .more-ref {
@@ -426,17 +426,17 @@ details.more[open] summary::before { content: "－ "; }
   box-shadow: 0 -10px 40px -18px rgba(31, 29, 26, .28); }
 html.is-leaving .curtain, html.is-entering .curtain { visibility: visible; }
 html.is-leaving .curtain { pointer-events: auto; }
-html.is-leaving .sheet { will-change: transform; animation: sheet-cover .38s var(--ease-sheet) forwards; }
-html.is-leaving .sheet-p { animation-delay: .045s; }
-html.is-entering .sheet { transform: translateY(-12svh); will-change: transform; animation: sheet-lift .75s var(--ease-lift) 1.2s forwards; }
-html.is-entering .sheet-a { animation-delay: 1.26s; }
+html.is-leaving .sheet { will-change: transform; animation: sheet-cover .30s var(--ease-sheet) forwards; }
+html.is-leaving .sheet-p { animation-delay: .035s; }
+html.is-entering .sheet { transform: translateY(-12svh); will-change: transform; animation: sheet-lift .58s var(--ease-lift) 1s forwards; }
+html.is-entering .sheet-a { animation-delay: 1.05s; }
 html.is-entering.is-entered .sheet-p { animation-delay: 0s; }
-html.is-entering.is-entered .sheet-a { animation-delay: .06s; }
-html.is-leaving main, html.is-leaving .footer { translate: 0 -4svh; opacity: .55; transition: translate .45s var(--ease-sheet), opacity .45s var(--ease-sheet); }
-html.is-entered main { animation: page-rise .9s var(--ease-out) .1s backwards; }
+html.is-entering.is-entered .sheet-a { animation-delay: .05s; }
+html.is-leaving main, html.is-leaving .footer { translate: 0 -3svh; opacity: .6; transition: translate .32s var(--ease-sheet), opacity .32s var(--ease-sheet); }
+html.is-entered main { animation: page-rise .62s var(--ease-lift) .04s backwards; }
 @keyframes sheet-cover { from { transform: translateY(100svh); } to { transform: translateY(-12svh); } }
 @keyframes sheet-lift { from { transform: translateY(-12svh); } to { transform: translateY(-124svh); } }
-@keyframes page-rise { from { translate: 0 5svh; opacity: .35; } }
+@keyframes page-rise { from { translate: 0 3svh; opacity: .5; } }
 
 @media (prefers-reduced-motion: reduce) {
   @view-transition { navigation: none; }

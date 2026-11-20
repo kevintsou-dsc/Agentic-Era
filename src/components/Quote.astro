@@ -9,7 +9,7 @@ const a = article(q.article);
 ---
 <figure class={`quote-block ${size}`}>
   <blockquote class="quote">{q.text}</blockquote>
-  <figcaption class="quote-cite">{q.by ? <>{q.by}｜引自{cite(a)}</> : <>原文｜{cite(a)}</>}<SourceRef src={[q]} label={`p.${q.page}`} /></figcaption>
+  <figcaption class="quote-cite">{q.by ? <>{q.by}｜引自{cite(a)}</> : cite(a)}<SourceRef src={[q]} label={`p.${q.page}`} /></figcaption>
 </figure>
 <style>
   .quote-block { margin: 0; max-width: 40rem; }

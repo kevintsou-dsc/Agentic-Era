@@ -4,7 +4,7 @@ import type { Story } from '../../lib/story';
 // 原刊沒有圖表（p.11 圖片為作者簽名，不使用）：三種選擇 → hscroll；三個挑戰 → 清單；兩個隱憂 → 清單
 export const story: Story = {
   id: 'a01',
-  status: 'judged',
+  status: 'reviewed',
   oneLiner: 'AI 改變的是技術和做法，不變的是經營的本質：為客戶創造價值、靠人才驅動成長、用信任贏得品牌。',
   scenes: [
     {
@@ -50,7 +50,6 @@ export const story: Story = {
           { article: 'a01', page: 7, text: '其實面對 AI 企業有三種選擇' },
           { article: 'a01', page: 7, text: '競爭優勢不在計劃更聰明，而在學習循環更快' },
         ],
-        notes: [{ term: '學習循環', text: '指採取行動、觀察市場或使用者的反應、依結果調整，再進入下一輪的反覆過程。' }],
       },
       panels: [
         {
@@ -136,7 +135,6 @@ export const story: Story = {
             { article: 'a01', page: 9, text: '光有創意已經不夠了，創意必須被轉化成創新' },
             { article: 'a01', page: 9, text: '員工要學會用 AI 快速驗證想法，把創意變成一次次的模擬實驗' },
           ],
-          notes: [{ term: '規模化', text: '指把在小範圍試成功的做法，擴大到更多市場、客戶或團隊使用，同時讓成本與品質維持可控。' }],
           more: {
             title: '同一個 AI，兩種用法',
             quote: { article: 'a01', page: 9, text: '一個人偶爾讓它改改文案、問幾個問題；另一個人把自己的資料、經驗、工作步驟和驗收標準全都接進去，讓 AI 每天替自己完成一段工作。' },

@@ -10,7 +10,7 @@ const C = '/art/cover/';
 <div class="ld" id="loader" aria-hidden="true">
   <img class="ld-2026" src={`${C}2026.webp`} alt="" width="1400" height="467" />
   <img class="ld-logo" src={`${C}logotype.webp`} alt="" width="1400" height="467" />
-  <p class="ld-sub">Agentic Era：重塑品牌與人的真實距離</p>
+  <p class="ld-sub">Agentic 時代，重塑品牌與人的真實距離</p>
   <span class="ld-bar"><span data-loader-bar></span></span>
 </div>
 <script is:inline>
@@ -19,7 +19,7 @@ const C = '/art/cover/';
     try { if (sessionStorage.getItem('dw-nav') === '1') { sessionStorage.removeItem('dw-nav'); document.documentElement.classList.add('is-entering'); } } catch (e) {}
     var el = document.getElementById('loader');
     if (!el) return;
-    var MIN = 2400, MAX = 6000;
+    var MIN = 2000, MAX = 5500;
     var seen = false;
     try { seen = sessionStorage.getItem('dw-loaded') === '1'; sessionStorage.setItem('dw-loaded', '1'); } catch (e) {}
     if (seen) { el.remove(); return; }
@@ -54,9 +54,9 @@ const C = '/art/cover/';
   .ld { position: fixed; inset: 0; z-index: 100; display: grid; place-content: center; justify-items: center; gap: 14px;
     background: #d8c3a2 url(/art/cover/kraft.webp) 0 0 / 640px; background-blend-mode: multiply;
     animation: ld-auto .6s 3.4s forwards; }
-  .ld-2026 { width: min(70vw, 720px); height: auto; filter: drop-shadow(0 0 1px rgba(0, 0, 0, .3)); clip-path: inset(0 100% 0 0); animation: ld-wipe 1s .1s var(--ease-move) forwards; }
-  .ld-logo { width: min(56vw, 560px); height: auto; margin-top: -2vw; clip-path: inset(0 100% 0 0); animation: ld-wipe .9s .55s var(--ease-move) forwards; }
-  .ld-sub { margin: 0; font-size: 13px; letter-spacing: .18em; color: #4d4234; opacity: 0; animation: ld-fade .6s 1s forwards; }
+  .ld-2026 { width: min(70vw, 720px); height: auto; filter: drop-shadow(0 0 1px rgba(0, 0, 0, .3)); clip-path: inset(0 100% 0 0); animation: ld-wipe .85s .08s var(--ease-move) forwards; }
+  .ld-logo { width: min(56vw, 560px); height: auto; margin-top: -2vw; clip-path: inset(0 100% 0 0); animation: ld-wipe .8s .45s var(--ease-move) forwards; }
+  .ld-sub { margin: 0; font-size: 13px; letter-spacing: .18em; color: #4d4234; opacity: 0; animation: ld-fade .5s .85s forwards; }
   .ld-bar { width: min(40vw, 240px); height: 2px; margin-top: 18px; background: rgba(0, 0, 0, .12); overflow: hidden; }
   .ld-bar span { display: block; height: 100%; background: #3b3328; transform: scaleX(.04); transform-origin: left; transition: transform .1s linear; }
   .ld.ld-js { animation: none; } /* 有 JS 時由腳本決定何時離場，關掉無 JS 的保底淡出 */

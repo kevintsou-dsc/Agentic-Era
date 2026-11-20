@@ -5,7 +5,7 @@ import type { Story } from '../../lib/story';
 // 表：四層權限框架（d3 光譜＋案例標記）；文字數據：Olive Young 轉換率、Thorne 消費者調查（長條）；四個共同變化（hscroll）
 export const story: Story = {
   id: 'a22',
-  status: 'judged',
+  status: 'reviewed',
   oneLiner: '該問的不是要不要導入 AI Agent，而是哪些任務可以交給 AI、可以授權到哪一層級（觀察理解、推薦、決策或行動）。',
   scenes: [
     {
@@ -112,6 +112,7 @@ export const story: Story = {
             { article: 'a22', page: 191, text: '美妝產業的難題則來自個人差異，膚質、膚色、季節、生活環境與使用偏好會改變每個人的答案' },
             { article: 'a22', page: 191, text: '韓國最大美妝零售巨頭 Olive Young 服務來自 189 個國家的消費者與觀光客' },
           ],
+          notes: [{ term: 'SKU', text: 'Stock Keeping Unit（庫存量單位），零售與電商中用來區分每一種獨立商品品項（含不同色號、容量或規格）的計算單位。' }],
         },
         {
           text: 'Olive Young 在診斷與比較階段導入膚質檢定、顏色推薦與髮質檢測：機器依檢測數據判定膚質、推薦品類，處理可標準化的感知與比對；店員把時間放在解釋與建立信任。使用膚質檢定的消費者，購買轉換率 73%，高於未使用者的 53%。',
@@ -173,7 +174,6 @@ export const story: Story = {
             { article: 'a22', page: 192, text: '系統便直接發送包含專屬折扣、且已預先組好商品的 Shopify 一鍵購物車連結' },
             { article: 'a22', page: 192, text: '黑色星期五期間，其對話轉換率達到 25%' },
           ],
-          notes: [{ term: '一鍵購物車', text: '一個已預先放好商品的購物車連結，顧客點開就能直接進入結帳，不必自己逐一挑選加入。' }],
           more: {
             title: 'BRAINEFFECT × charles 案例', text: '對話式商務平台 charles 發布的 BRAINEFFECT 成功案例，說明 WhatsApp 導購怎麼運作，以及黑色星期五 25% 對話轉換率的成效。',
             links: [{ url: 'https://www.hello-charles.com/en-gb/success/braineffect-black-friday', label: 'charles 成功案例', kind: 'web' }],

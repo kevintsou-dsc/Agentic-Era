@@ -18,6 +18,7 @@ const cards = achievements();
       <button type="button" class="tear-knob" data-tear aria-label="打開補給包（按住往右拉，或按一下）">撕</button>
     </div>
     <p class="sn-hint" data-pk-hint></p>
+    <p class="sn-skip">點空白處或按 Esc 可稍後從右上角再拆</p>
   </div>
 
   <div class="sn-stage" data-stage="cards" hidden>
@@ -44,8 +45,12 @@ const cards = achievements();
 
 <style is:global>
   .snack { border: 0; padding: 0; background: transparent; width: min(94vw, 26rem); max-width: none; max-height: 96svh; overflow: visible; color: var(--paper); }
-  .snack::backdrop { background: radial-gradient(70% 60% at 50% 40%, rgba(47, 94, 53, .55), rgba(20, 19, 17, .82)); backdrop-filter: blur(3px); }
-  .snack .snack-x { position: absolute; top: 4px; right: 4px; z-index: 5; }
+  .snack[open] { animation: sn-open .42s var(--ease-ui) both; }
+  .snack::backdrop { background: radial-gradient(70% 60% at 50% 40%, color-mix(in srgb, var(--accent-ink) 52%, transparent), rgba(20, 19, 17, .82)); backdrop-filter: blur(4px); animation: sn-bg .35s ease both; }
+  @keyframes sn-open { from { opacity: 0; transform: translateY(18px) scale(.95); } to { opacity: 1; transform: none; } }
+  @keyframes sn-bg { from { opacity: 0; } to { opacity: 1; } }
+  .snack .snack-x { position: absolute; top: 4px; right: 4px; z-index: 5; color: rgba(243, 238, 228, .85); }
+  .snack .snack-x:hover { background: rgba(243, 238, 228, .14); color: var(--paper); }
   .sn-stage { position: relative; display: grid; justify-items: center; gap: 14px; padding: 24px 8px 12px; }
   .sn-stage[hidden] { display: none; }
 
@@ -179,7 +184,7 @@ const cards = achievements();
   .snack.is-ripped .p3-capsule .m-l { transform: translate3d(-64px, -96px, 4px) rotateZ(-13deg); }
   .snack.is-ripped .p3-capsule .m-c { transform: translate3d(0, -118px, 8px); }
   .snack.is-ripped .p3-capsule .m-r { transform: translate3d(64px, -96px, 12px) rotateZ(13deg); }
-  .snack.is-ripped .sn-tear, .snack.is-ripped .sn-hint, .snack.is-ripped .sn-kind { opacity: 0; transition: opacity .3s; }
+  .snack.is-ripped .sn-tear, .snack.is-ripped .sn-hint, .snack.is-ripped .sn-skip, .snack.is-ripped .sn-kind { opacity: 0; transition: opacity .3s; }
 
   .sn-tear { position: relative; width: min(16rem, 80%); height: 44px; display: grid; align-items: center; touch-action: none; }
   .tear-track { height: 6px; border-radius: 3px; background: repeating-linear-gradient(90deg, rgba(243, 238, 228, .6) 0 8px, transparent 8px 14px); overflow: hidden; }
@@ -187,6 +192,7 @@ const cards = achievements();
   .tear-knob { position: absolute; left: 0; top: 0; width: 44px; height: 44px; border-radius: 50%; border: 2px solid var(--ink); background: var(--people); color: var(--ink); font: 700 16px/1 var(--font-sans); cursor: grab; box-shadow: 0 4px 12px rgba(0, 0, 0, .3); transform: translateX(var(--kx, 0px)); touch-action: none; }
   .tear-knob:focus-visible { outline: 3px solid var(--paper); outline-offset: 3px; }
   .sn-hint { margin: 0; font-size: 13px; text-align: center; color: rgba(243, 238, 228, .85); }
+  .sn-skip { margin: -6px 0 0; font-size: 11px; text-align: center; color: rgba(243, 238, 228, .55); }
 
   /* ── 成就卡 ── */
   .acard { --c: var(--people); --ci: var(--people-ink); position: relative; width: 15rem; aspect-ratio: 5 / 7; display: grid; grid-template-rows: auto auto 1fr auto; gap: 6px; padding: 18px 18px 14px; border-radius: 16px; color: var(--ink); overflow: hidden;

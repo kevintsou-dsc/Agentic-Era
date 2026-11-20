@@ -4,7 +4,7 @@ import type { Story } from '../../lib/story';
 // 原刊沒有圖表與照片：本篇的圖都是依原文文字整理製圖（成本倍數、干擾場域、ESOV、三層占位、競品干擾、場域分工）；作者小故事用分格插畫
 export const story: Story = {
   id: 'a13',
-  status: 'judged',
+  status: 'reviewed',
   oneLiner: 'AI 投放讓廣告更精準，也讓品牌被選擇的理由更容易被稀釋。因此 SOV（聲量佔比）不能只看聲量大小，而要看品牌在消費者做選擇的關鍵場域中，能不能被看見、被想起。',
   scenes: [
     {
@@ -18,6 +18,7 @@ export const story: Story = {
             { article: 'a13', page: 117, text: '品牌在某一個品類、某一段時間、某一組媒體環境中的聲量占比' },
             { article: 'a13', page: 117, text: '誰的聲音比較常出現，誰的品牌比較容易被想起，誰就更有機會被選擇' },
           ],
+          notes: [{ term: 'SOV', text: 'Share of Voice（聲量佔比），指品牌在特定品類與媒體環境中佔有的廣告或討論聲量比例。' }],
         },
         {
           text: '今天的問題不是 SOV 不重要，而是它被稀釋的方式不同了：過去品牌擔心同品類競品分走聲量；現在搜尋結果、演算法推薦、電商站內推薦、AI 摘要都在干擾，品牌是在消費者每一個可能做選擇的場域中競爭。',
@@ -76,7 +77,6 @@ export const story: Story = {
             { article: 'a13', page: 118, text: '品牌看到的可能是 CPC、CTR、CPA、ROAS 變好了' },
             { article: 'a13', page: 118, text: '最後，消費者也許真的買了，但不一定記得買的是誰' },
           ],
-          notes: [{ term: 'CPC', text: 'Cost Per Click，按點擊次數計費的廣告計價方式，也常用來指每次點擊平均花了多少錢。' }, { term: 'CTR', text: 'Click-Through Rate，點擊率，指看到廣告的人當中有多少比例點了進去，用來看廣告吸不吸引人。' }, { term: 'CPA', text: 'Cost Per Action，每完成一次購買、註冊等轉換所花的廣告費，也可指按轉換計費的方式。' }, { term: 'ROAS', text: 'Return on Ad Spend，廣告投資報酬率，用廣告帶來的營收除以廣告花費，看每花一元換回多少營收。' }],
         },
         {
           text: '此外，報表不一定能回答一個問題：如果沒有這次廣告，這個人會不會本來就買？AI 擅長找到高機率行動的人，但這些人可能早就在需求裡，廣告可能只是接住了既有需求，而不是創造了新需求。',
@@ -170,6 +170,7 @@ export const story: Story = {
             { article: 'a13', page: 119, text: '買 CPM 時，品牌買的是比較大的接觸面與可控頻次' },
             { article: 'a13', page: 119, text: '常常可能是 CPM 購買的五倍到十倍以上' },
           ],
+          notes: [{ term: 'CPM', text: 'Cost Per Mille（每千次曝光成本），廣告每曝光一千次所花的費用，常用來評估觸及廣度與頻次效率。' }],
         },
         {
           text: '若再以轉換事件（購買、註冊等）優化，系統會更積極尋找最可能行動的人，但也犧牲大量較廣泛的接觸，曝光成本甚至可能放大到數十倍、某些情境下百倍以上。結果可能是 CPA 變漂亮了，但看見品牌訊息的人變少了。',
@@ -260,6 +261,10 @@ export const story: Story = {
           src: [
             { article: 'a13', page: 121, text: '就是品牌的 SOV 減去 SOM 市占率' },
             { article: 'a13', page: 121, text: '當品牌能長期維持正向 ESOV，也就是聲量高於市場占有率，就更有機會推動未來成長' },
+          ],
+          notes: [
+            { term: 'ESOV', text: 'Excess Share of Voice（超額聲量），即品牌聲量佔比（SOV）減去市佔率（SOM）。正向 ESOV 通常與中長期市佔成長正相關。' },
+            { term: 'SOM', text: 'Share of Market（市場佔有率），指品牌銷售額或銷量在整體品類中的佔比。' },
           ],
         },
         {

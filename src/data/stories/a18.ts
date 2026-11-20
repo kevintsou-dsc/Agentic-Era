@@ -5,7 +5,7 @@ import type { Story } from '../../lib/story';
 // 六個 AX 信任模式（清單）、四堵牆（hscroll）；治理三問作為帶走的問題
 export const story: Story = {
   id: 'a18',
-  status: 'judged',
+  status: 'reviewed',
   oneLiner: 'AI Agent 正替顧客吸收搜尋與比較的步驟、壓縮顧客旅程，也改寫品牌被選擇的方式；從 UX 到 AX，能讓人與 AI 都信任的品牌才會勝出。',
   scenes: [
     {
@@ -33,6 +33,7 @@ export const story: Story = {
             { article: 'a18', page: 161, text: '問題不在 Agent 的運算能力，而在於它從來沒有被設計成「一個值得被信任的工作對象」' },
             { article: 'a18', page: 161, text: '還有每一個正在把決策交給 AI 的顧客' },
           ],
+          notes: [{ term: 'AX（Agent Experience）', text: 'Agent 體驗，指為 AI Agent 設計可預測、穩定、可驗證的互動與資料介面，讓 AI 與人類都能放心協作。' }],
         },
       ],
     },
@@ -70,6 +71,7 @@ export const story: Story = {
             { article: 'a18', page: 161, text: 'Gartner 在 2022 年提出的 Total Experience (TX) 框架，是第一個系統性擴展「體驗主體」的戰略模型' },
             { article: 'a18', page: 162, text: '擁有高品質員工體驗的企業，年均股票回報比同業高出 2.3% 至 3.8%' },
           ],
+          notes: [{ term: 'UX / CX / EX / TX', text: 'UX＝使用者體驗（操作產品）、CX＝顧客體驗（接觸品牌全程）、EX＝員工體驗（內部工具與流程）；TX（Total Experience）則是把三者整合管理的策略框架。' }],
         },
         {
           text: '但 TX 涵蓋的消費者、員工與決策者，仍然只有人這一種主體。2025 年，Netlify 執行長 Mathias Biilmann 提出 Agent Experience：當 AI Agent 成為使用產品的主體之一，它在互動時也需要順暢、可預測、可信賴的體驗。',
@@ -89,7 +91,6 @@ export const story: Story = {
             { article: 'a18', page: 162, text: '88% 的受訪企業已在至少一項商業功能中定期使用 AI，但只有約三分之一開始規模化' },
             { article: 'a18', page: 162, text: '自己現在做的設計決策，將決定日後的基準線' },
           ],
-          notes: [{ term: '規模化', text: '指 AI 從少數團隊的試用或試點，擴大到更多部門與業務流程中正式使用。' }],
         },
       ],
     },
@@ -163,6 +164,7 @@ export const story: Story = {
             { article: 'a18', page: 163, text: 'Agent 沒有情緒，不會因為頁面好看而多停留。但它會因為 API 回應不穩定而中斷任務' },
             { article: 'a18', page: 163, text: '2026 年，信任將是 AI 體驗最核心的設計問題' },
           ],
+          notes: [{ term: 'API', text: 'Application Programming Interface（應用程式介面），軟體系統之間交換資料與呼叫功能的標準通道；AI Agent 高度依賴穩定清晰的 API 來完成任務。' }],
           more: {
             title: 'NN/g State of UX 2026', text: 'Nielsen Norman Group 的年度報告〈State of UX 2026〉。文中「2026 年信任將是 AI 體驗最核心的設計問題」的判斷出自這份報告。',
             links: [{ url: 'https://www.nngroup.com/articles/state-of-ux-2026/', label: 'Nielsen Norman Group', kind: 'report' }],
@@ -196,7 +198,7 @@ export const story: Story = {
       src: [{ article: 'a18', page: 164, text: '我們在一個電商客戶的 AI 客服 Agent 導入過程中親身見證了它的重量' }],
       beats: [
         {
-          text: '六個信任模式中的「升級路徑」有多重要，從一個電商客戶的退換貨 Agent 就看得出來：初版設計裡沒有清晰的升級路徑，遇到複雜案例時，Agent 不知道何時該停下來。',
+          text: '六個信任模式中的「升級路徑」有多重要，從一個電商客戶的退換貨 Agent 就看得出來：初版設計裡沒有清晰的升級路徑，當一位顧客同時遇到商品瑕疵、超過鑑賞期兩天、又碰上跨境退貨的物流特例時，Agent 不知道何時該停下來。',
           src: [
             { article: 'a18', page: 164, text: '最後一個信任模式，升級路徑，我們在一個電商客戶的 AI 客服 Agent 導入過程中親身見證了它的重量' },
             { article: 'a18', page: 164, text: '那是一個處理退換貨的 Agent，初版設計裡沒有清晰的升級路徑' },

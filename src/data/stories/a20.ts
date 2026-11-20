@@ -5,7 +5,7 @@ import type { Story } from '../../lib/story';
 // SLIP 循環（d3 循環）、Human-in-the-Loop ROI（大數字）、Vanguard 交付時間（長條）
 export const story: Story = {
   id: 'a20',
-  status: 'judged',
+  status: 'reviewed',
   oneLiner: 'AI 讓生成內容的能力變成人人都有的商品；品牌要靠規格、產線、檢驗與模式化這套交付系統，把生成力轉化為能持續交付品牌辨識度的交付力。',
   scenes: [
     {
@@ -20,7 +20,7 @@ export const story: Story = {
             { article: 'a20', page: 177, text: '需要同時上線 Meta、YouTube、電商平台、CRM、EDM 以及數位看板等數十種素材版本' },
             { article: 'a20', page: 177, text: '而是規模化內容管理的嚴峻考驗' },
           ],
-          notes: [{ term: 'Meta', text: 'Facebook、Instagram 等社群平台的母公司，行銷上常用來指在這些平台上投放的廣告。' }, { term: 'CRM', text: '顧客關係管理，指企業記錄顧客資料、經營會員關係的系統與做法，常用來發送會員訊息與優惠。' }],
+          notes: [{ term: 'CRM', text: '顧客關係管理，指企業記錄顧客資料、經營會員關係的系統與做法，常用來發送會員訊息與優惠。' }],
         },
         {
           text: '生成式 AI 看似完美解決了版本爆炸，但素材完成得更快，品牌卻更難被辨識；內容更多，差異化卻更少。這種同質化的內容洪流，被稱為「AI Slop」。',
@@ -28,6 +28,7 @@ export const story: Story = {
             { article: 'a20', page: 177, text: '素材完成得更快了，品牌卻更難被辨識；內容數量變得更多了，差異化卻變得更少了' },
             { article: 'a20', page: 177, text: '「AI Slop」——亦即由生成式 AI 所堆疊出的同質化內容洪流' },
           ],
+          notes: [{ term: 'AI Slop', text: '指用 AI 大量生成的低品質、缺乏觀點與品牌辨識度的同質化內容洪流。' }],
         },
         {
           text: '就像超加工食品帶來健康危機，內容產業正步入「超加工創意」時代：AI 提供大量創意的熱量（產量），卻可能在規模化生產中移除品牌最重要的營養價值，也就是觀點、個性、文化脈絡與情感溫度。',
@@ -207,6 +208,7 @@ export const story: Story = {
           { article: 'a20', page: 180, text: '採用 Human-in-the-Loop 的專案，其 ROI 平均比完全自動化模式高出 104%；重大錯誤發生率則顯著降低了 4.3 倍' },
           { article: 'a20', page: 180, text: 'AI 的價值不是取代人類的判斷，而是放大判斷的效能' },
         ],
+        notes: [{ term: 'ROI', text: 'Return on Investment（投資報酬率），衡量投入資源後實際換回的淨收益比例。' }],
       },
       figure: { article: 'a20', page: 180, text: '高出 104%' },
       source: '資料來源 Denis Atlan, AI ROI Analysis: Evidence from 200 B2B Deployments，潘其偉〈拒絕同質化 AI Slop〉紙本 p.180',
