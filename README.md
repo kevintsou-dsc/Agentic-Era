@@ -4,6 +4,7 @@
 
 - **線上正式站**：https://agentic-era.kevin-tsou.workers.dev/
 - **設計與自評文件**：[PRD.md](docs/PRD.md) ｜ [製作歷程](docs/process-log.md) ｜ [部署與資安自評](docs/security-self-assessment.md)
+- **3 分鐘參賽影片（Video as Code）**：[docs/video/decision_wisdom_2026_3min_v3.mp4](docs/video/decision_wisdom_2026_3min_v3.mp4) ｜ [影片生成架構規格](docs/video-production-architecture.md)
 
 ---
 
@@ -26,11 +27,11 @@
 
 為解決 AI 輔助內容策展最容易發生的「頁碼誤植、數字拼錯、扭曲作者原意」問題，本專案將編輯校對紀律寫入 `npm run build` 的自動化驗證管線，任何一項失敗即阻斷建置與上線：
 
-- `scripts/verify/verify-quotes.mjs`：把 `src/` 下 **1,537 條**引文與數據來源正規化後，與 `content/fulltext/a01.md–a22.md` 及 `content/figtext/` 逐字比對並驗證頁界（只允許整句落在宣告頁或確實跨越相鄰兩頁頁界）。
+- `scripts/verify/verify-quotes.mjs`：把 `src/` 下 **1,539 條**引文與數據來源正規化後，與 `content/fulltext/a01.md–a22.md` 及 `content/figtext/` 逐字比對並驗證頁界（只允許整句落在宣告頁或確實跨越相鄰兩頁頁界）。
 - `scripts/verify/verify-meta.mjs`：逐一核對 22 篇共 **105 筆**作者姓名、英文名、所屬機構與多段職稱是否與原刊扉頁一致。
 - `scripts/verify/lint-stories.mjs` & `lint-style.mjs`：檢查主文長度與標點規則、驗證 `bignum` 人形圖實心比例與數字一致、檢查所有圖表步驟 `at <= beats.length`，並執行詞彙表與中英排版檢查。
 - `scripts/fonts/fonts.py` & `check-fonts.mjs`：建置期掃描全站顯示文字並以 Python `fonttools` 產出 `DW Serif Display` 子集（`serif-900.woff2` 約 116 KB、`serif-700.woff2` 約 215 KB），保留 SIL OFL 1.1 授權條款且檢查零缺字。
-- `scripts/verify/check-links.mjs`：掃描靜態輸出共 **2,382 條**站內連結、錨點與 `og:image`，並自動計算所有行內 `<script>` 的 SHA-256 雜湊值比對 `public/_headers`。
+- `scripts/verify/check-links.mjs`：掃描靜態輸出共 **2,358 條（47 頁）**站內連結、錨點與 `og:image`，並自動計算所有行內 `<script>` 的 SHA-256 雜湊值及安全標頭完整性比對 `public/_headers`。
 
 ---
 

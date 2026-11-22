@@ -74,6 +74,7 @@ export function initReader() {
     e.preventDefault();
     const data = JSON.parse(a.dataset.reader!) as Payload;
     opener = a;
+    a.classList.add('is-loading');
     const mine = ++seq;
     title.textContent = '載入原文…';
     meta.innerHTML = '';
@@ -94,6 +95,7 @@ export function initReader() {
     } catch {
       if (mine === seq) window.location.href = full.href;
     } finally {
+      a.classList.remove('is-loading');
       if (mine === seq) body.removeAttribute('aria-busy');
     }
   });

@@ -31,7 +31,7 @@ const aria =`${g.title}：` + g.bars.map((b) => `${b.label}${b.sub ? b.sub : ''}
   .col { display: flex; flex-direction: column; justify-content: flex-end; height: 100%; text-align: center; position: relative; }
   .bar { position: relative; flex: none; height: calc(var(--h) * (100% - 3rem)); background: var(--paper-2); border: 2px solid var(--ink-3); border-bottom: 0; border-radius: 8px 8px 0 0; transform-origin: bottom; transform: scaleY(var(--on)); transition: transform 1s var(--ease-out); }
   .hl .bar { background: var(--accent); border-color: var(--accent-ink); }
-  .v { font-size: clamp(20px, 2.8vw, 36px); font-weight: var(--fw-bold); line-height: 1.2; margin-bottom: 6px; font-variant-numeric: tabular-nums; opacity: var(--on); transition: opacity .5s .4s; }
+  .v { font-size: clamp(20px, 2.8vw, 36px); font-weight: var(--fw-bold); line-height: 1.2; margin-bottom: 6px; font-variant-numeric: tabular-nums; opacity: var(--on); transition: opacity .4s .1s; }
   .hl .v { color: var(--accent-ink); }
   .l { position: absolute; bottom: -46px; left: -8px; right: -8px; font-size: 13px; color: var(--ink-2); line-height: 1.35; display: flex; flex-direction: column; }
   .l small { font-size: 11px; color: var(--ink-3); }

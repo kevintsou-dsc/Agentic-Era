@@ -65,4 +65,19 @@ if (blocked.size) {
   blocked.forEach((b) => console.error('  ' + b));
   process.exit(1);
 }
-console.log('✓ 行內 script 都在 CSP 允許清單內');
+
+const requiredHeaders = [
+  ['CSP default-src', /default-src\s+'self'/],
+  ['Strict-Transport-Security', /Strict-Transport-Security:\s*max-age=\d+/i],
+  ['X-Content-Type-Options', /X-Content-Type-Options:\s*nosniff/i],
+  ['X-Frame-Options', /X-Frame-Options:\s*DENY/i],
+  ['Referrer-Policy', /Referrer-Policy:\s*\S+/i],
+  ['Permissions-Policy', /Permissions-Policy:\s*\S+/i],
+  ['Cross-Origin-Opener-Policy', /Cross-Origin-Opener-Policy:\s*same-origin/i],
+];
+const missingHeaders = requiredHeaders.filter(([, re]) => !re.test(headers)).map(([name]) => name);
+if (missingHeaders.length) {
+  console.error(`✗ public/_headers 缺少必要安全標頭：${missingHeaders.join('、')}`);
+  process.exit(1);
+}
+console.log('✓ 安全標頭與 CSP SHA-256 驗證通過');

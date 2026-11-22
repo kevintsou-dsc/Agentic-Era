@@ -18,7 +18,7 @@ const repo = 'https://github.com/kevintsou-dsc/Agentic-Era';
     <h2>AI 與人的分工與防幻覺工程閘門</h2>
     <p>本作品以 Vibe Coding 製作：程式架構、XML 原文抽取與策展初稿由 AI 協作完成；閱讀結構、篇目取捨與最終文案由人審定。製作過程中 AI 犯過的錯（例如憑印象寫錯頁碼、把觀點相近的文章誤寫為對立）皆由自動化閘門或人工覆核攔截，完整紀錄在<a href={`${repo}/blob/main/docs/process-log.md`} target="_blank" rel="noopener noreferrer">製作歷程</a>。</p>
     <ul>
-      <li><b>自動化建置閘門（<code>npm run verify</code>）：</b>每次建置自動比對 <b>1,537 條</b>引文與數字的跨頁位置、<b>105 筆</b>作者姓名與職稱、所有圖表步驟與數據比例，以及 <b>2,382 條</b>站內連結與圖檔路徑，任一項失敗即阻斷部署。</li>
+      <li><b>自動化建置閘門（<code>npm run verify</code>）：</b>每次建置自動比對 <b>1,539 條</b>引文與數字的跨頁位置、<b>105 筆</b>作者姓名與職稱、所有圖表步驟與數據比例，以及 <b>2,358 條</b>站內連結與圖檔路徑，任一項失敗即阻斷部署。</li>
       <li><b>建置期字型子集化：</b>使用 Python <code>fonttools</code> 依實際顯示字元壓縮自架襯線顯示字（約 116 KB／215 KB），保留完整 SIL OFL 1.1 授權表，並於建置期嚴格檢查零缺字。</li>
     </ul>
 

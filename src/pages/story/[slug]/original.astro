@@ -1,11 +1,14 @@
 ---
 // 原文頁。也是「原文視窗」的資料來源：reader.ts 會抓這一頁的 [data-fulltext]，
 // 依 data-i（文字區塊編號，與 src/lib/locate.ts 一致）高亮引文。
+// 注意：圖片以獨立兄弟節點 <figure class="orig-fig"> 放於 .cap 前，不加 data-i，
+// 且 <p class="cap" data-i={b.i}> 維持純文字首節點，確保 reader.ts highlight() 100% 相容。
 import Base from '../../../layouts/Base.astro';
 import ArticleHead from '../../../components/ArticleHead.astro';
 import { ARTICLES, fullTitle, authorNames, CHAPTERS, type Article } from '../../../lib/articles';
 import { STORIES } from '../../../data/stories';
 import { FULLTEXT_REVIEWED, hasFulltext, loadFulltext } from '../../../lib/fulltext';
+import { getFigure, printPageSrc } from '../../../lib/figures';
 
 export function getStaticPaths() {
   return ARTICLES.filter((a) => hasFulltext(a.id)).map((a) => ({ params: { slug: a.slug }, props: { a } }));
@@ -15,37 +18,428 @@ const { a } = Astro.props;
 const reviewed = FULLTEXT_REVIEWED.has(a.id);
 let i = 0;
 const blocks = loadFulltext(a.id).map((b) => (b.kind === 'page' ? b : { ...b, i: i++ }));
+const [pStart, pEnd] = a.pages;
+const pageList = Array.from({ length: pEnd - pStart + 1 }, (_, k) => pStart + k);
+const firstPrintSrc = printPageSrc(a.id, pStart);
 ---
-<Base title={`原文｜${fullTitle(a)}｜決策智慧 2026`} description={`${fullTitle(a)} 原文全文，標示紙本頁碼。`} chapter={a.chapter} crumb={`${a.title}．原文`} og={`/og/${a.slug}.png`}>
+<Base title={`原文｜${fullTitle(a)}｜決策智慧 2026`} description={`${fullTitle(a)} 原文全文，附原刊配圖與紙本頁面對照。`} chapter={a.chapter} crumb={`${a.title}．原文`} og={`/og/${a.slug}.png`}>
   <article class="full wrap">
     <div class="head">
       <ArticleHead a={a} mode="full" />
       <div class="reader-meta">
-        <p>{CHAPTERS[a.chapter].name}｜{authorNames(a)}｜紙本 p.{a.pages[0]}–{a.pages[1]}</p>
+        <p>{CHAPTERS[a.chapter].name}｜{authorNames(a)}｜紙本 p.{pStart}–{pEnd}</p>
         {reviewed
-          ? <p>全文與印刷版逐頁比對校正；圖表以圖說呈現，引用請以紙本為準。</p>
-          : <p>頁碼依印刷版對照，校稿進行中；圖表以圖說呈現，引用請以紙本為準。</p>}
+          ? <p>全文與印刷版逐頁比對校正；附原刊配圖與紙本頁面對照。</p>
+          : <p>頁碼依印刷版對照，校稿進行中；附原刊配圖與紙本頁面對照。</p>}
       </div>
-      {STORIES[a.id] && <p><a class="btn ghost" href={`/story/${a.slug}/`}>← 回到故事</a></p>}
+      <div class="head-actions">
+        {STORIES[a.id] && <a class="btn ghost" href={`/story/${a.slug}/`}>← 回到故事</a>}
+        <button type="button" class="btn ghost small mobile-print-btn" data-open-print={pStart}>
+          對照紙本（p.{pStart}–{pEnd}）
+        </button>
+      </div>
     </div>
-    <div class="fulltext" data-fulltext>
-      {blocks.map((b) =>
-        b.kind === 'page' ? <p class="pg" id={`p${b.page}`}>紙本 p.{b.page}</p>
-        : b.kind === 'h' ? <h2 data-i={b.i}>{b.text}</h2>
-        : b.kind === 'cap' ? <p class="cap" data-i={b.i}>{b.text}</p>
-        : b.kind === 'box' ? <p class="box" data-i={b.i}>{b.text}</p>
-        : b.kind === 'note' ? <p class="note" data-i={b.i}>{b.text}</p>
-        : <p data-i={b.i}>{b.text}</p>)}
+
+    <div class="orig-layout" data-aid={a.id} data-p-start={pStart} data-p-end={pEnd}>
+      <div class="fulltext" data-fulltext>
+        {blocks.map((b) => {
+          if (b.kind === 'page') {
+            return (
+              <p class="pg" id={`p${b.page}`} data-page={b.page}>
+                <button type="button" class="pg-label" data-jump-page={b.page}>紙本 p.{b.page}</button>
+                <button type="button" class="pg-view" data-open-print={b.page}>查看此頁紙本 ↗</button>
+              </p>
+            );
+          }
+          if (b.kind === 'h') return <h2 data-i={b.i}>{b.text}</h2>;
+          if (b.kind === 'box') return <p class="box" data-i={b.i}>{b.text}</p>;
+          if (b.kind === 'note') return <p class="note" data-i={b.i}>{b.text}</p>;
+          if (b.kind === 'cap') {
+            const fig = getFigure(a.id, b.i);
+            const imgs = fig?.images ?? [];
+            const layoutKind = fig?.layout === 'stack'
+              ? 'stack'
+              : imgs.length === 2 ? 'duo'
+              : imgs.length === 3 ? 'trio'
+              : imgs.length >= 4 ? 'quad'
+              : 'single';
+            return (
+              <>
+                {imgs.length > 0 && (
+                  <figure class={`orig-fig orig-fig--${layoutKind}`}>
+                    <div class="orig-media">
+                      {imgs.map((im, idx) => (
+                        <button
+                          type="button"
+                          class="orig-img-btn"
+                          data-fig-zoom={idx}
+                          aria-label={`放大檢視原刊配圖：${im.alt}`}
+                          style={layoutKind === 'duo' ? `flex-grow: ${(im.w / im.h).toFixed(3)}` : undefined}
+                        >
+                          <img src={im.src} alt={im.alt} width={im.w} height={im.h} loading="lazy" decoding="async" />
+                          <span class="orig-zoom-hint" aria-hidden="true">⤢</span>
+                        </button>
+                      ))}
+                    </div>
+                  </figure>
+                )}
+                <p class={`cap${imgs.length > 0 ? ' has-fig' : ''}`} data-i={b.i}>{b.text}</p>
+                {fig?.vector && (
+                  <p class="orig-vec">
+                    <button type="button" class="vec-btn" data-jump-page={fig.page}>
+                      原刊資訊圖表 · 對照紙本 p.{fig.page} ↗
+                    </button>
+                  </p>
+                )}
+              </>
+            );
+          }
+          return <p data-i={b.i}>{b.text}</p>;
+        })}
+      </div>
+
+      <aside class="print-pane" aria-label="印刷紙本對照">
+        <div class="print-bar">
+          <div class="print-status">
+            <span class="print-label" data-print-label>紙本 p.{pStart} / p.{pStart}–{pEnd}</span>
+            <button type="button" class="print-resync" data-print-resync hidden>↺ 回到目前段落</button>
+          </div>
+          <div class="print-tools">
+            <button type="button" class="print-icon-btn" data-print-zoom aria-label="全螢幕放大檢視紙本頁" title="放大檢視">⤢ 放大</button>
+            <button type="button" class="print-icon-btn" data-print-collapse aria-label="收合紙本對照，進入純文字閱讀" title="收合紙本">⇥ 收合</button>
+          </div>
+        </div>
+
+        <div class="print-stage">
+          <button
+            type="button"
+            class="print-sheet"
+            data-print-sheet
+            data-side={pStart % 2 === 0 ? 'even' : 'odd'}
+            aria-label={`放大檢視紙本第 ${pStart} 頁`}
+          >
+            <img src={firstPrintSrc} alt={`紙本印刷版第 ${pStart} 頁`} width="900" height="1200" decoding="async" data-print-img />
+          </button>
+        </div>
+
+        <div class="print-nav">
+          <button type="button" class="print-nav-btn" data-print-prev disabled aria-label="上一頁">← 上一頁</button>
+          {pageList.length <= 12 ? (
+            <div class="print-dots" data-print-dots role="group" aria-label="選擇紙本頁碼">
+              {pageList.map((p, idx) => (
+                <button
+                  type="button"
+                  class={`print-dot${idx === 0 ? ' is-active' : ''}`}
+                  data-dot={p}
+                  aria-label={`切換至紙本 p.${p}`}
+                  aria-current={idx === 0 ? 'true' : 'false'}
+                  title={`p.${p}`}
+                />
+              ))}
+            </div>
+          ) : (
+            <div class="print-meter" aria-hidden="true">
+              <span data-print-bar style="transform: scaleX(0.06)"></span>
+            </div>
+          )}
+          <button type="button" class="print-nav-btn" data-print-next disabled={pageList.length <= 1} aria-label="下一頁">下一頁 →</button>
+        </div>
+        <span class="sr-only" aria-live="polite" data-print-live></span>
+      </aside>
     </div>
+
+    <button type="button" class="print-restore" data-print-restore hidden>⇤ 展開紙本對照</button>
   </article>
+
+  <dialog class="orig-lb" id="orig-lightbox" aria-label="圖片放大檢視">
+    <div class="orig-lb-sheet">
+      <div class="orig-lb-head">
+        <span class="orig-lb-title" data-lb-title></span>
+        <div class="orig-lb-actions">
+          <button type="button" class="print-icon-btn" data-lb-zoom>放大檢視</button>
+          <button type="button" class="dlg-close" data-lb-close aria-label="關閉">×</button>
+        </div>
+      </div>
+      <div class="orig-lb-stage" data-lb-stage>
+        <img alt="" data-lb-img />
+      </div>
+      <div class="orig-lb-foot">
+        <p class="orig-lb-cap" data-lb-cap hidden></p>
+        <div class="orig-lb-nav">
+          <button type="button" class="print-nav-btn" data-lb-prev>← 上一張</button>
+          <button type="button" class="print-nav-btn" data-lb-next>下一張 →</button>
+        </div>
+      </div>
+    </div>
+  </dialog>
 </Base>
+
+<script>
+  import { initOriginalSync } from '../../../scripts/orig-sync';
+  initOriginalSync();
+</script>
+
 <style>
   .full { padding-top: 96px; padding-bottom: 12svh; }
-  .head { display: grid; gap: 16px; margin-bottom: 48px; }
+  .head { display: grid; gap: 16px; margin-bottom: 44px; }
+  .head-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
   .reader-meta { font-size: 13px; color: var(--ink-3); max-width: 46rem; }
   .reader-meta p { margin: 0 0 4px; }
+
+  .orig-layout { display: block; }
   .fulltext { max-width: var(--measure); font-size: clamp(17px, .6vw + 14px, 19px); line-height: 1.9; }
   .fulltext p { margin: 0 0 1.1em; }
   .fulltext h2 { font-size: 1.25em; line-height: 1.5; margin: 1.8em 0 .6em; }
-  .pg { font-family: var(--font-mono); font-size: 12px !important; color: var(--ink-3); border-top: 1px dashed var(--line); padding-top: 6px; margin-top: 2em !important; letter-spacing: .06em; }
+
+  /* 頁界線（左側） */
+  .pg {
+    display: flex; align-items: center; justify-content: space-between; gap: 12px;
+    font-family: var(--font-mono); font-size: 12px !important; color: var(--ink-3);
+    border-top: 1px dashed var(--line); padding-top: 8px; margin-top: 2.2em !important;
+    letter-spacing: .06em; transition: border-color .25s, color .25s;
+    scroll-margin-top: 76px;
+  }
+  .pg-label {
+    all: unset; cursor: pointer; display: inline-flex; align-items: center; gap: 6px;
+    color: inherit; font: inherit; letter-spacing: inherit;
+  }
+  .pg-label::before {
+    content: ""; width: 6px; height: 6px; border-radius: 50%;
+    background: var(--line); transition: background-color .25s, transform .25s;
+  }
+  .pg.is-current { border-top-style: solid; border-top-color: var(--accent-ink); color: var(--accent-ink); font-weight: 700; }
+  .pg.is-current .pg-label::before { background: var(--accent-ink); transform: scale(1.25); }
+  .pg-view {
+    all: unset; cursor: pointer; display: inline-flex; align-items: center; gap: 4px;
+    padding: 2px 10px; border-radius: var(--r-pill);
+    border: 1px solid var(--line); background: var(--paper-2); color: var(--ink-2);
+    font-family: var(--font-mono); font-size: 11px; line-height: 1.6; white-space: nowrap;
+    transition: border-color .2s, color .2s, background-color .2s;
+  }
+  .pg-view:hover { border-color: var(--ink); color: var(--ink); background: var(--paper); }
+  @media (pointer: coarse) { .pg-view { min-height: 28px; padding-inline: 12px; } }
+
+  /* 原刊配圖區塊（左側正文） */
+  .orig-fig { margin: 1.4em 0 0; }
+  .orig-media { display: grid; gap: 8px; }
+  .orig-fig--single .orig-media { grid-template-columns: 1fr; }
+  .orig-fig--stack .orig-media { grid-template-columns: 1fr; }
+  .orig-fig--duo .orig-media { display: flex; align-items: stretch; gap: 8px; }
+  .orig-fig--trio .orig-media { grid-template-columns: repeat(2, 1fr); }
+  .orig-fig--trio .orig-img-btn:first-child { grid-column: 1 / -1; }
+  .orig-fig--quad .orig-media { grid-template-columns: repeat(2, 1fr); }
+
+  .orig-img-btn {
+    all: unset; box-sizing: border-box; position: relative; display: block; cursor: zoom-in;
+    overflow: hidden; border-radius: var(--r-s);
+    border: 1px solid var(--line); background: var(--paper-2);
+    transition: border-color .2s, box-shadow .2s;
+  }
+  .orig-fig--duo .orig-img-btn { flex: 1 1 0; min-width: 0; }
+  .orig-img-btn:hover { border-color: var(--ink-2); box-shadow: 0 8px 20px -14px rgba(31, 29, 26, .45); }
+  .orig-img-btn:focus-visible { outline: 3px solid var(--accent-ink); outline-offset: 2px; }
+  .orig-img-btn img { width: 100%; height: auto; display: block; }
+  .orig-fig--single .orig-img-btn img { max-height: 460px; object-fit: contain; margin: 0 auto; }
+  .orig-fig--duo .orig-img-btn img { height: 100%; object-fit: cover; }
+  .orig-zoom-hint {
+    position: absolute; right: 8px; bottom: 8px;
+    width: 24px; height: 24px; border-radius: 50%; display: grid; place-items: center;
+    background: color-mix(in srgb, var(--ink) 74%, transparent); color: var(--paper);
+    font-size: 12px; opacity: 0; transition: opacity .2s; pointer-events: none;
+  }
+  .orig-img-btn:hover .orig-zoom-hint, .orig-img-btn:focus-visible .orig-zoom-hint { opacity: 1; }
+
+  /* 圖說緊接在配圖下方時，無縫銜接成完整圖卡 */
+  .fulltext .cap.has-fig {
+    margin-top: 6px;
+    border-radius: 0 0 var(--r-s) var(--r-s);
+  }
+
+  /* 向量圖表對照按鈕 */
+  .orig-vec { margin: -0.6em 0 1.2em !important; }
+  .vec-btn {
+    all: unset; cursor: pointer; display: inline-flex; align-items: center; gap: 6px;
+    padding: 4px 12px; border-radius: var(--r-pill);
+    border: 1px solid color-mix(in srgb, var(--accent-ink) 40%, var(--line));
+    background: color-mix(in srgb, var(--accent) 26%, var(--paper));
+    color: var(--ink); font-family: var(--font-mono); font-size: 12px; font-weight: 600;
+    transition: background-color .2s, border-color .2s, transform .2s;
+  }
+  .vec-btn:hover { background: var(--accent); border-color: var(--ink); transform: translateY(-1px); }
+  .vec-btn:focus-visible { outline: 3px solid var(--accent-ink); outline-offset: 2px; }
+
+  /* 右側印刷紙本對照區（桌機 >= 1100px 顯示） */
+  .print-pane { display: none; }
+  .print-restore { display: none; }
+
+  @media (min-width: 1100px) {
+    .full.wrap { max-width: 78rem; }
+    .mobile-print-btn, .pg-view { display: none; }
+    .orig-layout {
+      display: grid;
+      grid-template-columns: minmax(0, var(--measure)) minmax(380px, 1fr);
+      gap: clamp(32px, 3.6vw, 52px);
+      align-items: start;
+    }
+    .orig-layout.is-print-hidden { grid-template-columns: 1fr; }
+    .orig-layout.is-print-hidden .fulltext { margin-inline: auto; }
+    .orig-layout.is-print-hidden .print-pane { display: none; }
+
+    .print-pane {
+      position: sticky; top: 72px;
+      height: calc(100svh - 96px);
+      display: grid; grid-template-rows: auto 1fr auto; gap: 12px;
+      padding: 4px 0;
+    }
+    .print-restore:not([hidden]) {
+      display: inline-flex; align-items: center; gap: 6px;
+      position: fixed; right: var(--gutter); top: 68px; z-index: 30;
+      padding: 7px 14px; border-radius: var(--r-pill);
+      border: 1px solid var(--line); background: var(--paper); color: var(--ink);
+      font-family: var(--font-mono); font-size: 12px; font-weight: 600; cursor: pointer;
+      box-shadow: 0 8px 24px -14px rgba(31, 29, 26, .4);
+    }
+    .print-restore:hover { border-color: var(--ink); }
+  }
+
+  .print-bar {
+    display: flex; align-items: center; justify-content: space-between; gap: 10px;
+    min-height: 30px;
+  }
+  .print-status { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+  .print-label {
+    font-family: var(--font-mono); font-size: 12px; color: var(--ink-2); letter-spacing: .04em;
+  }
+  .print-resync {
+    all: unset; cursor: pointer; padding: 2px 10px; border-radius: var(--r-pill);
+    background: var(--accent); color: var(--ink);
+    font-family: var(--font-mono); font-size: 11px; font-weight: 700;
+  }
+  .print-resync[hidden] { display: none; }
+  .print-resync:hover { box-shadow: 0 2px 0 var(--accent-ink); }
+  .print-tools { display: flex; align-items: center; gap: 6px; }
+  .print-icon-btn {
+    all: unset; cursor: pointer; padding: 4px 10px; border-radius: var(--r-pill);
+    border: 1px solid var(--line); background: transparent; color: var(--ink-2);
+    font-family: var(--font-mono); font-size: 11px; line-height: 1.5; white-space: nowrap;
+    transition: border-color .2s, color .2s, background-color .2s;
+  }
+  .print-icon-btn:hover { border-color: var(--ink); color: var(--ink); background: var(--paper-2); }
+  .print-icon-btn:focus-visible { outline: 3px solid var(--accent-ink); outline-offset: 2px; }
+
+  /* 書頁展示舞台與奇偶裝訂書脊陰影 */
+  .print-stage {
+    position: relative; display: grid; place-items: center; min-height: 0; overflow: hidden;
+    padding: 4px 8px;
+  }
+  .print-sheet {
+    all: unset; box-sizing: border-box; position: relative; display: block; cursor: zoom-in;
+    max-width: 100%; max-height: 100%;
+    background: #fbf8f1;
+    border: 1px solid color-mix(in srgb, var(--ink) 13%, transparent);
+    box-shadow: 0 18px 42px -22px rgba(31, 29, 26, .34), 0 2px 6px rgba(31, 29, 26, .08);
+    overflow: hidden;
+  }
+  .print-sheet:focus-visible { outline: 3px solid var(--accent-ink); outline-offset: 3px; }
+  .print-sheet img {
+    display: block; max-height: calc(100svh - 208px); width: auto; max-width: 100%;
+    height: auto; object-fit: contain;
+  }
+  /* 奇數頁（右頁）：左書脊內影 + 右緣章節色條 */
+  .print-sheet[data-side="odd"] {
+    border-radius: 2px 8px 8px 2px;
+    border-right: 3px solid var(--accent);
+  }
+  .print-sheet[data-side="odd"]::after {
+    content: ""; position: absolute; inset: 0; pointer-events: none;
+    box-shadow: inset 18px 0 24px -18px rgba(31, 29, 26, .22);
+  }
+  /* 偶數頁（左頁）：右書脊內影 + 左緣章節色條 */
+  .print-sheet[data-side="even"] {
+    border-radius: 8px 2px 2px 8px;
+    border-left: 3px solid var(--accent);
+  }
+  .print-sheet[data-side="even"]::after {
+    content: ""; position: absolute; inset: 0; pointer-events: none;
+    box-shadow: inset -18px 0 24px -18px rgba(31, 29, 26, .22);
+  }
+
+  /* 240ms 輕量書頁抽換動效（不為互動而互動，複用 --ease-lift） */
+  @keyframes sheet-next-in { from { opacity: .25; transform: translateX(18px); } to { opacity: 1; transform: none; } }
+  @keyframes sheet-prev-in { from { opacity: .25; transform: translateX(-18px); } to { opacity: 1; transform: none; } }
+  @keyframes sheet-pulse { 0%, 100% { box-shadow: 0 18px 42px -22px rgba(31, 29, 26, .34); } 50% { box-shadow: 0 0 0 3px var(--accent-ink), 0 18px 42px -22px rgba(31, 29, 26, .34); } }
+  .print-sheet.is-next { animation: sheet-next-in .24s var(--ease-lift) both; }
+  .print-sheet.is-prev { animation: sheet-prev-in .24s var(--ease-lift) both; }
+  .print-sheet.is-pulse { animation: sheet-pulse .65s ease both; }
+
+  /* 底部翻頁控制列 */
+  .print-nav {
+    display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  }
+  .print-nav-btn {
+    all: unset; cursor: pointer; padding: 6px 12px; border-radius: var(--r-pill);
+    border: 1px solid var(--line); background: var(--paper); color: var(--ink);
+    font-family: var(--font-mono); font-size: 12px; font-weight: 600; white-space: nowrap;
+    transition: border-color .2s, background-color .2s, opacity .2s;
+  }
+  .print-nav-btn:hover:not(:disabled) { border-color: var(--ink); background: var(--paper-2); }
+  .print-nav-btn:disabled { opacity: .35; cursor: not-allowed; }
+  .print-nav-btn:focus-visible { outline: 3px solid var(--accent-ink); outline-offset: 2px; }
+
+  .print-dots { display: flex; align-items: center; gap: 6px; }
+  .print-dot {
+    all: unset; cursor: pointer; width: 7px; height: 7px; border-radius: 50%;
+    background: var(--line); transition: background-color .2s, transform .2s;
+  }
+  .print-dot:hover { background: var(--ink-3); }
+  .print-dot.is-active { background: var(--accent-ink); transform: scale(1.35); }
+  .print-dot:focus-visible { outline: 2px solid var(--accent-ink); outline-offset: 2px; }
+
+  .print-meter {
+    flex: 1; height: 4px; border-radius: var(--r-pill); background: var(--paper-2); overflow: hidden;
+  }
+  .print-meter span {
+    display: block; height: 100%; width: 100%; background: var(--accent-ink);
+    transform-origin: 0 50%; transition: transform .24s var(--ease-lift);
+  }
+
+  /* 全螢幕放大燈箱 */
+  .orig-lb {
+    border: 0; padding: 0; margin: auto; background: transparent;
+    width: min(96vw, 70rem); max-width: none; height: min(94svh, 66rem); max-height: none;
+  }
+  .orig-lb-sheet {
+    height: 100%; display: grid; grid-template-rows: auto 1fr auto; overflow: hidden;
+    background: var(--paper); border-radius: var(--r-l); border: 1.5px solid var(--ink);
+    box-shadow: 0 24px 70px -20px rgba(0, 0, 0, .55);
+  }
+  .orig-lb-head {
+    display: flex; align-items: center; justify-content: space-between; gap: 12px;
+    padding: 10px 14px 10px 18px; border-bottom: 1px solid var(--line);
+  }
+  .orig-lb-title { font-family: var(--font-mono); font-size: 13px; color: var(--ink-2); }
+  .orig-lb-actions { display: flex; align-items: center; gap: 8px; }
+  .orig-lb-stage {
+    overflow: auto; display: grid; place-items: center; padding: 16px;
+    background: color-mix(in srgb, var(--paper-2) 60%, var(--paper));
+    touch-action: pan-x pan-y pinch-zoom;
+  }
+  .orig-lb-stage img {
+    max-width: 100%; max-height: 100%; width: auto; height: auto;
+    border-radius: 4px; box-shadow: 0 12px 32px -16px rgba(31, 29, 26, .35);
+    cursor: zoom-in;
+  }
+  .orig-lb-stage.is-zoomed { display: block; text-align: center; }
+  .orig-lb-stage.is-zoomed img { max-width: none; max-height: none; width: min(1400px, 165%); cursor: zoom-out; margin: 0 auto; }
+  .orig-lb-foot {
+    display: grid; gap: 10px; padding: 10px 18px 14px; border-top: 1px solid var(--line);
+    background: var(--paper);
+  }
+  .orig-lb-cap { margin: 0; font-size: 13px; line-height: 1.6; color: var(--ink-2); }
+  .orig-lb-nav { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+
+  .sr-only {
+    position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+    overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;
+  }
 </style>

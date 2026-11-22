@@ -17,7 +17,7 @@ const anchor = (i: number) => { const c = Math.cos(ang(i)); return Math.abs(c) <
   <svg viewBox="0 0 400 340" role="img" aria-label={`${g.title ?? ''}：` + g.axes.map((a) => `${a.label} ${a.v}`).join('、') + (g.note ? `（${g.note}）` : '')}>
     {rings.map((v) => <polygon class="rd-ring" points={poly(g.axes.map(() => v))} />)}
     {g.axes.map((_, i) => { const [x, y] = pt(i, max); return <line class="rd-spoke" x1={cx} y1={cy} x2={x} y2={y} />; })}
-    {rings.map((v) => <text class="rd-tick" x={cx + 4} y={cy - (R * v) / max + 3}>{v}</text>)}
+    {rings.map((v) => <text class="rd-tick" x={cx - 6} y={cy - (R * v) / max + 3} text-anchor="end">{v}</text>)}
     <g class="rd-shape" data-at="1" style={`transform-origin:${cx}px ${cy}px`}>
       <polygon class="rd-area" points={poly(g.axes.map((a) => a.v))} />
       {g.axes.map((a, i) => { const [x, y] = pt(i, a.v); return <circle class="rd-dot" cx={x} cy={y} r="4" />; })}

@@ -48,11 +48,11 @@ const C = '/art/cover/';
   .hx-bg { position: absolute; inset: 0; background: #d8c3a2 url(/art/cover/kraft.webp) 0 0 / 640px; background-blend-mode: multiply;
     opacity: calc(1 - clamp(0, (var(--p) - .84) / .16, 1)); }
   .hx-2026 { position: absolute; top: 2svh; left: 50%; width: min(78vw, 980px); height: auto; translate: -50% 0; pointer-events: none;
-    filter: drop-shadow(0 0 1px rgba(0, 0, 0, .25)); opacity: calc(.95 - clamp(0, (var(--p) - .55) / .25, 1) * .75); }
+    filter: drop-shadow(0 0 1px rgba(0, 0, 0, .25)); opacity: calc(.95 - clamp(0, (var(--p) - .45) / .2, 1) * .83); }
   .hx-canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
   .hx-still { display: none; }
   .hx-logo { position: absolute; bottom: 3svh; left: 50%; width: min(44vw, 520px); height: auto; translate: -50% 0; pointer-events: none;
-    clip-path: inset(0 calc((1 - clamp(0, (var(--p) - .04) / .36, 1)) * 100%) 0 0); opacity: calc(1 - clamp(0, (var(--p) - .62) / .18, 1)); }
+    clip-path: inset(0 calc((1 - clamp(0, (var(--p) - .04) / .36, 1)) * 100%) 0 0); opacity: calc(1 - clamp(0, (var(--p) - .46) / .16, 1)); }
 
   .hx-title { position: relative; top: var(--hx-shift, 0px); z-index: 3; max-width: min(42rem, 88vw); text-align: center; pointer-events: none;
     opacity: calc(1 - clamp(0, (var(--p) - .3) / .14, 1)); transform: translateY(calc(clamp(0, (var(--p) - .3) / .14, 1) * -40px)); }

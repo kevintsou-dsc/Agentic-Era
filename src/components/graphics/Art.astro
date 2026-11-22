@@ -26,6 +26,7 @@ const zoomable = g.art === 'e2e-rings' || g.art === 'iproof' || g.art === 'growt
 ---
 <figure class="stage art">
   {g.title && <p class="title">{g.title}</p>}
+  {zoomable && <button type="button" class="zoom-btn" data-zoom aria-label="放大看全圖">⤢ 點此放大看全圖</button>}
   {g.art === 'magnet-mount' && <MagnetMount />}
   {g.art === 'escalation' && <Escalation />}
   {g.art === 'persona-duo' && <PersonaDuo />}
@@ -42,7 +43,6 @@ const zoomable = g.art === 'e2e-rings' || g.art === 'iproof' || g.art === 'growt
   {g.art === 'growth-triangle' && <div class="art-zoomable" data-zoom-src data-zoom><GrowthTriangle /></div>}
   {g.art === 'coffee-layers' && <CoffeeLayers />}
   {g.art === 'content-engine' && <ContentEngine />}
-  {zoomable && <button type="button" class="zoom-btn" data-zoom aria-label="放大看全圖">⤢ 點此放大看全圖</button>}
   <figcaption class="source">{g.source}</figcaption>
 </figure>
 <style>

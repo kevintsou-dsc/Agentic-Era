@@ -412,21 +412,22 @@ export async function downloadCanvas(c: HTMLCanvasElement, name: string): Promis
   return true;
 }
 
-/** 能分享檔案就連圖分享（同時預先複製文字以防社群 App 忽略 text）；不支援檔案分享就下載圖並複製文字與連結。 */
+/** 能分享檔案就連圖分享（優先保留 user activation，分享完成或退回下載後再複製文字與連結）。 */
 export async function shareCanvas(c: HTMLCanvasElement, name: string, title: string, text: string, url: string): Promise<string> {
   const blob = await toBlob(c);
   const f = blob ? new File([blob], name, { type: 'image/png' }) : null;
   const fullText = `${text}\n${url}`;
-  const copied = await copyText(fullText);
   try {
     if (f && navigator.canShare?.({ files: [f] })) {
       await navigator.share({ files: [f], title, text: fullText });
-      return copied ? '已開啟分享（文字與連結也同步複製好了）。' : '';
+      const copied = await copyText(fullText);
+      return copied ? '已開啟分享（文字與連結也同步複製好了）。' : '已開啟分享。';
     }
   } catch (e) {
     if ((e as DOMException).name === 'AbortError') return '';
   }
   if (!blob) return '這個瀏覽器不能產生圖片。';
+  const copied = await copyText(fullText);
   download(blob, name);
   return copied ? '已下載卡片，文字和連結也複製好了，可以直接貼上。' : '已下載卡片。';
 }
@@ -442,7 +443,7 @@ export function initShare() {
   const say = (s: string) => { msg.textContent = s; };
   const pick = () => picks.find((r) => r.checked) ?? picks[0];
   const url = absUrl(root.dataset.path!);
-  const slug = root.dataset.path!.split('/').filter(Boolean).pop();
+  const slug = root.dataset.path!.split('/').filter(Boolean).pop() || 'home';
   const file = `decision-wisdom-${slug}.png`;
   const spec = (): CardSpec => {
     const r = pick();

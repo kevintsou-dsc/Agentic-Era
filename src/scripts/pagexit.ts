@@ -3,14 +3,17 @@
 // 只處理會由瀏覽器自己換頁的一般點擊：新分頁、修飾鍵、下載、站外、同頁錨點、已被其他腳本攔下的、減少動態都不管。
 // 新頁的 is-entering 由 Loader.astro 的行內腳本在第一次繪製前加上（讀 sessionStorage['dw-nav']）。
 const NAV = 'dw-nav';
-const COVER = 330; // 兩張紙蓋滿的時間：sheet-cover .30s＋牛皮紙延遲 .035s，兼顧翻頁手感與俐落節奏
+const COVER = 220; // 兩張紙蓋滿的時間：sheet-cover .22s，兼顧翻頁手感與俐落節奏
 
 export function initPageExit() {
   const root = document.documentElement;
-  // 新頁：字體就緒（最多等 250ms）就收幕；CSS 另有 1.0 秒的保底
+  // 新頁：字體就緒（最多等 60ms）就收幕；CSS 另有 0.45 秒的保底
   if (root.classList.contains('is-entering')) {
-    const open = () => root.classList.add('is-entered');
-    Promise.race([document.fonts?.ready, new Promise((r) => setTimeout(r, 250))]).then(() => requestAnimationFrame(open));
+    const open = () => {
+      root.classList.add('is-entered');
+      setTimeout(() => root.classList.remove('is-entering', 'is-entered'), 450);
+    };
+    Promise.race([document.fonts?.ready, new Promise((r) => setTimeout(r, 60))]).then(() => requestAnimationFrame(open));
   }
 
   document.addEventListener('click', (e) => {

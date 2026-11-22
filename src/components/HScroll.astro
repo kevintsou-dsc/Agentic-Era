@@ -87,6 +87,7 @@ if (view.some((v) => v.fold) || (someInline && !allInline)) view.forEach((v) => 
   /* 同一組卡片等高（拉齊到最高那張）；整條軌道在可用高度內置中，比可用高度還高時從上緣對齊（safe），不會被上下裁掉 */
   .hs-viewport { overflow: hidden; display: flex; align-items: safe center; min-height: 0; padding: 10px 0; }
   .hs-track { list-style: none; margin: 0; padding: 0 var(--gutter); display: flex; align-items: stretch; gap: clamp(14px, 2vw, 24px); will-change: transform; }
+  .hs-track:has(details.hs-more[open]):has(details.hs-more:not([open])) { align-items: flex-start; }
   /* 寬螢幕也只露出約 2.3 格，讓橫向移動明顯 */
   /* 最後手段：仍然放不下時，卡片本身可上下捲動（細捲軸）；捲到底後照常交還給頁面，不鎖住捲動。
      實際上放不下時 scrolly.ts 會先把整段改成左右滑動（.hs-free），這裡只是保險 */

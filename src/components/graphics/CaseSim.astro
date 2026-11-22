@@ -19,9 +19,9 @@ const r = (x: CaseResult) => x;
     <p class="cs-no">CASE {pad(g.no)} / {pad(g.total)}<span class="cs-kicker">{g.kicker}</span></p>
     <h3 class="cs-title">{g.title}</h3>
     <ol class="cs-stepper" aria-hidden="true">
-      <li class="cs-s1" data-focus="1">情境</li>
-      <li data-focus="2">方法</li>
-      <li data-at="3">模擬</li>
+      <li class="cs-s1" data-focus="1" data-cs-step="1">情境</li>
+      <li data-focus="2" data-cs-step="2">方法</li>
+      <li data-at="3" data-cs-step="3">模擬</li>
     </ol>
   </header>
 
@@ -30,7 +30,7 @@ const r = (x: CaseResult) => x;
     <section class="cs-pane cs-p1" data-focus="1" style="--show: var(--focus)">
       <div class:list={['cs-opts', { 'has-img': g.options.some((o) => o.img), chips: g.options.every((o) => !o.img && !o.icon) }]} style={`--k:${g.options.length}`}>
         {g.options.map((o, i) => (
-          <figure class="cs-opt" style={`--tone:${tone(i)}; --d:${i * 120}ms`}>
+          <figure class="cs-opt" data-cs-pick={i} style={`--tone:${tone(i)}; --d:${i * 120}ms`}>
             {o.img ? (
               <img src={o.img.src} alt={o.img.alt} width={o.img.w} height={o.img.h} loading="lazy" decoding="async" />
             ) : o.icon === 'cup' ? (
@@ -229,7 +229,8 @@ const r = (x: CaseResult) => x;
   .cs-kicker { font-family: inherit; font-weight: var(--fw-bold); font-size: 12px; padding: 1px 8px; border-radius: 999px; background: var(--accent); color: var(--ink); }
   .cs-title { margin: 0; font-size: clamp(20px, 1.6vw + 12px, 28px); line-height: 1.3; }
   .cs-stepper { list-style: none; margin: 4px 0 0; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; }
-  .cs-stepper li { position: relative; padding-top: 8px; font-size: 12px; font-weight: var(--fw-bold); letter-spacing: .1em; color: color-mix(in srgb, var(--ink) calc(35% + var(--hit) * 65%), transparent); }
+  .cs-stepper li { position: relative; padding-top: 8px; font-size: 12px; font-weight: var(--fw-bold); letter-spacing: .1em; color: color-mix(in srgb, var(--ink) calc(35% + var(--hit) * 65%), transparent); cursor: pointer; transition: color .2s; }
+  .cs-stepper li:hover { color: var(--ink); }
   .cs-stepper li::before { content: ''; position: absolute; inset: 0 0 auto; height: 4px; border-radius: 2px; background: color-mix(in srgb, var(--accent-ink) calc(var(--hit) * 100%), var(--line)); transition: background .4s; }
   .cs-stepper li[data-focus] { --hit: var(--focus); }
   .cs-stepper li[data-at] { --hit: var(--on); }
@@ -242,8 +243,10 @@ const r = (x: CaseResult) => x;
 
   /* ① 情境 */
   .cs-opts { display: grid; grid-template-columns: repeat(var(--k), minmax(0, 1fr)); gap: 10px; }
-  .cs-opt { margin: 0; display: grid; gap: 6px; justify-items: center; align-content: start; padding: 10px; border-radius: 14px; border: 2px solid color-mix(in srgb, var(--tone) 45%, var(--line)); background: var(--paper);
-    opacity: var(--show); transform: translateY(calc((1 - var(--show)) * 10px)); transition: opacity .4s var(--d), transform .4s var(--d); }
+  .cs-opt { margin: 0; display: grid; gap: 6px; justify-items: center; align-content: start; padding: 10px; border-radius: 14px; border: 2px solid color-mix(in srgb, var(--tone) 45%, var(--line)); background: var(--paper); cursor: pointer;
+    opacity: var(--show); transform: translateY(calc((1 - var(--show)) * 10px)); transition: opacity .4s var(--d), transform .4s var(--d), border-color .2s, box-shadow .2s; }
+  .cs-opt:hover { border-color: var(--tone); }
+  .cs-opt:global(.is-picked) { border-color: var(--accent-ink); box-shadow: 0 0 0 2px var(--accent); }
   .cs-opts.chips { display: flex; flex-wrap: wrap; }
   .chips .cs-opt { padding: 8px 14px; border-radius: 999px; --tone: var(--ink-3) !important; }
   .has-img .cs-opt img { width: 100%; max-height: min(34vh, 300px); object-fit: contain; border-radius: 8px; }

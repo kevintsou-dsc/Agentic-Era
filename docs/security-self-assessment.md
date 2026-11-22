@@ -5,20 +5,20 @@
 - **公開 Repository**：https://github.com/kevintsou-dsc/Agentic-Era
 - **部署架構**：Astro 5 純靜態輸出（`output: 'static'`），以 **Cloudflare Workers Builds（靜態資產模式）** 連接 GitHub：推送 `main` 即自動建置部署，repo 內不存放任何部署 Token。
 - **建置環境**：`.node-version` 固定 Node 24，`package.json` 宣告 `engines.node >=22.18`；正式網址以建置變數 `SITE_URL` 注入（canonical、og:url、og:image 皆為絕對網址）。
-- **最後更新**：2026-11-22（依線上實測現況更新）
+- **最後更新**：2026-11-23（依線上實測與原文頁印刷對照更新）
 
 ---
 
 ## 一、五面向資安與合規自評
 
 ### 1. 內容與圖像授權合規
-- **刊物內容授權**：原刊內容由參賽者（任職於電通）取得授權於本競賽使用，網站內文嚴格維持對原刊之忠實度，並在 `/about/` 與每篇文章清楚標註出版資訊、作者職稱與「所載編輯內容之著作權為原刊所有」。
+- **刊物內容授權**：原刊內容由參賽者（任職於電通）取得授權於本競賽使用，網站內文嚴格維持對原刊之忠實度，並在 `/about/` 與每篇文章清楚標註出版資訊、作者職稱與「所載編輯內容之著作權為原刊所有」。原文頁右側印刷對照採離線預轉之單頁 WebP（`public/pages/`，全書 184 頁共 14.13 MB，平均 78.7 KB／頁，分篇按需載入），原始完稿 `.pdf` 仍嚴格封鎖於 repo 之外。
 - **外部圖像與平台標誌**：人物肖像（Wikimedia Commons CC 授權）與台灣社群平台標誌（Simple Icons CC0／Wikimedia 公有領域）皆依來源標註授權並轉存站內 WebP／SVG，不熱連外部圖片網址。
 - **字型授權合規**：自架 `Noto Sans TC Variable`（`@fontsource-variable/noto-sans-tc`）與建置期子集化之 `DW Serif Display`（源於 `NotoSerifTC-VF.ttf`，以 SHA-256 鎖定來源）均採 SIL Open Font License 1.1，建置腳本（`scripts/fonts/fonts.py`）強制保留完整版權與授權表，並隨附 `public/fonts/OFL.txt`。
 
 ### 2. Repository 衛生與機密防護
 - **雙層白名單 `.gitignore`**：鑑於本機上層工作區存有其他專案設定與高機密原刊設計檔，專案將 Git Root 嚴格鎖定於專案資料夾內，`.gitignore` 採「`*` 預設全拒 → 僅白名單放行 `src/`、`content/`、`scripts/`、`docs/`、`public/` → 二次黑名單封鎖 `.pdf`、`.indd`、`.idml`、`.indb`、`.xlsx`、`.ai`、`.psd`、`.env*`、`.pem`、`.key`、`*.map`」。
-- **推送前自動化機密掃描（`scripts/check-repo.ps1`）**：每次 commit 與推送前檢查 `git ls-files` 清單（2026-11-22 共 1,148 筆受追蹤檔案），確認 0 個原始設計／試算表檔案、0 筆私鑰／API 金鑰樣式（`private_key`、`AKIA...`、`AIza...`）與 0 筆內部聯絡信箱外洩。
+- **推送前自動化機密掃描（`scripts/check-repo.ps1`）**：每次 commit 與推送前檢查 `git ls-files` 清單（2026-11-23 實測 1,151 筆受追蹤檔案），確認 0 個原始設計／試算表檔案、0 筆私鑰／API 金鑰樣式（`private_key`、`AKIA...`、`AIza...`）與 0 筆內部聯絡信箱外洩。
 
 ### 3. 依賴管理與執行期零第三方請求
 - **極簡依賴與零前端框架**：前端不載入 React、Vue、Preact 或 Three.js，D3.js 僅按需引入 `d3-selection`、`d3-scale`、`d3-array` 三個微模組；`astro.config.mjs` 關閉 production sourcemap（`sourcemap: false`）。
@@ -60,10 +60,10 @@
 
 本作品的部署策略是「**建置失敗，比上線出錯好**」。每次 `npm run build` 依序執行：
 
-1. **內容閘門 `npm run verify`**：逐字比對 1,537 條引文與數字的原文位置與頁碼、105 筆作者姓名與職稱、圖表步驟與段落數、術語表與標點規則、襯線子集字型零缺字；任一項失敗即中止建置，錯誤內容不會上線。
-2. **產生舊網址轉址**：`scripts/gen-redirects.mjs` 依 `content/legacy-slugs.json` 產生 Cloudflare `_redirects`，紙本頁碼舊網址（有無結尾斜線）一律 301 到新網址，已分享出去的連結不會失效。
+1. **內容閘門 `npm run verify`**：逐字比對 1,539 條引文與數字的原文位置與頁碼、105 筆作者姓名與職稱、圖表步驟與段落數、術語表與標點規則、襯線子集字型零缺字；任一項失敗即中止建置，錯誤內容不會上線。
+2. **產生舊網址轉址與檢索檔**：`scripts/gen-redirects.mjs` 依 `content/legacy-slugs.json` 與 `content/articles.json` 產生 Cloudflare `_redirects`（紙本頁碼與別名舊網址一律 301 到新網址）、`robots.txt`、`sitemap.xml` 與 `llms.txt`。
 3. **Astro 靜態輸出**：關閉樣式與腳本內嵌、關閉 sourcemap。
-4. **連結與 CSP 檢查 `check-links.mjs`**：2,382 條站內連結與圖檔路徑全部存在；每段行內 `<script>` 的 SHA-256 都必須在 `_headers` 白名單內。
+4. **連結與 CSP 檢查 `check-links.mjs`**：2,358 條站內連結與圖檔路徑（47 頁）全部存在；每段行內 `<script>` 的 SHA-256 與所有必要安全標頭皆須通過 `_headers` 驗證。
 
 **設定值容錯但不默默接受錯值**：正式上線時，後台 `SITE_URL` 曾因格式錯誤讓整個建置失敗，又曾因少打一個字母輸出錯誤的 canonical。現在 `astro.config.mjs` 會先整理（去空白與引號、補 https://），整理後仍不合法（例如主機名稱沒有點）就略過並在建置紀錄中警告，網站照常建置、只是不輸出絕對網址，不會帶著錯的網址上線。完整經過記錄在 `docs/process-log.md`。
 

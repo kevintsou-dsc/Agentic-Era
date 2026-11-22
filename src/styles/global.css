@@ -11,7 +11,7 @@
   --people: #cbdd7a;
   --people-ink: #2f5e35;
   --model: #ebc1c1;
-  --model-ink: #a8423e;
+  --model-ink: #8f312d;
   --ai: #8ccfdd;
   --ai-ink: #24636e;
 
@@ -107,7 +107,7 @@
   .album { scrollbar-color: color-mix(in srgb, var(--paper) 30%, transparent) transparent; }
 }
 
-html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; overflow-x: clip; }
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; overflow-x: clip; background: var(--paper); }
 body {
   margin: 0;
   background: var(--paper);
@@ -203,7 +203,7 @@ a { color: inherit; }
   transform: translateY(12px);
   transition: transform 0.5s ease;
 }
-.scrolly .card > * { opacity: 0.35; transition: opacity 0.5s ease; }
+.scrolly .card > * { opacity: 0.58; transition: opacity 0.5s ease; }
 .scrolly .step.is-active .card { transform: none; }
 .scrolly .step.is-active .card > * { opacity: 1; }
 .scrolly .card p { margin: 0 0 0.6em; }
@@ -222,15 +222,15 @@ a { color: inherit; }
   .scrolly .step { align-items: flex-end; min-height: 85svh; padding-bottom: 6svh; }
   .scrolly .card, .scrolly.graphic-right .card {
     margin: 0 auto; max-width: 34rem;
-    opacity: 0.12; box-shadow: none;
+    opacity: 0.35; box-shadow: none;
     transition: transform 0.45s ease, opacity 0.45s ease, box-shadow 0.45s ease;
   }
   .scrolly .step.is-active .card {
     opacity: 1;
     box-shadow: 0 10px 30px -18px rgba(31, 29, 26, 0.35);
   }
-  /* 最後一張卡片之後不再多留 30svh：那段捲動只剩圖的下半部空白，接到下一段圖之前會出現一大片空紙 */
-  .scrolly .steps { padding-bottom: 0; }
+  /* 最後一張卡片之後留適當空間讓卡片能完整捲過圖表底部 */
+  .scrolly .steps { padding-bottom: 16svh; }
   /* 圖上的說明框（黑底毛玻璃）打開時，把整張圖提到文字卡片上層，說明框才不會被卡片蓋住 */
   .scrolly .graphic:has(.d3-tip:not([hidden])) { z-index: 3; }
   /* 眼睛鈕：讀者想看被卡片擋住的圖時，點一下讓這一段的文字卡片變淡、點擊穿透到圖上；再點一次恢復 */
@@ -260,6 +260,7 @@ a { color: inherit; }
 }
 .src-ref::after { content: "↗"; font-size: 9px; opacity: .75; }
 .src-ref:hover { background: var(--paper); border-color: var(--ink); color: var(--ink); }
+.src-ref.is-loading { opacity: .6; cursor: progress; }
 .src-ref:focus-visible, .more-ref:focus-visible { outline: 3px solid var(--accent-ink); outline-offset: 2px; }
 
 .more-ref {
@@ -331,8 +332,9 @@ dialog[open] { animation: dlg-in .26s var(--ease-out); }
 /* 圖表放大（手機）：整張寬版插畫全螢幕、可左右捲動；複製出來的圖所有步驟都呈現完成狀態 */
 .zoom { border: 0; padding: 0; width: 100vw; max-width: none; height: 100svh; max-height: none; margin: 0; background: var(--paper); }
 .zoom-head { position: sticky; top: 0; display: flex; justify-content: space-between; align-items: center; gap: var(--sp-3); padding: 8px 8px 8px 16px; font-size: var(--fs-meta); color: var(--ink-2); background: var(--paper); border-bottom: 1px solid var(--line); }
-.zoom-body { height: calc(100svh - 52px); overflow: auto; padding: 16px; touch-action: pan-x pan-y pinch-zoom; }
-.zoom-body > * { width: 760px; max-width: none; }
+.zoom-body { height: calc(100svh - 52px); overflow: auto; padding: 16px; display: grid; place-items: center; touch-action: pan-x pan-y pinch-zoom; }
+.zoom-body > * { width: min(100%, 52rem); min-width: 540px; max-width: none; margin: 0 auto; }
+.zoom .gt { max-height: none; }
 .zoom [data-at] { --on: 1; }
 .zoom [data-focus] { --focus: 0; }
 /* 手機點開 #zoom 的 760px 全圖時，還原英文副標、連線與 12 項專業能力細節 */
@@ -353,7 +355,7 @@ dialog[open] { animation: dlg-in .26s var(--ease-out); }
 }
 
 /* 原文視窗：整篇文章，像攤開的書頁 */
-.reader { border: 0; padding: 0; background: transparent; width: min(96vw, 46rem); max-width: none; height: min(90svh, 60rem); max-height: none; }
+.reader { border: 0; padding: 0; background: transparent; width: min(96vw, 46rem); max-width: none; height: min(90svh, 60rem); max-height: none; overflow: visible; }
 .reader-sheet {
   height: 100%; display: grid; grid-template-rows: auto 1fr; overflow: hidden;
   background: #fbf8f1; border-radius: 6px 16px 16px 6px; border-left: 8px solid var(--accent);
@@ -376,9 +378,16 @@ dialog[open] { animation: dlg-in .26s var(--ease-out); }
 .reader-body .box, .fulltext .box { font-size: .92em; padding: 12px 16px; border: 1.5px solid var(--ink); border-radius: 10px; }
 .reader-body .note, .fulltext .note { font-size: .78em; line-height: 1.6; color: var(--ink-3); margin-bottom: .5em; overflow-wrap: anywhere; }
 .reader-body mark, .fulltext mark { background: linear-gradient(transparent 50%, var(--accent) 50%); color: var(--ink); font-weight: var(--fw-bold); padding: 0 1px; scroll-margin: 40svh; }
+/* 原文視窗（#reader 彈窗）內精簡呈現原刊配圖，並隱藏頁界按鈕與向量對照鈕 */
+.reader-body .pg-label { all: unset; font: inherit; color: inherit; }
+.reader-body .pg-view, .reader-body .orig-vec, .reader-body .orig-zoom-hint { display: none; }
+.reader-body .orig-fig { margin: 1em 0 4px; }
+.reader-body .orig-media { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 6px; }
+.reader-body .orig-img-btn { all: unset; display: block; border-radius: 6px; overflow: hidden; border: 1px solid var(--line); background: var(--paper-2); }
+.reader-body .orig-img-btn img { width: 100%; max-height: 220px; object-fit: contain; display: block; }
 
 /* 細節卡：案例圖、原文詳細段落、外部連結 */
-.more { border: 0; padding: 0; background: transparent; width: min(94vw, 36rem); max-width: none; }
+.more { border: 0; padding: 0 10px 10px 0; background: transparent; width: min(94vw, 36rem); max-width: none; overflow: visible; }
 .more-sheet { position: relative; max-height: 86svh; overflow: auto; padding: 22px 24px 24px; background: var(--paper); border-radius: var(--r-l); border: 2px solid var(--ink); box-shadow: 8px 8px 0 var(--accent); }
 .more-sheet > .dlg-close { position: absolute; top: 8px; right: 8px; }
 .more-title { margin: 0 32px 12px 0; font-size: 19px; line-height: 1.4; }
@@ -472,7 +481,7 @@ details.more[open] summary::before { content: "－ "; }
   display: block; height: .95em; border-radius: var(--r-xs);
   background: linear-gradient(100deg, transparent 35%, rgba(255, 255, 255, .7) 50%, transparent 65%) 0 0 / 200vw 100% fixed, var(--paper-2);
   animation: skel-in .4s var(--ease-ui) backwards, skel-sweep 1.6s var(--ease-std) infinite;
-  animation-delay: calc(.15s + var(--i, 0) * 40ms), .15s;
+  animation-delay: calc(.02s + var(--i, 0) * 40ms), .02s;
 }
 .skel i.p { margin-top: 10px; }
 @keyframes skel-in { from { opacity: 0; translate: 0 4px; } }
@@ -491,16 +500,7 @@ details.more[open] summary::before { content: "－ "; }
 
 /* 換頁翻紙（docs/design-review/p1-02-ruling.md L9 修訂；scripts/pagexit.ts）：
    點站內連結 → 兩張紙由下往上蓋滿 → 才真正換頁 → 新頁一開始就被蓋著（Loader 的行內腳本加 is-entering）→ 紙繼續往上收走。
-   不靠瀏覽器原生跨頁換場：那要等新頁載入完才播，一般點連結時讀者只看到卡一下就切換。紙在頂欄（z 40）之下，頂欄不動。
-   柔化手法（避免一整塊平板硬切）：
-   - 兩層錯開：章節色紙先到、牛皮紙隨後 45ms（太大會變成一整塊色牆）；收走時牛皮紙先走、章節色紙殿後，前後各露出一道章節色。
-   - 紙的上下緣是緩弧（border-radius 50% / 12svh），紙比視窗高 24svh，蓋滿時弧形都在視窗外。
-   - 舊頁跟著往上退 4svh 並變淡、新頁從下方 5svh 升起：紙與內容速度不同，有前後景深。
-   - 只動 transform／opacity／translate，全由合成器處理；紙的牛皮紙紋只在開始時繪製一次。
-   沒有 JS 或模組載入失敗時，紙 1.2 秒後自己收走，不會擋住內容。
-   原生跨頁換場仍開著但不播動畫：兩頁交接的那一格都是紙，換頁時不閃白。 */
-@view-transition { navigation: auto; }
-::view-transition-old(root), ::view-transition-new(root) { animation: none; }
+   不靠瀏覽器原生跨頁換場（@view-transition 會在快速切換時觸發 AbortError: Transition was skipped），完全由紙幕與 html 背景控制，換頁時不閃白也不報錯。 */
 .curtain { position: fixed; inset: 0; z-index: 35; pointer-events: none; visibility: hidden; overflow: hidden; }
 .sheet { position: absolute; left: 0; right: 0; top: 0; height: 124svh; border-radius: 50% / 12svh; transform: translateY(100svh); }
 .sheet-a { background: var(--accent); }
@@ -508,20 +508,19 @@ details.more[open] summary::before { content: "－ "; }
   box-shadow: 0 -10px 40px -18px rgba(31, 29, 26, .28); }
 html.is-leaving .curtain, html.is-entering .curtain { visibility: visible; }
 html.is-leaving .curtain { pointer-events: auto; }
-html.is-leaving .sheet { will-change: transform; animation: sheet-cover .30s var(--ease-sheet) forwards; }
-html.is-leaving .sheet-p { animation-delay: .035s; }
-html.is-entering .sheet { transform: translateY(-12svh); will-change: transform; animation: sheet-lift .58s var(--ease-lift) 1s forwards; }
-html.is-entering .sheet-a { animation-delay: 1.05s; }
+html.is-leaving .sheet { will-change: transform; animation: sheet-cover .22s var(--ease-sheet) forwards; }
+html.is-leaving .sheet-p { animation-delay: .02s; }
+html.is-entering .sheet { transform: translateY(-12svh); will-change: transform; animation: sheet-lift .38s var(--ease-lift) .45s forwards; }
+html.is-entering .sheet-a { animation-delay: .48s; }
 html.is-entering.is-entered .sheet-p { animation-delay: 0s; }
-html.is-entering.is-entered .sheet-a { animation-delay: .05s; }
-html.is-leaving main, html.is-leaving .footer { translate: 0 -3svh; opacity: .6; transition: translate .32s var(--ease-sheet), opacity .32s var(--ease-sheet); }
-html.is-entered main { animation: page-rise .62s var(--ease-lift) .04s backwards; }
+html.is-entering.is-entered .sheet-a { animation-delay: .03s; }
+html.is-leaving main, html.is-leaving .footer { translate: 0 -2svh; opacity: .6; transition: translate .22s var(--ease-sheet), opacity .22s var(--ease-sheet); }
+html.is-entered main { animation: page-rise .42s var(--ease-lift) .02s backwards; }
 @keyframes sheet-cover { from { transform: translateY(100svh); } to { transform: translateY(-12svh); } }
 @keyframes sheet-lift { from { transform: translateY(-12svh); } to { transform: translateY(-124svh); } }
 @keyframes page-rise { from { translate: 0 3svh; opacity: .5; } }
 
 @media (prefers-reduced-motion: reduce) {
-  @view-transition { navigation: none; }
   .curtain { display: none; }
   [data-at] { --on: 1; }
   *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }

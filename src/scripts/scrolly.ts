@@ -23,7 +23,7 @@ function initSteps() {
   const short = window.matchMedia('(max-height: 560px)');
   const mobile = window.matchMedia('(max-width: 899px)');
   const update = () => {
-    const trigger = window.innerHeight * (mobile.matches ? 0.75 : 0.62);
+    const trigger = window.innerHeight * (mobile.matches ? 0.82 : 0.7);
     for (const b of blocks) {
       // 矮視窗沒有固定圖，直接顯示最後一步（與 global.css 的 max-height: 560px 對應）
       if (short.matches) {
@@ -48,6 +48,27 @@ function initSteps() {
   window.addEventListener('resize', onScroll);
   update();
   initPeek(blocks.map((b) => b.block));
+
+  // 案例模擬互動：點擊步驟列（情境／方法／模擬）或選項卡預測結果，立即切換圖形並捲至對應段落
+  document.addEventListener('click', (e) => {
+    const pickEl = (e.target as Element | null)?.closest<HTMLElement>('[data-cs-pick]');
+    const stepBtn = pickEl ?? (e.target as Element | null)?.closest<HTMLElement>('[data-cs-step]');
+    if (!stepBtn) return;
+    const scrolly = stepBtn.closest<HTMLElement>('.scrolly');
+    const b = blocks.find((x) => x.block === scrolly);
+    if (!b) return;
+    if (pickEl) {
+      const opts = pickEl.closest('.cs-opts')?.querySelectorAll<HTMLElement>('[data-cs-pick]');
+      opts?.forEach((o) => o.classList.toggle('is-picked', o === pickEl));
+    }
+    const k = Math.min(b.steps.length, Math.max(1, Number(pickEl ? 3 : stepBtn.dataset.csStep)));
+    const targetStep = b.steps[k - 1];
+    if (!targetStep) return;
+    b.current = k;
+    b.steps.forEach((s, i) => s.classList.toggle('is-active', i === k - 1));
+    setStep(b.graphic, k);
+    targetStep.scrollIntoView({ block: 'center', behavior: reduceMotion ? 'instant' : 'smooth' });
+  });
 }
 
 // 手機：卡片右上角的眼睛鈕切換「看圖模式」（同一段所有卡片淡化、點擊穿透到圖）。

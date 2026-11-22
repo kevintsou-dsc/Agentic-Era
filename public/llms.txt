@@ -1,0 +1,105 @@
+# 《決策智慧 2026：Agentic 時代，重塑品牌與人的真實距離》互動閱讀版
+
+> 電通行銷傳播集團（dentsu Taiwan）《決策智慧 2026》全書 22 篇數位策展閱讀站。全站採三層閱讀架構：全書地圖首頁（約 1 分鐘）→ 單篇捲動精華故事（每篇 3–12 分鐘）→ 逐頁校正全文與紙本印刷對照。所有引文與數據皆經自動化閘門逐字核對紙本頁碼。
+
+- 正式網站：https://agentic-era.kevin-tsou.workers.dev/
+- 關於本作品與策展／資安方法：https://agentic-era.kevin-tsou.workers.dev/about/
+- 網站地圖：https://agentic-era.kevin-tsou.workers.dev/sitemap.xml
+
+## 全書 22 篇索引與核心一句話
+
+### 序章（Intro）
+- **AI for Growth：看懂世界，加速成長**（唐心慧｜紙本 p.6–11）
+  - 核心一句話：AI 改變的是技術和做法，不變的是經營的本質：為客戶創造價值、靠人才驅動成長、用信任贏得品牌。
+  - 精華故事：https://agentic-era.kevin-tsou.workers.dev/story/ai-for-growth/
+  - 完整原文：https://agentic-era.kevin-tsou.workers.dev/story/ai-for-growth/original/
+- **Agentic 時代：品牌與人的真實距離**（邵懿文｜紙本 p.12–17）
+  - 核心一句話：品牌離 AI 越近，不一定離人越遠；只要 AI 做的是幫品牌更懂人，距離就是真實的靠近。
+  - 精華故事：https://agentic-era.kevin-tsou.workers.dev/story/agentic-era/
+  - 完整原文：https://agentic-era.kevin-tsou.workers.dev/story/agentic-era/original/
+
+### 人（People）
+- **真實的力量：重新定義中**（周麗君｜紙本 p.20–27）
+  - 核心一句話：在 AI 真假難辨的時代，品牌要用真實感、人性與情感認同，重建別人複製不了的信任。
+  - 精華故事：https://agentic-era.kevin-tsou.workers.dev/story/power-of-real/
+  - 完整原文：https://agentic-era.kevin-tsou.workers.dev/story/power-of-real/original/
+- **Agents of Growth：AI 代理時代的增長推手**（紀緻謙｜紙本 p.28–35）
+  - 核心一句話：未來的競爭不是 Human versus AI，而是 Human plus AI；演算法決定效率，人性決定偏好。
+  - 精華故事：https://agentic-era.kevin-tsou.workers.dev/story/agents-of-growth/
+  - 完整原文：https://agentic-era.kevin-tsou.workers.dev/story/agents-of-growth/original/
+- **AI 代理時代的增長架構師**（朱芳儀｜紙本 p.36–43）
+  - 核心一句話：策略人在 AI 時代，從只決定品牌「說什麼」的傳播企劃，進化為串聯商業、人性洞察與未來商機的增長架構師。
+  - 精華故事：https://agentic-era.kevin-tsou.workers.dev/story/growth-architect/
+  - 完整原文：https://agentic-era.kevin-tsou.workers.dev/story/growth-architect/original/
+- **信任：為何成為 AI 時代最難複製的競爭力**（楊欣怡｜紙本 p.44–49）
+  - 核心一句話：當內容愈來愈容易被生成，真實成為稀缺資產；建立在真實之上的信任，是品牌最難複製的競爭力。
+  - 精華故事：https://agentic-era.kevin-tsou.workers.dev/story/trust/
+  - 完整原文：https://agentic-era.kevin-tsou.workers.dev/story/trust/original/
+- **AI 可以幫人買東西：但品牌要讓人想買東西**（陳蒔｜紙本 p.50–57）
+  - 核心一句話：AI Agent 能替人搜尋、比較，未來甚至協助購買，但它接手的是交易流程；品牌要創造的是購買動機，在 AI 介入之前，先讓消費者心裡想起你。
+  - 精華故事：https://agentic-era.kevin-tsou.workers.dev/story/make-them-want-to-buy/
+  - 完整原文：https://agentic-era.kevin-tsou.workers.dev/story/make-them-want-to-buy/original/
+- **當注意力成為稀缺資源：娛樂與運動如何累積品牌心智資產？**（何華軒｜紙本 p.58–65）
+  - 核心一句話：品牌可以買到曝光，卻買不到記憶。娛樂與運動透過真實的情緒與體驗，創造粉絲共同經歷的記憶，是把注意力累積成品牌心智資產（消費者心中長期留下的品牌印象）的關鍵。
+  - 精華故事：https://agentic-era.kevin-tsou.workers.dev/story/attention-is-scarce/
+  - 完整原文：https://agentic-era.kevin-tsou.workers.dev/story/attention-is-scarce/original/
+- **討好演算法，還是打動人？：別讓效率邏輯把社群砍掉**（孫韞筑｜紙本 p.66–71）
+  - 核心一句話：AI 讀的不是你怎麼說自己，而是別人怎麼說你。在內容可以量產的時代，讓真實的人自發、具體地談論你，買不到也假裝不來，成了品牌最貴的護城河。
+  - 精華故事：https://agentic-era.kevin-tsou.workers.dev/story/algorithm-or-people/
+  - 完整原文：https://agentic-era.kevin-tsou.workers.dev/story/algorithm-or-people/original/
+- **別買曝光了，開始買注意力吧：把媒體做成體驗，幫品牌累積「滑不走」的記憶資產**（徐莉媛｜紙本 p.72–79）
+  - 核心一句話：曝光正在通膨、注意力正在升值。被看進去、被想起來、被帶進決策的曝光，才算數。
+  - 精華故事：https://agentic-era.kevin-tsou.workers.dev/story/buy-attention/
+  - 完整原文：https://agentic-era.kevin-tsou.workers.dev/story/buy-attention/original/
+- **從金曲獎到甄嬛傳：共同記憶帶來的品牌價值**（吳宗霖、陳炯文｜紙本 p.80–93）
+  - 核心一句話：內容越多，「大家一起看過」的時刻越少。共同記憶，是讓不同世代重新相遇的入口。
+  - 精華故事：https://agentic-era.kevin-tsou.workers.dev/story/shared-memory/
+  - 完整原文：https://agentic-era.kevin-tsou.workers.dev/story/shared-memory/original/
+
+### 模型（Model）
+- **People Model：讓消費者研究變成一場隨時能開口的對話**（陳介立、孫郁喬、高靖萍｜紙本 p.96–115）
+  - 核心一句話：用十餘年 CCS 調查一比一捏塑數位分身，讓消費者研究從一次性的調查，變成隨時能追問的對話。
+  - 精華故事：https://agentic-era.kevin-tsou.workers.dev/story/people-model/
+  - 完整原文：https://agentic-era.kevin-tsou.workers.dev/story/people-model/original/
+- **重建 SOV：在注意力被 AI 稀釋的時代，如何守住品牌被選擇的關鍵場域**（吳宗霖｜紙本 p.116–127）
+  - 核心一句話：AI 投放讓廣告更精準，也讓品牌被選擇的理由更容易被稀釋。因此 SOV（聲量佔比）不能只看聲量大小，而要看品牌在消費者做選擇的關鍵場域中，能不能被看見、被想起。
+  - 精華故事：https://agentic-era.kevin-tsou.workers.dev/story/rebuild-sov/
+  - 完整原文：https://agentic-era.kevin-tsou.workers.dev/story/rebuild-sov/original/
+- **AI 普及下的演算法世代：「衡斷力 (Judgment)」將成為最稀缺的競爭力**（強義明｜紙本 p.128–135）
+  - 核心一句話：當工具的門檻消失，差距就回到使用工具的人身上；衡斷力，是演算法世代最稀缺的能力。
+  - 精華故事：https://agentic-era.kevin-tsou.workers.dev/story/judgment/
+  - 完整原文：https://agentic-era.kevin-tsou.workers.dev/story/judgment/original/
+- **生成式體驗來臨：誰能掌握顧客的下一步？**（鄭怡櫛、張家誠｜紙本 p.136–143）
+  - 核心一句話：顧客的下一步不再只由企業的流程決定；企業需要一張決策地圖，看見顧客在哪裡猶豫、需要什麼支援，並提供可信任的下一步。
+  - 精華故事：https://agentic-era.kevin-tsou.workers.dev/story/generative-experience/
+  - 完整原文：https://agentic-era.kevin-tsou.workers.dev/story/generative-experience/original/
+- **贏在 AI 時代的隱形戰場：看見「文化暗流」，啟動企業真實的轉型動能**（王馥蓓、周允玉｜紙本 p.144–149）
+  - 核心一句話：AI 轉型不是技術軍備競賽，而是組織文化的重塑；先看見水面下的文化暗流，才能釋放真實的轉型動能。
+  - 精華故事：https://agentic-era.kevin-tsou.workers.dev/story/cultural-undercurrents/
+  - 完整原文：https://agentic-era.kevin-tsou.workers.dev/story/cultural-undercurrents/original/
+
+### 行動（A.I / Actionable Insights）
+- **顧客為何停下來？：從洞察到治理的體驗優化**（陳詳翰、康晉嵐｜紙本 p.152–159）
+  - 核心一句話：數位體驗優化的核心，是看懂顧客為何猶豫，並用持續驗證把每一次優化累積成組織的決策能力。
+  - 精華故事：https://agentic-era.kevin-tsou.workers.dev/story/why-customers-stop/
+  - 完整原文：https://agentic-era.kevin-tsou.workers.dev/story/why-customers-stop/original/
+- **體驗這件事：我們一直只問了一半**（王姿喨、詹佳穎、黃靖婷｜紙本 p.160–167）
+  - 核心一句話：AI Agent 正替顧客吸收搜尋與比較的步驟、壓縮顧客旅程，也改寫品牌被選擇的方式；從 UX 到 AX，能讓人與 AI 都信任的品牌才會勝出。
+  - 精華故事：https://agentic-era.kevin-tsou.workers.dev/story/agent-experience/
+  - 完整原文：https://agentic-era.kevin-tsou.workers.dev/story/agent-experience/original/
+- **GEO 時代：被 AI 看見是技術，被消費者記住才是本事**（莊閔雯、呂季霖｜紙本 p.168–175）
+  - 核心一句話：被 AI 看見是技術，被消費者記住才是本事；當所有品牌都被 AI 引用，比的是溫度與情境。
+  - 精華故事：https://agentic-era.kevin-tsou.workers.dev/story/geo/
+  - 完整原文：https://agentic-era.kevin-tsou.workers.dev/story/geo/original/
+- **拒絕同質化 AI Slop：將 AI 的「生成力」升級為品牌的「交付力」**（潘其偉｜紙本 p.176–181）
+  - 核心一句話：AI 讓生成內容的能力變成人人都有的商品；品牌要靠規格、產線、檢驗與模式化這套交付系統，把生成力轉化為能持續交付品牌辨識度的交付力。
+  - 精華故事：https://agentic-era.kevin-tsou.workers.dev/story/beyond-ai-slop/
+  - 完整原文：https://agentic-era.kevin-tsou.workers.dev/story/beyond-ai-slop/original/
+- **超越效率：解碼 AI 製作驅動的創意代理商**（Trent Agnew｜紙本 p.182–187）
+  - 核心一句話：AI 不只讓內容做得更快，更能把人才、創意與技術串成一套完整的工作流程，讓台灣品牌在分散的通路裡大量產出貼近在地、又兼顧創意品質與成效的內容。
+  - 精華故事：https://agentic-era.kevin-tsou.workers.dev/story/beyond-efficiency/
+  - 完整原文：https://agentic-era.kevin-tsou.workers.dev/story/beyond-efficiency/original/
+- **AI Agent 走進消費旅程：保健、美妝與零售如何把 AI 變成行動能力**（張詠琦、蔡孟軒、楊至靜｜紙本 p.188–195）
+  - 核心一句話：該問的不是要不要導入 AI Agent，而是哪些任務可以交給 AI、可以授權到哪一層級（觀察理解、推薦、決策或行動）。
+  - 精華故事：https://agentic-era.kevin-tsou.workers.dev/story/ai-agent-journey/
+  - 完整原文：https://agentic-era.kevin-tsou.workers.dev/story/ai-agent-journey/original/

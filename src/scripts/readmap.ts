@@ -43,7 +43,7 @@ export function initReadMap() {
   if (!asks || !read || read.has(current)) return;
   let done = false;
   const mark = () => {
-    if (done) return;
+    if (done || window.scrollY < 240) return;
     const now = load();
     if (!now) return;
     done = true;
@@ -61,7 +61,7 @@ export function initReadMap() {
     if (e.isIntersecting) timers.set(e.target, window.setTimeout(mark, ms));
   });
   const io = new IntersectionObserver(watch(DWELL), { rootMargin: '-30% 0px -30% 0px' }); // 進入視窗中段停留 3 秒才算，讓讀者先看完帶走的問題
-  const io2 = new IntersectionObserver(watch(900));
+  const io2 = new IntersectionObserver(watch(1800));
   io.observe(asks);
   ends.forEach((el) => io2.observe(el));
 }
