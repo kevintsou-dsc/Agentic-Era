@@ -51,3 +51,4 @@ docs/video/voice-ab/
 scripts/video/final_v*/
 scripts/video/build/
 scripts/video/.venv/
+scripts/video/v4/stage/data.js

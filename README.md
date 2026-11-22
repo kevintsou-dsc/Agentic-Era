@@ -4,7 +4,7 @@
 
 - **線上正式站**：https://agentic-era.kevin-tsou.workers.dev/
 - **設計與自評文件**：[PRD.md](docs/PRD.md) ｜ [製作歷程](docs/process-log.md) ｜ [部署與資安自評](docs/security-self-assessment.md)
-- **3 分鐘參賽影片（Video as Code）**：[docs/video/decision_wisdom_2026_3min_v3.mp4](docs/video/decision_wisdom_2026_3min_v3.mp4) ｜ [影片生成架構規格](docs/video-production-architecture.md)
+- **3 分鐘參賽影片（Video as Code）**：成片另行繳交（檔案不進 repo）｜ [影片生成架構](docs/video-production-architecture.md) ｜ [重製企劃與多代理審查](docs/video/remake-plan.md)
 
 ---
 

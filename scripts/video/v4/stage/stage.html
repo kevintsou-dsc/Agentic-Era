@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<title>v4 stage</title>
+<style>
+  :root {
+    --paper: #f1e9db; --paper2: #e7dcc8; --kraft: #c9ab82; --ink: #26221e; --ink2: #5b5249;
+    --red: #c4473c; --green: #3f8a4a; --line: rgba(38,34,30,.14);
+    --sans: "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+    --serif: "Noto Serif TC", "PMingLiU", serif;
+    --mono: Consolas, "Noto Sans TC", monospace;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 1920px; height: 1080px; overflow: hidden; background: var(--paper); color: var(--ink); font-family: var(--sans); }
+  #root { position: absolute; inset: 0; overflow: hidden; background: var(--paper); z-index: 0; isolation: isolate; }
+  .grp { position: absolute; inset: 0; opacity: 0; visibility: hidden; }
+  .cam { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; transform-origin: 0 0; will-change: transform; }
+  .cam img, .full { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; opacity: 0; }
+  .paperbg { position: absolute; inset: 0; background:
+      radial-gradient(1200px 700px at 30% 20%, rgba(255,255,255,.5), transparent 70%),
+      radial-gradient(900px 600px at 80% 90%, rgba(150,110,60,.12), transparent 70%), var(--paper); }
+  .kraftbg { position: absolute; inset: 0; background: radial-gradient(1400px 800px at 40% 30%, #d6bb93, #b8976b); }
+  .dim { position: absolute; inset: 0; background: rgba(38,34,30,0); }
+
+  /* 字幕：底部 72px、安全區內 */
+  #sub { position: absolute; left: 50%; bottom: 72px; transform: translateX(-50%); max-width: 1500px; text-align: center;
+         font: 600 38px/1.35 var(--sans); color: #fff; padding: 12px 30px; border-radius: 12px; background: rgba(28,24,21,.80);
+         letter-spacing: .02em; opacity: 0; white-space: nowrap; z-index: 25; }
+  /* 進度列：左上 */
+  #prog { position: absolute; left: 96px; top: 54px; display: flex; gap: 10px; opacity: 0; z-index: 25; }
+  #prog span { font: 600 24px/1 var(--sans); padding: 10px 16px; border-radius: 999px; background: rgba(241,233,219,.92);
+               color: var(--ink2); border: 1.5px solid var(--line); }
+  #prog span.on { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+  #prog span.back { background: var(--red); color: #fff; border-color: var(--red); }
+
+  /* 通用大字 */
+  .center { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; }
+  .display { font: 900 92px/1.25 var(--serif); letter-spacing: .02em; }
+  .h1 { font: 900 72px/1.3 var(--serif); }
+  .h2 { font: 700 46px/1.4 var(--sans); color: var(--ink2); }
+  .eyebrow { font: 700 26px/1 var(--mono); letter-spacing: .18em; color: var(--red); }
+  .num { font: 900 150px/1 var(--serif); color: var(--red); }
+  .unit { font: 700 44px/1 var(--sans); color: var(--ink); margin-left: 8px; }
+
+  /* 書本數字 */
+  .stats { display: flex; gap: 90px; align-items: flex-end; margin-top: 40px; }
+  .stat { display: flex; flex-direction: column; align-items: center; gap: 18px; opacity: 0; }
+  .stat .lbl { font: 600 30px/1 var(--sans); color: var(--ink2); }
+  .strike { position: relative; }
+  .strike::after { content: ""; position: absolute; left: -6%; top: 52%; height: 10px; width: var(--w, 0%); background: var(--ink); border-radius: 5px; transform: rotate(-4deg); }
+
+  /* 瀏覽器框 */
+  .browser { position: absolute; left: 50%; top: 50%; width: 1500px; height: 900px; margin: -450px 0 0 -750px; border-radius: 18px; overflow: hidden;
+             background: #fff; box-shadow: 0 40px 90px rgba(60,40,20,.35), 0 0 0 1px rgba(0,0,0,.08); }
+  .browser .bar { height: 56px; background: #ece6dc; display: flex; align-items: center; gap: 12px; padding: 0 20px; }
+  .browser .dot { width: 14px; height: 14px; border-radius: 50%; background: #d8cfc2; }
+  .browser .url { margin-left: 18px; flex: 1; height: 34px; border-radius: 17px; background: #fff; display: flex; align-items: center; padding: 0 18px;
+                  font: 500 20px/1 var(--mono); color: var(--ink2); }
+  .browser .vp { position: absolute; left: 0; top: 56px; width: 1500px; height: 844px; overflow: hidden; }
+  .browser .vp img { position: absolute; left: 0; top: 0; width: 1500px; height: 844px; opacity: 0; }
+  .scrollhint { position: absolute; right: 150px; bottom: 170px; font: 700 34px/1 var(--sans); color: var(--paper); background: var(--red);
+                padding: 16px 26px; border-radius: 999px; box-shadow: 0 12px 30px rgba(196,71,60,.35); opacity: 0; }
+
+  /* 卡片 */
+  .card { position: absolute; background: var(--paper); border-radius: 18px; box-shadow: 0 30px 80px rgba(60,40,20,.28), 0 0 0 1px rgba(0,0,0,.06); overflow: hidden; }
+  .card img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; background: #f6f1e7; }
+  .tag { position: absolute; font: 700 30px/1.3 var(--serif); background: var(--ink); color: var(--paper); padding: 14px 24px; border-radius: 10px; }
+
+  /* 游標 */
+  .cursor { position: absolute; width: 44px; height: 44px; left: 0; top: 0; opacity: 0; z-index: 20; }
+  .ring { position: absolute; width: 120px; height: 120px; margin: -60px 0 0 -60px; border-radius: 50%; border: 5px solid var(--red); opacity: 0; z-index: 19; }
+
+  /* 終端機（牛皮紙色調） */
+  .term { position: absolute; left: 50%; top: 50%; width: 1440px; margin-left: -720px; transform: translateY(-50%); background: #2b2621; border-radius: 18px;
+          box-shadow: 0 40px 90px rgba(40,25,10,.4); padding: 0 0 34px; overflow: hidden; }
+  .term .tbar { height: 54px; background: #3a332c; display: flex; align-items: center; gap: 10px; padding: 0 22px; }
+  .term .tbar i { width: 14px; height: 14px; border-radius: 50%; background: #6b5f52; display: block; }
+  .term .tbar b { margin-left: 16px; font: 500 22px/1 var(--mono); color: #b9ab98; }
+  .term pre { font: 500 32px/1.65 var(--mono); color: #efe6d6; padding: 26px 40px 0; white-space: pre-wrap; }
+  .term .ln { opacity: 0; display: block; }
+  .term .bad { color: #ff8a7a; } .term .good { color: #9fd59a; } .term .dimt { color: #b9ab98; }
+
+  /* 分割畫面 */
+  .split { position: absolute; top: 170px; width: 760px; height: 520px; border-radius: 20px; background: #fffaf1; box-shadow: 0 30px 70px rgba(60,40,20,.22);
+           display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 22px; opacity: 0; }
+  .split .lbl { font: 700 34px/1 var(--sans); color: var(--ink2); }
+  .split .pg { font: 900 190px/1 var(--serif); position: relative; }
+  .split .pg.bad { color: var(--red); } .split .pg.good { color: var(--green); }
+  .split .pg.bad::after { content: ""; position: absolute; left: -4%; top: 50%; height: 14px; width: var(--w, 0%); background: var(--ink); border-radius: 7px; transform: rotate(-6deg); }
+  .verdict { position: absolute; left: 50%; bottom: 200px; transform: translateX(-50%); font: 600 30px/1.4 var(--mono); color: var(--red);
+             background: #2b2621; padding: 18px 30px; border-radius: 12px; white-space: nowrap; opacity: 0; }
+
+  /* 部署三卡 */
+  .pillars { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -54%); display: flex; gap: 44px; }
+  .pillar { width: 470px; height: 430px; border-radius: 22px; background: #fffaf1; box-shadow: 0 26px 60px rgba(60,40,20,.2); display: flex; flex-direction: column;
+            align-items: center; justify-content: center; gap: 22px; opacity: 0; text-align: center; padding: 0 30px; }
+  .pillar .big { font: 900 120px/1 var(--serif); color: var(--ink); }
+  .pillar .big.red { color: var(--red); }
+  .pillar .t { font: 700 36px/1.35 var(--sans); }
+  .pillar .s { font: 500 24px/1.4 var(--mono); color: var(--ink2); }
+
+  /* 片尾 */
+  .outro { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; gap: 90px; }
+  .outro .l { display: flex; flex-direction: column; gap: 26px; }
+  .outro .brand { font: 900 110px/1.1 var(--serif); }
+  .outro .tl { font: 700 52px/1.3 var(--sans); color: var(--red); }
+  .outro .url { font: 600 40px/1 var(--mono); background: var(--ink); color: var(--paper); padding: 20px 28px; border-radius: 14px; }
+  .outro .qr { width: 330px; height: 330px; background: #fff; padding: 22px; border-radius: 20px; box-shadow: 0 24px 60px rgba(60,40,20,.25); }
+  .outro .qr svg { width: 100%; height: 100%; }
+  .outro .cap { font: 500 24px/1.5 var(--sans); color: var(--ink2); }
+
+  .quote { position: absolute; left: 50%; top: 120px; transform: translateX(-50%); width: 1500px; text-align: center; font: 900 60px/1.45 var(--serif);
+           color: var(--ink); background: #f1e9db; box-shadow: 0 20px 50px rgba(60,40,20,.18); padding: 28px 40px; border-radius: 18px; opacity: 0; }
+  .quote small { display: block; font: 500 26px/1.6 var(--sans); color: var(--ink2); margin-top: 8px; }
+  .badge { position: absolute; font: 900 54px/1.2 var(--serif); background: rgba(241,233,219,.95); padding: 18px 30px; border-radius: 14px;
+           box-shadow: 0 20px 50px rgba(60,40,20,.2); opacity: 0; }
+  .badge em { font-style: normal; color: var(--red); }
+  #flash { position: absolute; inset: 0; background: #1c1814; opacity: 0; z-index: 30; }
+  #fadein { position: absolute; inset: 0; background: #1c1814; opacity: 0; z-index: 31; }
+</style>
+</head>
+<body>
+<div id="root"></div>
+<div id="prog"><span data-k="1">① 全書</span><span data-k="2">② 一篇</span><span data-k="3">③ 原文・讀完之後</span><span data-k="b">幕後｜AI 寫，程式查</span></div>
+<div id="sub"></div>
+<div id="flash"></div>
+<div id="fadein"></div>
+<script src="data.js"></script>
+<script src="stage.js"></script>
+</body>
+</html>
