@@ -668,7 +668,7 @@ function venn(el: HTMLElement, c: Extract<D3Chart, { kind: 'venn' }>, nw: boolea
       mid.style('opacity', lit ? 1 : 0);
     },
     tick(t) {
-      if (lit) both.style('opacity', 0.75 + Math.sin(t / 500) * 0.2);
+      if (lit) both.style('opacity', 0.9 + Math.sin(t / 500) * 0.06); // 呼吸幅度收小：交集白字底色最淡也有 0.84，對比足夠
     },
   };
 }

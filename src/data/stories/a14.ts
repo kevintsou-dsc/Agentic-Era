@@ -170,7 +170,7 @@ export const story: Story = {
             { article: 'a14', page: 131, text: '過度外包給 AI，將導致企業能力「空洞化」' },
             { article: 'a14', page: 132, text: '而是要重新設計工作流程，讓人類的獨特經驗、行業脈絡判斷與組織知識發揮核心價值' },
           ],
-          more: { title: 'iThome：過度外包 AI 的風險', text: '原文在這段附註的 iThome 報導，延伸這張卡片「過度外包給 AI 會讓企業能力空洞化」的討論。', links: [{ url: 'https://www.ithome.com.tw/news/176693', label: 'iThome 報導', kind: 'web' }] },
+          more: { title: 'iThome：過度外包 AI 的風險', text: '原文附註引用的 iThome 報導，談過度外包給 AI 如何讓企業能力空洞化。', links: [{ url: 'https://www.ithome.com.tw/news/176693', label: 'iThome 報導', kind: 'web' }] },
         },
         {
           kicker: 'IBM 執行長', title: 'Arvind Krishna',
@@ -180,7 +180,7 @@ export const story: Story = {
             { article: 'a14', page: 132, text: 'AI 沒偷走工作，是過度依賴讓人盲目' },
             { article: 'a14', page: 132, text: '而是提升數據素養 (Data Literacy) 與批判性思考 (Critical Thinking)' },
           ],
-          more: { title: 'LinkedIn：AI 沒偷走工作', text: '原文在這段附註的 LinkedIn 貼文，延伸這張卡片「問題不在 AI，而在過度依賴」的觀點：重點是數據素養與批判性思考。', links: [{ url: 'https://www.linkedin.com/posts/smsubham_plot-twist-ai-didnt-steal-your-job-it-activity-7332387217983623168-xyTT/', label: 'LinkedIn 貼文', kind: 'social' }] },
+          more: { title: 'LinkedIn：AI 沒偷走工作', text: '原文附註引用的 LinkedIn 貼文：問題不在 AI，而在過度依賴，關鍵是數據素養與批判性思考。', links: [{ url: 'https://www.linkedin.com/posts/smsubham_plot-twist-ai-didnt-steal-your-job-it-activity-7332387217983623168-xyTT/', label: 'LinkedIn 貼文（第三方）', kind: 'social' }] },
         },
         {
           kicker: 'OpenAI 執行長', title: 'Sam Altman',
@@ -190,7 +190,7 @@ export const story: Story = {
             { article: 'a14', page: 132, text: '對 AI 的「不自覺轉移決策」感到危險' },
             { article: 'a14', page: 132, text: '但集體決策與價值判斷的責任，絕對不能從人類手中移開' },
           ],
-          more: { title: 'Sam Altman 談 AI 與決策責任', text: '原文在這段附註的 Sam Altman 演講影片，對應這張卡片的提醒：AI 能加快工作，但決策與價值判斷的責任不能交給它。', links: [{ url: 'https://www.linkedin.com/videos/akash074_in-this-talk-openai-ceo-sam-altman-identifies-activity-7363272145814130689-r7ri', label: 'Sam Altman 演講影片', kind: 'video' }] },
+          more: { title: 'Sam Altman 談 AI 與決策責任', text: '原文附註引用的 Sam Altman 演講影片（第三方轉貼）：AI 能加快工作，但決策與價值判斷的責任不能交給它。', links: [{ url: 'https://www.linkedin.com/videos/akash074_in-this-talk-openai-ceo-sam-altman-identifies-activity-7363272145814130689-r7ri', label: '演講影片（第三方轉貼）', kind: 'video' }] },
         },
       ],
       source: '整理：策展者｜依據 強義明〈衡斷力〉紙本 p.131–132',

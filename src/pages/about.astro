@@ -2,7 +2,7 @@
 import Base from '../layouts/Base.astro';
 const repo = 'https://github.com/kevintsou-dsc/Agentic-Era';
 ---
-<Base title="關於本作品｜決策智慧 2026" description="這個閱讀版怎麼做的：策展方法、AI 與人的分工、出處與著作權、隱私說明。" chapter="intro" crumb="關於本作品" ogType="website">
+<Base title="關於本作品｜決策智慧 2026" description="這個閱讀版怎麼做的：策展方法、AI 與人的分工、出處與著作權、隱私說明。" chapter="intro" ogType="website">
   <article class="wrap about">
     <p class="eyebrow">關於本作品</p>
     <h1 class="display">只要往下捲，<br />就讀得完</h1>
@@ -18,19 +18,35 @@ const repo = 'https://github.com/kevintsou-dsc/Agentic-Era';
     <h2>AI 與人的分工與防幻覺工程閘門</h2>
     <p>本作品以 Vibe Coding 製作：程式架構、XML 原文抽取與策展初稿由 AI 協作完成；閱讀結構、篇目取捨與最終文案由人審定。製作過程中 AI 犯過的錯（例如憑印象寫錯頁碼、把觀點相近的文章誤寫為對立）皆由自動化閘門或人工覆核攔截，完整紀錄在<a href={`${repo}/blob/main/docs/process-log.md`} target="_blank" rel="noopener noreferrer">製作歷程</a>。</p>
     <ul>
-      <li><b>自動化建置閘門（`npm run verify`）：</b>每次建置自動比對 <b>1,537 條</b>引文與數字的跨頁位置、<b>105 筆</b>作者姓名與職稱、所有圖表步驟與數據比例，以及 <b>2,382 條</b>站內連結與圖檔路徑，任一項失敗即阻斷部署。</li>
-      <li><b>建置期字型子集化：</b>使用 Python `fonttools` 依實際顯示字元壓縮自架襯線顯示字（約 116 KB／215 KB），保留完整 SIL OFL 1.1 授權表，並於建置期嚴格檢查零缺字。</li>
+      <li><b>自動化建置閘門（<code>npm run verify</code>）：</b>每次建置自動比對 <b>1,537 條</b>引文與數字的跨頁位置、<b>105 筆</b>作者姓名與職稱、所有圖表步驟與數據比例，以及 <b>2,382 條</b>站內連結與圖檔路徑，任一項失敗即阻斷部署。</li>
+      <li><b>建置期字型子集化：</b>使用 Python <code>fonttools</code> 依實際顯示字元壓縮自架襯線顯示字（約 116 KB／215 KB），保留完整 SIL OFL 1.1 授權表，並於建置期嚴格檢查零缺字。</li>
     </ul>
+
+    <h2 id="process">製作歷程：AI 犯的錯，怎麼被抓到</h2>
+    <p>以下三則取自<a href={`${repo}/blob/main/docs/process-log.md`} target="_blank" rel="noopener noreferrer">完整製作歷程</a>，都是真實發生、真實修正的案例。</p>
+    <ol class="cases">
+      <li><b>AI 憑印象寫頁碼，被閘門擋下。</b>逐字比對閘門第一次執行，就抓到〈重建 SOV〉一句引文被 AI 寫成 p.117，實際在 p.119。之後閘門再收緊：引文只能落在宣告的那一頁，或確實跨頁，對不上就無法發布。</li>
+      <li><b>兩篇方向一致的文章，被說成對立。</b>規劃「文章之間的關係」時，AI 舉例把〈GEO 時代〉和社群那篇標成對立觀點；審查代理對照摘要後指出兩篇其實方向一致，是硬造的對立。從此關係只分呼應、補充、不同側重，每一條都要附兩邊原文並經人工核可。</li>
+      <li><b>正式上線前的三次部署失敗。</b>第一次 AI 判斷是 Node 版本問題，改了沒用；讀完整份建置紀錄才發現是後台網址設定格式不對。修好後線上網址又變成 <code>https://ttps/</code>（少打了一個 h）。最後加上「容錯但不默默接受錯值」的檢查：設定值不合法就警告略過，不會帶著錯的網址上線。</li>
+    </ol>
 
     <h2>出處與著作權</h2>
     <p>內容出自電通行銷傳播集團《決策智慧 2026：Agentic 時代，重塑品牌與人的真實距離》。發行人 電通集團大北亞區暨台灣執行長 唐心慧；總編輯 電通集團策略創新長 邵懿文；副總編輯 電通智能中心智庫負責人 陳介立。外部人物肖像與案例素材均依來源授權標註並轉存站內，所載編輯內容之著作權為原刊所有。</p>
 
     <h2>部署與資安自評</h2>
     <ul>
-      <li><b>純靜態部署與零外部請求：</b>全站以 Astro 輸出純靜態 HTML／CSS／JS 託管於 Cloudflare 邊緣網路，無後端資料庫，不載入任何第三方字型、CDN 或追蹤腳本，執行期對外網域請求數為 <b>0</b>。</li>
-      <li><b>嚴格內容安全政策（CSP）與安全標頭：</b>停用 CSS 與 JS 內嵌並於 `public/_headers` 設定 `default-src 'self'`、關閉 `unsafe-inline` 腳本，唯一首屏載入腳本以 <b>SHA-256 雜湊白名單</b>鎖定（並於每次建置自動校驗）；同步啟用 HSTS、`X-Content-Type-Options: nosniff`、`X-Frame-Options: DENY` 與完整 `Permissions-Policy`。</li>
-      <li><b>隱私保護與純本地計算：</b>無帳號、無表單、不設自由輸入欄位，分享圖卡皆於瀏覽器離屏 Canvas 即時繪製，不傳送至任何伺服器；已讀紀錄與人機智慧臉譜進度僅存於本機 `localStorage`，在無痕或停用儲存環境會自動優雅降級。</li>
-      <li><b>Repo 衛生與機密隔離：</b>`.gitignore` 採白名單式控管，嚴格封鎖原始 PDF／InDesign／Excel 設計檔與任何金鑰／內部信箱樣式進入公開版本庫。</li>
+      <li><b>純靜態部署與零外部請求：</b>全站以 Astro 輸出純靜態 HTML／CSS／JS 以 Cloudflare Workers 託管於邊緣網路（推送 main 自動建置；舊網址一律 301 轉址），無後端資料庫，不載入任何第三方字型、CDN 或追蹤腳本，執行期對外網域請求數為 <b>0</b>。</li>
+      <li><b>嚴格內容安全政策（CSP）與安全標頭：</b>停用 CSS 與 JS 內嵌並於 <code>public/_headers</code> 設定 <code>default-src 'self'</code>、關閉 <code>unsafe-inline</code> 腳本，唯一首屏載入腳本以 <b>SHA-256 雜湊白名單</b>鎖定（並於每次建置自動校驗）；同步啟用 HSTS、<code>X-Content-Type-Options: nosniff</code>、<code>X-Frame-Options: DENY</code> 與完整 <code>Permissions-Policy</code>。</li>
+      <li><b>隱私保護與純本地計算：</b>無帳號、無表單、不設自由輸入欄位，分享圖卡皆於瀏覽器離屏 Canvas 即時繪製，不傳送至任何伺服器；已讀紀錄與人機智慧臉譜進度僅存於本機 <code>localStorage</code>，在無痕或停用儲存環境會自動優雅降級。</li>
+      <li><b>Repo 衛生與機密隔離：</b><code>.gitignore</code> 採白名單式控管，嚴格封鎖原始 PDF／InDesign／Excel 設計檔與任何金鑰／內部信箱樣式進入公開版本庫。</li>
+    </ul>
+
+    <h2>無障礙</h2>
+    <ul>
+      <li><b>不靠滑鼠也讀得完：</b>每頁第一個 Tab 鍵是「跳到主要內容」；可點的元件都能用鍵盤聚焦，並有清楚的聚焦外框。</li>
+      <li><b>尊重「減少動態」設定：</b>系統開啟減少動態時，捲動動畫、翻面與彩蛋改為淡入或靜態呈現，內容一樣完整。</li>
+      <li><b>圖表有文字版本：</b>互動圖表同時輸出純文字清單，停用 JavaScript 或使用螢幕閱讀器時一樣讀得到數據與結論；圖示按鈕都有文字標籤。</li>
+      <li><b>手機友善：</b>375px 寬的手機上，圖表文字不小於 11px、不超出螢幕；全站宣告語言為繁體中文。</li>
     </ul>
 
     <h2>原始碼與完整自評文件</h2>
@@ -43,6 +59,6 @@ const repo = 'https://github.com/kevintsou-dsc/Agentic-Era';
 <style>
   .about { padding-top: 110px; padding-bottom: 14svh; max-width: 46rem; }
   h2 { font-size: 22px; margin: 2.2em 0 .5em; }
-  ul { padding-left: 1.2em; display: grid; gap: 10px; }
+  ul, ol { padding-left: 1.2em; display: grid; gap: 10px; }
   p, li { color: var(--ink); }
 </style>

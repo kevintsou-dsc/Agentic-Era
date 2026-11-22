@@ -44,7 +44,7 @@ export const story: Story = {
         notes: [{ term: 'AI 滲透率', text: '指在一個國家或族群中，實際使用 AI 的人或企業佔整體的比例，用來看這項技術普及到什麼程度。' }],
       },
       figure: { article: 'a21', page: 183, text: '31.8% 的員工' },
-      people: { total: 100, filled: 32, label: '位台灣員工已在工作中使用生成式 AI（約數）' },
+      people: { total: 100, filled: 32, label: '位台灣員工已在工作中使用生成式 AI（31.8%，取整示意）' },
       source: '資料來源 Taipei Times（2026），Trent Agnew〈超越效率〉紙本 p.183',
     },
     {

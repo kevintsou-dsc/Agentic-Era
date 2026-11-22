@@ -117,7 +117,7 @@ export const story: Story = {
           ],
           more: {
             title: '什麼是品類進入點（CEPs）？',
-            quote: { article: 'a19', page: 171, text: '指的是任何會讓消費者進入某個品類思考的情境、需求或線索，例如朋友來訪、小孩出生、下午想提神，或家電突然故障。' },
+            quote: { article: 'a19', page: 171, text: '品類進入點 (Category Entry Points, CEPs) 是 Ehrenberg-Bass Institute 發展並推廣的一套品牌成長方法，指的是任何會讓消費者進入某個品類思考的情境、需求或線索，例如朋友來訪、小孩出生、下午想提神，或家電突然故障。不同的 CEP，消費者腦中浮現的品牌也可能不同。Ehrenberg-Bass 認為，品牌成長的關鍵不只是建立鮮明定位，而是在越多的品類進入點中被消費者想起，藉此擴大品牌的心智可得性 (Mental Availability)。' },
           },
         },
         {

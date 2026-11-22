@@ -13,7 +13,7 @@ import { storyMinutes } from '../../lib/stats';
 const WHERE = { intro: '兩隻眼睛', people: '鉛筆的臉', model: '兩張臉之間的碎片流', ai: '像素的臉' } as const;
 const SCENARIOS = [
   { label: '社群與口碑提案', slug: 'algorithm-or-people', title: '討好演算法，還是打動人？' },
-  { label: '媒體預算與注意力', slug: 'buy-attention', title: '花錢買曝光，為什麼消費者還是記不住你？' },
+  { label: '媒體預算與注意力', slug: 'buy-attention', title: '別買曝光了，開始買注意力吧' },
   { label: 'SEO／GEO 與轉換', slug: 'geo', title: 'AI 搜尋時代的成長路徑' },
   { label: '組織與 AI 導入', slug: 'cultural-undercurrents', title: 'AI 時代的行銷轉型，為何不只是工具升級？' },
 ] as const;
@@ -156,6 +156,9 @@ const firstOf = (key: string) => ARTICLES.find((a) => a.threads.includes(key as 
     .fm-hud .n { font-size: 22px; }
     .fm-legend { bottom: 4px; gap: 2px 10px; font-size: 10px; }
     .fm-legend i { width: 8px; height: 8px; margin-right: 3px; }
+    /* 手機上臉的筆觸會畫到字底下：小字加一層紙色底板 */
+    .fm-hud .c:not(:empty), .fm-legend { background: color-mix(in srgb, var(--paper) 88%, transparent); padding: 2px 8px; border-radius: 6px; justify-self: start; }
+    .fm-legend { left: 8px; right: 8px; }
     .fm-toast { bottom: 26px; font-size: 12px; }
     .fm-list { padding: 4svh var(--gutter) 30svh; }
     .fm-head { margin-bottom: 8svh; }

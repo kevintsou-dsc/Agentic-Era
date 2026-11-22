@@ -26,14 +26,12 @@ const summary =
   c.kind === 'balance' ? c.states.map((s) => `${s.label}（${s.years}）：${s.desc}`) :
   c.kind === 'rings' ? [...c.rings.map((r) => `${r.label}：${r.desc}`), ...(c.pulls ? [`會被帶走的：${c.pulls.join('、')}`] : [])] :
   c.rows.map((r) => `${r.model}（${r.era}）：${r.steps.map((s) => s.zh).join(' → ')}`);
-const hintTarget = c.kind === 'flowloop' ? '圓圈' : c.kind === 'stages' ? '方格' : c.kind === 'esov' ? '長條與方塊' : c.kind === 'rings' ? '每一圈' : c.kind === 'allocate' ? '每一列與區塊' : c.kind === 'balance' ? '兩端與時間軸（也可以按住方塊往下拉）' : c.kind === 'venn' ? '兩個圓與交集' : c.kind === 'iceberg' ? '水面上下的標籤' : c.kind === 'spectrum' ? '等級與案例標記' : '長條';
 ---
 <div class="stage d3wrap">
   <p class="title">{c.title}</p>
   <div class="d3" data-d3={JSON.stringify(c)} role="figure" aria-label={c.title}>
     <ul class="d3-fallback">{summary.map((s) => <li>{s}</li>)}</ul>
   </div>
-  <p class="hint">滑過或點一下圖中的{hintTarget}，看詳細說明</p>
   <p class="source">{g.source}</p>
 </div>
 <script>
@@ -45,7 +43,6 @@ const hintTarget = c.kind === 'flowloop' ? '圓圈' : c.kind === 'stages' ? '方
   .title { margin: 0; font-weight: var(--fw-bold); font-size: clamp(17px, 1.4vw + 10px, 22px); }
   .d3 { position: relative; }
   .d3 :global(svg) { width: 100%; height: auto; max-height: 56svh; overflow: visible; }
-  .hint { margin: 0; font-size: 12px; color: var(--ink-3); }
 
   /* 可互動元素：游標、hover 放大、鍵盤焦點 */
   .d3 :global(.has-tip) { cursor: pointer; outline: none; }
@@ -196,7 +193,7 @@ const hintTarget = c.kind === 'flowloop' ? '圓圈' : c.kind === 'stages' ? '方
   .d3 :global(.vn-item) { font: 500 13px var(--font-sans); fill: var(--ink-2); }
   .d3 :global(.vn-mid) { transition: opacity .5s; }
   .d3 :global(.vn-both-label) { font: 800 16px var(--font-sans); fill: var(--paper); }
-  .d3 :global(.vn-both-desc) { font: 500 11px var(--font-sans); fill: var(--paper); }
+  .d3 :global(.vn-both-desc) { font: 600 11px var(--font-sans); fill: var(--paper); }
   .d3 :global(.vn-fail) { font: 800 15px var(--font-sans); fill: var(--ink); opacity: 0; transition: opacity .4s; }
 
   /* balance */

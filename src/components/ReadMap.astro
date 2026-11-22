@@ -35,6 +35,11 @@ const where = `你在這裡：${CHAPTERS[a.chapter].name} 章第 ${inChapter.fin
   .rm-cards:has(button[hidden]), .rm-cards button[hidden] { display: none; }
   .rm-cards button { padding: 3px 12px; border-radius: var(--r-pill); border: 1px solid var(--ink); background: var(--paper); font: inherit; font-weight: 600; color: var(--ink); cursor: pointer; }
   .rm-cards button:hover { background: var(--accent); }
+  /* 有待拆的補給包：按鈕亮起並帶一個呼吸紅點（不自動彈出，讀者點了才拆） */
+  .rm-cards button:global(.has-pack) { position: relative; background: var(--accent); border-color: var(--accent-ink); }
+  .rm-cards button:global(.has-pack)::after { content: ""; position: absolute; top: -3px; right: -3px; width: 9px; height: 9px; border-radius: 50%; background: var(--signal); box-shadow: 0 0 0 2px var(--paper); animation: rm-dot 1.8s ease-in-out infinite; }
+  @keyframes rm-dot { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.28); } }
+  @media (prefers-reduced-motion: reduce) { .rm-cards button:global(.has-pack)::after { animation: none; } }
   .rm-chapters { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 6px 18px; }
   .rm-ch { display: flex; align-items: center; gap: 4px; }
   .rm-ch-name { font-family: var(--font-mono); font-size: 11px; letter-spacing: .06em; color: var(--ink-3); margin-right: 2px; }

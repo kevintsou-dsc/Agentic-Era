@@ -168,7 +168,7 @@ export const story: Story = {
           ],
         },
         {
-          text: '二手奢侈品平台 The RealReal 則用 AI 拍了一支《The Last Real Man》：AI 生成的男性角色竭力說服你他是真的，但畫面開始抖動、錯位、崩壞，虛假世界轟然瓦解。',
+          text: '二手奢侈品平台 The RealReal 則用 AI 拍了一支《The Last Real Man》：AI 生成的男性角色竭力說服你自己是真的，但畫面開始抖動、錯位、崩壞，虛假世界轟然瓦解。',
           src: [
             { article: 'a03', page: 24, text: '二手奢侈品平台 The RealReal 用 AI 拍了一支廣告《The Last Real Man》' },
             { article: 'a03', page: 24, text: '畫面開始抖動、錯位、崩壞，故障一波接一波蔓延' },

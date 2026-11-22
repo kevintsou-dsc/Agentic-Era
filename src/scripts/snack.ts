@@ -1,5 +1,6 @@
 // 知識補給包（components/SnackPack.astro）。成就卡定義在 lib/achievements.ts，由已讀紀錄推算。
-// readmap.ts 記下已讀後發出 dw:read（帶讀完前後的已讀清單）：有新卡解鎖就跳出補給包。
+// readmap.ts 記下已讀後發出 dw:read（帶讀完前後的已讀清單）：有新卡解鎖時不自動彈出，
+// 改在頂列收藏鈕亮紅點、文末按鈕改成「拆開新的知識補給包」，讀者點了才打開（不打斷讀完後往下一篇的節奏）。
 // 包裝依這次解鎖的卡而定（scripts/packs.ts）：第一篇＝糖果紙、篇數＝鋁箔袋、讀完一章＝摺紙信封、讀完一條主線＝扭蛋；
 // 一次解鎖多種時取最稀有的。補給包飄在空中：拖曳旋轉；手機用陀螺儀跟著晃動轉（iOS 第一次觸碰時請求授權）。
 // 把拉條往右拉打開。右上角、首頁底部與全書地圖上的按鈕打開收藏。
@@ -222,7 +223,7 @@ export function initSnack() {
     light = buildPack(host, kind, cs.map((c) => ({ name: c.name, color: c.color, no: `${String(cards.indexOf(c) + 1).padStart(2, '0')}／${cards.length}` })), lead.color);
     knob.textContent = PACK[kind].verb;
     $('[data-pk-kind]').textContent = PACK[kind].tag;
-    $('[data-pk-hint]').textContent = `拖曳或晃動手機轉轉看；${PACK[kind].hint}`;
+    $('[data-pk-hint]').textContent = `轉轉看；${PACK[kind].hint}`;
     setTear(0);
     $('[data-got]').textContent = cs.length > 1 ? `一次解鎖 ${cs.length} 張成就卡！` : '解鎖一張成就卡！';
     show('pack');
@@ -233,23 +234,10 @@ export function initSnack() {
     knob.focus();
   };
   let pendingPack: Card[] | null = null;
+  let packWaiting = false;
   const setHasPack = (on: boolean) => {
-    btns.forEach((b) => { if (b.dataset.snackAlbum === 'top') b.classList.toggle('has-pack', on); });
-  };
-  const openPackSafe = (cs: Card[]) => {
-    const busy = Array.from(document.querySelectorAll<HTMLDialogElement>('dialog[open]')).find((d) => d !== dlg);
-    if (busy) {
-      pendingPack = cs;
-      setHasPack(true);
-      busy.addEventListener('close', () => {
-        if (!pendingPack) return;
-        const next = pendingPack;
-        pendingPack = null;
-        setTimeout(() => openPack(next), 450);
-      }, { once: true });
-      return;
-    }
-    openPack(cs);
+    packWaiting = on;
+    updateBtn();
   };
   const openAlbumDialog = () => {
     if (pendingPack?.length) {
@@ -340,14 +328,17 @@ export function initSnack() {
       if (kind === 'top') {
         b.hidden = readN === 0;
         // 只有圖示；數字放在提示與讀屏文字
-        const label = `已讀 ${readN}／${total} 篇｜成就卡 ${n}／${cards.length}，打開收藏`;
+        b.classList.toggle('has-pack', packWaiting);
+        const label = packWaiting ? `有一包新的知識補給包，點開拆開｜已讀 ${readN}／${total} 篇`
+          : `已讀 ${readN}／${total} 篇｜成就卡 ${n}／${cards.length}，打開收藏`;
         b.title = label;
         b.setAttribute('aria-label', label);
       } else if (kind === 'home') {
         b.textContent = n ? `打開成就卡收藏（${n}／${cards.length}）` : '先看看有哪些成就卡';
       } else {
-        b.hidden = n === 0;
-        b.textContent = `成就卡 ${n}／${cards.length}`;
+        b.hidden = n === 0 && !packWaiting;
+        b.classList.toggle('has-pack', packWaiting);
+        b.textContent = packWaiting ? '拆開新的知識補給包' : `成就卡 ${n}／${cards.length}`;
       }
     });
     if (home) {
@@ -367,7 +358,11 @@ export function initSnack() {
     const had = new Set(unlocked(before).map((c) => c.id));
     const fresh = unlocked(after).filter((c) => !had.has(c.id));
     updateBtn();
-    if (fresh.length) setTimeout(() => openPackSafe(fresh), 550);
+    if (!fresh.length) return;
+    // 不自動彈出：併入待拆的補給包，交給頂列紅點與文末按鈕
+    const seen = new Set((pendingPack ?? []).map((c) => c.id));
+    pendingPack = [...(pendingPack ?? []), ...fresh.filter((c) => !seen.has(c.id))];
+    setHasPack(true);
   });
 
   // 預先載入補給包裡會用到的字（中文字型依字分段下載）：第一次開包時不用當場等字、排字，

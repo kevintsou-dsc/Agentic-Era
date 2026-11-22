@@ -55,7 +55,7 @@ export const story: Story = {
           kind: 'flowloop',
           title: 'AI 介入顧客旅程的每一個決策節點',
           center: 'AI Agent',
-          centerExtra: 'AI Agent 不只回答問題，還能代替消費者搜尋、比價、篩選，甚至完成購買。品牌因此要同時說服兩種對象：真正的消費者，以及替他做功課的 AI。',
+          centerExtra: 'AI Agent 不只回答問題，還能代替消費者搜尋、比價、篩選，甚至完成購買。品牌因此要同時說服兩種對象：真正的消費者，以及替消費者做功課的 AI。',
           nodes: [
             { label: '觸及', sub: 'Activate', desc: 'AI 驅動全渠道觸及', extra: '需求剛出現的階段。AI 讓品牌能依每個人的興趣與情境，在不同平台推送個人化的廣告與內容，也讓 AI 搜尋最佳化（被 AI 找到）成為新的基本功。' },
             { label: '探索與連結', sub: 'Inspire', desc: 'AI 賦能顧客體驗', extra: '消費者開始了解、比較的階段。對話式導購、個人化頁面與虛擬門市，讓每個人看到的品牌體驗都不一樣，也讓品牌有機會在比較時被留下來。' },

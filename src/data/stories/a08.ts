@@ -22,7 +22,7 @@ export const story: Story = {
       src: [{ article: 'a08', page: 59, text: '平均停留在單一螢幕上的時間已從2004 的約 150 秒下降至約 47 秒' }],
       beats: [
         {
-          text: 'UC Irvine 資訊學系榮譽教授 Gloria Mark 長期研究人與數位科技的互動，她發現 2004 年，人們平均在單一螢幕上停留約 150 秒。',
+          text: 'UC Irvine 資訊學系榮譽教授 Gloria Mark 長期研究人與數位科技的互動，研究發現 2004 年，人們平均在單一螢幕上停留約 150 秒。',
           src: [
             { article: 'a08', page: 59, text: '資訊學系榮譽教授' },
             { article: 'a08', page: 59, text: '平均停留在單一螢幕上的時間已從2004 的約 150 秒下降至約 47 秒' },
