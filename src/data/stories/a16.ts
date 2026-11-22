@@ -30,7 +30,7 @@ export const story: Story = {
           ],
           aboveAt: 1, belowAt: 2,
         },
-        source: '圖：策展者依原文整理製圖｜王馥蓓、周允玉〈贏在 AI 時代的隱形戰場〉紙本 p.145',
+        source: '圖：策展者依原文整理製圖｜紙本 p.145',
       },
       src: [{ article: 'a16', page: 145, text: '傳統導入轉型只看見水面上的冰山' }],
       beats: [
@@ -76,7 +76,7 @@ export const story: Story = {
           { label: '每週省下一天', sub: '高階 AI 工具幫基層員工省下至少整整一天', value: 42, display: '42%', at: 1 },
           { label: '沒有任何指引', sub: '不知道省下的時間該拿來做什麼', value: 66, display: '66%', highlight: true, at: 2 },
         ],
-        source: '資料來源 BCG《AI at Work 2026》，王馥蓓、周允玉〈贏在 AI 時代的隱形戰場〉紙本 p.145',
+        source: '資料來源 BCG《AI at Work 2026》，紙本 p.145',
       },
       src: [{ article: 'a16', page: 145, text: '波士頓顧問 (BCG) 2026 AI at Work 調查報告也印證這項觀察' }],
       figures: [
@@ -155,7 +155,7 @@ export const story: Story = {
           },
         },
       ],
-      source: '整理：策展者｜依據 王馥蓓、周允玉〈贏在 AI 時代的隱形戰場〉紙本 p.146–148',
+      source: '依據紙本 p.146–148',
     },
     {
       kind: 'graphic',
@@ -172,7 +172,7 @@ export const story: Story = {
           { label: '經驗依賴', v: 77 },
         ],
         note: '0–100 指數｜數值越高，潛在風險越大；原刊標示為示意圖',
-        source: '圖1：AI 轉型暗流雷達圖示意圖（依原刊重製）｜資料來源 電通商業顧問，王馥蓓、周允玉〈贏在 AI 時代的隱形戰場〉紙本 p.146',
+        source: '圖1：AI 轉型暗流雷達圖示意圖（依原刊重製）｜資料來源 電通商業顧問，紙本 p.146',
       },
       src: [{ article: 'a16', page: 146, text: 'AI 轉型暗流雷達圖示意圖' }],
       figures: [

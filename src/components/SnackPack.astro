@@ -244,6 +244,8 @@ const cards = achievements();
   .sn-got { margin: 0; font-size: 15px; font-weight: 700; text-align: center; }
   .deck-nav { margin: 0; display: flex; align-items: center; gap: 12px; font-size: 13px; }
   .deck-nav[hidden] { display: none; }
+  /* .btn 自帶 display，會蓋過 hidden：還沒全收集時「重播全收集彩蛋」必須真的隱藏 */
+  .snack [hidden] { display: none !important; }
   .snack .btn.ghost { color: var(--paper); border-color: rgba(243, 238, 228, .7); }
   .snack .btn.ghost:hover { background: rgba(243, 238, 228, .12); }
   .sn-actions { display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; }

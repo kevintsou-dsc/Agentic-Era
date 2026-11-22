@@ -86,7 +86,7 @@ export const story: Story = {
           ],
         },
       ],
-      source: '整理：策展者｜依據 唐心慧〈AI for Growth〉紙本 p.7–8',
+      source: '依據紙本 p.7–8',
     },
     {
       kind: 'graphic',
@@ -100,7 +100,7 @@ export const story: Story = {
           { title: '創意 vs 創新', desc: 'People Growth：從有創意走向能創新', at: 3 },
           { title: '人 vs AI', desc: 'Organization Growth：人與 AI 的新分工與信任', at: 4 },
         ],
-        source: '整理：策展者｜依據 唐心慧〈AI for Growth〉紙本 p.8–10',
+        source: '依據紙本 p.8–10',
       },
       src: [{ article: 'a01', page: 8, text: '而這三個挑戰，正好對應企業成長的三個維度' }],
       figures: [
@@ -179,7 +179,7 @@ export const story: Story = {
           },
           { title: 'AI 成癮', desc: '太方便，反而讓人漸漸失去自己判斷的能力和意願', at: 2 },
         ],
-        source: '整理：策展者｜依據 唐心慧〈AI for Growth〉紙本 p.10',
+        source: '依據紙本 p.10',
       },
       src: [{ article: 'a01', page: 10, text: '我也想誠實地說出兩個隱憂' }],
       beats: [

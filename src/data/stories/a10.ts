@@ -62,7 +62,7 @@ export const story: Story = {
             },
           ],
         },
-        source: '圖：廣告末日循環 The Doom Loop｜資料來源 WARC《The Multiplier Effect》(2025)，徐莉媛〈別買曝光了〉紙本 p.73（註：原刊圖誤植 playback，依 WARC 原報告校為 payback）。滑過節點看完整標籤與補充說明。',
+        source: '圖：廣告末日循環 The Doom Loop｜資料來源 WARC《The Multiplier Effect》(2025)，紙本 p.73（註：原刊圖誤植 playback，依 WARC 原報告校為 payback）。滑過節點看完整標籤與補充說明。',
       },
       src: [{ article: 'a10', page: 73, text: '廣告惡性循環 The Doom Loop 指得是品牌投廣一再要求成效優化，品牌卻陷入萎縮的惡性循環' }],
       figures: [
@@ -150,7 +150,7 @@ export const story: Story = {
         ],
       },
       figure: { article: 'a10', page: 74, text: 'YOY +20%' },
-      source: '案例：台灣某日系專櫃美妝品牌，徐莉媛〈別買曝光了〉紙本 p.74–75',
+      source: '案例：台灣某日系專櫃美妝品牌，紙本 p.74–75',
     },
     {
       kind: 'graphic',
@@ -196,7 +196,7 @@ export const story: Story = {
             },
           ],
         },
-        source: '圖：從 AIDMA 到 AISAS，再到 AICAS｜資料來源 日經 xTREND，徐莉媛〈別買曝光了〉紙本 p.75。每一列的第一格是旅程的起點。',
+        source: '圖：從 AIDMA 到 AISAS，再到 AICAS｜資料來源 日經 xTREND，紙本 p.75。每一列的第一格是旅程的起點。',
       },
       src: [{ article: 'a10', page: 75, text: '從 AIDMA 到 AISAS，再到 AICAS，其特點是以「諮問 ( 諮詢/ 提問)」為出發點' }],
       figures: [
@@ -242,7 +242,7 @@ export const story: Story = {
           { case: '需求分歧－主張易證明', name: '各個擊破', items: ['拆解需求情境', '優先攻高商機場景', '測出最有效的轉換切角'] },
           { case: '需求一致－主張易證明', name: 'CEPs 先行', items: ['先讓內容成為答案', '再用媒體放大收割', 'FAQ／比較／實測先鋪'] },
         ],
-        source: '圖：AI 影響消費者決策下的媒體布局矩陣｜筆者整理製圖，徐莉媛〈別買曝光了〉紙本 p.76｜點任一格看做法',
+        source: '圖：AI 影響消費者決策下的媒體布局矩陣｜筆者整理製圖，紙本 p.76｜點任一格看做法',
       },
       src: [{ article: 'a10', page: 76, text: '把這兩軸交叉，就能幫品牌判斷現在更適合主攻品牌記憶、內容證據，或分眾收割。' }],
       beats: [
@@ -296,7 +296,7 @@ export const story: Story = {
           { label: '注視 5–10 秒', value: 18, display: '+18%', at: 1 },
           { label: '注視 > 10 秒', value: 79, display: '+79%', highlight: true, at: 2 },
         ],
-        source: '資料來源 dentsu Japan International Brands《Introducing the Attention Economy》眼動研究，徐莉媛〈別買曝光了〉紙本 p.77',
+        source: '資料來源 dentsu Japan International Brands《Introducing the Attention Economy》眼動研究，紙本 p.77',
       },
       src: [{ article: 'a10', page: 77, text: '自願觀看 vs. 被迫觀看的品牌回想差異' }],
       figures: [
@@ -374,7 +374,7 @@ export const story: Story = {
           src: [{ article: 'a10', page: 78, text: '美妝品牌走進 Podcast，借主持人與聽眾長年累積的信任' }],
         },
       ],
-      source: '整理：策展者｜依據 徐莉媛〈別買曝光了〉紙本 p.77–78',
+      source: '依據紙本 p.77–78',
     },
     {
       kind: 'quote',

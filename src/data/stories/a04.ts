@@ -63,7 +63,7 @@ export const story: Story = {
             { label: '擁護與擴散', sub: 'Advocate', desc: 'AI 建構品牌服務生態', extra: '忠實顧客替品牌說話的階段。品牌社群共創、輿情洞察，以及未來由品牌代理人與消費者的 AI Agent 直接協作，都會讓口碑回到下一輪的觸及。' },
           ],
         },
-        source: '圖：AI 驅動新時代並重塑顧客旅程與行銷策略｜資料來源 dentsu Creative，紀緻謙〈Agents of Growth〉紙本 p.30',
+        source: '圖：AI 驅動新時代並重塑顧客旅程與行銷策略｜資料來源 dentsu Creative，紙本 p.30',
       },
       src: [{ article: 'a04', page: 30, text: 'AI 驅動新時代並重塑顧客旅程與行銷策略' }],
       figures: [
@@ -114,7 +114,7 @@ export const story: Story = {
       },
       figure: { article: 'a04', page: 31, text: '高達 89% 的行銷長同意' },
       people: { total: 100, filled: 89, label: '位行銷長認為代理型 AI 將重大影響業務' },
-      source: '資料來源 dentsu《2025 CMO Report》，紀緻謙〈Agents of Growth〉紙本 p.31',
+      source: '資料來源 dentsu《2025 CMO Report》，紙本 p.31',
     },
     {
       kind: 'quote',
@@ -133,7 +133,7 @@ export const story: Story = {
         type: 'art',
         art: 'growth-triangle',
         title: '增長三角：贏得演算法、贏得人心、贏得文化',
-        source: '圖：策展者依原文整理製圖（三角為視覺比喻，各主軸旁小字為所屬專業能力）｜紀緻謙〈Agents of Growth〉紙本 p.31–33',
+        source: '圖：策展者依原文整理製圖（三角為視覺比喻，各主軸旁小字為所屬專業能力）｜紙本 p.31–33',
       },
       src: [{ article: 'a04', page: 31, text: '「增長三角 (The Growth Triangle) 」' }],
       beats: [
@@ -192,7 +192,7 @@ export const story: Story = {
         type: 'art',
         art: 'e2e-rings',
         title: '兩大落地增長解方：兼顧短期營收與長期 AI 轉型',
-        source: '圖2：Creative E2E 服務矩陣及 AI-Powered IMC 方案（依原圖重製；外環內弧為 dentsu 自有 AI 工具、外弧為數據與平台夥伴，標誌取自原刊）｜資料來源 dentsu Creative，紀緻謙〈Agents of Growth〉紙本 p.33–34',
+        source: '圖2：Creative E2E 服務矩陣及 AI-Powered IMC 方案（依原圖重製；外環內弧為 dentsu 自有 AI 工具、外弧為數據與平台夥伴，標誌取自原刊）｜資料來源 dentsu Creative，紙本 p.33–34',
       },
       src: [{ article: 'a04', page: 33, text: '協助企業同時兼顧短期營收變現與長期 AI 轉型' }],
       beats: [

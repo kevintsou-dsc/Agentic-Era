@@ -39,7 +39,7 @@ export const story: Story = {
           { title: '透過信任的創作者認識世界', desc: '社群打破傳播壟斷，信任從機構轉向個人', at: 2 },
           { title: '開始懷疑真實本身', desc: '內容可以被生成，身分也可能被生成', at: 3 },
         ],
-        source: '整理：策展者｜依據 楊欣怡〈信任〉紙本 p.45–46、49',
+        source: '依據紙本 p.45–46、49',
       },
       src: [{ article: 'a06', page: 45, text: '過去，人們透過媒體認識世界；後來，人們透過自己信任的創作者認識世界' }],
       beats: [
@@ -118,7 +118,7 @@ export const story: Story = {
           },
         },
       ],
-      source: '整理：策展者｜依據 楊欣怡〈信任〉紙本 p.46–47（作者的記者經驗）',
+      source: '依據紙本 p.46–47（作者的記者經驗）',
     },
     {
       kind: 'graphic',
@@ -142,7 +142,7 @@ export const story: Story = {
             },
           ],
         },
-        source: '圖：策展者依原文整理製圖（傾斜程度為示意）｜楊欣怡〈信任〉紙本 p.47',
+        source: '圖：策展者依原文整理製圖（傾斜程度為示意）｜紙本 p.47',
       },
       src: [{ article: 'a06', page: 47, text: '過去內容最大的成本是生產，今天內容最大的成本是驗證' }],
       beats: [
@@ -215,7 +215,7 @@ export const story: Story = {
           { title: '行銷負責轉換', desc: '公關負責建立關係', at: 1 },
           { title: 'AI 讓品牌更有效率', desc: '公關確保品牌仍然值得被相信', at: 1 },
         ],
-        source: '依據 楊欣怡〈信任〉紙本 p.48',
+        source: '依據紙本 p.48',
       },
       src: [{ article: 'a06', page: 48, text: '未來的公關，將不只是溝通者，而是品牌的信任工程師 (Trust Engineer)' }],
       beats: [

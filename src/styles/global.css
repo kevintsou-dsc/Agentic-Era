@@ -389,7 +389,7 @@ dialog[open] { animation: dlg-in .26s var(--ease-out); }
 /* 圖說後面的資料來源一律另起一行（全站：細節卡、文章插圖、疊放圖片） */
 figcaption .credit { display: block; margin-top: 2px; }
 .more-text { margin: 0 0 12px; font-size: var(--fs-small); line-height: 1.75; }
-.more-editorial { margin: 0 0 12px; font-size: var(--fs-meta); color: var(--ink-2); }
+.more-editorial { margin: 0 0 12px; font-size: var(--fs-caption); line-height: 1.5; color: var(--ink-3); } /* 附帶說明：小字淡色，不搶編註本文 */
 .more-sheet .quote { font-size: 17px; }
 .more-links { display: flex; flex-wrap: wrap; gap: var(--sp-2); margin: 14px 0 0; }
 .btn.small { padding: 7px 14px; font-size: var(--fs-meta); }

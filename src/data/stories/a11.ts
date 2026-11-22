@@ -64,7 +64,7 @@ export const story: Story = {
       },
       figure: { article: 'a11', page: 82, text: '65% 的 Z 世代' },
       people: { total: 20, filled: 13, label: '位 Gen Z，對沒經歷過的年代懷舊' },
-      source: '資料來源 Vevo《Then Is Now》(2026)，吳宗霖、陳炯文〈從金曲獎到甄嬛傳〉紙本 p.82',
+      source: '資料來源 Vevo《Then Is Now》(2026)，紙本 p.82',
     },
     {
       kind: 'graphic',
@@ -102,7 +102,7 @@ export const story: Story = {
             },
           ],
         },
-        source: '圖：「平成 Retro」對不同世代的意義並不相同｜資料來源 Nihon Information Co., Ltd. (2026)，吳宗霖、陳炯文〈從金曲獎到甄嬛傳〉紙本 p.83',
+        source: '圖：「平成 Retro」對不同世代的意義並不相同｜資料來源 Nihon Information Co., Ltd. (2026)，紙本 p.83',
       },
       src: [{ article: 'a11', page: 83, text: '「平成 Retro」對不同世代的意義並不相同。30 代在懷念，而 10 代則投射自己的 emo 時刻' }],
       figures: [
@@ -182,7 +182,7 @@ export const story: Story = {
             },
           },
         ],
-        source: '整理：策展者｜依據 吳宗霖、陳炯文〈從金曲獎到甄嬛傳〉紙本 p.83',
+        source: '依據紙本 p.83',
       },
       beats: [
         {
@@ -221,7 +221,7 @@ export const story: Story = {
             },
           },
         ],
-        source: '圖：近三屆金曲獎全體平均收視｜資料來源 Nielsen Arianna／dentsu X 分析，吳宗霖、陳炯文〈從金曲獎到甄嬛傳〉紙本 p.84',
+        source: '圖：近三屆金曲獎全體平均收視｜資料來源 Nielsen Arianna／dentsu X 分析，紙本 p.84',
       },
       src: [{ article: 'a11', page: 84, text: '2026 年第 37 屆金曲獎頒獎典禮的電視整體平均收視達 3.37' }],
       figures: [
@@ -269,7 +269,7 @@ export const story: Story = {
             more: { title: '星光大道最高點', quote: { article: 'a11', page: 85, text: '星光大道最高點則出現在睽違 28 年再次入圍的白冰冰，收視 2.52' } },
           },
         ],
-        source: '資料來源 Nielsen Arianna／台視公開資料，吳宗霖、陳炯文〈從金曲獎到甄嬛傳〉紙本 p.85。白冰冰為星光大道收視',
+        source: '資料來源 Nielsen Arianna／台視公開資料，紙本 p.85。白冰冰為星光大道收視',
       },
       src: [{ article: 'a11', page: 85, text: '這個邏輯也能從 2026 年的收視高點' }],
       figures: [
@@ -402,7 +402,7 @@ export const story: Story = {
           { title: '不要過度美化過去', desc: '保留當年的「不完美」與真實感，更容易觸發辨認', at: 2 },
           { title: '上線後留空間給觀眾', desc: '讓人找梗、補充、回應與再創作，「我記得」變成「原來你也記得」', at: 3 },
         ],
-        source: '依據 吳宗霖、陳炯文〈從金曲獎到甄嬛傳〉紙本 p.89',
+        source: '依據紙本 p.89',
       },
       src: [{ article: 'a11', page: 89, text: '它不是只把「舊」當作風格，而是把記憶設計成一種參與機制' }],
       beats: [
@@ -493,7 +493,7 @@ export const story: Story = {
           },
         },
       ],
-      source: '整理：策展者｜依據 吳宗霖、陳炯文〈從金曲獎到甄嬛傳〉紙本 p.86–90',
+      source: '依據紙本 p.86–90',
     },
     {
       kind: 'prose',
@@ -543,7 +543,7 @@ export const story: Story = {
           { title: '橋接｜如何讓熟悉成為新內容入口？', desc: '用熟悉的人物與作品，帶出新的內容', at: 2 },
           { title: '新記憶｜今天要留下什麼給十年後？', desc: '建立可持續的角色、聲音、視覺、產品符號與文化事件', at: 3 },
         ],
-        source: '依據 吳宗霖、陳炯文〈從金曲獎到甄嬛傳〉紙本 p.91 行動表；拍立得造型為策展的視覺比喻',
+        source: '依據紙本 p.91 行動表；拍立得造型為策展的視覺比喻',
       },
       src: [{ article: 'a11', page: 91, text: '盤點記憶符碼、獨特品牌資產、經典內容與生活場景' }],
       beats: [

@@ -245,7 +245,7 @@ export function initSnack() {
     $('[data-got]').textContent = fromUnlock ? (got.length > 1 ? `一次解鎖 ${got.length} 張成就卡！` : '解鎖一張成就卡！') : `已收藏的成就卡（${got.length}／${cards.length}）`;
     show('cards'); renderDeck(); $('[data-snack-share]').focus();
   });
-  $('[data-fin-replay]').addEventListener('click', () => { fromUnlock = false; got = []; showFinale(); });
+  $('[data-fin-replay]').addEventListener('click', () => { if (!allDone()) return; fromUnlock = false; got = []; showFinale(); });
   $('[data-stage="finale"]').addEventListener('pointerdown', (e) => { if (!(e.target as HTMLElement).closest('button')) { void askMotion(); fx.burst(70); } });
   $('[data-fin-share]').addEventListener('click', async () => {
     const m = $('[data-fin-msg]');

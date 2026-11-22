@@ -50,7 +50,7 @@ export const story: Story = {
           { title: '看似年輕族群不買單', desc: '背後可能是品牌缺乏進入文化語境的方式', at: 1 },
           { title: '看似會員經營成效有限', desc: '背後可能是沒有值得被長期留下來的價值交換', at: 1 },
         ],
-        source: '依據 朱芳儀〈增長架構師〉紙本 p.37',
+        source: '依據紙本 p.37',
       },
       src: [{ article: 'a05', page: 37, text: '在今天的市場裡，品牌面對的挑戰從來不是單一問題' }],
       beats: [
@@ -83,7 +83,7 @@ export const story: Story = {
           { title: '提問的能力', desc: '不被表面資訊限制，繼續往下追問', at: 3 },
           { title: '感知不完美的能力', desc: '看見真實生活中的摩擦、尷尬與焦慮', at: 4 },
         ],
-        source: '依據 朱芳儀〈增長架構師〉紙本 p.38–39；黃仁勳觀點引自《商業周刊》',
+        source: '依據紙本 p.38–39；黃仁勳觀點引自《商業周刊》',
       },
       src: [{ article: 'a05', page: 38, text: '說故事的能力、提問的能力，以及感知不完美的能力' }],
       beats: [
@@ -130,7 +130,7 @@ export const story: Story = {
           { src: '/fig/a05/p39-1.webp', alt: '忠孝復興站 Speak 戶外廣告：納豆與錯誤英文「我會很帥 Coming son」', w: 586, h: 347, caption: '第一階段：納豆搭配錯誤英文「我會很帥 Coming son」', credit: '資料來源：安索帕台灣', at: 1 },
           { src: '/fig/a05/p39-2.webp', alt: '忠孝復興站 Speak 戶外廣告：鳳小岳「不要怕錯，敢講最帥」', w: 598, h: 354, caption: '三天後換稿：鳳小岳「不要怕錯，敢講最帥」', credit: '資料來源：安索帕台灣', at: 4 },
         ],
-        source: '圖：Speak app 受到注目與使用，始於品牌讀懂台灣人語言學習歷程中最痛的那個心情｜資料來源 安索帕台灣，朱芳儀〈增長架構師〉紙本 p.39',
+        source: '圖：Speak app 受到注目與使用，始於品牌讀懂台灣人語言學習歷程中最痛的那個心情｜資料來源 安索帕台灣，紙本 p.39',
       },
       beats: [
         {
@@ -185,7 +185,7 @@ export const story: Story = {
           },
           leftAt: 1, rightAt: 2, bothAt: 2,
         },
-        source: '依據 朱芳儀〈增長架構師〉紙本 p.40',
+        source: '依據紙本 p.40',
       },
       src: [{ article: 'a05', page: 40, text: '一邊要懂得被機器理解，一邊也要持續被人真心記得' }],
       beats: [
@@ -264,7 +264,7 @@ export const story: Story = {
           ],
         },
       ],
-      source: '整理：策展者｜依據 朱芳儀〈增長架構師〉紙本 p.40–41',
+      source: '依據紙本 p.40–41',
     },
     {
       kind: 'prose',

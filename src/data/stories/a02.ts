@@ -80,7 +80,7 @@ export const story: Story = {
           },
           leftAt: 1, rightAt: 2, bothAt: 3,
         },
-        source: '圖：產品思維 vs 用戶思維｜邵懿文〈Agentic 時代〉紙本 p.14',
+        source: '圖：產品思維 vs 用戶思維｜紙本 p.14',
       },
       src: [{ article: 'a02', page: 14, text: '能拉近這兩種視角的，向來只有一件事，對話' }],
       figures: [
@@ -151,7 +151,7 @@ export const story: Story = {
         notes: [{ term: '吻合程度', text: '0.89 是模擬結果與真人回答的相關係數，滿分 1.0。可以想成兩人替同一批電影打分數，你給高分的對方也給高分，愈一致就愈接近 1.0；它不是誤差率。這個說明出自特別企劃〈People Model 讓消費者研究變成一場隨時能開口的對話〉（p.100、p.110）。' }],
       },
       figure: { article: 'a02', page: 15, text: '吻合程度達到 0.89' },
-      source: '資料來源 電通台灣 People Model，邵懿文〈Agentic 時代〉紙本 p.15。模型如何建立與驗證，見〈People Model 讓消費者研究變成一場隨時能開口的對話〉',
+      source: '資料來源 電通台灣 People Model，紙本 p.15。模型如何建立與驗證，見〈People Model 讓消費者研究變成一場隨時能開口的對話〉',
     },
     {
       kind: 'quote',
@@ -181,7 +181,7 @@ export const story: Story = {
           { label: '2025', value: 80, display: '近 80 億', at: 1 },
           { label: '2030', sub: '預估', value: 168, display: '約 168 億', highlight: true, at: 2 },
         ],
-        source: '資料來源 Future Market Insights，邵懿文〈Agentic 時代〉紙本 p.15–16',
+        source: '資料來源 Future Market Insights，紙本 p.15–16',
       },
       src: [{ article: 'a02', page: 16, text: 'AI 驅動的市場研究服務規模，將從 2025 年的近八十億美元，在 2030 年成長到約一百六十八億美元' }],
       figures: [
@@ -224,7 +224,7 @@ export const story: Story = {
           { title: '業務部門', desc: '價格提高五元，還買不買？', at: 1 },
           { title: '行銷部門', desc: '廣告訴求怎麼說，消費者才聽得懂？', at: 1 },
         ],
-        source: '依據 邵懿文〈Agentic 時代〉紙本 p.16 表格',
+        source: '依據紙本 p.16 表格',
       },
       src: [{ article: 'a02', page: 16, text: '研發部門想知道：新口味會不會被接受？' }],
       figures: [

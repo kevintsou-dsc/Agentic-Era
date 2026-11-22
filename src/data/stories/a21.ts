@@ -45,7 +45,7 @@ export const story: Story = {
       },
       figure: { article: 'a21', page: 183, text: '31.8% 的員工' },
       people: { total: 100, filled: 32, label: '位台灣員工已在工作中使用生成式 AI（31.8%，取整示意）' },
-      source: '資料來源 Taipei Times（2026），Trent Agnew〈超越效率〉紙本 p.183',
+      source: '資料來源 Taipei Times（2026），紙本 p.183',
     },
     {
       kind: 'prose',
@@ -87,7 +87,7 @@ export const story: Story = {
           { src: '/fig/a21/p186-1.webp', alt: 'AI 製作現場（一）', w: 929, h: 612, caption: 'AI 並沒有降低專業製作的門檻', credit: '資料來源：Tag', at: 3 },
           { src: '/fig/a21/p186-2.webp', alt: 'AI 製作現場（二）', w: 929, h: 680, caption: '要讓影像成為可上線的主視覺，仍需要技術、審美與視覺想像力', credit: '資料來源：Tag', at: 4 },
         ],
-        source: '圖1–4：足球主題廣告拍攝與 AI 製作現場｜資料來源 Tag，Trent Agnew〈超越效率〉紙本 p.185–186',
+        source: '圖1–4：足球主題廣告拍攝與 AI 製作現場｜資料來源 Tag，紙本 p.185–186',
       },
       src: [{ article: 'a21', page: 185, text: '圖片為數位行銷廣告影片的拍攝現場，整體視覺概念從足球延伸' }],
       beats: [
@@ -153,7 +153,7 @@ export const story: Story = {
         type: 'art',
         art: 'content-engine',
         title: '服務台灣通路環境的在地內容引擎',
-        source: '圖：策展者依原文整理製圖｜Trent Agnew〈超越效率〉紙本 p.186–187｜平台標誌：Simple Icons（CC0）、Wikimedia Commons（Dcard，公有領域）',
+        source: '圖：策展者依原文整理製圖｜紙本 p.186–187｜平台標誌：Simple Icons（CC0）、Wikimedia Commons（Dcard，公有領域）',
       },
       src: [{ article: 'a21', page: 187, text: '這套 AI 增強型內容引擎要服務台灣特有的通路環境' }],
       beats: [

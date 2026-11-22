@@ -68,9 +68,11 @@ if (picks.length < 3) {
 const finalPicks = picks.slice(0, 4);
 ---
 <section class={`section share c-${a.chapter}`} data-share data-ch={a.chapter} data-path={`/story/${a.slug}/`} data-title={fullTitle(a)} data-chapter={`${CHAPTERS[a.chapter].name}｜${CHAPTERS[a.chapter].zh}`}>
-  <p class="eyebrow reveal">分享這篇</p>
-  <p class="share-lead reveal">挑一句想帶走的話，做成卡片傳給同事。</p>
-  <div class="share-grid reveal">
+  <!-- 預設收合成一顆按鈕：文末不讓分享編輯器搶過「下一篇」，想分享的人點開才看到選句與樣式 -->
+  <details class="share-fold reveal">
+  <summary class="btn ghost share-open">挑一句話，做成卡片分享</summary>
+  <p class="share-lead">挑一句想帶走的話，做成卡片傳給同事。</p>
+  <div class="share-grid">
     <fieldset class="share-picks">
       <legend class="sr-only">選一句做成卡片</legend>
       {finalPicks.map((p, i) => (
@@ -93,16 +95,23 @@ const finalPicks = picks.slice(0, 4);
       </figure>
     </div>
   </div>
-  <div class="share-actions reveal">
+  <div class="share-actions">
     <button type="button" class="btn flow" data-share-go>分享卡片</button>
     <button type="button" class="btn ghost" data-share-dl>下載圖片</button>
     <button type="button" class="btn ghost" data-share-copy>複製連結</button>
     <span class="share-msg" data-share-msg role="status"></span>
   </div>
+  </details>
 </section>
 <style>
   .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
-  .share { display: grid; gap: 14px; padding-top: 6svh; }
+  .share { padding-block: 4svh 2svh; }
+  .share-fold { display: block; }
+  .share-fold > * + * { margin-top: 14px; }
+  .share-open { list-style: none; justify-self: start; width: fit-content; cursor: pointer; }
+  .share-open::-webkit-details-marker { display: none; }
+  .share-open::after { content: " ▾"; }
+  .share-fold[open] .share-open::after { content: " ▴"; }
   .share-lead { margin: 0; color: var(--ink-2); }
   .share-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 22rem); gap: 20px; align-items: start; }
   @media (max-width: 760px) { .share-grid { grid-template-columns: 1fr; } .share-right { max-width: 22rem; } }

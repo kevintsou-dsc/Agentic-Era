@@ -52,7 +52,7 @@ export const story: Story = {
           { title: '第二階段｜內容供應鏈競爭', desc: '比拼速度、產量與回應市場的能力', at: 2 },
           { title: '第三階段｜品牌交付系統競爭', desc: '比拼能否穩定且持續地交付品牌辨識度', at: 3 },
         ],
-        source: '表：品牌競爭力的三次遷移｜潘其偉〈拒絕同質化 AI Slop〉紙本 p.177；電車造型為策展的視覺比喻',
+        source: '表：品牌競爭力的三次遷移｜紙本 p.177；電車造型為策展的視覺比喻',
       },
       src: [{ article: 'a20', page: 177, text: '企業的核心競爭力正在經歷三次重大的戰略轉移' }],
       figures: [
@@ -101,7 +101,7 @@ export const story: Story = {
             },
           ],
         },
-        source: '圖：策展者依原文整理製圖（傾斜程度為示意）｜潘其偉〈拒絕同質化 AI Slop〉紙本 p.178',
+        source: '圖：策展者依原文整理製圖（傾斜程度為示意）｜紙本 p.178',
       },
       src: [{ article: 'a20', page: 178, text: 'AI 並沒有消除成本，它只是改變了成本的位置' }],
       beats: [
@@ -157,7 +157,7 @@ export const story: Story = {
             { label: 'Pattern', sub: '模式化', desc: '把成功經驗回饋到模組庫與規格', extra: '成效數據不該只躺在媒體報表裡。找出勝率模式、抽象化後寫回模組庫，最後沉澱成每個素材的「資產履歷」，讓供應鏈具備學習能力。' },
           ],
         },
-        source: '圖：策展者依原文整理製圖｜潘其偉〈拒絕同質化 AI Slop〉紙本 p.179–180',
+        source: '圖：策展者依原文整理製圖｜紙本 p.179–180',
       },
       src: [{ article: 'a20', page: 179, text: '為此，我們結合電通集團的核心思維，提出 SLIP Framework' }],
       beats: [
@@ -211,7 +211,7 @@ export const story: Story = {
         notes: [{ term: 'ROI', text: 'Return on Investment（投資報酬率），衡量投入資源後實際換回的淨收益比例。' }],
       },
       figure: { article: 'a20', page: 180, text: '高出 104%' },
-      source: '資料來源 Denis Atlan, AI ROI Analysis: Evidence from 200 B2B Deployments，潘其偉〈拒絕同質化 AI Slop〉紙本 p.180',
+      source: '資料來源 Denis Atlan, AI ROI Analysis: Evidence from 200 B2B Deployments，紙本 p.180',
     },
     {
       kind: 'graphic',
@@ -225,7 +225,7 @@ export const story: Story = {
           { label: '原本', value: 5.5, display: '5.5 天', at: 1 },
           { label: '重整後', value: 0.25, display: '0.25 天', highlight: true, at: 1 },
         ],
-        source: '資料來源 Adobe for Business（Vanguard 案例），潘其偉〈拒絕同質化 AI Slop〉紙本 p.180–181',
+        source: '資料來源 Adobe for Business（Vanguard 案例），紙本 p.180–181',
       },
       src: [{ article: 'a20', page: 181, text: '從原本的 5.5 天極限縮短至 0.25 天 (約 6 小時)' }],
       figures: [

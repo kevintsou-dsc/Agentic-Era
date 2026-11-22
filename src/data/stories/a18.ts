@@ -53,7 +53,7 @@ export const story: Story = {
             { label: 'AX', sub: '加上 AI Agent', desc: '讓 Agent 在互動時也有順暢、可預測、可信賴的體驗', extra: 'AX（Agent 體驗）的「使用者」是軟體：它沒有視覺和情緒，卻有決策權。好體驗的標準從好看、直覺，換成穩定、可驗證、可追溯。' },
           ],
         },
-        source: '圖：策展者依原文整理製圖｜王姿喨、詹佳穎、黃靖婷〈體驗這件事，我們一直只問了一半〉紙本 p.161–162、166',
+        source: '圖：策展者依原文整理製圖｜紙本 p.161–162、166',
       },
       src: [{ article: 'a18', page: 166, text: '從 UX 到 Total Experience (TX)，體驗的邊界擴張了一次。從 TX 到 AX，它正在再擴張一次' }],
       beats: [
@@ -100,7 +100,7 @@ export const story: Story = {
         type: 'art',
         art: 'journey-compress',
         title: '顧客旅程正在被壓縮',
-        source: '依據 王姿喨、詹佳穎、黃靖婷〈體驗這件事，我們一直只問了一半〉紙本 p.162',
+        source: '依據紙本 p.162',
       },
       src: [{ article: 'a18', page: 162, text: '這就是顧客旅程壓縮 (Journey Compression)' }],
       beats: [
@@ -154,7 +154,7 @@ export const story: Story = {
           { title: '行動稽核', at: 2 },
           { title: '升級路徑', at: 2 },
         ],
-        source: '依據 王姿喨、詹佳穎、黃靖婷〈體驗這件事，我們一直只問了一半〉紙本 p.164（Pixelmojo 歸納）',
+        source: '依據紙本 p.164（Pixelmojo 歸納）',
       },
       src: [{ article: 'a18', page: 164, text: '意圖預覽、自主性調節、信心訊號、可解釋推理、行動稽核、以及升級路徑' }],
       beats: [
@@ -193,7 +193,7 @@ export const story: Story = {
         type: 'art',
         art: 'escalation',
         title: '實際案例：一個沒有升級路徑的退換貨 Agent',
-        source: '插畫：策展者繪製｜依據 王姿喨、詹佳穎、黃靖婷〈體驗這件事，我們一直只問了一半〉紙本 p.164 電商客戶導入經驗',
+        source: '插畫：策展者繪製｜依據紙本 p.164 電商客戶導入經驗',
       },
       src: [{ article: 'a18', page: 164, text: '我們在一個電商客戶的 AI 客服 Agent 導入過程中親身見證了它的重量' }],
       beats: [
@@ -272,7 +272,7 @@ export const story: Story = {
           },
         },
       ],
-      source: '整理：策展者｜依據 王姿喨、詹佳穎、黃靖婷〈體驗這件事，我們一直只問了一半〉紙本 p.165',
+      source: '依據紙本 p.165',
     },
     {
       kind: 'quote',

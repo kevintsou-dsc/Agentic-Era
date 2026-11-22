@@ -20,7 +20,7 @@ const pos = (i: number) => {
     {g.items.map((it, i) => {
       const p = pos(i);
       const mx = (p.x + 50) / 2 + (i % 2 ? 3 : -3), my = (p.y + 50) / 2 + (i % 2 ? -3 : 3);
-      return <path data-at={it.at ?? i + 1} d={g.converge ? `M${p.x} ${p.y} Q ${mx} ${my} 50 50` : `M50 50 Q ${mx} ${my} ${p.x} ${p.y}`} pathLength="1" vector-effect="non-scaling-stroke" />;
+      return <path data-at={it.at ?? i + 1} d={g.converge ? `M${p.x} ${p.y} Q ${mx} ${my} 50 50` : `M50 50 Q ${mx} ${my} ${p.x} ${p.y}`} vector-effect="non-scaling-stroke" />;
     })}
   </svg>
   <p class="rd2-center" data-at={centerAt} data-focus={centerAt}>{g.center}</p>
@@ -39,7 +39,7 @@ const pos = (i: number) => {
 <style>
   .rd2 { position: relative; width: 100%; aspect-ratio: 1.35; max-height: 62svh; }
   .rd2-lines { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
-  .rd2-lines path { fill: none; stroke: var(--accent-ink); stroke-width: 2.2; stroke-linecap: round; stroke-dasharray: 1; stroke-dashoffset: calc(1 - var(--on)); opacity: .55; transition: stroke-dashoffset .8s; }
+  .rd2-lines path { fill: none; stroke: var(--accent-ink); stroke-width: 2.2; stroke-linecap: round; stroke-dasharray: .9 .7; opacity: calc(.12 + .5 * var(--on)); transition: opacity .8s; } /* 細密虛線（viewBox 單位，約 6px 線段、4px 間距）；原本 pathLength 畫線法與 non-scaling-stroke 衝突，會變成大段虛線 */
   .rd2-center { position: absolute; left: 50%; top: 50%; translate: -50% -50%; z-index: 2; margin: 0; max-width: 34%; padding: 14px 16px; border-radius: 50% 46% 52% 44% / 48% 52% 46% 54%; text-align: center;
     font-weight: var(--fw-bold); font-size: clamp(15px, 1vw + 9px, 19px); line-height: 1.35; background: var(--accent); border: 2.5px solid var(--accent-ink);
     opacity: calc(.25 + .75 * var(--on)); transform: scale(calc(.85 + .15 * var(--on) + var(--focus) * .05)); transition: opacity .5s, transform .6s cubic-bezier(.3, 1.5, .5, 1); }

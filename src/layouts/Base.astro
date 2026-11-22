@@ -86,7 +86,7 @@ import SnackPack from '../components/SnackPack.astro';
     <header class="topbar">
       <a href="/" class="brand" aria-label="決策智慧 2026 首頁（dentsu）"><DentsuLogo class="brand-logo" /><span class="brand-sep" aria-hidden="true"></span><span class="mono">決策智慧 2026</span></a>
       <span class="top-r">
-        {crumb && <span class="crumb">{crumb}</span>}
+        {crumb && (() => { const [t, ...rest] = crumb.split('．'); return <span class="crumb">{t}{rest.length > 0 && <span class="crumb-x">．{rest.join('．')}</span>}</span>; })()}
         <nav class="top-nav" aria-label="全站導覽">
           <a href="/#chapters">目錄</a>
           <a href="/about/">關於</a>
@@ -175,6 +175,7 @@ import SnackPack from '../components/SnackPack.astro';
   @media (max-width: 560px) {
     .topbar:has(.crumb) .brand :is(.mono, .brand-sep) { display: none; }
     .crumb { max-width: 38vw; }
+    .crumb-x { display: none; } /* 手機頂列只留篇名，分鐘數頁首已有 */
     .top-nav { gap: 8px; font-size: var(--fs-caption); }
   }
   .brand :global(.brand-logo) { width: 64px; height: auto; color: var(--ink); }

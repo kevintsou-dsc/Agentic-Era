@@ -302,8 +302,10 @@ export async function drawAchievementCard(spec: AchievementCardSpec): Promise<HT
   if (spec.quip) {
     ctx.font = `700 36px ${sans}`;
     ctx.fillStyle = alpha(chInk, 0.85);
-    ctx.fillText(fitLine(ctx, `— ${spec.quip}`, iw), ix, ny + 6);
-    ny += 58;
+    // 副標較長時折成兩行（第二行以後才省略）
+    const ql = wrap(ctx, `— ${spec.quip}`, iw);
+    ql.slice(0, 2).forEach((l, k) => ctx.fillText(k === 1 && ql.length > 2 ? fitLine(ctx, l + ql.slice(2).join(""), iw) : l, ix, ny + 6 + k * 50));
+    ny += 58 + (Math.min(2, ql.length) - 1) * 50;
   }
 
   // 卡片金句

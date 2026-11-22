@@ -17,7 +17,7 @@ export const story: Story = {
           { label: '現在', value: 47, display: '約 47 秒', highlight: true, at: 2 },
         ],
         big: { from: '150', to: '47', unit: '秒', at: 3 },
-        source: 'Gloria Mark（UC Irvine 資訊學系榮譽教授）研究，何華軒〈當注意力成為稀缺資源〉紙本 p.59',
+        source: 'Gloria Mark（UC Irvine 資訊學系榮譽教授）研究，紙本 p.59',
       },
       src: [{ article: 'a08', page: 59, text: '平均停留在單一螢幕上的時間已從2004 的約 150 秒下降至約 47 秒' }],
       beats: [
@@ -160,7 +160,7 @@ export const story: Story = {
           },
         },
       ],
-      source: '整理：策展者｜依據 何華軒〈當注意力成為稀缺資源〉紙本 p.60–63',
+      source: '依據紙本 p.60–63',
     },
     {
       kind: 'prose',
@@ -208,7 +208,7 @@ export const story: Story = {
             { label: '商業', sub: 'COMMERCE', desc: '多元變現模式擴大 IP 商業版圖', extra: '商業是讓循環能長久運轉的燃料：周邊、授權與聯名帶來的營收，再投回內容與體驗。關鍵在於商品要延續 IP 的故事與情感，若只是貼上角色圖案，粉絲很快就會感到被收割。' },
           ],
         },
-        source: '圖：IP × 娛樂 × 體驗 × 商業｜資料來源 電通娛樂／製圖，何華軒〈當注意力成為稀缺資源〉紙本 p.65。滑過節點看說明。',
+        source: '圖：IP × 娛樂 × 體驗 × 商業｜資料來源 電通娛樂／製圖，紙本 p.65。滑過節點看說明。',
       },
       src: [{ article: 'a08', page: 65, text: '未來品牌競爭的關鍵，是透過 IP、娛樂、運動與體驗持續累積共同記憶，最終沉澱為長期的品牌心智資產' }],
       figures: [

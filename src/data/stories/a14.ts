@@ -57,7 +57,7 @@ export const story: Story = {
             },
           ],
         },
-        source: '圖：媒體三世代演進，品牌在 BRANDING 與成效投資上的比重變化，漸趨平衡（傾斜程度為示意）｜資料來源 凱絡媒體／製圖，強義明〈衡斷力〉紙本 p.130',
+        source: '圖：媒體三世代演進，品牌在 BRANDING 與成效投資上的比重變化，漸趨平衡（傾斜程度為示意）｜資料來源 凱絡媒體／製圖，紙本 p.130',
       },
       src: [{ article: 'a14', page: 130, text: '媒體三世代演進，品牌在 BRANDING 與 成效投資上的比重變化，漸趨平衡' }],
       figures: [
@@ -99,7 +99,7 @@ export const story: Story = {
         type: 'art',
         art: 'ai-pi',
         title: 'AI 是強大的執行者，PI 是負責決策的人',
-        source: '圖2：AI 是強大的執行者，尤其在 PI 三大核心能力的引導下，能實際創造兩者平衡又合一的綜效（依原圖重製，三項能力的順序依主文調整）｜資料來源 凱絡媒體／製圖，強義明〈衡斷力〉紙本 p.131',
+        source: '圖2：AI 是強大的執行者，尤其在 PI 三大核心能力的引導下，能實際創造兩者平衡又合一的綜效（依原圖重製，三項能力的順序依主文調整）｜資料來源 凱絡媒體／製圖，紙本 p.131',
       },
       src: [{ article: 'a14', page: 131, text: 'AI 是強大的執行者，尤其在 PI 三大核心能力的引導下，能實際創造兩者平衡又合一的綜效' }],
       figures: [
@@ -193,7 +193,7 @@ export const story: Story = {
           more: { title: 'Sam Altman 談 AI 與決策責任', text: '原文附註引用的 Sam Altman 演講影片（第三方轉貼）：AI 能加快工作，但決策與價值判斷的責任不能交給它。', links: [{ url: 'https://www.linkedin.com/videos/akash074_in-this-talk-openai-ceo-sam-altman-identifies-activity-7363272145814130689-r7ri', label: '演講影片（第三方轉貼）', kind: 'video' }] },
         },
       ],
-      source: '整理：策展者｜依據 強義明〈衡斷力〉紙本 p.131–132',
+      source: '依據紙本 p.131–132',
     },
     {
       kind: 'prose',
@@ -215,7 +215,7 @@ export const story: Story = {
       graphic: {
         type: 'art',
         art: 'judgment-sources',
-        source: '圖：AI vs. Judgment／Judgment 的五大能力來源（依原刊資訊圖重製）｜強義明〈衡斷力〉紙本 p.132–133',
+        source: '圖：AI vs. Judgment／Judgment 的五大能力來源（依原刊資訊圖重製）｜紙本 p.132–133',
       },
       src: [{ article: 'a14', page: 133, text: 'Judgment 的五大能力來源' }],
       figures: [
@@ -262,7 +262,7 @@ export const story: Story = {
         type: 'art',
         art: 'media-pp',
         title: 'Media++：六大模組、三個階段串聯',
-        source: '圖4：Media++ 發展方向與差異化路線圖（依原圖重製）｜資料來源 凱絡媒體／製圖，強義明〈衡斷力〉紙本 p.134',
+        source: '圖4：Media++ 發展方向與差異化路線圖（依原圖重製）｜資料來源 凱絡媒體／製圖，紙本 p.134',
       },
       src: [{ article: 'a14', page: 134, text: 'Media++ 發展方向與差異化路線圖' }],
       figures: [

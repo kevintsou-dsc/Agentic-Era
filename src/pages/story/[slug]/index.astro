@@ -2,7 +2,7 @@
 import Base from '../../../layouts/Base.astro';
 import ArticleHead from '../../../components/ArticleHead.astro';
 import Scenes from '../../../components/Scenes.astro';
-import { ARTICLES, THREADS, cite, fullTitle, type Article } from '../../../lib/articles';
+import { ARTICLES, THREADS, fullTitle, type Article } from '../../../lib/articles';
 import { STORIES } from '../../../data/stories';
 import { FULLTEXT_REVIEWED } from '../../../lib/fulltext';
 import type { Story } from '../../../lib/story';
@@ -35,7 +35,6 @@ const threadNext = THREADS.filter((t) => a.threads.includes(t.key))
     {!RELEASE && story.status !== 'reviewed' && <p class="draft">{story.status === 'judged' ? 'AI 初評通過・待人工校閱' : '草稿：待審定'}</p>}
     <ArticleHead a={a} mode="story" storyMinutes={`${storyMinutes(story)} 分鐘`} />
     <p class="lede one"><span class="curated">核心一句話</span><br />{story.oneLiner}</p>
-    <p class="scroll-hint">往下捲動</p>
   </section>
 
   <Scenes scenes={story.scenes} chapter={a.chapter} seed={Number(a.id.slice(1))} />
@@ -46,20 +45,18 @@ const threadNext = THREADS.filter((t) => a.threads.includes(t.key))
       {story.asks.map((q, i) => (
         <li class="reveal">
           {story.asksLabels?.[i] && <span class="ask-label">{story.asksLabels[i]}</span>}
-          {q.text}<span class="pg">紙本 p.{q.page}</span>
+          {q.text}{story.asks[i + 1]?.page !== q.page && <span class="pg">紙本 p.{q.page}</span>}
         </li>
       ))}
     </ol>
-    <p class="source reveal">原文｜{cite(a)}</p>
   </section>
 
   <SharePanel a={a} story={story} />
 
   <nav class="section next" aria-label="接下來">
-    <a class="btn flow" href={`/story/${a.slug}/original/`}>讀原文（約 {a.minutes} 分鐘{fullReviewed ? '' : '，校正中'}）→</a>
     {bookNext && (
       <a class="nextcard" href={`/story/${bookNext.slug}/`}>
-        <span class="eyebrow">下一篇｜紙本 p.{bookNext.pages[0]}{THREADS.filter((t) => bookNext.threads.includes(t.key) && a.threads.includes(t.key)).map((t) => `・同一條主線「${t.name}」`).join('')}</span>
+        <span class="eyebrow">下一篇{THREADS.filter((t) => bookNext.threads.includes(t.key) && a.threads.includes(t.key)).map((t) => `・同一條主線「${t.name}」`).join('')}</span>
         <b>{bookNext.title}</b>
         <span>{bookNext.authors.map((x) => x.name).join('、')}｜精華 {storyMinutes(STORIES[bookNext.id])} 分鐘</span>
       </a>
@@ -71,7 +68,7 @@ const threadNext = THREADS.filter((t) => a.threads.includes(t.key))
         <span>{n.authors.map((x) => x.name).join('、')}｜精華 {storyMinutes(STORIES[n.id])} 分鐘</span>
       </a>
     ))}
-    <a class="btn ghost" href="/#chapters">← 回到全書，依章節找文章</a>
+    <a class="to-orig" href={`/story/${a.slug}/original/`}>想讀完整原文？約 {a.minutes} 分鐘{fullReviewed ? '' : '（校正中）'}，標註紙本頁碼 →</a>
   </nav>
   <ReadMap a={a} />
 </Base>
@@ -87,7 +84,9 @@ const threadNext = THREADS.filter((t) => a.threads.includes(t.key))
   .next { display: flex; flex-wrap: wrap; gap: 14px; align-items: center; padding-top: 6svh; }
   .nextcard { display: grid; gap: 4px; padding: 16px 20px; border-radius: 14px; border: 2px solid var(--accent-ink); text-decoration: none; background: var(--paper); flex: 1 1 18rem; max-width: 28rem; }
   .nextcard:hover { background: var(--accent); }
-  .nextcard.thread { border-style: dashed; }
+  .nextcard.thread { border-style: dashed; border-width: 1.5px; border-color: var(--ink-3); }
+  .to-orig { flex-basis: 100%; font-size: 15px; color: var(--ink-2); text-underline-offset: 4px; }
+  .to-orig:hover { color: var(--ink); }
   .nextcard b { font-size: 18px; }
   .nextcard span:last-child { font-size: 13px; color: var(--ink-2); }
   [aria-disabled="true"] { opacity: .55; cursor: not-allowed; }

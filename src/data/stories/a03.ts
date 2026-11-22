@@ -75,7 +75,7 @@ export const story: Story = {
           },
         },
       ],
-      source: '整理：策展者｜依據 周麗君〈真實的力量〉紙本 p.21–22',
+      source: '依據紙本 p.21–22',
     },
     {
       kind: 'statement',
@@ -104,7 +104,7 @@ export const story: Story = {
           { title: '功能比較', at: 1 },
           { title: '精準投放', at: 1 },
         ],
-        source: '依據 周麗君〈真實的力量〉紙本 p.23',
+        source: '依據紙本 p.23',
       },
       src: [{ article: 'a03', page: 23, text: '資訊落差、媒體優勢、流量購買、SEO、功能比較、精準投放' }],
       beats: [
@@ -156,7 +156,7 @@ export const story: Story = {
           { src: '/fig/a03/p24-1.webp', alt: 'The RealReal 廣告《The Last Real Man》：AI 生成的男性角色', w: 734, h: 514, caption: 'The RealReal 用 AI 生成大量場景，凸顯最後一幕出現的那個最珍貴的實品', credit: '資料來源：The RealReal YouTube 頻道', at: 2, links: [{ url: 'https://www.youtube.com/watch?v=m0PudxvAU5c', label: 'The RealReal 廣告', kind: 'video' }] },
           { src: '/fig/a03/p24-2.webp', alt: 'The RealReal 廣告結尾：崩塌的畫面中只剩一只認證皮革包', w: 738, h: 508, caption: '虛假世界崩塌後，唯一留下來的是經過平台認證的真實皮革包', credit: '資料來源：The RealReal YouTube 頻道', at: 3 },
         ],
-        source: '圖4 Coinbase、圖5 The RealReal｜周麗君〈真實的力量〉紙本 p.23–24',
+        source: '圖4 Coinbase、圖5 The RealReal｜紙本 p.23–24',
       },
       beats: [
         {
@@ -210,7 +210,7 @@ export const story: Story = {
       },
       figure: { article: 'a03', page: 25, text: '每五個人裡就有一個 65 歲以上' },
       people: { total: 5, filled: 1, label: '位台灣人是 65 歲以上', icon: 'elder' },
-      source: '周麗君〈真實的力量〉紙本 p.25（原文：每五個人裡就有一個 65 歲以上）',
+      source: '紙本 p.25（原文：每五個人裡就有一個 65 歲以上）',
     },
     {
       kind: 'graphic',
@@ -222,7 +222,7 @@ export const story: Story = {
           { src: '/fig/a03/p26-1.webp', alt: '語言學習 app Speak 廣告：李洋開口說英文', w: 766, h: 433, caption: 'Speak 從台灣人學英文最痛的洞察出手，直擊觀眾的內心', credit: '資料來源：安索帕', at: 3 },
           { src: '/fig/a03/p26-2.webp', alt: '語言學習 app Speak 廣告：納豆與鳳小岳', w: 748, h: 433, caption: '敢用不完美的語言表達自己，這份勇敢本身就很帥', credit: '資料來源：安索帕', at: 4, links: [{ url: 'https://www.youtube.com/watch?v=xSRdl0LBgBY', label: 'Speak 廣告影片', kind: 'video' }] },
         ],
-        source: '圖6 南山人壽、圖7 Speak｜周麗君〈真實的力量〉紙本 p.25–26',
+        source: '圖6 南山人壽、圖7 Speak｜紙本 p.25–26',
       },
       beats: [
         {

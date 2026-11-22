@@ -73,7 +73,7 @@ export const story: Story = {
           fail: '只顧一邊，兩邊落空：人不轉述，AI 也沒有真材實料可用',
           leftAt: 1, rightAt: 2, failAt: 3, bothAt: 4,
         },
-        source: '圖：策展者依原文整理製圖｜孫韞筑〈討好演算法還是打動人？〉紙本 p.68',
+        source: '圖：策展者依原文整理製圖｜紙本 p.68',
       },
       src: [{ article: 'a09', page: 68, text: '「AI 喜歡的內容」和「真實的人會喜歡、會主動轉述的內容」，正在往兩個方向拉' }],
       beats: [
@@ -120,7 +120,7 @@ export const story: Story = {
           { title: '技術同時在變精', desc: '平台與 AI 愈來愈會分辨「真實經歷」與「業配腔」', at: 1 },
           { title: '閱聽眾自己也在進化', desc: '對生成感、業配感與「太完美所以很假」一眼識破', at: 1 },
         ],
-        source: '依據 孫韞筑〈討好演算法還是打動人？〉紙本 p.68',
+        source: '依據紙本 p.68',
       },
       src: [{ article: 'a09', page: 68, text: '這個拿捏之所以更難，是因為背後有三股力量同時在動' }],
       beats: [
@@ -174,7 +174,7 @@ export const story: Story = {
           ],
         },
       ],
-      source: '整理：策展者｜依據 孫韞筑〈討好演算法還是打動人？〉紙本 p.69',
+      source: '依據紙本 p.69',
     },
     {
       kind: 'graphic',
@@ -190,7 +190,7 @@ export const story: Story = {
           { title: '用在地、自然的語言', desc: '避開業配腔與翻譯腔', at: 3 },
           { title: '管理語意，不是星等', desc: '負評被正確回應、補上脈絡；正評談到對的賣點', at: 4 },
         ],
-        source: '依據 孫韞筑〈討好演算法還是打動人？〉紙本 p.70',
+        source: '依據紙本 p.70',
       },
       src: [{ article: 'a09', page: 70, text: '在執行紀律上，凱絡團隊將協助客戶落實五大關鍵舉措' }],
       beats: [

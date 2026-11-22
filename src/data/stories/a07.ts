@@ -63,7 +63,7 @@ export const story: Story = {
       },
       figure: { article: 'a07', page: 52, text: '70% 的消費者曾透過社群媒體直接完成購買' },
       people: { total: 20, filled: 14, label: '位消費者曾透過社群直接購買' },
-      source: '資料來源 DHL《2025 Social Commerce Trends》，陳蒔〈品牌要讓人想買東西〉紙本 p.52',
+      source: '資料來源 DHL《2025 Social Commerce Trends》，紙本 p.52',
     },
     {
       kind: 'prose',
@@ -106,7 +106,7 @@ export const story: Story = {
         images: [
           { src: '/fig/a07/p53-1.webp', alt: 'Gogoro New Toy Is Coming! 社群貼文：玩具總動員角色成為品牌小編', w: 1600, h: 900, caption: 'Gogoro New Toy Is Coming! 讓電影經典角色成為品牌社群小編，FB & IG 觸及超標 102%、互動超標 152%', credit: '資料來源：Gogoro Facebook & Instagram 專頁', at: 1 },
         ],
-        source: '圖：Gogoro New Toy Is Coming!｜陳蒔〈品牌要讓人想買東西〉紙本 p.53',
+        source: '圖：Gogoro New Toy Is Coming!｜紙本 p.53',
       },
       beats: [
         {
@@ -141,7 +141,7 @@ export const story: Story = {
         type: 'art',
         art: 'coffee-layers',
         title: '同樣是咖啡，每個人買的理由都不一樣',
-        source: '依據 陳蒔〈品牌要讓人想買東西〉紙本 p.54–55（咖啡杯分層為策展的視覺比喻）',
+        source: '依據紙本 p.54–55（咖啡杯分層為策展的視覺比喻）',
       },
       src: [{ article: 'a07', page: 54, text: '品牌需要從單純的需求分眾，升級為強化情境分眾' }],
       beats: [
@@ -180,7 +180,7 @@ export const story: Story = {
           { title: '好吃', desc: '今天被摧殘了一天，你值得被好好安慰', at: 1 },
           { title: '高效', desc: '讓你看起來從容，掌握自己的節奏', at: 1 },
         ],
-        source: '依據 陳蒔〈品牌要讓人想買東西〉紙本 p.55',
+        source: '依據紙本 p.55',
       },
       src: [{ article: 'a07', page: 55, text: '賣點告訴消費者「我有什麼」，文化語言則告訴消費者「我懂你什麼」' }],
       beats: [
@@ -218,7 +218,7 @@ export const story: Story = {
             { label: 'LINE／會員／CRM', at: 2, desc: '承接被喚醒的興趣，延伸成持續關係', extra: '被內容喚醒興趣的人，需要一個可以持續聯繫的地方。LINE 官方帳號、會員與 CRM 把一次心動延伸成回購與長期關係。' },
           ],
         },
-        source: '圖：策展者依原文整理製圖｜陳蒔〈品牌要讓人想買東西〉紙本 p.55',
+        source: '圖：策展者依原文整理製圖｜紙本 p.55',
       },
       src: [{ article: 'a07', page: 55, text: '品牌內容負責日常就穩定的建立主張與形象' }],
       beats: [
@@ -258,7 +258,7 @@ export const story: Story = {
           { src: '/fig/a07/p56-2.webp', alt: 'Zespri 早餐營養小隊員：AI 小人依早餐營養呈現不同狀態', w: 341, h: 671, caption: '早餐吃得健康，AI 小人狀態良好；不營養，AI 小人就萎靡不振', credit: '資料來源：安索帕', at: 2 },
           { src: '/fig/a07/p57-1.webp', alt: 'Zespri 活動成果：8,800+ 參與人數、10,080+ 則早餐、165% KPI 達成', w: 1600, h: 889, caption: '上線 20 天：8,800+ 人參與、10,080+ 頓符合早餐＋奇異果資格的早餐', credit: '資料來源：安索帕', at: 3 },
         ],
-        source: '圖：Zespri 早餐營養小隊員｜資料來源 安索帕，陳蒔〈品牌要讓人想買東西〉紙本 p.56–57',
+        source: '圖：Zespri 早餐營養小隊員｜資料來源 安索帕，紙本 p.56–57',
       },
       beats: [
         {

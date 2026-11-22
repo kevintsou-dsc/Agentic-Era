@@ -48,7 +48,7 @@ export const story: Story = {
         type: 'art',
         art: 'ccs-model',
         title: '把十餘年的 CCS 調查，捏塑成 People Model',
-        source: '圖：電通 CCS 消費者調查八大構面、表：PEOPLE MODEL 訓練方法（依原圖重製）｜〈People Model〉紙本 p.98–99',
+        source: '圖：電通 CCS 消費者調查八大構面、表：PEOPLE MODEL 訓練方法（依原圖重製）｜紙本 p.98–99',
       },
       src: [{ article: 'a12', page: 98, text: '電通 CCS 消費者調查八大構面' }],
       figures: [
@@ -91,7 +91,7 @@ export const story: Story = {
         images: [
           { src: '/fig/a12/p101-1.webp', alt: '散布圖：People Model 模擬回答比例 vs 真人調查回答比例，點沿對角線分布', w: 1060, h: 910, caption: '每個點為一個回答選項，共 9,221 點；r = 0.89 趨勢一致、MAE 9.4% 平均落差、RMSE 13.1%', credit: '資料來源：電通智能中心 真實驗證集 eval_v3（未參與訓練之留存回測）', at: 1 },
         ],
-        source: '圖：People Model 模擬結果 vs. 真人調查｜資料來源 電通智能中心，〈People Model〉紙本 p.101',
+        source: '圖：People Model 模擬結果 vs. 真人調查｜資料來源 電通智能中心，紙本 p.101',
       },
       src: [{ article: 'a12', page: 101, text: 'People Model 模擬結果 vs. 真人調查' }],
       figures: [
@@ -131,7 +131,7 @@ export const story: Story = {
         type: 'art',
         art: 'persona-duo',
         title: '同樣是台北女性上班族，十歲之差',
-        source: '表：設定兩個 AI Persona 後模擬的購買考量與心聲｜〈People Model〉紙本 p.102',
+        source: '表：設定兩個 AI Persona 後模擬的購買考量與心聲｜紙本 p.102',
       },
       src: [{ article: 'a12', page: 102, text: '設定完兩個 AI Persona 後，可以透過 People Model 模擬他們的購買考量因素、心聲' }],
       figures: [
@@ -169,7 +169,7 @@ export const story: Story = {
         type: 'art',
         art: 'agent-team',
         title: 'People Model 的 Multi-Agent 分工',
-        source: '圖：PEOPLE MODEL MULTI-AGENT 運作流程｜資料來源 電通智能中心，〈People Model〉紙本 p.111',
+        source: '圖：PEOPLE MODEL MULTI-AGENT 運作流程｜資料來源 電通智能中心，紙本 p.111',
       },
       src: [{ article: 'a12', page: 111, text: '一個問題進來，Super Agent 拆解並分派給 People Model、CCS Agent 與 Deep Research Agent，再把三方結果檢核彙整成一份可追問的回答' }],
       beats: [
@@ -244,7 +244,7 @@ export const story: Story = {
             takeaway: ['生活價值（便利）→ 建立 relevance', '成分與功效證據 → 建立 credibility'],
           },
         ],
-        source: '案例 1｜〈People Model〉紙本 p.105–106；百分比皆為 AI Persona 模擬結果，不是真人調查',
+        source: '案例 1｜紙本 p.105–106；百分比皆為 AI Persona 模擬結果，不是真人調查',
       },
       beats: [
         {
@@ -301,7 +301,7 @@ export const story: Story = {
             common: '兩個世代都以專業證據作為購買主因。',
           },
         ],
-        source: '案例 2｜〈People Model〉紙本 p.106–107；模擬結果，不是真人調查',
+        source: '案例 2｜紙本 p.106–107；模擬結果，不是真人調查',
       },
       beats: [
         {
@@ -368,7 +368,7 @@ export const story: Story = {
             ],
           },
         ],
-        source: '案例 3｜〈People Model〉紙本 p.107–108；模擬結果，不是真人調查',
+        source: '案例 3｜紙本 p.107–108；模擬結果，不是真人調查',
       },
       beats: [
         {
@@ -437,7 +437,7 @@ export const story: Story = {
             ],
           },
         ],
-        source: '案例 4｜〈People Model〉紙本 p.108；模擬結果，不是真人調查',
+        source: '案例 4｜紙本 p.108；模擬結果，不是真人調查',
       },
       beats: [
         {
@@ -509,7 +509,7 @@ export const story: Story = {
             ],
           },
         ],
-        source: '案例 5｜〈People Model〉紙本 p.108–109；模擬結果，不是真人調查',
+        source: '案例 5｜紙本 p.108–109；模擬結果，不是真人調查',
       },
       beats: [
         {
@@ -561,7 +561,7 @@ export const story: Story = {
           { title: '受眾拆分：刮鬍刀', desc: '25–34 歲強化評測與 CP 值，35–44 歲主打耐用、保固與長期省心', at: 1 },
           { title: '賣點排序：掃地機器人', desc: '保固、維修與耗材透明為主訴求，並交代家庭地圖與影像的資料政策', at: 1 },
         ],
-        source: '整理：策展者｜依據〈People Model〉紙本 p.105–109',
+        source: '整理：策展者｜紙本 p.105–109',
       },
       beats: [
         {
@@ -589,7 +589,7 @@ export const story: Story = {
           { title: '模型估計', desc: '在熟悉的研究領域、但無法完全對應既有問卷時，估計可能的回答分布', at: 3 },
           { title: '情境模擬', desc: '新品牌、新概念或未發生的事件：只代表「在這組條件下模型可能如何反應」', at: 4 },
         ],
-        source: '依據〈People Model〉紙本 p.112',
+        source: '紙本 p.112',
       },
       src: [{ article: 'a12', page: 112, text: 'People Model 的輸出可以分成以下三種概念層次' }],
       beats: [
@@ -636,7 +636,7 @@ export const story: Story = {
           { title: '牽涉非理性情緒或文化脈絡', desc: '例如危機處理、敏感議題溝通', at: 1 },
           { title: 'CCS 完全沒有可參照的相近資料', desc: '全新品類或行為', at: 1 },
         ],
-        source: '依據〈People Model〉紙本 p.113',
+        source: '紙本 p.113',
       },
       src: [{ article: 'a12', page: 113, text: '有明確的判斷原則，不是隨機的。三種情況我們會主動提醒' }],
       beats: [

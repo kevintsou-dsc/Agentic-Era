@@ -52,7 +52,7 @@ export const story: Story = {
           { title: '保健品牌', desc: '都在談「科學實證、專業認證」', at: 1 },
           { title: '汽車品牌', desc: '都在談「安全、科技、舒適」', at: 1 },
         ],
-        source: '依據 莊閔雯、呂季霖〈GEO 時代〉紙本 p.170',
+        source: '依據紙本 p.170',
       },
       src: [{ article: 'a19', page: 170, text: '如果所有品牌都只提供安全、標準、同質化的詞彙' }],
       beats: [
@@ -100,7 +100,7 @@ export const story: Story = {
           { title: 'While 同時情境', desc: '看劇時、運動後', at: 1 },
           { title: 'How feeling 情緒', desc: '疲累、想犒賞自己', at: 1 },
         ],
-        source: '圖：CEPs 七個 W 的聯想架構｜莊閔雯、呂季霖〈GEO 時代〉紙本 p.171',
+        source: '圖：CEPs 七個 W 的聯想架構｜紙本 p.171',
       },
       src: [{ article: 'a19', page: 171, text: 'CEPs 七個 W 的聯想架構' }],
       figures: [
@@ -135,7 +135,7 @@ export const story: Story = {
       graphic: {
         type: 'art',
         art: 'iproof',
-        source: '圖1：i-Proof 模型：從信任到成效的五個步驟（依原圖重製）｜資料來源 安布思沛 iProspect／製圖，莊閔雯、呂季霖〈GEO 時代〉紙本 p.172',
+        source: '圖1：i-Proof 模型：從信任到成效的五個步驟（依原圖重製）｜資料來源 安布思沛 iProspect／製圖，紙本 p.172',
       },
       src: [{ article: 'a19', page: 172, text: 'i-Proof 模型：從信任到成效的五個步驟' }],
       figures: [
@@ -225,7 +225,7 @@ export const story: Story = {
           notes: [{ term: 'AI Citation Share of Voice', text: '指 AI 回答相關問題時，自家品牌被提到或引用的次數，佔所有競爭品牌總次數的比例，用來看品牌在 AI 答案裡的能見度。' }, { term: '引用來源分布', text: '統計 AI 引用品牌資訊時，資料分別來自官網、媒體、論壇、社群或影音平台等哪些地方，以及各佔多少比例。' }, { term: 'Time-to-Citation', text: '從內容發布到第一次被 AI 回答引用所經過的時間，用來看新內容多快被 AI 採用。' }],
         },
       ],
-      source: '整理：策展者｜依據 莊閔雯、呂季霖〈GEO 時代〉紙本 p.173–174（安布思沛服務經驗）',
+      source: '依據紙本 p.173–174（安布思沛服務經驗）',
     },
     {
       kind: 'quote',

@@ -26,7 +26,7 @@ const C = '/art/cover/';
       <h1 class="display serif">品牌離 AI 越近，<br />會離人越遠嗎？</h1>
       <p class="lede">22 篇觀點、{authors} 位作者、約 14 萬字的全書，我們把每一篇提煉成可捲動的<b>精華故事</b>：重點畫成圖、金句逐字對回原文，想深讀隨時翻到紙本頁碼。</p>
       <p class="hx-actions">
-        <span class="scroll-hint">往下捲動，故事會自己出現</span>
+        <span class="scroll-hint" aria-hidden="true"></span>
         <a class="skiplink" href="#chapters">或直接依章節找文章 ↓</a>
       </p>
     </div>
@@ -54,12 +54,14 @@ const C = '/art/cover/';
   .hx-logo { position: absolute; bottom: 3svh; left: 50%; width: min(44vw, 520px); height: auto; translate: -50% 0; pointer-events: none;
     clip-path: inset(0 calc((1 - clamp(0, (var(--p) - .04) / .36, 1)) * 100%) 0 0); opacity: calc(1 - clamp(0, (var(--p) - .62) / .18, 1)); }
 
-  .hx-title { position: relative; z-index: 3; max-width: min(42rem, 88vw); text-align: center; pointer-events: none;
+  .hx-title { position: relative; top: var(--hx-shift, 0px); z-index: 3; max-width: min(42rem, 88vw); text-align: center; pointer-events: none;
     opacity: calc(1 - clamp(0, (var(--p) - .3) / .14, 1)); transform: translateY(calc(clamp(0, (var(--p) - .3) / .14, 1) * -40px)); }
   .hx-title a { pointer-events: auto; }
   .hx-title .lede { margin: 0 auto; text-wrap: balance; } /* 置中的短段落：各行等長，不留孤字 */
   .hx-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: var(--sp-3) var(--sp-5); margin-top: 28px; font-size: 14px; }
-  .hx-actions .scroll-hint { color: var(--ink-2); }
+  /* 只留一條細線箭頭提示往下捲，不寫說明 */
+  .hx-actions { flex-direction: column; align-items: center; }
+  .hx-actions .scroll-hint { order: 2; flex: none; width: 1px; height: 36px; background: var(--ink-2); animation: hint 1.8s ease-in-out infinite; }
   .skiplink { color: var(--ink-2); }
   .hx-quote { position: absolute; z-index: 3; width: min(30rem, 84vw); padding: 24px 28px; border-radius: var(--r-l);
     background: color-mix(in srgb, var(--paper) 88%, transparent); box-shadow: 0 20px 60px -30px rgba(0, 0, 0, .4);

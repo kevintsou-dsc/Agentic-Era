@@ -53,6 +53,21 @@ export function initHero() {
   const canvas = hx?.querySelector<HTMLCanvasElement>('[data-hero-canvas]');
   if (!hx || !stage || !canvas || reduce) return;
   const ctx = canvas.getContext('2d')!;
+  // 標題區整塊往下移，讓眉標小字不壓在「2026」線框上（只移到不重疊為止，且標題底部不超出畫面）
+  const year = stage.querySelector<HTMLElement>('.hx-2026');
+  const title = stage.querySelector<HTMLElement>('.hx-title');
+  const eyebrow = title?.querySelector<HTMLElement>('.eyebrow');
+  const placeTitle = () => {
+    if (!year || !title || !eyebrow) return;
+    title.style.setProperty('--hx-shift', '0px');
+    const gap = year.getBoundingClientRect().bottom + 14 - eyebrow.getBoundingClientRect().top;
+    const room = stage.clientHeight - 16 - title.getBoundingClientRect().bottom;
+    title.style.setProperty('--hx-shift', `${Math.max(0, Math.min(gap, room))}px`);
+  };
+  placeTitle();
+  if (year && !(year as HTMLImageElement).complete) year.addEventListener('load', placeTitle, { once: true });
+  document.fonts?.ready.then(placeTitle).catch(() => {});
+  addEventListener('resize', placeTitle);
 
   let p = 0, W = 0, H = 0, dpr = 1, mobile = false;
   let bits: Bit[] = [];

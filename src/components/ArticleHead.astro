@@ -1,8 +1,7 @@
 ---
-import { CHAPTERS, THREADS, type Article } from '../lib/articles';
+import { CHAPTERS, type Article } from '../lib/articles';
 interface Props { a: Article; mode: 'story' | 'full'; storyMinutes?: string }
 const { a, mode, storyMinutes = '' } = Astro.props;
-const threads = THREADS.filter((t) => a.threads.includes(t.key));
 ---
 <header class="ahead">
   <p class="meta">
@@ -18,9 +17,6 @@ const threads = THREADS.filter((t) => a.threads.includes(t.key));
       <li><b>{au.name}</b>{au.en && <span class="en"> {au.en}</span>}<span class="role">{a.org ? `${a.org} ` : ''}{au.title}</span></li>
     ))}
   </ul>
-  {threads.length > 0 && (
-    <p class="threads">本篇屬於 {CHAPTERS[a.chapter].name} 章｜主線：{threads.map((t) => t.short).join('、')}</p>
-  )}
 </header>
 <style>
   .ahead { display: grid; gap: 6px; }
@@ -31,5 +27,4 @@ const threads = THREADS.filter((t) => a.threads.includes(t.key));
   .authors { list-style: none; margin: 14px 0 0; padding: 0; display: grid; gap: 4px; font-size: 15px; }
   .en { color: var(--ink-2); font-weight: 600; }
   .role { display: block; font-size: 13px; color: var(--ink-3); }
-  .threads { margin: 10px 0 0; font-size: 13px; color: var(--ink-3); }
 </style>
