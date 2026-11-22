@@ -11,7 +11,7 @@ const kindLabel: Record<string, string> = { video: '看影片', web: '看網站'
 {image && m.image && (
   <figure class="more-fig">
     <img src={m.image.src} alt={m.image.alt} width={m.image.w} height={m.image.h} loading="lazy" decoding="async" />
-    {(m.image.caption || m.image.credit) && <figcaption>{m.image.caption}{m.image.credit && <span class="credit">　{m.image.credit}</span>}</figcaption>}
+    {(m.image.caption || m.image.credit) && <figcaption>{m.image.caption}{m.image.credit && <span class="credit">{m.image.credit}</span>}</figcaption>}
   </figure>
 )}
 {m.text && <p class="more-text" set:html={rich(m.text)} />}

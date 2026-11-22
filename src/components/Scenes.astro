@@ -66,7 +66,7 @@ let proseK = 0, quoteK = 0;
           <figure class="prose-fig reveal">
             <img src={s.image.src} alt={s.image.alt} width={s.image.w} height={s.image.h} style={s.image.w ? `max-width:${s.image.w}px` : undefined} loading="lazy" decoding="async" />
             <figcaption>
-              {s.image.caption}{s.image.credit && <span class="credit">　{s.image.credit}</span>}
+              {s.image.caption}{s.image.credit && <span class="credit">{s.image.credit}</span>}
               {s.links?.map((l) => <a class="lnk" href={l.url} target="_blank" rel="noopener noreferrer">{l.kind === 'video' ? '看影片' : '看原始連結'}：{l.label} ↗</a>)}
             </figcaption>
           </figure>

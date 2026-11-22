@@ -113,11 +113,13 @@ if (view.some((v) => v.fold) || (someInline && !allInline)) view.forEach((v) => 
   .hs-more-title::before { content: "延伸｜"; color: var(--ink-3); font-weight: 500; }
   details.hs-more > summary { cursor: pointer; list-style: none; margin: 0; }
   details.hs-more > summary::-webkit-details-marker { display: none; }
-  details.hs-more > summary::after { content: "　▾ 展開"; font-weight: 500; color: var(--ink-3); }
+  details.hs-more > summary::after { content: "▾ 展開"; margin-left: auto; padding-left: 10px; font-weight: 500; color: var(--ink-3); }
+  /* 觸控裝置上 summary 是 flex：「延伸｜」與「展開」不折行、展開靠右，只讓標題本身折行（不然三段各自擠成窄欄、字被拆開） */
+  .hs-more-title::before, details.hs-more > summary::after { flex: none; white-space: nowrap; }
   details.hs-more > summary::after { transition: color .2s; }
   details.hs-more > summary:hover::after { color: var(--accent-ink); }
   details.hs-more[open] > summary { margin-bottom: 8px; }
-  details.hs-more[open] > summary::after { content: "　▴ 收合"; }
+  details.hs-more[open] > summary::after { content: "▴ 收合"; }
   .hs-more :global(.quote) { font-size: 15px; line-height: 1.7; border-left-width: 3px; padding-left: 12px; }
   .hs-more :global(.quote-cite) { margin-top: 6px; font-size: 12px; }
   .hs-more :global(.more-text) { font-size: 14px; margin-bottom: 8px; }

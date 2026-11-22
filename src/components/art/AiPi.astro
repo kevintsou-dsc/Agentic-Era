@@ -1,16 +1,17 @@
 ---
 // a14 原刊 p.131 圖2「AI 是強大的執行者，尤其在 PI 三大核心能力的引導下，能實際創造兩者平衡又合一的綜效」的網頁版，版面依原圖：
-// 左（上）：AI 面板（輸入資料 → AI 生成內容 → 輸出結果、AI 的侷限）；右（下）：PI 面板，Sense／Judge／Connect 三角循環＋三項核心能力說明。
+// 左（上）：AI 面板（輸入資料 → AI 生成內容 → 輸出結果、AI 的侷限）；右（下）：PI 面板，Sense／Connect／Judge 三角循環＋三項核心能力說明。
 // 五段主文：① AI 面板 ② PI 面板 ③ Sense ④ Connect ⑤ Judge（依文章敘述順序點亮三角的節點與右側說明）。
 // 文字照錄 figtext。class 一律加 ap- 前綴。
 const abilities = [
   { k: 'Sense', no: 1, t: 'Sense 理解脈絡與洞察', d: ['能夠理解市場脈絡、品牌現況與消費者需求', '從大量資訊中察覺變化與機會'], node: ['理解脈絡', '洞察需求'], at: 3 },
-  { k: 'Judge', no: 2, t: 'Judge 判斷真偽與決策', d: ['能夠判斷資訊真偽、辨識優先順序', '並在有限資源下做出最適切的決策'], node: ['判斷真偽', '做出決策'], at: 5 },
-  { k: 'Connect', no: 3, t: 'Connect 整合與創造價值', d: ['能夠整合跨領域專業 (策略、創意、媒體、數據與技術)', '讓想法真正落地，創造最大價值'], node: ['整合資源', '創造價值'], at: 4 },
+  { k: 'Connect', no: 2, t: 'Connect 整合與創造價值', d: ['能夠整合跨領域專業 (策略、創意、媒體、數據與技術)', '讓想法真正落地，創造最大價值'], node: ['整合資源', '創造價值'], at: 4 },
+  { k: 'Judge', no: 3, t: 'Judge 判斷真偽與決策', d: ['能夠判斷資訊真偽、辨識優先順序', '並在有限資源下做出最適切的決策'], node: ['判斷真偽', '做出決策'], at: 5 },
 ];
-const pos: Record<string, [number, number]> = { Sense: [110, 40], Judge: [42, 150], Connect: [178, 150] };
+// 編號與位置依主文敘述順序（p.131：Sense → Connect → Judge），循環箭頭由頂端往左下、再到右下
+const pos: Record<string, [number, number]> = { Sense: [110, 40], Connect: [42, 150], Judge: [178, 150] };
 ---
-<div class="ap" role="img" aria-label="AI（Artificial Intelligence）：強大的執行者，但缺乏判斷力；輸入資料、AI 生成內容、輸出結果；AI 的侷限是只能「生成」，不能「查核」，AI 是效率工具，但容易出現偏誤與錯誤。PI（People Intelligence）：專業的決策者，具備判斷力與責任感；Sense、Judge、Connect 三項核心能力缺一不可，PI 補足 AI 的盲點，做出正確且有價值的決策。">
+<div class="ap" role="img" aria-label="AI（Artificial Intelligence）：強大的執行者，但缺乏判斷力；輸入資料、AI 生成內容、輸出結果；AI 的侷限是只能「生成」，不能「查核」，AI 是效率工具，但容易出現偏誤與錯誤。PI（People Intelligence）：專業的決策者，具備判斷力與責任感；Sense、Connect、Judge 三項核心能力缺一不可，PI 補足 AI 的盲點，做出正確且有價值的決策。">
   <section class="ap-panel ap-ai" data-at="1" data-focus="1" aria-hidden="true">
     <p class="ap-h"><span class="ap-badge">AI</span><span><em>Artificial Intelligence</em>強大的執行者，但缺乏判斷力</span></p>
     <ol class="ap-flow">

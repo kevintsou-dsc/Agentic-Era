@@ -139,9 +139,9 @@ export const story: Story = {
             { article: 'a08', page: 62, text: '短劇正快速成為下一個內容競爭的新戰場' },
           ],
           more: {
-            title: '短劇的五大發展方向',
+            title: '短劇的發展方向',
+            text: '原文點出短劇產業的幾個發展方向：一是精品化，從拚數量與上線速度轉向拚內容品質；二是題材從霸總、重生、逆襲擴展到懸疑、職場、科幻、文旅與非遺文化，走向分眾化、系列化；三是造星效應，演員靠短劇快速累積知名度與粉絲；四是帶動品牌合作、IP 授權與內容開發，形成以內容 IP 為核心的娛樂生態系。',
             image: { src: '/fig/a08/p62-1.webp', alt: 'Catchplay+ 與 SLL 合作的直式短劇', w: 1270, h: 575, caption: '台韓跨國合作不一定走大螢幕或電視劇，Catchplay+ 與韓國知名製作單位 SLL 直攻觀眾近期最愛的直式輕短劇', credit: '資料來源：截自 Catchplay+ 網站' },
-            quote: { article: 'a08', page: 62, text: '首先，隨著市場競爭加劇，產業已由追求數量與上線速度，轉向內容品質與製作水準的全面提升，精品化成為市場共識。' },
             links: [{ url: 'https://report.twnic.tw/2025/', label: 'TWNIC 2025 台灣網路報告', kind: 'report' }],
           },
         },
@@ -182,7 +182,6 @@ export const story: Story = {
             { article: 'a08', page: 64, text: '節目由來自台灣、享譽全球的 K-pop 偶像葉舒華(Shuhua) 擔任主持' },
             { article: 'a08', page: 64, text: '包含 YouTube 節目、Shorts、Reels、Talk Concert、周邊商品等' },
           ],
-          notes: [{ term: '電通娛樂', text: '電通集團旗下專做娛樂與運動行銷的單位；文中的啦啦隊經紀模式與《鑑定師》都是它的專案。' }],
         },
         {
           text: '節目融合鑑定藝人私人物品、公益互動、線下體驗與零售導流，形成一條 Content-to-Commerce（從內容到消費）的旅程：從線上內容互動、社群擴散，一路走到線下體驗與實際購買，把注意力（Attention）轉化為行動（Action）。',

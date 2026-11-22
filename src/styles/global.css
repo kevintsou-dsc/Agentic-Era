@@ -216,7 +216,8 @@ a { color: inherit; }
   .scrolly.graphic-right .graphic > .stage { margin-right: 0; margin-left: auto; }
 }
 @media (max-width: 899px) {
-  .scrolly .graphic { align-content: start; padding-top: 58px; height: 100svh; }
+  /* 至少一個畫面高；圖＋圖說比畫面還高時跟著長高，圖說才不會溢出、疊到下一段主文上（段落本身也會跟著變長） */
+  .scrolly .graphic { align-content: start; padding-top: 58px; height: auto; min-height: 100svh; }
   .scrolly .graphic > .stage { width: 100%; max-height: 52svh; }
   .scrolly .step { align-items: flex-end; min-height: 85svh; padding-bottom: 6svh; }
   .scrolly .card, .scrolly.graphic-right .card {
@@ -385,6 +386,8 @@ dialog[open] { animation: dlg-in .26s var(--ease-out); }
 .more-fig img { width: 100%; height: auto; border-radius: 10px; border: 1px solid var(--line); background: var(--paper-2); }
 .more-fig figcaption { margin-top: 6px; font-size: var(--fs-meta); color: var(--ink-2); line-height: 1.6; }
 .more-fig .credit { color: var(--ink-3); }
+/* 圖說後面的資料來源一律另起一行（全站：細節卡、文章插圖、疊放圖片） */
+figcaption .credit { display: block; margin-top: 2px; }
 .more-text { margin: 0 0 12px; font-size: var(--fs-small); line-height: 1.75; }
 .more-editorial { margin: 0 0 12px; font-size: var(--fs-meta); color: var(--ink-2); }
 .more-sheet .quote { font-size: 17px; }
