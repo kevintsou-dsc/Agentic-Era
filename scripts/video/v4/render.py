@@ -47,6 +47,7 @@ async def chunk(idx, f0, f1, qa: dict):
                 raise RuntimeError("stage error: " + "; ".join(errs))
             for i in range(f0, f1):
                 await pg.evaluate("t => window.renderFrame(t)", i / FPS)
+                await pg.evaluate("window.settle && window.settle()")  # 混合版：等真實動態幀解碼
                 jpg = await pg.screenshot(type="jpeg", quality=95)
                 ff.stdin.write(jpg)
                 if i in qa:

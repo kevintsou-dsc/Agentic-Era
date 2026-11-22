@@ -1,6 +1,6 @@
 """v4 影片主流程：
   python v4/build.py audio     # 稿件檢查 → 逐句合成 → 時間軸 → 配樂 → SRT
-  python v4/build.py capture   # 擷取網站素材（需先 npm run build 產生 dist/）
+  python v4/build.py capture   # 擷取網站素材＋真實動態序列（需先 npm run build 產生 dist/）
   python v4/build.py render    # 舞台逐幀渲染 → 混音 → BT.709 封裝 → 自動驗證
   python v4/build.py all
 """
@@ -17,7 +17,7 @@ import script as S  # noqa: E402
 
 ROOT = A.ROOT
 BUILD = A.BUILD
-OUT_NAME = "decision_wisdom_2026_3min_v4.mp4"
+OUT_NAME = "decision_wisdom_2026_3min_v5.mp4"  # v5 = 混合版（真實動態＋舞台推鏡）
 
 
 def step_audio():
@@ -102,7 +102,9 @@ if __name__ == "__main__":
         step_audio()
     if cmd in ("capture", "all"):
         import capture
+        import capture_live
         asyncio.run(capture.main())
+        asyncio.run(capture_live.main())  # 依旁白時間軸錄真實動態，必須在 capture 之後
     if cmd in ("render", "all"):
         import render
         tl = json.loads((BUILD / "timeline.json").read_text(encoding="utf-8"))

@@ -32,6 +32,23 @@ function seq(list, f) {
   list.forEach((im, k) => { im.style.opacity = k === i ? 1 : (k === i + 1 ? r : 0); });
 }
 
+/* 混合版：真實網站逐幀錄下的動態（capture_live.py），一個 <img> 依時間換 src。
+   換 src 後由 window.settle() 等待解碼，render.py 截圖前會呼叫，確保決定性。 */
+const LIVE = M.live || {};
+const PENDING = new Set();
+function live(name, parent) {
+  const im = el('img', '', null, parent); im.style.opacity = 1;
+  const n = LIVE[name] ? LIVE[name].n : 0; let cur = -1;
+  return {
+    im, n,
+    show(sec) {
+      const k = Math.round(clamp(sec * 30, 0, n - 1));
+      if (k !== cur) { cur = k; im.src = `${A}live/${name}/${String(k).padStart(5, '0')}.jpg`; PENDING.add(im); }
+    },
+  };
+}
+window.settle = async () => { const a = [...PENDING]; PENDING.clear(); await Promise.all(a.map((i) => i.decode().catch(() => {}))); };
+
 const ARROW = `<svg viewBox="0 0 44 44"><path d="M6 3 L6 36 L15 27 L21 41 L27 38 L21 25 L34 25 Z" fill="#26221e" stroke="#fff" stroke-width="2.5" stroke-linejoin="round"/></svg>`;
 
 /* ───────── 各場景 ───────── */
@@ -39,9 +56,9 @@ const SCENES = {};
 
 SCENES.hook = (g) => {
   const cam = el('div', 'cam', null, g);
-  const fr = Array.from({ length: M.hero_n }, (_, i) => img(`hero_${pad2(i)}.jpg`, cam));
+  const lv = live('hook', cam);
   return (lt, d) => {
-    seq(fr, lerp(0, 9, ease(prog(lt, 0.6, d))));
+    lv.show(Math.max(0, lt));
     cam.style.transform = camTf(.5, .45, lerp(1.0, 1.06, lt / d));
   };
 };
@@ -70,27 +87,27 @@ SCENES.scroll = (g) => {
   ['', '', ''].forEach(() => el('span', 'dot', null, bar));
   el('div', 'url', '🔒 agentic-era.kevin-tsou.workers.dev', bar);
   const vp = el('div', 'vp', null, b);
-  const fr = Array.from({ length: M.hero_n }, (_, i) => img(`hero_${pad2(i)}.jpg`, vp));
-  const hint = el('div', 'scrollhint', '只要往下捲 ↓', g);
+  const lv = live('scroll', vp);
+  const hint = el('div', 'scrollhint', '只要往下滑 ↓', g);
   const l2 = BEATS_BY.n03.lines[1].start - BEATS_BY.n03.start;
   return (lt, d) => {
     const p = eout(prog(lt, 0, 0.9));
     b.style.transform = `scale(${lerp(.86, 1, p)})`; op(b, p);
-    seq(fr, lerp(9, M.hero_n - 1, ease(prog(lt, l2 - 0.3, d))));
+    lv.show(lt);
     op(hint, eout(prog(lt, l2 + 1.2, l2 + 1.6)));
   };
 };
 
 SCENES.facemap = (g) => {
   const cam = el('div', 'cam', null, g);
-  const fr = Array.from({ length: M.fm_n }, (_, i) => img(`fm_${pad2(i)}.jpg`, cam));
+  const lv = live('facemap', cam);
   const lit = M.light_n.slice(0, 4).map((k) => img(`light_${pad2(k)}.jpg`, cam));
   const st = M.fm_stage, cx = st.x + st.w * 0.42, cy = st.y + st.h * 0.48;
   const l3 = BEATS_BY.n04.lines[2].start - BEATS_BY.n04.start;
   return (lt, d) => {
     const x = eout(prog(lt, l3 - 0.5, l3 - 0.1));
-    if (x <= 0) { seq(fr, lerp(0, M.fm_n - 1, ease(prog(lt, 0.2, l3 - 0.6)))); lit.forEach((im) => op(im, 0)); }
-    else { fr.forEach((im) => op(im, 0)); fr[0].style.opacity = 1 - x; seq(lit, lerp(0, lit.length - 1, prog(lt, l3, d - 0.4))); lit.forEach((im) => { im.style.opacity *= x; }); }
+    if (x <= 0) { lv.show(lt); op(lv.im, 1); lit.forEach((im) => op(im, 0)); }
+    else { lv.show(lt); op(lv.im, 1 - x); seq(lit, lerp(0, lit.length - 1, prog(lt, l3, d - 0.4))); lit.forEach((im) => { im.style.opacity *= x; }); }
     const z = ease(prog(lt, 0.4, l3));
     cam.style.transform = x > 0 ? camTf(st.x + st.w * 0.5, st.y + st.h * 0.5, 1.15) : camTf(lerp(.5, cx, z), lerp(.5, cy, z), lerp(1, 1.3, z));
   };
@@ -127,21 +144,26 @@ SCENES.sov_alloc = (g) => {
 
 SCENES.charts = (g) => {
   el('div', 'paperbg', null, g);
-  const cards = M.charts.map((c) => {
-    const k = Math.min(790 / c.h, 1560 / c.w);
+  const b = BEATS_BY.n07, L2 = b.lines[1].start - b.start;
+  const starts = [0, L2 / 2, L2, L2 + 1.8, L2 + 3.6];   // 與 capture_live.chart_durations 一致
+  const cards = M.live_charts.map((name, i) => {
+    const c = LIVE[name];
+    const k = Math.min(700 / c.h, 1560 / c.w);
     const cd = el('div', 'card', null, g); cd.style.overflow = 'visible';
     cd.style.width = `${c.w * k}px`; cd.style.height = `${c.h * k}px`;
-    cd.style.left = `${(W - c.w * k) / 2}px`; cd.style.top = `${(H - c.h * k) / 2 + 30}px`;
-    img(`chart_${c.slug}.jpg`, cd).style.opacity = 1;
-    const tg = el('div', 'tag', `〈${c.title}〉`, cd); tg.style.left = '0'; tg.style.top = '-60px'; tg.style.fontSize = '26px';
-    return cd;
+    cd.style.left = `${(W - c.w * k) / 2}px`; cd.style.top = `${(H - c.h * k) / 2 - 10}px`;
+    const lv = live(name, cd);
+    const tg = el('div', 'tag', `〈${c.title}〉`, cd); tg.style.left = '0'; tg.style.top = '-62px'; tg.style.fontSize = '26px';
+    return { cd, lv, a: starts[i] };
   });
   return (lt, d) => {
-    const seg = d / cards.length;
-    cards.forEach((cd, i) => {
-      const a = i * seg, p = prog(lt, a - 0.05, a + 0.3), q = i === cards.length - 1 ? 0 : prog(lt, a + seg - 0.3, a + seg - 0.05);
-      op(cd, eout(p) * (1 - q));
-      cd.style.transform = `translateX(${(1 - eout(p)) * 120 - q * 120}px) scale(${lerp(.97, 1.01, prog(lt, a, a + seg))})`;
+    cards.forEach(({ cd, lv, a }, i) => {
+      const e = i === cards.length - 1 ? d + 1 : cards[i + 1].a;
+      const p = prog(lt, a - 0.05, a + 0.25), q = prog(lt, e - 0.2, e + 0.05);
+      const o = eout(p) * (1 - q);
+      op(cd, o); cd.style.visibility = o > 0 ? 'visible' : 'hidden';
+      cd.style.transform = `translateX(${(1 - eout(p)) * 100 - q * 100}px)`;
+      if (o > 0) lv.show(lt - a);
     });
   };
 };
@@ -313,7 +335,7 @@ SCENES.outro = (g) => {
   const l = el('div', 'l', null, o);
   el('div', 'eyebrow', 'DENTSU DECISION WISDOM 2026', l);
   el('div', 'brand', '決策智慧 2026', l);
-  el('div', 'tl', '往下捲，就讀得懂。', l);
+  el('div', 'tl', '往下滑，就讀得懂。', l);
   el('div', 'url', 'agentic-era.kevin-tsou.workers.dev', l);
   const r = el('div', '', null, o);
   el('div', 'qr', D.qr, r);
