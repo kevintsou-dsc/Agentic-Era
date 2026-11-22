@@ -135,8 +135,8 @@ export function initFaceMap() {
   const geometry = (full = false) => {
     if (!ready || !W) return;
     // AI 臉右側是飄散的碎片尾巴，讓它超出畫面右緣約三成，兩張臉就能畫得更大
-    const gapK = 0.26, vis = ratios[0] + gapK + ratios[1] * (full ? 1 : 0.72), fh = Math.min(H * (narrow ? 0.7 : 0.82), (W * (narrow ? 0.9 : 0.98)) / vis);
-    const x0 = (W - fh * vis) / 2, y0 = (H - fh) / 2 + (narrow ? 4 : 10);
+    const gapK = 0.26, vis = ratios[0] + gapK + ratios[1] * (full ? 1 : 0.72), fh = Math.min(H * (narrow ? 0.86 : 0.82), (W * (narrow ? 0.9 : 0.98)) / vis);
+    const x0 = (W - fh * vis) / 2, y0 = (H - fh) / 2 + (narrow ? 2 : 10);
     boxes = [{ x: x0, y: y0, w: fh * ratios[0], h: fh }, { x: x0 + fh * (ratios[0] + gapK), y: y0, w: fh * ratios[1], h: fh }];
     const at = (k: number, [u, v]: [number, number]) => ({ x: boxes[k].x + (1 - u) * boxes[k].w, y: boxes[k].y + v * boxes[k].h });
     threads = byCh('model').map((art, s) => ({ art, s, a: at(0, HU[s]), b: at(1, AU[s]) }));

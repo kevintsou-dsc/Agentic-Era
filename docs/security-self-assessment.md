@@ -18,7 +18,7 @@
 
 ### 2. Repository 衛生與機密防護
 - **雙層白名單 `.gitignore`**：鑑於本機上層工作區存有其他專案設定與高機密原刊設計檔，專案將 Git Root 嚴格鎖定於專案資料夾內，`.gitignore` 採「`*` 預設全拒 → 僅白名單放行 `src/`、`content/`、`scripts/`、`docs/`、`public/` → 二次黑名單封鎖 `.pdf`、`.indd`、`.idml`、`.indb`、`.xlsx`、`.ai`、`.psd`、`.env*`、`.pem`、`.key`、`*.map`」。
-- **推送前自動化機密掃描（`scripts/check-repo.ps1`）**：每次 commit 與推送前檢查 `git ls-files` 清單（2026-11-23 實測 1,151 筆受追蹤檔案），確認 0 個原始設計／試算表檔案、0 筆私鑰／API 金鑰樣式（`private_key`、`AKIA...`、`AIza...`）與 0 筆內部聯絡信箱外洩。
+- **推送前機密掃描（`npm run check:repo` → `scripts/check-repo.ps1`）**：未設 git hook，於每次推送 production 前手動執行，檢查 `git ls-files` 清單（2026-11-23 實測 1,342 筆受追蹤檔案），確認 0 個原始設計／試算表檔案、0 筆私鑰／API 金鑰樣式（`private_key`、`AKIA...`、`AIza...`）與 0 筆內部聯絡信箱外洩。
 
 ### 3. 依賴管理與執行期零第三方請求
 - **極簡依賴與零前端框架**：前端不載入 React、Vue、Preact 或 Three.js，D3.js 僅按需引入 `d3-selection`、`d3-scale`、`d3-array` 三個微模組；`astro.config.mjs` 關閉 production sourcemap（`sourcemap: false`）。

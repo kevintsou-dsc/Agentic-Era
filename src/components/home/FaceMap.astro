@@ -159,10 +159,12 @@ const firstOf = (key: string) => ARTICLES.find((a) => a.threads.includes(key as 
 
   @media (max-width: 860px) {
     .fm { grid-template-columns: 1fr; }
-    .fm-stage { z-index: 2; height: clamp(132px, 18svh, 160px); min-height: 0; background: var(--paper); border-bottom: 1px solid var(--line); box-shadow: 0 8px 20px -16px rgba(31, 29, 26, .22); }
+    .fm-stage { z-index: 2; height: clamp(190px, 27svh, 230px); min-height: 0; background: var(--paper); border-bottom: 1px solid var(--line); box-shadow: 0 8px 20px -16px rgba(31, 29, 26, .22); }
     /* 清單讀完後，分享與附註蓋過黏在上方的臉譜（等同放開），不再佔住畫面 */
     .fm-share, .source { position: relative; z-index: 3; background: var(--paper); }
     .fm-share + .source, .source { padding-block: 8px; }
+    /* 圖例改在畫布下方另佔一列，不再壓在臉上 */
+    .fm-stage canvas { height: calc(100% - 44px); }
     .fm-hud { top: 6px; left: 10px; padding: 3px 8px; border-radius: 8px; }
     .fm-hud .n { font-size: 19px; }
     .fm-legend { bottom: 4px; gap: 2px 10px; font-size: 10px; padding: 2px 8px; border-radius: 6px; left: 8px; right: 8px; max-width: calc(100% - 16px); }
@@ -171,7 +173,7 @@ const firstOf = (key: string) => ARTICLES.find((a) => a.threads.includes(key as 
     .fm-toast { bottom: 26px; font-size: 12px; }
     .fm-list { padding: 4svh var(--gutter) 6svh; }
     .fm-head { margin-bottom: 8svh; }
-    .fm-ch { scroll-margin-top: calc(20svh + 72px); }
+    .fm-ch { scroll-margin-top: calc(27svh + 72px); }
     .fm-threads { margin-bottom: 8svh; }
     .fm-row { grid-template-columns: 2.6rem 1fr; }
     .fm-row .no { font-size: 26px; }
