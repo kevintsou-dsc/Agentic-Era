@@ -59,7 +59,6 @@ SCENES.book = (g) => {
   return (lt, d) => {
     const t2 = ln[1].start - BEATS_BY.n02.start;
     [s1, s2, s3].forEach(([s], k) => { const p = eout(prog(lt, t2 + k * 0.9, t2 + k * 0.9 + 0.5)); op(s, p); s.style.transform = `translateY(${(1 - p) * 30}px)`; });
-    s3[1].style.setProperty('--w', `${eout(prog(lt, d - 0.9, d - 0.3)) * 112}%`);
     op(q, eout(prog(lt, 0, 0.6)));
   };
 };
@@ -129,12 +128,12 @@ SCENES.sov_alloc = (g) => {
 SCENES.charts = (g) => {
   el('div', 'paperbg', null, g);
   const cards = M.charts.map((c) => {
-    const k = Math.min(840 / c.h, 1560 / c.w);
-    const cd = el('div', 'card', null, g);
+    const k = Math.min(790 / c.h, 1560 / c.w);
+    const cd = el('div', 'card', null, g); cd.style.overflow = 'visible';
     cd.style.width = `${c.w * k}px`; cd.style.height = `${c.h * k}px`;
-    cd.style.left = `${(W - c.w * k) / 2}px`; cd.style.top = `${(H - c.h * k) / 2 - 50}px`;
+    cd.style.left = `${(W - c.w * k) / 2}px`; cd.style.top = `${(H - c.h * k) / 2 + 30}px`;
     img(`chart_${c.slug}.jpg`, cd).style.opacity = 1;
-    const tg = el('div', 'tag', `〈${c.title}〉`, cd); tg.style.right = '18px'; tg.style.bottom = '18px'; tg.style.fontSize = '26px';
+    const tg = el('div', 'tag', `〈${c.title}〉`, cd); tg.style.left = '0'; tg.style.top = '-60px'; tg.style.fontSize = '26px';
     return cd;
   });
   return (lt, d) => {
@@ -273,7 +272,7 @@ SCENES.judge = (g) => {
   const l2 = BEATS_BY.n14.lines[1].start - BEATS_BY.n14.start;
   return (lt, d) => {
     const z = ease(prog(lt, 0, d * 0.8));
-    cam.style.transform = camTf(lerp(.5, jx, z), lerp(.5, jy, z), lerp(1.2, 2.0, z));
+    cam.style.transform = camTf(jx, jy + 0.08, lerp(1.6, 2.0, z));
     op(bd, eout(prog(lt, l2 + 0.6, l2 + 1.0)));
   };
 };
@@ -298,7 +297,7 @@ SCENES.finale = (g) => {
   const q = el('div', 'quote', '只要 AI 做的是幫品牌更懂人，<br>品牌與人的距離，才會是真實的靠近。<small>— 邵懿文〈Agentic 時代，品牌與人的真實距離〉紙本 p.17</small>', g);
   const [cx, cy] = center(M.fm_stage);
   const l2 = BEATS_BY.n16.lines[1].start - BEATS_BY.n16.start;
-  const cnt = el('div', 'badge', '', g); cnt.style.right = '110px'; cnt.style.bottom = '170px';
+  const cnt = el('div', 'badge', '', g); cnt.style.left = '150px'; cnt.style.bottom = '220px';
   return (lt, d) => {
     const f = lerp(0, fr.length - 1, ease(prog(lt, 0, l2 + 0.6)));
     seq(fr, f);
