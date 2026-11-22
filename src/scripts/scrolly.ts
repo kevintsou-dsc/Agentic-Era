@@ -47,6 +47,28 @@ function initSteps() {
   window.addEventListener('scroll', onScroll, { passive: true });
   window.addEventListener('resize', onScroll);
   update();
+  initPeek(blocks.map((b) => b.block));
+}
+
+// 手機：卡片右上角的眼睛鈕切換「看圖模式」（同一段所有卡片淡化、點擊穿透到圖）。
+// 離開這一段就自動恢復，避免讀者往下讀到別段時找不到文字。
+function initPeek(blocks: HTMLElement[]) {
+  const set = (block: HTMLElement, on: boolean) => {
+    block.classList.toggle('is-peek', on);
+    block.querySelectorAll<HTMLButtonElement>('[data-peek]').forEach((b) => {
+      b.setAttribute('aria-pressed', String(on));
+      b.setAttribute('aria-label', on ? '顯示文字' : '淡化文字，看清楚圖表');
+    });
+  };
+  document.addEventListener('click', (e) => {
+    const btn = (e.target as Element | null)?.closest<HTMLButtonElement>('[data-peek]');
+    const block = btn?.closest<HTMLElement>('.scrolly');
+    if (block) set(block, !block.classList.contains('is-peek'));
+  });
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((en) => { if (!en.isIntersecting && en.target.classList.contains('is-peek')) set(en.target as HTMLElement, false); });
+  });
+  blocks.forEach((b) => io.observe(b));
 }
 
 function animateCount(el: HTMLElement) {

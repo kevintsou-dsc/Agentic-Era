@@ -228,7 +228,25 @@ a { color: inherit; }
     opacity: 1;
     box-shadow: 0 10px 30px -18px rgba(31, 29, 26, 0.35);
   }
+  /* 最後一張卡片之後不再多留 30svh：那段捲動只剩圖的下半部空白，接到下一段圖之前會出現一大片空紙 */
+  .scrolly .steps { padding-bottom: 0; }
+  /* 圖上的說明框（黑底毛玻璃）打開時，把整張圖提到文字卡片上層，說明框才不會被卡片蓋住 */
+  .scrolly .graphic:has(.d3-tip:not([hidden])) { z-index: 3; }
+  /* 眼睛鈕：讀者想看被卡片擋住的圖時，點一下讓這一段的文字卡片變淡、點擊穿透到圖上；再點一次恢復 */
+  .scrolly .peek {
+    display: grid; float: right; place-items: center; width: 34px; height: 34px; margin: -12px -14px 4px 8px; padding: 0;
+    border: 0; border-radius: 50%; background: transparent; color: var(--ink-3); cursor: pointer; pointer-events: auto;
+  }
+  .scrolly .peek:focus-visible { outline: 3px solid var(--accent-ink); outline-offset: 0; }
+  .scrolly .peek .slash { display: none; }
+  .scrolly.is-peek .peek { color: var(--ink); background: color-mix(in srgb, var(--paper) 92%, transparent); box-shadow: 0 0 0 1px var(--line); }
+  .scrolly.is-peek .peek .slash { display: inline; }
+  .scrolly.is-peek .card, .scrolly.is-peek .step.is-active .card { pointer-events: none; background: transparent; border-color: transparent; box-shadow: none; }
+  .scrolly.is-peek .card > :not(.peek), .scrolly.is-peek .step.is-active .card > :not(.peek) { opacity: 0.1; }
+  .scrolly.is-peek .card > .peek { opacity: 1; }
 }
+/* 桌機版文字卡片在圖的旁邊，不需要眼睛鈕 */
+@media (min-width: 900px) { .scrolly .peek { display: none; } }
 
 /* ===== 全站統一的兩種互動 =====
    出處（.src-ref）：「原文 p.xx」，以段落或整張圖表為單位，點擊開啟原文視窗並定位。外觀：細框、等寬字、↗。

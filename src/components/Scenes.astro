@@ -31,6 +31,7 @@ let proseK = 0, quoteK = 0;
           {s.beats.map((b: Beat) => (
             <div class="step">
               <div class="card">
+                <button type="button" class="peek" data-peek aria-pressed="false" aria-label="淡化文字，看清楚圖表"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path class="eye" d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12Z" /><circle class="eye" cx="12" cy="12" r="3" /><path class="slash" d="M4 4l16 16" /></svg></button>
                 {b.tag && <p class="beat-tag">{b.tag}</p>}
                 <p class="beat"><span set:html={rich(b.text)} /><SourceRef src={b.src} /></p>
                 {b.quote && <Quote q={b.quote} />}
