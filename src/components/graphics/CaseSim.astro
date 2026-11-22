@@ -337,6 +337,11 @@ const r = (x: CaseResult) => x;
   /* points */
   .cs-points { display: grid; gap: 10px; }
   .cs-pt-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr)); gap: 8px; }
+  /* 手機兩欄：奇數張時最後一張置中（維持半欄寬），不靠左留缺口 */
+  @media (max-width: 560px) {
+    .cs-pt-grid { grid-template-columns: 1fr 1fr; }
+    .cs-pt-grid > :last-child:nth-child(odd) { grid-column: 1 / -1; justify-self: center; width: calc(50% - 4px); }
+  }
   .cs-pt { margin: 0; display: grid; gap: 4px; padding: 10px 12px; border-radius: 12px; border: 2px solid var(--line); font-size: 13px; line-height: 1.5; opacity: var(--show); transform: translateY(calc((1 - var(--show)) * 8px)); transition: opacity .4s var(--d), transform .4s var(--d); }
   .cs-pt b { font-size: 26px; line-height: 1.1; color: var(--accent-ink); }
   .cs-pt.warn { border-color: var(--signal); background: color-mix(in srgb, var(--signal) 8%, var(--paper)); }

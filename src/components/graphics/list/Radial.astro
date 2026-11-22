@@ -54,6 +54,8 @@ const pos = (i: number) => {
     .rd2-lines { display: none; }
     .rd2-center { position: static; translate: none; max-width: none; border-radius: 14px; }
     .rd2-items { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+    /* 奇數張：最後一張單獨一列時置中（寬度維持半欄），不靠左留缺口 */
+    .rd2-items li:last-child:nth-child(odd) { grid-column: 1 / -1; justify-self: center; width: calc(50% - 4px); }
     .rd2-items li { position: static; translate: none; width: auto; max-width: none; }
   }
 </style>

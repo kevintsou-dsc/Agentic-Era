@@ -110,7 +110,10 @@ const sources = [
     /* 讀到前的縮小狀態只縮到 0.85：13px 的字縮完仍 ≥ 11px */
     .js-vs-dot { top: 50%; transform: translate(-50%, -50%) scale(calc(.85 + .15 * var(--on))); }
     .js-bar-jd { transform: scaleX(calc(.85 + .15 * var(--on))); }
-    .js-five ol { grid-template-columns: repeat(3, minmax(0, 1fr)); row-gap: 14px; }
+    /* 手機 3 欄：用 6 欄格線、每項跨 2 欄，最後一列的 2 項（第 4、5 項）往中間挪一欄，置中而不是靠左 */
+    .js-five ol { grid-template-columns: repeat(6, minmax(0, 1fr)); row-gap: 14px; }
+    .js-five li { grid-column: span 2; }
+    .js-five li:nth-child(4):nth-last-child(2) { grid-column: 2 / span 2; }
     /* 手機：對照區與五大能力來源疊在同一格，第 2 段起五大能力來源蓋上對照區，收束句接在下方 */
     .js-vs, .js-five { grid-area: 1 / 1; }
     .js-five { position: relative; z-index: 2; align-content: start; background: color-mix(in srgb, var(--accent) 32%, var(--paper)); visibility: hidden; }
