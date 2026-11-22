@@ -7,9 +7,11 @@
 import { absUrl, downloadCanvas, drawAchievementCard, shareCanvas } from './share';
 import { buildPack, type Light, type PackKind } from './packs';
 
-interface Card { id: string; kind: 'count' | 'chapter' | 'thread'; name: string; line: string; hint: string; color: string; n?: number; slugs?: string[] }
+interface Card { id: string; kind: 'count' | 'chapter' | 'thread'; name: string; quip: string; line: string; hint: string; color: string; n?: number; slugs?: string[] }
 const KIND = { count: '篇數', chapter: '章節', thread: '主線' } as const;
 const KEY = 'dw-read';
+const CLEAR_KEY = 'dw-allclear'; // 全收集彩蛋看過了沒（只影響要不要自動跳出，收藏頁隨時能重播）
+const clamp = (v: number, a: number) => Math.max(-a, Math.min(a, v));
 const TEAR_AT = 0.7;
 // 每種包裝的動詞、標籤與提示
 const PACK: Record<PackKind, { verb: string; tag: string; hint: string; ms: number }> = {
@@ -33,7 +35,11 @@ export function initSnack() {
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
   const $ = <T extends HTMLElement = HTMLElement>(s: string) => dlg.querySelector<T>(s)!;
   const stages = Array.from(dlg.querySelectorAll<HTMLElement>('[data-stage]'));
-  const show = (name: string) => stages.forEach((s) => { s.hidden = s.dataset.stage !== name; });
+  const show = (name: string) => {
+    stages.forEach((s) => { s.hidden = s.dataset.stage !== name; });
+    if (name !== 'cards') holdCard(null);
+    if (name !== 'finale') fx.stop();
+  };
   const scene = $('[data-scene]');
   const host = $('[data-pk]');
   let light: Light | null = null;
@@ -56,32 +62,125 @@ export function initSnack() {
     top.append(Object.assign(document.createElement('span'), { textContent: `No.${no}／${cards.length}` }), Object.assign(document.createElement('span'), { textContent: '知識補給包' }));
     const kind = Object.assign(document.createElement('span'), { className: 'ac-kind', textContent: KIND[c.kind] });
     const name = Object.assign(document.createElement('b'), { className: 'ac-name', textContent: locked ? '？' : c.name });
+    const quip = Object.assign(document.createElement('span'), { className: 'ac-quip', textContent: locked ? '' : c.quip });
     const line = Object.assign(document.createElement('p'), { className: 'ac-line', textContent: locked ? c.hint : c.line });
     const foot = Object.assign(document.createElement('span'), { className: 'ac-foot', textContent: 'DECISION WISDOM 2026' });
-    el.append(top, kind, name, line, foot);
-    if (!locked) {
-      el.append(Object.assign(document.createElement('i'), { className: 'ac-shine' }));
-      // 卡片跟著指標微微傾斜，光澤跟著移動
-      el.addEventListener('pointermove', (e) => {
-        const r = el.getBoundingClientRect();
-        const x = (e.clientX - r.left) / r.width;
-        const y = (e.clientY - r.top) / r.height;
-        el.style.setProperty('--ty', `${(x - 0.5) * 18}deg`);
-        el.style.setProperty('--tx', `${(0.5 - y) * 14}deg`);
-        el.style.setProperty('--gx', `${x * 100}%`);
-        el.style.setProperty('--gy', `${y * 100}%`);
-      });
-      el.addEventListener('pointerleave', () => { el.style.removeProperty('--tx'); el.style.removeProperty('--ty'); });
-    }
+    el.append(top, kind, name, quip, line, foot);
+    if (!locked) el.append(Object.assign(document.createElement('i'), { className: 'ac-holo' }), Object.assign(document.createElement('i'), { className: 'ac-shine' }));
     return el;
   };
+
+  // ── 卡片傾斜：手指／滑鼠、陀螺儀、晃動都只改「目標角度」，每一格用阻尼彈簧追上去 ──
+  // 原本每次 pointermove 直接寫角度再靠 CSS transition 補，手機上觸控事件斷續（還會被捲動搶走）所以很生硬；
+  // 改成 rAF 彈簧：按住時跟手、放開時帶一點回彈慢慢擺正，點一下會晃一晃，光澤與雷射膜跟著角度流動。
+  let held: HTMLElement | null = null;
+  let cRaf = 0;
+  let cx = 0, cy = 0, cvx = 0, cvy = 0, cs = 1; // 目前角度、速度、縮放
+  let ptr: { x: number; y: number } | null = null; // 指標給的目標角度
+  let pressing = false, downAt = 0, downX = 0, downY = 0;
+  const kickCard = (vy: number, vx: number) => { cvy += vy; cvx += vx; };
+  const cardLoop = (t: number) => {
+    const el = held;
+    if (!el) return;
+    let gx = 0, gy = 0;
+    if (ptr) { gx = ptr.x; gy = ptr.y; }
+    else if (tilt) { gx = clamp(-tilt.x * 0.5, 16); gy = clamp(tilt.y * 0.35, 20); }
+    else if (!reduce) { gx = Math.sin(t / 1900) * 3; gy = Math.sin(t / 2700) * 7; }
+    const k = ptr ? 0.16 : 0.06, d = ptr ? 0.7 : 0.86;
+    cvx = (cvx + (gx - cx) * k) * d; cvy = (cvy + (gy - cy) * k) * d;
+    cx += cvx; cy += cvy;
+    cs += ((pressing ? 1.035 : 1) - cs) * 0.2;
+    el.style.setProperty('--tx', `${cx.toFixed(2)}deg`);
+    el.style.setProperty('--ty', `${cy.toFixed(2)}deg`);
+    el.style.setProperty('--ts', cs.toFixed(4));
+    el.style.setProperty('--gx', `${(50 + cy * 2.6).toFixed(1)}%`);
+    el.style.setProperty('--gy', `${(40 - cx * 3).toFixed(1)}%`);
+    el.style.setProperty('--hp', `${(50 + cy * 3 - cx * 2).toFixed(1)}%`);
+    cRaf = requestAnimationFrame(cardLoop);
+  };
+  const aim = (el: HTMLElement, e: PointerEvent) => {
+    const r = el.getBoundingClientRect();
+    const x = Math.max(0, Math.min(1, (e.clientX - r.left) / r.width));
+    const y = Math.max(0, Math.min(1, (e.clientY - r.top) / r.height));
+    ptr = { x: (0.5 - y) * 22, y: (x - 0.5) * 28 };
+  };
+  const holdCard = (el: HTMLElement | null) => {
+    cancelAnimationFrame(cRaf);
+    held = el; ptr = null; pressing = false;
+    if (!el) return;
+    cx = cy = 0; cvx = cvy = 0; cs = 1;
+    el.addEventListener('pointerdown', (e) => {
+      void askMotion();
+      pressing = true; downAt = performance.now(); downX = e.clientX; downY = e.clientY;
+      el.setPointerCapture(e.pointerId);
+      aim(el, e);
+    });
+    el.addEventListener('pointermove', (e) => { if (pressing || e.pointerType === 'mouse') aim(el, e); });
+    const up = (e: PointerEvent) => {
+      if (!pressing) return;
+      pressing = false;
+      // 輕點一下：卡片朝點的那一側晃一晃
+      if (performance.now() - downAt < 260 && Math.hypot(e.clientX - downX, e.clientY - downY) < 8 && ptr) kickCard(ptr.y * 0.9, ptr.x * 0.9);
+      if (e.pointerType !== 'mouse') ptr = null;
+    };
+    el.addEventListener('pointerup', up);
+    el.addEventListener('pointercancel', up);
+    el.addEventListener('pointerleave', (e) => { if (e.pointerType === 'mouse' && !pressing) ptr = null; });
+    cRaf = requestAnimationFrame(cardLoop);
+  };
+
+  // ── 全收集彩蛋：彩帶 ──
+  const fxCanvas = $<HTMLCanvasElement>('[data-fx]');
+  const fx = (() => {
+    type Bit = { x: number; y: number; vx: number; vy: number; r: number; vr: number; w: number; h: number; c: string; f: number };
+    let bits: Bit[] = [];
+    let id = 0;
+    const colors = () => {
+      const css = getComputedStyle(document.documentElement);
+      return ['--intro', '--people', '--model', '--ai', '--paper'].map((v) => css.getPropertyValue(v).trim() || '#f3eee4');
+    };
+    const frame = () => {
+      const ctx = fxCanvas.getContext('2d');
+      if (!ctx) return;
+      const dpr = Math.min(2, devicePixelRatio || 1);
+      const W = innerWidth, H = innerHeight;
+      if (fxCanvas.width !== Math.round(W * dpr)) { fxCanvas.width = Math.round(W * dpr); fxCanvas.height = Math.round(H * dpr); }
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      ctx.clearRect(0, 0, W, H);
+      bits = bits.filter((b) => b.y < H + 40);
+      for (const b of bits) {
+        b.vy += 0.16; b.vx *= 0.985; b.vy *= 0.985; b.f += 0.12;
+        b.x += b.vx + Math.sin(b.f) * 0.6; b.y += b.vy; b.r += b.vr;
+        ctx.save(); ctx.translate(b.x, b.y); ctx.rotate(b.r); ctx.scale(1, Math.cos(b.f));
+        ctx.fillStyle = b.c; ctx.fillRect(-b.w / 2, -b.h / 2, b.w, b.h); ctx.restore();
+      }
+      id = bits.length ? requestAnimationFrame(frame) : 0;
+    };
+    return {
+      burst(n = 140) {
+        if (reduce) return;
+        const cs2 = colors();
+        const W = innerWidth, H = innerHeight;
+        for (let i = 0; i < n; i++) {
+          const side = i % 2 ? 1 : -1;
+          const a = (-90 + side * (20 + Math.random() * 35)) * (Math.PI / 180);
+          const sp = 9 + Math.random() * 9;
+          bits.push({ x: W / 2 + side * W * 0.32, y: H * 0.92, vx: Math.cos(a) * sp, vy: Math.sin(a) * sp, r: Math.random() * 6, vr: (Math.random() - 0.5) * 0.3, w: 6 + Math.random() * 6, h: 9 + Math.random() * 8, c: cs2[i % cs2.length], f: Math.random() * 6 });
+        }
+        if (!id) id = requestAnimationFrame(frame);
+      },
+      stop() { cancelAnimationFrame(id); id = 0; bits = []; fxCanvas.getContext('2d')?.clearRect(0, 0, fxCanvas.width, fxCanvas.height); },
+    };
+  })();
 
   // ── 卡片 ──
   let got: Card[] = [];
   let pos = 0;
   let fromUnlock = false;
   const renderDeck = () => {
-    deck.replaceChildren(cardEl(got[pos]));
+    const el = cardEl(got[pos]);
+    deck.replaceChildren(el);
+    holdCard(el);
     $('[data-deck-pos]').textContent = `${pos + 1}／${got.length}`;
     $('[data-deck-nav]').hidden = got.length < 2;
     msg.textContent = '';
@@ -119,9 +218,43 @@ export function initSnack() {
       return li;
     }));
     $('[data-album-count]').textContent = `${have.size}／${cards.length}`;
+    $('[data-fin-replay]').hidden = have.size < cards.length;
     show('album');
   };
-  $('[data-album-open]').addEventListener('click', openAlbum);
+  dlg.querySelectorAll('[data-album-open]').forEach((b) => b.addEventListener('click', openAlbum));
+
+  // ── 全收集彩蛋 ──
+  const allDone = () => unlocked(readList()).length === cards.length;
+  const celebrated = () => { try { return localStorage.getItem(CLEAR_KEY) === '1'; } catch { return true; } };
+  const showFinale = () => {
+    try { localStorage.setItem(CLEAR_KEY, '1'); } catch { /* 無痕模式：下次再跳一次也無妨 */ }
+    const owned = unlocked(readList());
+    if (!fromUnlock || !got.length) { got = owned; pos = 0; }
+    $('[data-fin-n]').textContent = `${cards.length}／${cards.length}`;
+    $('[data-fin-chips]').replaceChildren(...cards.map((c, i) => {
+      const b = Object.assign(document.createElement('span'), { className: `fin-chip c-${c.color}`, textContent: String(i + 1).padStart(2, '0'), title: c.name });
+      b.style.setProperty('--i', String(i));
+      return b;
+    }));
+    show('finale');
+    fx.burst(160);
+    setTimeout(() => { if (!$('[data-stage="finale"]').hidden) fx.burst(110); }, 900);
+    $('[data-fin-cards]').focus();
+  };
+  $('[data-fin-cards]').addEventListener('click', () => {
+    $('[data-got]').textContent = fromUnlock ? (got.length > 1 ? `一次解鎖 ${got.length} 張成就卡！` : '解鎖一張成就卡！') : `已收藏的成就卡（${got.length}／${cards.length}）`;
+    show('cards'); renderDeck(); $('[data-snack-share]').focus();
+  });
+  $('[data-fin-replay]').addEventListener('click', () => { fromUnlock = false; got = []; showFinale(); });
+  $('[data-stage="finale"]').addEventListener('pointerdown', (e) => { if (!(e.target as HTMLElement).closest('button')) { void askMotion(); fx.burst(70); } });
+  $('[data-fin-share]').addEventListener('click', async () => {
+    const m = $('[data-fin-msg]');
+    m.textContent = '製作卡片中…';
+    const url = absUrl('/');
+    const line = `${total} 篇全部讀完，${cards.length} 張成就卡一張不漏。`;
+    const canvas = await drawAchievementCard({ no: `No.★／${cards.length}`, kindLabel: '全收集', packTag: '全收集彩蛋', name: '傳說級讀者', quip: '補給包已被你搬空了', line, color: 'people', progress: `已讀 ${total}／${total} 篇｜成就卡 ${cards.length}／${cards.length}`, url });
+    m.textContent = canvas ? await shareCanvas(canvas, 'decision-wisdom-all-clear.png', '全收集達成｜決策智慧 2026', `我把《決策智慧 2026》${total} 篇讀完，${cards.length} 張成就卡全收集了。`, url) : '這個瀏覽器不能產生圖片。';
+  });
 
   // ── 3D 包：旋轉 ──
   let rx = 0, ry = 0, tx = 0, ty = 0; // 目前角度與目標角度
@@ -129,6 +262,7 @@ export function initSnack() {
   let tilt: { x: number; y: number } | null = null; // 陀螺儀
   let lastInput = 0;
   let raf = 0;
+  let spin = 0, spinV = 0; // 晃手機給的額外旋轉（阻尼彈簧回正）
   const loop = (t: number) => {
     const idle = performance.now() - lastInput > 1800;
     if (!dragging) {
@@ -137,26 +271,54 @@ export function initSnack() {
     }
     rx += (tx - rx) * 0.12;
     ry += (ty - ry) * 0.12;
-    host.style.transform = `rotateX(${rx.toFixed(2)}deg) rotateY(${ry.toFixed(2)}deg)`;
+    spinV = (spinV - spin * 0.03) * 0.93; spin += spinV;
+    host.style.transform = `rotateX(${rx.toFixed(2)}deg) rotateY(${(ry + spin).toFixed(2)}deg)`;
     light?.(rx, ry); // 曲面每一條依角度算明暗
     raf = requestAnimationFrame(loop);
   };
   const startLoop = () => { cancelAnimationFrame(raf); raf = requestAnimationFrame(loop); };
 
+  // 陀螺儀：以讀者拿手機的姿勢為中心（不假設手機斜 45 度），基準點慢慢跟上，躺著、站著、橫拿都能轉。
+  // 只在對話框開著時計算；晃一下手機（devicemotion 加速度突增）會給補給包、卡片一記旋轉，彩蛋頁再撒一次彩帶。
   let askedMotion = false;
+  let base: { b: number; g: number } | null = null;
   const onTilt = (e: DeviceOrientationEvent) => {
-    if (e.beta == null || e.gamma == null) return;
-    tilt = { x: Math.max(-35, Math.min(35, (e.beta - 45) * 0.8)), y: Math.max(-60, Math.min(60, e.gamma * 1.5)) };
+    if (!dlg.open || e.beta == null || e.gamma == null) return;
+    const ang = (screen.orientation?.angle ?? 0) % 360;
+    const [b, g] = ang === 90 ? [-e.gamma, e.beta] : ang === 270 ? [e.gamma, -e.beta] : ang === 180 ? [-e.beta, -e.gamma] : [e.beta, e.gamma];
+    if (!base || Math.abs(b - base.b) > 70) base = { b, g };
+    base.b += (b - base.b) * 0.006; base.g += (g - base.g) * 0.006;
+    tilt = { x: clamp((b - base.b) * 0.9, 35), y: clamp((g - base.g) * 1.5, 60) };
   };
+  let lastShake = 0;
+  const onMotion = (e: DeviceMotionEvent) => {
+    if (!dlg.open) return;
+    const a = e.acceleration;
+    if (!a || a.x == null || a.y == null || a.z == null) return;
+    const m = Math.hypot(a.x, a.y, a.z);
+    const now = performance.now();
+    if (m < 14 || now - lastShake < 450) return;
+    lastShake = now;
+    const dir = (a.x ?? 0) >= 0 ? 1 : -1;
+    spinV += dir * Math.min(28, m * 1.1);
+    kickCard(dir * Math.min(14, m * 0.6), (Math.random() - 0.5) * 10);
+    if (!$('[data-stage="finale"]').hidden) fx.burst();
+  };
+  const listenMotion = () => { window.addEventListener('deviceorientation', onTilt); window.addEventListener('devicemotion', onMotion); };
+  type Perm = { requestPermission?: () => Promise<string> } | undefined;
   const askMotion = async () => {
     if (askedMotion) return;
     askedMotion = true;
-    const D = window.DeviceOrientationEvent as unknown as { requestPermission?: () => Promise<string> } | undefined;
-    try { if (D?.requestPermission && (await D.requestPermission()) !== 'granted') return; } catch { return; }
-    window.addEventListener('deviceorientation', onTilt);
+    const D = window.DeviceOrientationEvent as unknown as Perm;
+    const M = window.DeviceMotionEvent as unknown as Perm;
+    try {
+      if (D?.requestPermission && (await D.requestPermission()) !== 'granted') return;
+      if (M?.requestPermission) await M.requestPermission().catch(() => 'denied');
+    } catch { return; }
+    listenMotion();
   };
   if (!('ontouchstart' in window)) askedMotion = true; // 桌機不需要陀螺儀
-  else if (!(window.DeviceOrientationEvent as unknown as { requestPermission?: unknown })?.requestPermission) { askedMotion = true; window.addEventListener('deviceorientation', onTilt); }
+  else if (!(window.DeviceOrientationEvent as unknown as Perm)?.requestPermission) { askedMotion = true; listenMotion(); }
 
   scene.addEventListener('pointerdown', (e) => {
     void askMotion();
@@ -190,6 +352,7 @@ export function initSnack() {
     dlg.classList.add('is-ripped');
     setTimeout(() => {
       cancelAnimationFrame(raf);
+      if (allDone() && !celebrated()) { showFinale(); return; }
       show('cards');
       renderDeck();
       const nextBtn = !$('[data-deck-nav]').hidden ? dlg.querySelector<HTMLElement>('[data-next]') : null;
@@ -228,7 +391,7 @@ export function initSnack() {
     $('[data-got]').textContent = cs.length > 1 ? `一次解鎖 ${cs.length} 張成就卡！` : '解鎖一張成就卡！';
     show('pack');
     opener = document.activeElement as HTMLElement | null;
-    tilt = null; rx = ry = tx = ty = 0; lastInput = 0;
+    tilt = null; base = null; rx = ry = tx = ty = spin = spinV = 0; lastInput = 0;
     dlg.showModal();
     startLoop();
     knob.focus();
@@ -250,12 +413,14 @@ export function initSnack() {
     opener = document.activeElement as HTMLElement | null;
     openAlbum();
     dlg.showModal();
+    if (allDone() && !celebrated()) { fromUnlock = false; got = []; showFinale(); }
   };
   dlg.addEventListener('click', (e) => {
     if (e.target === dlg || (e.target as HTMLElement).closest('[data-snack-close]')) dlg.close();
   });
   dlg.addEventListener('close', () => {
     cancelAnimationFrame(raf);
+    holdCard(null); fx.stop();
     // 若還沒撕開就先關掉，保留未拆紅點在右上角收藏鈕，方便讀者稍後再拆
     if (!dlg.classList.contains('is-ripped') && !$('[data-stage="pack"]').hidden && got.length) {
       pendingPack = got;
@@ -280,13 +445,14 @@ export function initSnack() {
     const story = fromUnlock ? currentStory() : null;
     const url = story ? absUrl(story.path) : c.kind === 'chapter' ? absUrl(`/#fm-${c.color}`) : absUrl('/');
     const text = story
-      ? `剛讀完《決策智慧 2026》〈${story.title}〉，解鎖成就卡「${c.name}」：${c.line}`
-      : `在《決策智慧 2026》解鎖成就卡「${c.name}」（${readN}／${total} 篇）：${c.line}`;
+      ? `剛讀完《決策智慧 2026》〈${story.title}〉，解鎖成就卡「${c.name}」——${c.quip}。${c.line}`
+      : `在《決策智慧 2026》解鎖成就卡「${c.name}」（${readN}／${total} 篇）——${c.quip}。${c.line}`;
     const spec = {
       no,
       kindLabel: KIND[c.kind],
       packTag: PACK[pk].tag,
       name: c.name,
+      quip: c.quip,
       line: c.line,
       color: c.color,
       articleTitle: story?.title,
@@ -369,7 +535,7 @@ export function initSnack() {
   // 中階手機上開包那一下的卡頓約少一半。只在閒置時做，失敗就算了
   const warm = () => {
     const css = getComputedStyle(document.documentElement);
-    const text = `${dlg.textContent ?? ''}${cards.map((c) => c.name + c.line + c.hint).join('')}扭撕拆知識補給包成分表內含張保存期限開封後請立即閱讀決No.0123456789／`;
+    const text = `${dlg.textContent ?? ''}${cards.map((c) => c.name + c.quip + c.line + c.hint).join('')}全收集達成傳說級讀者重播彩蛋扭撕拆知識補給包成分表內含張保存期限開封後請立即閱讀決No.0123456789／`;
     for (const v of ['--font-sans', '--font-serif', '--font-mono']) {
       const fam = css.getPropertyValue(v).trim();
       if (fam) for (const w of ['400', '700', '900']) document.fonts.load(`${w} 16px ${fam}`, text).catch(() => {});

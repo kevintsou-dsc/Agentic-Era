@@ -205,6 +205,8 @@ export interface AchievementCardSpec {
   kindLabel: string;
   packTag: string;
   name: string;
+  /** 俏皮副標（卡名下方） */
+  quip?: string;
   line: string;
   color: string;
   articleTitle?: string;
@@ -223,7 +225,7 @@ export async function drawAchievementCard(spec: AchievementCardSpec): Promise<HT
   const ink = v('--ink', '#1f1d1a');
   const ch = v(`--${spec.color}`, '#cbdd7a');
   const chInk = v(`--${spec.color}-ink`, '#2f5e35');
-  const allText = `${spec.name}${spec.line}${spec.kindLabel}${spec.packTag}${spec.articleTitle ?? ''}${spec.progress}`;
+  const allText = `${spec.name}${spec.quip ?? ''}${spec.line}${spec.kindLabel}${spec.packTag}${spec.articleTitle ?? ''}${spec.progress}`;
   try {
     await Promise.all([
       document.fonts.load(`900 108px ${serif}`, spec.name),
@@ -297,6 +299,12 @@ export async function drawAchievementCard(spec: AchievementCardSpec): Promise<HT
   ctx.font = `900 ${nameSize}px ${serif}`;
   ctx.fillStyle = chInk;
   for (const l of nameLines) { ctx.fillText(l, ix, ny); ny += nameLh; }
+  if (spec.quip) {
+    ctx.font = `700 36px ${sans}`;
+    ctx.fillStyle = alpha(chInk, 0.85);
+    ctx.fillText(fitLine(ctx, `— ${spec.quip}`, iw), ix, ny + 6);
+    ny += 58;
+  }
 
   // 卡片金句
   ctx.font = `600 38px ${sans}`;

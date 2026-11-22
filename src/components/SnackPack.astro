@@ -7,6 +7,7 @@ const cards = achievements();
 ---
 <dialog id="snack" class="snack" aria-label="知識補給包" data-cards={JSON.stringify(cards)}>
   <button type="button" class="dlg-close snack-x" data-snack-close aria-label="關閉">×</button>
+  <canvas class="sn-fx" data-fx aria-hidden="true"></canvas>
 
   <div class="sn-stage" data-stage="pack">
     <p class="sn-kind" data-pk-kind></p>
@@ -40,7 +41,25 @@ const cards = achievements();
   <div class="sn-stage" data-stage="album" hidden>
     <p class="album-h"><b>成就卡收藏</b><span data-album-count></span></p>
     <ol class="album" data-album></ol>
-    <button type="button" class="btn ghost small" data-snack-close>收起</button>
+    <div class="sn-actions">
+      <button type="button" class="btn flow small" data-fin-replay hidden>重播全收集彩蛋</button>
+      <button type="button" class="btn ghost small" data-snack-close>收起</button>
+    </div>
+  </div>
+
+  <!-- 全收集彩蛋：13 張全部解鎖時自動跳一次，之後可從收藏頁重播；點畫面或晃手機再撒一次彩帶 -->
+  <div class="sn-stage fin" data-stage="finale" hidden>
+    <p class="fin-kick">ALL CLEAR｜<span data-fin-n></span></p>
+    <p class="fin-title">全收集達成！</p>
+    <p class="fin-line">每一篇都讀完、每一張成就卡都到手。<br>補給包已經被你搬空了。</p>
+    <div class="fin-chips" data-fin-chips></div>
+    <p class="fin-tip">點一下畫面，或晃一晃手機，再撒一次彩帶</p>
+    <div class="sn-actions">
+      <button type="button" class="btn flow small" data-fin-share>分享全收集</button>
+      <button type="button" class="btn ghost small" data-fin-cards>看看我的卡</button>
+      <button type="button" class="btn ghost small" data-album-open>看全部收藏</button>
+    </div>
+    <span class="sn-msg" data-fin-msg role="status"></span>
   </div>
 </dialog>
 
@@ -198,7 +217,7 @@ const cards = achievements();
   /* ── 成就卡 ── */
   .acard { --c: var(--people); --ci: var(--people-ink); position: relative; width: 15rem; aspect-ratio: 5 / 7; display: grid; grid-template-rows: auto auto 1fr auto; gap: 6px; padding: 18px 18px 14px; border-radius: 16px; color: var(--ink); overflow: hidden;
     background: radial-gradient(120% 70% at 100% 0%, var(--c), transparent 60%), var(--paper); border: 2px solid var(--ink); box-shadow: 0 24px 40px rgba(0, 0, 0, .35);
-    transform: perspective(700px) rotateX(var(--tx, 0deg)) rotateY(var(--ty, 0deg)); transition: transform .15s; }
+    transform: perspective(700px) rotateX(var(--tx, 0deg)) rotateY(var(--ty, 0deg)) scale(var(--ts, 1)); }
   .acard.c-intro { --c: var(--intro); --ci: var(--intro-ink); }
   .acard.c-people { --c: var(--people); --ci: var(--people-ink); }
   .acard.c-model { --c: var(--model); --ci: var(--model-ink); }
@@ -207,11 +226,20 @@ const cards = achievements();
   .ac-top { display: flex; justify-content: space-between; font-family: var(--font-mono); font-size: 10px; letter-spacing: .08em; color: var(--ink-2); }
   .ac-kind { justify-self: start; padding: 2px 9px; border-radius: var(--r-pill); background: var(--ink); color: var(--paper); font-size: 11px; font-weight: 700; }
   .ac-name { align-self: center; font-family: var(--font-serif); font-weight: 900; font-size: 30px; line-height: 1.2; letter-spacing: .04em; color: var(--ci); }
+  .ac-quip { margin-top: -4px; font-size: 13px; font-weight: 700; line-height: 1.45; color: var(--ci); position: relative; }
+  .ac-quip::before { content: "— "; }
+  .ac-quip:empty { display: none; }
   .ac-line { margin: 0; font-size: 13px; line-height: 1.6; position: relative; }
   .ac-foot { font-family: var(--font-mono); font-size: 9px; letter-spacing: .1em; color: var(--ink-3); position: relative; }
   .ac-shine { position: absolute; inset: 0; pointer-events: none; mix-blend-mode: soft-light; background: radial-gradient(60% 50% at var(--gx, 50%) var(--gy, 30%), rgba(255, 255, 255, .9), transparent 70%); }
+  /* 雷射膜：彩虹斜紋跟著卡片角度滑動（--hp 由 scripts/snack.ts 的彈簧算出） */
+  .ac-holo { position: absolute; inset: 0; pointer-events: none; mix-blend-mode: color-dodge; opacity: .22;
+    background: linear-gradient(115deg, transparent 20%, #ff9ad5 32%, #ffe27a 40%, #8ff0c8 48%, #8fc8ff 56%, #d0a0ff 64%, transparent 76%) var(--hp, 50%) 50% / 260% 260% no-repeat; }
+  .album .ac-holo { display: none; }
   .deck { position: relative; display: grid; place-items: center; min-height: 22rem; }
-  .deck .acard { animation: card-in .7s var(--ease-out) both; }
+  /* 動畫只在進場時套用（backwards），結束後交給 JS 每格寫的角度，不會和彈簧互搶 */
+  .deck .acard { animation: card-in .7s var(--ease-out) backwards; touch-action: none; cursor: grab; will-change: transform; user-select: none; -webkit-user-select: none; -webkit-touch-callout: none; }
+  .deck .acard:active { cursor: grabbing; }
   @keyframes card-in { from { transform: perspective(700px) translateY(120px) rotateY(-180deg) scale(.7); opacity: 0; } to { transform: perspective(700px) rotateX(var(--tx, 0deg)) rotateY(var(--ty, 0deg)); opacity: 1; } }
   .sn-got { margin: 0; font-size: 15px; font-weight: 700; text-align: center; }
   .deck-nav { margin: 0; display: flex; align-items: center; gap: 12px; font-size: 13px; }
@@ -220,6 +248,24 @@ const cards = achievements();
   .snack .btn.ghost:hover { background: rgba(243, 238, 228, .12); }
   .sn-actions { display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; }
   .sn-msg { font-size: 12px; min-height: 1em; text-align: center; }
+
+  /* ── 全收集彩蛋 ── */
+  .sn-fx { position: fixed; inset: 0; width: 100vw; height: 100svh; pointer-events: none; z-index: 6; }
+  .fin { text-align: center; min-height: 26rem; align-content: center; cursor: pointer; }
+  .fin .sn-actions, .fin button { cursor: auto; }
+  .fin-kick { margin: 0; font-family: var(--font-mono); font-size: 12px; letter-spacing: .16em; color: var(--people); }
+  .fin-title { margin: 0; font-family: var(--font-serif); font-weight: 900; font-size: clamp(36px, 11vw, 52px); line-height: 1.15; letter-spacing: .04em;
+    background: linear-gradient(100deg, var(--intro), var(--people) 35%, var(--model) 65%, var(--ai)); -webkit-background-clip: text; background-clip: text; color: transparent;
+    animation: fin-pop .9s var(--ease-out) both; }
+  .fin-line { margin: 0; font-size: 14px; line-height: 1.7; color: rgba(243, 238, 228, .9); animation: fin-up .6s .25s var(--ease-out) both; }
+  .fin-chips { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px; max-width: 19rem; }
+  .fin-chip { --c: var(--people); width: 34px; height: 46px; display: grid; place-items: center; border-radius: 6px; border: 1.5px solid var(--ink); background: radial-gradient(120% 70% at 100% 0%, var(--c), transparent 70%), var(--paper); color: var(--ink); font: 700 11px/1 var(--font-mono);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, .3); animation: fin-chip .5s calc(.45s + var(--i) * .06s) var(--ease-out) both; }
+  .fin-chip.c-intro { --c: var(--intro); } .fin-chip.c-model { --c: var(--model); } .fin-chip.c-ai { --c: var(--ai); }
+  .fin-tip { margin: 0; font-size: 12px; color: rgba(243, 238, 228, .6); }
+  @keyframes fin-pop { 0% { opacity: 0; transform: scale(.4) rotate(-6deg); } 60% { opacity: 1; transform: scale(1.08) rotate(2deg); } 100% { transform: none; } }
+  @keyframes fin-up { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+  @keyframes fin-chip { from { opacity: 0; transform: translateY(-26px) rotate(-14deg) scale(.6); } to { opacity: 1; transform: none; } }
 
   /* ── 收藏 ── */
   .album-h { margin: 0; display: flex; gap: 10px; align-items: baseline; font-size: 18px; }
@@ -233,6 +279,7 @@ const cards = achievements();
   .album .ac-kind { font-size: 11px; padding: 1px 6px; }
   .album .ac-name { font-size: 14px; }
   .album .ac-line { font-size: 11px; line-height: 1.45; }
+  .album .ac-quip { display: none; }
   .album .acard.locked { background: rgba(243, 238, 228, .08); border: 1.5px dashed rgba(243, 238, 228, .5); color: var(--paper); box-shadow: none; }
   .album .acard.locked::before { display: none; }
   .album .acard.locked .ac-name { color: var(--paper); opacity: .6; }
@@ -271,5 +318,6 @@ const cards = achievements();
   @media (prefers-reduced-motion: reduce) {
     .sn-float, .sn-scene::after { animation: none; }
     .deck .acard { animation: none; }
+    .fin-title, .fin-line, .fin-chip { animation: none; }
   }
 </style>

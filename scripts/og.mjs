@@ -95,7 +95,7 @@ for (const a of articles) {
   const names = a.authors.map((p) => p.name).join('、');
   layer += `<line x1="${X}" y1="${H - 104}" x2="${W - 96}" y2="${H - 104}" stroke="${ch.ink}" stroke-width="3"/>
     <text x="${X}" y="${H - 58}" ${FONT} font-size="26" font-weight="700" fill="${INK}">${esc(names)}</text>
-    <text x="${W - 96}" y="${H - 58}" text-anchor="end" ${FONT} font-size="24" font-weight="500" fill="${INK2}">一個故事讀完一篇</text>`;
+    <text x="${W - 96}" y="${H - 58}" text-anchor="end" ${FONT} font-size="24" font-weight="500" fill="${INK2}">精華圖解＋原文對照</text>`;
   await render(`${a.slug}.png`, layer, ch.c);
 }
 
@@ -103,7 +103,7 @@ for (const a of articles) {
 const home = `<text x="${X}" y="250" ${FONT} font-size="30" font-weight="500" fill="${INK2}">Agentic 時代，重塑品牌與人的真實距離</text>
   ${textLines(['品牌離 AI 越近，', '會離人越遠嗎？'], X, 360, 96, 1.2, `font-weight="900" fill="${INK}"`)}
   <line x1="${X}" y1="${H - 104}" x2="${W - 96}" y2="${H - 104}" stroke="${INK}" stroke-width="3"/>
-  <text x="${X}" y="${H - 58}" ${FONT} font-size="26" font-weight="700" fill="${INK}">22 篇觀點，一個故事讀完整本</text>
+  <text x="${X}" y="${H - 58}" ${FONT} font-size="26" font-weight="700" fill="${INK}">22 篇觀點精華，圖解＋原文對照</text>
   ${Object.values(CH).map((c, i) => `<rect x="${W - 96 - (4 - i) * 44}" y="${H - 82}" width="32" height="32" rx="16" fill="${c.c}"/>`).join('')}`;
 await render('home.png', home, '#e3cfa9');
 console.log(`✓ 分享預覽圖 ${articles.length + 1} 張 → public/og/`);
