@@ -1,9 +1,8 @@
 import { defineConfig } from 'astro/config';
-import { readFileSync } from 'node:fs';
 
-// 舊網址（紙本頁碼 /a/p96/）轉到新網址（英文短名 /story/people-model/），已分享出去的連結不會失效
-const legacy = JSON.parse(readFileSync(new URL('./content/legacy-slugs.json', import.meta.url), 'utf8'));
-const redirects = Object.fromEntries(Object.entries(legacy).flatMap(([o, n]) => [[`/a/${o}`, `/story/${n}/`], [`/a/${o}/full`, `/story/${n}/original/`]]));
+// 舊網址（紙本頁碼 /a/p96）→ 新網址：由 scripts/gen-redirects.mjs 產生 Cloudflare 的 _redirects（有無結尾斜線都 301）。
+// 這裡不要再設 Astro 的 redirects：Cloudflare 部署時會自動加上 Astro 轉接器，把 redirects 接在 _redirects 後面，
+// 同一路徑出現兩條規則，部署會被拒絕（Invalid _redirects configuration: Duplicate rule）。
 
 // 正式網址：分享預覽（og:image、og:url）與 canonical 都要絕對網址。
 // 網域確定後在 Cloudflare Pages 的環境變數設 SITE_URL；沒設時退用 Cloudflare 自動給的部署網址，本機則不輸出絕對網址。
@@ -28,7 +27,6 @@ const site = siteFrom(process.env.SITE_URL) ?? siteFrom(process.env.CF_PAGES_URL
 export default defineConfig({
   output: 'static',
   site,
-  redirects,
   // CSS 一律輸出成檔案，讓 CSP 可以用 style-src 'self'（不需要允許 inline <style>）
   build: { inlineStylesheets: 'never' },
   // assetsInlineLimit 0：小腳本也輸出成檔案，CSP 才能只用 script-src 'self'
