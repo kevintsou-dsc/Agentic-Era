@@ -8,6 +8,7 @@
 """
 import asyncio
 import json
+import math
 import shutil
 
 from playwright.async_api import async_playwright
@@ -46,6 +47,8 @@ def chart_durations(B):
 async def main():
     tl = json.loads((C.BUILD / "timeline.json").read_text(encoding="utf-8"))
     B = {b["id"]: b for b in tl["beats"]}
+    dur = lambda k: B[k]["end"] - B[k]["start"]  # noqa: E731
+    slugs = [a["slug"] for a in json.loads((C.ROOT / "content" / "articles.json").read_text(encoding="utf-8"))["articles"]]
     titles = {a["slug"]: a["title"] for a in json.loads((C.ROOT / "content" / "articles.json").read_text(encoding="utf-8"))["articles"]}
     LIVE.mkdir(parents=True, exist_ok=True)
     for d in LIVE.iterdir():
@@ -56,9 +59,11 @@ async def main():
         async with async_playwright() as p:
             br = await p.chromium.launch()
 
-            async def open_page(path):
+            async def open_page(path, read=None, seen=None):
                 ctx = await br.new_context(viewport={"width": C.VW, "height": C.VH}, device_scale_factor=C.DPR)
                 await ctx.add_init_script("document.addEventListener('DOMContentLoaded', () => { document.documentElement.style.scrollBehavior = 'auto'; });")
+                if read is not None:
+                    await ctx.add_init_script(f"try{{localStorage.setItem('dw-read', JSON.stringify({json.dumps(read)}));localStorage.setItem('dw-face-seen', JSON.stringify({json.dumps(seen or [])}));}}catch(e){{}}")
                 pg = await ctx.new_page()
                 await pg.clock.install()
                 await pg.goto(f"{base}{path}", wait_until="networkidle")
@@ -88,13 +93,18 @@ async def main():
                         await self.pg.evaluate("y => window.scrollTo(0, y)", y0 + (y1 - y0) * ease(i / max(1, n - 1)))
                         await self.snap()
 
+                async def run(self, dur, fn):
+                    """每一幀先呼叫 fn(i, t) 做互動（滑鼠、點擊），再前進時鐘並截圖。"""
+                    for i in range(int(round(dur * FPS))):
+                        await fn(i, self.n / FPS)
+                        await self.snap()
+
                 def done(self, **extra):
                     man[self.name] = {"n": self.n, **extra}
                     print(f"[live] {self.name}: {self.n} 幀")
 
             # ── 首頁 ──
             ctx, pg = await open_page("/")
-            await pg.add_style_tag(content=".hx-logo{display:none!important}")
             hx = await pg.evaluate("() => document.querySelector('.hx')?.offsetHeight || 2200")
             r = Rec(pg, "hook")
             await r.hold(B["n01"]["end"] - B["n01"]["start"] + MARGIN)
@@ -114,6 +124,142 @@ async def main():
             await r.scroll(ch, ch + 700, l3 - 0.8)
             await r.hold(0.6 + MARGIN)
             r.done()
+
+            # ── 四條主線（n05）：從臉譜往下捲到主線，滑鼠移到「判斷力」 ──
+            th = pg.locator(".fm-threads").first
+            ty = await th.evaluate("el => el.getBoundingClientRect().top + scrollY - 260")
+            judge = pg.locator(".fm-thread[data-thread='judge']").first
+            d5 = dur("n05")
+            r = Rec(pg, "threads")
+            await r.scroll(ch + 700, ty, 1.2)
+            await r.hold(0.3)
+            jb = await judge.bounding_box()
+            jx, jy = jb["x"] + jb["width"] / 2, jb["y"] + jb["height"] / 2
+
+            async def mv(i, t, a=1.6, b=2.7):
+                p = ease((t - a) / (b - a))
+                await pg.mouse.move(C.VW * 0.82 + (jx - C.VW * 0.82) * p, C.VH * 0.9 + (jy - C.VH * 0.9) * p)
+            await r.run(d5 + MARGIN - r.n / FPS, mv)
+            r.done(box=C.nb(await th.bounding_box()), judge=C.nb(jb), jx=jx / C.VW, jy=jy / C.VH)
+            await ctx.close()
+
+            # ── 臉譜點亮（n04 第三句）：讀過 6 篇、還沒看過 → 臉譜進入畫面時真的逐塊染開 ──
+            ctx, pg = await open_page("/", read=slugs[:6], seen=[])
+            await pg.evaluate("y => window.scrollTo(0, y)", ch + 700)
+            l3 = B["n04"]["lines"][2]["start"] - B["n04"]["start"]
+            r = Rec(pg, "facelit")
+            await r.hold(dur("n04") - l3 + 0.6 + MARGIN)
+            r.done()
+            await ctx.close()
+
+            # ── 〈重建 SOV〉開頭 → 捲到預算配置圖 → 逐 beat 推進（n06a、n06b）──
+            ctx, pg = await open_page("/story/rebuild-sov/")
+            sc = pg.locator(".scrolly", has_text="同一筆預算").first
+            bs = sc.locator(".beat")
+            nb_ = min(await bs.count(), 4)
+            ys = [await bs.nth(i).evaluate("el => el.getBoundingClientRect().top + scrollY - 420") for i in range(nb_)]
+            wrap = sc.locator(".d3wrap").first
+            nat = await wrap.evaluate("el => el.getBoundingClientRect().top + scrollY")
+            await pg.evaluate("y => window.scrollTo(0, y)", ys[1])
+            await pg.clock.run_for(300)
+            stuck = await wrap.evaluate("el => el.getBoundingClientRect().top")
+            ys[0] = max(ys[0], nat - stuck + 2)
+            await pg.evaluate("y => window.scrollTo(0, y)", ys[0])
+            await pg.clock.run_for(1500)
+            abox = C.nb(await wrap.bounding_box())
+            await pg.evaluate("() => window.scrollTo(0, 0)")
+            await pg.clock.run_for(1200)
+            b6 = B["n06a"]
+            l2 = b6["lines"][1]["start"] - b6["start"]
+            l3 = b6["lines"][2]["start"] - b6["start"]
+            r = Rec(pg, "sov_intro")
+            await r.hold(l2 - 0.2)
+            await r.scroll(0, ys[0], l3 - l2 + 0.2)
+            await r.hold(dur("n06a") - r.n / FPS + MARGIN)
+            r.done(box=abox, l3=l3)
+            d6 = dur("n06b")
+            r = Rec(pg, "sov_alloc")
+            await r.hold(0.2)
+            seg = (d6 - 1.4) / max(1, nb_ - 1)
+            for i in range(1, nb_):
+                await r.scroll(ys[i - 1], ys[i], seg)
+            await r.hold(d6 + MARGIN - r.n / FPS)
+            r.done(box=abox)
+
+            # ── 頁碼 → 原刊對照視窗（n08a＋n08b 一鏡到底，點擊是真的點）──
+            rbtn = pg.locator(".src-ref").filter(has_text="p.119").first
+            await rbtn.evaluate("el => el.scrollIntoView({block: 'center'})")
+            await pg.clock.run_for(1200)
+            bb = await rbtn.bounding_box()
+            b8 = B["n08a"]
+            click = b8["lines"][1]["start"] - b8["start"] - 0.5
+            r = Rec(pg, "reader")
+            await r.hold(click)
+            await rbtn.click()
+            await r.hold(0.8)
+            mark = await pg.evaluate("""() => { const ms=[...document.querySelectorAll('#reader mark')]; if(!ms.length) return null;
+              let l=1e9,t=1e9,r=-1e9,b=-1e9; for(const m of ms){const c=m.getBoundingClientRect(); if(c.width<=0) continue;
+              l=Math.min(l,c.left);t=Math.min(t,c.top);r=Math.max(r,c.right);b=Math.max(b,c.bottom);} return {x:l,y:t,width:r-l,height:b-t}; }""")
+            await r.hold(dur("n08a") + dur("n08b") + MARGIN - r.n / FPS)
+            r.done(btn=C.nb(bb), mark=C.nb(mark), click=click)
+            await pg.keyboard.press("Escape")
+            await pg.clock.run_for(400)
+
+            # ── 分享卡三風格（n10）──
+            await pg.evaluate("() => document.querySelectorAll('details').forEach(d => d.open = true)")
+            sh = pg.locator("[data-share], .share").first
+            sy = await sh.evaluate("el => el.getBoundingClientRect().top + scrollY - 85")
+            await pg.evaluate("y => window.scrollTo(0, y)", sy)
+            await pg.clock.run_for(800)
+            d10 = dur("n10")
+            styles = pg.locator(".share-style")
+            hits = {int(round((0.5 + k * (d10 - 1.4) / 2) * FPS)): k for k in (1, 2)}
+
+            async def sw(i, t):
+                if i in hits:
+                    await styles.nth(hits[i]).click()
+            r = Rec(pg, "share")
+            await r.run(d10 + MARGIN, sw)
+            r.done(card=C.nb(await pg.locator(".share-card").first.bounding_box()))
+
+            # ── 知識補給包與成就卡（n09）：真的拖曳旋轉、拉開 ──
+            await pg.evaluate("""() => { localStorage.setItem('dw-read', JSON.stringify(['rebuild-sov']));
+              document.dispatchEvent(new CustomEvent('dw:read', { detail: { before: [], after: ['rebuild-sov'] } })); }""")
+            await pg.clock.run_for(250)
+            await pg.locator('[data-snack-album="top"]').first.click()
+            d9 = dur("n09")
+            cut = d9 * 0.55
+            state = {"down": False, "torn": False}
+
+            async def pk(i, t):
+                if 0.5 <= t < cut:
+                    if not state["down"]:
+                        await pg.mouse.move(960, 440)
+                        await pg.mouse.down()
+                        state["down"] = True
+                    p = (t - 0.5) / (cut - 0.5)
+                    await pg.mouse.move(960 + 260 * math.sin(p * 6.283), 440 + 14 * math.sin(p * 12.566))
+                elif t >= cut and not state["torn"]:
+                    if state["down"]:
+                        await pg.mouse.up()
+                    await pg.locator("#snack [data-tear]").first.click()
+                    state["torn"] = True
+            r = Rec(pg, "snack")
+            await r.run(d9 + MARGIN, pk)
+            r.done()
+            await ctx.close()
+
+            # ── 判斷力主線（n14）──
+            ctx, pg = await open_page("/")
+            th = pg.locator(".fm-threads").first
+            ty = await th.evaluate("el => el.getBoundingClientRect().top + scrollY - 260")
+            await pg.evaluate("y => window.scrollTo(0, y)", ty)
+            await pg.clock.run_for(1500)
+            jb = await pg.locator(".fm-thread[data-thread='judge']").first.bounding_box()
+            await pg.mouse.move(jb["x"] + jb["width"] / 2, jb["y"] + jb["height"] / 2)
+            r = Rec(pg, "judge")
+            await r.hold(dur("n14") + MARGIN)
+            r.done(judge=C.nb(jb))
             await ctx.close()
 
             # ── 圖表蒙太奇 ──

@@ -17,7 +17,7 @@ import script as S  # noqa: E402
 
 ROOT = A.ROOT
 BUILD = A.BUILD
-OUT_NAME = "decision_wisdom_2026_3min_v5.mp4"  # v5 = 混合版（真實動態＋舞台推鏡）
+OUT_NAME = "decision_wisdom_2026_3min_v6.mp4"  # v5 = 混合版（真實動態＋舞台推鏡）
 
 
 def step_audio():

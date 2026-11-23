@@ -101,45 +101,46 @@ SCENES.scroll = (g) => {
 SCENES.facemap = (g) => {
   const cam = el('div', 'cam', null, g);
   const lv = live('facemap', cam);
-  const lit = M.light_n.slice(0, 4).map((k) => img(`light_${pad2(k)}.jpg`, cam));
+  const lit = live('facelit', cam);
   const st = M.fm_stage, cx = st.x + st.w * 0.42, cy = st.y + st.h * 0.48;
   const l3 = BEATS_BY.n04.lines[2].start - BEATS_BY.n04.start;
   return (lt, d) => {
     const x = eout(prog(lt, l3 - 0.5, l3 - 0.1));
-    if (x <= 0) { lv.show(lt); op(lv.im, 1); lit.forEach((im) => op(im, 0)); }
-    else { lv.show(lt); op(lv.im, 1 - x); seq(lit, lerp(0, lit.length - 1, prog(lt, l3, d - 0.4))); lit.forEach((im) => { im.style.opacity *= x; }); }
+    lv.show(lt); lit.show(Math.max(0, lt - (l3 - 0.5)));
+    op(lv.im, 1 - x); op(lit.im, x);
     const z = ease(prog(lt, 0.4, l3));
-    cam.style.transform = x > 0 ? camTf(st.x + st.w * 0.5, st.y + st.h * 0.5, 1.15) : camTf(lerp(.5, cx, z), lerp(.5, cy, z), lerp(1, 1.3, z));
+    cam.style.transform = camTf(lerp(.5, cx, z), lerp(.5, cy, z), lerp(1, 1.3, z));
   };
 };
 
 SCENES.threads = (g) => {
   const cam = el('div', 'cam', null, g);
-  const im = img('threads.jpg', cam); im.style.opacity = 1;
-  const [cx, cy] = center(M.threads.box);
-  return (lt, d) => { const z = ease(prog(lt, 0, d * 0.7)); cam.style.transform = camTf(lerp(.5, cx, z), lerp(.5, cy, z), lerp(1.05, 1.6, z)); };
+  const lv = live('threads', cam);
+  const [cx, cy] = center(LIVE.threads.box);
+  return (lt, d) => {
+    lv.show(lt);
+    const z = ease(prog(lt, 1.3, d * 0.8));
+    cam.style.transform = camTf(lerp(.5, cx, z), lerp(.5, cy, z), lerp(1.0, 1.4, z));
+  };
 };
 
 SCENES.sov_intro = (g) => {
   const cam = el('div', 'cam', null, g);
-  const top = img('sov_top.jpg', cam);
-  const al = img('alloc_00.jpg', cam);
-  const bd = el('div', 'badge', '每一層都做，<br><em>每一層都不夠深</em>', g); bd.style.right = '110px'; bd.style.top = '430px';
-  const [ax, ay] = center(M.alloc_box);
-  const l2 = BEATS_BY.n06a.lines[1].start - BEATS_BY.n06a.start;
+  const lv = live('sov_intro', cam);
+  const [ax, ay] = center(LIVE.sov_intro.box);
+  const b = BEATS_BY.n06a, l2 = b.lines[1].start - b.start, l3 = b.lines[2].start - b.start;
   return (lt, d) => {
-    const x = eout(prog(lt, l2 - 0.4, l2 + 0.2));
-    op(top, 1 - x); op(al, x);
-    cam.style.transform = x < 0.5 ? camTf(.32, .36, lerp(1.25, 1.35, prog(lt, 0, l2))) : camTf(ax, ay, lerp(1.5, 1.6, prog(lt, l2, d)));
-    op(bd, eout(prog(lt, l2 + 1.6, l2 + 2.1)));
+    lv.show(lt);
+    const z = ease(prog(lt, l3 - 0.2, l3 + 1.0));
+    cam.style.transform = camTf(lerp(.5, ax, z), lerp(.42, ay, z), lerp(1.1, 1.4, z));
   };
 };
 
 SCENES.sov_alloc = (g) => {
   const cam = el('div', 'cam', null, g);
-  const fr = Array.from({ length: M.alloc_n }, (_, i) => img(`alloc_${pad2(i)}.jpg`, cam));
-  const [ax, ay] = center(M.alloc_box);
-  return (lt, d) => { seq(fr, lerp(1, M.alloc_n - 1, ease(prog(lt, 0.2, d - 1.2)))); cam.style.transform = camTf(ax, ay, 1.6); };
+  const lv = live('sov_alloc', cam);
+  const [ax, ay] = center(LIVE.sov_alloc.box);
+  return (lt, d) => { lv.show(lt); cam.style.transform = camTf(ax, ay, 1.4); };
 };
 
 SCENES.charts = (g) => {
@@ -170,22 +171,20 @@ SCENES.charts = (g) => {
 
 SCENES.reader = (g) => {
   const cam = el('div', 'cam', null, g);
-  const before = img('reader_before.jpg', cam), open = img('reader_open.jpg', cam);
+  const lv = live('reader', cam);
+  const R = LIVE.reader;
   const cur = el('div', 'cursor', ARROW, g), ring = el('div', 'ring', null, g);
-  const [bx, by] = center(M.reader.btn), [mx, my] = center(M.reader.mark);
-  const l2 = BEATS_BY.n08a.lines[1].start - BEATS_BY.n08a.start;
-  const click = l2 - 0.5;
+  const [bx, by] = center(R.btn), [mx, my] = center(R.mark);
+  const click = R.click;
   return (lt, d) => {
-    const x = eout(prog(lt, click + 0.1, click + 0.6));
-    op(before, 1 - x); op(open, x);
-    const sBefore = 2.0, zBefore = camTf(bx, by, sBefore);
-    const zz = ease(prog(lt, click + 0.6, d));
-    cam.style.transform = x < 1 ? zBefore : camTf(mx, my, lerp(1.25, 1.85, zz));
-    if (x < 1) cam.style.transform = zBefore;
+    lv.show(lt);
+    const x = eout(prog(lt, click + 0.1, click + 0.7));
+    const sB = 1.8, zz = ease(prog(lt, click + 0.5, d));
+    cam.style.transform = x < 1 ? camTf(lerp(bx, .5, x), lerp(by, .5, x), lerp(sB, 1, x)) : camTf(mx, my, lerp(1, 1.6, zz));
     // 游標移向頁碼（座標換算到放大後畫面）
-    let tx = W / 2 - bx * W * sBefore, ty = H / 2 - by * H * sBefore;
-    tx = clamp(tx, W - W * sBefore, 0); ty = clamp(ty, H - H * sBefore, 0);
-    const px = tx + bx * W * sBefore, py = ty + by * H * sBefore;
+    let tx = W / 2 - bx * W * sB, ty = H / 2 - by * H * sB;
+    tx = clamp(tx, W - W * sB, 0); ty = clamp(ty, H - H * sB, 0);
+    const px = tx + bx * W * sB, py = ty + by * H * sB;
     const mv = ease(prog(lt, 0.3, click));
     cur.style.transform = `translate(${lerp(px + 380, px + 6, mv)}px, ${lerp(py + 240, py + 4, mv)}px)`;
     op(cur, (1 - x) * eout(prog(lt, 0.1, 0.4)));
@@ -197,15 +196,17 @@ SCENES.reader = (g) => {
 
 SCENES.reader_count = (g) => {
   const cam = el('div', 'cam', null, g);
-  img('reader_open.jpg', cam).style.opacity = 1;
+  const lv = live('reader', cam);
+  const off = BEATS_BY.n08a.end - BEATS_BY.n08a.start;
   const dim = el('div', 'dim', null, g);
   const c = el('div', 'center', null, g);
   const n = el('div', '', '', c);
   const cap = el('div', 'h2', '條引文，每一條都對得回紙本 ✓', c); cap.style.color = '#fff'; cap.style.marginTop = '20px';
-  const [mx, my] = center(M.reader.mark);
+  const [mx, my] = center(LIVE.reader.mark);
   const target = parseInt(String(D.facts.quotes || '1539').replace(/,/g, ''), 10);
   return (lt, d) => {
-    cam.style.transform = camTf(mx, my, 1.85);
+    lv.show(lt + off);
+    cam.style.transform = camTf(mx, my, 1.6);
     const p = eout(prog(lt, 0, 0.5)); dim.style.background = `rgba(28,24,21,${0.72 * p})`;
     const v = Math.round(target * eout(prog(lt, 0.2, 1.6)));
     n.innerHTML = `<span class="num" style="color:#fff;font-size:180px">${v.toLocaleString('en-US')}</span>`;
@@ -215,28 +216,17 @@ SCENES.reader_count = (g) => {
 
 SCENES.snack = (g) => {
   const cam = el('div', 'cam', null, g);
-  const fr = Array.from({ length: M.snack_n }, (_, i) => img(`snack_${pad2(i)}.jpg`, cam));
-  const card = img('snack_card.jpg', cam);
-  return (lt, d) => {
-    const cut = d * 0.62;
-    seq(fr, lerp(0, M.snack_n - 1, ease(prog(lt, 0, cut))));
-    const x = eout(prog(lt, cut, cut + 0.4));
-    if (x > 0) fr.forEach((f) => { f.style.opacity *= (1 - x); });
-    op(card, x);
-    cam.style.transform = camTf(.5, .45, lerp(1.35, 1.5, lt / d));
-  };
+  const lv = live('snack', cam);
+  return (lt, d) => { lv.show(lt); cam.style.transform = camTf(.5, .45, lerp(1.2, 1.3, lt / d)); };
 };
 
 SCENES.share = (g) => {
   const cam = el('div', 'cam', null, g);
-  const fr = ['bold', 'paper', 'night'].map((n) => img(`share_${n}.jpg`, cam));
-  const [cx, cy] = center(M.share_card);
+  const lv = live('share', cam);
+  const [cx, cy] = center(LIVE.share.card);
   return (lt, d) => {
-    seq(fr, lerp(0, 2, clamp((lt - 0.4) / (d - 1.2))) * 1);
-    const f = clamp((lt - 0.4) / (d - 1.2)) * 2;  // 每張停留後快速淡入下一張
-    const i = Math.floor(f), r = clamp((f - i - 0.75) / 0.25);
-    fr.forEach((im, k) => { im.style.opacity = k === i ? 1 : (k === i + 1 ? r : 0); });
-    cam.style.transform = camTf(lerp(.5, cx - 0.06, ease(prog(lt, 0, 1))), cy, lerp(1.2, 1.45, ease(prog(lt, 0, 1.2))));
+    lv.show(lt);
+    cam.style.transform = camTf(lerp(.5, cx - 0.06, ease(prog(lt, 0, 1))), lerp(.5, cy, ease(prog(lt, 0, 1))), lerp(1.1, 1.35, ease(prog(lt, 0, 1.2))));
   };
 };
 
@@ -256,12 +246,20 @@ SCENES.error = (g) => {
   const bad = L.querySelector('.pg');
   const fail = (D.facts.terminal_fail || [])[1] || '頁碼錯誤：宣告 p.117，實際在 p.119';
   const v = el('div', 'verdict', `✗ ${fail}`, g);
-  const l2 = BEATS_BY.n12.lines[1].start - BEATS_BY.n12.start;
+  // 第二個例子：語氣被改強（審稿模型抓到，見 docs/review-pipeline.md）
+  const L2 = el('div', 'split', '<div class="lbl">原文</div><div class="pg good" style="font-size:96px">反而<u style="text-decoration-thickness:8px;text-underline-offset:14px">可能</u>變少</div>', g); L2.style.left = '160px';
+  const R2 = el('div', 'split', '<div class="lbl">AI 改寫</div><div class="pg bad" style="font-size:96px">反而<span style="color:var(--ink2);opacity:.35">＿＿</span>變少</div>', g); R2.style.right = '160px';
+  const v2 = el('div', 'verdict', '✗ 審稿模型：少了「可能」，語氣被改強', g);
+  const ls = BEATS_BY.n12.lines.map((x) => x.start - BEATS_BY.n12.start);
   return (lt, d) => {
-    op(L, eout(prog(lt, 0.1, 0.5)));
-    op(R, eout(prog(lt, l2 - 0.1, l2 + 0.3)));
-    bad.style.setProperty('--w', `${eout(prog(lt, l2 + 0.3, l2 + 0.8)) * 108}%`);
-    op(v, eout(prog(lt, l2 + 1.0, l2 + 1.4)));
+    const out = 1 - eout(prog(lt, ls[2] - 0.35, ls[2] - 0.05));
+    op(L, eout(prog(lt, 0.1, 0.5)) * out);
+    op(R, eout(prog(lt, ls[1] - 0.1, ls[1] + 0.3)) * out);
+    bad.style.setProperty('--w', `${eout(prog(lt, ls[1] + 0.3, ls[1] + 0.8)) * 108}%`);
+    op(v, eout(prog(lt, ls[1] + 0.9, ls[1] + 1.2)) * out);
+    op(L2, eout(prog(lt, ls[2], ls[2] + 0.4)));
+    op(R2, eout(prog(lt, ls[3] - 0.1, ls[3] + 0.3)));
+    op(v2, eout(prog(lt, ls[3] + 1.0, ls[3] + 1.4)));
   };
 };
 
@@ -288,14 +286,11 @@ SCENES.gate = (g) => {
 
 SCENES.judge = (g) => {
   const cam = el('div', 'cam', null, g);
-  img('threads.jpg', cam).style.opacity = 1;
-  const [jx, jy] = center(M.threads.judge);
-  const bd = el('div', 'badge', '書中主線：<em>判斷力不能外包</em>', g); bd.style.left = '120px'; bd.style.top = '150px';
-  const l2 = BEATS_BY.n14.lines[1].start - BEATS_BY.n14.start;
+  const lv = live('judge', cam);
+  const [jx, jy] = center(LIVE.judge.judge);
   return (lt, d) => {
-    const z = ease(prog(lt, 0, d * 0.8));
-    cam.style.transform = camTf(jx, jy + 0.08, lerp(1.6, 2.0, z));
-    op(bd, eout(prog(lt, l2 + 0.6, l2 + 1.0)));
+    lv.show(lt);
+    cam.style.transform = camTf(jx, jy + 0.06, lerp(1.4, 1.7, ease(prog(lt, 0, d * 0.8))));
   };
 };
 
