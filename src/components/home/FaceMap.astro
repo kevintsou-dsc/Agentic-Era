@@ -19,7 +19,6 @@ const SCENARIOS = [
 ] as const;
 const data = ARTICLES.map((a, i) => ({ i, slug: a.slug, ch: a.chapter, t: a.title, th: a.threads }));
 const no = (i: number) => String(i + 1).padStart(2, '0');
-const firstOf = (key: string) => ARTICLES.find((a) => a.threads.includes(key as never) && STORIES[a.id]);
 ---
 <section class="fm" id="chapters" data-fm data-fm-data={JSON.stringify(data)} aria-labelledby="fm-h">
   <div class="fm-stage" data-fm-stage aria-hidden="true">
@@ -41,13 +40,35 @@ const firstOf = (key: string) => ARTICLES.find((a) => a.threads.includes(key as 
     <p class="fm-threads-h"><b>四條主線</b>{THREAD_INTRO}</p>
     <div class="fm-threads">
       {THREADS.map((t, i) => {
-        const first = firstOf(t.key);
-        const count = ARTICLES.filter((a) => a.threads.includes(t.key as never) && STORIES[a.id]).length;
+        const items = ARTICLES.filter((a) => a.threads.includes(t.key as never) && STORIES[a.id]);
+        const first = items[0];
         return (
-          <a class="fm-thread" data-fm-step data-thread={t.key} href={first ? `/story/${first.slug}/` : '#chapters'} title={first ? `從〈${first.title}〉開始讀這條線` : undefined}>
-            <span class="k">主線 {i + 1}</span><span class="n">{t.name}</span><span class="go" aria-hidden="true">→</span>
-            <span class="d"><span><em>照著讀 {count} 篇，你會看懂</em><span set:html={rich(THREAD_LINES[t.key])} /></span></span>
-          </a>
+          <div class="fm-thread" data-fm-step data-thread={t.key}>
+            <a class="fm-th-head" href={first ? `/story/${first.slug}/` : '#chapters'} title={first ? `從〈${first.title}〉開始讀這條線` : undefined}>
+              <span class="k">主線 {i + 1}</span>
+              <span class="n">{t.name}</span>
+              <span class="cnt">{items.length} 篇</span>
+              <span class="go" aria-hidden="true">→</span>
+            </a>
+            <div class="d">
+              <div class="d-in">
+                <p class="d-copy"><em>照著讀 {items.length} 篇，你會看懂</em><span set:html={rich(THREAD_LINES[t.key])} /></p>
+                <ul class="fm-th-arts" role="list" aria-label={`${t.name} 包含文章`}>
+                  {items.map((a) => {
+                    const idx = ARTICLES.indexOf(a);
+                    return (
+                      <li>
+                        <a class={`fm-th-art ch-${a.chapter}`} href={`/story/${a.slug}/`}>
+                          <span class="no">{no(idx)}</span>
+                          <span>{a.title}</span>
+                        </a>
+                      </li>
+                    );
+                  })}
+                </ul>
+              </div>
+            </div>
+          </div>
         );
       })}
     </div>
@@ -115,21 +136,34 @@ const firstOf = (key: string) => ARTICLES.find((a) => a.threads.includes(key as 
   .fm-pick { display: inline-flex; align-items: center; padding: 5px 12px; border-radius: var(--r-pill); border: 1px solid var(--line); background: var(--paper-2); font-size: var(--fs-caption); font-weight: var(--fw-medium); color: var(--ink-2); text-decoration: none; transition: border-color .2s, color .2s, background-color .2s; }
   .fm-pick:hover { border-color: var(--ink); color: var(--ink); background: var(--paper); }
   .fm-share-actions { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
-  /* 四條主線：一行一條的文字連結（捲過時臉譜仍會亮出該主線的篇章） */
+  /* 四條主線：一行一條，捲到／滑過時展開說明與該主線包含的完整文章清單 */
   .fm-threads-h { margin: 0 0 12px; font-size: var(--fs-small); line-height: 1.7; color: var(--ink-2); }
   .fm-threads-h b { display: block; margin-bottom: 2px; font-size: var(--fs-meta); letter-spacing: .08em; color: var(--ink); }
   .fm-threads { display: grid; margin-bottom: 10svh; border-top: 1px solid var(--line); }
-  .fm-thread .d em { display: block; font-style: normal; font-size: var(--fs-caption); font-weight: var(--fw-bold); letter-spacing: .04em; color: var(--accent-ink); margin-bottom: 2px; }
-  .fm-thread { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0 12px; padding: 14px 4px; border-bottom: 1px solid var(--line); color: var(--ink); text-decoration: none; opacity: .8; transition: opacity .35s; }
-  .fm-thread .k { flex: none; font-family: var(--font-mono); font-size: var(--fs-micro); letter-spacing: .1em; color: var(--ink-3); }
-  .fm-thread .n { font-weight: var(--fw-bold); }
-  .fm-thread .go { margin-left: auto; color: var(--ink-3); transition: translate .2s; }
-  .fm-thread:global(.on), .fm-thread:hover, .fm-thread:focus-visible { opacity: 1; }
-  .fm-thread:hover .go { translate: 4px 0; color: var(--ink); }
-  /* 說明：滑過、鍵盤聚焦或捲到該主線時展開（手機沒有滑過，捲到就展開） */
-  .fm-thread .d { flex-basis: 100%; display: grid; grid-template-rows: 0fr; opacity: 0; transition: grid-template-rows .35s var(--ease-out), opacity .3s, margin .35s; }
-  .fm-thread .d > span { overflow: hidden; min-height: 0; padding-left: calc(3.6em); font-size: var(--fs-small); line-height: 1.65; color: var(--ink-2); }
-  .fm-thread:is(:hover, :focus-visible, :global(.on)) .d { grid-template-rows: 1fr; opacity: 1; margin-top: 6px; }
+  .fm-thread { padding: 14px 4px; border-bottom: 1px solid var(--line); opacity: .82; transition: opacity .35s; }
+  .fm-thread:global(.on), .fm-thread:hover, .fm-thread:focus-within { opacity: 1; }
+  .fm-th-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0 12px; color: var(--ink); text-decoration: none; }
+  .fm-th-head .k { flex: none; font-family: var(--font-mono); font-size: var(--fs-micro); letter-spacing: .1em; color: var(--ink-3); }
+  .fm-th-head .n { font-weight: var(--fw-bold); }
+  .fm-th-head .cnt { font-family: var(--font-mono); font-size: var(--fs-micro); color: var(--ink-3); }
+  .fm-th-head .go { margin-left: auto; color: var(--ink-3); transition: translate .2s, color .2s; }
+  .fm-th-head:hover .go { translate: 4px 0; color: var(--ink); }
+  /* 說明與文章清單：滑過、鍵盤聚焦或捲到該主線時展開（手機沒有滑過，捲到就展開） */
+  .fm-thread .d { display: grid; grid-template-rows: 0fr; opacity: 0; transition: grid-template-rows .35s var(--ease-out), opacity .3s, margin .35s; }
+  .fm-thread .d-in { overflow: hidden; min-height: 0; padding-left: 3.6em; }
+  .fm-thread .d-copy { margin: 0; font-size: var(--fs-small); line-height: 1.65; color: var(--ink-2); }
+  .fm-thread .d-copy em { display: block; font-style: normal; font-size: var(--fs-caption); font-weight: var(--fw-bold); letter-spacing: .04em; color: var(--accent-ink); margin-bottom: 2px; }
+  .fm-thread:is(:hover, :focus-within, :global(.on)) .d { grid-template-rows: 1fr; opacity: 1; margin-top: 8px; }
+  .fm-th-arts { list-style: none; margin: 10px 0 2px; padding: 0; display: flex; flex-wrap: wrap; gap: 6px; }
+  .fm-th-art {
+    display: inline-flex; align-items: baseline; gap: 5px;
+    padding: 4px 10px; border-radius: var(--r-pill);
+    border: 1px solid var(--line); background: var(--paper);
+    color: var(--ink); text-decoration: none; font-size: var(--fs-caption); line-height: 1.45;
+    transition: border-color .2s, background-color .2s;
+  }
+  .fm-th-art .no { font-family: var(--font-mono); font-size: 11px; font-weight: var(--fw-bold); color: var(--accent-ink); }
+  .fm-th-art:hover, .fm-th-art:focus-visible { border-color: var(--accent-ink); background: color-mix(in srgb, var(--accent) 42%, var(--paper)); }
   .btn.small { padding: 8px 14px; font-size: 14px; }
   .fm-group ul { list-style: none; margin: 0; padding: 0; }
   .fm-group + .fm-group { margin-top: 9svh; }
@@ -175,6 +209,7 @@ const firstOf = (key: string) => ARTICLES.find((a) => a.threads.includes(key as 
     .fm-head { margin-bottom: 8svh; }
     .fm-ch { scroll-margin-top: calc(27svh + 72px); }
     .fm-threads { margin-bottom: 8svh; }
+    .fm-thread .d-in { padding-left: 0; }
     .fm-row { grid-template-columns: 2.6rem 1fr; }
     .fm-row .no { font-size: 26px; }
   }

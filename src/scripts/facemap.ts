@@ -78,7 +78,7 @@ export function initFaceMap() {
     hudN.innerHTML = `已點亮 ${read.size}<small>／22</small>`;
     const a = ARTS[active];
     hudC.textContent = a ? `${CHZ[a.ch]}｜${String(a.i + 1).padStart(2, '0')}〈${a.t}〉${read.has(a.i) ? '・已點亮' : ''}`
-      : pick ? `${steps.find((s) => s.dataset.thread === pick)?.querySelector('.eyebrow')?.textContent ?? ''}｜共 ${ARTS.filter((x) => x.th.includes(pick)).length} 篇`
+      : pick ? `${steps.find((s) => s.dataset.thread === pick)?.querySelector('.n')?.textContent ?? ''}｜共 ${ARTS.filter((x) => x.th.includes(pick)).length} 篇`
       : read.size ? '讀越多，這張臉譜越有溫度' : '往下捲，看 22 篇在臉譜上的哪裡';
   };
 
