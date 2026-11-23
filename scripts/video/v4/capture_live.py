@@ -8,6 +8,7 @@
 """
 import asyncio
 import json
+import time
 import math
 import shutil
 
@@ -66,6 +67,9 @@ async def main():
                     await ctx.add_init_script(f"try{{localStorage.setItem('dw-read', JSON.stringify({json.dumps(read)}));localStorage.setItem('dw-face-seen', JSON.stringify({json.dumps(seen or [])}));}}catch(e){{}}")
                 pg = await ctx.new_page()
                 await pg.clock.install()
+                # CSS transition／animation 不受虛擬時鐘控制，只能用 CDP 調慢播放速率，讓它跟上逐幀截圖的節奏
+                pg._cdp = await ctx.new_cdp_session(pg)
+                await pg._cdp.send("Animation.enable")
                 await pg.goto(f"{base}{path}", wait_until="networkidle")
                 await pg.clock.run_for(4500)  # 虛擬時間快轉過 loader
                 return ctx, pg
@@ -76,12 +80,20 @@ async def main():
                     (LIVE / name).mkdir()
 
                 async def snap(self):
+                    t0 = time.perf_counter()
                     await self.pg.clock.run_for(int(round(1000 / FPS)))
                     kw = {"path": str(LIVE / self.name / f"{self.n:05d}.jpg"), "type": "jpeg", "quality": 88}
                     if self.clip:
                         kw["clip"] = self.clip
                     await self.pg.screenshot(**kw)
                     self.n += 1
+                    # 依實際每幀耗時（真實毫秒）調整 CSS 動畫速率：速率 = 虛擬 33ms ÷ 真實耗時
+                    dt = (time.perf_counter() - t0) * 1000
+                    ema = getattr(self.pg, "_ema", dt)
+                    self.pg._ema = ema * 0.8 + dt * 0.2
+                    if self.n % 10 == 1:
+                        rate = max(0.02, min(1.0, (1000 / FPS) / self.pg._ema))
+                        await self.pg._cdp.send("Animation.setPlaybackRate", {"playbackRate": rate})
 
                 async def hold(self, dur):
                     for _ in range(int(round(dur * FPS))):
@@ -131,7 +143,7 @@ async def main():
             judge = pg.locator(".fm-thread[data-thread='judge']").first
             d5 = dur("n05")
             r = Rec(pg, "threads")
-            await r.scroll(ch + 700, ty, 1.2)
+            await r.scroll(ch + 700, ty, 1.8)
             await r.hold(0.3)
             jb = await judge.bounding_box()
             jx, jy = jb["x"] + jb["width"] / 2, jb["y"] + jb["height"] / 2
@@ -149,6 +161,14 @@ async def main():
             l3 = B["n04"]["lines"][2]["start"] - B["n04"]["start"]
             r = Rec(pg, "facelit")
             await r.hold(dur("n04") - l3 + 0.6 + MARGIN)
+            r.done()
+            await ctx.close()
+
+            # ── 片尾（n16）：22 篇全讀、還沒看過 → 臉譜真的逐塊點亮到 22/22 ──
+            ctx, pg = await open_page("/", read=slugs, seen=[])
+            await pg.evaluate("y => window.scrollTo(0, y)", ch + 700)
+            r = Rec(pg, "finale")
+            await r.hold(dur("n16") + MARGIN)
             r.done()
             await ctx.close()
 
@@ -173,8 +193,8 @@ async def main():
             l2 = b6["lines"][1]["start"] - b6["start"]
             l3 = b6["lines"][2]["start"] - b6["start"]
             r = Rec(pg, "sov_intro")
-            await r.hold(l2 - 0.2)
-            await r.scroll(0, ys[0], l3 - l2 + 0.2)
+            await r.hold(l2 - 0.5)
+            await r.scroll(0, ys[0], l3 - l2 + 0.9)
             await r.hold(dur("n06a") - r.n / FPS + MARGIN)
             r.done(box=abox, l3=l3)
             d6 = dur("n06b")

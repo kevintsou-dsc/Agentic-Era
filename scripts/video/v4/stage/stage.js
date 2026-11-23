@@ -109,7 +109,7 @@ SCENES.facemap = (g) => {
     lv.show(lt); lit.show(Math.max(0, lt - (l3 - 0.5)));
     op(lv.im, 1 - x); op(lit.im, x);
     const z = ease(prog(lt, 0.4, l3));
-    cam.style.transform = camTf(lerp(.5, cx, z), lerp(.5, cy, z), lerp(1, 1.3, z));
+    cam.style.transform = camTf(lerp(.5, cx, z), lerp(.5, cy, z), lerp(1, 1.15, z));
   };
 };
 
@@ -120,7 +120,7 @@ SCENES.threads = (g) => {
   return (lt, d) => {
     lv.show(lt);
     const z = ease(prog(lt, 1.3, d * 0.8));
-    cam.style.transform = camTf(lerp(.5, cx, z), lerp(.5, cy, z), lerp(1.0, 1.4, z));
+    cam.style.transform = camTf(lerp(.5, cx, z), lerp(.5, cy, z), lerp(1.0, 1.2, z));
   };
 };
 
@@ -132,7 +132,7 @@ SCENES.sov_intro = (g) => {
   return (lt, d) => {
     lv.show(lt);
     const z = ease(prog(lt, l3 - 0.2, l3 + 1.0));
-    cam.style.transform = camTf(lerp(.5, ax, z), lerp(.42, ay, z), lerp(1.1, 1.4, z));
+    cam.style.transform = camTf(lerp(.5, ax, z), lerp(.5, ay, z), lerp(1.0, 1.2, z));
   };
 };
 
@@ -140,7 +140,7 @@ SCENES.sov_alloc = (g) => {
   const cam = el('div', 'cam', null, g);
   const lv = live('sov_alloc', cam);
   const [ax, ay] = center(LIVE.sov_alloc.box);
-  return (lt, d) => { lv.show(lt); cam.style.transform = camTf(ax, ay, 1.4); };
+  return (lt, d) => { lv.show(lt); cam.style.transform = camTf(ax, ay, 1.2); };
 };
 
 SCENES.charts = (g) => {
@@ -179,8 +179,8 @@ SCENES.reader = (g) => {
   return (lt, d) => {
     lv.show(lt);
     const x = eout(prog(lt, click + 0.1, click + 0.7));
-    const sB = 1.8, zz = ease(prog(lt, click + 0.5, d));
-    cam.style.transform = x < 1 ? camTf(lerp(bx, .5, x), lerp(by, .5, x), lerp(sB, 1, x)) : camTf(mx, my, lerp(1, 1.6, zz));
+    const sB = 1.5, zz = ease(prog(lt, click + 0.5, d));
+    cam.style.transform = x < 1 ? camTf(lerp(bx, .5, x), lerp(by, .5, x), lerp(sB, 1, x)) : camTf(mx, my, lerp(1, 1.35, zz));
     // 游標移向頁碼（座標換算到放大後畫面）
     let tx = W / 2 - bx * W * sB, ty = H / 2 - by * H * sB;
     tx = clamp(tx, W - W * sB, 0); ty = clamp(ty, H - H * sB, 0);
@@ -206,7 +206,7 @@ SCENES.reader_count = (g) => {
   const target = parseInt(String(D.facts.quotes || '1539').replace(/,/g, ''), 10);
   return (lt, d) => {
     lv.show(lt + off);
-    cam.style.transform = camTf(mx, my, 1.6);
+    cam.style.transform = camTf(mx, my, 1.35);
     const p = eout(prog(lt, 0, 0.5)); dim.style.background = `rgba(28,24,21,${0.72 * p})`;
     const v = Math.round(target * eout(prog(lt, 0.2, 1.6)));
     n.innerHTML = `<span class="num" style="color:#fff;font-size:180px">${v.toLocaleString('en-US')}</span>`;
@@ -217,7 +217,7 @@ SCENES.reader_count = (g) => {
 SCENES.snack = (g) => {
   const cam = el('div', 'cam', null, g);
   const lv = live('snack', cam);
-  return (lt, d) => { lv.show(lt); cam.style.transform = camTf(.5, .45, lerp(1.2, 1.3, lt / d)); };
+  return (lt, d) => { lv.show(lt); cam.style.transform = camTf(.5, .5, lerp(1.0, 1.1, lt / d)); };
 };
 
 SCENES.share = (g) => {
@@ -226,7 +226,7 @@ SCENES.share = (g) => {
   const [cx, cy] = center(LIVE.share.card);
   return (lt, d) => {
     lv.show(lt);
-    cam.style.transform = camTf(lerp(.5, cx - 0.06, ease(prog(lt, 0, 1))), lerp(.5, cy, ease(prog(lt, 0, 1))), lerp(1.1, 1.35, ease(prog(lt, 0, 1.2))));
+    cam.style.transform = camTf(.5, lerp(.5, cy, ease(prog(lt, 0, 1))), lerp(1.0, 1.15, ease(prog(lt, 0, 1.2))));
   };
 };
 
@@ -272,7 +272,6 @@ SCENES.gate = (g) => {
   const passes = D.facts.terminal_pass || [];
   const lines = [['dimt', '$ npm run build'], ...fails.map((x) => ['bad', x + '　→ 建置中止，不准上線']), ['dimt', '# 改回 p.119 後重跑'], ...passes.map((x) => ['good', x])];
   const els = lines.map(([c, s]) => { const e = el('span', `ln ${c}`, s, pre); return e; });
-  const bg = el('div', 'badge', '錯一個字，<em>就不准上線</em>', g); bg.style.left = '50%'; bg.style.bottom = '150px'; bg.style.transform = 'translateX(-50%)';
   const lns = BEATS_BY.n13.lines.map((x) => x.start - BEATS_BY.n13.start);
   return (lt, d) => {
     op(t, eout(prog(lt, 0, 0.4)));
@@ -280,7 +279,6 @@ SCENES.gate = (g) => {
     op(els[1], eout(prog(lt, 0.7, 0.9)));
     const k0 = 2, n = els.length - k0;
     for (let k = 0; k < n; k++) { const a = lns[1] + 0.2 + k * ((lns[2] - lns[1]) / (n + 0.5)); op(els[k0 + k], eout(prog(lt, a, a + 0.25))); }
-    op(bg, eout(prog(lt, lns[2] - 0.1, lns[2] + 0.3)));
   };
 };
 
@@ -290,7 +288,7 @@ SCENES.judge = (g) => {
   const [jx, jy] = center(LIVE.judge.judge);
   return (lt, d) => {
     lv.show(lt);
-    cam.style.transform = camTf(jx, jy + 0.06, lerp(1.4, 1.7, ease(prog(lt, 0, d * 0.8))));
+    cam.style.transform = camTf(jx, jy + 0.06, lerp(1.1, 1.3, ease(prog(lt, 0, d * 0.8))));
   };
 };
 
@@ -310,16 +308,15 @@ SCENES.deploy = (g) => {
 
 SCENES.finale = (g) => {
   const cam = el('div', 'cam', null, g);
-  const fr = M.light_n.map((k) => img(`light_${pad2(k)}.jpg`, cam));
+  const lv = live('finale', cam);
+  const veil = el('div', 'dim', null, g);
   const q = el('div', 'quote', '只要 AI 做的是幫品牌更懂人，<br>品牌與人的距離，才會是真實的靠近。<small>— 邵懿文〈Agentic 時代，品牌與人的真實距離〉紙本 p.17</small>', g);
   const [cx, cy] = center(M.fm_stage);
   const l2 = BEATS_BY.n16.lines[1].start - BEATS_BY.n16.start;
-  const cnt = el('div', 'badge', '', g); cnt.style.left = '150px'; cnt.style.bottom = '220px';
   return (lt, d) => {
-    const f = lerp(0, fr.length - 1, ease(prog(lt, 0, l2 + 0.6)));
-    seq(fr, f);
-    cnt.innerHTML = `已點亮 <em>${M.light_n[Math.min(fr.length - 1, Math.round(f))]}</em> / 22`; op(cnt, eout(prog(lt, 0.2, 0.6)));
-    cam.style.transform = camTf(cx, cy + 0.12, lerp(1.15, 1.3, lt / d));
+    lv.show(lt);
+    cam.style.transform = camTf(.5, .5, lerp(1.0, 1.08, lt / d));
+    veil.style.background = `rgba(241,233,219,${0.82 * eout(prog(lt, l2 - 0.2, l2 + 0.6))})`;
     op(q, eout(prog(lt, l2 + 0.2, l2 + 0.8)));
   };
 };
@@ -346,7 +343,7 @@ const R = BEATS.map((b) => {
 });
 const sub = document.getElementById('sub');
 const progEl = document.getElementById('prog');
-const PROG = { n04: '1', n05: '1', n06a: '2', n06b: '2', n07: '2', n08a: '3', n08b: '3', n09: '3', n10: '3', n11: 'b', n12: 'b', n13: 'b', n14: 'b', n15: 'b' };
+const PROG = { n04: '1', n05: '1', n06a: '2', n06b: '2', n07: '2', n08a: '3', n08b: '3', n09: '3', n10: '3', n11: 'b', n12: 'b', n13: 'b', n15: 'b' };
 const LINES = BEATS.flatMap((b) => b.lines);
 const XF = 0.25;  // 場景交叉淡化秒數
 
