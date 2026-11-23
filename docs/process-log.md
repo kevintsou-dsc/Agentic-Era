@@ -316,6 +316,7 @@
   - **原文補圖**：因 `src/scripts/reader.ts` 依 `data-i` 且要求 `firstChild` 為純文字節點才能逐字高亮，改以獨立兄弟節點 `<figure class="orig-fig">` 掛在 `.cap` 前，建立 `content/figure-map.json` 人工核對全書 53 則圖說（修正 `a03` p.22 樂高圖、`a11` p.89 日清／Fanta、`a15` p.141 等自動抽取錯配，並支援單圖／等高雙圖／1大2小／2×2／垂直堆疊排版與點擊放大燈箱）。
   - **右側紙本對照**：否決直接嵌 `.pdf` 與 PDF.js（違反嚴格 CSP `object-src 'none'`、`check-repo.ps1` 封鎖 `.pdf` 與零重型依賴原則），改以 `scripts/extract/export_pages.py` 離線將全書 22 篇 184 頁轉為 900px 單頁 WebP（`public/pages/aNN/pXXX.webp`，總計 14.13 MB、平均 78.7 KB／頁，分篇按需載入）。
   - **UI/UX 與動效裁決**：桌機（`≥ 1100px`）採左文右紙本 Sticky 單頁對照，加入奇偶頁書脊內陰影、章節色邊、`rAF` 捲動同步、手動翻頁「回到目前段落」膠囊鈕、收合純閱讀模式、以及 25 處向量資訊圖表的「對照紙本 p.XX ↗」連動鈕；平板／手機（`< 1100px`）維持單欄閱讀，於頁首與每個頁界線提供「查看此頁紙本 ↗」開全螢幕可縮放燈箱。明確否決 3D 翻頁（遵守 PRD §1.3），改採 240ms 純 CSS 方向感知紙張抽換動效，並於 `prefers-reduced-motion` 下自動瞬切。
+- **分享卡片初次進頁空白修補（`src/scripts/share.ts`）**：實測發現首次造訪新文章頁並點開「挑一句話，做成卡片分享」時預覽圖呈空白、重整才正常。定位到兩項成因：（1）原實作僅靠單次 `IntersectionObserver` 觸發繪圖，未監聽 `<details class="share-fold">` 展開的 `toggle` 事件；（2）`document.fonts.load` 無超時上限，冷快取載入中文子集字型時易卡住。改以 `waitFonts()`（1200ms 上限）＋監聽 `toggle` 展開即重繪＋`document.fonts.ready` 自動補畫，於全新未重整頁面實測三款樣式皆即時繪製。
 
 ## 2026-11-23｜3 分鐘競賽展示影片（Video as Code）：五輪人機協作、四次駁回與確定性雙軌引擎突破
 - **背景與目標**：為《決策智慧 2026》10 週年 Vibe Coding 競賽產出 3 分鐘展示影片，嚴格對齊評審四項規準（閱讀體驗 40%、Vibe Coding 實作力 30%、部署與資安 15%、創意洞察 15%），全片長度嚴格限制 ≤ 180 秒。
