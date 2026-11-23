@@ -42,3 +42,13 @@ __pycache__/
 
 # 審稿用的中間檔（node scripts/review/reader-text.mjs 重新產生）
 content/review/units.json
+
+# 影片產物（成片走繳交管道，不進 repo；BGM 授權不允許再散布）
+*.mp4
+*.wav
+*.mp3
+docs/video/voice-ab/
+scripts/video/final_v*/
+scripts/video/build/
+scripts/video/.venv/
+scripts/video/v4/stage/data.js
