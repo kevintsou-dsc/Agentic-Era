@@ -40,7 +40,7 @@ export const story: Story = {
         type: 'd3',
         chart: {
           kind: 'flowloop',
-          title: '廣告末日循環 The Doom Loop',
+          title: '廣告惡性循環 The Doom Loop',
           center: '品牌',
           centerExtra: '這個循環出自 WARC 2025 年報告《The Multiplier Effect》。它的可怕之處在於每一步單獨看都很合理：預算要有交代、成效要能量化、指標要持續優化，合起來卻讓品牌資產一路縮水。圓心越縮越小，就是在模擬這件事。',
           shrink: true,
@@ -62,7 +62,7 @@ export const story: Story = {
             },
           ],
         },
-        source: '圖：廣告末日循環 The Doom Loop｜資料來源 WARC《The Multiplier Effect》(2025)，紙本 p.73（註：原刊圖誤植 playback，依 WARC 原報告校為 payback）。滑過節點看完整標籤與補充說明。',
+        source: '圖：廣告惡性循環 The Doom Loop｜資料來源 WARC《The Multiplier Effect》(2025)，紙本 p.73（註：原刊圖誤植 playback，依 WARC 原報告校為 payback）。滑過節點看完整標籤與補充說明。',
       },
       src: [{ article: 'a10', page: 73, text: '廣告惡性循環 The Doom Loop 指得是品牌投廣一再要求成效優化，品牌卻陷入萎縮的惡性循環' }],
       figures: [

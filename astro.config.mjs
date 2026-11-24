@@ -1,4 +1,5 @@
 import { defineConfig } from 'astro/config';
+import colorMixFallback from './scripts/postcss-color-mix-fallback.mjs';
 
 // 舊網址（紙本頁碼 /a/p96）→ 新網址：由 scripts/gen-redirects.mjs 產生 Cloudflare 的 _redirects（有無結尾斜線都 301）。
 // 這裡不要再設 Astro 的 redirects：Cloudflare 部署時會自動加上 Astro 轉接器，把 redirects 接在 _redirects 後面，
@@ -30,5 +31,6 @@ export default defineConfig({
   // CSS 一律輸出成檔案，讓 CSP 可以用 style-src 'self'（不需要允許 inline <style>）
   build: { inlineStylesheets: 'never' },
   // assetsInlineLimit 0：小腳本也輸出成檔案，CSP 才能只用 script-src 'self'
-  vite: { build: { sourcemap: false, assetsInlineLimit: 0 } },
+  // 舊版 Safari（16.2 以前）不支援 color-mix：建置時自動補 @supports not 備用顏色，見 scripts/postcss-color-mix-fallback.mjs
+  vite: { build: { sourcemap: false, assetsInlineLimit: 0 }, css: { postcss: { plugins: [colorMixFallback()] } } },
 });

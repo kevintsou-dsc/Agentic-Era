@@ -349,3 +349,14 @@
   - **確定性渲染舞台（Deterministic Frame-by-Frame Engine）**：徹底揚棄 Playwright 螢幕即時錄影（VFR 掉幀與 CPU 壓縮延遲）與 FFmpeg `zoompan`（整數像素量化跳動）；改以 1920×1080 30fps HTML5 舞台（`stage_v3.html`），將鏡頭縮放、滑鼠軌跡（SVG 圓滑貝茲曲線＋DOM 座標即時吸附）、波紋特效、文字轉場完全鎖定在單一 `16:9` `.world` 容器內。
   - **多進程高畫質離線合成**：針對 Hero 臉譜收斂（20 幀）、FaceMap 滾動（12 幀）、3D 補給包旋轉（10 幀）採取精確步進離線生成，透過 4-Worker 平行渲染，再由 FFmpeg 雙 pass 封裝為 1080p 30fps H.264 + AAC，產出 175.98 秒（完全符合 ≤ 180s 競賽紅線）、-16 LUFS 標準音量的零失誤正式版影片。檔案收錄於專案目錄 `docs/video/decision_wisdom_2026_3min_v3.mp4`，生成腳本為 `scripts/video/build_presentation_video.py`。
 - **完整架構與審查規格文件**：收錄於 `docs/video-production-architecture.md` 與產出規劃報告。
+
+## 交件後的唯一調整（2026-11-24）
+
+比賽交件截止後，我們只做了這一次修改，並如實記錄於此：
+
+- **起因**：一位 Mac 讀者用舊版 Safari（16.2 以前）開〈別買曝光了，開始買注意力吧〉，圖表說明框變成淺色半透明、字看不清，部分圖表的淡色線條與色塊也不見。原因是舊版 Safari 不支援全站大量使用的 CSS `color-mix()`。
+- **修復**：
+  - 圖表說明框改為不透明深色實底，拿掉毛玻璃效果。
+  - 新增建置外掛 `scripts/postcss-color-mix-fallback.mjs`：每條使用 `color-mix()` 的樣式後面自動補一段 `@supports not` 備用顏色，只有不支援的瀏覽器會套用，新瀏覽器畫面完全不變。舊版 Safari 上，隨捲動變色的效果會停在靜止狀態的顏色。
+  - 〈別買曝光了，開始買注意力吧〉的圖表標題，由「廣告末日循環」改回紙本圖說的用字「廣告惡性循環 The Doom Loop」。
+- **沒有改的**：文章內容、版面、互動與其他功能都維持交件時的樣子。

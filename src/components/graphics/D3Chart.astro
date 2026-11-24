@@ -55,9 +55,9 @@ const summary =
   /* 說明框 */
   .d3 :global(.d3-tip) {
     position: absolute; z-index: 8; width: min(24rem, 94%); padding: 12px 14px; border-radius: 12px;
-    /* 深色毛玻璃：半透明墨色＋背景模糊，1px 淡白框，頂緣一道水平高光模擬受光面 */
-    background: color-mix(in srgb, var(--ink) 84%, transparent); color: var(--paper);
-    -webkit-backdrop-filter: blur(24px) saturate(1.4); backdrop-filter: blur(24px) saturate(1.4);
+    /* 深色實底（不用毛玻璃）：舊版 Safari 不支援 color-mix 時背景會整個消失、只剩模糊，淺色字就看不見；
+       Safari 的 backdrop-filter 在有動畫或透明度的圖表容器裡也會把框內文字一起糊掉。直接用不透明墨色最穩。 */
+    background: rgba(31, 29, 26, .96); color: var(--paper);
     border: 1px solid rgba(255,255,255,.08); box-shadow: 0 14px 30px -14px rgba(0,0,0,.6);
     pointer-events: none; font-size: 14px; line-height: 1.6;
   }
