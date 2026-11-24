@@ -129,6 +129,14 @@ img, svg { max-width: 100%; display: block; }
 .d3 :is(.fl-dots circle, .rg-ripple, .rg-token rect, .st-dot, .es-cutter, .es-beam, .al-dots circle, .al-p, .al-bar, .ib-wave, .bl-beam *, .ib-berg *),
 .stage svg :is(defs *, .at-dots-down *, .at-dots-up *, .cm-dot *, .cs-p *) { filter: none; }
 @media (max-width: 560px) { .d3 svg :is(rect, circle) { filter: none; } }
+/* Safari（WebKit）對跨 <svg> 參照 feDisplacementMap 濾鏡有相容性缺陷（水平／垂直線段或動畫元素容易消失或裁切）；
+   僅於 WebKit 停用 #hand 手繪濾鏡，保留 Chrome／Edge／Firefox 的手繪筆觸效果。 */
+@supports (-webkit-hyphens: none) and (not (overflow-anchor: auto)) {
+  .stage svg :is(path, line, polyline, polygon, circle, ellipse, rect),
+  .d3 svg :is(path, line, polyline, polygon, circle, ellipse, rect),
+  .people svg :is(circle, path),
+  .egg-note path { filter: none !important; }
+}
 /* 紙上筆跡（scripts/paper.ts）：滑鼠經過空白紙面留下的鉛筆線 */
 .paper-ink { position: fixed; inset: 0; width: 100vw; height: 100vh; z-index: 30; pointer-events: none; mix-blend-mode: multiply; }
 body::before { content: ""; position: fixed; inset: 0; z-index: -1; pointer-events: none; background: url(/art/cover/kraft.webp) 0 0 / 640px; opacity: .32; mix-blend-mode: multiply; }

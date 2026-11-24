@@ -67,7 +67,17 @@ function alpha(hex: string, a: number) {
 
 function rr(ctx: CanvasRenderingContext2D, x: number, y: number, w: number, h: number, r: number) {
   ctx.beginPath();
-  ctx.roundRect(x, y, w, h, r);
+  if (typeof ctx.roundRect === 'function') {
+    ctx.roundRect(x, y, w, h, r);
+  } else {
+    const rad = Math.min(r, w / 2, h / 2);
+    ctx.moveTo(x + rad, y);
+    ctx.arcTo(x + w, y, x + w, y + h, rad);
+    ctx.arcTo(x + w, y + h, x, y + h, rad);
+    ctx.arcTo(x, y + h, x, y, rad);
+    ctx.arcTo(x, y, x + w, y, rad);
+    ctx.closePath();
+  }
 }
 
 /** 等待字型載入但設上限，避免首次造訪冷快取時任一字型分片過慢導致卡片空白 */
@@ -78,7 +88,7 @@ function waitFonts(loads: Promise<unknown>[], ms = 1200) {
   ]);
 }
 
-export async function drawCard(spec: CardSpec): Promise<HTMLCanvasElement | null> {
+export async function drawCard(spec: CardSpec, opts?: { skipFonts?: boolean }): Promise<HTMLCanvasElement | null> {
   const css = getComputedStyle(document.documentElement);
   const v = (n: string, d: string) => css.getPropertyValue(n).trim() || d;
   const sans = v('--font-sans', 'sans-serif');
@@ -91,13 +101,15 @@ export async function drawCard(spec: CardSpec): Promise<HTMLCanvasElement | null
   const ch = v(`--${spec.chapter}`, '#cbdd7a');
   const chInk = v(`--${spec.chapter}-ink`, '#2f5e35');
   const allSans = `${spec.text}${spec.title}${spec.src}${spec.eyebrow}`;
-  try {
-    await waitFonts([
-      document.fonts.load(`700 60px ${body}`, spec.text),
-      document.fonts.load(`700 36px ${sans}`, allSans),
-      document.fonts.load(`500 30px ${sans}`, `${spec.src}${spec.url}`),
-    ]);
-  } catch { /* 用系統字 */ }
+  if (!opts?.skipFonts) {
+    try {
+      await waitFonts([
+        document.fonts.load(`700 60px ${body}`, spec.text),
+        document.fonts.load(`700 36px ${sans}`, allSans),
+        document.fonts.load(`500 30px ${sans}`, `${spec.src}${spec.url}`),
+      ]);
+    } catch { /* 用系統字 */ }
+  }
 
   const c = document.createElement('canvas');
   c.width = W; c.height = H;
@@ -463,33 +475,52 @@ export function initShare() {
   };
   const shareText = () => `${pick().dataset.text}\n——〈${root.dataset.title}〉`;
 
-  // 預覽：選項一變就重畫；展開 <details> 時一律確保繪製並重繪於可見狀態（修正首次進頁點開空白）
+  // 預覽：採兩階段繪製（若尚未有圖，先零等待立即出圖，待網路字型就緒後自動無縫重繪），
+  // 徹底避免首次造訪冷快取或展開 <details> 時因等待字型／ticket 競態而出現空白卡片。
   const fold = root.querySelector<HTMLDetailsElement>('.share-fold');
+  const summary = fold?.querySelector<HTMLElement>('summary');
   let ticket = 0;
   let rendered = false;
-  const preview = async () => {
-    const t = ++ticket;
-    const c = await drawCard(spec());
-    if (!c || t !== ticket) return;
+  const paint = (c: HTMLCanvasElement | null, text: string) => {
+    if (!c) return;
     img.src = c.toDataURL('image/png');
-    cap.textContent = pick().dataset.text!;
+    cap.textContent = text;
     rendered = true;
   };
-  [...picks, ...styles].forEach((r) => r.addEventListener('change', () => { say(''); void preview(); }));
+  const preview = async (instant = false) => {
+    const t = ++ticket;
+    const s = spec();
+    try {
+      if (instant || !img.getAttribute('src') || img.naturalWidth === 0) {
+        const fast = await drawCard(s, { skipFonts: true });
+        if (t === ticket) paint(fast, s.text);
+      }
+      const c = await drawCard(s);
+      if (t !== ticket) return;
+      paint(c, s.text);
+    } catch { /* 保留已繪出的卡片或靜默降級 */ }
+  };
+  [...picks, ...styles].forEach((r) => r.addEventListener('change', () => { say(''); void preview(true); }));
   fold?.addEventListener('toggle', () => {
-    if (fold.open) void preview();
+    if (fold.open) void preview(true);
   });
-  if (fold?.open) void preview();
+  summary?.addEventListener('click', () => {
+    requestAnimationFrame(() => { if (fold?.open) void preview(true); });
+  });
+  addEventListener('pageshow', () => {
+    if (fold?.open && (!img.getAttribute('src') || img.naturalWidth === 0)) void preview(true);
+  });
+  if (fold?.open) void preview(true);
   new IntersectionObserver((es, io) => {
     if (es.some((e) => e.isIntersecting)) {
       io.disconnect();
-      if (!rendered) void preview();
+      if (!rendered) void preview(true);
     }
   }, { rootMargin: '600px 0px' }).observe(root);
   // 若首次繪製時字型尚未載完，字型就緒後自動補畫一次確保字體正確
   if (document.fonts && document.fonts.status !== 'loaded') {
     document.fonts.ready.then(() => {
-      if (fold?.open || rendered) void preview();
+      if (fold?.open || rendered) void preview(false);
     });
   }
 

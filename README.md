@@ -6,6 +6,29 @@
 - **設計與自評文件**：[PRD.md](docs/PRD.md) ｜ [製作歷程](docs/process-log.md) ｜ [部署與資安自評](docs/security-self-assessment.md)
 - **3 分鐘參賽影片（Video as Code）**：成片另行繳交（檔案不進 repo）｜ [影片生成架構](docs/video-production-architecture.md) ｜ [重製企劃與多代理審查](docs/video/remake-plan.md)
 
+> **交件截止後（2026-11-24）的唯一修正說明**：為求資訊透明，以下僅為交件截止後所做的相容性與文件補充（詳見 [製作歷程](docs/process-log.md#交件後的唯一調整2026-11-24)），全站 22 篇文章內容、策展架構與核心功能均維持交件時原樣：
+> 1. 補齊舊版 Safari（16.2 以前）不支援 `color-mix()` 的 `@supports not` 備用顏色，並將圖表說明框改為不透明深色實底。
+> 2. 針對 Safari（WebKit）跨 `<svg>` 參照 `#hand` 手繪濾鏡（`feDisplacementMap`）的渲染異常，於 WebKit 環境自動停用該濾鏡（Chrome／Edge／Firefox 維持手繪筆觸）。
+> 3. 修復分享卡片首次展開時因等待網路字型或舊版 Safari 缺少 `ctx.roundRect` 所導致的預覽空白（改為零等待即時出圖＋字型就緒自動無縫升級）。
+> 4. 於本 README 增補「評審 3 分鐘快速體驗導覽」，方便評審優先體驗代表性篇目與互動彩蛋。
+
+---
+
+## 評審 3 分鐘快速體驗導覽（推薦優先閱讀）
+
+全站 22 篇均依原刊論證邏輯「一文一策」重製視覺化。若評審時間有限，推薦優先體驗以下 **6 篇代表作**與 **4 項全站巧思**：
+
+| 推薦序 | 篇目（章節） | 直達連結 | 最具代表性的設計與互動亮點 |
+|---:|---|---|---|
+| **1** | **〈People Model〉**（Model｜旗艦篇） | [/story/people-model/](https://agentic-era.kevin-tsou.workers.dev/story/people-model/) | CCS 八大構面九宮格、9,221 點驗證散佈圖（編註點破 `r = 0.89` 不等於誤差率）、Lisa／Cindy 信任門檻動畫、Multi-Agent 分工圖，以及 **5 座可點擊預測的「情境—方法—模擬」互動實驗室**。 |
+| **2** | **〈重建 SOV〉**（Model｜D3 密集代表） | [/story/rebuild-sov/](https://agentic-era.kevin-tsou.workers.dev/story/rebuild-sov/) | 原刊零圖表、全由策展重鑄（40 則策展補充）：磁吸手機架 5 格手繪插畫、對數範圍圖、**ESOV 減法切割動畫＋7 場域掃描光束**、四層同心圓、**60 顆預算分配粒子流點陣**。 |
+| **3** | **〈生成式體驗來臨〉**（Model｜物理隱喻彩蛋） | [/story/generative-experience/](https://agentic-era.kevin-tsou.workers.dev/story/generative-experience/) | **「四塊地基」純 CSS 物理彩蛋**（滑過或點擊地基，房子即傾斜裂牆並浮現後果與原文金句）、**「五大防禦支柱」動態展寬手風琴**、CX 三階段衣架比喻。 |
+| **4** | **〈AI 普及下的演算法世代〉**（Model｜彈簧彩蛋） | [/story/judgment/](https://agentic-era.kevin-tsou.workers.dev/story/judgment/) | **媒體三世代「蹺蹺板」阻尼彈簧彩蛋**（可按住方塊下拉加重，放手後彈回平衡）、AI vs. PI 循環、Media++ 六模組原圖重製與三位科技 CEO 觀點橫捲卡。 |
+| **5** | **〈從金曲獎到甄嬛傳〉**（People｜台灣文化共鳴） | [/story/shared-memory/](https://agentic-era.kevin-tsou.workers.dev/story/shared-memory/) | 平成 Retro 分組長條圖、Vevo 65% 二十人形逐個填色、**五階段「曬衣繩拍立得」逐張顯影**，以及 4 張橫捲案例卡搭配卡片內平滑展開抽屜。 |
+| **6** | **〈別買曝光了〉**（People）<br>**〈體驗這件事〉／〈GEO 時代〉／〈AI Agent 走進消費旅程〉**（A.I） | [/story/buy-attention/](https://agentic-era.kevin-tsou.workers.dev/story/buy-attention/)<br>[/story/agent-experience/](https://agentic-era.kevin-tsou.workers.dev/story/agent-experience/)<br>[/story/geo/](https://agentic-era.kevin-tsou.workers.dev/story/geo/)<br>[/story/ai-agent-journey/](https://agentic-era.kevin-tsou.workers.dev/story/ai-agent-journey/) | • **別買曝光了**：Doom Loop 圓心萎縮循環、AIDMA→AICAS 演進矩陣（22 則補充）及考據 WARC 原報告之紙本 p.73 `playback → payback` 勘誤。<br>• **體驗這件事**：UX→TX→AX 逐圈長出同心圓與 6 站壓縮成 2 站旅程圖。<br>• **GEO 時代**：i-Proof 五步驟波浪路徑圖與 CEPs 七個 W 放射圖。<br>• **AI Agent 走進消費旅程**：Walmart Sparky 對話圖組與四層權限光譜。 |
+
+- **全站必體驗 4 大跨篇巧思**：① 首頁滑鼠粒子波紋與「人機智慧臉譜」運鏡點亮（可匯出個人海報）；② 任一段點 `p.xx ↗` 開啟原文高亮彈窗，再點「在新頁閱讀」體驗 **184 頁雙欄「數位校對桌」**（如 [/story/power-of-real/original/#p23](https://agentic-era.kevin-tsou.workers.dev/story/power-of-real/original/#p23)）；③ 文末點開右上角紅點 **360° 旋轉 3D 鋁箔「知識補給包」**（背面印有幽默成分表）並撕開解鎖 13 張成就卡與 Canvas 金句卡；④ 任一頁鍵盤直接輸入 **`dentsu`** 觸發隱藏手繪彩蛋。
+
 ---
 
 ## 一、核心策展理念與三層閱讀架構
